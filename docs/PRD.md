@@ -70,7 +70,7 @@ A faces library with the editor's exact values, each recipe checked in game, dat
 - **Face page:** a preview of the face as made in FC 27, turnable by drag, from Chime's own in-game captures (A-16, proposed, waiting on a test clip); then recipe steps by tab with ticks (A-07), the paired build card, version tag, credit line, limits ("the game can't do this exactly") and the tutorial on tap.
 - **Builds:** one card per archetype at launch, filterable by position; each with version tag and credit.
 - **13 archetype pages, a changelog, Submit, About, Takedown, 404.** 40 pages in all.
-- **The structure** is the sitemap and two user journeys in `docs/design/sitemap/sitemap-and-journeys.pdf` (D-21). Sharon designs the screens from it in Figma (D-14); Chime approves.
+- **The structure** is the sitemap and two user journeys in `docs/design/sitemap/sitemap-and-journeys.pdf` (D-21). Sharon gathers references for every screen first (Mobbin and other sites), Chime picks, and only then are the screens designed in Figma (D-14, D-28); Chime approves.
 
 ## Metrics
 
@@ -110,7 +110,7 @@ About gets one line saying what is counted and that nothing personal is stored.
 | Phase | When | Focus | Gate |
 | --- | --- | --- | --- |
 | 0 | 19 to 20 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | Now, in parallel | Sharon: screens from the sitemap, smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime: record 5 faces and 13 builds on Season 2 | Chime approves the screens; core lane green; content recorded |
+| 1 | Now, in parallel | Sharon: references for every screen first (Chime picks), then screens from the sitemap and the picks; smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime: record 5 faces and 13 builds on Season 2 | Chime approves the screens; core lane green; content recorded |
 | 2 | Right after | Build every launch page; load the content | All launch pages green; content verified |
 | Launch | As soon as phase 2 passes | Launch post; video if ready (open, D-25) | Live, no blocking bugs |
 | Season 3 | Thu 3 Dec | Re-check everything on Season 3; changelog entry; "updated for Season 3" | Every item re-tagged Season 3, or warning showing |

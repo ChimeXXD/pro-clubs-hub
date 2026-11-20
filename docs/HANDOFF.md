@@ -21,7 +21,7 @@ Chime invited a collaborator, Sharon (`sharrygold`), who will design the UI. The
 
 ### Start here next
 **Decided 20 Nov after PR #1 (Sharon's PRD v2, merged):** ship within days on Season 2, re-check on Season 3 from Thu 3 Dec (D-25); Michael Jackson allowed as a launch face (D-26); GoatCounter for counting (D-27).
-1. **Sharon:** screens in Figma from the sitemap PDF (https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ, D-14); the smoke test (EVIDENCE §3).
+1. **Sharon:** references first. For each screen in the sitemap PDF, gather references (Mobbin, FUT.GG, other sites) into `docs/design/REFERENCES.md`; Chime picks per screen (D-28). Only then the screens in Figma (https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ, D-14). Also the smoke test (EVIDENCE §3).
 2. **Chime:** record 5 faces and 13 builds on Season 2, plus the face-preview captures (A-16); create the GoatCounter account; answer O-01 (name), O-05 (first faces, including which Michael Jackson era) and O-13 (takedown email); decide whether the video ships at launch or with Season 3.
 3. **Claude:** core lane, test-first: `src/lib/content/load.ts` (relations; drop drafts and withdrawn; fail on broken links), `version.ts` (tag wording, older-season warning), `src/lib/submit/toIssueUrl.ts`; then GoatCounter wiring once the account exists.
 

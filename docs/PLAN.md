@@ -16,7 +16,7 @@ Written 19 Nov 2026; replanned 20 Nov for a fast launch (D-25). Decisions are in
 | Phase | When | Focus | Gate (must pass before the next phase) |
 | --- | --- | --- | --- |
 | 0 | 19 – 20 Nov | **In-game checks**, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | Now, in parallel | **Sharon:** screens in Figma from the sitemap brief (D-21). **Claude:** core lane test-first (loader, version wording, issue URL), GoatCounter wiring. **Chime:** record the 5 faces and 13 builds on Season 2, the face-preview captures (A-16). **Sharon:** smoke test (EVIDENCE §3) | Chime approves the screens; core lane green; content recorded |
+| 1 | Now, in parallel | **Sharon, references first:** for each screen in the sitemap, gather references (Mobbin, FUT.GG and other companion sites); Chime picks one per screen; **then** the screens in Figma from the sitemap brief and the picks (D-21, D-28). **Claude:** core lane test-first (loader, version wording, issue URL), GoatCounter wiring. **Chime:** record the 5 faces and 13 builds on Season 2, the face-preview captures (A-16). **Sharon:** smoke test (EVIDENCE §3) | Chime has picked references for every screen; Chime approves the screens; core lane green; content recorded |
 | 2 | Right after | **Build** every launch page from the screens; load the recorded content | All launch pages green; 5 faces and 13 builds verified on Season 2 |
 | Launch | As soon as phase 2 passes (date set then) | Launch post; video if ready | Live; no blocking bugs |
 | Season 3 | Thu 3 Dec | Re-check every face and build on Season 3, bump versions, write the changelog entry, "updated for Season 3" post | Every launch item tagged Season 3, or showing the older-season warning until it is |
@@ -57,7 +57,9 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [x] ~~Three directions on a direction board~~: rejected by Chime 20 Nov (D-19)
 - [x] ~~FUT.GG-style home and face page with a 3D spin preview (D-19)~~: mockups v1 and v2 rejected by Chime 20 Nov (D-21); kept in `mockup/` as a record
 - [x] Sitemap and user journeys (face seeker, meta-build seeker): `docs/design/sitemap/sitemap-and-journeys.pdf`, 20 Nov (D-21). The brief for the UI designer
-- [ ] Sharon designs the screens from the sitemap brief; Chime approves
+- [ ] **References first (D-28):** Sharon gathers references for every screen in the sitemap (home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404) from Mobbin, FUT.GG and other sites, into `docs/design/REFERENCES.md`; Claude can pull Mobbin searches on request
+- [ ] Chime picks one reference (or a mix) per screen and says what to take from each
+- [ ] Only then: Sharon designs the screens in Figma from the sitemap brief and the picks; Chime approves
 - [ ] Design System page: tokens as variables, text and effect styles, components with states (FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast)
 - [ ] Design screens: home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404, at iPhone, iPad and desktop
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma
