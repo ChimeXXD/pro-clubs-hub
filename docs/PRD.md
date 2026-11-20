@@ -25,7 +25,7 @@ The full map with sources is in `docs/EVIDENCE.md`. The three bets that matter m
 | Bet | What we know (20 Nov) | How we'll know |
 | --- | --- | --- |
 | **1. Players will follow an exact, tickable recipe on a phone.** | Players ask EA for shareable face codes in every edition since FC 24, in more than one language. Written guides exist but are vague (EVIDENCE §2.1, §2.3). Nobody has asked for recipes as such. | Smoke test this weekend (EVIDENCE §3); after launch, recipes finished per week. |
-| **2. Lookalike and era faces are the ones players want.** | Ronaldo requests are loud. No evidence found yet for musician faces. Some players want to copy real friends instead (EVIDENCE §2.2). | The faces named in the smoke test decide O-05. |
+| **2. Lookalike and era faces are the ones players want.** | Ronaldo requests are loud. Sharon has seen Michael Jackson faces made several times; D-10 keeps deceased stars out of launch, so that's Chime's call. Some players want to copy real friends instead (EVIDENCE §2.2). | The faces named in the smoke test decide O-05. |
 | **3. Players will find us and come back when the meta moves.** | No evidence yet, and v1 had no way to measure it. | Metrics below, live from launch day. |
 
 If the smoke test fails, Chime and Sharon decide before Thu 3 Dec whether the launch leads with builds instead.
@@ -105,7 +105,9 @@ About gets one line saying what is counted and that nothing personal is stored.
 - **Submit** builds a prefilled GitHub issue (A-04); Chime reviews, credits and merges.
 - **Two people, one gate:** Sharon works on branches and opens pull requests; only Chime merges into `main`, which GitHub enforces (D-22, D-23).
 
-| Phase | Dates | Focus | Gate |
+**Pace (20 Nov):** Sharon proposes shipping as fast as the work allows, in days instead of weeks. The dates below are Chime's plan from D-18. The trade-off: builds recorded before Thu 3 Dec are on Season 2 and must be re-checked when Season 3 lands, which is quick for faces and slower for 13 builds. Chime decides.
+
+| Phase | Dates (D-18 plan) | Focus | Gate |
 | --- | --- | --- | --- |
 | 0 | 19 to 22 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
 | 1 | 23 to 29 Nov | Design screens in Figma from the sitemap; loader, version wording and issue URL, tests first; start recording faces; **smoke test and metrics set-up** | Chime approves phone, iPad and desktop screens; core lane green |
@@ -176,6 +178,8 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 | O-13 | Takedown email address | Phase 2 |
 | A-16 | Face preview from one capture per face | Chime's test clip |
 | A-17 | Counting for the metrics (option A, B or C) | Phase 1, so it ships with the first pages |
+| New | Ship in days (Sharon) or after Season 3 (D-18)? | Now |
+| New | Michael Jackson in the first batch? D-10 says no at launch (estate risk) | Before O-05 |
 | New | Which season do launch faces carry? Recommendation: re-check each in game after 3 Dec and tag Season 3 (sitemap p. 12) | Phase 3 |
 
 **Already answered elsewhere** (still listed under "Open" in `DECISIONS.md`): O-02 (A-10), O-03 (A-09, A-12), O-04 and O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14).
