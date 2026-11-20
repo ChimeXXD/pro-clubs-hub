@@ -1,5 +1,7 @@
 # Pro Clubs Hub (working title)
 
+[![CI](https://github.com/ChimeXXD/pro-clubs-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/ChimeXXD/pro-clubs-hub/actions/workflows/ci.yml)
+
 **Look like a legend. Play like one.** *(draft)* A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era faces you build step by step, each paired with a build, plus meta-build cards for all 13 archetypes, each dated and credited.
 
 > Work in progress by [Chime Ekpendu](https://chimexd.work), built with Claude Code. "Pro Clubs Hub" is a working title; the name is not decided. The repo is public from day one.
@@ -19,13 +21,15 @@ Use the Submit page (coming soon) to send a face or a build. It opens a GitHub i
 
 ## Build
 
-Requires Node 22. The app is scaffolded in Phase 0.
+Requires Node 22 (`.nvmrc`).
 
 ```bash
 npm ci
 npm run dev
 npm test
-npm run build      # static export to out/
+npm run build      # static export to out/ (checks content/ first)
+npm run budget     # page-weight budget on out/
+npm run test:e2e   # Playwright at 390 and 360 wide
 ```
 
 ## Not affiliated

@@ -41,11 +41,11 @@ If Season 3 lands before 19 Dec, launch Sat 19 or Mon 21 Dec (O-04). If it lands
 
 - [x] Chime's in-game checks recorded in `docs/RESEARCH.md` §9: value display, ranges, preset count, hairstyles, street vs matchday face, level cap, AP at cap, platform
 - [x] `docs/FORMAT.md` control ids and value kinds updated from the checks; a decision logged
-- [ ] Public repo `ChimeXXD/pro-clubs-hub` (D-12), first commit of these docs
-- [ ] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
-- [ ] CI green on push to main
+- [x] Public repo `ChimeXXD/pro-clubs-hub` (D-12), first commit of these docs
+- [x] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
+- [x] CI green on push to main
 - [ ] Host chosen (O-12) and the empty site deployed
-- [ ] Empty-app weight measured; budget logged as a decision (A-06)
+- [x] Empty-app weight measured; budget logged as a decision (A-06)
 - [ ] Figma file created: cover, Design System page, Design screens page (D-14)
 
 ## Phase 1: design and core lane (23–29 Nov)

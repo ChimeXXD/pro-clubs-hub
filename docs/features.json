@@ -36,8 +36,8 @@
         "first commit holds the docs"
       ],
       "verify": "gh repo view --json visibility",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "gh repo view: ChimeXXD/pro-clubs-hub is PUBLIC with the MIT licence (20 Nov 2026); first commit 367844e holds the docs."
     },
     {
       "id": "P0-4",
@@ -50,8 +50,8 @@
         "one Vitest and one Playwright test pass"
       ],
       "verify": "npm ci && npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "Exact pins in package.json (next 16.4.6, react 19.3.1, typescript 5.9.3, tailwindcss 4.3.3, @playwright/test 1.64.1). CI run https://github.com/ChimeXXD/pro-clubs-hub/actions/runs/44652883584: npm ci, lint, typecheck, unit (5 tests), build to out/, e2e (2 tests, 390 and 360) all success."
     },
     {
       "id": "P0-5",
@@ -63,8 +63,8 @@
         "latest run on main is green"
       ],
       "verify": "gh run list --workflow ci.yml --limit 1",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "ci.yml runs lint, typecheck, unit, validate content, build, budget, e2e; first run on main green: https://github.com/ChimeXXD/pro-clubs-hub/actions/runs/44652883584."
     },
     {
       "id": "P0-6",
@@ -89,8 +89,8 @@
         "budget logged as a decision and enforced by scripts/check-budget.mjs"
       ],
       "verify": "npm run build && npm run budget",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "Empty app 131.6 KB JS / 135.7 KB total gzipped (PROGRESS 20 Nov); limits 165 / 220 logged as A-13; scripts/check-budget.mjs passes locally and in CI run 44652883584."
     },
     {
       "id": "P0-8",
