@@ -86,7 +86,7 @@ A faces library with the editor's exact values, each recipe checked in game, dat
 - **Face page:** a preview of the face as made in FC 27, turnable by drag, from Chime's own in-game captures (A-16, proposed, waiting on a test clip); then recipe steps by tab with ticks (A-07), the paired build card, version tag, credit line, limits ("the game can't do this exactly") and the tutorial on tap.
 - **Builds:** one card per archetype at launch, filterable by position; each with version tag and credit.
 - **13 archetype pages, a changelog, Submit, About, Takedown, 404.** 40 pages in all.
-- **The structure** is the sitemap and two user journeys in `docs/design/sitemap/sitemap-and-journeys.pdf` (D-21). Sharon designs the screens from it in Figma (D-14); Chime approves.
+- **The structure** is the sitemap and two user journeys in `docs/design/sitemap/sitemap-and-journeys.pdf` (D-21). Sharon gathers references for every screen first (Mobbin and other sites), Chime picks, and only then are the screens designed in Figma (D-14, D-28); Chime approves.
 
 ## Metrics
 
@@ -120,14 +120,14 @@ About gets one line saying what is counted and that nothing personal is stored.
 - **Patch-note routine:** EA posts an update, Chime checks affected builds in game, bumps versions, writes a changelog entry, rebuilds. Target: within 48 hours of a season change.
 - **Submit** builds a prefilled GitHub issue (A-04); Chime reviews, credits and merges.
 - **Two people, one gate:** Sharon works on branches and opens pull requests; only Chime merges into `main`, which GitHub enforces (D-22, D-23).
-- **Face pictures: full quality, loaded smartly (proposed, v2.1).** The page-weight check (A-13) counts a page's code only, not its images, so nothing yet stops a face page from loading several megabytes on mobile data. Quality is not reduced to fix this. Each frame is exported sharp enough for an iPhone screen (twice the size it is shown at), in AVIF or WebP, which look the same as the original at a fraction of the file size. The front picture loads with the page; the turn set (about 36 frames, A-16) loads in the background after the page opens, so turning is instant by the time a player touches it. The check then gets an image limit, set by measuring Chime's real clip at full quality, so the limit follows the quality and not the other way round.
+- **Face pictures: full quality, loaded smartly (proposed, v2.1).** The page-weight check (A-13) counts a page's code only, not its images, so nothing yet stops a face page from loading several megabytes on mobile data. Quality is not reduced to fix this. Each frame is exported sharp enough for an iPhone screen (twice the size it is shown at), in AVIF or WebP, which look nearly the same as the original at a fraction of the file size. The front picture loads with the page; the turn set (about 36 frames, A-16) loads in the background after the page opens, so turning is instant by the time a player touches it. The check then gets an image limit, set by measuring Chime's real clip at full quality, so the limit follows the quality and not the other way round.
 
 **Pace (D-25, 20 Nov):** ship within days, as soon as the Must list passes, on Season 2. Chime chose this over waiting for Season 3 (D-18). The cost: all 13 builds and 5 faces are recorded on Season 2 and re-checked from Thu 3 Dec. Until 3 Dec, Season 2 is the current season, so no warning shows; from 3 Dec, anything not yet re-checked shows the older-season warning (D-05). The date is set once the screens and the first faces exist; the real limit is the screens, the core lane and 18 items recorded in game.
 
 | Phase | When | Focus | Gate |
 | --- | --- | --- | --- |
 | 0 | 19 to 20 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | Now, in parallel | Sharon: screens from the sitemap, smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime and Sharon: record 5 faces and 13 builds on Season 2 (proposed) | Chime approves the screens; core lane green; content recorded |
+| 1 | Now, in parallel | Sharon: references for every screen first (Chime picks), then screens from the sitemap and the picks; smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime and Sharon: record 5 faces and 13 builds on Season 2, one match per build (D-29, D-30) | Chime has picked references for every screen; Chime approves the screens; core lane green; content recorded |
 | 2 | Right after | Build every launch page; load the content | All launch pages green; content verified |
 | Launch | As soon as phase 2 passes | Launch post; video if ready (open, D-25) | Live, no blocking bugs |
 | Season 3 | Thu 3 Dec | Re-check everything on Season 3; changelog entry; "updated for Season 3" | Every item re-tagged Season 3, or warning showing |
@@ -167,7 +167,7 @@ If a phase overruns, cut from the bottom of this list. Never cut faces or launch
 ## Content sourcing and credit
 
 1. **Facts are free.** Archetype names, PlayStyle names, EA's stated specialization targets, patch-note changes. Cite the EA page.
-2. **Chime makes every build and face in game**, from reference. That is what "verified" means. **Proposed (this PR):** Sharon records faces and builds too, the same way; Chime still reviews each one before it merges. Faces and builds are made in the game's menus, so recording one needs no matches.
+2. **Chime or Sharon makes every build and face in game**, from reference (D-08, D-29). That is what "verified" means. Each item names its maker in the credit line ("Made by Sharon in game") and its platform in the version tag, and goes through Chime's pull-request review. Faces and builds are made in the game's menus; a build is also played for one match before it is called meta (D-30).
 3. **Credit what was followed.** If a creator's tutorial shaped a face, name the creator, link the video and embed it. Never transcribe or re-upload it.
 4. **Ask first** before publishing a creator's full slider list as a recipe. Store the answer in `creators.json` (`permission`).
 5. **Featured creator spots** for creators who say yes.
@@ -199,10 +199,9 @@ If a phase overruns, cut from the bottom of this list. Never cut faces or launch
 | New | The video: with the launch, or with the Season 3 update? (D-25) | Phase 1 |
 | New | Michael Jackson's era and which face (D-26 allows him) | With O-05 |
 | New | Does Season 3 raise the level cap? Likely: FC 26 raised it in its December update. If so, every build gets a new version ("Seasons and levels") | Thu 3 Dec |
-| New | Sharon records faces and builds too (proposed in v2.1; changes D-08's "Chime makes") | Chime, on merge |
 | New | Image limit for face pictures, set from the real clip (proposed in v2.1) | Chime's test clip |
 
-**Answered and moved to "Closed" in `DECISIONS.md`:** O-02 (A-10), O-03 (A-09, A-12), O-04 (D-18, then D-25), O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14). Answered on 20 Nov: pace (D-25), Michael Jackson (D-26), counting (D-27).
+**Answered and moved to "Closed" in `DECISIONS.md`:** O-02 (A-10), O-03 (A-09, A-12), O-04 (D-18, then D-25), O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14). Answered on 20 Nov: pace (D-25), Michael Jackson (D-26), counting (D-27), Sharon records too (D-29), one match per build (D-30).
 
 ## Insights
 
@@ -219,7 +218,7 @@ If a phase overruns, cut from the bottom of this list. Never cut faces or launch
 - The older-season warning shows only from Thu 3 Dec, on anything not yet re-checked; before then Season 2 is current.
 - The season-change metric can first be read at Season 3 if we're live by Thu 26 Nov.
 - "Seasons and levels" added: cap rises, level unlocks, and what they mean for build cards.
-- Proposed: Sharon records faces and builds too; recording needs no matches.
+- Decided on merge: Sharon records faces and builds too, credited by name, platform tagged, reviewed by Chime (D-29); each build is recorded in the menus and played for one match before it's called meta (D-30).
 - Proposed: face pictures at full quality, with the turn set loaded in the background and an image limit set from the real clip.
 
 ## What changed from v1

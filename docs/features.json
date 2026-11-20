@@ -396,6 +396,7 @@
       "criteria": [
         "one per archetype",
         "recorded on Season 2, re-checked on Season 3 from Thu 3 Dec (D-25)",
+        "played for one match before it is called meta (D-30)",
         "version tag dated"
       ],
       "verify": "npm run validate:content",
