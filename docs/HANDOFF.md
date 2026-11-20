@@ -5,6 +5,7 @@
 Chime invited a collaborator to the repo, which is now **private** (D-20). The collaborator will design the UI. Nothing is running (no dev server, browser or watcher).
 
 ### New here? Read in this order
+0. `CONTRIBUTING.md`: **only Chime merges into `main`.** Work on a branch and open a pull request (D-22).
 1. `CLAUDE.md`: what we're building, the stack, the rules that protect correctness. Chime is they/them.
 2. `docs/design/sitemap/sitemap-and-journeys.pdf`: **the brief for the UI**. Every page, how the pages link, what each must show and its states, and the two journeys (face seeker, meta-build seeker). The HTML source is beside it.
 3. `docs/PRD.md` (why and what), `docs/SPEC.md` (routes, flows, acceptance tests), `docs/FORMAT.md` (every content field), `docs/DECISIONS.md` (every decision, numbered).

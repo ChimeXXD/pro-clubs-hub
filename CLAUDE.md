@@ -81,6 +81,10 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 9. **Never copy another site's builds or cost tables.** Facts (a PlayStyle name, a specialization target EA states) are free. Another site's finished build, tier list or cost table is not (D-08).
 10. **Renders are not enough.** Check pages on Chime's iPhone next to the TV before a gate passes (L-01).
 
+## Two people, one review gate (D-22)
+
+Chime (`ChimeXXD`, the owner) and Sharon (`sharrygold`, a collaborator) both work here. **Only Chime merges into `main`.** Anyone else, and any AI agent working for them, works on a branch and opens a pull request for Chime to review: follow `CONTRIBUTING.md` before any git command. Working with Chime, commit and push to `main` as below. When this file says "ask Chime" and you're working with Sharon, put the question in the pull request for Chime.
+
 ## Working style
 
 - Work phase by phase from `docs/PLAN.md`. Pass a phase's gate before starting the next.
