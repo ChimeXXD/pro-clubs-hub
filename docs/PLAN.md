@@ -16,7 +16,7 @@ Written 19 Nov 2026; replanned 20 Nov for a fast launch (D-25). Decisions are in
 | Phase | When | Focus | Gate (must pass before the next phase) |
 | --- | --- | --- | --- |
 | 0 | 19 – 20 Nov | **In-game checks**, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | Now, in parallel | **Sharon, references first:** for each screen in the sitemap, gather references (Mobbin, FUT.GG and other companion sites); Chime picks one per screen; **then** the screens in Figma from the sitemap brief and the picks (D-21, D-28). **Claude:** core lane test-first (loader, version wording, issue URL), GoatCounter wiring. **Chime:** record the 5 faces and 13 builds on Season 2, the face-preview captures (A-16). **Sharon:** smoke test (EVIDENCE §3) | Chime has picked references for every screen; Chime approves the screens; core lane green; content recorded |
+| 1 | Now, in parallel | **Sharon, references first:** for each screen in the sitemap, gather references (Mobbin, FUT.GG and other companion sites); Chime picks one per screen; **then** the screens in Figma from the sitemap brief and the picks (D-21, D-28). **Claude:** core lane test-first (loader, version wording, issue URL), GoatCounter wiring. **Chime and Sharon:** record the 5 faces and 13 builds on Season 2 (D-29), one match per build (D-30); Chime: the face-preview captures (A-16). **Sharon:** smoke test (EVIDENCE §3) | Chime has picked references for every screen; Chime approves the screens; core lane green; content recorded |
 | 2 | Right after | **Build** every launch page from the screens; load the recorded content | All launch pages green; 5 faces and 13 builds verified on Season 2 |
 | Launch | As soon as phase 2 passes (date set then) | Launch post; video if ready | Live; no blocking bugs |
 | Season 3 | Thu 3 Dec | Re-check every face and build on Season 3, bump versions, write the changelog entry, "updated for Season 3" post | Every launch item tagged Season 3, or showing the older-season warning until it is |
@@ -37,7 +37,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 | About, takedown, notice on every page | Tutorial embeds on tap | Ads (a later decision) |
 | Validator fails the build on bad content | | Native app |
 | Budget and e2e in CI | | |
-| Motion-graphics video and launch post | 15 s cut for reposts | |
+| Launch post; motion-graphics video at launch or with the Season 3 update (D-25) | 15 s cut for reposts | |
 
 ## Phase 0: setup and in-game checks (19–22 Nov)
 
@@ -73,9 +73,9 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [x] `npm run validate:content` and prebuild hook
 - [ ] GoatCounter on every page (D-27): Chime creates the account; script within the budget; About says what is counted; events for recipes finished and face to build
 
-**Recording (Chime, on Season 2, D-25)**
+**Recording (Chime and Sharon, on Season 2, D-25, D-29)**
 - [ ] First 5 faces chosen (O-05; the smoke test feeds it) and recorded; captures for the face preview (A-16)
-- [ ] 13 builds recorded and played 3 matches each
+- [ ] 13 builds recorded in the game's menus, one per archetype, on Season 2, and played for one match each before it's called meta (D-30); re-checked on Season 3 from Thu 3 Dec (D-25)
 
 **Evidence (Sharon)**
 - [ ] Smoke test posted and read after 72 hours (EVIDENCE §3)
