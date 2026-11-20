@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## PR #2 merged; references first; Sharon records too (Fri 20 Nov 2026, late evening)
+
+**Changed**
+- D-28: references for every screen (Mobbin, FUT.GG, other sites) and Chime's pick before any Figma work. Chime: "we can't just go and start designing all this. We need references."
+- Reviewed Sharon's PR #2 (PRD v2.1): older-season warning only from Thu 3 Dec; video off the launch must-list; season-change metric readable at Season 3 if live by Thu 26 Nov; "Seasons and levels" (cap rises during the year; build cards show level and AP); face-picture loading proposal (the budget check counts HTML, scripts and styles only: confirmed in `scripts/check-budget.mjs`).
+- It conflicted with D-28 on the PRD phase-1 row. Claude merged `main` into Sharon's branch, combined both, applied Chime's answers, CI passed; Chime approved; squash-merged as `bfcda6f`.
+- D-29: Sharon records faces and builds too, credited by name, platform tagged, reviewed by Chime. D-30: one match per build before it's called meta (replaces "3 matches"; Sharon had proposed none). CLAUDE.md, DESIGN.md, UI-BRIEF, HANDOFF and the sitemap PDF updated.
+
+**Not verified**
+- PR #2's "Seasons and levels" facts were seen in search results only (labelled so in the PRD).
+
 ## PR #1 merged; pace, Michael Jackson and counting decided (Fri 20 Nov 2026, evening)
 
 **Changed**

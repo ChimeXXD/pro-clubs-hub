@@ -53,7 +53,7 @@ To be written from Chime's pick. Constraints any direction must meet:
 | Version tag, verified | "FC 27 · Season 2 · verified 19 Nov 2026" |
 | Version tag, not checked | "FC 27 · Season 2 · not yet checked in game" |
 | Older season | "Made for Season 2. Values may have changed since." |
-| Credit line | "Made by Chime in game" · "Tutorial by <creator>" · "Submitted by <name>" |
+| Credit line | "Made by Chime in game" or "Made by Sharon in game" (D-29) · "Tutorial by <creator>" · "Submitted by <name>" |
 | Face title | "Inspired by <name>, <era>" |
 | Limits | "The game can't do this exactly: <limit>" *new* |
 | Ticks reset | "This face was updated. Your ticks start fresh." *new* |

@@ -21,7 +21,7 @@ A **FUT.GG-style hub for EA SPORTS FC 27 Clubs (Pro Clubs), led by faces** (D-02
 - **Always free.** No paywall, ever (EA content policy, D-04). Passive banner ads may come later, after a decision. No affiliate links or tips at launch.
 - **Scope** is the Must / Should / Cut table in `docs/PLAN.md`. If a phase overruns, cut its Should items. Never cut the faces library, the video or launch day.
 - **Design comes first** (D-14). Figma Design System page plus Design screens page, then build from them.
-- **Content comes from Chime, in game** (D-08). Never invent slider values, attribute numbers or build stats. Placeholder values are the string `"PLACEHOLDER"` and their files stay `"status": "draft"`.
+- **Content comes from Chime or Sharon, in game** (D-08, D-29): credited by name, platform tagged, reviewed by Chime; each build played for one match before it is called meta (D-30). Never invent slider values, attribute numbers or build stats. Placeholder values are the string `"PLACEHOLDER"` and their files stay `"status": "draft"`.
 - **Chime builds Oya Ball at the same time.** The Mac is tight on memory: one dev server at a time across both projects, stop it when you finish, never leave Playwright browsers or watchers running.
 
 ## Stack (fixed, D-11)
@@ -74,7 +74,7 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 2. **No EA logos, fonts, card art or archetype icons.** Archetype and attribute names appear as text. "EA", "FC" and "FUT" never appear in the product name, domain or logo (D-04).
 3. **The notice is on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named." Faces say "inspired by", never "official".
 4. **Every build and face carries a version tag** (`game`, `season`, `verifiedOn`). Unverified content says "Not yet checked in game" in words. Content from an older season shows a warning; it is never silently carried over (D-05).
-5. **Every build and face carries a source and credit line** (D-08). A creator whose tutorial Chime followed is named and linked. Creator videos are embedded with `youtube-nocookie.com`, never re-uploaded or transcribed.
+5. **Every build and face carries a source and credit line** (D-08). A creator whose tutorial was followed is named and linked. Creator videos are embedded with `youtube-nocookie.com`, never re-uploaded or transcribed.
 6. **Never trust a content file.** `validate.ts` checks every field against `docs/FORMAT.md`. One bad file fails the build. Submissions are validated the same way before Chime sees them.
 7. **Values are stored as the game shows them** (A-09, A-12): `item` ("Nose 116"), `named` ("Warm Black"), `slider` (Sculpt, 0–100 with its end labels), and `position` for controls with no number (Skin Tone, Visual Age), measured from Chime's screenshot. The editor's structure is in `docs/RESEARCH.md` §9.
 8. **Withdrawn means gone.** `"status": "withdrawn"` is not built, listed or linked. Takedowns are acted on within 72 hours (D-10).

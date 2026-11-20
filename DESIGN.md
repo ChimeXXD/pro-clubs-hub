@@ -29,7 +29,7 @@ This file starts with the Sinima rules that fit any product. Add a rule each tim
 - **The value is the hero.** On a face step or a build card, the number or notch is the biggest thing; labels and tips are secondary.
   Why (*inferred*): the phone sits next to a TV and is read between controller moves.
 
-- **Version tag and credit line are always visible on a card, never in a tooltip.** Format: "FC 27 · Season 2 · verified 19 Nov 2026" and "Made by Chime in game · tutorial by <creator>".
+- **Version tag and credit line are always visible on a card, never in a tooltip.** Format: "FC 27 · Season 2 · verified 19 Nov 2026" and "Made by <Chime or Sharon> in game · tutorial by <creator>".
   Why: trust is the product (L-03); a stale build without its date misleads.
 
 ## Interaction
