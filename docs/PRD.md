@@ -1,4 +1,4 @@
-> Written 19 Nov 2026, replacing the Facecard PRD of 6 Nov. "Pro Clubs Hub" is a working title (O-01). Decisions in `docs/DECISIONS.md` win where this disagrees.
+> **PRD v2**, 20 Nov 2026, by Sharon (`sharrygold`) with Claude. Replaces v1 of 19 Nov. "Pro Clubs Hub" is a working title (O-01). Decisions in `docs/DECISIONS.md` win where this disagrees. What changed from v1 is listed at the end.
 
 # Pro Clubs Hub
 
@@ -6,25 +6,39 @@ A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era fac
 
 ## Summary
 
-Clubs players want two things for their Pro: to look like someone and to play like the meta. Today the looks live in YouTube tutorials you pause and rewind, and the builds live on sites that change without dates or credit. Pro Clubs Hub leads with a library of faces (2008 Ronaldo, 2017 Ronaldo, Kanye West), each written as a tab-by-tab recipe with a matching build. Beside it sit meta-build cards for all 13 FC 27 archetypes and every position, each tagged "FC 27 · Season 2 · verified <date>" with a source and credit line, plus archetype pages and a public changelog. It is a static Next.js site, free forever, built by one person for $0, and launched with a motion-graphics video when Season 3 lands in December. We don't compete with Pro Clubs HQ on tools; we win on design, speed, honesty and faces.
+Clubs players want two things for their Pro: to look like someone and to play like the meta. Copying a look today means pausing a YouTube tutorial for about 15 minutes, or following a written guide that says "medium tan shade" where the editor shows an exact value. Builds live on sites that change without a date or credit. Pro Clubs Hub leads with a library of faces (2008 Ronaldo, 2017 Ronaldo and more), each a tab-by-tab checklist with the editor's real values, checked in game and paired with a build. Beside it sit build cards for all 13 FC 27 archetypes, each tagged "FC 27 · Season 3 · verified <date>" with a source and credit line, plus archetype pages and a public changelog. It is a static site, free forever, built for $0, and launched with a motion-graphics video on Sat 19 or Mon 21 Dec, after Season 3 lands on Thu 3 Dec (D-18). We leave tools to Pro Clubs HQ and win on design, mobile speed, honesty and faces (D-03).
 
-## Problem and audience
+## Who it's for
 
-- **Faces are trapped in video.** Players spend about 15 minutes "manually recreating face presets from YouTube tutorials", and FC 27 has no face codes ([EA forum](https://forums.ea.com/discussions/fc-27-feedback-en/feature-request-code-system-clubs-avatars/13794923)). The FC 26 request got no reply ([EA forum](https://forums.ea.com/discussions/fc-26-feedback-en/fc26-character-creation-sharing-system-face--appearance-codes/13272068)).
-- **Builds go stale overnight.** EA moved 87 attribute costs and reset every build on 22 Oct ([EA](https://ea.com/games/ea-sports-fc/fc-27/news/fc-27-the-grounds-developer-archetypes-update)). Media builds show no method, credit or update date ([Dexerto](https://www.dexerto.com/wikis/ea-fc-27/best-clubs-builds-for-all-positions/)).
-- **No one pairs a look with a build.** An era face (2008 Ronaldo) wants an era build (Spark or Magician, not Target).
+Chime and Sharon are both Clubs players, and the product starts from problems they and their friends keep hitting.
 
-**Who:** Clubs players on console with a phone in reach (Chime in Lagos is one); squads picking a theme; lookalike creators who want credit and reach.
-**When it hurts:** a new season (everyone re-checks builds), a new edition (everyone rebuilds their Pro), a squad theme night.
+- **Players** on console with a phone in reach, setting up a Pro for a new edition or season.
+- **Squads** picking a theme for a night (an era, a team of lookalikes).
+- **Lookalike creators** who want credit and reach.
+
+**When it hurts:** a new edition (everyone rebuilds their Pro), a new season (everyone re-checks builds), a squad theme night.
+
+## What we're betting on
+
+The full map with sources is in `docs/EVIDENCE.md`. The three bets that matter most:
+
+| Bet | What we know (20 Nov) | How we'll know |
+| --- | --- | --- |
+| **1. Players will follow an exact, tickable recipe on a phone.** | Players ask EA for shareable face codes in every edition since FC 24, in more than one language. Written guides exist but are vague (EVIDENCE §2.1, §2.3). Nobody has asked for recipes as such. | Smoke test this weekend (EVIDENCE §3); after launch, recipes finished per week. |
+| **2. Lookalike and era faces are the ones players want.** | Ronaldo requests are loud. Sharon has seen Michael Jackson faces made several times; D-10 keeps deceased stars out of launch, so that's Chime's call. Some players want to copy real friends instead (EVIDENCE §2.2). | The faces named in the smoke test decide O-05. |
+| **3. Players will find us and come back when the meta moves.** | No evidence yet, and v1 had no way to measure it. | Metrics below, live from launch day. |
+
+If the smoke test fails, Chime and Sharon decide before Thu 3 Dec whether the launch leads with builds instead.
 
 ## Research findings
 
-Full report with sources: `docs/RESEARCH.md`.
+Full report with sources: `docs/RESEARCH.md`. New evidence: `docs/EVIDENCE.md`.
 
-- **The system.** 13 archetypes, Engine gone, Disruptor new. All unlocked, free resets, per-attribute respecs, Masteries, Amps ([EA Pitch Notes](https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive), [PCHQ](https://proclubshq.com/blog/fc27-archetype-changes/)).
-- **Level cap** 55 since 22 Oct per Pro Clubs HQ and PRO11; Dexerto says 75 (O-02).
-- **Cadence.** Launch 25 Sept; archetype re-price 22 Oct; TU 1.2.0 on 10 Nov; Season 3 due December ([PCHQ](https://proclubshq.com/blog/pro-clubs-level-cap-rise/)). About one meta change per season.
-- **PhotoFit** face scan is on EA's roadmap for Season 4 ([EA forum](https://forums.ea.com/discussions/fc-27-general-discussion-en/cranium-photofit/13712988)). No appearance codes exist.
+- **The system.** 13 archetypes, Engine gone, Disruptor new. All unlocked, free resets, per-attribute respecs, Masteries, Amps ([EA Pitch Notes](https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive)).
+- **Level cap 55, 1,419 AP at the cap** (A-10). Reopen if Season 3 raises it.
+- **Cadence.** Launch 25 Sept; archetype re-price 22 Oct; TU 1.2.0 on 10 Nov; **Season 3 from Thu 3 Dec; Season 4 from Thu 14 Jan 2027** (EA's Launch Rewards page, D-18). About one meta change per season.
+- **The face editor** shows exact values: numbered items ("Nose 116"), named options ("Warm Black"), 0 to 100 Sculpt sliders, and controls with no number measured by position (A-09, A-12). One head serves street and matchday looks (A-11). Chime records on PS5 (D-17).
+- **PhotoFit** (face scanning) is still unconfirmed by EA in anything opened on 20 Nov. RESEARCH cites an EA community manager placing it in Season 4. If it accepts any photo, as the old GameFace tool did, celebrity faces get easier for everyone (O-07, EVIDENCE §2.4).
 - **No public API.** Everything we publish is entered by hand.
 
 ## Competitors
@@ -36,117 +50,109 @@ Full report with sources: `docs/RESEARCH.md`.
 | [Pro Clubs HQ](https://proclubshq.com/blog/about/) | Builder with live AP pricing, hundreds of builds, meta XI vote, scouting, LFG, Discord bot; honest labels | No faces; dense UI; HQ Pro at $4.99 a month or $19.99 a season ([pro](https://proclubshq.com/pro)) |
 | [PRO11](https://www.pro11.net/) | 13 archetype pages, about 66 guides, planner, sourced builds | Blog layout; no faces; no creator credit |
 | [ProClubsHead](https://proclubshead.com/) | Club and player stats since 2016 | No builds or faces |
-| [Proxi.gg](https://proxi-dxm.pages.dev/about) | Free builder | Guides still FC 26 |
 | [FC Tools Hub](https://fctoolshub.com/en/guides/fc27/face-creator-guide) | FC 27 face creator guide, build saver | No face library; ads gate |
-| [Face2Slider](https://blink.new/p/ea-fc-face-f99o5v43) | Photo to slider values (claimed) | A demo; no library; accuracy unproven |
-| Media sites ([Dexerto](https://www.dexerto.com/wikis/ea-fc-27/best-clubs-builds-for-all-positions/)) | Search traffic | No method, credit or date |
-| YouTube lookalike creators (F.P. Virtual Pro Lookalike, R-Dot-10, [forum post](https://forums.ea.com/discussions/fc-25-game-modes-en/pro-clubs-builds-and-lookalikes/11974643)) | Real faces, audiences | Video only; you pause and rewind |
+| Written face guides ([Sportsdigest](https://sportsdigest.in/how-to-create-cristiano-ronaldo-in-ea-fc-26/162926/)) | Search traffic for "how to create Ronaldo" | Vague values; Career Mode; no check in game, date or credit |
+| Media build pages ([Dexerto](https://www.dexerto.com/wikis/ea-fc-27/best-clubs-builds-for-all-positions/), [RealSport101](https://realsport101.com/article/fc-27-best-winger-build-for-clubs-the-grounds-archetype-playstyles-attributes)) | Search traffic | No method, credit or verified date |
+| YouTube lookalike creators | Real faces, audiences | Video only; you pause and rewind |
+| [Face2Slider](https://blink.new/p/ea-fc-face-f99o5v43), [Proxi.gg](https://proxi-dxm.pages.dev/about) | Photo-to-slider demo; free builder | Unproven accuracy; guides still FC 26 |
 
 ### Soft (adjacent habits)
 
-FUT.GG, EasySBC, FUTBIN and FUTWIZ set what players expect from a companion site: instant search, a URL for everything, fast updates ([FUT.GG](https://www.fut.gg/about/), [EasySBC](https://www.easysbc.io/), [FUTBIN](https://www.futbin.com/premium), [FUTWIZ](https://www.futwiz.com/subscribe/FUTWIZ50)). None covers Clubs.
+FUT.GG, EasySBC, FUTBIN and FUTWIZ set what players expect from a companion site: instant search, a URL for everything, fast updates. None covers Clubs. FUT.GG's home is our start screen's model (D-19).
 
 ### The opening
 
-A faces library with era looks, each paired with a build, written as steps you tick on a phone. Plus build cards that always say which season, when verified and who to credit. Free, fast, beautiful, and friendly to creators instead of copying them.
+A faces library with the editor's exact values, each recipe checked in game, dated, credited and paired with a build, ticked off on a phone. Plus build cards that always say which season, when they were verified and who to credit. Free, fast, and friendly to creators.
 
-## Brainstorm
+## What launches
 
-| Direction | Verdict |
-| --- | --- |
-| A. Clone Pro Clubs HQ (planner first) | No: they lead, and our cost tables aren't verified (D-07) |
-| B. Faces-only recipe site (the Facecard plan) | No: too narrow; the hub needs builds for return visits |
-| C. Stats and leaderboards | No: needs EA match data and a server |
-| **D. Faces-led hub with build cards (chosen, D-02)** | Yes: unique lead feature, builds give repeat visits each season |
-| E. Photo-to-sliders AI | Later or never: PhotoFit arrives in Season 4 |
+- **Home** in FUT.GG's structure: dark hub, tab pills, a grid of face cards first, then the season, latest changes and build lists (D-19).
+- **Face page:** a preview of the face as made in FC 27, turnable by drag, from Chime's own in-game captures (A-16, proposed, waiting on a test clip); then recipe steps by tab with ticks (A-07), the paired build card, version tag, credit line, limits ("the game can't do this exactly") and the tutorial on tap.
+- **Builds:** one card per archetype at launch, filterable by position; each with version tag and credit.
+- **13 archetype pages, a changelog, Submit, About, Takedown, 404.** 40 pages in all.
+- **The structure** is the sitemap and two user journeys in `docs/design/sitemap/sitemap-and-journeys.pdf` (D-21). Sharon designs the screens from it in Figma (D-14); Chime approves.
 
-**Chosen direction.** Home leads with faces. Each face page: recipe steps (preset, Skin, Head, Face, Hair), the paired build card, the version tag, the credit line, an embedded tutorial when one was followed. Builds section: one card per archetype and position. Archetype pages. Changelog. Submit.
+## Metrics
+
+v1 counted output (faces live, builds live). v2 adds measures of whether players get value. Targets are set after two weeks of real numbers; we don't guess them now.
+
+**Main metric: recipes finished per week.** A face recipe counts as finished when its last step is ticked, once per face version per device. The ticks already exist (A-07), so this is one event.
+
+| Supporting metric | Why it matters | Read from |
+| --- | --- | --- |
+| **Face to build:** share of face-page visits that open the paired build | Tests whether pairing a look with a build matters (EVIDENCE #8) | An event on the paired build link |
+| **Season-change return:** visits to build pages in the 7 days after a season change, against the 7 days before | Tests bet 3: do players come back when the meta moves? First reading: Season 4, Thu 14 Jan 2027 | Page views |
+| **Shares:** weekly visits arriving from WhatsApp, X, Reddit and Discord | Faces are the hook; shares are how hooks spread | Referrers |
+
+**Kept from v1 (health checks):** days from a season change to updated builds (2 or fewer); Lighthouse mobile 90+; page weight within budget (A-13); credited creators (3+); accepted submissions (3+); launch post reach, logged honestly.
+
+**How to count, for $0 and no cookies (proposal A-17, needs Chime's OK as a third-party script):**
+
+| Option | Gives us | Cost to the site | Catch |
+| --- | --- | --- | --- |
+| **A. Cloudflare Web Analytics** (we already host on Cloudflare) | Page views, referrers, devices; free, no cookies | Small script | No custom events, so no recipes-finished count |
+| **B. GoatCounter, hosted** (recommended) | Page views, referrers and custom events; no cookies, no personal data | About 3.5 KB script, inside the 220 KB budget | Free for reasonable public use; re-check its terms before any ads (D-04) |
+| **C. Both** | Cloudflare's Web Vitals plus GoatCounter's events | Two scripts | More to maintain |
+
+About gets one line saying what is counted and that nothing personal is stored.
 
 ## How we'd build it
 
-- **Static Next.js** (16.4.6, export) on a free host; content as JSON in `content/`, validated at build time (A-02). MDX only if long guides need it (A-03).
+- **Static Next.js** (16.4.6, export) on Cloudflare Pages (A-14); content as JSON in `content/`, validated at build time (A-02).
 - **Version tags** on every build and face (`game`, `season`, `verifiedOn`); one function words them (A-08).
-- **Changelog** entries are JSON with EA source links; each one lists which builds and faces it touched.
-- **Patch-note routine:** EA posts an update, Chime reads it, checks affected builds in game, bumps versions, writes a changelog entry, rebuilds. Target: within 48 hours of a season change.
+- **Changelog** entries are JSON with EA source links, each listing the builds and faces it touched.
+- **Patch-note routine:** EA posts an update, Chime checks affected builds in game, bumps versions, writes a changelog entry, rebuilds. Target: within 48 hours of a season change.
 - **Submit** builds a prefilled GitHub issue (A-04); Chime reviews, credits and merges.
+- **Two people, one gate:** Sharon works on branches and opens pull requests; only Chime merges into `main`, which GitHub enforces (D-22, D-23).
 
-| Phase | Dates (proposal) | Focus | Gate |
+**Pace (20 Nov):** Sharon proposes shipping as fast as the work allows, in days instead of weeks. The dates below are Chime's plan from D-18. The trade-off: builds recorded before Thu 3 Dec are on Season 2 and must be re-checked when Season 3 lands, which is quick for faces and slower for 13 builds. Chime decides.
+
+| Phase | Dates (D-18 plan) | Focus | Gate |
 | --- | --- | --- | --- |
-| 0 | Thu 19 – Sun 22 Nov (4 days) | In-game checks, repo, scaffold, CI, Figma Design System page | Day 0 answers in RESEARCH §9; empty site deploys; CI green |
-| 1 | Mon 23 – Sun 29 Nov (1 week) | Design screens in Figma; content validator and loader, tests first | Chime approves phone, iPad and desktop screens |
-| 2 | Mon 30 Nov – Sun 13 Dec (2 weeks) | Build pages; record 5 faces and 13 builds in game; submit flow; video script and storyboard | Every launch page built and green; content verified |
-| 3 | Season 3 week (about 1 week, O-04) | Re-check builds for Season 3; video; launch post; fix fast | Live, "updated for Season 3", video posted |
+| 0 | 19 to 22 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
+| 1 | 23 to 29 Nov | Design screens in Figma from the sitemap; loader, version wording and issue URL, tests first; start recording faces; **smoke test and metrics set-up** | Chime approves phone, iPad and desktop screens; core lane green |
+| 2 | 30 Nov to 13 Dec | Build every page; **Thu 3 Dec: Season 3 changelog entry, then record 13 builds on Season 3**; finish 5 faces; video script and storyboard | All launch pages green; content verified |
+| 3 | 14 to 21 Dec | Harden, video final, launch. Nothing goes live Tue 15 to Fri 18 Dec | Live Sat 19 or Mon 21 Dec, "updated for Season 3" |
+| After | 4 weeks | Watch the metrics, add faces and positions, case study | Two weeks of baseline, then targets |
 
-## Feature and deliverable checklist
+## Scope to launch
 
-**Content**
-- [ ] 13 archetype JSON records with sourced fields (FC 27)
-- [ ] 5 launch faces recorded in game (O-05)
-- [ ] Each launch face paired with a verified build
-- [ ] 13 build cards, one per archetype
-- [ ] Builds for every position (GK, CB, FB, CDM, CM, CAM, W, ST)
-- [ ] Changelog seeded: launch, 22 Oct archetype update, TU 1.2.0
-- [ ] Season 3 changelog entry on launch week
-- [ ] `creators.json` with every credited creator
-- [ ] Chime's own in-game screenshots for each face (their recreations only)
-- [ ] `content/README.md` sourcing rules
+| Must | Should (ranked by RICE, below) | Cut (not before launch) |
+| --- | --- | --- |
+| Faces library, face page with ticks and paired build | 1. Submit without GitHub (O-11) | Build planner (D-07) |
+| 5 verified faces | 2. Share card per face and build | Michael Jackson and deceased stars (D-10) |
+| 13 verified build cards with version tags and credits | 3. 15-second cut of the video | Ratings, request board, comments |
+| 13 archetype pages | 4. Tutorial embeds on tap | Accounts |
+| Changelog with EA sources | 5. Search across faces and builds | Stats, leaderboards, EA match data |
+| Submit: builder to prefilled GitHub issue | 6. 10 faces | Photo-to-slider AI |
+| About, takedown, notice on every page | 7. Featured creator spot | Ads (a later decision) |
+| Validator fails the build on bad content | 8. Builds for every position | Native app |
+| Budget and e2e in CI | | |
+| **Counting for the main metric (new, A-17)** | | |
+| Motion-graphics video and launch post | | |
 
-**Pages**
-- [ ] Home: faces first, then builds by position
-- [ ] Faces library with filters (footballer, musician, era)
-- [ ] Face page: steps, ticks, paired build, credit, tag
-- [ ] Builds index by archetype and position
-- [ ] Build card page with share URL
-- [ ] Archetypes index and 13 archetype pages
-- [ ] Changelog page
-- [ ] Submit page with a recipe and build builder
-- [ ] About: method, sources, credits, notice
-- [ ] Takedown page with an email
-- [ ] 404 page
+**RICE scores** (reach 1 to 10, impact 0.25 to 3, confidence, effort in person-days; first estimates for Chime and Sharon to adjust):
 
-**Behaviour**
-- [ ] Step ticks saved per face version (A-07)
-- [ ] Older-season warning on stale content
-- [ ] "Not yet checked in game" wording for unverified content
-- [ ] Number and notch values both supported
-- [ ] Submission validated before opening the issue
-- [ ] Video embeds load on tap (A-05)
-- [ ] Share card (Open Graph image) per face and build
-- [ ] Search across faces and builds
+| Should item | R | I | C | E | Score | Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| Submit without GitHub (O-11) | 3 | 2 | 80% | 1 | 4.8 | Most console players likely have no GitHub account; a free form keeps the review gate |
+| Share card per face and build | 8 | 2 | 50% | 2 | 4.0 | Shares are how faces spread (metrics) |
+| 15-second video cut | 7 | 1 | 50% | 1 | 3.5 | Reposts on X and WhatsApp |
+| Tutorial embeds on tap | 5 | 1 | 80% | 1.5 | 2.7 | Credit as a growth channel |
+| Search | 6 | 1 | 80% | 2 | 2.4 | Matters more as the library grows |
+| 10 faces | 8 | 2 | 50% | 8 | 1.0 | Chime's recording time is the bottleneck |
+| Featured creator spot | 2 | 1 | 50% | 1 | 1.0 | Needs a creator who says yes |
+| Builds for every position | 6 | 1 | 50% | 10 | 0.3 | Large recording cost; one per archetype covers launch |
 
-**Engineering**
-- [ ] Public repo, MIT, from Day 0
-- [ ] Scaffold with pinned versions
-- [ ] Content validator, test-first
-- [ ] Loader fails the build on a bad file
-- [ ] Version wording function, tested
-- [ ] Issue-URL builder, tested
-- [ ] Token check in lint
-- [ ] Page-weight budget from Day 0
-- [ ] Playwright e2e at 390 and 360 wide
-- [ ] CI: lint, typecheck, unit, build, budget, e2e
-- [ ] Lighthouse mobile 90+
-
-**Design**
-- [ ] References by surface
-- [ ] Figma Design System page
-- [ ] Figma Design screens page (phone, iPad, desktop)
-- [ ] Motion pass with the motion skills
-
-**Launch**
-- [ ] Name decided (O-01)
-- [ ] Motion-graphics video (16:9 and 4:5, captions)
-- [ ] Launch post and thread
-- [ ] Creator outreach drafts for featured spots
-- [ ] Case study with launch numbers
+If a phase overruns, cut from the bottom of this list. Never cut faces, the video or launch day.
 
 ## Content sourcing and credit
 
 1. **Facts are free.** Archetype names, PlayStyle names, EA's stated specialization targets, patch-note changes. Cite the EA page.
-2. **Chime makes every build and face themself in game**, from reference. That is what "verified" means.
-3. **Credit what they followed.** If a creator's tutorial shaped a face, name the creator, link the video and embed it. Never transcribe or re-upload it.
+2. **Chime makes every build and face in game**, from reference. That is what "verified" means.
+3. **Credit what was followed.** If a creator's tutorial shaped a face, name the creator, link the video and embed it. Never transcribe or re-upload it.
 4. **Ask first** before publishing a creator's full slider list as a recipe. Store the answer in `creators.json` (`permission`).
-5. **Featured creator spots** on face pages and the About page, for creators who say yes.
+5. **Featured creator spots** for creators who say yes.
 6. **Never bulk-copy** another site's builds, tier lists or cost tables. Linking to them is fine.
 7. **Submissions** are credited by the name the submitter chooses.
 
@@ -154,32 +160,50 @@ A faces library with era looks, each paired with a build, written as steps you t
 
 - **EA content policy** ([help.ea.com](https://help.ea.com/en/articles/security-and-rules/ea-content-policy/)): no paywall (D-04); passive ads allowed later; no EA logos with our branding; no implied endorsement.
 - **Notice on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named."
-- **Trademarks in naming:** no EA, FC or FUT in the name, domain or logo (D-04). Whether "Pro Clubs" is a mark is unverified; the final name avoids it (O-01).
+- **Naming:** no EA, FC or FUT in the name, domain or logo (D-04). Whether "Pro Clubs" is a mark is unverified; the final name avoids it (O-01).
 - **Likeness:** footballers and living musicians at launch; names as text; no photos or drawings of real people; "inspired by", never "official"; no Michael Jackson at launch (D-10). Not legal advice; ads or any income need a fresh look first.
 - **Screenshots:** only Chime's own in-game captures of their own recreations.
-- **Takedown:** an email on `/takedown`; any request from a named person, estate, creator or rights holder is actioned within 72 hours by setting `"status": "withdrawn"`.
+- **Takedown:** an email on `/takedown`; requests are actioned within 72 hours by setting `"status": "withdrawn"`.
+- **Analytics:** no cookies and no personal data (A-17).
+
+## Open questions
+
+| ID | Question | Needed by |
+| --- | --- | --- |
+| O-01 | The name | Before Sharon draws the logo |
+| O-05 | The first 5 faces; the smoke test's named faces feed this | Phase 1 (screens use them) |
+| O-07 | PhotoFit: own face only, or any photo? | Season 4 announcement |
+| O-08 | Tagline (draft: "Look like a legend. Play like one.") | Launch video |
+| O-11 | Submit without GitHub (ranked first among Should items) | Phase 2 |
+| O-13 | Takedown email address | Phase 2 |
+| A-16 | Face preview from one capture per face | Chime's test clip |
+| A-17 | Counting for the metrics (option A, B or C) | Phase 1, so it ships with the first pages |
+| New | Ship in days (Sharon) or after Season 3 (D-18)? | Now |
+| New | Michael Jackson in the first batch? D-10 says no at launch (estate risk) | Before O-05 |
+| New | Which season do launch faces carry? Recommendation: re-check each in game after 3 Dec and tag Season 3 (sitemap p. 12) | Phase 3 |
+
+**Already answered elsewhere** (still listed under "Open" in `DECISIONS.md`): O-02 (A-10), O-03 (A-09, A-12), O-04 and O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14).
 
 ## Insights
 
 - **The season change is the marketing calendar.** Every season, every player re-checks builds. Ship updates within 48 hours and say so.
-- **Faces are the hook; builds bring people back.** A face is shared once; a build is checked every season.
+- **Faces are the hook; builds bring people back.** This is a bet until the metrics say so.
+- **Exact beats vague.** Written face guides exist; none gives the editor's real values, checked and dated.
 - **Credit is a growth channel.** Creators share pages that credit and embed them.
-- **PhotoFit is a threat with a date.** Season 4 may cut into "make yourself" faces; era and celebrity looks keep value if the scan is self-only (O-07).
-- **Honesty is visible design.** Version tags and "Not yet checked in game" are UI, not footnotes.
+- **PhotoFit is a threat with a likely date.** Era and celebrity faces keep their value if the scan is self-only (O-07).
+- **Honesty is visible design.** Version tags and "Not yet checked in game" are UI.
 
-## Success metrics
+## What changed from v1
 
-| Metric | Target by 4 weeks after launch (proposal) |
-| --- | --- |
-| Faces live and verified | 5 at launch, 10 by week 4 |
-| Builds live and verified | 13 at launch, every position by week 4 |
-| Days from a season change to updated builds | 2 or fewer |
-| Lighthouse mobile performance | 90+ |
-| Page weight | within the Day 0 budget |
-| Credited creators | 3 or more |
-| Accepted community submissions | 3 or more |
-| Launch post reach | logged honestly, whatever it is |
+- Season 3 dates and the launch date from D-18; phase table updated; Phase 0 marked passed.
+- The repo workflow (D-22, D-23), design direction (D-19, D-21) and face preview proposal (A-16) added.
+- Value kinds updated to A-09 and A-12; level cap settled (A-10).
+- "What we're betting on" and `docs/EVIDENCE.md` added: evidence and assumptions marked; a smoke test before Chime records content.
+- Metrics now measure value; counting proposed as A-17.
+- Should items ranked with RICE; "Submit without GitHub" moves to the top.
+- Written face guides added as competitors; the opening reworded around exact values.
+- Open questions trimmed to what is open; answered ones listed.
 
 ## Sources
 
-All opened 18 Nov 2026; the full list is in `docs/RESEARCH.md` §Sources. Pages cited above: EA Pitch Notes, EA archetypes update, EA TU 1.2.0, EA content policy, four EA forum threads, Dexerto (builds, archetypes, levels), Pro Clubs HQ (about, pro, level cap, archetype changes), PRO11, ProClubsHead, Proxi.gg, FC Tools Hub, Face2Slider, FUT.GG, EasySBC, FUTBIN, FUTWIZ.
+v1 sources (opened 18 Nov 2026) are listed in `docs/RESEARCH.md` §Sources. New sources (20 Nov 2026) are listed in `docs/EVIDENCE.md` §5. Analytics: [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), [GoatCounter](https://www.goatcounter.com/) (seen in search results, 20 Nov 2026).
