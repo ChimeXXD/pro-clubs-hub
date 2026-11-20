@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 1, design lane (Fri 20 Nov 2026)
+
+**Changed**
+- 48 references, pattern summary and three directions in `docs/design/REFERENCES.md` (a background agent's research; P1-1 passes).
+- Direction board at `docs/design/direction-board/index.html` (published privately as an artifact). Chime rejected all three directions: "All these are trash." Recorded as D-19, DESIGN.md "Direction" and memory.
+- FUT.GG's home studied at 1440 and 390 px (screenshots kept in the session scratchpad only, not in the repo).
+- Face preview plan proposed as A-16: one PS5 clip and one cutscene screenshot per face give the card picture, drag to turn, angle buttons and an in-match picture.
+
+**Not verified**
+- Everything in A-16: waiting on Chime's test clip in `reference/`.
+
+**Next**
+- With the clip: frames, drag-to-turn viewer, FUT.GG-style home and face page for Chime to approve. Core lane: loader, version wording, issue URL.
+
 ## Phase 1, core lane unit 1: content types and validator (Fri 20 Nov 2026)
 
 **Changed**
