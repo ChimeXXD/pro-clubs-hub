@@ -2,7 +2,7 @@
 
 Written 20 Nov 2026 by Sharon (`sharrygold`) with Claude, for PRD v2. Chime and Sharon are both Clubs players and built this around problems they and their friends hit, so the direction is set (D-02). This file tests how much of the PRD is evidence and how much is belief, then names the cheapest way to check the riskiest belief before launch.
 
-Pages marked *(search result)* were seen in search results only, not opened. Reddit and the EA forum's PhotoFit thread were blocked to Claude on 20 Nov; §4 is the short list of what Sharon checks by hand.
+Pages marked *(search result)* were seen only in search results; Claude didn't open them. Reddit and the EA forum's PhotoFit thread were blocked to Claude on 20 Nov; §4 is the short list of what Sharon checks by hand.
 
 ## 1. Assumption map
 
@@ -10,11 +10,11 @@ Risk = how bad it is if we're wrong × how little we know. Evidence is something
 
 | # | The PRD depends on | Evidence or assumption | Risk |
 | --- | --- | --- | --- |
-| 1 | **A player will follow a written, tickable recipe on a phone** instead of pausing a video. | Assumption, with partial evidence: players ask for a faster way to copy faces every edition (§2.1). Nobody has asked for written recipes as such. | **High.** It is the lead feature. |
+| 1 | **A player will follow a written, tickable recipe on a phone**, which saves pausing and rewinding a video. | Assumption, with partial evidence: players ask for a faster way to copy faces every edition (§2.1). Nobody has asked for written recipes as such. | **High.** It is the lead feature. |
 | 2 | **Lookalike and era faces are the faces players want**, and the first five (O-05) are the right five. | Partial. Ronaldo face requests are loud (§2.1). No evidence found for musician faces. A second wish showed up: recreating real friends (§2.2). | **High.** It sets the home grid and the launch video. |
 | 3 | **Players will find us, and come back when the meta changes.** | Assumption. The PRD has no channel plan and nothing measures use (no analytics). | **High.** Without it, launch numbers can't be read. |
 | 4 | Builds go stale and players want dated, credited cards. | Evidence: EA reset every build on 22 Oct (RESEARCH §1). Media build pages carry no date (RESEARCH §3). | Medium. Need is real; whether players pick us over Pro Clubs HQ is open. |
-| 5 | PhotoFit won't make celebrity faces trivial. | Unknown (§2.4). | Medium. External; we can watch it, not test it. |
+| 5 | PhotoFit won't make celebrity faces trivial. | Unknown (§2.4). | Medium. External: we can watch it but can't test it. |
 | 6 | Players are on a phone next to the console. | Assumption from our own play. | Low. Cheap to be wrong: the site works on desktop too. |
 | 7 | Contributors will submit through a GitHub issue. | Assumption. Console players without a GitHub account can't submit at all. | Medium. O-11 is the fix. |
 | 8 | Pairing a face with a build matters to players. | Assumption. | Low. Costs little to keep. |
