@@ -1,4 +1,4 @@
-> **PRD v2**, 20 Nov 2026, by Sharon (`sharrygold`) with Claude. Replaces v1 of 19 Nov. "Pro Clubs Hub" is a working title (O-01). Decisions in `docs/DECISIONS.md` win where this disagrees. What changed from v1 is listed at the end.
+> **PRD v2.1**, 20 Nov 2026, by Sharon (`sharrygold`) with Claude. Replaces v1 of 19 Nov; v2.1 is Sharon's review after v2 merged. "Pro Clubs Hub" is a working title (O-01). Decisions in `docs/DECISIONS.md` win where this disagrees. What changed from v1 is listed at the end.
 
 # Pro Clubs Hub
 
@@ -35,11 +35,26 @@ If the smoke test fails, Chime and Sharon decide before launch whether it leads 
 Full report with sources: `docs/RESEARCH.md`. New evidence: `docs/EVIDENCE.md`.
 
 - **The system.** 13 archetypes, Engine gone, Disruptor new. All unlocked, free resets, per-attribute respecs, Masteries, Amps ([EA Pitch Notes](https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive)).
-- **Level cap 55, 1,419 AP at the cap** (A-10). Reopen if Season 3 raises it.
+- **Level cap 55, 1,419 AP at the cap** (A-10). Reopen if Season 3 raises it. See "Seasons and levels" below.
 - **Cadence.** Launch 25 Sept; archetype re-price 22 Oct; TU 1.2.0 on 10 Nov; **Season 3 from Thu 3 Dec; Season 4 from Thu 14 Jan 2027** (EA's Launch Rewards page, D-18). About one meta change per season.
 - **The face editor** shows exact values: numbered items ("Nose 116"), named options ("Warm Black"), 0 to 100 Sculpt sliders, and controls with no number measured by position (A-09, A-12). One head serves street and matchday looks (A-11). Chime records on PS5 (D-17).
 - **PhotoFit** (face scanning) is still unconfirmed by EA in anything opened on 20 Nov. RESEARCH cites an EA community manager placing it in Season 4. If it accepts any photo, as the old GameFace tool did, celebrity faces get easier for everyone (O-07, EVIDENCE §2.4).
 - **No public API.** Everything we publish is entered by hand.
+
+### Seasons and levels (added 20 Nov, v2.1)
+
+Sharon's point: as seasons go on, EA raises the level cap, so a build made at one cap can't use the points a later cap gives. What we found (sources below; most seen in search results only, 20 Nov):
+
+- **The cap rises during the year.** FC 27 started at level 40 (962 AP) and Season 2 raised it to **55 (1,419 AP)** on 22 Oct ([Pro Clubs HQ](https://proclubshq.com/blog/pro-clubs-level-cap-rise/), [AOEAH](https://www.aoeah.com/news/4913--fc-27-pro-clubs-attribute-points-per-level--how-to-reach-max-level)). In FC 26, Clubs started at level 50 and EA said seasonal updates would raise the cap ([EA, FC 26 Clubs deep dive](https://www.ea.com/en/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-clubs-deep-dive)). **No Season 3 cap change has been announced** as of 20 Nov; check on Thu 3 Dec.
+- **Levels unlock more than points.** PlayStyle slots at 5, 15, 40 and 55; PlayStyle+ at 20 and 55; Signature Perks at 10 and 45; Masteries at 10, 30 and 55 ([Pro Clubs HQ level rewards](https://proclubshq.com/blog/pro-clubs-level-rewards/), not confirmed by EA; RESEARCH §1).
+- **Costs move too.** EA re-priced 87 attribute costs and reset every build on 22 Oct (D-05).
+
+**What it means for the product:**
+
+1. **Every build card says what it was made for:** "Level 55 · 1,419 AP", next to the version tag. `level` is already in the build format (FORMAT §Build); the AP total is a small addition, proposed here.
+2. **A cap rise makes a build out of date even if no cost changed:** it leaves points unspent. A cap rise gets its own changelog entry, and every build gets a new version that spends the new points, the same routine as a season change.
+3. **Most players are below the cap.** A build made at 55 doesn't tell a level-20 player where to start. Proposal for after launch, for Chime to weigh against D-07 (no planner): each build card lists the order to spend points in ("first Acceleration to 80, then…") and the level each PlayStyle and Perk unlocks at. It's content written by hand, not a calculator.
+4. **The season-start routine checks four things:** the cap, the AP at the cap, the level unlocks and the costs, logged in RESEARCH §9 before builds are re-checked.
 
 ## Competitors
 
@@ -81,7 +96,7 @@ v1 counted output (faces live, builds live). v2 adds measures of whether players
 | Supporting metric | Why it matters | Read from |
 | --- | --- | --- |
 | **Face to build:** share of face-page visits that open the paired build | Tests whether pairing a look with a build matters (EVIDENCE #8) | An event on the paired build link |
-| **Season-change return:** visits to build pages in the 7 days after a season change, against the 7 days before | Tests bet 3: do players come back when the meta moves? First reading: Season 4, Thu 14 Jan 2027 | Page views |
+| **Season-change return:** visits to build pages in the 7 days after a season change, against the 7 days before | Tests bet 3: do players come back when the meta moves? First reading: Season 3, Thu 3 Dec, if we are live by Thu 26 Nov (a full week before); otherwise Season 4, Thu 14 Jan 2027 | Page views |
 | **Shares:** weekly visits arriving from WhatsApp, X, Reddit and Discord | Faces are the hook; shares are how hooks spread | Referrers |
 
 **Kept from v1 (health checks):** days from a season change to updated builds (2 or fewer); Lighthouse mobile 90+; page weight within budget (A-13); credited creators (3+); accepted submissions (3+); launch post reach, logged honestly.
@@ -104,13 +119,14 @@ About gets one line saying what is counted and that nothing personal is stored.
 - **Patch-note routine:** EA posts an update, Chime checks affected builds in game, bumps versions, writes a changelog entry, rebuilds. Target: within 48 hours of a season change.
 - **Submit** builds a prefilled GitHub issue (A-04); Chime reviews, credits and merges.
 - **Two people, one gate:** Sharon works on branches and opens pull requests; only Chime merges into `main`, which GitHub enforces (D-22, D-23).
+- **Face pictures: full quality, loaded smartly (proposed, v2.1).** The page-weight check (A-13) counts a page's code only, not its images, so nothing yet stops a face page from loading several megabytes on mobile data. Quality is not reduced to fix this. Each frame is exported sharp enough for an iPhone screen (twice the size it is shown at), in AVIF or WebP, which look the same as the original at a fraction of the file size. The front picture loads with the page; the turn set (about 36 frames, A-16) loads in the background after the page opens, so turning is instant by the time a player touches it. The check then gets an image limit, set by measuring Chime's real clip at full quality, so the limit follows the quality and not the other way round.
 
-**Pace (D-25, 20 Nov):** ship within days, as soon as the Must list passes, on Season 2. Chime chose this over waiting for Season 3 (D-18). The cost: all 13 builds and 5 faces are recorded on Season 2 and re-checked on Thu 3 Dec, and show the older-season warning until they are. The date is set once the screens and the first faces exist; the real limit is the screens, the core lane and 18 items recorded in game.
+**Pace (D-25, 20 Nov):** ship within days, as soon as the Must list passes, on Season 2. Chime chose this over waiting for Season 3 (D-18). The cost: all 13 builds and 5 faces are recorded on Season 2 and re-checked from Thu 3 Dec. Until 3 Dec, Season 2 is the current season, so no warning shows; from 3 Dec, anything not yet re-checked shows the older-season warning (D-05). The date is set once the screens and the first faces exist; the real limit is the screens, the core lane and 18 items recorded in game.
 
 | Phase | When | Focus | Gate |
 | --- | --- | --- | --- |
 | 0 | 19 to 20 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | Now, in parallel | Sharon: screens from the sitemap, smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime: record 5 faces and 13 builds on Season 2 | Chime approves the screens; core lane green; content recorded |
+| 1 | Now, in parallel | Sharon: screens from the sitemap, smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime and Sharon: record 5 faces and 13 builds on Season 2 (proposed) | Chime approves the screens; core lane green; content recorded |
 | 2 | Right after | Build every launch page; load the content | All launch pages green; content verified |
 | Launch | As soon as phase 2 passes | Launch post; video if ready (open, D-25) | Live, no blocking bugs |
 | Season 3 | Thu 3 Dec | Re-check everything on Season 3; changelog entry; "updated for Season 3" | Every item re-tagged Season 3, or warning showing |
@@ -130,7 +146,7 @@ About gets one line saying what is counted and that nothing personal is stored.
 | Validator fails the build on bad content | 8. Builds for every position | Native app |
 | Budget and e2e in CI | | |
 | **Counting for the main metric (GoatCounter, D-27)** | | |
-| Motion-graphics video and launch post | | |
+| Launch post; the motion-graphics video ships with the launch or with the Season 3 update (D-25) | | |
 
 **RICE scores** (reach 1 to 10, impact 0.25 to 3, confidence, effort in person-days; first estimates for Chime and Sharon to adjust):
 
@@ -145,12 +161,12 @@ About gets one line saying what is counted and that nothing personal is stored.
 | Featured creator spot | 2 | 1 | 50% | 1 | 1.0 | Needs a creator who says yes |
 | Builds for every position | 6 | 1 | 50% | 10 | 0.3 | Large recording cost; one per archetype covers launch |
 
-If a phase overruns, cut from the bottom of this list. Never cut faces, the video or launch day.
+If a phase overruns, cut from the bottom of this list. Never cut faces or launch day. The video is still coming, but may ship with the Season 3 update instead (D-25).
 
 ## Content sourcing and credit
 
 1. **Facts are free.** Archetype names, PlayStyle names, EA's stated specialization targets, patch-note changes. Cite the EA page.
-2. **Chime makes every build and face in game**, from reference. That is what "verified" means.
+2. **Chime makes every build and face in game**, from reference. That is what "verified" means. **Proposed (this PR):** Sharon records faces and builds too, the same way; Chime still reviews each one before it merges. Faces and builds are made in the game's menus, so recording one needs no matches.
 3. **Credit what was followed.** If a creator's tutorial shaped a face, name the creator, link the video and embed it. Never transcribe or re-upload it.
 4. **Ask first** before publishing a creator's full slider list as a recipe. Store the answer in `creators.json` (`permission`).
 5. **Featured creator spots** for creators who say yes.
@@ -181,6 +197,9 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 | New | The launch date, once the screens and first faces exist (D-25) | Phase 1 |
 | New | The video: with the launch, or with the Season 3 update? (D-25) | Phase 1 |
 | New | Michael Jackson's era and which face (D-26 allows him) | With O-05 |
+| New | Does Season 3 raise the level cap? If so, every build gets a new version ("Seasons and levels") | Thu 3 Dec |
+| New | Sharon records faces and builds too (proposed in v2.1; changes D-08's "Chime makes") | Chime, on merge |
+| New | Image limit for face pictures, set from the real clip (proposed in v2.1) | Chime's test clip |
 
 **Answered and moved to "Closed" in `DECISIONS.md`:** O-02 (A-10), O-03 (A-09, A-12), O-04 (D-18, then D-25), O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14). Answered on 20 Nov: pace (D-25), Michael Jackson (D-26), counting (D-27).
 
@@ -192,6 +211,15 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 - **Credit is a growth channel.** Creators share pages that credit and embed them.
 - **PhotoFit is a threat with a likely date.** Era and celebrity faces keep their value if the scan is self-only (O-07).
 - **Honesty is visible design.** Version tags and "Not yet checked in game" are UI.
+
+## What changed in v2.1 (20 Nov, Sharon's review after merge)
+
+- The video is no longer a launch-day must; it ships with the launch or the Season 3 update (D-25).
+- The older-season warning shows only from Thu 3 Dec, on anything not yet re-checked; before then Season 2 is current.
+- The season-change metric can first be read at Season 3 if we're live by Thu 26 Nov.
+- "Seasons and levels" added: cap rises, level unlocks, and what they mean for build cards.
+- Proposed: Sharon records faces and builds too; recording needs no matches.
+- Proposed: face pictures at full quality, with the turn set loaded in the background and an image limit set from the real clip.
 
 ## What changed from v1
 
@@ -206,4 +234,4 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 
 ## Sources
 
-v1 sources (opened 18 Nov 2026) are listed in `docs/RESEARCH.md` §Sources. New sources (20 Nov 2026) are listed in `docs/EVIDENCE.md` §5. Analytics: [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), [GoatCounter](https://www.goatcounter.com/) (seen in search results, 20 Nov 2026).
+v2.1 "Seasons and levels" sources (seen in search results, 20 Nov 2026): [Pro Clubs HQ, level cap rise](https://proclubshq.com/blog/pro-clubs-level-cap-rise/), [Pro Clubs HQ, level rewards](https://proclubshq.com/blog/pro-clubs-level-rewards/), [AOEAH, AP per level](https://www.aoeah.com/news/4913--fc-27-pro-clubs-attribute-points-per-level--how-to-reach-max-level), [PRO11, max level and AP](https://www.pro11.net/max-overall-rating/), [EA, FC 26 Clubs deep dive](https://www.ea.com/en/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-clubs-deep-dive). v1 sources (opened 18 Nov 2026) are listed in `docs/RESEARCH.md` §Sources. New sources (20 Nov 2026) are listed in `docs/EVIDENCE.md` §5. Analytics: [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), [GoatCounter](https://www.goatcounter.com/) (seen in search results, 20 Nov 2026).

@@ -395,8 +395,7 @@
       "title": "13 builds recorded and verified",
       "criteria": [
         "one per archetype",
-        "recorded on Season 3 (from Thu 3 Dec, D-18)",
-        "played 3 matches each",
+        "recorded on Season 2, re-checked on Season 3 from Thu 3 Dec (D-25)",
         "version tag dated"
       ],
       "verify": "npm run validate:content",

@@ -37,7 +37,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 | About, takedown, notice on every page | Tutorial embeds on tap | Ads (a later decision) |
 | Validator fails the build on bad content | | Native app |
 | Budget and e2e in CI | | |
-| Motion-graphics video and launch post | 15 s cut for reposts | |
+| Launch post; motion-graphics video at launch or with the Season 3 update (D-25) | 15 s cut for reposts | |
 
 ## Phase 0: setup and in-game checks (19–22 Nov)
 
@@ -73,7 +73,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 
 **Recording (Chime, on Season 2, D-25)**
 - [ ] First 5 faces chosen (O-05; the smoke test feeds it) and recorded; captures for the face preview (A-16)
-- [ ] 13 builds recorded and played 3 matches each
+- [ ] 13 builds recorded in the game's menus (no matches needed), one per archetype, on Season 2; re-checked on Season 3 from Thu 3 Dec (D-25)
 
 **Evidence (Sharon)**
 - [ ] Smoke test posted and read after 72 hours (EVIDENCE §3)
