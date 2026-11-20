@@ -101,8 +101,8 @@
         "cover, Design System page, Design screens page exist"
       ],
       "verify": "Chime confirms",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ on Chime's personal team (20 Nov 2026). Read back via use_figma: pages Cover (cover frame 1:4), Design System (1:2), Design screens (1:3)."
     },
     {
       "id": "P1-1",
@@ -395,6 +395,7 @@
       "title": "13 builds recorded and verified",
       "criteria": [
         "one per archetype",
+        "recorded on Season 3 (from Thu 3 Dec, D-18)",
         "played 3 matches each",
         "version tag dated"
       ],
@@ -432,11 +433,11 @@
     },
     {
       "id": "P3-1",
-      "phase": 3,
+      "phase": 2,
       "priority": "must",
       "title": "Season 3 changelog entry",
       "criteria": [
-        "written from EA's Season 3 notes with the source link"
+        "written from EA's Season 3 notes (Thu 3 Dec) with the source link"
       ],
       "verify": "npm run validate:content",
       "passes": false,
@@ -446,9 +447,9 @@
       "id": "P3-2",
       "phase": 3,
       "priority": "must",
-      "title": "Launch builds re-checked for Season 3",
+      "title": "Launch builds re-checked against Season 3 title updates",
       "criteria": [
-        "every launch build bumped and tagged Season 3"
+        "any title update after a build was recorded is checked; versions bumped where values moved"
       ],
       "verify": "npm run validate:content",
       "passes": false,

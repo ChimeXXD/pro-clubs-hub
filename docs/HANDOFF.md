@@ -8,12 +8,12 @@
 - **Day 0 findings** (`docs/RESEARCH.md` §9): the FC 27 editor shows numbered parts ("Nose 116"), Sculpt sliders 0–100 with end labels, and Skin Tone and Visual Age with no number. The face format was rebuilt around that (A-09, A-12). Level cap 55 / 1,419 AP (A-10), one head for both looks (A-11), PS5 (D-17).
 - **Budget** (A-13): empty app 131.6 KB JS; limits 165 KB JS and 220 KB total per page, gzipped.
 - **Host** (A-14): Cloudflare Pages, because Vercel Hobby is non-commercial only.
+- **Figma file:** https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ (personal team): Cover, Design System, Design screens.
+- **Season 3 replan (D-18):** builds recorded on Season 3 only (from Thu 3 Dec); faces start in Phase 1; launch Sat 19 or Mon 21 Dec.
+- **ESLint stays on 9** (A-15): Next's lint plugins don't support 10 yet.
 
 ### Waiting on Chime
-1. **Connect Cloudflare Pages** to the repo (dashboard; build `npm run build`, output `out`, `NODE_VERSION=22`). Then check that the URL loads on the iPhone (P0-6).
-2. **Season 3 starts Thu 3 Dec** (EA Launch Rewards page). Proposal: record builds only on Season 3, launch Sat 19 or Mon 21 Dec. Not yet in PLAN.md until Chime agrees.
-3. **Figma file:** cover, Design System page, Design screens page (P0-8).
-4. ESLint 9.39.5 is out of support; D-11 pins ESLint 9. Moving to 10 needs Chime's OK.
+1. **Sign in to Cloudflare in Chrome.** Claude then creates the Pages project from the repo (build `npm run build`, output `out`, `NODE_VERSION=22`) and checks the URL (P0-6). Chime checks it on the iPhone.
 
 ### Do next
 - After the deploy: tick P0-6, then Phase 1 (design directions, plus the core lane test-first: types, validator, loader, version wording, issue URL). Phase 1's `validate.ts` replaces the Phase 0 `scripts/validate-content.mjs`.

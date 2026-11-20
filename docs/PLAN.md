@@ -1,6 +1,6 @@
 # Pro Clubs Hub: the plan to launch
 
-Written 19 Nov 2026. Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. Launch rides the **Season 3** change in December (D-16). Chime builds Oya Ball side by side and Sinima launches Tue 15 Dec, so this plan avoids that week's peak (O-04).
+Written 19 Nov 2026. Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. Launch rides the **Season 3** change (D-16). **Season 3 starts Thu 3 Dec** (EA's Launch Rewards page), so builds are recorded on Season 3 only and launch is **Sat 19 or Mon 21 Dec** (D-18). Chime builds Oya Ball side by side and Sinima launches Tue 15 Dec, so this plan avoids that week's peak (O-04).
 
 ## What "done" means on launch day
 
@@ -15,12 +15,12 @@ Written 19 Nov 2026. Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. Launc
 | Phase | Dates (proposal) | Focus | Gate (must pass before the next phase) |
 | --- | --- | --- | --- |
 | 0 | Thu 19 – Sun 22 Nov (4 days) | **In-game checks**, public repo, scaffold, CI, deploy, Figma Design System page started | RESEARCH §9 filled (O-02, O-03, O-09, O-10); empty site builds, tests and deploys; CI green; budget set |
-| 1 | Mon 23 – Sun 29 Nov (1 week) | **Design** in Figma (references, directions, Design System, Design screens); **core lane** test-first (validator, loader, version wording, issue URL) | Chime approves phone, iPad and desktop screens; core lane green |
-| 2 | Mon 30 Nov – Sun 13 Dec (2 weeks) | **Build** every page from Figma with motion; **record content** in game; video script and storyboard | All launch pages green; 5 faces and 13 builds verified on Season 2; storyboard approved |
-| 3 | Season 3 week (about 1 week) | **Re-check for Season 3**, changelog entry, video final, launch | Live, "updated for Season 3"; video posted; no blocking bugs |
+| 1 | Mon 23 – Sun 29 Nov (1 week) | **Design** in Figma (references, directions, Design System, Design screens); **core lane** test-first (validator, loader, version wording, issue URL); **start recording faces** (season-independent) | Chime approves phone, iPad and desktop screens; core lane green |
+| 2 | Mon 30 Nov – Sun 13 Dec (2 weeks) | **Build** every page from Figma with motion; **Thu 3 Dec: Season 3 changelog entry, then record the 13 builds on Season 3**; finish the 5 faces; video script and storyboard | All launch pages green; 5 faces verified; 13 builds verified on Season 3; storyboard approved |
+| 3 | Mon 14 – Mon 21 Dec | **Harden, video final, launch.** Sinima launches Tue 15 Dec: nothing goes live Tue 15 – Fri 18 Dec | Live Sat 19 or Mon 21 Dec, "updated for Season 3"; video posted; no blocking bugs |
 | After | 4 weeks | Watch use, fix, add faces and positions, case study | Case study draft with launch numbers |
 
-If Season 3 lands before 19 Dec, launch Sat 19 or Mon 21 Dec (O-04). If it lands later, launch within 48 hours of it. If a phase slips, cut its Should items; never cut faces, the video or launch day.
+Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 Dec (D-18). Season 4 (and PhotoFit, O-07) starts Thu 14 Jan 2027. If a phase slips, cut its Should items; never cut faces, the video or launch day.
 
 ## Scope to launch
 
@@ -46,7 +46,7 @@ If Season 3 lands before 19 Dec, launch Sat 19 or Mon 21 Dec (O-04). If it lands
 - [x] CI green on push to main
 - [ ] Host chosen (O-12) and the empty site deployed
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
-- [ ] Figma file created: cover, Design System page, Design screens page (D-14)
+- [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
 
 ## Phase 1: design and core lane (23–29 Nov)
 
@@ -76,15 +76,15 @@ If Season 3 lands before 19 Dec, launch Sat 19 or Mon 21 Dec (O-04). If it lands
 - [ ] About, takedown, 404
 - [ ] Motion pass with the motion skills, named in PROGRESS (L-10)
 - [ ] Content: first 5 faces chosen (O-05) and recorded; Chime's screenshots exported
-- [ ] Content: 13 builds recorded and played 3 matches each
+- [ ] Thu 3 Dec: read EA's Season 3 notes, write the changelog entry
+- [ ] Content: 13 builds recorded on Season 3 (from Thu 3 Dec) and played 3 matches each
 - [ ] Creator outreach drafts for featured spots (Chime sends)
 - [ ] Video script (30–45 s) and storyboard in Figma; Chime approves
 - [ ] Budget, Lighthouse mobile 90+, accessibility pass, Chime's iPhone check next to the TV
 
 ## Phase 3: Season 3 and launch
 
-- [ ] EA posts Season 3 notes: read them, write the changelog entry
-- [ ] Re-check every launch build in game; bump versions; tags say Season 3
+- [ ] Re-check builds against any Season 3 title update since they were recorded; bump versions if anything moved
 - [ ] Faces re-checked if the editor changed
 - [ ] Video final (16:9 and 4:5, captions burned in)
 - [ ] Launch post and thread; share cards checked in X's composer and WhatsApp
