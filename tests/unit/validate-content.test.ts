@@ -1,30 +1,25 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { problemsIn, validateDir } from "../../scripts/validate-content.mjs";
+import { validateDir } from "../../scripts/validate-content.mjs";
 
-describe("validate-content (Phase 0 checks; the full validator is src/lib/content in Phase 1)", () => {
-  it("lets a draft hold PLACEHOLDER and _example", () => {
-    expect(problemsIn("faces/x.json", { status: "draft", _example: "why", title: "PLACEHOLDER" })).toEqual([]);
-  });
-
-  it("fails a published file with PLACEHOLDER anywhere, however deep", () => {
-    const file = { status: "published", parts: [{ steps: [{ value: { number: "PLACEHOLDER" } }] }] };
-    expect(problemsIn("faces/x.json", file)).toEqual(["faces/x.json: published but contains \"PLACEHOLDER\""]);
-  });
-
-  it("fails a published file that still carries _example", () => {
-    expect(problemsIn("builds/x.json", { status: "published", _example: "why" })).toEqual([
-      "builds/x.json: published but still has _example",
-    ]);
-  });
-
-  it("fails a status that is not draft, published or withdrawn", () => {
-    expect(problemsIn("faces/x.json", { status: "Published", title: "PLACEHOLDER" })).toEqual([
-      'faces/x.json: status "Published" is not one of draft, published, withdrawn',
-    ]);
-  });
-
+// The rules themselves are tested in tests/unit/content/validate.test.ts; this covers the build-time
+// wrapper: reading content/, catching broken JSON, and the "file path: message" lines it prints.
+describe("scripts/validate-content.mjs", () => {
   it("passes every file in content/ today", () => {
     expect(validateDir(join(import.meta.dirname, "..", "..", "content"))).toEqual([]);
+  });
+
+  it("reports a file that isn't valid JSON, and a problem in a valid one, with file and field", () => {
+    const dir = mkdtempSync(join(tmpdir(), "content-"));
+    mkdirSync(join(dir, "changelog"));
+    writeFileSync(join(dir, "changelog", "broken.json"), "{ not json");
+    writeFileSync(join(dir, "notes.json"), "{}");
+    const lines = validateDir(dir);
+    rmSync(dir, { recursive: true, force: true });
+    expect(lines).toHaveLength(2);
+    expect(lines[0]).toMatch(/^changelog\/broken\.json: not valid JSON/);
+    expect(lines[1]).toBe("notes.json: not a known content file (FORMAT.md)");
   });
 });

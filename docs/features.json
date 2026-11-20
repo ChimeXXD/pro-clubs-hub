@@ -168,8 +168,8 @@
         "fails on PLACEHOLDER or _example in a published file, unknown archetype, missing made-by credit, deceased subject, bad value kind"
       ],
       "verify": "npx vitest run tests/unit/lib/content",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "npx vitest run tests/unit/content: 24 tests pass (good published face and build; PLACEHOLDER and _example in published files; unknown archetype; missing made-by credit; deceased subject; bad value kind; plus range, order, link, date, URL and history rules). Red first: 'Cannot find package @/lib/content/validate'. scripts/validate-content.mjs runs the same validator in prebuild and CI."
     },
     {
       "id": "P1-6",

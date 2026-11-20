@@ -58,12 +58,12 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma
 
 **Core lane (tests first)**
-- [ ] `lib/content/types.ts` from FORMAT v1
-- [ ] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject)
+- [x] `lib/content/types.ts` from FORMAT v1
+- [x] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject)
 - [ ] `lib/content/load.ts` resolves relations, fails on broken links, drops drafts and withdrawn
 - [ ] `lib/content/version.ts` wording (verified, not checked, older season)
 - [ ] `lib/submit/toIssueUrl.ts`
-- [ ] `npm run validate:content` and prebuild hook
+- [x] `npm run validate:content` and prebuild hook
 
 ## Phase 2: build and record (30 Nov – 13 Dec)
 

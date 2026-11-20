@@ -2,6 +2,23 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 1, core lane unit 1: content types and validator (Fri 20 Nov 2026)
+
+**Changed**
+- `src/lib/content/types.ts`: every FORMAT v1 shape (face with parts, sculpt and visual age per A-09/A-12; build; archetype file; changelog; creators). Fields Chime records take a type parameter, so drafts may hold `"PLACEHOLDER"` and published content can't, at the type level.
+- `src/lib/content/check.ts` (a small field checker with paths, no new dependency), `validate.ts` (faces, builds, `validateAll`), `validate-other.ts` (archetypes, creators, changelog). Rules: every field's type and range, status, version tag, a "made-by" credit, living subject (D-10), "Inspired by" titles, tab order, Sculpt 0–100, Skin Tone and Visual Age 0–100, embeds with a matching tutorial credit, known archetype and creator ids, file name = id, and in published files no `PLACEHOLDER` anywhere and no `_example`.
+- `scripts/validate-content.mjs` now runs that validator (Node strips the types), so `prebuild` and CI check every field. Its Phase 0 test was replaced by tests of the wrapper (folder reading, broken JSON, message lines); the four Phase 0 rules are covered in the new suite.
+- Fixtures: `tests/unit/fixtures/face-good.json`, `build-good.json` (test data); each bad case is the good file with one change.
+
+**Checked**
+- Red: `tests/unit/content/validate.test.ts` failed first with "Cannot find package '@/lib/content/validate'". Green: 18 tests, including both examples in `content/` failing when marked published.
+- `/code-review --fix` (high): 10 findings, 9 fixed with 6 new tests (26 now). Faces' `pairedBuild` and changelog `affects` must point at real files (the validator builds the id sets; the loader still checks published-to-published links). Impossible dates (30 Feb) fail. URLs must be http(s) (submissions run through this validator). YouTube video ids are letters, digits, `_` and `-` only. A title containing "official" fails (rule 3). Every version needs its history line. Only Skin Tone may use a `position` value. Archetype `typicalPositions` and `specializations` items are checked. Left open: whether Cloudflare's Node 22 is 22.18+; checked from the deploy log on push.
+- Gate after the fixes: types, lint, unit (26 tests), content, build + budget + e2e all pass.
+- Phase 1 design lane: a background agent is collecting references (results pending).
+
+**Not verified**
+- That CI's and Cloudflare's Node 22 strips types like local Node 24 (needs 22.18+; checked on the next push).
+
 ## Phase 0: Day 0 findings, repo and scaffold (Thu 19 – Fri 20 Nov 2026)
 
 **Changed**

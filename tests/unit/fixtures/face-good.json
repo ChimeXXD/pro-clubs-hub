@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "test-footballer-2010",
+  "slug": "test-footballer-2010",
+  "status": "published",
+  "subject": { "name": "Test Footballer", "kind": "footballer", "living": true },
+  "era": { "label": "2010", "note": "Test fixture era note." },
+  "title": "Inspired by Test Footballer, 2010",
+  "target": { "look": "matchday" },
+  "timeMinutes": 12,
+  "preset": { "number": 7 },
+  "parts": [
+    {
+      "tab": "skin",
+      "steps": [
+        { "control": "skin-tone", "label": "Skin Tone", "value": { "kind": "position", "percent": 40 }, "tip": null },
+        { "control": "complexion", "label": "Complexion", "value": { "kind": "item", "number": 4 }, "tip": null }
+      ]
+    },
+    { "tab": "head", "steps": [{ "control": "jaw", "label": "Jaw", "value": { "kind": "item", "number": 17 }, "tip": null }] },
+    { "tab": "face", "steps": [] },
+    { "tab": "hair", "steps": [{ "control": "hair-colour", "label": "Hair colour", "value": { "kind": "named", "name": "Warm Black" }, "tip": "Test tip." }] }
+  ],
+  "sculpt": {
+    "symmetry": true,
+    "steps": [
+      {
+        "mode": "shape",
+        "layer": "skeletal",
+        "region": "Chin",
+        "subRegion": "Chin",
+        "sliders": [
+          { "kind": "slider", "low": "Narrow", "high": "Widen", "value": 59 },
+          { "kind": "slider", "low": "Down", "high": "Up", "value": 25 }
+        ],
+        "tip": null
+      }
+    ]
+  },
+  "visualAge": { "toward": "younger", "percent": 100 },
+  "limits": ["Test limit."],
+  "pairedBuild": "test-spark-build",
+  "screenshots": [{ "file": "faces/test-footballer-2010-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }],
+  "embeds": [{ "provider": "youtube", "videoId": "abc123", "title": "Test tutorial", "channel": "Test Channel", "creatorId": "test-creator" }],
+  "version": 1,
+  "versionTag": { "game": "fc27", "season": 3, "verifiedOn": "2026-12-04", "verifiedBy": "Chime", "platform": "ps5" },
+  "credits": [
+    { "role": "made-by", "name": "Chime", "url": null, "creatorId": null },
+    { "role": "tutorial", "name": "Test Channel", "url": "https://www.youtube.com/watch?v=abc123", "creatorId": "test-creator" }
+  ],
+  "history": [{ "version": 1, "date": "2026-12-04", "note": "Test fixture." }],
+  "createdAt": "2026-12-04",
+  "updatedAt": "2026-12-04"
+}
