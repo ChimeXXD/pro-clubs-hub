@@ -44,7 +44,7 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 - [x] Public repo `ChimeXXD/pro-clubs-hub` (D-12), first commit of these docs
 - [x] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
 - [x] CI green on push to main
-- [ ] Host chosen (O-12) and the empty site deployed
+- [x] Host chosen (O-12, A-14) and the empty site deployed: https://pro-clubs-hub.pages.dev
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
 - [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
 

@@ -77,7 +77,7 @@
       ],
       "verify": "open the URL",
       "passes": false,
-      "evidence": null
+      "evidence": "Cloudflare Pages project pro-clubs-hub, Git-connected to main (build npm run build, output out, NODE_VERSION 22), first deploy of 24ef893 succeeded 20 Nov 2026. curl https://pro-clubs-hub.pages.dev/ → 200 with the notice; /does-not-exist → 404 with the notice. Still to pass: loading on Chime's iPhone."
     },
     {
       "id": "P0-7",

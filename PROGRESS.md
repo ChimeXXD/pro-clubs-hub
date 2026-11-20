@@ -25,10 +25,15 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - `npm` warns ESLint 9.39.5 is out of support; D-11 pins ESLint 9, so moving to 10 needs Chime's OK.
 - Sculpt's Weight and Definition modes, and whether Skin Tone's arrows step: noted on Chime's first face recording.
 
+**Later the same session**
+- Public repo `ChimeXXD/pro-clubs-hub` created and pushed; first CI run green (44652883584).
+- Figma file created on Chime's personal team: https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ (Cover, Design System, Design screens; read back via use_figma).
+- Season 3 replan applied (D-18); ESLint stays on 9 (A-15, checked plugin peer ranges).
+- Cloudflare Pages: Chime signed in; Claude created the Git-connected project in Chrome (GitHub was already authorised for Cloudflare, no new grant). Deploy succeeded; `curl` shows https://pro-clubs-hub.pages.dev/ 200 with the notice and a missing page 404 with the notice.
+
 **Next**
-- Commit the scaffold, create the public repo `ChimeXXD/pro-clubs-hub`, push, watch CI.
-- Cloudflare Pages: Chime connects the repo once in the dashboard.
-- Figma file (cover, Design System, Design screens).
+- Chime opens https://pro-clubs-hub.pages.dev on the iPhone (P0-6).
+- Phase 1: reference board and three directions; core lane test-first.
 
 ## Pivot: Facecard becomes Pro Clubs Hub (Thu 19 Nov 2026)
 
