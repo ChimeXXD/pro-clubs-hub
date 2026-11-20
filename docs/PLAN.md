@@ -52,7 +52,8 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 
 **Design**
 - [x] References by surface (`docs/design/REFERENCES.md`): 48 picks, 20 Nov
-- [ ] Three directions on a direction board; Chime picks one
+- [x] ~~Three directions on a direction board~~: rejected by Chime 20 Nov (D-19)
+- [ ] FUT.GG-style home and face page with a 3D spin preview (D-19), from Chime's in-game spin capture; Chime approves
 - [ ] Design System page: tokens as variables, text and effect styles, components with states (FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast)
 - [ ] Design screens: home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404, at iPhone, iPad and desktop
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma

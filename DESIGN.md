@@ -4,6 +4,14 @@ Rules learned from Chime's corrections, read before building or changing UI. Val
 
 This file starts with the Sinima rules that fit any product. Add a rule each time Chime corrects the UI, with the quote and date in a comment.
 
+## Direction (Chime, 20 Nov 2026)
+
+- **The start screen follows FUT.GG's home:** a dark hub with one accent, a top bar with search, tab pills (Trending, New, …), and a dense grid of face cards as the first thing on screen; then live items (season countdown, latest changes), quick links and lists with small badges. Our own card style: no EA card frames or rarity colours (D-04).
+- **Every face is shown as a 3D preview you can turn:** a 360° spin of the face as made in FC 27, captured by Chime in game (D-10 still holds: only Chime's own in-game captures, never a model or render of the real person).
+- **Never show abstract style directions** (moods of type and colour on sample screens). Show the product's real screens, built from the reference Chime names.
+  Why: Chime rejected the three-direction board (Scoreboard, Almanac, Instrument panel): "All these are trash. This is not the design I had in mind at all."
+  <!-- 2026-11-20, D-19 -->
+
 ## Color
 
 - **Grey hover fills use hover tokens only: `--hover-fill` (surface + 2 % of the text colour), `--hover-fill-raised` and `--hover-fill-page` (page + 1 %). No component mixes its own grey. Start faint.** *Carried.*
