@@ -51,7 +51,7 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 ## Phase 1: design and core lane (23–29 Nov)
 
 **Design**
-- [ ] References by surface (`docs/design/REFERENCES.md`)
+- [x] References by surface (`docs/design/REFERENCES.md`): 48 picks, 20 Nov
 - [ ] Three directions on a direction board; Chime picks one
 - [ ] Design System page: tokens as variables, text and effect styles, components with states (FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast)
 - [ ] Design screens: home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404, at iPhone, iPad and desktop

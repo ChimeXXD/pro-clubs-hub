@@ -115,8 +115,8 @@
         "no photos of real people"
       ],
       "verify": "read docs/design/REFERENCES.md",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "docs/design/REFERENCES.md: 48 picks by surface, each with what to take and what to avoid; pattern summary with open questions; three directions. No images saved and no photos of people (photo-led screens skipped). 20 Nov 2026."
     },
     {
       "id": "P1-2",
