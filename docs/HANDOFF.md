@@ -26,7 +26,8 @@ Chime invited a collaborator to the repo, which is now **private** (D-20). The c
 
 ### Waiting on Chime
 - A test clip in `reference/` (git-ignored) for the face preview: Clubs → Head → Customize, zoom in (L3), press Create to record, turn the Pro one full circle with the right stick (about 10 s). Optionally one match-cutscene screenshot.
-- Whether Cloudflare Pages still deploys now the repo is private: the next push shows it. If it fails, reconnect the repo in Cloudflare Pages and grant access to the private repo.
+- **GitHub Actions can't start on the private repo** (checked 20 Nov): "The job was not started because recent account payments have failed or your spending limit needs to be increased." November's free minutes are used up, mostly by the `meridian` repo's macOS runs (532 min, counted at 10x). Until the allowance resets on 1 Dec, or Chime raises the spending limit or makes the repo public, CI and the main guard don't run: run `npm run lint && npm run typecheck && npm test && npm run build` locally, and check pull requests locally when reviewing.
+- Cloudflare Pages deploys from the private repo: checked on commit `eedf595` (success).
 
 ### Earlier (19–20 Nov), in short
 - **Phase 0 done:** repo, Next.js 16.4.6 static-export scaffold, CI, commit gate (`.claude/proof.json`), page-weight budget (A-13), live at https://pro-clubs-hub.pages.dev (A-14).

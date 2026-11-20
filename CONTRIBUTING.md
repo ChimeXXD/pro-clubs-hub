@@ -12,7 +12,7 @@ If you are an AI agent (Claude Code, Codex, Cursor or any other), this file is y
 **Nothing goes into `main` except through a pull request that Chime has reviewed and merged.**
 
 - Never push to `main`. Never merge your own pull request.
-- GitHub can't lock `main` on this plan (a private repo on GitHub Free), so this rule is an agreement. A check (`.github/workflows/main-guard.yml`) opens an issue for Chime whenever someone other than Chime pushes to `main`, and the push may be reverted.
+- GitHub can't lock `main` on this plan (a private repo on GitHub Free), so this rule is an agreement. A check (`.github/workflows/main-guard.yml`) opens an issue for Chime whenever someone other than Chime pushes to `main` (when the account has Actions minutes left), and the push may be reverted.
 
 ## How to make a change, step by step
 
@@ -32,7 +32,7 @@ If you are an AI agent (Claude Code, Codex, Cursor or any other), this file is y
    ```bash
    npm run lint && npm run typecheck && npm test && npm run build
    ```
-   CI runs the full set (including e2e) on every pull request anyway.
+   CI runs the full set (including e2e) on every pull request when the account has Actions minutes left. When it can't start (it says the job "was not started"), say so in the pull request; Chime runs the checks locally during review.
 6. **Push your branch** (never `main`):
    ```bash
    git push -u origin design/home-screen
