@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "game": "fc27",
+  "updated": "2026-11-19",
+  "note": "Names, position groups and the fields below come from the sources listed. Null means not found in a source we opened. verifiedInGame is false until Chime checks each archetype in game. Position groups follow EA's archetypes update (2 GK, 3 DEF, 4 MID, 4 ATT). Level cap is open (O-02) and not stored here.",
+  "archetypes": [
+    {
+      "id": "shot-stopper",
+      "name": "Shot Stopper",
+      "positionGroup": "goalkeeper",
+      "signaturePlayStyles": [
+        {
+          "name": "Far Reach",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Deflector",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "GK Positioning",
+          "GK Reflexes"
+        ],
+        "sourceIds": [
+          "dexerto-levels"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 3,
+        "down": 1,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "sweeper-keeper",
+      "name": "Sweeper Keeper",
+      "positionGroup": "goalkeeper",
+      "signaturePlayStyles": [
+        {
+          "name": "Footwork",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Cross Claimer",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "GK Handling",
+          "GK Diving"
+        ],
+        "sourceIds": [
+          "dexerto-levels"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 1,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "progressor",
+      "name": "Progressor",
+      "positionGroup": "defender",
+      "signaturePlayStyles": [
+        {
+          "name": "Long Ball Pass",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Anticipate",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "Long Passing",
+          "Standing Tackle"
+        ],
+        "sourceIds": [
+          "dexerto-levels"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 4,
+        "down": 1,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "boss",
+      "name": "Boss",
+      "positionGroup": "defender",
+      "signaturePlayStyles": [
+        {
+          "name": "Bruiser",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Aerial Fortress",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "Aggression",
+          "Strength"
+        ],
+        "sourceIds": [
+          "dexerto-levels"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 3,
+        "down": 0,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "marauder",
+      "name": "Marauder",
+      "positionGroup": "defender",
+      "signaturePlayStyles": [
+        {
+          "name": "Quick Step",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Whipped Pass",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "Sliding Tackle",
+          "Sprint Speed"
+        ],
+        "sourceIds": [
+          "dexerto-levels"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 4,
+        "down": 2,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "disruptor",
+      "name": "Disruptor",
+      "positionGroup": "midfielder",
+      "signaturePlayStyles": [
+        {
+          "name": "Jockey",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Relentless",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 3,
+        "down": 2,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": "New in FC 27; replaces nothing directly (Engine was removed)."
+    },
+    {
+      "id": "recycler",
+      "name": "Recycler",
+      "positionGroup": "midfielder",
+      "signaturePlayStyles": [
+        {
+          "name": "Intercept",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Press Proven",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 3,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "maestro",
+      "name": "Maestro",
+      "positionGroup": "midfielder",
+      "signaturePlayStyles": [
+        {
+          "name": "Pinged Pass",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Long Ball Pass",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 4,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "creator",
+      "name": "Creator",
+      "positionGroup": "midfielder",
+      "signaturePlayStyles": [
+        {
+          "name": "Incisive Pass",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Inventive",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 3,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "spark",
+      "name": "Spark",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [
+        {
+          "name": "Trickster",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Rapid",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 2,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "magician",
+      "name": "Magician",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [
+        {
+          "name": "Technical",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Finesse Shot",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": null,
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 3,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "finisher",
+      "name": "Finisher",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [
+        {
+          "name": "Low Driven Shot",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "First Touch",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "Finishing",
+          "Composure"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 6,
+        "down": 4,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "target",
+      "name": "Target",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [
+        {
+          "name": "Precision Header",
+          "since": "launch",
+          "sourceIds": [
+            "dexerto-archetypes"
+          ]
+        },
+        {
+          "name": "Enforcer",
+          "since": "season-2",
+          "sourceIds": [
+            "pchq-archetype-changes"
+          ]
+        }
+      ],
+      "masteryAttributes": {
+        "attributes": [
+          "Balance",
+          "Jumping"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
+      "apCostChange20261022": {
+        "up": 5,
+        "down": 3,
+        "sourceIds": [
+          "ea-archetypes-update"
+        ]
+      },
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "ea-grounds-deep-dive",
+      "title": "EA, Pitch Notes: The Grounds deep dive",
+      "url": "https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive",
+      "accessed": "2026-11-18"
+    },
+    {
+      "id": "ea-archetypes-update",
+      "title": "EA, The Grounds developer archetypes update (19 Oct 2026, live 22 Oct)",
+      "url": "https://ea.com/games/ea-sports-fc/fc-27/news/fc-27-the-grounds-developer-archetypes-update",
+      "accessed": "2026-11-18"
+    },
+    {
+      "id": "dexerto-archetypes",
+      "title": "Dexerto, all archetypes explained (FC 27)",
+      "url": "https://www.dexerto.com/wikis/ea-fc-27/all-archetypes-explained/",
+      "accessed": "2026-11-18"
+    },
+    {
+      "id": "dexerto-levels",
+      "title": "Dexerto, how to level up archetypes (FC 27)",
+      "url": "https://www.dexerto.com/wikis/ea-fc-27/how-to-level-up-archetypes/",
+      "accessed": "2026-11-18"
+    },
+    {
+      "id": "pchq-archetype-changes",
+      "title": "Pro Clubs HQ, FC 27 archetype changes",
+      "url": "https://proclubshq.com/blog/fc27-archetype-changes/",
+      "accessed": "2026-11-18"
+    }
+  ]
+}

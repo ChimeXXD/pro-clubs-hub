@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-09-25-launch",
+  "status": "draft",
+  "date": "2026-09-25",
+  "kind": "season",
+  "game": "fc27",
+  "season": 1,
+  "title": "FC 27 launches; Clubs moves into The Grounds",
+  "changes": [
+    "Clubs is reached through the Clubhouse inside The Grounds.",
+    "13 archetypes, all unlocked from the start; Disruptor is new and Engine is gone.",
+    "Resets are free and single attributes can be changed.",
+    "Masteries and Amps are new."
+  ],
+  "source": {
+    "title": "EA, Pitch Notes: The Grounds deep dive",
+    "url": "https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive",
+    "accessed": "2026-11-18"
+  },
+  "affects": {
+    "builds": [],
+    "faces": []
+  },
+  "siteNote": "Engine's removal is from Pro Clubs HQ and Skycoach, not EA's page. Launch date is from the project brief, not an opened page."
+}

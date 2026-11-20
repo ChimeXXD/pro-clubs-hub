@@ -1,0 +1,69 @@
+# Lint, typecheck, unit tests, content validation, build, budget and Playwright e2e.
+# The repo is public from Day 0 (D-12), so Actions minutes are free.
+# Day 0: push only after the scaffold exists, so the first run is a real one (no package.json = red run).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      # One bad content file fails the run (A-02, CLAUDE.md rule 6).
+      - name: Validate content
+        run: npm run validate:content
+
+      - name: Build (static export)
+        run: npm run build
+
+      - name: Page weight budget
+        run: npm run budget
+
+      # No --with-deps: on Sinima (11 Nov 2026) its apt-get step hung until the job timed out (L-08).
+      - name: Install Playwright browser
+        timeout-minutes: 5
+        run: npx playwright install chromium
+
+      - name: E2E tests
+        run: npm run test:e2e
+        env:
+          E2E_PREBUILT: "1"   # serve the out/ built above instead of building again
+
+      - name: Keep the Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

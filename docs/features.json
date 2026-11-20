@@ -1,0 +1,497 @@
+{
+  "features": [
+    {
+      "id": "P0-1",
+      "phase": 0,
+      "priority": "must",
+      "title": "In-game checks recorded",
+      "criteria": [
+        "RESEARCH.md \u00a79 answers value display, ranges, preset grid, hairstyles, street vs matchday face, level cap, AP at cap, platform",
+        "O-02, O-03, O-09, O-10 closed or still open with a reason"
+      ],
+      "verify": "read docs/RESEARCH.md \u00a79",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-2",
+      "phase": 0,
+      "priority": "must",
+      "title": "FORMAT.md updated from the in-game checks",
+      "criteria": [
+        "control ids and value kinds match the game",
+        "a decision logs the change"
+      ],
+      "verify": "read docs/FORMAT.md and docs/DECISIONS.md",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-3",
+      "phase": 0,
+      "priority": "must",
+      "title": "Public repo with MIT licence",
+      "criteria": [
+        "ChimeXXD/pro-clubs-hub exists and is public",
+        "first commit holds the docs"
+      ],
+      "verify": "gh repo view --json visibility",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-4",
+      "phase": 0,
+      "priority": "must",
+      "title": "Next.js static-export scaffold with exact versions",
+      "criteria": [
+        "next 16.4.6, react 19.3.1, typescript 5.9.3, tailwindcss 4.3.3, @playwright/test 1.64.1 pinned without ^",
+        "npm run build writes out/",
+        "one Vitest and one Playwright test pass"
+      ],
+      "verify": "npm ci && npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-5",
+      "phase": 0,
+      "priority": "must",
+      "title": "CI green on push to main",
+      "criteria": [
+        "ci.yml runs lint, typecheck, unit, validate content, build, budget, e2e",
+        "latest run on main is green"
+      ],
+      "verify": "gh run list --workflow ci.yml --limit 1",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-6",
+      "phase": 0,
+      "priority": "must",
+      "title": "Empty site deployed on the chosen host",
+      "criteria": [
+        "host chosen (O-12)",
+        "URL loads on Chime's iPhone"
+      ],
+      "verify": "open the URL",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-7",
+      "phase": 0,
+      "priority": "must",
+      "title": "Page-weight budget set from the empty app",
+      "criteria": [
+        "measurement in PROGRESS.md",
+        "budget logged as a decision and enforced by scripts/check-budget.mjs"
+      ],
+      "verify": "npm run build && npm run budget",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P0-8",
+      "phase": 0,
+      "priority": "must",
+      "title": "Figma file with Design System and Design screens pages",
+      "criteria": [
+        "cover, Design System page, Design screens page exist"
+      ],
+      "verify": "Chime confirms",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-1",
+      "phase": 1,
+      "priority": "must",
+      "title": "References by surface",
+      "criteria": [
+        "30-50 picks noted in REFERENCES.md with what to take",
+        "pattern summary written",
+        "no photos of real people"
+      ],
+      "verify": "read docs/design/REFERENCES.md",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-2",
+      "phase": 1,
+      "priority": "must",
+      "title": "Three directions and Chime's pick",
+      "criteria": [
+        "direction board shows three directions at 390 px",
+        "pick logged as a decision"
+      ],
+      "verify": "open docs/design/direction-board/index.html",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-3",
+      "phase": 1,
+      "priority": "must",
+      "title": "Figma Design System page",
+      "criteria": [
+        "tokens as variables (light and dark)",
+        "text and effect styles",
+        "components with states: FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast"
+      ],
+      "verify": "Chime reviews in Figma",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-4",
+      "phase": 1,
+      "priority": "must",
+      "title": "Figma Design screens approved",
+      "criteria": [
+        "every route in SPEC at iPhone, iPad and desktop",
+        "Chime approves"
+      ],
+      "verify": "Chime's approval in DECISIONS",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-5",
+      "phase": 1,
+      "priority": "must",
+      "title": "Content types and validator, test-first",
+      "criteria": [
+        "types match FORMAT v1",
+        "fails on PLACEHOLDER or _example in a published file, unknown archetype, missing made-by credit, deceased subject, bad value kind"
+      ],
+      "verify": "npx vitest run tests/unit/lib/content",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-6",
+      "phase": 1,
+      "priority": "must",
+      "title": "Loader resolves relations and fails on broken links",
+      "criteria": [
+        "drafts and withdrawn files dropped",
+        "pairedBuild and archetype links checked"
+      ],
+      "verify": "npx vitest run tests/unit/lib/content/load.test.ts",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-7",
+      "phase": 1,
+      "priority": "must",
+      "title": "Version wording function",
+      "criteria": [
+        "verified, not checked and older-season sentences match SPEC"
+      ],
+      "verify": "npx vitest run tests/unit/lib/content/version.test.ts",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-8",
+      "phase": 1,
+      "priority": "must",
+      "title": "Submit issue-URL builder",
+      "criteria": [
+        "body is valid JSON for face and build",
+        "URL stays under GitHub's length limit or falls back to Copy JSON"
+      ],
+      "verify": "npx vitest run tests/unit/lib/submit",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P1-9",
+      "phase": 1,
+      "priority": "must",
+      "title": "tokens.css mirrors Figma variables",
+      "criteria": [
+        "no hard-coded colours (check-tokens passes)"
+      ],
+      "verify": "npm run lint",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-1",
+      "phase": 2,
+      "priority": "must",
+      "title": "Home: faces first",
+      "criteria": [
+        "faces appear before builds",
+        "current season shown"
+      ],
+      "verify": "npm run test:e2e -- home",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-2",
+      "phase": 2,
+      "priority": "must",
+      "title": "Faces library with filters",
+      "criteria": [
+        "filter by kind and era",
+        "search by name"
+      ],
+      "verify": "npm run test:e2e -- faces",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-3",
+      "phase": 2,
+      "priority": "must",
+      "title": "Face page with ticks and paired build",
+      "criteria": [
+        "version tag and credit line visible",
+        "ticks survive reload; new version clears them",
+        "paired build card shown"
+      ],
+      "verify": "npm run test:e2e -- face",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-4",
+      "phase": 2,
+      "priority": "must",
+      "title": "Builds index and build page",
+      "criteria": [
+        "by position and archetype",
+        "version tag, credits, history shown"
+      ],
+      "verify": "npm run test:e2e -- builds",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-5",
+      "phase": 2,
+      "priority": "must",
+      "title": "Archetypes index and 13 pages",
+      "criteria": [
+        "signature PlayStyles, masteries, sources, builds on this archetype"
+      ],
+      "verify": "npm run test:e2e -- archetypes",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-6",
+      "phase": 2,
+      "priority": "must",
+      "title": "Changelog page",
+      "criteria": [
+        "entries newest first with EA source and affected content"
+      ],
+      "verify": "npm run test:e2e -- changelog",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-7",
+      "phase": 2,
+      "priority": "must",
+      "title": "Submit page",
+      "criteria": [
+        "live validation",
+        "opens a prefilled GitHub issue",
+        "Copy JSON works"
+      ],
+      "verify": "npm run test:e2e -- submit",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-8",
+      "phase": 2,
+      "priority": "must",
+      "title": "About, takedown and the notice on every page",
+      "criteria": [
+        "notice text on every route",
+        "72-hour takedown promise and email"
+      ],
+      "verify": "npm run test:e2e -- legal",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-9",
+      "phase": 2,
+      "priority": "should",
+      "title": "Tutorial embeds load on tap",
+      "criteria": [
+        "no YouTube request before the tap"
+      ],
+      "verify": "npm run test:e2e -- embeds",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-10",
+      "phase": 2,
+      "priority": "should",
+      "title": "Share card per face and build",
+      "criteria": [
+        "Open Graph image renders in X's composer and WhatsApp"
+      ],
+      "verify": "manual check, screenshots in PROGRESS",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-11",
+      "phase": 2,
+      "priority": "should",
+      "title": "Search across faces and builds",
+      "criteria": [
+        "finds by person, archetype and position"
+      ],
+      "verify": "npm run test:e2e -- search",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-12",
+      "phase": 2,
+      "priority": "must",
+      "title": "Motion pass",
+      "criteria": [
+        "skills that ran named in PROGRESS",
+        "reduced motion respected"
+      ],
+      "verify": "read PROGRESS.md",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-13",
+      "phase": 2,
+      "priority": "must",
+      "title": "5 faces recorded and verified",
+      "criteria": [
+        "footballers and living musicians only",
+        "each pairs a verified build",
+        "Chime's own screenshots only"
+      ],
+      "verify": "npm run validate:content",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-14",
+      "phase": 2,
+      "priority": "must",
+      "title": "13 builds recorded and verified",
+      "criteria": [
+        "one per archetype",
+        "played 3 matches each",
+        "version tag dated"
+      ],
+      "verify": "npm run validate:content",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-15",
+      "phase": 2,
+      "priority": "must",
+      "title": "Video script and storyboard approved",
+      "criteria": [
+        "30-45 s script",
+        "storyboard in Figma"
+      ],
+      "verify": "Chime's approval",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P2-16",
+      "phase": 2,
+      "priority": "must",
+      "title": "Hardening",
+      "criteria": [
+        "Lighthouse mobile 90+",
+        "budget green",
+        "accessibility pass",
+        "checked on Chime's iPhone next to the TV"
+      ],
+      "verify": "npm run budget; Lighthouse report in PROGRESS",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P3-1",
+      "phase": 3,
+      "priority": "must",
+      "title": "Season 3 changelog entry",
+      "criteria": [
+        "written from EA's Season 3 notes with the source link"
+      ],
+      "verify": "npm run validate:content",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P3-2",
+      "phase": 3,
+      "priority": "must",
+      "title": "Launch builds re-checked for Season 3",
+      "criteria": [
+        "every launch build bumped and tagged Season 3"
+      ],
+      "verify": "npm run validate:content",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P3-3",
+      "phase": 3,
+      "priority": "must",
+      "title": "Motion-graphics video final",
+      "criteria": [
+        "16:9 and 4:5 exports",
+        "captions burned in"
+      ],
+      "verify": "files in the launch kit",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P3-4",
+      "phase": 3,
+      "priority": "must",
+      "title": "Launch post live",
+      "criteria": [
+        "post, thread and link card correct",
+        "launch numbers logged"
+      ],
+      "verify": "link in PROGRESS",
+      "passes": false,
+      "evidence": null
+    },
+    {
+      "id": "P3-5",
+      "phase": 3,
+      "priority": "must",
+      "title": "Name decided and applied",
+      "criteria": [
+        "O-01 closed",
+        "repo renamed; site, README and docs updated"
+      ],
+      "verify": "gh repo view",
+      "passes": false,
+      "evidence": null
+    }
+  ]
+}

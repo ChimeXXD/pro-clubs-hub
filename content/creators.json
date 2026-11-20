@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "creators": [
+    {
+      "id": "fp-virtual-pro-lookalike",
+      "name": "F.P. Virtual Pro Lookalike",
+      "url": "https://www.youtube.com/c/FPFifa20VirtualProLookalike",
+      "platform": "youtube",
+      "permission": "not-asked",
+      "featured": false,
+      "notes": "Seen in search results only (FC 27 Cruyff, Romario 1994 face videos). Channel not opened. Candidate for a featured spot."
+    },
+    {
+      "id": "r-dot-10",
+      "name": "R-Dot-10",
+      "url": "https://www.youtube.com/@R-Dot-10",
+      "platform": "youtube",
+      "permission": "not-asked",
+      "featured": false,
+      "notes": "Offered lookalike guides on the EA forum (FC 25). Channel not opened."
+    },
+    {
+      "id": "jaxstash",
+      "name": "JaxStash",
+      "url": "https://www.youtube.com/@JaxStash",
+      "platform": "youtube",
+      "permission": "not-asked",
+      "featured": false,
+      "notes": "Playlist 'EA FC27 - Face Creations' (https://www.youtube.com/playlist?list=PLM30xERFMmrU), 88 FC 27 face tutorials as of 20 Nov 2026, including Kanye West (_wbTzx9-3Uw), Neymar, Pogba and Lamine Yamal. Chime pointed to it on 20 Nov; its still frames were used only to learn how the editor works (RESEARCH §9), no values taken. Strong candidate for a featured spot, and a tutorial credit on any face Chime makes by following one of these videos."
+    }
+  ]
+}

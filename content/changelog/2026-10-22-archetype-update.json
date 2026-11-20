@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-22-archetype-update",
+  "status": "draft",
+  "date": "2026-10-22",
+  "kind": "archetype-update",
+  "game": "fc27",
+  "season": 2,
+  "title": "Archetype costs re-priced, every build reset",
+  "changes": [
+    "58 attribute costs went up and 29 went down across all 13 archetypes.",
+    "Attacking Positioning is no longer a specialization requirement.",
+    "Every Pro's attribute points were reset; levels and totals were kept.",
+    "Players with a Pro got 5,000 Club Coins and a 1.75x AXP boost for 6 matches."
+  ],
+  "source": {
+    "title": "EA, The Grounds developer archetypes update",
+    "url": "https://ea.com/games/ea-sports-fc/fc-27/news/fc-27-the-grounds-developer-archetypes-update",
+    "accessed": "2026-11-18"
+  },
+  "affects": {
+    "builds": [],
+    "faces": []
+  },
+  "siteNote": "Pro Clubs HQ reports the level cap rose from 40 to 55 the same day; EA's page doesn't say (O-02)."
+}

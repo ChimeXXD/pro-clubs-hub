@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Tests
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+coverage/
+
+# Env (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Cloudflare / Wrangler local state
+.wrangler/
+.dev.vars
+
+# macOS and editors
+.DS_Store
+.vscode/
+.idea/
+
+# Claude local state
+.claude/settings.local.json
+.claude/worktrees/
+
+# Local reference only: in-game screenshots, raw captures, anything from EA (D-10)
+reference/
+
+# Local screenshots and exports made while building or checking UI
+screenshots/
+*.screenshot.png
+exports/
+tmp/
+*.heic
+*.HEIC
+*.mov
+*.MOV
+
+# Design reference images: other products' copyrighted UI
+docs/design/reference-board/images/
+docs/design/direction-board/images/
+
+# Old Facecard files waiting for Chime to delete (never commit)
+_to_delete/

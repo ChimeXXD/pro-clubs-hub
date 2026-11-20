@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "spark-2008-winger",
+  "slug": "spark-2008-winger",
+  "status": "draft",
+  "_example": "EXAMPLE FILE. Every PLACEHOLDER value is fake and must be recorded by Chime in game. Signature PlayStyles are from sources; everything else is a placeholder.",
+  "title": "PLACEHOLDER",
+  "archetype": "spark",
+  "positions": [
+    "RW",
+    "LW"
+  ],
+  "summary": "PLACEHOLDER",
+  "level": "PLACEHOLDER",
+  "body": {
+    "heightCm": "PLACEHOLDER",
+    "weightKg": "PLACEHOLDER",
+    "accelerate": "PLACEHOLDER"
+  },
+  "attributes": [
+    {
+      "name": "Acceleration",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Sprint Speed",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Agility",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Dribbling",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Ball Control",
+      "value": "PLACEHOLDER"
+    }
+  ],
+  "playStyles": {
+    "signature": [
+      "Trickster",
+      "Rapid"
+    ],
+    "plus": [
+      "PLACEHOLDER"
+    ],
+    "regular": [
+      "PLACEHOLDER"
+    ]
+  },
+  "specialization": "PLACEHOLDER",
+  "skillMoves": "PLACEHOLDER",
+  "weakFoot": "PLACEHOLDER",
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "Chime",
+      "url": null,
+      "creatorId": null
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dexerto, all archetypes explained (Spark's launch Signature PlayStyle)",
+      "url": "https://www.dexerto.com/wikis/ea-fc-27/all-archetypes-explained/",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Pro Clubs HQ, FC 27 archetype changes (Spark's Season 2 Signature PlayStyle)",
+      "url": "https://proclubshq.com/blog/fc27-archetype-changes/",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-19",
+      "note": "Example file with placeholder values."
+    }
+  ],
+  "createdAt": "2026-11-19",
+  "updatedAt": "2026-11-19"
+}

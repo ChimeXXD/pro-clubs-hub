@@ -1,0 +1,205 @@
+# Content formats, v1
+
+Every piece of content is one UTF-8 JSON file in `content/`. The site, the build check and the submit builder all read and write these shapes (A-02). `validate.ts` enforces them; one bad file fails the build. Change a shape only with a new `schemaVersion` and a decision.
+
+## Shared parts
+
+**Status.** `"draft"` (never built or listed), `"published"`, `"withdrawn"` (never built, listed or linked; D-10).
+
+**Placeholder.** The string `"PLACEHOLDER"` may stand in for any value Chime hasn't recorded. A file containing it must be `"draft"`. The validator fails a `"published"` file that contains it anywhere.
+
+**Example marker.** A draft may carry `"_example": "<why this file exists>"`. The validator fails a `"published"` file that has it.
+
+**Version tag** (D-05). Every build and face has one.
+
+```json
+{ "game": "fc27", "season": 2, "verifiedOn": "2026-11-19", "verifiedBy": "Chime", "platform": "TODO" }
+```
+
+- `game`: `"fc27"`. `season`: integer. `verifiedOn`: ISO date or `null`. `verifiedBy`: name or `null`. `platform`: `"ps5"`, `"xbox"`, `"pc"` or `null` (O-09).
+- Wording (one function, A-08): verified gives "FC 27 · Season 2 · verified 19 Nov 2026"; `verifiedOn: null` gives "FC 27 · Season 2 · not yet checked in game". A season older than the current one adds: "Made for Season 2. Values may have changed since."
+
+**Credit** (D-08).
+
+```json
+{ "role": "tutorial", "name": "Creator name", "url": "https://www.youtube.com/watch?v=…", "creatorId": "creator-slug" }
+```
+
+- `role`: `"made-by"`, `"tutorial"` (a video Chime followed), `"submitted-by"`, `"reference"`. Every build and face has at least one `"made-by"`.
+- `creatorId` points into `content/creators.json`, or `null`.
+
+**Source.** Facts cite where they came from.
+
+```json
+{ "title": "EA, The Grounds developer archetypes update", "url": "https://ea.com/…", "accessed": "2026-11-18" }
+```
+
+**Value** (D-13). Stored the way the game shows it. Day 0 decides which kinds recipes use (O-03).
+
+Kinds follow what the FC 27 editor shows (RESEARCH §9, A-09).
+
+| kind | Shape | The game shows |
+| --- | --- | --- |
+| `item` | `{ "kind": "item", "number": 116 }` | a numbered catalogue choice, "Nose 116"; integer from 1 |
+| `named` | `{ "kind": "named", "name": "Warm Black" }` | a choice shown by name: a colour, "None", an eyebrow shape, a hairstyle category |
+| `slider` | `{ "kind": "slider", "low": "Down", "high": "Up", "value": 45 }` | a Sculpt slider: integer 0 to 100, with the labels at its two ends as the game prints them |
+| `position` | `{ "kind": "position", "percent": 38 }` | a slider with no number (Skin Tone): the knob's place along the track, 0 at the far left, 100 at the far right, measured from Chime's screenshot and shown on the site as a drawn track, never as a game number |
+
+## Archetype (`content/archetypes/fc27.json`)
+
+One file per game. Unverified fields are `null`, never guessed.
+
+```json
+{
+  "schemaVersion": 1,
+  "game": "fc27",
+  "updated": "2026-11-19",
+  "archetypes": [
+    {
+      "id": "finisher",
+      "name": "Finisher",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [
+        { "name": "Low Driven Shot", "since": "launch", "sourceIds": ["dexerto-archetypes"] },
+        { "name": "First Touch", "since": "season-2", "sourceIds": ["pchq-archetype-changes"] }
+      ],
+      "masteryAttributes": { "attributes": ["Finishing", "Composure"], "sourceIds": ["ea-grounds-deep-dive"] },
+      "apCostChange20261022": { "up": 6, "down": 4, "sourceIds": ["ea-archetypes-update"] },
+      "specializations": null,
+      "typicalPositions": null
+    }
+  ],
+  "sources": [ { "id": "ea-archetypes-update", "title": "…", "url": "…", "accessed": "2026-11-18" } ]
+}
+```
+
+- File-level `note` (string) explains what is and isn't sourced. Each archetype also has `verifiedInGame` (boolean, false until Chime checks it) and `notes` (string or `null`).
+- `positionGroup`: `"goalkeeper"`, `"defender"`, `"midfielder"`, `"attacker"` (EA's grouping).
+- `sourceIds` point into the file's `sources`.
+
+## Build (`content/builds/<slug>.json`)
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "spark-2008-winger",
+  "slug": "spark-2008-winger",
+  "status": "draft",
+  "title": "PLACEHOLDER",
+  "archetype": "spark",
+  "positions": ["RW", "LW"],
+  "summary": "PLACEHOLDER",
+  "level": "PLACEHOLDER",
+  "body": { "heightCm": "PLACEHOLDER", "weightKg": "PLACEHOLDER", "accelerate": "PLACEHOLDER" },
+  "attributes": [ { "name": "Acceleration", "value": "PLACEHOLDER" } ],
+  "playStyles": { "signature": ["Trickster", "Rapid"], "plus": ["PLACEHOLDER"], "regular": ["PLACEHOLDER"] },
+  "specialization": "PLACEHOLDER",
+  "skillMoves": "PLACEHOLDER",
+  "weakFoot": "PLACEHOLDER",
+  "version": 1,
+  "versionTag": { "game": "fc27", "season": 2, "verifiedOn": null, "verifiedBy": null, "platform": null },
+  "credits": [ { "role": "made-by", "name": "Chime", "url": null, "creatorId": null } ],
+  "sources": [],
+  "history": [ { "version": 1, "date": "2026-11-19", "note": "Example file with placeholder values." } ],
+  "createdAt": "2026-11-19",
+  "updatedAt": "2026-11-19"
+}
+```
+
+- `archetype` must match an id in `content/archetypes/fc27.json`.
+- `positions` from: `GK CB LB RB LWB RWB CDM CM CAM LM RM LW RW CF ST`.
+- `accelerate`: `"explosive"`, `"controlled"`, `"lengthy"` or `null`.
+- `level` and attribute values are integers once recorded. Attribute `name` must be one of the game's attribute names (list fixed on Day 0 from the game).
+- Bump `version` and add a `history` line whenever a value changes.
+
+## Face recipe (`content/faces/<slug>.json`)
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "cristiano-ronaldo-2008",
+  "slug": "cristiano-ronaldo-2008",
+  "status": "draft",
+  "subject": { "name": "Cristiano Ronaldo", "kind": "footballer", "living": true },
+  "era": { "label": "2008", "note": "PLACEHOLDER" },
+  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "target": { "look": "matchday" },
+  "timeMinutes": "PLACEHOLDER",
+  "preset": { "number": "PLACEHOLDER" },
+  "parts": [
+    { "tab": "skin", "steps": [ { "control": "complexion", "label": "Complexion", "value": { "kind": "item", "number": "PLACEHOLDER" }, "tip": null } ] },
+    { "tab": "head", "steps": [ { "control": "jaw", "label": "Jaw", "value": { "kind": "item", "number": "PLACEHOLDER" }, "tip": null } ] },
+    { "tab": "face", "steps": [ { "control": "nose", "label": "Nose", "value": { "kind": "item", "number": "PLACEHOLDER" }, "tip": null } ] },
+    { "tab": "hair", "steps": [ { "control": "hair-colour", "label": "Hair colour", "value": { "kind": "named", "name": "PLACEHOLDER" }, "tip": null } ] }
+  ],
+  "sculpt": {
+    "symmetry": true,
+    "steps": [
+      { "mode": "shape", "layer": "skeletal", "region": "Chin", "subRegion": "Chin",
+        "sliders": [ { "kind": "slider", "low": "Narrow", "high": "Widen", "value": "PLACEHOLDER" } ], "tip": null }
+    ]
+  },
+  "visualAge": null,
+  "limits": ["PLACEHOLDER"],
+  "pairedBuild": "spark-2008-winger",
+  "screenshots": [],
+  "embeds": [],
+  "version": 1,
+  "versionTag": { "game": "fc27", "season": 2, "verifiedOn": null, "verifiedBy": null, "platform": null },
+  "credits": [ { "role": "made-by", "name": "Chime", "url": null, "creatorId": null } ],
+  "history": [ { "version": 1, "date": "2026-11-19", "note": "Example file with placeholder values." } ],
+  "createdAt": "2026-11-19",
+  "updatedAt": "2026-11-19"
+}
+```
+
+- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation at launch.
+- `title` starts with "Inspired by". Never "official".
+- Order of work: preset, then `parts`, then `sculpt`, then `visualAge`. Sculpting a region turns its part into "Custom <part>" in the game, so parts come first (inferred from the editor; confirm on PS5).
+- `preset.number`: the photo preset's place counted among photo presets only, left to right, top to bottom, under the "All" filter. Never the screen row: the grid starts with each player's own saved heads, so rows differ between players (RESEARCH §9).
+- `parts[].tab`: `"skin"`, `"head"`, `"face"`, `"hair"`, in that order. A step's `label` is the section name as the game prints it ("Facial Hair"); `control` is that label in kebab-case (`facial-hair`). Part values are `item` or `named`. List only sections changed from the preset.
+- `sculpt.symmetry`: the Symmetry toggle while sculpting. Recipes assume Free Sculpt off. `mode`: `"shape"`, `"weight"`, `"definition"`. `layer`: `"skeletal"`, `"flesh"`, `"fat"`. `region` and `subRegion` are the game's labels ("Brow Ridge", "Eyelid Upper"). `sliders` are that sub-region's sliders in screen order, top to bottom, each a `slider` value; list a sub-region only if one of its sliders changed, with all its sliders.
+- `visualAge`: `null` (left as the preset has it) or `{ "toward": "older" | "younger", "percent": 0–100 }`: how far the knob was pushed from the centre toward that end, 100 meaning the game shows "LIMIT REACHED". Measured from Chime's screenshot. Save when the game asks.
+- Skin Tone, when changed, is the first `skin` step: `{ "control": "skin-tone", "label": "Skin Tone", "value": { "kind": "position", "percent": … } }`.
+- `sculpt` may be `null`: a quick face uses only the preset, parts and Visual Age (RESEARCH §9, "Quick faces").
+- `limits`: what the game can't do for this look ("No 2008 hairstyle; nearest is …").
+- `pairedBuild` must match a build id.
+- `screenshots`: `{ "file": "faces/<slug>-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }`. Only Chime's own in-game captures of their recreation (D-10).
+- `embeds`: `{ "provider": "youtube", "videoId": "…", "title": "…", "channel": "…", "creatorId": "…" }`. Loaded on tap (A-05). Every embed has a matching `"tutorial"` credit.
+- Step ticks are stored under `face:<id>:v<version>` (A-07).
+
+## Changelog entry (`content/changelog/<yyyy-mm-dd>-<slug>.json`)
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "2026-10-22-archetype-update",
+  "status": "draft",
+  "date": "2026-10-22",
+  "kind": "archetype-update",
+  "game": "fc27",
+  "season": 2,
+  "title": "Archetype costs re-priced, every build reset",
+  "changes": ["…"],
+  "source": { "title": "…", "url": "…", "accessed": "2026-11-18" },
+  "affects": { "builds": [], "faces": [] },
+  "siteNote": null
+}
+```
+
+- `kind`: `"season"`, `"title-update"`, `"archetype-update"`, `"site"`.
+- `changes` restate EA's facts in our words; never paste EA's text.
+- `affects` lists build and face ids that changed because of it.
+
+## Creators (`content/creators.json`)
+
+```json
+{
+  "schemaVersion": 1,
+  "creators": [
+    { "id": "creator-slug", "name": "…", "url": "…", "platform": "youtube", "permission": "not-asked", "featured": false, "notes": "…" }
+  ]
+}
+```
+
+- `permission`: `"not-asked"`, `"asked"`, `"yes"`, `"no"`. A full slider list from a creator is published only with `"yes"` (D-08).

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-10-title-update-1-2-0",
+  "status": "draft",
+  "date": "2026-11-10",
+  "kind": "title-update",
+  "game": "fc27",
+  "season": 2,
+  "title": "Title Update 1.2.0",
+  "changes": [
+    "Clubs Friendlies now give the same end-of-match AXP as League matches.",
+    "Amp attribute boosts were wrong and are fixed.",
+    "Very high defensive lines drop off sooner (live tuning).",
+    "Fullbacks no longer drop too deep; kick-off defending changed."
+  ],
+  "source": {
+    "title": "EA, FC 27 Title Update 1.2.0",
+    "url": "https://www.ea.com/en/games/ea-sports-fc/fc-27/news/fc27-title-update-v1-2-0",
+    "accessed": "2026-11-18"
+  },
+  "affects": {
+    "builds": [],
+    "faces": []
+  },
+  "siteNote": null
+}

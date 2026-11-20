@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "id": "cristiano-ronaldo-2008",
+  "slug": "cristiano-ronaldo-2008",
+  "status": "draft",
+  "_example": "EXAMPLE FILE. Every PLACEHOLDER value is fake. Section labels and slider end labels are real FC 27 labels seen in the editor (docs/RESEARCH.md §9); which ones a 2008 Ronaldo face needs is not known yet. Never publish this file as it is.",
+  "subject": {
+    "name": "Cristiano Ronaldo",
+    "kind": "footballer",
+    "living": true
+  },
+  "era": {
+    "label": "2008",
+    "note": "PLACEHOLDER"
+  },
+  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "target": {
+    "look": "matchday"
+  },
+  "timeMinutes": "PLACEHOLDER",
+  "preset": {
+    "number": "PLACEHOLDER"
+  },
+  "parts": [
+    {
+      "tab": "skin",
+      "steps": [
+        {
+          "control": "skin-tone",
+          "label": "Skin Tone",
+          "value": {
+            "kind": "position",
+            "percent": "PLACEHOLDER"
+          },
+          "tip": null
+        },
+        {
+          "control": "complexion",
+          "label": "Complexion",
+          "value": {
+            "kind": "item",
+            "number": "PLACEHOLDER"
+          },
+          "tip": null
+        }
+      ]
+    },
+    {
+      "tab": "head",
+      "steps": [
+        {
+          "control": "jaw",
+          "label": "Jaw",
+          "value": {
+            "kind": "item",
+            "number": "PLACEHOLDER"
+          },
+          "tip": null
+        }
+      ]
+    },
+    {
+      "tab": "face",
+      "steps": [
+        {
+          "control": "nose",
+          "label": "Nose",
+          "value": {
+            "kind": "item",
+            "number": "PLACEHOLDER"
+          },
+          "tip": null
+        }
+      ]
+    },
+    {
+      "tab": "hair",
+      "steps": [
+        {
+          "control": "hair-colour",
+          "label": "Hair colour",
+          "value": {
+            "kind": "named",
+            "name": "PLACEHOLDER"
+          },
+          "tip": null
+        },
+        {
+          "control": "hair-style",
+          "label": "Hair Style",
+          "value": {
+            "kind": "item",
+            "number": "PLACEHOLDER"
+          },
+          "tip": null
+        },
+        {
+          "control": "facial-hair",
+          "label": "Facial Hair",
+          "value": {
+            "kind": "item",
+            "number": "PLACEHOLDER"
+          },
+          "tip": null
+        }
+      ]
+    }
+  ],
+  "sculpt": {
+    "symmetry": true,
+    "steps": [
+      {
+        "mode": "shape",
+        "layer": "skeletal",
+        "region": "Chin",
+        "subRegion": "Chin",
+        "sliders": [
+          {
+            "kind": "slider",
+            "low": "Narrow",
+            "high": "Widen",
+            "value": "PLACEHOLDER"
+          },
+          {
+            "kind": "slider",
+            "low": "Down",
+            "high": "Up",
+            "value": "PLACEHOLDER"
+          }
+        ],
+        "tip": null
+      }
+    ]
+  },
+  "visualAge": {
+    "toward": "PLACEHOLDER",
+    "percent": "PLACEHOLDER"
+  },
+  "limits": [
+    "PLACEHOLDER"
+  ],
+  "pairedBuild": "spark-2008-winger",
+  "screenshots": [],
+  "embeds": [],
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "Chime",
+      "url": null,
+      "creatorId": null
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-19",
+      "note": "Example file with placeholder values."
+    },
+    {
+      "version": 1,
+      "date": "2026-11-20",
+      "note": "Reshaped to the editor's real structure (A-09): numbered parts, Sculpt sliders 0 to 100, preset counted among photo presets. Still placeholders. Skin Tone as a knob position and Visual Age as a pad position (A-12)."
+    }
+  ],
+  "createdAt": "2026-11-19",
+  "updatedAt": "2026-11-20"
+}
