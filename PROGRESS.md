@@ -31,8 +31,9 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - Season 3 replan applied (D-18); ESLint stays on 9 (A-15, checked plugin peer ranges).
 - Cloudflare Pages: Chime signed in; Claude created the Git-connected project in Chrome (GitHub was already authorised for Cloudflare, no new grant). Deploy succeeded; `curl` shows https://pro-clubs-hub.pages.dev/ 200 with the notice and a missing page 404 with the notice.
 
+- Chime opened https://pro-clubs-hub.pages.dev on the iPhone and read back the heading, "Work in progress." and the notice: P0-6 passes, and so does Phase 0's gate.
+
 **Next**
-- Chime opens https://pro-clubs-hub.pages.dev on the iPhone (P0-6).
 - Phase 1: reference board and three directions; core lane test-first.
 
 ## Pivot: Facecard becomes Pro Clubs Hub (Thu 19 Nov 2026)

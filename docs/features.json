@@ -76,8 +76,8 @@
         "URL loads on Chime's iPhone"
       ],
       "verify": "open the URL",
-      "passes": false,
-      "evidence": "Cloudflare Pages project pro-clubs-hub, Git-connected to main (build npm run build, output out, NODE_VERSION 22), first deploy of 24ef893 succeeded 20 Nov 2026. curl https://pro-clubs-hub.pages.dev/ → 200 with the notice; /does-not-exist → 404 with the notice. Still to pass: loading on Chime's iPhone."
+      "passes": true,
+      "evidence": "Cloudflare Pages project pro-clubs-hub, Git-connected to main (build npm run build, output out, NODE_VERSION 22), first deploy of 24ef893 succeeded 20 Nov 2026. curl https://pro-clubs-hub.pages.dev/ → 200 with the notice; /does-not-exist → 404 with the notice. Still to pass: loading on Chime's iPhone. Chime opened it on the iPhone on 20 Nov 2026 and read back the heading, \"Work in progress.\" and the notice."
     },
     {
       "id": "P0-7",
