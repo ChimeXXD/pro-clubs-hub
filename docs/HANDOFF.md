@@ -2,10 +2,10 @@
 
 ## Latest: Fri 20 Nov 2026, afternoon. Two people on the project now
 
-Chime invited a collaborator to the repo, which is now **private** (D-20). The collaborator will design the UI. Nothing is running (no dev server, browser or watcher).
+Chime invited a collaborator, Sharon (`sharrygold`), who will design the UI. The repo is **public** again and `main` is protected: only pull requests Chime approves merge (D-23). Nothing is running (no dev server, browser or watcher).
 
 ### New here? Read in this order
-0. `CONTRIBUTING.md`: **only Chime merges into `main`.** Work on a branch and open a pull request (D-22).
+0. `CONTRIBUTING.md`: **only Chime merges into `main`** (GitHub enforces it). Work on a branch and open a pull request (D-22, D-23).
 1. `CLAUDE.md`: what we're building, the stack, the rules that protect correctness. Chime is they/them.
 2. `docs/design/sitemap/sitemap-and-journeys.pdf`: **the brief for the UI**. Every page, how the pages link, what each must show and its states, and the two journeys (face seeker, meta-build seeker). The HTML source is beside it.
 3. `docs/PRD.md` (why and what), `docs/SPEC.md` (routes, flows, acceptance tests), `docs/FORMAT.md` (every content field), `docs/DECISIONS.md` (every decision, numbered).
@@ -26,8 +26,7 @@ Chime invited a collaborator to the repo, which is now **private** (D-20). The c
 
 ### Waiting on Chime
 - A test clip in `reference/` (git-ignored) for the face preview: Clubs → Head → Customize, zoom in (L3), press Create to record, turn the Pro one full circle with the right stick (about 10 s). Optionally one match-cutscene screenshot.
-- **GitHub Actions can't start on the private repo** (checked 20 Nov): "The job was not started because recent account payments have failed or your spending limit needs to be increased." November's free minutes are used up, mostly by the `meridian` repo's macOS runs (532 min, counted at 10x). Until the allowance resets on 1 Dec, or Chime raises the spending limit or makes the repo public, CI and the main guard don't run: run `npm run lint && npm run typecheck && npm test && npm run build` locally, and check pull requests locally when reviewing.
-- Cloudflare Pages deploys from the private repo: checked on commit `eedf595` (success).
+- The account's private-repo Actions minutes are used up for November, mostly by `meridian`'s macOS runs (532 min, counted at 10x). This repo is public, so its CI runs free; other private repos stay blocked until 1 Dec.
 
 ### Earlier (19–20 Nov), in short
 - **Phase 0 done:** repo, Next.js 16.4.6 static-export scaffold, CI, commit gate (`.claude/proof.json`), page-weight budget (A-13), live at https://pro-clubs-hub.pages.dev (A-14).

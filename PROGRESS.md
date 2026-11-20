@@ -8,7 +8,7 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - Mockup v1 in `mockup/` (FUT.GG-style home at 393 and 1440, face page in 9 states, a wireframe stand-in head with drag to turn). Rejected: "this is bad, we need mobbin references of how a 3d screen should look like".
 - Mobbin references for 3D screens (Meta Quest, Instagram, WhatsApp, Facebook and Snapchat avatar editors; Replika; Amazon, Zalando, Apple Store and GOAT 3D viewers). Chime picked the avatar-editor layout; mockup v2 rebuilt the face page that way with a grey mannequin stand-in. Rejected with the rest: "the designs … are all trash".
 - Sitemap and two user journeys as a 10-page PDF: `docs/design/sitemap/sitemap-and-journeys.pdf` (source HTML beside it). Structure only, for a UI designer (D-21).
-- Repo made private at Chime's request (D-20, supersedes D-12). CLAUDE.md updated. Chime invited a collaborator.
+- Repo made private at Chime's request (D-20), then public again the same day (D-23): private Actions minutes were used up (mostly `meridian`'s macOS runs) and GitHub Free only protects branches on public repos. `main` is now protected: a pull request needs Chime's approval and a passing CI `test`; admins can still push. Collaborator: Sharon (`sharrygold`). `CONTRIBUTING.md` and `AGENTS.md` tell people and AI agents how to branch and open pull requests (D-22). The sitemap PDF is updated to match (Submit opens a GitHub issue again).
 - UI-BRIEF §6: test-ID suffix convention (`face-card-1`, `version-tag-face-1`).
 
 **Checked**

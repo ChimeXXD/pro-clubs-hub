@@ -1,5 +1,5 @@
 # Lint, typecheck, unit tests, content validation, build, budget and Playwright e2e.
-# The repo is private (D-20), so Actions minutes count against the Free plan's monthly allowance.
+# The repo is public (D-23), so Actions minutes are free. Its `test` job is a required check on main.
 # Day 0: push only after the scaffold exists, so the first run is a real one (no package.json = red run).
 name: CI
 

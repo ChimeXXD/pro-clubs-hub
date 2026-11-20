@@ -1,6 +1,6 @@
 # Contributing: how changes get into `main`
 
-Two people work on this repo (D-22):
+Two people work on this repo (D-22, D-23):
 
 - **Chime** (`ChimeXXD`): the owner. Reviews every pull request and is the only one who merges into `main`.
 - **Sharon** (`sharrygold`): a collaborator. Works on branches and opens pull requests.
@@ -12,7 +12,7 @@ If you are an AI agent (Claude Code, Codex, Cursor or any other), this file is y
 **Nothing goes into `main` except through a pull request that Chime has reviewed and merged.**
 
 - Never push to `main`. Never merge your own pull request.
-- GitHub can't lock `main` on this plan (a private repo on GitHub Free), so this rule is an agreement. A check (`.github/workflows/main-guard.yml`) opens an issue for Chime whenever someone other than Chime pushes to `main` (when the account has Actions minutes left), and the push may be reverted.
+- GitHub enforces it: `main` is a protected branch. A pull request can only merge after Chime approves it and CI's `test` check passes. Pushing to `main` directly is refused for everyone but Chime. A new commit on the pull request after approval dismisses the approval, so Chime sees the final version.
 
 ## How to make a change, step by step
 
@@ -32,7 +32,7 @@ If you are an AI agent (Claude Code, Codex, Cursor or any other), this file is y
    ```bash
    npm run lint && npm run typecheck && npm test && npm run build
    ```
-   CI runs the full set (including e2e) on every pull request when the account has Actions minutes left. When it can't start (it says the job "was not started"), say so in the pull request; Chime runs the checks locally during review.
+   CI runs the full set (including e2e) on every pull request, and the pull request can't merge until it passes.
 6. **Push your branch** (never `main`):
    ```bash
    git push -u origin design/home-screen
@@ -104,4 +104,4 @@ Follow these exactly when you work in this repo for Sharon (or anyone other than
 
 - Ask Claude: "review PR #12". Claude reads the diff, checks it against the spec, sitemap and decisions, and runs the checks on a local copy (`gh pr checkout 12`).
 - Approve and merge on GitHub with **Squash and merge** (one tidy commit per pull request on `main`), or comment with what to change.
-- If the main guard opens an issue about a direct push, look at the commit it names. Keep it, or revert it with `git revert <sha>`.
+- Branch protection lives in Settings → Branches → `main`. Admins aren't enforced, so Chime can still push directly; Chime's own sessions with Claude do.

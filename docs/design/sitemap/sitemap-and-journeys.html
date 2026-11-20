@@ -88,7 +88,7 @@
     <h3>How to read this</h3>
     <ul class="plain">
       <li>Page 2: the sitemap. Page 3: navigation and the links between pages. Pages 4–5: every page, what it holds, where it links and its states.</li>
-      <li>Pages 6–8: journey 1, the face seeker, and how the face page shows each kind of value. Pages 9–10: journey 2, the meta-build seeker. Page 11: what isn't in the site, and copy still to write. Page 12: open questions, two of them new.</li>
+      <li>Pages 6–8: journey 1, the face seeker, and how the face page shows each kind of value. Pages 9–10: journey 2, the meta-build seeker. Page 11: what isn't in the site, and copy still to write. Page 12: open questions (one new, one answered).</li>
       <li>Where a line is a proposal rather than something the specs already say, it says "proposal". Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026; v2 the same day after a fresh-context check against the sources.</li>
     </ul>
   </div>
@@ -132,7 +132,7 @@
       <div class="branch">
         <div class="node"><b>Submit</b><code>/submit</code><span class="count">face or build</span></div>
         <div class="stem"></div>
-        <div class="node ext"><b>Review queue</b><code>where: open question 1</code></div>
+        <div class="node ext"><b>GitHub issue</b><code>prefilled; captures added there</code></div>
       </div>
       <div class="branch">
         <div class="node"><b>About</b><code>/about</code></div>
@@ -175,7 +175,7 @@
         <tr><th>Element</th><th>Holds</th></tr>
         <tr><td>Top bar</td><td>Logo (to Home), search (faces and builds by name; a Should item), and the five sections: Faces, Builds, Archetypes, Changelog, Submit. On a phone the sections sit behind a menu button.</td></tr>
         <tr><td>Season chip</td><td>The current game and season, e.g. "FC 27 · Season 3". UI-BRIEF puts it on Home; on every page is a proposal, so every tag can be read against it.</td></tr>
-        <tr><td>Footer</td><td>The notice, then About, Takedown and Submit. No GitHub link while the repo is private (D-20).</td></tr>
+        <tr><td>Footer</td><td>The notice, then About, Takedown, Submit and the GitHub repo (public, D-23).</td></tr>
         <tr><td>Back</td><td>Detail pages go back to their library (face to Faces, build to Builds, archetype to Archetypes).</td></tr>
       </table>
       <p class="faint" style="margin-top:2mm;font-size:8pt">Proposal: the season chip on every page, and five top-bar sections after FUT.GG's one row of top links (REFERENCES #1). Labels and order are for the UI designer to test.</p>
@@ -224,8 +224,8 @@
     <tr><td>Archetypes<br><code>/archetypes</code></td><td>Show all 13 archetypes so a player can pick theirs.</td><td>13 tiles in four groups: Goalkeepers, Defenders, Midfielders, Attackers. Names as text only: no EA archetype icons (CLAUDE.md rule 2).</td><td>Each archetype.</td><td>Normal.</td></tr>
     <tr><td>Archetype<br><code>/archetypes/[slug]</code></td><td>Explain what the archetype is good at and list its builds.</td><td>Signature PlayStyles (from launch, and added in Season 2), mastery attributes, the count of attribute costs that went up and down on 22 Oct, builds on this archetype by position, and the sources. Fields without a source are empty in the data and say so on the page (wording to write); never guessed. Today 6 of 13 archetypes have no mastery attributes recorded.</td><td>Its builds; sources (EA, guides).</td><td>Proposal: an archetype with no build yet says so and offers Submit.</td></tr>
     <tr><td>Changelog<br><code>/changelog</code></td><td>Say what changed in the game and on this site, with EA's source.</td><td>Entries newest first: date, kind (season, title update, archetype update, site), title, the changes in our words, a link to EA's post, and "What we updated": the builds and faces it touched.</td><td>EA sources; the builds and faces each entry changed.</td><td>Normal. Seeded with launch (25 Sep), archetype re-price (22 Oct), TU 1.2.0 (10 Nov); the Season 3 entry is written on Thu 3 Dec (D-18).</td></tr>
-    <tr><td>Submit<br><code>/submit</code></td><td>Let anyone send a face or a build for Chime to review.</td><td>Choose face or build, fill the same fields as the format, tab by tab, with problems marked as you go. "Submit for review" sends it to Chime's review queue (A-04 planned a prefilled GitHub issue; the repo is now private, see open question 1, page 12); "Copy JSON" copies it. A face also needs its captures (A-16): a link can't carry images, so the submitter attaches them in the queue.</td><td>The review queue.</td><td>Empty; invalid fields marked inline; sent: "Opened on GitHub. Chime reviews every submission before it goes live."</td></tr>
-    <tr><td>About<br><code>/about</code></td><td>Earn trust: who makes this and how.</td><td>What the site is, how content is made and checked in game, the sourcing rules, credits and featured creators, the notice. Always free (D-04).</td><td>Takedown, creators.</td><td>Normal.</td></tr>
+    <tr><td>Submit<br><code>/submit</code></td><td>Let anyone send a face or a build for Chime to review.</td><td>Choose face or build, fill the same fields as the format, tab by tab, with problems marked as you go. "Submit for review" opens a prefilled GitHub issue (A-04; the repo is public, D-23); "Copy JSON" copies it. A face also needs its captures (A-16): a link can't carry images, so the page tells the submitter to drag them into the issue before sending it.</td><td>GitHub (new issue).</td><td>Empty; invalid fields marked inline; sent: "Opened on GitHub. Chime reviews every submission before it goes live."</td></tr>
+    <tr><td>About<br><code>/about</code></td><td>Earn trust: who makes this and how.</td><td>What the site is, how content is made and checked in game, the sourcing rules, credits and featured creators, the notice. Always free (D-04).</td><td>Takedown, GitHub, creators.</td><td>Normal.</td></tr>
     <tr><td>Takedown<br><code>/takedown</code></td><td>Let anyone ask for removal.</td><td>How to ask, the promise to act within 72 hours (D-10), the email (O-13).</td><td>Email.</td><td>Normal.</td></tr>
     <tr><td>404</td><td>Recover from a dead link.</td><td>A short line and a way back to Faces and Builds. Withdrawn faces and builds land here too.</td><td>Faces, Builds.</td><td>Normal.</td></tr>
   </table>
@@ -252,7 +252,7 @@
   <div class="side">
     <div class="box"><h3>Coming back</h3><p>Closes the tab mid-way, or the console needs the TV. Reopens the face: ticks are still there, "Continue from step 9". If Chime has updated the face since, the ticks start fresh and the page says so (A-07).</p></div>
     <div class="box"><h3>Watching the tutorial</h3><p>When the face followed a creator's tutorial, the page shows its title and channel; one tap loads the video from youtube-nocookie.com. Nothing loads from YouTube before the tap (A-05).</p></div>
-    <div class="box"><h3>Not there</h3><p>The face they want doesn't exist yet: Faces' empty state points to Submit, which builds a face recipe and sends it, with its captures, to Chime's review queue (open question 1).</p></div>
+    <div class="box"><h3>Not there</h3><p>The face they want doesn't exist yet: Faces' empty state points to Submit, which builds a face recipe and opens a GitHub issue for Chime to review; the submitter drags their captures into it.</p></div>
   </div>
 </section>
 
@@ -361,7 +361,7 @@
         <tr><td>Builds filter, empty</td><td>A line like Faces' "No faces here yet. Suggest one on Submit."</td></tr>
         <tr><td>Archetype page</td><td>What a field with no source says (6 of 13 archetypes have no mastery attributes yet).</td></tr>
         <tr><td>Archetype or position with no build</td><td>The line that offers Submit (a proposal).</td></tr>
-        <tr><td>Submit, sent</td><td>UI-BRIEF's "Opened on GitHub. Chime reviews every submission before it goes live." depends on open question 1.</td></tr>
+        <tr><td>Submit, captures</td><td>The instruction to drag a face's captures into the GitHub issue before sending it.</td></tr>
         <tr><td>Visual Age step</td><td>The save reminder, and "Leave as the preset has it".</td></tr>
       </table>
     </div>
@@ -373,7 +373,7 @@
   <div class="head"><h2>Open questions for Chime</h2><span class="n">12</span></div>
   <table>
     <tr><th style="width:12mm">#</th><th style="width:80mm">Question</th><th>Why it matters</th><th style="width:84mm">Recommendation</th></tr>
-    <tr><td>1 <span class="tag accent">new</span></td><td>How do submissions reach Chime now the repo is private?</td><td>A-04 planned a prefilled GitHub issue. Outside players can't open issues on a private repo, and a link can't carry a face's captures.</td><td>A small separate <b>public</b> repo used only for submissions, with an issue form. The code stays private, it's free, and a submitter drags their captures into the issue. Alternatives: a free form service (O-11), or making the main repo public for launch.</td></tr>
+    <tr><td>1 <span class="tag">answered</span></td><td>How do submissions reach Chime?</td><td>Briefly unclear while the repo was private (D-20).</td><td>Answered 20 Nov: the repo is public again (D-23), so A-04's prefilled GitHub issue works. Captures are dragged into the issue.</td></tr>
     <tr><td>2 <span class="tag accent">new</span></td><td>Which season do launch faces carry?</td><td>Faces are recorded now, in Season 2 (D-18). On launch day Season 3 is current, so FORMAT's rule would put "Made for Season 2. Values may have changed since." on every launch face.</td><td>Re-check each launch face in game after Thu 3 Dec and re-tag it Season 3. It's quick (open the head, compare it to the preview), follows D-05 (never silently carried over) and PLAN Phase 3 ("faces re-checked").</td></tr>
     <tr><td>3</td><td>Build positions: how do FORMAT's 15 position codes map to PRD's 8 groups, and which values does a build card show?</td><td>FORMAT allows GK, CB, LB, RB, LWB, RWB, CDM, CM, CAM, LM, RM, LW, RW, CF, ST; PRD groups GK, CB, FB, CDM, CM, CAM, W, ST. Where CF, LM and RM go is undefined.</td><td>CF with ST; LM, RM with W; LB, RB, LWB, RWB with FB. Card values, a guess to confirm once builds are recorded: level, height and specialization.</td></tr>
     <tr><td>4</td><td>The proposed links: build to the faces that pair it, and a version change to its changelog entry.</td><td>Neither is in SPEC. The first needs no new data; the second needs a changelog id on history lines (FORMAT).</td><td>Add the first to SPEC now; leave the second until after launch.</td></tr>
