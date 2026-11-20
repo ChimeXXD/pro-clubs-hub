@@ -1,0 +1,4 @@
+# Every file is owned by Chime, so every pull request into main needs Chime's approval
+# (D-24). With branch protection's "require review from Code Owners", an approval from
+# anyone else (a collaborator, or on a bot-opened pull request) does not count.
+* @ChimeXXD

@@ -12,7 +12,7 @@ If you are an AI agent (Claude Code, Codex, Cursor or any other), this file is y
 **Nothing goes into `main` except through a pull request that Chime has reviewed and merged.**
 
 - Never push to `main`. Never merge your own pull request.
-- GitHub enforces it: `main` is a protected branch. A pull request can only merge after Chime approves it and CI's `test` check passes. Pushing to `main` directly is refused for everyone but Chime. A new commit on the pull request after approval dismisses the approval, so Chime sees the final version.
+- GitHub enforces it: `main` is a protected branch. A pull request can only merge after Chime approves it and CI's `test` check passes. `.github/CODEOWNERS` makes Chime the owner of every file, so only Chime's approval counts, including on pull requests opened by the Claude GitHub App (D-24). Pushing to `main` directly is refused for everyone but Chime. A new commit on the pull request after approval dismisses the approval, so Chime sees the final version.
 
 ## How to make a change, step by step
 
@@ -93,6 +93,7 @@ Force-push only your own branch, and only with `git push --force-with-lease`. Ne
 
 Follow these exactly when you work in this repo for Sharon (or anyone other than Chime):
 
+0. **Working through the Claude GitHub App** (installed on this repo only, D-24): it may push branches and open pull requests. It must not approve or merge them, and an approval from it or from a collaborator doesn't count; only Chime's does.
 1. **Before any commit, check the branch** with `git branch --show-current`. If it says `main`, stop and create a branch first (step 2 above). Never commit to `main`.
 2. **Never run** `git push origin main`, `git push` while on `main`, `gh pr merge`, or anything that changes repo settings, branch rules, collaborators or visibility.
 3. **Push only the current feature branch**, then open a pull request with `gh pr create --base main` and a description in the format above. Ask your human before pushing.
