@@ -13,7 +13,7 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 
 **Checked**
 - Mockups: the proof design check passed (10 phone screens, 1 desktop); a fresh-context review and `/code-review --fix` (9 of 10 fixed) on v1. v2 wasn't reviewed (rejected first).
-- PDF: 10 pages, rendered and looked at page by page; every route from SPEC is on the sitemap; facts taken from SPEC, PRD, FORMAT, DECISIONS and the content files. A fresh-context check of it ran before the commit.
+- PDF v1 (10 pages) pushed at Chime's request before its fresh-context check finished. The check passed routes, page count (40) and copy, and found 9 problems: Submit and GitHub links assume a public repo; Visual Age before Sculpt (FORMAT says the reverse); launch faces would show a Season 2 warning; value kinds incomplete; two links presented as required that SPEC lacks; the Season 3 entry date; four wrong citations; unsourced lines and missing copy; loose tree connectors. v2 (12 pages) fixes all of them, adds a page on value kinds and a page of open questions with recommendations (two new: submissions while private, launch-face season).
 - Repo visibility: `gh repo view` reports PRIVATE.
 
 **Not verified**
