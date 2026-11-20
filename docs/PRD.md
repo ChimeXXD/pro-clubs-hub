@@ -46,6 +46,7 @@ Full report with sources: `docs/RESEARCH.md`. New evidence: `docs/EVIDENCE.md`.
 Sharon's point: as seasons go on, EA raises the level cap, so a build made at one cap can't use the points a later cap gives. What we found (sources below; most seen in search results only, 20 Nov):
 
 - **The cap rises during the year.** FC 27 started at level 40 (962 AP) and Season 2 raised it to **55 (1,419 AP)** on 22 Oct ([Pro Clubs HQ](https://proclubshq.com/blog/pro-clubs-level-cap-rise/), [AOEAH](https://www.aoeah.com/news/4913--fc-27-pro-clubs-attribute-points-per-level--how-to-reach-max-level)). In FC 26, Clubs started at level 50 and EA said seasonal updates would raise the cap ([EA, FC 26 Clubs deep dive](https://www.ea.com/en/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-clubs-deep-dive)). **No Season 3 cap change has been announced** as of 20 Nov; check on Thu 3 Dec.
+- **Last year's pattern (FC 26): the cap rose about every one to three months, often with a title update rather than at a season start.** Reported steps: 50 at launch; 60 with TU 1.1 ([Football Gaming Zone](https://footballgamingzone.com/ea-sports-fc/ea-fc-26-1-1-update-massively-buffs-defending-full-patch-notes/)); 60 to 75 in the December Holiday Update ([EA](https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-holiday-update)); up to 90 with TU 1.5.0 in March; 90 to 95 in May ([FPCHK](https://fpchk.com/news/112?lang=en)); 100 by the end ([Pro Clubs HQ](https://proclubshq.com/blog/pro-clubs-level-rewards/)). Sources disagree on the steps between 75 and 90. **So a December rise in FC 27 is likely but not announced**, and we should expect five or so rises a year, some between seasons. The routine in point 4 below runs on every title update, not only on season starts.
 - **Levels unlock more than points.** PlayStyle slots at 5, 15, 40 and 55; PlayStyle+ at 20 and 55; Signature Perks at 10 and 45; Masteries at 10, 30 and 55 ([Pro Clubs HQ level rewards](https://proclubshq.com/blog/pro-clubs-level-rewards/), not confirmed by EA; RESEARCH §1).
 - **Costs move too.** EA re-priced 87 attribute costs and reset every build on 22 Oct (D-05).
 
@@ -54,7 +55,7 @@ Sharon's point: as seasons go on, EA raises the level cap, so a build made at on
 1. **Every build card says what it was made for:** "Level 55 · 1,419 AP", next to the version tag. `level` is already in the build format (FORMAT §Build); the AP total is a small addition, proposed here.
 2. **A cap rise makes a build out of date even if no cost changed:** it leaves points unspent. A cap rise gets its own changelog entry, and every build gets a new version that spends the new points, the same routine as a season change.
 3. **Most players are below the cap.** A build made at 55 doesn't tell a level-20 player where to start. Proposal for after launch, for Chime to weigh against D-07 (no planner): each build card lists the order to spend points in ("first Acceleration to 80, then…") and the level each PlayStyle and Perk unlocks at. It's content written by hand, not a calculator.
-4. **The season-start routine checks four things:** the cap, the AP at the cap, the level unlocks and the costs, logged in RESEARCH §9 before builds are re-checked.
+4. **The update routine (every season start and title update) checks four things:** the cap, the AP at the cap, the level unlocks and the costs, logged in RESEARCH §9 before builds are re-checked.
 
 ## Competitors
 
@@ -197,7 +198,7 @@ If a phase overruns, cut from the bottom of this list. Never cut faces or launch
 | New | The launch date, once the screens and first faces exist (D-25) | Phase 1 |
 | New | The video: with the launch, or with the Season 3 update? (D-25) | Phase 1 |
 | New | Michael Jackson's era and which face (D-26 allows him) | With O-05 |
-| New | Does Season 3 raise the level cap? If so, every build gets a new version ("Seasons and levels") | Thu 3 Dec |
+| New | Does Season 3 raise the level cap? Likely: FC 26 raised it in its December update. If so, every build gets a new version ("Seasons and levels") | Thu 3 Dec |
 | New | Sharon records faces and builds too (proposed in v2.1; changes D-08's "Chime makes") | Chime, on merge |
 | New | Image limit for face pictures, set from the real clip (proposed in v2.1) | Chime's test clip |
 
