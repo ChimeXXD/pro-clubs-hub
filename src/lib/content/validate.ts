@@ -15,6 +15,8 @@ export interface Context {
 }
 
 const ROLES = ["made-by", "tutorial", "submitted-by", "reference"] as const;
+/** Deceased subjects a decision allows, by exact name. Everyone else must be living (D-10, D-26). */
+const DECEASED_ALLOWED: ReadonlySet<unknown> = new Set(["Michael Jackson"]);
 
 /** Fields every build and face carries: status, version tag, credits, history (D-05, D-08). */
 function checkVersioned(c: Check, d: Obj, ctx: Context) {
@@ -90,7 +92,9 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
   if (c.obj("subject", d.subject)) {
     c.str("subject.name", d.subject.name);
     c.oneOf("subject.kind", d.subject.kind, ["footballer", "musician"]);
-    if (d.subject.living !== true) c.add("subject.living", "subject must be living at launch (D-10)");
+    c.bool("subject.living", d.subject.living);
+    if (d.subject.living === false && !DECEASED_ALLOWED.has(d.subject.name as string))
+      c.add("subject.living", "a deceased subject needs a decision allowing them by name (D-10, D-26)");
   }
   if (c.obj("era", d.era)) {
     c.str("era.label", d.era.label);

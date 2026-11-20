@@ -7,7 +7,7 @@ Every product and architecture decision so far is in `docs/DECISIONS.md`. Don't 
 
 A **FUT.GG-style hub for EA SPORTS FC 27 Clubs (Pro Clubs), led by faces** (D-02). One line: **"Look like a legend. Play like one."** (draft copy, O-08)
 
-- **Faces** (the lead): a library of lookalike and era faces (2007, 2008 and 2017 Ronaldo; living musicians), each written as a step-by-step recipe and paired with a matching build.
+- **Faces** (the lead): a library of lookalike and era faces (2007, 2008 and 2017 Ronaldo; living musicians; Michael Jackson by decision, D-26), each written as a step-by-step recipe and paired with a matching build.
 - **Meta builds as cards**: one clean card per build, for all 13 FC 27 archetypes and every position. Each card has a version tag ("FC 27 · Season 2 · verified 19 Nov 2026") and a source and credit line (D-05).
 - **Archetype pages** (13), a **public changelog** of meta changes (D-06), and a **submit** flow that builds a recipe or build and opens a prefilled GitHub issue for Chime to review (D-09).
 - **Not now:** a build planner. It comes only after Chime verifies the attribute cost tables in game (D-07). We don't fight Pro Clubs HQ on tools. We win on design, mobile speed, always free and the faces library (D-03).
@@ -15,7 +15,7 @@ A **FUT.GG-style hub for EA SPORTS FC 27 Clubs (Pro Clubs), led by faces** (D-02
 
 ## Project frame (D-01)
 
-- **Portfolio project** built with Claude Code, **launched publicly with a motion-graphics video**, timed to ride the **Season 3** change in December (D-16, O-04).
+- **Portfolio project** built with Claude Code, **launched publicly within days, on Season 2** (D-25), then re-checked and updated for **Season 3** on Thu 3 Dec. A motion-graphics video ships with the launch or the Season 3 update (open).
 - **The repo is public** (MIT, D-23). Everything committed is public at once: no keys, no EA screenshots, no photos of people.
 - **Budget is $0.** Free host (Cloudflare Pages proposed, A-01), free GitHub Actions on the public repo, no paid APIs, no paid fonts.
 - **Always free.** No paywall, ever (EA content policy, D-04). Passive banner ads may come later, after a decision. No affiliate links or tips at launch.

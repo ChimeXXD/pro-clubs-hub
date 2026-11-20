@@ -1,33 +1,35 @@
 # Pro Clubs Hub: the plan to launch
 
-Written 19 Nov 2026. Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. Launch rides the **Season 3** change (D-16). **Season 3 starts Thu 3 Dec** (EA's Launch Rewards page), so builds are recorded on Season 3 only and launch is **Sat 19 or Mon 21 Dec** (D-18). Chime builds Oya Ball side by side and Sinima launches Tue 15 Dec, so this plan avoids that week's peak (O-04).
+Written 19 Nov 2026; replanned 20 Nov for a fast launch (D-25). Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. **We ship within days, as soon as the Must list passes, on Season 2** (D-25 supersedes D-18's 19/21 Dec date). **Season 3 starts Thu 3 Dec** (EA's Launch Rewards page): that day every face and build is re-checked on Season 3 and the changelog entry written. Season 4 (and PhotoFit, O-07) starts Thu 14 Jan 2027.
 
 ## What "done" means on launch day
 
 1. **A live, free site** where a Clubs player builds a lookalike or era face step by step on a phone, then sets up its paired build.
-2. **5 verified faces and 13 verified builds** (one per archetype), each tagged "FC 27 · Season 3 · verified <date>" and credited.
+2. **5 verified faces and 13 verified builds** (one per archetype), each tagged "FC 27 · Season 2 · verified <date>" and credited.
 3. **Archetype pages, a changelog and a submit flow.**
-4. **A motion-graphics video and a launch post**, timed to Season 3.
-5. **A public MIT repo** that reads like senior work: README, formats, tests, CI badge, honest numbers.
+4. **A launch post**; the motion-graphics video ships with the launch or with the Season 3 update (open, D-25).
+5. **Counting live** (GoatCounter, D-27), so the main metric starts on day one.
+6. **A public MIT repo** that reads like senior work: README, formats, tests, CI badge, honest numbers.
 
 ## Phases
 
-| Phase | Dates (proposal) | Focus | Gate (must pass before the next phase) |
+| Phase | When | Focus | Gate (must pass before the next phase) |
 | --- | --- | --- | --- |
-| 0 | Thu 19 – Sun 22 Nov (4 days) | **In-game checks**, public repo, scaffold, CI, deploy, Figma Design System page started | RESEARCH §9 filled (O-02, O-03, O-09, O-10); empty site builds, tests and deploys; CI green; budget set |
-| 1 | Mon 23 – Sun 29 Nov (1 week) | **Design** in Figma (references, directions, Design System, Design screens); **core lane** test-first (validator, loader, version wording, issue URL); **start recording faces** (season-independent) | Chime approves phone, iPad and desktop screens; core lane green |
-| 2 | Mon 30 Nov – Sun 13 Dec (2 weeks) | **Build** every page from Figma with motion; **Thu 3 Dec: Season 3 changelog entry, then record the 13 builds on Season 3**; finish the 5 faces; video script and storyboard | All launch pages green; 5 faces verified; 13 builds verified on Season 3; storyboard approved |
-| 3 | Mon 14 – Mon 21 Dec | **Harden, video final, launch.** Sinima launches Tue 15 Dec: nothing goes live Tue 15 – Fri 18 Dec | Live Sat 19 or Mon 21 Dec, "updated for Season 3"; video posted; no blocking bugs |
-| After | 4 weeks | Watch use, fix, add faces and positions, case study | Case study draft with launch numbers |
+| 0 | 19 – 20 Nov | **In-game checks**, repo, scaffold, CI, deploy | **Passed 20 Nov** |
+| 1 | Now, in parallel | **Sharon:** screens in Figma from the sitemap brief (D-21). **Claude:** core lane test-first (loader, version wording, issue URL), GoatCounter wiring. **Chime:** record the 5 faces and 13 builds on Season 2, the face-preview captures (A-16). **Sharon:** smoke test (EVIDENCE §3) | Chime approves the screens; core lane green; content recorded |
+| 2 | Right after | **Build** every launch page from the screens; load the recorded content | All launch pages green; 5 faces and 13 builds verified on Season 2 |
+| Launch | As soon as phase 2 passes (date set then) | Launch post; video if ready | Live; no blocking bugs |
+| Season 3 | Thu 3 Dec | Re-check every face and build on Season 3, bump versions, write the changelog entry, "updated for Season 3" post | Every launch item tagged Season 3, or showing the older-season warning until it is |
+| After | 4 weeks | Watch the metrics, fix, add faces and positions, case study | Two weeks of baseline, then targets |
 
-Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 Dec (D-18). Season 4 (and PhotoFit, O-07) starts Thu 14 Jan 2027. If a phase slips, cut its Should items; never cut faces, the video or launch day.
+The real limit on "days" is the work in phase 1: screens, the core lane, and 18 items recorded in game. If a phase slips, cut its Should items; never cut faces or launch day.
 
 ## Scope to launch
 
 | Must | Should | Cut (not before launch) |
 | --- | --- | --- |
 | Faces library, face page with ticks and paired build | Search across faces and builds | Build planner (D-07) |
-| 5 verified faces (footballers, living musicians) | 10 faces | Michael Jackson and deceased stars (D-10) |
+| 5 verified faces (footballers, living musicians, and Michael Jackson, D-26) | 10 faces | Other deceased subjects (D-10, D-26) |
 | 13 verified build cards with version tags and credits | Builds for every position | Ratings, request board, comments |
 | 13 archetype pages | Share card (Open Graph image) per face and build | Accounts |
 | Changelog with EA sources | Featured creator spot with a creator who said yes | Stats, leaderboards, EA match data |
@@ -48,27 +50,35 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
 - [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
 
-## Phase 1: design and core lane (23–29 Nov)
+## Phase 1: screens, core lane and recording (now, in parallel; D-25)
 
 **Design**
 - [x] References by surface (`docs/design/REFERENCES.md`): 48 picks, 20 Nov
 - [x] ~~Three directions on a direction board~~: rejected by Chime 20 Nov (D-19)
 - [x] ~~FUT.GG-style home and face page with a 3D spin preview (D-19)~~: mockups v1 and v2 rejected by Chime 20 Nov (D-21); kept in `mockup/` as a record
 - [x] Sitemap and user journeys (face seeker, meta-build seeker): `docs/design/sitemap/sitemap-and-journeys.pdf`, 20 Nov (D-21). The brief for the UI designer
-- [ ] UI designer (Chime's collaborator) designs the screens from the sitemap brief; Chime approves
+- [ ] Sharon designs the screens from the sitemap brief; Chime approves
 - [ ] Design System page: tokens as variables, text and effect styles, components with states (FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast)
 - [ ] Design screens: home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404, at iPhone, iPad and desktop
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma
 
 **Core lane (tests first)**
 - [x] `lib/content/types.ts` from FORMAT v1
-- [x] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject)
+- [x] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject not allowed by name, D-26)
 - [ ] `lib/content/load.ts` resolves relations, fails on broken links, drops drafts and withdrawn
 - [ ] `lib/content/version.ts` wording (verified, not checked, older season)
 - [ ] `lib/submit/toIssueUrl.ts`
 - [x] `npm run validate:content` and prebuild hook
+- [ ] GoatCounter on every page (D-27): Chime creates the account; script within the budget; About says what is counted; events for recipes finished and face to build
 
-## Phase 2: build and record (30 Nov – 13 Dec)
+**Recording (Chime, on Season 2, D-25)**
+- [ ] First 5 faces chosen (O-05; the smoke test feeds it) and recorded; captures for the face preview (A-16)
+- [ ] 13 builds recorded and played 3 matches each
+
+**Evidence (Sharon)**
+- [ ] Smoke test posted and read after 72 hours (EVIDENCE §3)
+
+## Phase 2: build (right after the screens are approved)
 
 - [ ] Shared components and layout from Figma, with motion (DESIGN.md)
 - [ ] Home, faces library, face page with ticks
@@ -78,20 +88,21 @@ Season 3 lands Thu 3 Dec, before 19 Dec, so O-04's rule gives Sat 19 or Mon 21 D
 - [ ] Submit page
 - [ ] About, takedown, 404
 - [ ] Motion pass with the motion skills, named in PROGRESS (L-10)
-- [ ] Content: first 5 faces chosen (O-05) and recorded; Chime's screenshots exported
-- [ ] Thu 3 Dec: read EA's Season 3 notes, write the changelog entry
-- [ ] Content: 13 builds recorded on Season 3 (from Thu 3 Dec) and played 3 matches each
 - [ ] Creator outreach drafts for featured spots (Chime sends)
-- [ ] Video script (30–45 s) and storyboard in Figma; Chime approves
+- [ ] Video script (30–45 s) and storyboard; ships with the launch or with the Season 3 update (open, D-25)
 - [ ] Budget, Lighthouse mobile 90+, accessibility pass, Chime's iPhone check next to the TV
 
-## Phase 3: Season 3 and launch
+## Launch (as soon as phase 2 passes)
 
-- [ ] Re-check builds against any Season 3 title update since they were recorded; bump versions if anything moved
-- [ ] Faces re-checked if the editor changed
-- [ ] Video final (16:9 and 4:5, captions burned in)
 - [ ] Launch post and thread; share cards checked in X's composer and WhatsApp
 - [ ] Post, pin, watch, fix the same day
+
+## Season 3 update (Thu 3 Dec)
+
+- [ ] Read EA's Season 3 notes, write the changelog entry
+- [ ] Re-check every face and build on Season 3; bump versions and tags; until then the older-season warning shows
+- [ ] Video final (16:9 and 4:5, captions burned in), if it didn't ship at launch
+- [ ] "Updated for Season 3" post
 
 ## After launch
 

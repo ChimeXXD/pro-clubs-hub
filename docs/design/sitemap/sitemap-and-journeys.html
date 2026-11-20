@@ -82,14 +82,14 @@
   <div class="cols3" style="margin-top:6mm">
     <div class="box"><h3>What the site is</h3><p>A free, static, phone-first hub for EA SPORTS FC 27 Clubs, led by faces (D-02). Faces are step-by-step recipes for lookalike and era heads, each paired with a build. Builds are one clean card per archetype and position, each tagged with the season and the date it was checked in game (D-05).</p></div>
     <div class="box"><h3>Who it's for</h3><p>Primary: Chime, on an iPhone next to the console, glancing between controller moves. Secondary: Clubs players and squads with the same need, and lookalike creators. Contributors: anyone who submits a face or build (SPEC §Users). Content is made and checked by Chime, in game, on PS5 (D-08, D-17).</p></div>
-    <div class="box"><h3>At launch (19 or 21 Dec 2026)</h3><p><b>40 pages</b>: home, 2 libraries (faces, builds), 5 face pages, 13 build pages, the archetypes index and 13 archetype pages, the changelog, submit, about, takedown and 404. Builds recorded on Season 3, which starts Thu 3 Dec (D-18).</p></div>
+    <div class="box"><h3>At launch (within days, D-25)</h3><p><b>40 pages</b>: home, 2 libraries (faces, builds), 5 face pages, 13 build pages, the archetypes index and 13 archetype pages, the changelog, submit, about, takedown and 404. Faces and builds recorded on Season 2, then re-checked on Season 3 from Thu 3 Dec (D-25).</p></div>
   </div>
   <div class="box" style="margin-top:auto">
     <h3>How to read this</h3>
     <ul class="plain">
       <li>Page 2: the sitemap. Page 3: navigation and the links between pages. Pages 4–5: every page, what it holds, where it links and its states.</li>
-      <li>Pages 6–8: journey 1, the face seeker, and how the face page shows each kind of value. Pages 9–10: journey 2, the meta-build seeker. Page 11: what isn't in the site, and copy still to write. Page 12: open questions (one new, one answered).</li>
-      <li>Where a line is a proposal rather than something the specs already say, it says "proposal". Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026; v2 the same day after a fresh-context check against the sources.</li>
+      <li>Pages 6–8: journey 1, the face seeker, and how the face page shows each kind of value. Pages 9–10: journey 2, the meta-build seeker. Page 11: what isn't in the site, and copy still to write. Page 12: open questions (two answered on 20 Nov).</li>
+      <li>Where a line is a proposal rather than something the specs already say, it says "proposal". Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026; v2 the same day after a fresh-context check against the sources; v3 after D-23 to D-27.</li>
     </ul>
   </div>
 </section>
@@ -263,7 +263,7 @@
     <tr><th style="width:24mm">Step</th><th style="width:58mm">The player thinks</th><th>The page must give them</th><th style="width:64mm">Risk, and how the site handles it</th></tr>
     <tr><td>1 Discover</td><td>"Is there a face I want?"</td><td>Faces first on Home, each with the front picture, "Inspired by" name, era and kind. Fast on a phone: static pages, small images.</td><td>Faces of real people: names as text only, pictures are Chime's own in-game captures, never photos or drawings (D-10).</td></tr>
     <tr><td>2 Narrow</td><td>"Show me footballers from 2008."</td><td>Filter by kind and era; search by name.</td><td>Nothing matches: say so plainly and offer Submit.</td></tr>
-    <tr><td>3 Judge</td><td>"Does it actually look like him in the game, from the side, in a match?"</td><td>The head as made in FC 27, turnable, with set angles and an in-match picture. Then the trust line: season tag ("FC 27 · Season 3 · verified …" if faces are re-checked on Season 3: open question 2), credit ("Made by Chime in game · Tutorial by …"), and limits ("The game can't do this exactly: …").</td><td>A look the game can't reach: the limits line says so before they start. Old content: the older-season warning.</td></tr>
+    <tr><td>3 Judge</td><td>"Does it actually look like him in the game, from the side, in a match?"</td><td>The head as made in FC 27, turnable, with set angles and an in-match picture. Then the trust line: season tag ("FC 27 · Season 2 · verified …" at launch, Season 3 once re-checked from 3 Dec, D-25), credit ("Made by Chime in game · Tutorial by …"), and limits ("The game can't do this exactly: …").</td><td>A look the game can't reach: the limits line says so before they start. Old content: the older-season warning.</td></tr>
     <tr><td>4 Start</td><td>"Which preset do I start from?"</td><td>The photo preset number, with how to count it: under the "All" filter, photo presets only, left to right, top to bottom, ignoring your own saved heads. Proposal (A-16): the preset's own tile, cropped from Chime's preset-grid screenshot.</td><td>Saved heads shift the grid, so a screen row would be wrong for most players (RESEARCH §9).</td></tr>
     <tr><td>5 Build</td><td>"What's the next value, quickly, between controller moves?"</td><td>Steps in FORMAT's order: part tabs (Skin, Head, Face, Hair), Sculpt when the recipe has it, then Visual Age. One step per row: the value is the biggest thing (page 8), the part's name under it, a tick. Progress counts every listed step. Ticks saved on the phone.</td><td>Losing their place: the current step stands out; ticks survive a reload. Sculpt is long (dozens of sliders, RESEARCH §9), so quick faces leave it out.</td></tr>
     <tr><td>6 Finish</td><td>"Done. Now what?"</td><td>"Done", then "Now set up the build" and the paired build (SPEC flow 1).</td><td>Stopping at the face: the build is the next step, not a link at the bottom.</td></tr>
@@ -304,7 +304,7 @@
     <div class="step"><span class="s">2a · By position</span><b>Picks "ST"</b><code>/builds</code><p>Cards for that position: archetype, headline values, season tag.</p></div><div class="arrow">or</div>
     <div class="step"><span class="s">2b · By archetype</span><b>Opens Archetypes</b><code>/archetypes</code><p>13 tiles in four groups; picks theirs.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">3 · Understand</span><b>Reads the archetype</b><code>/archetypes/[slug]</code><p>Signature PlayStyles, masteries, cost changes, its builds.</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">4 · Trust</span><b>Opens a build, checks the tag</b><code>/builds/[slug]</code><p>"FC 27 · Season 3 · verified …", credit, sources.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">4 · Trust</span><b>Opens a build, checks the tag</b><code>/builds/[slug]</code><p>"FC 27 · Season 2 · verified …" (Season 3 from 3 Dec), credit, sources.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">5 · Set up</span><b>Copies it into the game</b><code>/builds/[slug]</code><p>Height, weight, attributes, PlayStyles, specialization, values first.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">6 · Extra</span><b>Wears a face with it</b><code>/faces/[slug]</code><p>Proposal: "Faces that pair this build" leads into journey 1.</p></div>
   </div>
@@ -342,7 +342,7 @@
         <li>Stats, leaderboards or EA match data.</li>
         <li>Photo-to-slider AI; any image of a real person; any EA art or icons.</li>
         <li>Ads, paywalls, affiliate links (always free, D-04).</li>
-        <li>Deceased subjects (no Michael Jackson at launch, D-10).</li>
+        <li>Deceased subjects, except Michael Jackson, allowed by name (D-10, D-26).</li>
         <li>Other game modes; a native app.</li>
       </ul>
       <h3 style="margin-top:4mm">Should items (cut first if time runs out)</h3>
@@ -374,7 +374,7 @@
   <table>
     <tr><th style="width:12mm">#</th><th style="width:80mm">Question</th><th>Why it matters</th><th style="width:84mm">Recommendation</th></tr>
     <tr><td>1 <span class="tag">answered</span></td><td>How do submissions reach Chime?</td><td>Briefly unclear while the repo was private (D-20).</td><td>Answered 20 Nov: the repo is public again (D-23), so A-04's prefilled GitHub issue works. Captures are dragged into the issue.</td></tr>
-    <tr><td>2 <span class="tag accent">new</span></td><td>Which season do launch faces carry?</td><td>Faces are recorded now, in Season 2 (D-18). On launch day Season 3 is current, so FORMAT's rule would put "Made for Season 2. Values may have changed since." on every launch face.</td><td>Re-check each launch face in game after Thu 3 Dec and re-tag it Season 3. It's quick (open the head, compare it to the preview), follows D-05 (never silently carried over) and PLAN Phase 3 ("faces re-checked").</td></tr>
+    <tr><td>2 <span class="tag">answered</span></td><td>Which season do launch faces carry?</td><td>Launch moved earlier (D-25).</td><td>Answered 20 Nov: launch is within days, on Season 2, so faces and builds carry Season 2 and are re-checked on Season 3 from Thu 3 Dec. Until then, the older-season warning shows.</td></tr>
     <tr><td>3</td><td>Build positions: how do FORMAT's 15 position codes map to PRD's 8 groups, and which values does a build card show?</td><td>FORMAT allows GK, CB, LB, RB, LWB, RWB, CDM, CM, CAM, LM, RM, LW, RW, CF, ST; PRD groups GK, CB, FB, CDM, CM, CAM, W, ST. Where CF, LM and RM go is undefined.</td><td>CF with ST; LM, RM with W; LB, RB, LWB, RWB with FB. Card values, a guess to confirm once builds are recorded: level, height and specialization.</td></tr>
     <tr><td>4</td><td>The proposed links: build to the faces that pair it, and a version change to its changelog entry.</td><td>Neither is in SPEC. The first needs no new data; the second needs a changelog id on history lines (FORMAT).</td><td>Add the first to SPEC now; leave the second until after launch.</td></tr>
     <tr><td>O-01</td><td>The name.</td><td>"Pro Clubs Hub" is a working title; it shows in the logo, domain and share cards.</td><td>Decide before the UI designer draws the logo.</td></tr>

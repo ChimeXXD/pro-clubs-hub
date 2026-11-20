@@ -71,7 +71,7 @@ There's no finished recipe yet (`content/faces/cristiano-ronaldo-2008.json` is a
 >
 > Want a ping when the first five are up? [form link]
 
-**Form:** a free Google Form or Tally with two questions: "Which faces?" (free text) and "Email or Discord name for one ping at launch" (optional). Nothing else is collected.
+**Form:** a free Google Form or Tally with two questions: "Which faces?" (free text) and "Email or Discord name for one ping at launch" (optional). Nothing else is collected. The form says what the contact is for: one message at launch, then the answers are deleted.
 
 **Pass and fail, fixed before posting.** Read after 72 hours, all channels added together.
 
@@ -79,7 +79,7 @@ There's no finished recipe yet (`content/faces/cristiano-ronaldo-2008.json` is a
 | --- | --- | --- |
 | **Pass:** 25+ form sign-ups, or 15+ comments or replies that name a face | Demand is real | Keep the faces-first plan; use the names to pick O-05 |
 | **Unclear:** 10 to 24 sign-ups, or 5 to 14 naming comments | Some demand | Keep the plan; post once more in a second community |
-| **Fail:** under 10 sign-ups and under 5 naming comments | Faces may not pull people in | Chime and Sharon decide: lead the launch with builds, or test once more before 3 Dec |
+| **Fail:** under 10 sign-ups and under 5 naming comments | Faces may not pull people in | Chime and Sharon decide: lead the launch with builds, or test once more before launch (D-25) |
 
 These numbers are a first guess for small Clubs communities. If the subreddit is large (over 100k members), double them before posting.
 

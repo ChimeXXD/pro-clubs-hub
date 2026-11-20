@@ -2,6 +2,23 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## PR #1 merged; pace, Michael Jackson and counting decided (Fri 20 Nov 2026, evening)
+
+**Changed**
+- Reviewed Sharon's PR #1 (PRD v2 and `docs/EVIDENCE.md`): CI and Cloudflare green, no decision edited. Chime approved; squash-merged as `037777e`.
+- Chime's calls on its questions: ship within days on Season 2, re-check on Season 3 from 3 Dec (D-25, against Claude's recommendation to keep D-18 with an early soft-open); Michael Jackson allowed at launch (D-26, against Claude's recommendation to keep D-10); GoatCounter hosted (D-27, as recommended).
+- Validator: a deceased subject now passes only when a decision allows them by exact name (`DECEASED_ALLOWED`, Michael Jackson). The old test "fails a deceased subject" became "fails a deceased subject no decision allows" plus "passes Michael Jackson": a rule change from D-26, not a weakened check.
+- PLAN, PRD, EVIDENCE, CLAUDE.md, FORMAT, content/README, HANDOFF and the sitemap PDF (still 12 pages) updated to D-25 to D-27. The three review fixes applied: "FC 24, FC 26 and FC 27" instead of "every edition since FC 24"; the smoke-test form says what contact details are for and deletes them; pace framed as decided.
+- DECISIONS housekeeping: O-02, O-03, O-04, O-06, O-09, O-10 and O-12 moved to a new "Closed" section with what answered each.
+- Earlier the same evening: repo public again with `main` protected (D-23); CODEOWNERS so only Chime's approval counts (D-24); the Claude GitHub App installed (it shows on meridian and portfolio too; restricting it needs Chime's 2FA).
+
+**Checked**
+- Red then green: the two validator tests failed first, then 25 of 25 passed.
+- GoatCounter's homepage (via search): hosted is free for "reasonable public usage", small businesses fine; no published pageview cap.
+
+**Not verified**
+- GoatCounter's full terms page and script size (Sharon's "about 3.5 KB").
+
 ## Phase 1, design lane: mockups, sitemap, private repo (Fri 20 Nov 2026, afternoon)
 
 **Changed**

@@ -6,7 +6,7 @@ A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era fac
 
 ## Summary
 
-Clubs players want two things for their Pro: to look like someone and to play like the meta. Copying a look today means pausing a YouTube tutorial for about 15 minutes, or following a written guide that says "medium tan shade" where the editor shows an exact value. Builds live on sites that change without a date or credit. Pro Clubs Hub leads with a library of faces (2008 Ronaldo, 2017 Ronaldo and more), each a tab-by-tab checklist with the editor's real values, checked in game and paired with a build. Beside it sit build cards for all 13 FC 27 archetypes, each tagged "FC 27 · Season 3 · verified <date>" with a source and credit line, plus archetype pages and a public changelog. It is a static site, free forever, built for $0, and launched with a motion-graphics video on Sat 19 or Mon 21 Dec, after Season 3 lands on Thu 3 Dec (D-18). We leave tools to Pro Clubs HQ and win on design, mobile speed, honesty and faces (D-03).
+Clubs players want two things for their Pro: to look like someone and to play like the meta. Copying a look today means pausing a YouTube tutorial for about 15 minutes, or following a written guide that says "medium tan shade" where the editor shows an exact value. Builds live on sites that change without a date or credit. Pro Clubs Hub leads with a library of faces (2008 Ronaldo, 2017 Ronaldo and more), each a tab-by-tab checklist with the editor's real values, checked in game and paired with a build. Beside it sit build cards for all 13 FC 27 archetypes, each tagged with its season and date, e.g. "FC 27 · Season 2 · verified <date>", with a source and credit line, plus archetype pages and a public changelog. It is a static site, free forever, built for $0. It ships within days, on Season 2, and is re-checked and updated for Season 3 on Thu 3 Dec (D-25). We leave tools to Pro Clubs HQ and win on design, mobile speed, honesty and faces (D-03).
 
 ## Who it's for
 
@@ -24,11 +24,11 @@ The full map with sources is in `docs/EVIDENCE.md`. The three bets that matter m
 
 | Bet | What we know (20 Nov) | How we'll know |
 | --- | --- | --- |
-| **1. Players will follow an exact, tickable recipe on a phone.** | Players ask EA for shareable face codes in every edition since FC 24, in more than one language. Written guides exist but are vague (EVIDENCE §2.1, §2.3). Nobody has asked for recipes as such. | Smoke test this weekend (EVIDENCE §3); after launch, recipes finished per week. |
-| **2. Lookalike and era faces are the ones players want.** | Ronaldo requests are loud. Sharon has seen Michael Jackson faces made several times; D-10 keeps deceased stars out of launch, so that's Chime's call. Some players want to copy real friends instead (EVIDENCE §2.2). | The faces named in the smoke test decide O-05. |
+| **1. Players will follow an exact, tickable recipe on a phone.** | Players asked EA for an easier way to copy faces in FC 24, FC 26 and FC 27, in more than one language. Written guides exist but are vague (EVIDENCE §2.1, §2.3). Nobody has asked for recipes as such. | Smoke test this weekend (EVIDENCE §3); after launch, recipes finished per week. |
+| **2. Lookalike and era faces are the ones players want.** | Ronaldo requests are loud. Sharon has seen Michael Jackson faces made several times; Chime allowed him as a launch face (D-26). Some players want to copy real friends instead (EVIDENCE §2.2). | The faces named in the smoke test decide O-05. |
 | **3. Players will find us and come back when the meta moves.** | No evidence yet, and v1 had no way to measure it. | Metrics below, live from launch day. |
 
-If the smoke test fails, Chime and Sharon decide before Thu 3 Dec whether the launch leads with builds instead.
+If the smoke test fails, Chime and Sharon decide before launch whether it leads with builds instead (D-25 makes that within days).
 
 ## Research findings
 
@@ -86,12 +86,12 @@ v1 counted output (faces live, builds live). v2 adds measures of whether players
 
 **Kept from v1 (health checks):** days from a season change to updated builds (2 or fewer); Lighthouse mobile 90+; page weight within budget (A-13); credited creators (3+); accepted submissions (3+); launch post reach, logged honestly.
 
-**How to count, for $0 and no cookies (proposal A-17, needs Chime's OK as a third-party script):**
+**How to count, for $0 and no cookies (A-17; Chime chose option B on 20 Nov, D-27):**
 
 | Option | Gives us | Cost to the site | Catch |
 | --- | --- | --- | --- |
 | **A. Cloudflare Web Analytics** (we already host on Cloudflare) | Page views, referrers, devices; free, no cookies | Small script | No custom events, so no recipes-finished count |
-| **B. GoatCounter, hosted** (recommended) | Page views, referrers and custom events; no cookies, no personal data | About 3.5 KB script, inside the 220 KB budget | Free for reasonable public use; re-check its terms before any ads (D-04) |
+| **B. GoatCounter, hosted** (chosen, D-27) | Page views, referrers and custom events; no cookies, no personal data | About 3.5 KB script, inside the 220 KB budget | Free for reasonable public use; re-check its terms before any ads (D-04) |
 | **C. Both** | Cloudflare's Web Vitals plus GoatCounter's events | Two scripts | More to maintain |
 
 About gets one line saying what is counted and that nothing personal is stored.
@@ -105,14 +105,15 @@ About gets one line saying what is counted and that nothing personal is stored.
 - **Submit** builds a prefilled GitHub issue (A-04); Chime reviews, credits and merges.
 - **Two people, one gate:** Sharon works on branches and opens pull requests; only Chime merges into `main`, which GitHub enforces (D-22, D-23).
 
-**Pace (20 Nov):** Sharon proposes shipping as fast as the work allows, in days instead of weeks. The dates below are Chime's plan from D-18. The trade-off: builds recorded before Thu 3 Dec are on Season 2 and must be re-checked when Season 3 lands, which is quick for faces and slower for 13 builds. Chime decides.
+**Pace (D-25, 20 Nov):** ship within days, as soon as the Must list passes, on Season 2. Chime chose this over waiting for Season 3 (D-18). The cost: all 13 builds and 5 faces are recorded on Season 2 and re-checked on Thu 3 Dec, and show the older-season warning until they are. The date is set once the screens and the first faces exist; the real limit is the screens, the core lane and 18 items recorded in game.
 
-| Phase | Dates (D-18 plan) | Focus | Gate |
+| Phase | When | Focus | Gate |
 | --- | --- | --- | --- |
-| 0 | 19 to 22 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
-| 1 | 23 to 29 Nov | Design screens in Figma from the sitemap; loader, version wording and issue URL, tests first; start recording faces; **smoke test and metrics set-up** | Chime approves phone, iPad and desktop screens; core lane green |
-| 2 | 30 Nov to 13 Dec | Build every page; **Thu 3 Dec: Season 3 changelog entry, then record 13 builds on Season 3**; finish 5 faces; video script and storyboard | All launch pages green; content verified |
-| 3 | 14 to 21 Dec | Harden, video final, launch. Nothing goes live Tue 15 to Fri 18 Dec | Live Sat 19 or Mon 21 Dec, "updated for Season 3" |
+| 0 | 19 to 20 Nov | In-game checks, repo, scaffold, CI, deploy | **Passed 20 Nov** |
+| 1 | Now, in parallel | Sharon: screens from the sitemap, smoke test. Claude: loader, version wording, issue URL, GoatCounter. Chime: record 5 faces and 13 builds on Season 2 | Chime approves the screens; core lane green; content recorded |
+| 2 | Right after | Build every launch page; load the content | All launch pages green; content verified |
+| Launch | As soon as phase 2 passes | Launch post; video if ready (open, D-25) | Live, no blocking bugs |
+| Season 3 | Thu 3 Dec | Re-check everything on Season 3; changelog entry; "updated for Season 3" | Every item re-tagged Season 3, or warning showing |
 | After | 4 weeks | Watch the metrics, add faces and positions, case study | Two weeks of baseline, then targets |
 
 ## Scope to launch
@@ -120,7 +121,7 @@ About gets one line saying what is counted and that nothing personal is stored.
 | Must | Should (ranked by RICE, below) | Cut (not before launch) |
 | --- | --- | --- |
 | Faces library, face page with ticks and paired build | 1. Submit without GitHub (O-11) | Build planner (D-07) |
-| 5 verified faces | 2. Share card per face and build | Michael Jackson and deceased stars (D-10) |
+| 5 verified faces | 2. Share card per face and build | Deceased subjects other than Michael Jackson (D-10, D-26) |
 | 13 verified build cards with version tags and credits | 3. 15-second cut of the video | Ratings, request board, comments |
 | 13 archetype pages | 4. Tutorial embeds on tap | Accounts |
 | Changelog with EA sources | 5. Search across faces and builds | Stats, leaderboards, EA match data |
@@ -128,7 +129,7 @@ About gets one line saying what is counted and that nothing personal is stored.
 | About, takedown, notice on every page | 7. Featured creator spot | Ads (a later decision) |
 | Validator fails the build on bad content | 8. Builds for every position | Native app |
 | Budget and e2e in CI | | |
-| **Counting for the main metric (new, A-17)** | | |
+| **Counting for the main metric (GoatCounter, D-27)** | | |
 | Motion-graphics video and launch post | | |
 
 **RICE scores** (reach 1 to 10, impact 0.25 to 3, confidence, effort in person-days; first estimates for Chime and Sharon to adjust):
@@ -161,10 +162,10 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 - **EA content policy** ([help.ea.com](https://help.ea.com/en/articles/security-and-rules/ea-content-policy/)): no paywall (D-04); passive ads allowed later; no EA logos with our branding; no implied endorsement.
 - **Notice on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named."
 - **Naming:** no EA, FC or FUT in the name, domain or logo (D-04). Whether "Pro Clubs" is a mark is unverified; the final name avoids it (O-01).
-- **Likeness:** footballers and living musicians at launch; names as text; no photos or drawings of real people; "inspired by", never "official"; no Michael Jackson at launch (D-10). Not legal advice; ads or any income need a fresh look first.
+- **Likeness:** footballers and living musicians at launch, plus Michael Jackson (D-26); names as text; no photos or drawings of real people; "inspired by", never "official" (D-10). Michael Jackson's estate actively protects his likeness, so his page is the most likely takedown: the 72-hour process must work on day one. Not legal advice; ads or any income need a fresh look first.
 - **Screenshots:** only Chime's own in-game captures of their own recreations.
 - **Takedown:** an email on `/takedown`; requests are actioned within 72 hours by setting `"status": "withdrawn"`.
-- **Analytics:** no cookies and no personal data (A-17).
+- **Analytics:** GoatCounter, no cookies and no personal data (D-27).
 
 ## Open questions
 
@@ -177,12 +178,11 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 | O-11 | Submit without GitHub (ranked first among Should items) | Phase 2 |
 | O-13 | Takedown email address | Phase 2 |
 | A-16 | Face preview from one capture per face | Chime's test clip |
-| A-17 | Counting for the metrics (option A, B or C) | Phase 1, so it ships with the first pages |
-| New | Ship in days (Sharon) or after Season 3 (D-18)? | Now |
-| New | Michael Jackson in the first batch? D-10 says no at launch (estate risk) | Before O-05 |
-| New | Which season do launch faces carry? Recommendation: re-check each in game after 3 Dec and tag Season 3 (sitemap p. 12) | Phase 3 |
+| New | The launch date, once the screens and first faces exist (D-25) | Phase 1 |
+| New | The video: with the launch, or with the Season 3 update? (D-25) | Phase 1 |
+| New | Michael Jackson's era and which face (D-26 allows him) | With O-05 |
 
-**Already answered elsewhere** (still listed under "Open" in `DECISIONS.md`): O-02 (A-10), O-03 (A-09, A-12), O-04 and O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14).
+**Answered and moved to "Closed" in `DECISIONS.md`:** O-02 (A-10), O-03 (A-09, A-12), O-04 (D-18, then D-25), O-06 (D-18), O-09 (D-17), O-10 (A-11), O-12 (A-14). Answered on 20 Nov: pace (D-25), Michael Jackson (D-26), counting (D-27).
 
 ## Insights
 
@@ -195,11 +195,11 @@ If a phase overruns, cut from the bottom of this list. Never cut faces, the vide
 
 ## What changed from v1
 
-- Season 3 dates and the launch date from D-18; phase table updated; Phase 0 marked passed.
+- Season 3 dates added; then, on merge, the launch moved to "within days" on Season 2 (D-25); phase table updated; Phase 0 marked passed.
 - The repo workflow (D-22, D-23), design direction (D-19, D-21) and face preview proposal (A-16) added.
 - Value kinds updated to A-09 and A-12; level cap settled (A-10).
-- "What we're betting on" and `docs/EVIDENCE.md` added: evidence and assumptions marked; a smoke test before Chime records content.
-- Metrics now measure value; counting proposed as A-17.
+- "What we're betting on" and `docs/EVIDENCE.md` added: evidence and assumptions marked; a smoke test alongside Chime's recording.
+- Metrics now measure value; counting with GoatCounter (D-27).
 - Should items ranked with RICE; "Submit without GitHub" moves to the top.
 - Written face guides added as competitors; the opening reworded around exact values.
 - Open questions trimmed to what is open; answered ones listed.

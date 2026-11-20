@@ -20,9 +20,10 @@ Chime invited a collaborator, Sharon (`sharrygold`), who will design the UI. The
 - **Never in the UI:** photos, drawings or AI images of real people; EA logos, card art, icons or rarity colours; coloured side-stripe cards (CLAUDE.md rules 1–2; Chime's global rule).
 
 ### Start here next
-1. Chime and the collaborator review the PDF. Answer its open questions (page 10): the name (O-01), the first 5 faces (O-05), the face preview (A-16), top-bar order, each archetype's typical positions, the takedown email (O-13).
-2. The collaborator designs the screens from the PDF (Figma file: https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ, D-14).
-3. Core lane, test-first, no UI needed: `src/lib/content/load.ts` (relations; drop drafts and withdrawn; fail on broken links), then `version.ts` (tag wording), then `src/lib/submit/toIssueUrl.ts`.
+**Decided 20 Nov after PR #1 (Sharon's PRD v2, merged):** ship within days on Season 2, re-check on Season 3 from Thu 3 Dec (D-25); Michael Jackson allowed as a launch face (D-26); GoatCounter for counting (D-27).
+1. **Sharon:** screens in Figma from the sitemap PDF (https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ, D-14); the smoke test (EVIDENCE §3).
+2. **Chime:** record 5 faces and 13 builds on Season 2, plus the face-preview captures (A-16); create the GoatCounter account; answer O-01 (name), O-05 (first faces, including which Michael Jackson era) and O-13 (takedown email); decide whether the video ships at launch or with Season 3.
+3. **Claude:** core lane, test-first: `src/lib/content/load.ts` (relations; drop drafts and withdrawn; fail on broken links), `version.ts` (tag wording, older-season warning), `src/lib/submit/toIssueUrl.ts`; then GoatCounter wiring once the account exists.
 
 ### Waiting on Chime
 - A test clip in `reference/` (git-ignored) for the face preview: Clubs → Head → Customize, zoom in (L3), press Create to record, turn the Pro one full circle with the right stick (about 10 s). Optionally one match-cutscene screenshot.
@@ -30,7 +31,7 @@ Chime invited a collaborator, Sharon (`sharrygold`), who will design the UI. The
 
 ### Earlier (19–20 Nov), in short
 - **Phase 0 done:** repo, Next.js 16.4.6 static-export scaffold, CI, commit gate (`.claude/proof.json`), page-weight budget (A-13), live at https://pro-clubs-hub.pages.dev (A-14).
-- **Research (RESEARCH §9):** how FC 27's face editor shows values; level cap 55 / 1,419 AP. Season 3 starts Thu 3 Dec, Season 4 Thu 14 Jan 2027; launch is Sat 19 or Mon 21 Dec (D-18).
+- **Research (RESEARCH §9):** how FC 27's face editor shows values; level cap 55 / 1,419 AP. Season 3 starts Thu 3 Dec, Season 4 Thu 14 Jan 2027. Launch was Sat 19 or Mon 21 Dec (D-18), now within days on Season 2 (D-25).
 - **Core lane unit 1 done:** content types and a full validator run before every build (26 unit tests).
 
 ### Not verified

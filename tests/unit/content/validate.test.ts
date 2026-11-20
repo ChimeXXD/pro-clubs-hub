@@ -50,9 +50,37 @@ describe("validateFace", () => {
     expect(messages(validateFace("faces/x.json", bad, ctx))).toContain("published but still has _example");
   });
 
-  it("fails a deceased subject at launch (D-10)", () => {
+  it("fails a deceased subject no decision allows (D-10)", () => {
     const bad = changed(faceGood, (f) => (f.subject.living = false));
-    expect(messages(validateFace("faces/x.json", bad, ctx))).toContain("subject must be living at launch (D-10)");
+    expect(messages(validateFace("faces/x.json", bad, ctx))).toContain(
+      "a deceased subject needs a decision allowing them by name (D-10, D-26)",
+    );
+  });
+
+  it("passes Michael Jackson, allowed by name (D-26)", () => {
+    const mj = changed(faceGood, (f) => {
+      f.subject = { name: "Michael Jackson", kind: "musician", living: false };
+      f.title = "Inspired by Michael Jackson";
+    });
+    expect(validateFace("faces/x.json", mj, ctx)).toEqual([]);
+  });
+
+  it("allows only the exact name D-26 names", () => {
+    const near = changed(faceGood, (f) => {
+      f.subject = { name: "michael jackson", kind: "musician", living: false };
+      f.title = "Inspired by Michael Jackson";
+    });
+    expect(messages(validateFace("faces/x.json", near, ctx))).toContain(
+      "a deceased subject needs a decision allowing them by name (D-10, D-26)",
+    );
+  });
+
+  it("fails a subject whose living is missing, even an allowed name", () => {
+    const bad = changed(faceGood, (f) => {
+      f.subject = { name: "Michael Jackson", kind: "musician" };
+      f.title = "Inspired by Michael Jackson";
+    });
+    expect(validateFace("faces/x.json", bad, ctx).map((p) => p.path)).toContain("subject.living");
   });
 
   it("fails a face without a made-by credit (D-08)", () => {

@@ -153,7 +153,7 @@ One file per game. Unverified fields are `null`, never guessed.
 }
 ```
 
-- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation at launch.
+- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
 - `title` starts with "Inspired by". Never "official".
 - Order of work: preset, then `parts`, then `sculpt`, then `visualAge`. Sculpting a region turns its part into "Custom <part>" in the game, so parts come first (inferred from the editor; confirm on PS5).
 - `preset.number`: the photo preset's place counted among photo presets only, left to right, top to bottom, under the "All" filter. Never the screen row: the grid starts with each player's own saved heads, so rows differ between players (RESEARCH §9).
