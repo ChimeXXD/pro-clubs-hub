@@ -51,3 +51,6 @@ docs/design/direction-board/images/
 
 # Old Facecard files waiting for Chime to delete (never commit)
 _to_delete/
+
+# proof plugin: design-check screenshots and local state
+.proof/

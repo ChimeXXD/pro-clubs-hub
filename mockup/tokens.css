@@ -1,0 +1,92 @@
+/* Pro Clubs Hub tokens, mockup v1 (20 Nov 2026).
+   Structure follows FUT.GG's home (D-19): dark navy hub, one accent.
+   After Chime approves, these move to Figma variables and src/styles/tokens.css (D-14). */
+:root {
+  color-scheme: dark;
+
+  /* Colour roles (dark is the default: a dim room next to the TV) */
+  --canvas: #07090d; /* review canvas around the frames (not part of the design) */
+  --bg: #0d1016;
+  --surface: #151a23;
+  --raised: #1c2330;
+  --line: #262e3c;
+  --line-strong: #364052;
+  --text: #f2f4f7;
+  --text-muted: #a3adbb;
+  --text-faint: #8a94a3;
+  --accent: #ff7a1a;
+  --accent-ink: #1b0d02;
+  --accent-soft: rgb(255 122 26 / 0.14);
+  --accent-line: rgb(255 122 26 / 0.45);
+  --done: #3dd68c;
+  --done-soft: rgb(61 214 140 / 0.14);
+  --warning: #f5b83d;
+  --warning-soft: rgb(245 184 61 / 0.14);
+  --focus: #8ab4ff;
+  --hover-fill: color-mix(in srgb, var(--surface), var(--text) 2%);
+  --hover-fill-raised: color-mix(in srgb, var(--raised), var(--text) 2%);
+  --hover-fill-page: color-mix(in srgb, var(--bg), var(--text) 1%);
+
+  --accent-hover: color-mix(in srgb, var(--accent), var(--text) 12%);
+  --stage-hi: #26324a;
+  --stage-lo: #10141d;
+  --scrim: rgb(13 16 22 / 0.85);
+  --skin-track: linear-gradient(90deg, #f3d9c4, #c99470, #8a5a3c, #4a2d1d, #24150d);
+
+  /* Stand-in mannequin (mockup only: Chime's capture replaces it) */
+  --mannequin-hi: #eef0f3;
+  --mannequin-mid: #b4bac3;
+  --mannequin-lo: #6b727d;
+  --mannequin-shade: #3c424c;
+  --mannequin-line: rgb(60 66 76 / 0.5);
+  --mannequin-torso-hi: #4a515c;
+  --mannequin-torso-lo: #2a2f37;
+
+  /* Type: system faces (no web font to block the first paint) */
+  --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  --text-2xl: 32px;
+  --text-input: 16px; /* 16 px or iOS zooms the page on focus */
+  --value-sm: 22px;
+  --value-lg: 40px;
+
+  /* Spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 8px 24px rgb(0 0 0 / 0.25);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-page: 300ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --tap: 44px;
+}
+
+/* Reduced motion is gentler, not none: colour and opacity fades stay, movement goes
+   (page slides, the spin tween and the build card's slide-up are skipped in code). */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-page: 0ms;
+  }
+}

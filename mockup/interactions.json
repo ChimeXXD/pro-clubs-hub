@@ -1,0 +1,1409 @@
+[
+  {
+    "element": "menu",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "open:menu-sheet",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "sheet appears without sliding",
+    "note": "Phone only: a sheet with Faces, Builds, Archetypes, Changelog, Submit, About"
+  },
+  {
+    "element": "wordmark",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "search-input",
+    "trigger": "focus",
+    "states": [
+      "default",
+      "focus",
+      "typing",
+      "no-results"
+    ],
+    "effect": "filter:faces-and-builds",
+    "duration_ms": 0,
+    "easing": "linear",
+    "delay_ms": 0,
+    "reduced_motion": "same",
+    "note": "16 px text so iOS doesn't zoom; results update as you type"
+  },
+  {
+    "element": "nav-faces",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Desktop top bar"
+  },
+  {
+    "element": "nav-builds",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Desktop top bar"
+  },
+  {
+    "element": "nav-archetypes",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/archetypes",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Desktop top bar"
+  },
+  {
+    "element": "nav-changelog",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Desktop top bar"
+  },
+  {
+    "element": "nav-submit",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/submit",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Desktop top bar"
+  },
+  {
+    "element": "filter-chip-1",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "filter:home-faces",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "One chip selected at a time; New, Footballers, Musicians, 2000s, 2010s"
+  },
+  {
+    "element": "filter-chip-2",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "filter:home-faces",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "One chip selected at a time; New, Footballers, Musicians, 2000s, 2010s"
+  },
+  {
+    "element": "filter-chip-3",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "filter:home-faces",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "One chip selected at a time; New, Footballers, Musicians, 2000s, 2010s"
+  },
+  {
+    "element": "filter-chip-4",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "filter:home-faces",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "One chip selected at a time; New, Footballers, Musicians, 2000s, 2010s"
+  },
+  {
+    "element": "filter-chip-5",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "filter:home-faces",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "One chip selected at a time; New, Footballers, Musicians, 2000s, 2010s"
+  },
+  {
+    "element": "face-card-1-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "face-card-2-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "face-card-3-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "face-card-4-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "face-card-submit",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/submit",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "faces-all",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "faces-submit",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/submit",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "season-changelog",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "changes-all",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "builds-all",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "featured-title-1-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces/cristiano-ronaldo-2008",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "featured-title-2-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/spark-2008-winger",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "featured-title-3-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/archetypes",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "featured-title-4-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/submit",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "quick-title-1-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "quick-title-2-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/archetypes",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "quick-title-3-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "quick-title-4-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/about",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "changelog-title-1-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog#entry",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "changelog-title-2-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog#entry",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "changelog-title-3-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/changelog#entry",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole row"
+  },
+  {
+    "element": "build-name-1-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "build-name-2-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "build-name-3-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "build-name-4-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[slug]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole card"
+  },
+  {
+    "element": "builds-by-archetype",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "group:home-builds",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Background and colour fade over --dur-fast"
+  },
+  {
+    "element": "builds-by-position",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "group:home-builds",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Background and colour fade over --dur-fast"
+  },
+  {
+    "element": "footer-link-1",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/about",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "footer-link-2",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/submit",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "footer-link-3",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/takedown",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "footer-link-4",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:https://github.com/ChimeXXD/pro-clubs-hub",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "face-back",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/faces",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "face-spin-stage",
+    "trigger": "drag",
+    "states": [
+      "front-still",
+      "loading-frames",
+      "turning",
+      "released"
+    ],
+    "effect": "rotate:face-spin (one frame per 10 degrees, 360 px of drag = one full turn, follows the finger 1:1)",
+    "duration_ms": 0,
+    "easing": "linear",
+    "delay_ms": 0,
+    "reduced_motion": "same: the turn is driven by the finger, not animated",
+    "note": "Frames load on first touch only (A-16); arrow keys turn 10 degrees; touch-action pan-y keeps vertical scroll. The mockup's stand-in turns smoothly (1 px of drag = 1 degree); the app steps through the 36 frames. When the sheet is scrolled up the stage shrinks from 440 to 280 px over --dur-page (Meta's editor sheet)"
+  },
+  {
+    "element": "face-angle-front",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "rotate:face-spin to 0 degrees by the shortest way",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.33, 1, 0.68, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jumps to the angle"
+  },
+  {
+    "element": "face-angle-three-quarter",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "rotate:face-spin to 35 degrees by the shortest way",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.33, 1, 0.68, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jumps to the angle"
+  },
+  {
+    "element": "face-angle-side",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "rotate:face-spin to 90 degrees by the shortest way",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.33, 1, 0.68, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jumps to the angle"
+  },
+  {
+    "element": "face-angle-match",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "show:face-match (Chime's cutscene screenshot fades in)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade",
+    "note": "Opacity over --dur-base"
+  },
+  {
+    "element": "face-start",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "select:Preset tab and mark step 1 current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll"
+  },
+  {
+    "element": "face-to-build",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[pairedBuild]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once"
+  },
+  {
+    "element": "face-tab-skin",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-tab-head",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-tab-face",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-tab-hair",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-tab-age",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-tab-sculpt",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "face-next-tab",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "select:next tab and scroll to its first step",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide"
+  },
+  {
+    "element": "step-tick-1",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-2",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-3",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-4",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-9",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-10",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-11",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-12",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-13",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-14",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-21",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-22",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-23",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "paired-link",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[pairedBuild]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "no slide; page swaps at once",
+    "note": "Covers the whole paired build card"
+  },
+  {
+    "element": "paired-link-done",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "navigate:/builds/[pairedBuild]",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "card fades in without sliding",
+    "note": "Shown when every step is ticked: a check mark, 'Face done', then the build card slides up 16 px and fades in over --dur-page"
+  },
+  {
+    "element": "embed-facade",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "loading",
+      "playing",
+      "focus"
+    ],
+    "effect": "load:youtube-nocookie player in place of the facade",
+    "duration_ms": 0,
+    "easing": "linear",
+    "delay_ms": 0,
+    "reduced_motion": "same",
+    "note": "No request to youtube.com or youtube-nocookie.com before this tap (SPEC acceptance)"
+  },
+  {
+    "element": "step-tick-15",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-16",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-17",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-18",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-19",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "step-tick-20",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  },
+  {
+    "element": "face-share",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "focus"
+    ],
+    "effect": "share:native share sheet with the face page URL",
+    "duration_ms": 0,
+    "easing": "linear",
+    "delay_ms": 0,
+    "reduced_motion": "same"
+  },
+  {
+    "element": "face-tab-preset",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "select:tab (steps swap; the stage camera moves to that tab's zoom: bust, head or face, over --dur-page)",
+    "duration_ms": 120,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "same fade; nothing moves",
+    "note": "Underline tab as in Meta's editors. Mockup: colour fades over --dur-fast. App: the underline springs between tabs as one shape (DESIGN.md), built in Phase 2"
+  },
+  {
+    "element": "step-chip-10",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-11",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-12",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-13",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-14",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-15",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-22",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-23",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-chip-24",
+    "trigger": "tap",
+    "states": [
+      "default",
+      "pressed",
+      "selected",
+      "focus"
+    ],
+    "effect": "scroll:step-row and mark it current",
+    "duration_ms": 300,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "jump, no smooth scroll",
+    "note": "WhatsApp-style sub-chips: one per step in the open tab"
+  },
+  {
+    "element": "step-tick-24",
+    "trigger": "tap",
+    "states": [
+      "unticked",
+      "pressed",
+      "ticked",
+      "focus"
+    ],
+    "effect": "toggle:tick (saved on this device; check draws in, row dims to 55 %, progress segment fills)",
+    "duration_ms": 200,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "delay_ms": 0,
+    "reduced_motion": "check fades in without drawing; dim fades as usual"
+  }
+]

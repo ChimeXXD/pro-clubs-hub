@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pro Clubs Hub · desktop mockup v1</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="mockup.css">
+  <link rel="stylesheet" href="face.css">
+</head>
+<body>
+  <div class="canvas" style="padding:0">
+    <div data-screen="home-desktop" class="desktop" id="s-home-desktop"></div>
+  </div>
+  <script src="head.js"></script>
+  <script src="common.js"></script>
+  <script src="home.js"></script>
+  <script>
+    const root = document.getElementById("s-home-desktop");
+    renderHome(root, { desktop: true });
+  </script>
+</body>
+</html>

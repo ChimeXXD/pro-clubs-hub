@@ -16,8 +16,8 @@ A **FUT.GG-style hub for EA SPORTS FC 27 Clubs (Pro Clubs), led by faces** (D-02
 ## Project frame (D-01)
 
 - **Portfolio project** built with Claude Code, **launched publicly with a motion-graphics video**, timed to ride the **Season 3** change in December (D-16, O-04).
-- **The repo is public from Day 0** (MIT, D-12). Everything committed is public at once: no keys, no EA screenshots, no photos of people.
-- **Budget is $0.** Free host (Cloudflare Pages proposed, A-01), free GitHub Actions on the public repo, no paid APIs, no paid fonts.
+- **The repo is private** (D-20, supersedes D-12; MIT stays). Commit as if it could go public: no keys, no EA screenshots, no photos of people.
+- **Budget is $0.** Free host (Cloudflare Pages proposed, A-01), GitHub Actions within the Free plan's private-repo minutes, no paid APIs, no paid fonts.
 - **Always free.** No paywall, ever (EA content policy, D-04). Passive banner ads may come later, after a decision. No affiliate links or tips at launch.
 - **Scope** is the Must / Should / Cut table in `docs/PLAN.md`. If a phase overruns, cut its Should items. Never cut the faces library, the video or launch day.
 - **Design comes first** (D-14). Figma Design System page plus Design screens page, then build from them.
@@ -87,7 +87,7 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 - **Tests first** for `src/lib/content/` (types, validator, loader, version wording) and `src/lib/submit/`. Fixtures are JSON in `tests/unit/fixtures/` (good and bad files).
 - Playwright e2e at 390×844 and 360×800 for the flows in `docs/SPEC.md` §Acceptance, using the test IDs in `docs/design/UI-BRIEF.md`.
 - After UI work: build, screenshot at 390, 834 and 1440, compare with the Figma frame before calling the step done. For UI units, run the motion skills and name them in PROGRESS (Sinima D-102).
-- Commit after each green step with a conventional message (`feat:`, `fix:`, `test:`, `chore:`, `docs:`, `content:`). Push after every commit (the repo is public).
+- Commit after each green step with a conventional message (`feat:`, `fix:`, `test:`, `chore:`, `docs:`, `content:`). Push after every commit.
 - Update the checkbox in `docs/PLAN.md` and the matching item in `docs/features.json` (with evidence) when a task is done. Log each session in `PROGRESS.md` (newest first) and rewrite `docs/HANDOFF.md` at the end of each session.
 - New product or architecture choices get a numbered entry in `docs/DECISIONS.md` (supersede, never edit).
 - Ask Chime decisions as click-through questions with three options when a tool for that is available.

@@ -1,0 +1,106 @@
+/* Face page, avatar-editor layout: full-bleed stage on top, recipe sheet below.
+   From Mobbin (iOS): Meta Quest and Instagram avatar editors (stage + sheet + tabs, zoom on Face),
+   WhatsApp (sub-chips), Amazon and Zalando ("Drag to turn" with a hand), Apple Store (floating pill). */
+.face-page { background: var(--stage-lo); }
+
+/* Stage: the head is the hero, edge to edge on a dark studio backdrop */
+.stage-full { position: relative; height: 440px; overflow: hidden; background: radial-gradient(80% 70% at 50% 40%, var(--stage-hi) 0%, var(--raised) 55%, var(--stage-lo) 100%); transition: height var(--dur-page) var(--ease-out); }
+.stage-full[data-size="compact"] { height: 300px; }
+.stage-full[data-size="compact"] .angle-pill { top: auto; bottom: 28px; transform: none; display: flex; border-radius: var(--r-pill); }
+.stage-bar { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: var(--s-3) var(--s-4); }
+.round-btn { width: var(--tap); height: var(--tap); border-radius: 50%; display: grid; place-items: center; background: var(--scrim); border: 1px solid var(--line); color: var(--text); }
+.spin { position: absolute; inset: 56px 0 0; display: grid; place-items: end center; overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.stage-full[data-dragging="true"] .spin { cursor: grabbing; }
+.spin svg { height: 100%; width: auto; transform-origin: 50% 38%; transition: transform var(--dur-page) var(--ease-out); }
+.stage-full[data-zoom="head"] .spin svg { transform: scale(1.15); }
+.stage-full[data-zoom="face"] .spin svg { transform: scale(1.35) translateY(6%); }
+.hint { position: absolute; z-index: 1; bottom: 36px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: var(--r-pill); background: var(--scrim); font-size: var(--text-xs); font-weight: 600; color: var(--text); white-space: nowrap; transition: opacity var(--dur-base) var(--ease-out); }
+.stage-full[data-dragging="true"] .hint, .stage-full[data-size="compact"] .hint { opacity: 0; }
+.loadbar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--line); }
+.loadbar i { display: block; height: 100%; width: 33%; background: var(--accent); }
+.match-shot { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; align-content: center; gap: 6px; text-align: center; padding: var(--s-6); background: linear-gradient(180deg, var(--raised), var(--stage-lo)); color: var(--text-muted); font-size: var(--text-sm); opacity: 0; visibility: hidden; transition: opacity var(--dur-base) var(--ease-out), visibility var(--dur-base); }
+.stage-full[data-mode="match"] .match-shot { opacity: 1; visibility: visible; }
+.match-shot strong { color: var(--text); font-size: var(--text-md); }
+.angle-pill { position: absolute; z-index: 2; top: 50%; right: var(--s-3); transform: translateY(-50%); display: grid; gap: 2px; padding: 3px; border-radius: 26px; background: var(--scrim); border: 1px solid var(--line); }
+.angle-pill button { height: var(--tap); min-width: 56px; padding: 0 10px; border-radius: var(--r-pill); color: var(--text-muted); font-size: var(--text-sm); font-weight: 600; white-space: nowrap; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.angle-pill button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+
+/* Sheet: rises over the stage's bottom edge, like the editors' bottom sheet */
+.sheet { position: relative; z-index: 3; margin-top: -20px; padding: var(--s-2) var(--s-4) var(--s-8); background: var(--bg); border-radius: 20px 20px 0 0; display: grid; gap: var(--s-4); }
+.grabber { justify-self: center; width: 36px; height: 5px; border-radius: 3px; background: var(--line-strong); }
+.sheet-head { display: grid; gap: var(--s-2); }
+.title-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.sheet-title { font: 800 var(--value-sm)/1.15 var(--font-display); letter-spacing: -0.01em; margin: 0; }
+.trust { display: grid; gap: 2px; font-size: var(--text-sm); }
+.version-tag { color: var(--text); font-weight: 600; }
+.version-tag.unchecked { color: var(--warning); }
+.credit-line { color: var(--text-muted); }
+.callout { margin: 0; padding: 10px var(--s-3); border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); font-size: var(--text-sm); }
+.callout.warn { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+.btn { height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); padding: 0 var(--s-4); border-radius: var(--r-md); font-weight: 700; font-size: var(--text-md); transition: background-color var(--dur-fast) var(--ease-out); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.resume { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); padding: 12px var(--s-3); border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); font-weight: 600; }
+
+/* Tabs: underline tabs as in Meta's editors, with the game's own tab names */
+.tabs { display: flex; gap: var(--s-1); overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * var(--s-4)); padding: 0 var(--s-3); border-bottom: 1px solid var(--line); }
+.tabs button { position: relative; flex-shrink: 0; height: var(--tap); padding: 0 10px; display: inline-flex; align-items: center; gap: 4px; color: var(--text-muted); font-weight: 600; font-size: var(--text-base); transition: color var(--dur-fast) var(--ease-out); }
+.tabs button[aria-selected="true"] { color: var(--text); }
+.tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -1px; height: 2px; border-radius: 1px; background: var(--text); }
+.tab-done { color: var(--done); display: inline-grid; }
+.segments { display: flex; gap: 3px; margin-top: calc(-1 * var(--s-2)); }
+.segments i { flex: 1; height: 4px; border-radius: 2px; background: var(--line); }
+.segments i.done { background: var(--done); }
+.segments i.now { background: var(--accent); }
+.progress-label { display: flex; justify-content: space-between; font-size: var(--text-xs); color: var(--text-muted); margin-top: calc(-1 * var(--s-3)); }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * var(--s-4)); padding: 2px var(--s-4); }
+.chip { flex-shrink: 0; height: var(--tap); padding: 0 14px; border-radius: var(--r-md); background: var(--surface); color: var(--text-muted); font-size: var(--text-sm); font-weight: 600; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.chip[aria-pressed="true"] { background: var(--raised); color: var(--text); box-shadow: inset 0 0 0 1px var(--line-strong); }
+
+/* Steps: the value is the hero */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.step { display: grid; grid-template-columns: 28px 1fr var(--tap); align-items: center; gap: var(--s-3); padding: 10px var(--s-2) 10px var(--s-3); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); transition: opacity var(--dur-base) var(--ease-out); }
+.step.preset { grid-template-columns: 64px 1fr var(--tap); }
+.step.done { opacity: 0.55; }
+.step.now { background: var(--raised); border-color: var(--accent-line); }
+.step-index { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--raised); color: var(--text-muted); font-size: var(--text-xs); font-weight: 700; font-variant-numeric: tabular-nums; }
+.step.now .step-index { background: var(--accent); color: var(--accent-ink); }
+.step-main { display: grid; gap: 2px; min-width: 0; }
+.step-value { font: 800 var(--value-sm)/1.05 var(--font-display); font-variant-numeric: tabular-nums; }
+.step.preset .step-value { font-size: var(--value-lg); }
+.step-value.named { font-size: var(--text-lg); }
+.step-label { font-size: var(--text-sm); color: var(--text-muted); }
+.step-help { font-size: var(--text-xs); color: var(--text-muted); }
+.preset-tile { width: 64px; height: 64px; border-radius: var(--r-md); overflow: hidden; background: var(--raised); border: 1px solid var(--line-strong); }
+.preset-tile svg { width: 100%; height: auto; transform: scale(1.35) translateY(8%); }
+.step-track { position: relative; height: 10px; border-radius: 5px; margin: 6px 0 2px; background: var(--skin-track); }
+.step-track b { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--text); border: 3px solid var(--bg); transform: translate(-50%, -50%); }
+.slider-track { position: relative; height: 4px; border-radius: 2px; margin: 8px 0 2px; background: var(--line-strong); }
+.slider-track b { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); transform: translate(-50%, -50%); }
+.slider-track i { position: absolute; left: 50%; top: -3px; width: 1px; height: 10px; background: var(--text-faint); }
+.slider-ends { display: flex; justify-content: space-between; font-size: var(--text-2xs); color: var(--text-muted); }
+.tick { width: var(--tap); height: var(--tap); border-radius: 50%; display: grid; place-items: center; }
+.tick span { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line-strong); display: grid; place-items: center; transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
+.tick[aria-checked="true"] span { background: var(--done); border-color: var(--done); color: var(--bg); }
+.next-tab { width: 100%; display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 0 var(--s-3); border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); font-weight: 600; transition: background-color var(--dur-fast) var(--ease-out); }
+
+/* After the recipe */
+.sheet-more { display: grid; gap: var(--s-6); margin-top: var(--s-2); }
+.paired { position: relative; display: grid; gap: var(--s-1); padding: var(--s-3); border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); font-size: var(--text-sm); transition: background-color var(--dur-fast) var(--ease-out); }
+.paired-top { display: flex; align-items: center; justify-content: space-between; }
+.paired-name { font: 800 var(--text-lg)/1.1 var(--font-display); }
+.done-panel { display: grid; gap: var(--s-3); padding: var(--s-3); border-radius: var(--r-lg); background: var(--done-soft); }
+.done-head { display: flex; align-items: center; gap: var(--s-3); }
+.done-head > div { display: grid; }
+.done-mark { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--done); color: var(--bg); }
+.done-title { font: 800 var(--text-lg)/1.1 var(--font-display); }
+.embed { width: 100%; display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3); text-align: left; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); transition: background-color var(--dur-fast) var(--ease-out); }
+.embed-play { width: 48px; height: 48px; flex-shrink: 0; border-radius: var(--r-md); display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); }
+.embed-text { font-size: var(--text-sm); font-weight: 600; }
+
+@media (hover: hover) and (pointer: fine) {
+  .angle-pill button:hover:not([aria-pressed="true"]), .tabs button:hover { color: var(--text); }
+  .chip:hover:not([aria-pressed="true"]), .next-tab:hover, .paired:hover, .embed:hover { background: var(--hover-fill); }
+  .round-btn:hover { background: var(--raised); }
+  .tick:hover { background: var(--hover-fill-raised); }
+  .btn.primary:hover { background: var(--accent-hover); }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pro Clubs Hub · phone mockup v1</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="mockup.css">
+  <link rel="stylesheet" href="face.css">
+</head>
+<body>
+  <p class="canvas-note"><strong>Phone mockup v1, 20 Nov 2026.</strong> Home: FUT.GG's structure (D-19). Face page: the avatar-editor layout from Mobbin (Meta Quest, Instagram, WhatsApp). The grey mannequin stands in for Chime's in-game turn capture (A-16): drag it or use the angle buttons. Names, editor labels and dates are real. Step values, the preset number, the limit and the tutorial title are layout samples, not a recipe (each face frame says "Sample values").</p>
+  <div class="canvas">
+    <div class="frame-wrap"><p class="frame-label">home</p><div data-screen="home" id="s-home"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face (first visit, front)</p><div data-screen="face" id="s-face"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, loading the turn (first touch)</p><div data-screen="face--loading" id="s-loading"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, turned to the side</p><div data-screen="face--side" id="s-side"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, in a match</p><div data-screen="face--match" id="s-match"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, coming back on the Face tab (10 done; the camera zooms in)</p><div data-screen="face--progress" id="s-progress"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, finished</p><div data-screen="face--done" id="s-done"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, Sculpt tab (optional pass)</p><div data-screen="face--sculpt" id="s-sculpt"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, new version since your last visit</p><div data-screen="face--updated" id="s-updated"></div></div>
+    <div class="frame-wrap"><p class="frame-label">face, after Season 3 starts (not yet re-checked)</p><div data-screen="face--older" id="s-older"></div></div>
+  </div>
+  <script src="head.js"></script>
+  <script src="common.js"></script>
+  <script src="home.js"></script>
+  <script src="face.js"></script>
+  <script>
+    const base = { angle: 0, mode: "spin", dragging: false, loading: false, pressed: "front", tab: "preset", done: 0, resume: false };
+    renderHome(document.getElementById("s-home"));
+    renderFace(document.getElementById("s-face"), base);
+    renderFace(document.getElementById("s-loading"), { ...base, loading: true, pressed: null });
+    renderFace(document.getElementById("s-side"), { ...base, angle: 90, pressed: "side" });
+    renderFace(document.getElementById("s-match"), { ...base, mode: "match", pressed: "match" });
+    renderFace(document.getElementById("s-progress"), { ...base, tab: "face", done: 10, resume: true, pressed: "three-quarter", angle: 35 });
+    renderFace(document.getElementById("s-done"), { ...base, tab: "age", done: M.TOTAL, angle: 35, pressed: "three-quarter" });
+    renderFace(document.getElementById("s-sculpt"), { ...base, tab: "sculpt", done: M.TOTAL, angle: -35, pressed: null });
+    renderFace(document.getElementById("s-updated"), { ...base, updated: true });
+    renderFace(document.getElementById("s-older"), { ...base, older: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro Clubs Hub: sitemap and user journeys</title>
+<style>
+  @page { size: A4 landscape; margin: 14mm 16mm; }
+  :root { --ink: #14171c; --muted: #5b6472; --faint: #8a93a1; --line: #d9dde3; --soft: #f3f4f6; --accent: #e8650a; --accent-soft: #fdf0e6; --ok: #127a4a; --warn: #9a6700; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); font: 400 10pt/1.45 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { page-break-after: always; break-after: page; min-height: 180mm; display: flex; flex-direction: column; gap: 5mm; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  h1 { font-size: 26pt; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 16pt; margin: 0; letter-spacing: -0.005em; }
+  h3 { font-size: 11pt; margin: 0 0 2mm; }
+  p { margin: 0; }
+  .kicker { font-size: 9pt; color: var(--accent); font-weight: 700; }
+  .lede { font-size: 11.5pt; color: var(--muted); max-width: 210mm; }
+  .muted { color: var(--muted); }
+  .faint { color: var(--faint); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 2mm; }
+  .head .n { color: var(--faint); font-size: 9pt; }
+  code { font: 8.5pt/1 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--soft); padding: 0.4mm 1mm; border-radius: 1mm; }
+  .tag { display: inline-block; font-size: 7.5pt; font-weight: 700; padding: 0.3mm 1.6mm; border-radius: 1mm; background: var(--soft); color: var(--muted); white-space: nowrap; }
+  .tag.accent { background: var(--accent-soft); color: var(--accent); }
+  .tag.ext { background: #fff; border: 1px dashed var(--faint); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  ul.plain { margin: 0; padding-left: 4mm; }
+  ul.plain li { margin: 0.6mm 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.6pt; }
+  th { text-align: left; font-size: 7.8pt; color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--ink); padding: 1.4mm 2mm; }
+  td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 1.6mm 2mm; }
+  td:first-child { white-space: nowrap; font-weight: 600; }
+  .box { border: 1px solid var(--line); border-radius: 2mm; padding: 3mm 4mm; }
+
+  /* Sitemap tree */
+  .tree { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .node { border: 1.2px solid var(--ink); border-radius: 2mm; padding: 1.8mm 3mm; background: #fff; text-align: center; min-width: 30mm; }
+  .node b { display: block; font-size: 9.5pt; }
+  .node code { background: none; padding: 0; color: var(--muted); font-size: 7.5pt; }
+  .node.root { background: var(--ink); color: #fff; }
+  .node.root code { color: #c9ced6; }
+  .node.child { border-style: solid; border-color: var(--faint); }
+  .node.ext { border: 1.2px dashed var(--faint); color: var(--muted); }
+  .node .count { display: block; font-size: 7.5pt; color: var(--accent); font-weight: 700; margin-top: 0.6mm; }
+  .stem { width: 1.2px; height: 5mm; background: var(--ink); }
+  .level { display: flex; gap: 4mm; position: relative; padding-top: 5mm; }
+  .level::before { content: ""; position: absolute; top: 0; left: var(--l, 15mm); right: var(--r, 15mm); height: 1.2px; background: var(--ink); }
+  .branch { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .branch::before { content: ""; position: absolute; top: -5mm; left: 50%; width: 1.2px; height: 5mm; background: var(--ink); }
+  .branch .stem { background: var(--faint); height: 4mm; }
+  .legend { display: flex; gap: 6mm; font-size: 8pt; color: var(--muted); align-items: center; }
+  .legend .sw { display: inline-block; width: 7mm; height: 3.5mm; border-radius: 1mm; vertical-align: middle; margin-right: 1.5mm; }
+
+  /* Journey flow */
+  .flow { display: flex; align-items: stretch; gap: 0; }
+  .step { flex: 1; border: 1.2px solid var(--ink); border-radius: 2mm; padding: 2mm 2.5mm; background: #fff; display: flex; flex-direction: column; gap: 0.8mm; min-width: 0; }
+  .step .s { font-size: 7.5pt; color: var(--accent); font-weight: 700; }
+  .step b { font-size: 9pt; line-height: 1.2; }
+  .step code { font-size: 7pt; align-self: flex-start; }
+  .step p { font-size: 7.8pt; color: var(--muted); line-height: 1.3; }
+  .arrow { width: 5mm; display: grid; place-items: center; color: var(--faint); font-size: 11pt; flex-shrink: 0; }
+  .side { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .side .box h3 { font-size: 9.5pt; }
+  .side .box p, .side .box li { font-size: 8.3pt; }
+  .persona { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 4mm; }
+  .persona .box p { font-size: 8.6pt; }
+  .persona .box .label { font-size: 7.5pt; color: var(--muted); font-weight: 700; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<!-- 1. Cover -->
+<section class="page">
+  <p class="kicker">Pro Clubs Hub (working title, O-01) · Structure, not UI</p>
+  <h1>Sitemap and user journeys</h1>
+  <p class="lede">Every page of the launch site, how the pages link to each other, and the two journeys the site is built around: a player who wants a face for their Pro, and a player who wants a meta build for their archetype. This is the brief a UI designer works from. It says what each page must hold and do, not how it looks.</p>
+  <div class="cols3" style="margin-top:6mm">
+    <div class="box"><h3>What the site is</h3><p>A free, static, phone-first hub for EA SPORTS FC 27 Clubs, led by faces (D-02). Faces are step-by-step recipes for lookalike and era heads, each paired with a build. Builds are one clean card per archetype and position, each tagged with the season and the date it was checked in game (D-05).</p></div>
+    <div class="box"><h3>Who it's for</h3><p>Primary: a Clubs player on a phone next to the console, glancing between controller moves. Secondary: Clubs squads, and lookalike creators who submit faces. Built and checked by Chime, in game, on PS5 (D-08, D-17).</p></div>
+    <div class="box"><h3>At launch (19 or 21 Dec 2026)</h3><p><b>40 pages</b>: home, 2 libraries (faces, builds), 5 face pages, 13 build pages, the archetypes index and 13 archetype pages, the changelog, submit, about, takedown and 404. Builds recorded on Season 3, which starts Thu 3 Dec (D-18).</p></div>
+  </div>
+  <div class="box" style="margin-top:auto">
+    <h3>How to read this</h3>
+    <ul class="plain">
+      <li>Page 2: the sitemap. Page 3: navigation and the links between pages. Pages 4–5: every page, what it holds, where it links and its states.</li>
+      <li>Pages 6–7: journey 1, the face seeker. Pages 8–9: journey 2, the meta-build seeker. Page 10: what isn't in the site, and open questions.</li>
+      <li>Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. Sitemap -->
+<section class="page">
+  <div class="head"><h2>Sitemap</h2><span class="n">2</span></div>
+  <div class="tree" style="margin-top:2mm">
+    <div class="node root"><b>Home</b><code>/</code></div>
+    <div class="stem"></div>
+    <div class="level" style="--l:22mm;--r:22mm">
+      <div class="branch">
+        <div class="node"><b>Faces</b><code>/faces</code><span class="count">library</span></div>
+        <div class="stem"></div>
+        <div class="node child"><b>Face</b><code>/faces/[slug]</code><span class="count">5 at launch</span></div>
+        <div class="stem"></div>
+        <div class="node child" style="min-width:26mm"><b>Paired build</b><code>→ /builds/[slug]</code></div>
+      </div>
+      <div class="branch">
+        <div class="node"><b>Builds</b><code>/builds</code><span class="count">library</span></div>
+        <div class="stem"></div>
+        <div class="node child"><b>Build</b><code>/builds/[slug]</code><span class="count">13 at launch</span></div>
+        <div class="stem"></div>
+        <div class="node child" style="min-width:26mm"><b>Its archetype</b><code>→ /archetypes/[slug]</code></div>
+      </div>
+      <div class="branch">
+        <div class="node"><b>Archetypes</b><code>/archetypes</code><span class="count">4 groups</span></div>
+        <div class="stem"></div>
+        <div class="node child"><b>Archetype</b><code>/archetypes/[slug]</code><span class="count">13</span></div>
+        <div class="stem"></div>
+        <div class="node child" style="min-width:26mm"><b>Its builds</b><code>→ /builds/[slug]</code></div>
+      </div>
+      <div class="branch">
+        <div class="node"><b>Changelog</b><code>/changelog</code><span class="count">newest first</span></div>
+        <div class="stem"></div>
+        <div class="node child"><b>Entry</b><code>/changelog#[id]</code><span class="count">3 seeded + Season 3</span></div>
+        <div class="stem"></div>
+        <div class="node ext" style="min-width:26mm"><b>EA source</b><code>ea.com</code></div>
+      </div>
+      <div class="branch">
+        <div class="node"><b>Submit</b><code>/submit</code><span class="count">face or build</span></div>
+        <div class="stem"></div>
+        <div class="node ext"><b>GitHub issue</b><code>prefilled, opens on GitHub</code></div>
+      </div>
+      <div class="branch">
+        <div class="node"><b>About</b><code>/about</code></div>
+        <div class="stem"></div>
+        <div class="node child"><b>Takedown</b><code>/takedown</code></div>
+      </div>
+      <div class="branch">
+        <div class="node child"><b>404</b><code>any unknown URL</code></div>
+      </div>
+    </div>
+  </div>
+  <div class="cols" style="margin-top:4mm">
+    <div class="box">
+      <h3>Archetypes in their four groups (EA's grouping, <code>fc27.json</code>)</h3>
+      <table>
+        <tr><th>Goalkeepers (2)</th><th>Defenders (3)</th><th>Midfielders (4)</th><th>Attackers (4)</th></tr>
+        <tr><td style="font-weight:400">Shot Stopper<br>Sweeper Keeper</td><td>Progressor<br>Boss<br>Marauder</td><td>Disruptor<br>Recycler<br>Maestro<br>Creator</td><td>Spark<br>Magician<br>Finisher<br>Target</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h3>Rules the structure follows</h3>
+      <ul class="plain">
+        <li>Every face, build, archetype and changelog entry has its own URL, so any of them can be shared (FUT.GG's "a URL for everything").</li>
+        <li>Drafts and withdrawn content are never built, listed or linked (rule 8). A withdrawn page returns the 404.</li>
+        <li>No accounts, no server. Ticks on a face live on the phone that made them (A-07).</li>
+        <li>Every page carries the notice: "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named."</li>
+      </ul>
+      <p class="legend" style="margin-top:2mm"><span><span class="sw" style="background:var(--ink)"></span>home</span><span><span class="sw" style="border:1.2px solid var(--ink)"></span>section</span><span><span class="sw" style="border:1.2px solid var(--faint)"></span>page under it</span><span><span class="sw" style="border:1.2px dashed var(--faint)"></span>external</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Navigation and cross-links -->
+<section class="page">
+  <div class="head"><h2>Navigation and the links between pages</h2><span class="n">3</span></div>
+  <div class="cols">
+    <div class="box">
+      <h3>On every page</h3>
+      <table>
+        <tr><th>Element</th><th>Holds</th></tr>
+        <tr><td>Top bar</td><td>Logo (to Home), search (faces and builds by name; a Should item), and the five sections: Faces, Builds, Archetypes, Changelog, Submit. On a phone the sections sit behind a menu button.</td></tr>
+        <tr><td>Season chip</td><td>The current game and season, e.g. "FC 27 · Season 3". Tells you which season every tag is measured against.</td></tr>
+        <tr><td>Footer</td><td>The notice, then About, Takedown, Submit and the GitHub repo.</td></tr>
+        <tr><td>Back</td><td>Detail pages go back to their library (face to Faces, build to Builds, archetype to Archetypes).</td></tr>
+      </table>
+      <p class="faint" style="margin-top:2mm;font-size:8pt">Proposal: the season chip on every page and the five sections follow FUT.GG's one row of top links (D-19). Labels and order are for the UI designer to test.</p>
+      <h3 style="margin-top:4mm">Ways in from outside</h3>
+      <p>Expected, not measured: many visitors will land on a detail page, not on Home: a face link shared on X, TikTok or WhatsApp (each face and build gets its own share card, a Should item), or a search like "2008 Ronaldo Pro Clubs face" or "best ST build FC 27 Clubs". So every detail page must make sense on its own: title, season tag, credit and the way back to its library are all on the page, with no assumed context.</p>
+    </div>
+    <div class="box">
+      <h3>Cross-links (the paths that connect the content)</h3>
+      <table>
+        <tr><th>From</th><th>To</th><th>Why</th></tr>
+        <tr><td>Face</td><td>its paired build</td><td>An era face wants an era build (2008 Ronaldo: Spark or Magician, not Target; PRD). Shown again when the face is finished.</td></tr>
+        <tr><td>Build</td><td>its archetype</td><td>What the archetype gives (signature PlayStyles, masteries) explains the build.</td></tr>
+        <tr><td>Build</td><td>faces that pair it</td><td>"Wear this face with it": the path from builds into faces.</td></tr>
+        <tr><td>Archetype</td><td>its builds</td><td>Every build on that archetype, by position.</td></tr>
+        <tr><td>Changelog entry</td><td>the builds and faces it changed</td><td>From <code>affects</code>: what a patch moved on this site.</td></tr>
+        <tr><td>Build or face</td><td>changelog</td><td>From its history: why the version changed.</td></tr>
+        <tr><td>Face</td><td>creator's channel</td><td>The tutorial credit links out; the video plays in place, only after a tap (A-05).</td></tr>
+        <tr><td>Faces, Builds (empty)</td><td>Submit</td><td>"No faces here yet. Suggest one on Submit."</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Page inventory 1 -->
+<section class="page">
+  <div class="head"><h2>Page inventory (1 of 2)</h2><span class="n">4</span></div>
+  <table>
+    <tr><th style="width:30mm">Page</th><th style="width:62mm">Job</th><th>What it must show</th><th style="width:44mm">Links to</th><th style="width:42mm">States</th></tr>
+    <tr><td>Home<br><code>/</code></td><td>Get a player to a face in one tap; show what's new and which season it is.</td><td>Faces first (featured and newest, with era and kind), then builds by position, the latest changelog entry and the current season with the next season's date. Home shows faces before builds (acceptance test).</td><td>Every face, the libraries, the latest change, Submit.</td><td>Normal. A face or build listed here is published and checked.</td></tr>
+    <tr><td>Faces<br><code>/faces</code></td><td>Find a face.</td><td>Every published face as a card: "Inspired by" name, era, kind (footballer or musician), the front picture from Chime's capture, the season tag and credit. Filter by kind and era; search by name.</td><td>Each face; Submit.</td><td>Filter with no results: "No faces here yet. Suggest one on Submit."</td></tr>
+    <tr><td>Face<br><code>/faces/[slug]</code></td><td>Let a player judge the face, then rebuild it in game, step by step.</td><td>
+      <b>Preview:</b> the head as made in FC 27, turnable (a drag-to-turn sequence from Chime's capture), Front / ¾ / Side and an "In a match" picture (A-16, proposed).<br>
+      <b>Trust:</b> title "Inspired by …, era", version tag, credit line, limits ("The game can't do this exactly: …").<br>
+      <b>Recipe:</b> starting photo preset, then the game's own tabs in the game's order: Skin, Head, Face, Hair; then Visual Age; Sculpt as an optional deeper pass. Each step shows the value as the hero ("116", "Warm Black", a slider at 62) with a tick. Progress "n of N".<br>
+      <b>After:</b> the paired build card, the tutorial (on tap), Chime's screenshots.</td><td>Paired build; creator channel; changelog (history); Faces.</td><td>First visit; coming back ("Continue from step 9"); finished ("Now set up the build"); updated since your last visit ("This face was updated. Your ticks start fresh."); older season ("Made for Season 2. Values may have changed since.").</td></tr>
+    <tr><td>Builds<br><code>/builds</code></td><td>Find the meta build for a position or an archetype.</td><td>Build cards grouped by position (ST, W, CAM, CM, CDM, FB, CB, GK) with an archetype filter. Each card: archetype, positions, a few headline values, the season tag and credit.</td><td>Each build; Archetypes.</td><td>Filter with no results; a build from an older season is marked.</td></tr>
+    <tr><td>Build<br><code>/builds/[slug]</code></td><td>Give everything needed to set the build up in game, and say how current it is.</td><td>Archetype, positions, level, height, weight, AcceleRATE, the attribute list, PlayStyles (signature, plus, regular), specialization, skill moves, weak foot. Version tag at the top, credits, sources, history.</td><td>Its archetype; faces that pair it; changelog.</td><td>Checked ("verified &lt;date&gt;"); older season (warning); not yet checked (only in previews).</td></tr>
+  </table>
+</section>
+
+<!-- 5. Page inventory 2 -->
+<section class="page">
+  <div class="head"><h2>Page inventory (2 of 2)</h2><span class="n">5</span></div>
+  <table>
+    <tr><th style="width:30mm">Page</th><th style="width:62mm">Job</th><th>What it must show</th><th style="width:44mm">Links to</th><th style="width:42mm">States</th></tr>
+    <tr><td>Archetypes<br><code>/archetypes</code></td><td>Show all 13 archetypes so a player can pick theirs.</td><td>13 tiles in four groups: Goalkeepers, Defenders, Midfielders, Attackers. Names as text only: no EA icons (D-04).</td><td>Each archetype.</td><td>Normal.</td></tr>
+    <tr><td>Archetype<br><code>/archetypes/[slug]</code></td><td>Explain what the archetype is good at and list its builds.</td><td>Signature PlayStyles (from launch, and added in Season 2), mastery attributes, the count of attribute costs that went up and down on 22 Oct, builds on this archetype by position, and the sources. Unverified fields say so; they're never guessed.</td><td>Its builds; sources (EA, guides).</td><td>An archetype with no build yet says so and offers Submit.</td></tr>
+    <tr><td>Changelog<br><code>/changelog</code></td><td>Say what changed in the game and on this site, with EA's source.</td><td>Entries newest first: date, kind (season, title update, archetype update, site), title, the changes in our words, a link to EA's post, and "What we updated": the builds and faces it touched.</td><td>EA sources; the builds and faces each entry changed.</td><td>Normal. Seeded with launch (25 Sep), archetype re-price (22 Oct), TU 1.2.0 (10 Nov); Season 3 added in launch week.</td></tr>
+    <tr><td>Submit<br><code>/submit</code></td><td>Let anyone send a face or a build for Chime to review.</td><td>Choose face or build, fill the same fields as the format, tab by tab, with problems marked as you go. "Submit for review" opens a prefilled GitHub issue; "Copy JSON" copies it. Faces need Chime-style captures.</td><td>GitHub (new issue).</td><td>Empty; invalid fields marked inline; sent: "Opened on GitHub. Chime reviews every submission before it goes live."</td></tr>
+    <tr><td>About<br><code>/about</code></td><td>Earn trust: who makes this and how.</td><td>What the site is, how content is made and checked in game, the sourcing rules, credits and featured creators, the notice. Always free (D-04).</td><td>Takedown, GitHub, creators.</td><td>Normal.</td></tr>
+    <tr><td>Takedown<br><code>/takedown</code></td><td>Let anyone ask for removal.</td><td>How to ask, the promise to act within 72 hours (D-10), the email (O-13).</td><td>Email.</td><td>Normal.</td></tr>
+    <tr><td>404</td><td>Recover from a dead link.</td><td>A short line and a way back to Faces and Builds. Withdrawn faces and builds land here too.</td><td>Faces, Builds.</td><td>Normal.</td></tr>
+  </table>
+</section>
+
+<!-- 6. Journey 1 flow -->
+<section class="page">
+  <div class="head"><h2>Journey 1: the face seeker</h2><span class="n">6</span></div>
+  <div class="persona">
+    <div class="box"><p class="label">Who</p><p>A Clubs player who wants their Pro to look like someone: 2008 Ronaldo, 2017 Ronaldo, or a living musician. On a phone, next to the console, in a dim room.</p></div>
+    <div class="box"><p class="label">Goal</p><p>Rebuild the face in FC 27's editor without pausing and rewinding a YouTube video, then play it with a build that fits the era.</p></div>
+    <div class="box"><p class="label">Comes in from</p><p>A face link shared on X, TikTok or WhatsApp; a search like "2008 Ronaldo Pro Clubs face"; or Home.</p></div>
+    <div class="box"><p class="label">Done when</p><p>Every step is ticked, the head in the game matches the preview, and the paired build is set up.</p></div>
+  </div>
+  <div class="flow">
+    <div class="step"><span class="s">1 · Discover</span><b>Lands on Home or a face link</b><code>/</code><p>Sees faces first: name, era, kind, the front picture.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">2 · Narrow</span><b>Filters or searches</b><code>/faces</code><p>Footballers, an era, or a name. No match: "Suggest one on Submit".</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">3 · Judge</span><b>Turns the head</b><code>/faces/[slug]</code><p>Drag to turn; Front, ¾, Side, In a match. Reads the season tag, credit and limits.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">4 · Start</span><b>Taps Start, picks the preset</b><code>/faces/[slug]</code><p>Photo preset number, counted among photo presets only.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">5 · Build</span><b>Follows the tabs, ticks each step</b><code>/faces/[slug]</code><p>Skin, Head, Face, Hair, then Visual Age; Sculpt optional. The value is the biggest thing.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">6 · Finish</span><b>Last tick</b><code>/faces/[slug]</code><p>"Now set up the build": the paired build comes up.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">7 · Play</span><b>Sets up the build</b><code>/builds/[slug]</code><p>Joins journey 2 at step 5. May share the face.</p></div>
+  </div>
+  <div class="side">
+    <div class="box"><h3>Coming back</h3><p>Closes the tab mid-way, or the console needs the TV. Reopens the face: ticks are still there, "Continue from step 9". If Chime has updated the face since, the ticks start fresh and the page says so (A-07).</p></div>
+    <div class="box"><h3>Watching the tutorial</h3><p>When the face followed a creator's tutorial, the page shows its title and channel; one tap loads the video from youtube-nocookie.com. Nothing loads from YouTube before the tap (A-05).</p></div>
+    <div class="box"><h3>Not there</h3><p>The face they want doesn't exist yet: Faces' empty state points to Submit, which builds a face recipe and opens a GitHub issue for Chime to review.</p></div>
+  </div>
+</section>
+
+<!-- 7. Journey 1 detail -->
+<section class="page">
+  <div class="head"><h2>Journey 1, step by step: what the site must do</h2><span class="n">7</span></div>
+  <table>
+    <tr><th style="width:24mm">Step</th><th style="width:58mm">The player thinks</th><th>The page must give them</th><th style="width:64mm">Risk, and how the site handles it</th></tr>
+    <tr><td>1 Discover</td><td>"Is there a face I want?"</td><td>Faces first on Home, each with the front picture, "Inspired by" name, era and kind. Fast on a phone: static pages, small images.</td><td>Faces of real people: names as text only, pictures are Chime's own in-game captures, never photos or drawings (D-10).</td></tr>
+    <tr><td>2 Narrow</td><td>"Show me footballers from 2008."</td><td>Filter by kind and era; search by name.</td><td>Nothing matches: say so plainly and offer Submit.</td></tr>
+    <tr><td>3 Judge</td><td>"Does it actually look like him in the game, from the side, in a match?"</td><td>The head as made in FC 27, turnable, with set angles and an in-match picture. Then the trust line: season tag ("FC 27 · Season 3 · verified …"), credit ("Made by Chime in game · Tutorial by …"), and limits ("The game can't do this exactly: …").</td><td>A look the game can't reach: the limits line says so before they start. Old content: the older-season warning.</td></tr>
+    <tr><td>4 Start</td><td>"Which preset do I start from?"</td><td>The photo preset number, with how to count it: photo presets only, left to right, top to bottom, ignoring your own saved heads.</td><td>Saved heads shift the grid, so a screen row would be wrong for most players (RESEARCH §9).</td></tr>
+    <tr><td>5 Build</td><td>"What's the next value, quickly, between controller moves?"</td><td>The game's tabs in the game's order. One step per row: the value is the biggest thing, the part's name under it, a tick. Progress "n of N". Ticks saved on the phone.</td><td>Losing their place: the current step stands out; ticks survive a reload. Sculpt is long (dozens of sliders), so it's an optional second pass.</td></tr>
+    <tr><td>6 Finish</td><td>"Done. Now what?"</td><td>A small finish moment, then the paired build.</td><td>Stopping at the face: the build is the next step, not a link at the bottom.</td></tr>
+    <tr><td>7 Play</td><td>"Set my Pro up to play like him."</td><td>The paired build page (journey 2, step 5 onward).</td><td>The build is from an older season: its warning shows on the build page.</td></tr>
+  </table>
+</section>
+
+<!-- 8. Journey 2 flow -->
+<section class="page">
+  <div class="head"><h2>Journey 2: the meta-build seeker</h2><span class="n">8</span></div>
+  <div class="persona">
+    <div class="box"><p class="label">Who</p><p>A Clubs player who knows their position or archetype and wants the build that works this season, from a source they can trust.</p></div>
+    <div class="box"><p class="label">Goal</p><p>Set up a build in game that's current for this season, without paying (Pro Clubs HQ's extras are paid) or reading a long article.</p></div>
+    <div class="box"><p class="label">Comes in from</p><p>A search like "best ST build FC 27 Clubs"; Home's builds by position; a face's paired build; a new season or patch.</p></div>
+    <div class="box"><p class="label">Done when</p><p>The build is set up in game and they know which season and date it was checked.</p></div>
+  </div>
+  <div class="flow">
+    <div class="step"><span class="s">1 · Discover</span><b>Lands on Home or Builds</b><code>/ · /builds</code><p>Builds by position; the season chip says which season is live.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">2a · By position</span><b>Picks "ST"</b><code>/builds</code><p>Cards for that position: archetype, headline values, season tag.</p></div><div class="arrow">or</div>
+    <div class="step"><span class="s">2b · By archetype</span><b>Opens Archetypes</b><code>/archetypes</code><p>13 tiles in four groups; picks theirs.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">3 · Understand</span><b>Reads the archetype</b><code>/archetypes/[slug]</code><p>Signature PlayStyles, masteries, cost changes, its builds.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">4 · Trust</span><b>Opens a build, checks the tag</b><code>/builds/[slug]</code><p>"FC 27 · Season 3 · verified …", credit, sources.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">5 · Set up</span><b>Copies it into the game</b><code>/builds/[slug]</code><p>Height, weight, attributes, PlayStyles, specialization, values first.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">6 · Extra</span><b>Wears a face with it</b><code>/faces/[slug]</code><p>"Faces that pair this build" leads into journey 1.</p></div>
+  </div>
+  <div class="side">
+    <div class="box"><h3>Next season</h3><p>A patch or new season lands. The changelog entry says what EA changed (linked to EA's post) and which builds were re-checked. A build not yet re-checked shows "Made for Season 2. Values may have changed since." (D-05).</p></div>
+    <div class="box"><h3>Not a planner</h3><p>The site gives finished builds, not a tool to spend points. A build planner waits until Chime has checked the cost tables in game (D-07). Players who want to plan go to Pro Clubs HQ or PRO11; we don't compete there (D-03).</p></div>
+    <div class="box"><h3>Their build isn't here</h3><p>At launch there's one build per archetype (13); builds for every position come after (a Should item). An archetype or position with no build offers Submit.</p></div>
+  </div>
+</section>
+
+<!-- 9. Journey 2 detail -->
+<section class="page">
+  <div class="head"><h2>Journey 2, step by step: what the site must do</h2><span class="n">9</span></div>
+  <table>
+    <tr><th style="width:24mm">Step</th><th style="width:58mm">The player thinks</th><th>The page must give them</th><th style="width:64mm">Risk, and how the site handles it</th></tr>
+    <tr><td>1 Discover</td><td>"What's the best build for my position right now?"</td><td>Builds by position on Home and in Builds, with the current season on screen.</td><td>Stale builds elsewhere carry no date: ours always say which season and when they were checked (L-03).</td></tr>
+    <tr><td>2a By position</td><td>"I play ST."</td><td>Position filter; cards with archetype, a few headline values and the tag.</td><td>Too many choices: one checked build per archetype at launch, labelled by position.</td></tr>
+    <tr><td>2b By archetype</td><td>"I'm a Finisher."</td><td>Archetypes in EA's four groups; names as text.</td><td>EA's icons or card art: never used (D-04).</td></tr>
+    <tr><td>3 Understand</td><td>"Why this archetype? What does it unlock?"</td><td>Signature PlayStyles (from launch, and those added in Season 2), mastery attributes, how many attribute costs went up and down on 22 Oct, its builds, sources.</td><td>Guessed facts: unverified fields say so, never guessed (FORMAT).</td></tr>
+    <tr><td>4 Trust</td><td>"Is this current? Who made it?"</td><td>The version tag at the top in words, the credit line, sources, history (version and date of each change).</td><td>An older season: the warning. Not checked: "Not yet checked in game" in words (only in previews; drafts aren't published).</td></tr>
+    <tr><td>5 Set up</td><td>"Give me the numbers, clearly."</td><td>Level, height, weight, AcceleRATE, then attributes, PlayStyles (signature, plus, regular), specialization, skill moves, weak foot, values first and large.</td><td>Misreading at arm's length: values are the hero, labels secondary (DESIGN.md).</td></tr>
+    <tr><td>6 Extra</td><td>"Can I look the part too?"</td><td>Faces that pair this build.</td><td>None yet: no section, or Submit.</td></tr>
+  </table>
+</section>
+
+<!-- 10. Scope and open questions -->
+<section class="page">
+  <div class="head"><h2>What isn't in the site, and open questions</h2><span class="n">10</span></div>
+  <div class="cols">
+    <div class="box">
+      <h3>Not at launch (SPEC non-goals, PRD "Cut")</h3>
+      <ul class="plain">
+        <li>A build planner (D-07).</li>
+        <li>Accounts, ratings, a request board, comments (D-09, later).</li>
+        <li>Stats, leaderboards or EA match data.</li>
+        <li>Photo-to-slider AI; any image of a real person; any EA art or icons.</li>
+        <li>Ads, paywalls, affiliate links (always free, D-04).</li>
+        <li>Deceased subjects (no Michael Jackson at launch, D-10).</li>
+        <li>Other game modes; a native app.</li>
+      </ul>
+      <h3 style="margin-top:4mm">Should items (cut first if time runs out)</h3>
+      <ul class="plain">
+        <li>Search across faces and builds.</li>
+        <li>Share card per face and build.</li>
+        <li>Builds for every position (launch has one per archetype).</li>
+        <li>Tutorial embeds; a featured creator spot; a form fallback for Submit without GitHub (O-11).</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Open questions for Chime</h3>
+      <table>
+        <tr><th>#</th><th>Question</th></tr>
+        <tr><td>O-01</td><td>The name. "Pro Clubs Hub" is a working title.</td></tr>
+        <tr><td>O-05</td><td>The first 5 faces. Proposed: 2008 Ronaldo, 2017 Ronaldo, one more footballer era, Kanye West, one more living musician.</td></tr>
+        <tr><td>A-16</td><td>The face preview from one capture per face (a turning clip plus an in-match screenshot). Proposed; waiting on Chime's test clip.</td></tr>
+        <tr><td>Nav</td><td>The five top-bar sections and their order (page 3) are a proposal for the UI designer to test.</td></tr>
+        <tr><td>Builds</td><td>Builds by position needs each archetype's typical positions; <code>fc27.json</code> has none yet.</td></tr>
+        <tr><td>O-13</td><td>The takedown email address.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

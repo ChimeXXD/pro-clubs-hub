@@ -2,6 +2,28 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 1, design lane: mockups, sitemap, private repo (Fri 20 Nov 2026, afternoon)
+
+**Changed**
+- Mockup v1 in `mockup/` (FUT.GG-style home at 393 and 1440, face page in 9 states, a wireframe stand-in head with drag to turn). Rejected: "this is bad, we need mobbin references of how a 3d screen should look like".
+- Mobbin references for 3D screens (Meta Quest, Instagram, WhatsApp, Facebook and Snapchat avatar editors; Replika; Amazon, Zalando, Apple Store and GOAT 3D viewers). Chime picked the avatar-editor layout; mockup v2 rebuilt the face page that way with a grey mannequin stand-in. Rejected with the rest: "the designs … are all trash".
+- Sitemap and two user journeys as a 10-page PDF: `docs/design/sitemap/sitemap-and-journeys.pdf` (source HTML beside it). Structure only, for a UI designer (D-21).
+- Repo made private at Chime's request (D-20, supersedes D-12). CLAUDE.md updated. Chime invited a collaborator.
+- UI-BRIEF §6: test-ID suffix convention (`face-card-1`, `version-tag-face-1`).
+
+**Checked**
+- Mockups: the proof design check passed (10 phone screens, 1 desktop); a fresh-context review and `/code-review --fix` (9 of 10 fixed) on v1. v2 wasn't reviewed (rejected first).
+- PDF: 10 pages, rendered and looked at page by page; every route from SPEC is on the sitemap; facts taken from SPEC, PRD, FORMAT, DECISIONS and the content files. A fresh-context check of it ran before the commit.
+- Repo visibility: `gh repo view` reports PRIVATE.
+
+**Not verified**
+- Cloudflare Pages deploys from the private repo (next push shows it).
+- The test clip for the face preview (A-16): still not in `reference/`.
+
+**Next**
+- Chime and the collaborator review the PDF; the collaborator designs the UI from it.
+- Core lane, test-first: `load.ts`, `version.ts`, `toIssueUrl.ts`.
+
 ## Phase 1, design lane (Fri 20 Nov 2026)
 
 **Changed**
