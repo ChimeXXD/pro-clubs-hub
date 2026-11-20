@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "name": "types",
+      "run": "npm run --silent typecheck",
+      "when": ["src/", "tests/", "scripts/", "tsconfig.json", "*.ts"]
+    },
+    {
+      "name": "lint",
+      "run": "npm run --silent lint",
+      "fast": "npx --no-install eslint --cache --cache-location node_modules/.cache/eslint/ {files} && node scripts/check-tokens.mjs",
+      "files": ["src/**/*.{ts,tsx}", "tests/**/*.ts", "scripts/**/*.mjs", "*.ts", "*.mjs"],
+      "fullWhen": ["eslint.config.mjs", "package.json"],
+      "when": ["src/", "tests/", "scripts/", "eslint.config.mjs", "*.ts", "*.mjs", "package.json"]
+    },
+    {
+      "name": "unit",
+      "run": "npx --no-install vitest run",
+      "when": ["src/", "tests/unit/", "scripts/", "content/", "vitest.config.ts", "package.json"]
+    },
+    {
+      "name": "content",
+      "run": "npm run --silent validate:content",
+      "when": ["content/", "scripts/validate-content.mjs"]
+    },
+    {
+      "name": "build-budget-e2e",
+      "run": "npm run --silent build && npm run --silent budget && E2E_PREBUILT=1 npx --no-install playwright test",
+      "when": ["src/", "content/", "scripts/", "tests/e2e/", "next.config.ts", "playwright.config.ts", "postcss.config.mjs", "package.json"],
+      "timeout": 900
+    }
+  ],
+  "maxRounds": 5
+}

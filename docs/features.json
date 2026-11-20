@@ -6,12 +6,12 @@
       "priority": "must",
       "title": "In-game checks recorded",
       "criteria": [
-        "RESEARCH.md \u00a79 answers value display, ranges, preset grid, hairstyles, street vs matchday face, level cap, AP at cap, platform",
+        "RESEARCH.md §9 answers value display, ranges, preset grid, hairstyles, street vs matchday face, level cap, AP at cap, platform",
         "O-02, O-03, O-09, O-10 closed or still open with a reason"
       ],
-      "verify": "read docs/RESEARCH.md \u00a79",
-      "passes": false,
-      "evidence": null
+      "verify": "read docs/RESEARCH.md §9",
+      "passes": true,
+      "evidence": "docs/RESEARCH.md §9 filled 19–20 Nov 2026 from Chime's PS5 screenshots, JaxStash's FC 27 face playlist (full storyboard of lmlnVZWi8YQ), FC Tools Hub and level-cap sources. Closed: O-02 (A-10), O-03 (A-12), O-09 (D-17), O-10 (A-11)."
     },
     {
       "id": "P0-2",
@@ -23,8 +23,8 @@
         "a decision logs the change"
       ],
       "verify": "read docs/FORMAT.md and docs/DECISIONS.md",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "docs/FORMAT.md value kinds item/named/slider/position, face parts/sculpt/visualAge and preset counting rewritten from the editor's real structure; logged as A-09 and A-12 (20 Nov 2026). Example face reshaped; validate-content passes."
     },
     {
       "id": "P0-3",

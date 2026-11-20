@@ -2,6 +2,34 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 0: Day 0 findings, repo and scaffold (Thu 19 – Fri 20 Nov 2026)
+
+**Changed**
+- Day 0 findings in `docs/RESEARCH.md` §9, from Chime's PS5 screenshots, JaxStash's FC 27 face playlist (every storyboard frame of lmlnVZWi8YQ, frames of 11 more), FC Tools Hub and level-cap sources. Face format reshaped to the real editor (A-09, A-12); level cap 55 / 1,419 AP (A-10); one head for both looks (A-11); PS5 (D-17). JaxStash added to `creators.json` (not asked).
+- Season dates checked on EA's Launch Rewards page: Season 3 from Thu 3 Dec, Season 4 from Thu 14 Jan 2027. The plan still assumes "December"; replanning waits for Chime.
+- Pronouns: 13 he/his references in CLAUDE.md, PRD, DECISIONS (D-08, D-10 wording only), HANDOFF, FORMAT and `content/README.md` corrected to they/them. CLAUDE.md rule 7 updated to the new value kinds.
+- `git init` on `main`; docs committed.
+- Scaffold with D-11's exact versions, configs and scripts adapted from Sinima: `next.config.ts` (static export), Playwright at 390×844 and 360×800 serving `out/` on port 4174, Vitest, ESLint 9 plus `check-tokens`, `.nvmrc` 22, `engines` >= 22.18. App shell: `src/app/layout.tsx` with the notice on every page (`site-notice`), placeholder home, empty `tokens.css` (Phase 1 fills it from Figma).
+- `scripts/validate-content.mjs` (Phase 0 checks: JSON parses, known status, no `PLACEHOLDER` or `_example` in a published file; Phase 1's `validate.ts` replaces it), run by `prebuild` and CI.
+- Budget measured and set (A-13): empty app 131.6 KB JS, 135.7 KB total gzipped per page; limits 165 / 220.
+- Host decided on evidence (A-14): Cloudflare Pages; Vercel Hobby's terms are "personal or non-commercial use" only.
+- `.claude/proof.json`: the commit gate (types, lint, unit, content, build + budget + e2e). Chime approved it.
+
+**Checked**
+- Red: `tests/unit/validate-content.test.ts` failed first with "Failed to load ../../scripts/validate-content.mjs" (script not written yet). Green after: 5 tests pass.
+- Gate run on the final code: types, lint, unit, content, build-budget-e2e all pass. E2E `home.spec.ts` passes at phone-390 and phone-360.
+- `/code-review --fix` (medium) on the scaffold: 8 findings, 6 fixed. The content check now rejects an unknown status (a typo like "Published" had skipped every check), with a new test. `serve-out` serves `/x/` as `x.html` like a static host (checked `/`, `/index/`, a missing page and `../` / `%2e%2e` paths) and knows webp, jpg, avif and woff. `check-tokens` no longer reads `href="#add"` as a colour, and its palette comment is corrected (the palette is switched off in Phase 1, not yet). Both scripts share Node's recursive `readdirSync`. ESLint ignores `coverage/` and `blob-report/`. Skipped: e2e in WebKit (iPhone Safari). It needs a second browser on a memory-tight Mac, and Chime's real-iPhone check (rule 10) covers it for now.
+
+**Not verified**
+- CI on GitHub and the Cloudflare deploy (next).
+- `npm` warns ESLint 9.39.5 is out of support; D-11 pins ESLint 9, so moving to 10 needs Chime's OK.
+- Sculpt's Weight and Definition modes, and whether Skin Tone's arrows step: noted on Chime's first face recording.
+
+**Next**
+- Commit the scaffold, create the public repo `ChimeXXD/pro-clubs-hub`, push, watch CI.
+- Cloudflare Pages: Chime connects the repo once in the dashboard.
+- Figma file (cover, Design System, Design screens).
+
 ## Pivot: Facecard becomes Pro Clubs Hub (Thu 19 Nov 2026)
 
 **Changed**

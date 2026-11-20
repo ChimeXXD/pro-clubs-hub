@@ -39,8 +39,8 @@ If Season 3 lands before 19 Dec, launch Sat 19 or Mon 21 Dec (O-04). If it lands
 
 ## Phase 0: setup and in-game checks (19–22 Nov)
 
-- [ ] Chime's in-game checks recorded in `docs/RESEARCH.md` §9: value display, ranges, preset count, hairstyles, street vs matchday face, level cap, AP at cap, platform
-- [ ] `docs/FORMAT.md` control ids and value kinds updated from the checks; a decision logged
+- [x] Chime's in-game checks recorded in `docs/RESEARCH.md` §9: value display, ranges, preset count, hairstyles, street vs matchday face, level cap, AP at cap, platform
+- [x] `docs/FORMAT.md` control ids and value kinds updated from the checks; a decision logged
 - [ ] Public repo `ChimeXXD/pro-clubs-hub` (D-12), first commit of these docs
 - [ ] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
 - [ ] CI green on push to main
