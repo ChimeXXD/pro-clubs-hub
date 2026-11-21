@@ -31,6 +31,9 @@
     .map((id) => PHONE.find((p) => p[0] === id));
 
   const mode = window.FRAME_MODE || "phone";
+  // ?theme=pitch renders every frame in that colour (used for the Figma pages)
+  const theme = new URLSearchParams(location.search).get("theme");
+  if (theme && D.THEMES.some((x) => x.id === theme)) document.documentElement.dataset.theme = theme;
   const wrap = document.getElementById("frames");
   const frame = (id, html, w, label, theme) => `<figure class="frame-wrap"${theme ? ` data-theme="${theme}"` : ""}>
     <figcaption>${label}</figcaption>

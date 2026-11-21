@@ -11,9 +11,9 @@ button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
 
-.app { container: app / inline-size; background: var(--bg); color: var(--text); min-height: 100%; overflow-x: clip; }
+.app { container: app / inline-size; background: var(--bg); color: var(--text); font: 400 16px/1.45 var(--font); min-height: 100%; overflow-x: clip; }
 .page { display: flex; flex-direction: column; min-height: 100dvh; }
-.main { flex: 1; width: 100%; max-width: 1320px; margin: 0 auto; padding: var(--s4) 20px var(--s7); display: grid; gap: var(--s6); align-content: start; }
+.main { flex: 1; width: 100%; max-width: 1320px; margin: 0 auto; padding: var(--s4) 20px var(--s7); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); align-content: start; }
 @container app (max-width: 899.98px) { .wide-only { display: none !important; } }
 
 .display { font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: .005em; }

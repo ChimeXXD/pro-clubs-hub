@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## The draft in Figma, and Pro Clubs assets (Sat 21 Nov 2026, later)
+
+**Changed**
+- New Figma file "Pro Clubs Hub" in Chime's GenAI-Labs drafts (D-32): https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD. Pages Volt, Pitch, Old Gold, Floodlight, Derby each hold the phone sheet (21 screens and states, 393) and the desktop sheet (11 screens, 1440), captured from `mockup/draft/` as editable layers (text, frames, vectors; no flattened images). Page 6, "Assets (reference)": all 36 FC 27 PlayStyles (badge, PlayStyle+ badge, glyph), the 13 archetype emblems plus Engine (FC 26) as vectors, and 21 The Grounds and Clubs screenshots. Files and sources in `reference/assets/` (git-ignored) and its `manifest.json`.
+- O-15 opened: may the product ever ship EA's badges? Today they're reference only (CLAUDE.md rule 2, D-04).
+- Two draft bugs found while capturing, both fixed: frame sheets rendered body text in the system font (`.app` now sets Barlow), and Home's content was 578 px wide inside a 393 px phone frame, hidden by the clip (`.main` grid column is now `minmax(0, 1fr)`). `frames.html?theme=<id>` renders a sheet in one colour.
+
+**Checked**
+- Read back from Figma: Barlow 867 and Barlow Condensed 236 text layers on a phone sheet; no section wider than its 393 frame; every colour page holds exactly two sheets; 129 image slots filled, 14 emblems placed.
+- Draft: design check PASS (21 phone, 11 desktop), 56 click-through checks PASS, no hidden overflow in any frame, lint clean.
+
+**Not verified**
+- The Amps screenshot (shows a real footballer's face) was kept out of Figma; it stays only in `reference/assets/other/`.
+- Archetype emblems are Pro Clubs HQ's vector tracings of EA's emblems, not EA's own files.
+
 ## UI8 references, and the first draft in five colours (Sat 21 Nov 2026)
 
 **Changed**
