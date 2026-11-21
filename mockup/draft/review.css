@@ -1,0 +1,16 @@
+/* Review chrome around the product: the colour switcher and the frame sheets. Not part of the design. */
+.tools { position: relative; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; background: #000; border-bottom: 1px solid #333; color: #ddd; font: 600 14px/1 system-ui, sans-serif; }
+.tools-label { margin-right: 4px; color: #aaa; }
+.tools button { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid #333; background: #111; color: #ddd; font: inherit; cursor: pointer; }
+.tools button[aria-pressed="true"] { border-color: #fff; color: #fff; background: #222; }
+.tools i { width: 14px; height: 14px; border-radius: 50%; }
+.tools a { margin-left: auto; color: #aaa; padding: 0 8px; }
+.sheet-page { margin: 0; background: #1b1b1d; color: #ccc; font: 14px/1.4 system-ui, sans-serif; }
+.sheet-page > h1 { font: 700 18px/1 system-ui; margin: 20px 24px 0; color: #eee; }
+#frames { display: flex; flex-wrap: wrap; gap: 32px; padding: 24px; align-items: flex-start; }
+.frame-wrap { margin: 0; display: grid; gap: 8px; }
+.frame-wrap figcaption { font: 600 13px/1 ui-monospace, monospace; color: #aaa; }
+.frame { flex-shrink: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 0 0 1px #333; }
+.compare-row { display: grid; gap: 12px; width: 100%; }
+.compare-row > h2 { margin: 0; font: 700 16px/1 system-ui; color: #eee; text-transform: capitalize; }
+.compare-row .row { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 8px; }

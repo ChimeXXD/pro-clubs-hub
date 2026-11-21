@@ -1,0 +1,2316 @@
+{
+ "interactions": [
+  {
+   "element": "angle-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "angle-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "angle-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "angle-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "angle-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "arch-back",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "arch-build-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "arch-filter",
+   "trigger": "change",
+   "states": [
+    "default",
+    "open",
+    "focus"
+   ],
+   "effect": "filter build cards by archetype; a sheet on the phone, a menu 8 px under it on a computer",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "arch-tab-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "arch-tab-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "arch-tab-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "arch-tab-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-10",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-11",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-12",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-13",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-6",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-7",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-8",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "bc-link-9",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "phone: navigate:/builds/<slug>; computer, on /builds: show the build in the side panel (Open the build opens it)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "build-back",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "cost-source",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "creator-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "creator-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "creator-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "embed-facade",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "replace the facade with the youtube-nocookie.com player; nothing loads before the tap",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-accelerate",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-era",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-height",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-kind",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-name",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-platform",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "f-weight",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled",
+    "error"
+   ],
+   "effect": "validate on leaving the field; the problem shows under it in words",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "face-back",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "face-done-build",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "face-start",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "scroll to the first step not done; reads 'Continue from step n' once started",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "jump, no smooth scroll"
+  },
+  {
+   "element": "face-tab-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-6",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "face-tab-7",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that editor tab's steps; the highlight moves to the tab",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "faces-empty-submit",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/submit",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "fc-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "fc-link-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "fc-link-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "fc-link-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "fc-link-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "filter-chip-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-6",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-7",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-8",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "filter-chip-9",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the chip; the grid filters at once, the empty state shows when nothing matches",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "footer-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/about | /submit | /takedown | /changelog, in that order",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "footer-link-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/about | /submit | /takedown | /changelog, in that order",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "footer-link-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/about | /submit | /takedown | /changelog, in that order",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "footer-link-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/about | /submit | /takedown | /changelog, in that order",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "form-tab-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-6",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "form-tab-7",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that section of the form; a tab with problems says how many",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "group-tab-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that group's archetypes in the row below",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "group-tab-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that group's archetypes in the row below",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "group-tab-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that group's archetypes in the row below",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "group-tab-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that group's archetypes in the row below",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-builds-all",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "home-changelog-all",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/changelog",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "home-faces-all",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "home-pos-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-5",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-6",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-7",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-8",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-pos-9",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the position; the four builds under it change",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-tab-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the tab; Footballers and Musicians filter the face grid; Trending and New show every face until there is data behind them",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-tab-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the tab; Footballers and Musicians filter the face grid; Trending and New show every face until there is data behind them",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-tab-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the tab; Footballers and Musicians filter the face grid; Trending and New show every face until there is data behind them",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "home-tab-4",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "select the tab; Footballers and Musicians filter the face grid; Trending and New show every face until there is data behind them",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "log-source-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "log-source-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "log-source-3",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nav-archetypes",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nav-builds",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nav-changelog",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/changelog",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nav-faces",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nav-submit",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/submit",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nf-builds",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "nf-faces",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "paired-card-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-boss",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-creator",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-disruptor",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-finisher",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-maestro",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-magician",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-marauder",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-progressor",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-recycler",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-shot-stopper",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-spark",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-sweeper-keeper",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "pitch-target",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "preview-card-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "preview-open",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "search-input",
+   "trigger": "type",
+   "states": [
+    "default",
+    "focus",
+    "filled"
+   ],
+   "effect": "search faces and builds by name (results list: next draft)",
+   "duration_ms": 0,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "sent-back",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "sig-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "pick a signature PlayStyle; the panel says when it came, who else has it and the source",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "sig-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "pick a signature PlayStyle; the panel says when it came, who else has it and the source",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "sig-source",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the source or creator page (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "stage-next",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "stage-prev",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show that angle of Chime's capture; the counter reads 0n / 05",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "step-tick-1",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "step-tick-21",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "step-tick-6",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "step-tick-7",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "step-tick-8",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "step-tick-9",
+   "trigger": "tap",
+   "states": [
+    "todo",
+    "current",
+    "done",
+    "pressed",
+    "focus"
+   ],
+   "effect": "tick the step (and every step before it); the row dims, the progress bar grows; saved on this device",
+   "duration_ms": 220,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no width animation"
+  },
+  {
+   "element": "submit-card-link-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces/<slug>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "submit-copy",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "copied"
+   ],
+   "effect": "copy the JSON; the label reads 'Copied' for 1.6 s",
+   "duration_ms": 1600,
+   "easing": "none",
+   "delay_ms": 0,
+   "reduced_motion": "same"
+  },
+  {
+   "element": "submit-issue",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "validate every field; if clean, open a prefilled GitHub issue and show the sent state, else mark problems inline",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "submit-kind-1",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "switch the form between a face and a build",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "submit-kind-2",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "switch the form between a face and a build",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "tab-archetypes",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tab-builds",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/builds",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tab-changelog",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/changelog",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tab-faces",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/faces",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tab-home",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "takedown-github",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "open the takedown issue form on GitHub (new tab)",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-boss",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-creator",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-disruptor",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-finisher",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-maestro",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-magician",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-marauder",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-progressor",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-recycler",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-shot-stopper",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-spark",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-sweeper-keeper",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "tile-link-target",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/archetypes/<id>",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  },
+  {
+   "element": "view-grid",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show the builds as a grid or as a list",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "view-list",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "effect": "show the builds as a grid or as a list",
+   "duration_ms": 150,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no fade"
+  },
+  {
+   "element": "wordmark",
+   "trigger": "tap",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "effect": "navigate:/",
+   "duration_ms": 300,
+   "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "delay_ms": 0,
+   "reduced_motion": "no slide; the new page appears at once"
+  }
+ ]
+}

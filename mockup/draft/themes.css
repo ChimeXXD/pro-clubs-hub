@@ -1,0 +1,73 @@
+/* Five colour options for the first draft (D-31). One switcher sets data-theme on <html>.
+   Each palette comes from swatches measured off one reference on the UI8 board (named on each
+   block). "Measured" marks a value taken straight from the swatch; anything else is listed as made
+   here, with the reason. Every text pair passes WCAG AA (checked with a script). */
+
+:root, [data-theme="volt"] {
+  /* Ravex (u8a-colour-ravex-lime). Measured: bg, surface, raised, text, accent.
+     Made here: line, muted grey, accent-2 (gradient end) and accent-text. */
+  --bg: #0a0a0b; --surface: #141319; --raised: #252529; --line: #302f36;
+  --text: #f6f6f3; --muted: #a9a8a2;
+  --accent: #c7fe2d; --accent-2: #8fd61a; --accent-ink: #0a0a0b; --accent-text: #c7fe2d;
+  --warning: #ffb547; --danger: #ff7a6b;
+}
+
+[data-theme="pitch"] {
+  /* NextPlay Sports (u8b-colour-nextplay-pitch). Measured: bg, surface, text, accent.
+     Made here: raised, line, muted, accent-2 (darkest end that keeps AA), lighter accent-text. */
+  --bg: #0c100a; --surface: #141b12; --raised: #1c2619; --line: #2a3826;
+  --text: #fcfdfe; --muted: #a3b39e;
+  --accent: #02c55d; --accent-2: #019446; --accent-ink: #03140a; --accent-text: #2fdc7a;
+  --warning: #ffb547; --danger: #ff7a6b;
+}
+
+[data-theme="gold"] {
+  /* Valdûm (u8a-colour-valdum-gold). Measured: bg, surface, accent; line is its #2c2622 border.
+     Made here: raised; text lifted from #d5cab7 and muted from #796a54 (failed AA on surface). */
+  --bg: #0c0906; --surface: #15110d; --raised: #201a14; --line: #322a22;
+  --text: #efe6d4; --muted: #ab9b80;
+  --accent: #c39327; --accent-2: #a07920; --accent-ink: #120b01; --accent-text: #d9a93c;
+  --warning: #ff9f5a; --danger: #ff7a6b;
+}
+
+[data-theme="floodlight"] {
+  /* World Cup 2026 (u8b-colour-worldcup-graphite). Measured: bg, raised (its #2e2e2d glass),
+     text, accent. Made here: surface (between the two), line, muted lifted from #767674 for AA. */
+  --bg: #040403; --surface: #181817; --raised: #2e2e2d; --line: #3a3a39;
+  --text: #fefefe; --muted: #a6a6a3;
+  --accent: #418eea; --accent-2: #3b81d5; --accent-ink: #03101f; --accent-text: #6aa8f2;
+  --warning: #ffb547; --danger: #ff7a6b;
+}
+
+[data-theme="derby"] {
+  /* Olive (u8a-colour-olive-crimson). Measured: bg, surface, text, accent. Made here: raised, line,
+     muted, accent-text (lighter, for AA as text). Errors use orange so they never read as the accent. */
+  --bg: #1a1a1a; --surface: #232323; --raised: #2d2d2d; --line: #3a3a3a;
+  --text: #fdfdfe; --muted: #b3b0b8;
+  --accent: #ea2360; --accent-2: #ea2360; --accent-ink: #19020a; --accent-text: #ff5a8a;
+  --warning: #ffb547; --danger: #ff9a52;
+}
+
+:root, [data-theme] {
+  /* Shared: derived colours (recomputed on every themed element, so a page can show several themes), type, spacing, radius, motion */
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --hover-fill: color-mix(in srgb, var(--text) 2%, var(--surface));
+  --hover-fill-raised: color-mix(in srgb, var(--text) 2%, var(--raised));
+  --hover-fill-page: color-mix(in srgb, var(--text) 1%, var(--bg));
+  --focus: var(--accent);
+  --hero: linear-gradient(155deg, color-mix(in srgb, var(--accent) 82%, #fff) 0%, var(--accent) 45%, var(--accent-2) 100%);
+
+  --font: "Barlow", system-ui, sans-serif;
+  --display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px;
+  --r-sm: 8px; --r: 14px; --r-lg: 22px; --r-pill: 999px;
+
+  --dur-fast: 150ms; --dur-base: 220ms; --dur-page: 300ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-page: 0ms; }
+}
