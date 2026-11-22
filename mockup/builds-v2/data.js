@@ -1,6 +1,7 @@
 // Builds · new style (D-33, D-39). Archetype facts are copied from content/archetypes/fc27.json
 // (sourced there); every build number below is a layout sample, labelled as such on screen.
-// Icons load from reference/assets/ (git-ignored, never committed: EA art and Pro Clubs HQ tracings).
+// Icons and stand-in faces load from reference/assets/ (git-ignored, never committed: EA art, Pro Clubs HQ
+// tracings, and crops of EA's Clubs screenshots standing in for Chime's and Sharon's in-game faces, D-41).
 window.BV2 = (() => {
   const ASSETS = "../../reference/assets/";
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -39,6 +40,7 @@ window.BV2 = (() => {
     emblem: (id) => `${ASSETS}archetypes/${id}.svg`,
     ps: (name) => `${ASSETS}playstyles/${slug(name)}.png`,
     psPlus: (name) => `${ASSETS}playstyles-plus/${slug(name)}.png`,
+    face: (file) => `${ASSETS}faces-standin/${file}`,
   };
 
   // Sample build. Names are real FC 27 attribute and PlayStyle names; the numbers are not a real build.
@@ -48,7 +50,8 @@ window.BV2 = (() => {
     positions: ["ST", "CF"],
     level: 55, height: "6'1\" · 185 cm", weight: "176 lb · 80 kg", accelerate: "Controlled Explosive",
     skillMoves: 4, weakFoot: 4,
-    face: { PAC: 88, SHO: 91, PAS: 72, DRI: 85, DEF: 38, PHY: 79 },
+    stats: { PAC: 88, SHO: 91, PAS: 72, DRI: 85, DEF: 38, PHY: 79 },
+    face: "face-a.jpg", heroFace: "hero-a.jpg",
     groups: [
       ["Pace", [["Acceleration", 87], ["Sprint Speed", 89]]],
       ["Shooting", [["Att. Position", 92], ["Finishing", 94], ["Shot Power", 88], ["Long Shots", 84], ["Volleys", 86], ["Penalties", 80]]],
@@ -63,10 +66,14 @@ window.BV2 = (() => {
 
   const builds = [
     { ...build, badges: ["meta"] },
-    { id: "target-style-finisher", name: "Tall Finisher", positions: ["ST"], level: 55, height: "6'4\" · 193 cm",
-      face: { PAC: 80, SHO: 90, PAS: 66, DRI: 78, DEF: 42, PHY: 88 }, psPlus: ["Low Driven Shot", "Power Shot"], badges: ["copied"] },
-    { id: "quick-finisher", name: "Quick Finisher", positions: ["ST", "CF"], level: 55, height: "5'8\" · 173 cm",
-      face: { PAC: 94, SHO: 88, PAS: 74, DRI: 89, DEF: 34, PHY: 66 }, psPlus: ["First Touch", "Rapid"], badges: [] },
+    { id: "target-style-finisher", name: "Tall Finisher", positions: ["ST"], level: 55, height: "6'4\" · 193 cm", face: "face-c.jpg",
+      stats: { PAC: 80, SHO: 90, PAS: 66, DRI: 78, DEF: 42, PHY: 88 }, psPlus: ["Low Driven Shot", "Power Shot"], badges: ["copied"] },
+    { id: "quick-finisher", name: "Quick Finisher", positions: ["ST", "CF"], level: 55, height: "5'8\" · 173 cm", face: "face-b.jpg",
+      stats: { PAC: 94, SHO: 88, PAS: 74, DRI: 89, DEF: 34, PHY: 66 }, psPlus: ["First Touch", "Rapid"], badges: [] },
+    // Named after a player: a dimmed stand-in tagged as the slot for Chime's in-game recreation (D-41, D-10).
+    { id: "2008-ronaldo-inspired", name: "2008 Ronaldo-inspired", inspiredBy: "2008 Ronaldo", positions: ["ST", "LW"], level: 55,
+      height: "6'1\" · 185 cm", face: "face-slot.jpg", slot: true,
+      stats: { PAC: 92, SHO: 88, PAS: 70, DRI: 90, DEF: 36, PHY: 74 }, psPlus: ["Trickster", "Power Shot"], badges: [] },
   ];
 
   const notice = "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named.";

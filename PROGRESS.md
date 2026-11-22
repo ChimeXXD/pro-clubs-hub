@@ -2,6 +2,22 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces on every build (Sun 22 Nov 2026, late afternoon)
+
+**Changed**
+- Chime loved the new Builds style but found it flat without pictures; D-41: every build shows a face. In `mockup/builds-v2/`: each Finisher card has a portrait beside its stats (Meta, Tall and Quick Finisher each a different face), a fourth card "2008 Ronaldo-inspired (sample)" with "Inspired by" wording and a dimmed slot tagged "Stand-in · in-game recreation goes here", and the sample build's hero has a large face on a cut-corner panel that overlaps the card panel, after FUT.GG's detail page. The picker keeps emblems only: three stand-in faces can't cover 13 tiles without repeating, and the 393 tiles are already full.
+- Stand-in faces are crops of the three avatars in EA's Clubs Grounds screenshot (no other screenshot had a usable face), written to git-ignored `reference/assets/faces-standin/` and loaded like the icons. Each is tagged "Stand-in face"; the footer says what they are and that Chime's and Sharon's in-game faces replace them. Crops stop above club, sponsor and kit logos.
+- Figma page "Builds · new style (Old Gold)" (59:2) recaptured: phone sheet 74:2, desktop sheet 75:2.
+
+**Checked**
+- 393 and 1440: no overflow, every face, emblem and icon loads, no page errors; tag text on its dark pill stays above 9:1 even over a white patch of photo.
+- `index.html` clicked through live in a browser: picker (13 tiles) → Spark (its own page, 0 builds) → back → Finisher (4 builds, 4 tagged faces) → Meta Finisher; an unknown slug falls back to the picker; no errors or warnings.
+- Code review (medium, fix): 8 findings, 3 fixed by the review (per-card test IDs, escaped "inspired by" name, a dead rule), 3 more by hand (the slot comment now says what it shows, no shadow on the cut-corner face, the stat grid is `statgrid` not `face`).
+- Figma read-back: screen heights equal the browser, no overflow, 4 faces on the Finisher screen and 1 on the build screen, every stand-in tag present as text.
+
+**Not verified**
+- On Chime's iPhone. Whether a generic avatar beside a real player's name reads as that player (see the Ronaldo card); the "Ronaldo-inspired" card still opens the Meta Finisher sample page.
+
 ## Builds in a new style, with the game's icons (Sun 22 Nov 2026, afternoon)
 
 **Changed**

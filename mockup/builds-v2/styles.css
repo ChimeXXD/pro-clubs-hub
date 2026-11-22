@@ -13,9 +13,9 @@ img { display: block; }
 
 /* Shapes and type */
 .cut { --cut: 14px; position: relative; }
-.notch { position: absolute; width: var(--cut); height: var(--cut); fill: var(--bg); pointer-events: none; }
-.notch.tr { top: 0; right: 0; }
-.notch.bl { bottom: 0; left: 0; }
+.notch { position: absolute; width: var(--cut); height: var(--cut); pointer-events: none; }
+.notch.tr { top: 0; right: 0; fill: var(--notch-tr, var(--bg)); }
+.notch.bl { bottom: 0; left: 0; fill: var(--notch-bl, var(--bg)); }
 .display { font: 800 34px/0.95 var(--display); text-transform: uppercase; margin: 0; letter-spacing: 0; }
 .display.xl { font-size: 48px; }
 .kicker { margin: 0 0 var(--s2); color: var(--accent-text); font-weight: 600; font-size: 14px; }
@@ -75,9 +75,19 @@ img { display: block; }
 .list { margin-top: var(--s6); }
 .list-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin-bottom: var(--s4); flex-wrap: wrap; }
 .bcards { display: grid; gap: var(--s3); }
-.bcard { display: grid; grid-template-columns: 112px minmax(0, 1fr); background: var(--surface); }
-.bcard-face { padding: var(--s3); background: linear-gradient(170deg, color-mix(in srgb, var(--accent) 16%, var(--raised)), var(--raised)); } /* 16%: keeps muted labels at 4.9:1 */
-.bcard-body { padding: var(--s3) var(--s4); min-width: 0; }
+.bcard { display: grid; grid-template-columns: 116px minmax(0, 1fr); background: var(--surface); }
+.bcard-body { padding: var(--s3) var(--s4) var(--s4); min-width: 0; }
+.bcard .statgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s3); }
+.inspired { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+
+/* Stand-in faces (D-41): a crop with a tag; the slot for a player-named build stays dim until the in-game face exists */
+.portrait { position: relative; margin: 0; overflow: hidden; background: var(--raised); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.portrait .standin { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: var(--r-pill); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text); font-size: 11px; font-weight: 700; line-height: 1.4; }
+.portrait.slot img { opacity: .55; }
+.portrait .standin.long { left: 8px; right: 8px; top: 36%; bottom: auto; border-radius: var(--r-sm); padding: 6px 8px; text-align: center; font-size: 12px; }
+.nw { white-space: nowrap; }
+.hero-face { --cut: 16px; --notch-bl: var(--surface); width: 160px; min-height: 200px; margin-top: -48px; flex: none; z-index: 1; }
 .bcard-name { margin: var(--s1) 0; font: 800 24px/1 var(--display); text-transform: uppercase; }
 .bcard-name .faint { font: 600 13px var(--font); text-transform: none; }
 .bcard-ps { display: flex; align-items: center; gap: 6px; margin: var(--s2) 0 0; }
@@ -91,10 +101,10 @@ img { display: block; }
 .pos { padding: 1px 6px; border-radius: 4px; background: var(--accent); color: var(--accent-ink); font-weight: 800; font-size: 12px; }
 
 /* FUT-style six face stats */
-.face { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 10px; margin: 0; }
-.face div { display: flex; align-items: baseline; gap: 4px; }
-.face dt { color: var(--muted); font-size: 11px; font-weight: 700; }
-.face dd { margin: 0; font: 800 22px/1 var(--display); }
+.statgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 10px; margin: 0; }
+.statgrid div { display: flex; align-items: baseline; gap: 4px; }
+.statgrid dt { color: var(--muted); font-size: 11px; font-weight: 700; }
+.statgrid dd { margin: 0; font: 800 22px/1 var(--display); }
 
 /* 3. Build page */
 .bhead { display: grid; gap: var(--s4); margin-bottom: var(--s5); }
@@ -103,12 +113,16 @@ img { display: block; }
 .vtag { margin: var(--s3) 0 0; font-weight: 700; color: var(--warning); }
 .credit { margin: var(--s1) 0 0; color: var(--muted); font-size: 14px; }
 .copy { --cut: 12px; height: 52px; padding: 0 var(--s6); border: 0; background: var(--hero); color: var(--accent-ink); font: 800 20px/1 var(--display); text-transform: uppercase; cursor: pointer; width: 100%; }
-.bgrid { display: grid; gap: var(--s4); }
+.bgrid { display: grid; gap: var(--s4); margin-top: 64px; }
 .panel { background: var(--surface); padding: var(--s4); }
+.card-hero { display: flex; gap: var(--s4); align-items: stretch; margin-bottom: var(--s4); }
+.card-side { min-width: 0; flex: 1; }
 .card-top { display: flex; gap: var(--s3); align-items: center; margin-bottom: var(--s4); }
+.card-hero .card-top { flex-direction: column; align-items: flex-start; gap: var(--s2); margin-bottom: var(--s3); }
+.card-hero .emblem.ring { width: 48px; height: 48px; }
 .card-arch { font: 800 26px/1 var(--display); text-transform: uppercase; display: block; margin-bottom: 6px; }
-.card-panel .face { grid-template-columns: repeat(3, 1fr); padding: var(--s3); background: var(--raised); border-radius: var(--r-sm); }
-.card-panel .face dd { font-size: 28px; }
+.card-panel .statgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--s3); background: var(--raised); border-radius: var(--r-sm); }
+.card-panel .statgrid dd { font-size: 28px; }
 .body { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin: var(--s4) 0; }
 .body dt { color: var(--muted); font-size: 12px; font-weight: 600; }
 .body dd { margin: 2px 0 0; font-weight: 700; }
@@ -154,8 +168,10 @@ img { display: block; }
   .hero { grid-template-columns: auto 1fr minmax(0, 560px); align-items: center; gap: var(--s6); padding: var(--s6); --cut: 32px; }
   .emblem.big { width: 176px; height: 176px; }
   .facts { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 var(--s6); }
-  .bcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
-  .bcard { grid-template-columns: 128px minmax(0, 1fr); }
+  .bcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); }
+  .bcard { grid-template-columns: 168px minmax(0, 1fr); min-height: 210px; }
+  .bcard-body { padding: var(--s4) var(--s5); }
+  .hero-face { width: 184px; margin-top: -64px; }
   .bhead { grid-template-columns: 1fr auto; align-items: end; }
   .copy { width: auto; height: 60px; font-size: 22px; }
   .bgrid { grid-template-columns: 400px minmax(0, 1fr); gap: var(--s5); align-items: start; }

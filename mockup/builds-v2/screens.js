@@ -10,6 +10,12 @@ window.BV2Screens = (() => {
   const sample = `<span class="sample" data-testid="sample-label">Sample values · not a real build</span>`;
   const badge = (b) => (b === "meta" ? `<span class="badge meta">Meta pick</span>`
     : b === "copied" ? `<span class="badge copied">Most copied <em>after launch</em></span>` : "");
+  // Stand-in face (D-41): a crop of EA's Clubs screenshots, always tagged. A player-named build shows a dimmed
+  // stand-in tagged as the slot for Chime's or Sharon's in-game recreation; never a picture of the player (D-10).
+  const portrait = (b, file, cls = "", testid = "build-face") => `<figure class="portrait ${cls}${b.slot ? " slot" : ""}" data-testid="${testid}">
+      <img src="${D.icon.face(file)}" alt="">
+      ${b.slot ? `<figcaption class="standin long">Stand-in · <span class="nw">in-game</span> recreation goes here</figcaption>` : `<figcaption class="standin">Stand-in face</figcaption>`}
+    </figure>`;
   const slash = `<svg class="slash" viewBox="0 0 14 28" aria-hidden="true"><path d="M8 0h6L6 28H0z"/></svg>`;
 
   function topbar() {
@@ -20,7 +26,7 @@ window.BV2Screens = (() => {
       <button class="menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
     </header>`;
   }
-  const footer = () => `<footer class="foot"><p>${D.notice}</p><p class="faint">PlayStyle icons are EA's art; archetype emblems are Pro Clubs HQ's tracings of EA's emblems. Reference only in this draft (D-39).</p></footer>`;
+  const footer = () => `<footer class="foot"><p>${D.notice}</p><p class="faint">PlayStyle icons are EA's art; archetype emblems are Pro Clubs HQ's tracings of EA's emblems. Reference only in this draft (D-39).</p><p class="faint">Stand-in faces are crops of EA's Clubs screenshots, kept out of the repo, and will be replaced by Chime's and Sharon's in-game faces (D-41).</p></footer>`;
   const crumbs = (...parts) => `<nav class="crumbs" aria-label="Breadcrumb">${parts.map((p, i) =>
     i < parts.length - 1 ? `<a href="${p[1]}">${esc(p[0])}</a><span aria-hidden="true">/</span>` : `<span aria-current="page">${esc(p[0])}</span>`).join("")}</nav>`;
 
@@ -48,17 +54,19 @@ window.BV2Screens = (() => {
     </main>${footer()}`;
   }
 
-  const faceStats = (f) => `<dl class="face">${Object.entries(f).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`;
+  const statGrid = (f) => `<dl class="statgrid">${Object.entries(f).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`;
 
   // 2. /builds/<archetype>: archetype header, then its builds (sample builds exist for Finisher only).
   function archetypePage(id = "finisher") {
     const a = D.archetype(id), g = a.group, builds = id === "finisher" ? D.builds : [];
     const card = (b) => `<a class="bcard cut" href="#/builds/${id}/${b.id}" data-testid="build-card-${b.id}">
-      <div class="bcard-face">${faceStats(b.face)}</div>
+      ${portrait(b, b.face, "card", `build-face-${b.id}`)}
       <div class="bcard-body">
         <div class="badges">${b.badges.map(badge).join("")}</div>
         <h3 class="bcard-name">${b.name} <span class="faint">(sample)</span></h3>
+        ${b.inspiredBy ? `<p class="inspired">Inspired by ${esc(b.inspiredBy)}. Not endorsed by the player.</p>` : ""}
         <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}<span>Level ${b.level}</span><span>${b.height}</span></p>
+        ${statGrid(b.stats)}
         <p class="bcard-ps"><span class="label">PlayStyles+</span>${b.psPlus.map((n) => psIcon(n, true, "sm")).join("")}</p>
       </div>
     </a>`;
@@ -117,9 +125,14 @@ window.BV2Screens = (() => {
       </section>
       <div class="bgrid">
         <aside class="panel cut card-panel">
-          <div class="card-top">${emblem("finisher", "ring")}<div><b class="card-arch">${a.name}</b>
-            <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}</p></div></div>
-          ${faceStats(b.face)}
+          <div class="card-hero">
+            ${portrait(b, b.heroFace, "hero-face cut")}
+            <div class="card-side">
+              <div class="card-top">${emblem("finisher", "ring")}<div><b class="card-arch">${a.name}</b>
+                <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}</p></div></div>
+              ${statGrid(b.stats)}
+            </div>
+          </div>
           <dl class="body">
             <div><dt>Level</dt><dd>${b.level}</dd></div><div><dt>Height</dt><dd>${b.height}</dd></div>
             <div><dt>Weight</dt><dd>${b.weight}</dd></div><div><dt>AcceleRATE</dt><dd>${b.accelerate}</dd></div>
