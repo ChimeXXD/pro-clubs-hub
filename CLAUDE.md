@@ -71,7 +71,7 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 ## Rules that protect correctness
 
 1. **No images of real people, ever** (D-10). No photos, drawings, AI portraits or silhouettes. Names appear as plain text. Face pages may show only Chime's own in-game screenshots of their own recreations, exported by them, never EA marketing art.
-2. **No EA logos, fonts, card art or archetype icons.** Archetype and attribute names appear as text. "EA", "FC" and "FUT" never appear in the product name, domain or logo (D-04).
+2. **No EA logos, fonts or card art.** Archetype emblems and PlayStyle icons are allowed (D-39), but only EA's own files or our own drawings, never another site's tracings, and they stay out of the repo until shipped. "EA", "FC" and "FUT" never appear in the product name, domain or logo (D-04).
 3. **The notice is on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named." Faces say "inspired by", never "official".
 4. **Every build and face carries a version tag** (`game`, `season`, `verifiedOn`). Unverified content says "Not yet checked in game" in words. Content from an older season shows a warning; it is never silently carried over (D-05).
 5. **Every build and face carries a source and credit line** (D-08). A creator whose tutorial was followed is named and linked. Creator videos are embedded with `youtube-nocookie.com`, never re-uploaded or transcribed.
