@@ -131,7 +131,7 @@
 .submit-form { display: grid; gap: var(--s4); }
 .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: var(--r-pill); background: var(--surface); border: 1px solid var(--line); max-width: 360px; }
 .seg-btn { min-height: 44px; border-radius: var(--r-pill); color: var(--muted); font-weight: 700; }
-.seg-btn.on { background: var(--accent); color: var(--accent-ink); }
+.seg-btn.on { background: var(--accent); color: var(--accent-ink); box-shadow: var(--selected-ring-shadow); }
 .submit-preview { display: grid; gap: var(--s3); }
 
 /* About, takedown, 404 */

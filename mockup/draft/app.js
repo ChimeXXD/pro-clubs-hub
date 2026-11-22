@@ -13,9 +13,13 @@
     store.set("draft-theme", id);
     document.querySelectorAll("[data-theme-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.themeBtn === id)));
   };
-  const setMode = (m) => {
+  // Mode: a ?mode= link or a saved Dark/Light choice wins; with neither, follow the device setting and its changes.
+  // New key: the old "draft-mode" was written on every load (always "dark" by default), so it is not a real choice.
+  const isMode = (v) => v === "light" || v === "dark";
+  const systemLight = matchMedia("(prefers-color-scheme: light)");
+  const setMode = (m, { save = false } = {}) => {
     document.documentElement.dataset.mode = m;
-    store.set("draft-mode", m);
+    if (save) store.set("draft-mode-choice", m);
     document.querySelectorAll("[data-mode-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modeBtn === m)));
   };
   document.getElementById("themes").innerHTML = `<span class="tools-label">Colour</span>${D.THEMES.map((th) =>
@@ -24,13 +28,15 @@
     `<button data-mode-btn="${m}" aria-pressed="false">${m === "dark" ? "Dark" : "Light"}</button>`).join("")}`;
   document.getElementById("themes").addEventListener("click", (e) => {
     const b = e.target.closest("[data-theme-btn]"); if (b) setTheme(b.dataset.themeBtn);
-    const m = e.target.closest("[data-mode-btn]"); if (m) setMode(m.dataset.modeBtn);
+    const m = e.target.closest("[data-mode-btn]"); if (m) setMode(m.dataset.modeBtn, { save: true });
   });
   const qs = new URLSearchParams(location.search);
   // Only known values: an unknown theme would leave light mode with the dark palette (no light block matches it)
   const pick = (ok, ...vals) => vals.find(ok);
   setTheme(pick((v) => D.THEMES.some((t) => t.id === v), qs.get("theme"), store.get("draft-theme", "volt"), "volt"));
-  setMode(pick((v) => v === "light" || v === "dark", qs.get("mode"), store.get("draft-mode", "dark"), "dark"));
+  const chosenMode = () => pick(isMode, qs.get("mode"), store.get("draft-mode-choice", null));
+  setMode(chosenMode() || (systemLight.matches ? "light" : "dark"));
+  systemLight.addEventListener("change", (e) => { if (!chosenMode()) setMode(e.matches ? "light" : "dark"); });
 
   // Ticks are saved per face with the face's version; a new version starts fresh and says so (SPEC flow 2).
   const ticks = (f) => {

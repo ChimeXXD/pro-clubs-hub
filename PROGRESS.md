@@ -17,6 +17,7 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 
 **Not verified**
 - Light mode on Chime's iPhone (L-01). The light palettes are made here, not measured from a reference.
+- Later the same day, on Chime's answers: selected chips, segments and tab-bar items get a 1.5 px `--accent-line` ring in light mode only (3.95:1 or more on bg, surface and raised; dark renders pixel-identical, 160 of 160 screens); the mode follows the device until Dark or Light is picked, a pick wins; `color-scheme` set per mode; 27 new mode checks PASS; the Figma "Light mode" page's 10 sheets recaptured in place.
 
 **For Chime**
 - In light mode the selected chip, segment and tab-bar item are shown by the bright accent fill alone, which is faint on white (Volt lime on white 1.2:1; under the 3:1 guideline for every colour but Derby). The label still changes colour. Fix if wanted: a thin dark accent ring on selected items, light mode only.
