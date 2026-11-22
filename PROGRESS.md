@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds in a new style, with the game's icons (Sun 22 Nov 2026, afternoon)
+
+**Changed**
+- Chime asked for a new page combining archetype and builds (D-33) in a different style, Old Gold, using the archetype emblems and PlayStyle icons (D-39). New `mockup/builds-v2/` (the first draft is untouched): `/builds` (13 emblem tiles in four groups, each with its two Signature PlayStyle icons), `/builds/finisher` (emblem hero, Signature PlayStyles, mastery, Season 2 cost changes, 3 build cards with Meta pick and "Most copied after launch") and a demo Finisher build (FUT.GG-style attribute groups with gauges and bars, PlayStyles+ and PlayStyles with icons, Copy build). `index.html` is clickable; `sheet.html?w=phone|desktop` is the Figma sheet.
+- Style: FUT.GG's player stats page for structure, FC 27's Clubs menus for the emblem rings and cut corners, sports editorial for the type scale. Archetype facts come from `fc27.json`; every build number is a labelled sample.
+- Icons load from `reference/assets/` (git-ignored) and are never committed. The archetype emblems there are Pro Clubs HQ's tracings, not EA's files.
+- Figma: page "Builds · new style (Old Gold)" (59:2), phone sheet 68:2 above desktop sheet 69:2. Code review (medium, fix): 10 findings, 6 fixed (each archetype tile now opens its own archetype page, emblem fetch failures no longer hang the sheet, icons next to their printed name are alt="", footer credits the emblems to Pro Clubs HQ, badge helper reused); skipped: one sample build page only, flat-colour corner notches, 44 px targets and token-only colours apply to `src/`.
+
+**Checked**
+- Browser at 393 and 1440: no element wider than its frame, every emblem and icon loaded, no page errors, Barlow loaded. Contrast on every new pair (the card-face tint lowered to 16% so its labels reach 4.9:1).
+- Figma read-back: 6 screens, no layer outside its frame, editable Barlow / Barlow Condensed text, emblems as vectors, 42 icon images per sheet, screen heights equal to the browser.
+
+**Not verified**
+- Not seen on Chime's iPhone (L-01). New copy for Chime's OK: "Pick your archetype", the two ledes, "Every Finisher build, the Meta pick first."
+
 ## Planning: builds by archetype, face preview, modes (Sun 22 Nov 2026)
 
 **Changed**

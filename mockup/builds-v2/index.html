@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="gold">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Builds draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap">
+<link rel="stylesheet" href="../draft/themes.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Clickable prototype. Serve from the repo root so ../../reference/assets/ resolves (icons are git-ignored). -->
+<div class="frame" id="app"></div>
+<script src="data.js"></script>
+<script src="screens.js"></script>
+<script>
+  const S = window.BV2Screens, app = document.getElementById("app");
+  function route() {
+    const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+    // Only the Meta Finisher sample build exists, so every build link opens it.
+    app.innerHTML = parts.length >= 3 ? S.buildPage() : parts.length === 2 && window.BV2.has(parts[1]) ? S.archetypePage(parts[1]) : S.picker();
+    S.hydrate(app);
+    window.scrollTo(0, 0);
+  }
+  addEventListener("hashchange", route);
+  route();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-theme="gold">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builds sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap">
+<link rel="stylesheet" href="../draft/themes.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Frame sheet for Figma capture: ?w=phone (3 × 393) or ?w=desktop (3 × 1440). */
+  body { padding: 48px; background: #070503; }
+  .sheet-title { margin: 0 0 32px; font: 800 40px/1 var(--display); text-transform: uppercase; color: var(--text); }
+  .sheet-title span { display: block; margin-top: 8px; font: 500 16px var(--font); text-transform: none; color: var(--muted); }
+  .row { display: flex; gap: 64px; align-items: flex-start; }
+  .cell > h2 { margin: 0 0 12px; font: 600 15px var(--font); color: var(--muted); }
+  .cell .frame { width: var(--fw); }
+</style>
+</head>
+<body>
+<h1 class="sheet-title" id="title"></h1>
+<div class="row" id="row"></div>
+<script src="data.js"></script>
+<script src="screens.js"></script>
+<script>
+  const w = new URLSearchParams(location.search).get("w") === "desktop" ? "desktop" : "phone";
+  document.body.style.setProperty("--fw", w === "desktop" ? "1440px" : "393px");
+  document.getElementById("title").innerHTML =
+    `Builds · new style · Old Gold dark · ${w === "desktop" ? "Desktop 1440" : "Phone 393"}` +
+    `<span>FUT.GG stats page + FC 27 Clubs menus + sports editorial (D-33, D-39). Sample values. Archetype emblems are Pro Clubs HQ's tracings of EA's emblems; PlayStyle icons are EA's art. Reference only, not for launch as is.</span>`;
+  const S = window.BV2Screens;
+  const screens = [["Builds · /builds", S.picker], ["Finisher · /builds/finisher", S.archetypePage], ["Meta Finisher · /builds/finisher/meta-finisher", S.buildPage]];
+  const row = document.getElementById("row");
+  row.innerHTML = screens.map(([name], i) => `<div class="cell"><h2>${name}</h2><div class="frame" data-screen="${i}"></div></div>`).join("");
+  row.querySelectorAll(".frame").forEach((f, i) => { f.innerHTML = screens[i][1](); });
+  Promise.all([document.fonts.ready, S.hydrate(row)]).then(() => { document.body.dataset.ready = "1"; });
+</script>
+</body>
+</html>
