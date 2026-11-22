@@ -6,7 +6,7 @@ Written 19 Nov 2026; replanned 20 Nov for a fast launch (D-25). Decisions are in
 
 1. **A live, free site** where a Clubs player builds a lookalike or era face step by step on a phone, then sets up its paired build.
 2. **5 verified faces and 13 verified builds** (one per archetype), each tagged "FC 27 · Season 2 · verified <date>" and credited.
-3. **Archetype pages, a changelog and a submit flow.**
+3. **Builds by archetype (D-33), a changelog and a submit flow.**
 4. **A launch post**; the motion-graphics video ships with the launch or with the Season 3 update (open, D-25).
 5. **Counting live** (GoatCounter, D-27), so the main metric starts on day one.
 6. **A public MIT repo** that reads like senior work: README, formats, tests, CI badge, honest numbers.
@@ -31,7 +31,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 | Faces library, face page with ticks and paired build | Search across faces and builds | Build planner (D-07) |
 | 5 verified faces (footballers, living musicians, and Michael Jackson, D-26) | 10 faces | Other deceased subjects (D-10, D-26) |
 | 13 verified build cards with version tags and credits | Builds for every position | Ratings, request board, comments |
-| 13 archetype pages | Share card (Open Graph image) per face and build | Accounts |
+| 13 archetype build lists (D-33) | Share card (Open Graph image) per face and build | Accounts |
 | Changelog with EA sources | Featured creator spot with a creator who said yes | Stats, leaderboards, EA match data |
 | Submit: builder to prefilled GitHub issue | Form fallback without GitHub (O-11) | Photo-to-slider AI |
 | About, takedown, notice on every page | Tutorial embeds on tap | Ads (a later decision) |
@@ -84,8 +84,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 
 - [ ] Shared components and layout from Figma, with motion (DESIGN.md)
 - [ ] Home, faces library, face page with ticks
-- [ ] Builds index and build page
-- [ ] Archetypes index and 13 pages
+- [ ] Builds: archetype picker, archetype build list, build card (D-33)
 - [ ] Changelog page
 - [ ] Submit page
 - [ ] About, takedown, 404

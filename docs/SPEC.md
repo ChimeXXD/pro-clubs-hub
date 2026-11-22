@@ -38,10 +38,9 @@ The loader (`src/lib/content/load.ts`) reads everything at build time, validates
 | `/` | Faces first (featured and newest), then builds by position, latest changelog entry, the current season |
 | `/faces` | Face library; filter by kind (footballer, musician) and era; search by name |
 | `/faces/[slug]` | Title "Inspired by …", era, version tag, credit line, limits, steps by tab with ticks, paired build card, embed on tap, Chime's screenshots |
-| `/builds` | Build cards by position and by archetype |
-| `/builds/[slug]` | Full build card: archetype, positions, body, attributes, PlayStyles, specialization, version tag, credits, history |
-| `/archetypes` | The 13 archetypes in four groups |
-| `/archetypes/[slug]` | Signature PlayStyles (launch and Season 2), mastery attributes, Season 2 cost change counts, builds on this archetype, sources |
+| `/builds` | The 13 archetypes in four groups (Keeper, Defence, Midfield, Attack); one in two groups is listed in both (D-33) |
+| `/builds/[archetype]` | Archetype header (signature PlayStyles, mastery attributes, positions, Season 2 cost change counts, sources), then every build for it, "Meta pick" and later "Most copied" badges (D-34) |
+| `/builds/[archetype]/[build]` | Full build card: archetype, positions, body, attributes, PlayStyles, specialization, version tag, credits, history, "Copy build" |
 | `/changelog` | Entries newest first, each with its EA source and the builds and faces it touched |
 | `/submit` | Face or build builder with live validation; "Submit for review" opens a prefilled GitHub issue (A-04); "Copy JSON" |
 | `/about` | What this is, how content is made and verified, sourcing rules, credits and featured creators, the notice |

@@ -9,7 +9,7 @@ A **FUT.GG-style hub for EA SPORTS FC 27 Clubs (Pro Clubs), led by faces** (D-02
 
 - **Faces** (the lead): a library of lookalike and era faces (2007, 2008 and 2017 Ronaldo; living musicians; Michael Jackson by decision, D-26), each written as a step-by-step recipe and paired with a matching build.
 - **Meta builds as cards**: one clean card per build, for all 13 FC 27 archetypes and every position. Each card has a version tag ("FC 27 · Season 2 · verified 19 Nov 2026") and a source and credit line (D-05).
-- **Archetype pages** (13), a **public changelog** of meta changes (D-06), and a **submit** flow that builds a recipe or build and opens a prefilled GitHub issue for Chime to review (D-09).
+- **Builds by archetype** (13, D-33), a **public changelog** of meta changes (D-06), and a **submit** flow that builds a recipe or build and opens a prefilled GitHub issue for Chime to review (D-09).
 - **Not now:** a build planner. It comes only after Chime verifies the attribute cost tables in game (D-07). We don't fight Pro Clubs HQ on tools. We win on design, mobile speed, always free and the faces library (D-03).
 - Primary user: Chime in Lagos, on an iPhone next to the console. Research: `docs/RESEARCH.md`. PRD: `docs/PRD.md`. Spec: `docs/SPEC.md`. Formats: `docs/FORMAT.md`.
 
@@ -42,8 +42,8 @@ content/
   changelog/<date>-<slug>.json  meta changes with EA sources (FORMAT §Changelog)
   creators.json               credited creators and featured spots (FORMAT §Credit)
   README.md                   sourcing rules
-src/app/                      / , /faces, /faces/[slug], /builds, /builds/[slug], /archetypes,
-                              /archetypes/[slug], /changelog, /submit, /about, /takedown
+src/app/                      / , /faces, /faces/[slug], /builds, /builds/[archetype],
+                              /builds/[archetype]/[build], /changelog, /submit, /about, /takedown
 src/components/               FaceCard, BuildCard, VersionTag, CreditLine, StepList, ValueChip
 src/lib/content/              types.ts, validate.ts, load.ts (build time), version.ts (tag wording)
 src/lib/submit/               toIssueUrl.ts (prefilled GitHub issue)
