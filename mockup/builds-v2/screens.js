@@ -3,18 +3,23 @@
 window.BV2Screens = (() => {
   const D = window.BV2;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  const emblem = (id, cls = "") => `<span class="emblem ${cls}" data-emblem="${id}" role="img" aria-label="${esc(D.archetype(id).name)} emblem"></span>`;
+  // labelled = false when the emblem only decorates something already named (no extra read-out inside a link).
+  const emblem = (id, cls = "", labelled = true) => `<span class="emblem ${cls}" data-emblem="${id}" ${labelled
+    ? `role="img" aria-label="${esc(D.archetype(id).name)} emblem"` : `aria-hidden="true"`}></span>`;
   // labelled = false when the name is already written next to the icon (no double read-out).
   const psIcon = (name, plus, size = "", labelled = true) =>
     `<img class="ps ${size}" src="${plus ? D.icon.psPlus(name) : D.icon.ps(name)}" alt="${labelled ? `${esc(name)}${plus ? " (PlayStyle+)" : ""}` : ""}">`;
   const sample = `<span class="sample" data-testid="sample-label">Sample values · not a real build</span>`;
   const badge = (b) => (b === "meta" ? `<span class="badge meta">Meta pick</span>`
     : b === "copied" ? `<span class="badge copied">Most copied <em>after launch</em></span>` : "");
-  // Stand-in face (D-41): a crop of EA's Clubs screenshots, always tagged. A player-named build shows a dimmed
-  // stand-in tagged as the slot for Chime's or Sharon's in-game recreation; never a picture of the player (D-10).
-  const portrait = (b, file, cls = "", testid = "build-face") => `<figure class="portrait ${cls}${b.slot ? " slot" : ""}" data-testid="${testid}">
+  // Stand-in face (D-41): a crop of EA's Clubs screenshots, always tagged. A player-named build shows no face at
+  // all, only its archetype emblem, until Chime's or Sharon's in-game recreation exists (D-10, Chime 22 Nov).
+  // A build with no face file is that slot.
+  const portrait = (file, archId, cls = "", testid = "build-face") => !file
+    ? `<figure class="portrait slot ${cls}" data-testid="${testid}">${emblem(archId, "ring", false)}<figcaption class="slot-note">Face coming soon</figcaption></figure>`
+    : `<figure class="portrait ${cls}" data-testid="${testid}">
       <img src="${D.icon.face(file)}" alt="">
-      ${b.slot ? `<figcaption class="standin long">Stand-in · <span class="nw">in-game</span> recreation goes here</figcaption>` : `<figcaption class="standin">Stand-in face</figcaption>`}
+      <figcaption class="standin">Stand-in face</figcaption>
     </figure>`;
   const slash = `<svg class="slash" viewBox="0 0 14 28" aria-hidden="true"><path d="M8 0h6L6 28H0z"/></svg>`;
 
@@ -60,7 +65,7 @@ window.BV2Screens = (() => {
   function archetypePage(id = "finisher") {
     const a = D.archetype(id), g = a.group, builds = id === "finisher" ? D.builds : [];
     const card = (b) => `<a class="bcard cut" href="#/builds/${id}/${b.id}" data-testid="build-card-${b.id}">
-      ${portrait(b, b.face, "card", `build-face-${b.id}`)}
+      ${portrait(b.face, id, "card", `build-face-${b.id}`)}
       <div class="bcard-body">
         <div class="badges">${b.badges.map(badge).join("")}</div>
         <h3 class="bcard-name">${b.name} <span class="faint">(sample)</span></h3>
@@ -126,7 +131,7 @@ window.BV2Screens = (() => {
       <div class="bgrid">
         <aside class="panel cut card-panel">
           <div class="card-hero">
-            ${portrait(b, b.heroFace, "hero-face cut")}
+            ${portrait(b.heroFace, a.id, "hero-face cut")}
             <div class="card-side">
               <div class="card-top">${emblem("finisher", "ring")}<div><b class="card-arch">${a.name}</b>
                 <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}</p></div></div>

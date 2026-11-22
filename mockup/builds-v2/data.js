@@ -70,9 +70,9 @@ window.BV2 = (() => {
       stats: { PAC: 80, SHO: 90, PAS: 66, DRI: 78, DEF: 42, PHY: 88 }, psPlus: ["Low Driven Shot", "Power Shot"], badges: ["copied"] },
     { id: "quick-finisher", name: "Quick Finisher", positions: ["ST", "CF"], level: 55, height: "5'8\" · 173 cm", face: "face-b.jpg",
       stats: { PAC: 94, SHO: 88, PAS: 74, DRI: 89, DEF: 34, PHY: 66 }, psPlus: ["First Touch", "Rapid"], badges: [] },
-    // Named after a player: a dimmed stand-in tagged as the slot for Chime's in-game recreation (D-41, D-10).
+    // Named after a player: no face until Chime's in-game recreation exists; the card shows the emblem (D-41, D-10).
     { id: "2008-ronaldo-inspired", name: "2008 Ronaldo-inspired", inspiredBy: "2008 Ronaldo", positions: ["ST", "LW"], level: 55,
-      height: "6'1\" · 185 cm", face: "face-slot.jpg", slot: true,
+      height: "6'1\" · 185 cm", face: null,
       stats: { PAC: 92, SHO: 88, PAS: 70, DRI: 90, DEF: 36, PHY: 74 }, psPlus: ["Trickster", "Power Shot"], badges: [] },
   ];
 

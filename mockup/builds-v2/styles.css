@@ -80,13 +80,12 @@ img { display: block; }
 .bcard .statgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s3); }
 .inspired { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
 
-/* Stand-in faces (D-41): a crop with a tag; the slot for a player-named build stays dim until the in-game face exists */
+/* Stand-in faces (D-41): a crop with a tag. A player-named build gets a plain slot with its emblem, no face (D-10) */
 .portrait { position: relative; margin: 0; overflow: hidden; background: var(--raised); }
 .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 .portrait .standin { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: var(--r-pill); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text); font-size: 11px; font-weight: 700; line-height: 1.4; }
-.portrait.slot img { opacity: .55; }
-.portrait .standin.long { left: 8px; right: 8px; top: 36%; bottom: auto; border-radius: var(--r-sm); padding: 6px 8px; text-align: center; font-size: 12px; }
-.nw { white-space: nowrap; }
+.portrait.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s2); padding: var(--s3); text-align: center; }
+.slot-note { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.3; }
 .hero-face { --cut: 16px; --notch-bl: var(--surface); width: 160px; min-height: 200px; margin-top: -48px; flex: none; z-index: 1; }
 .bcard-name { margin: var(--s1) 0; font: 800 24px/1 var(--display); text-transform: uppercase; }
 .bcard-name .faint { font: 600 13px var(--font); text-transform: none; }
