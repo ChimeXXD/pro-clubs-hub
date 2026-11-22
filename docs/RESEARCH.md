@@ -119,6 +119,165 @@ Evidence comes from two places, both kept out of the repo (EA screens): Chime's 
 | Level cap shown in game | **55** since Season 2 (22 Oct), up from 40. Pro Clubs HQ, AOEAH and a r/fifaclubs thread agree; Dexerto's 75 is the outlier; EA hasn't published it. Chime's Pro at LVL 42 rules out 40 | 2026-11-20 | PCHQ, AOEAH, Reddit, Chime |
 | AP at the cap | **1,419 AP** at level 55 (962 at 40). JaxStash's early-November capture shows LVL 40 with 962 AP, which matches | 2026-11-20 | PCHQ, AOEAH, JaxStash |
 
+## 10. Levels, AP, costs and specializations (for D-43)
+
+Researched 22 Nov 2026 for the level switch (D-43). FC 27, Season 2 (from 22 Oct 2026), unless a row says otherwise. Status words: **Seen in game footage** means a creator reads the number or text off the game screen on camera; it was read from the video's auto captions, not from frames, so a misheard number is possible. **EA stated**, **One source**, **Sources agree (n)**, **Sources disagree**, **Unknown**. No other site's cost table is copied (rule 9, D-08); where a site has one, the row says where.
+
+**Verdict.** AP per level is solid enough to build on. The cost mechanism is clear: every point has its own price, set by archetype, attribute and value band; refunds use today's price, so the order of purchase doesn't change what an attribute costs. What we don't have are the prices: seven are seen in footage, and the rest exist only in Pro Clubs HQ's table, which we can't use. Specialization unlocks read raw values only (no masteries, height and weight, or Amps), which keeps the maths simple.
+
+### 10.1 AP per level
+
+AP comes from levels only, and each archetype has its own level and AP (EA stated, 19 Oct). Every fifth level is a milestone with a bigger grant.
+
+| Levels | AP per level | Total at the row's last level | Status (date) |
+| --- | --- | --- | --- |
+| 1 | 100 to start | 100 | Seen in game footage ("at level one, you'll have 100 AP", Leski, 15 Sep); Sources agree (3) |
+| 2–4 | +9 | 127 | Sources agree (2): AOEAH (2 Nov), Pro Clubs Builder |
+| 5 | +19 | 146 | Sources agree (2) |
+| 6–9 | +10 | 186 | Sources agree (2) |
+| 10 | +38 | 224 | Sources agree (2) |
+| 11–14 | +13 | 276 | Sources agree (2) |
+| 15 | +25 | 301 | Sources agree (2) |
+| 16–19 | +13 | 353 | Sources agree (2) |
+| 20 | +44 | 397 | Sources agree (2) |
+| 21–24 | +19 | 473 | Sources agree (2) |
+| 25 | +38 | 511 | Sources agree (2) |
+| 26–29 | +25 | 611 | Sources agree (2) |
+| 30 | +63 | 674 | Sources agree (2) |
+| 31–34 | +25 | 774 | Sources agree (2) |
+| 35 | +38 | 812 | Sources agree (2) |
+| 36–39 | +25 | 912 | Sources agree (2) |
+| 40 | +50 | 962 | Seen in game footage (reset dialog "This will refund 962 AP" on a level-40 archetype, Leski, 22 Oct; JaxStash, §9); Sources agree (3) |
+| 41–44 | +25 | 1,062 | Seen in game footage ("for a lot of these levels, you just get 25 AP", Leski, 22 Oct); Sources agree (3, PCHQ says "read from the game" on 22 Oct) |
+| 45 | +44 | 1,106 | Sources agree (3) |
+| 46–49 | +25 | 1,206 | Sources agree (3) |
+| 50 | +63 | 1,269 | Seen in game footage ("level 50, you get 63 AP", Leski, 22 Oct); Sources agree (3) |
+| 51–54 | +25 | 1,369 | Sources agree (3) |
+| 55 | +50 | 1,419 | Seen in game footage ("level 55, you get 50 AP", Leski, 22 Oct); Sources agree (3) |
+
+The grants add up to every total in the table (checked). Pro Clubs Builder says it read the milestone levels up to 40 in game; whether it and AOEAH are independent is unknown. Levels 1–39 are not contradicted anywhere.
+
+| Other possible AP source | Finding | Status (date) |
+| --- | --- | --- |
+| Masteries | +1 attribute boosts on top of raw values, not AP | EA stated (Pitch Notes); Sources agree (AOEAH, PCHQ) |
+| Amps | Timed attribute boosts, PlayStyles and perks, not AP | EA stated |
+| Consumables | AXP only (levels), each with its own level cap; caps of 15 and 25 seen in the store on 22 Oct | EA stated; Seen in game footage (Leski, 22 Oct) |
+| Season Pass | EA's reward list names outfits, accessories, emotes, Amps, Consumables and Coins; no AP | EA stated |
+| Club facilities | Attribute boosts marked "no cap", not AP | Seen in game footage (Leski, 22 Sep) |
+
+### 10.2 How attribute costs work
+
+| Question | Finding | Status (date) |
+| --- | --- | --- |
+| How is a price shown? | Edit Attributes shows the AP for each point as you raise it ("it goes up by increments of eight") | Seen in game footage (WhiteGamer7, 20 Sep; Leski, 21–22 Oct) |
+| Does it rise with the value? | Yes: "as you increase an attribute, the AP cost for further upgrades will also rise" | EA stated for FC 26. FC 27: Sources agree (3: PCHQ, AOEAH, Pro Clubs Builder); not yet seen at two bands of one attribute |
+| Same attribute, different archetypes? | Different prices. Standing Tackle 80→81 and 83→84 cost 10 AP on Progressor, Boss and Recycler, and 7 on Disruptor | Seen in game footage (Leski, 21 and 22 Oct, after the cost update) |
+| Flat within a band? | Progressor Standing Tackle cost 10 at both 80→81 and 83→84, which fits a band of 80–84 | Seen in game footage (two points only) |
+| Where are the band edges? | PCHQ: the price depends on the value you raise to, with breaks at about 61, 64, 67, 70, 75, 80, 85, 90 and 93, then a separate price for each point from 95 to 99. Its prices are not copied | One source (PCHQ Maestro page, 23 Sep, updated 22 Oct) |
+| Price tiers | Each attribute sits in one of four tiers on each archetype. Names differ: PCHQ "Cheapest, Cheap, Expensive, Most expensive"; AOEAH and Pro Clubs Builder "Cheap, Low, Standard, Expensive". No tier name was seen in the game, so this is a community model | Sources agree (3) on four tiers. Whether a tier has the same price curve on every archetype: Unknown |
+| Key attributes | The game marks four key attributes per archetype; its text says they "will be cheaper to upgrade for this archetype than others" | Seen in game footage (WhiteGamer7 reading the game text, 20 Sep). Still a discount in Season 2? Sources disagree: AOEAH and Pro Clubs Builder say no; Leski (22 Oct) finds Disruptor's key Standing Tackle cheaper (7) than Boss's (10), but Progressor's key Standing Tackle at 10, and calls it a bug. Don't model key attributes; store prices |
+| Season 1 prices (superseded) | Maestro Agility 8 per point vs Creator 2; Finisher Sprint Speed 2 vs Spark 8; Finisher Finishing 8 vs Target 4 (values not said) | Seen in game footage (WhiteGamer7, 20 Sep). Replaced on 22 Oct; kept only as proof that prices are per archetype |
+| What the 22 Oct update changed | Attributes "were being classified incorrectly, which impacted their AP costs": 58 higher, 29 lower, listed per archetype on EA's post; no AP amounts; Boss had no decrease | EA stated (19 Oct) |
+| Two before/after prices | Target Acceleration 88→89 went from 6 to 15 AP; Target Finishing 80→81 from 7 to 10 | Seen in game footage (Leski, 21 Oct). Fits EA's list (both "higher" on Target) |
+| Known oddity | Progressor Standing Tackle priced like a non-key attribute (10, Disruptor 7) | Seen in game footage (Leski, 21–22 Oct). Fixed since: Unknown. TU 1.2.0 (10 Nov) lists no cost change (EA stated) |
+| Caps per archetype | Each archetype has a maximum per attribute, e.g. Maestro Sprint Speed 90, Acceleration 90, Crossing 92; Spark Agility 99; Magician Acceleration 95. PCHQ lists caps too (not copied) | Seen in game footage (Leski, 22–23 Sep, Season 1; changed on 22 Oct: Unknown). Amp text in game: "Attributes cannot exceed the Archetype's maximum attribute cap", yet masteries, Amps and height and weight still pushed match values over the cap in Leski's test (Seen, 22 Sep) |
+| Skill Moves and Weak Foot | Stars cost AP from the same budget, priced per archetype; PCHQ lists star prices (not copied). Maximum stars differ: Boss 3★ skills and 4★ weak foot, Progressor 4★ and 4★, Recycler and Disruptor 4★ skills | Star prices: One source (PCHQ). Maximum stars: Seen in game footage (Leski, 15 Sep and 22 Oct) |
+| Do height and weight change prices? | No source says so; their boosts sit apart from raw values (10.3) | Unknown (inferred: the price follows the raw value) |
+
+### 10.3 Starting values, height and weight
+
+| Question | Finding | Status (date) |
+| --- | --- | --- |
+| Starting value | Each archetype starts each attribute at its own value; a reset says "Attributes will be reset to starting values, returning all AP spent" | Seen in game footage (Leski, 22 Oct) |
+| Examples | Maestro Crossing 75 and Long Passing 75; Maestro Standing Tackle 72 in the pre-release build | Seen in game footage (Leski, 15 and 22–23 Sep, Season 1). Changed on 22 Oct: Unknown (EA's post mentions only costs) |
+| A full table | PRO11's "Starting stats" page gives level-1 values for all 13 archetypes, method not stated (e.g. Finisher Finishing 75). Not copied | One source |
+| How boosts are shown | "Attribute totals" (LT/L2 on Edit Attributes) adds height and weight, masteries and Amps to the raw values; club facilities show separately, marked "no cap". With it off you see raw values | Seen in game footage (Leski, 15 and 22 Sep) |
+| Height and weight | Change a few attributes by up to about 5, now shown by the game: maximum height and weight gave +5 Jumping and Strength (Target); 5'7" at minimum weight +4 Acceleration (Maestro); +4 Agility (Spark). Maximum height differs by archetype (Boss and Progressor 6'5", Maestro 6'2") | Seen in game footage (Leski, 15 and 22 Sep) |
+| FC 26, for contrast | EA: height and weight "don't alter the base attribute values of the Archetype itself" and apply in a match. ProLeague called the effects hidden. FC 27 now shows them | EA stated (FC 26); One source (ProLeague, FC 26) |
+
+### 10.4 Specializations
+
+| Question | Finding | Status (date) |
+| --- | --- | --- |
+| How many | Three per archetype, 39 in all | Sources agree (3: PRO11, Timesaver citing PCHQ, games.gg); names seen in footage for 12 of 13 archetypes (all but Sweeper Keeper) |
+| What one gives | A Signature PlayStyle+ that can replace one of the archetype's Signature PlayStyles, plus a perk (so up to three perks from level 45) | Seen in game footage (Leski reads each one's PlayStyle+ and perk, 15 Sep); AOEAH agrees |
+| Unlock rule | Three attribute targets: one at 92, two at 90 | Sources agree (3: PRO11, FC Tools Hub, Dexerto in search results); seen for the three rows marked below |
+| Which values count | Raw values only. With masteries, height and weight or Amps the target stays grey; the same holds for base PlayStyle thresholds (Whipped Pass: Crossing 80, Long Passing 75) | Seen in game footage (Leski's Maestro+ test, 23 Sep) |
+| Minimum level | None seen; in practice gated by AP | Unknown (PRO11 has seen none) |
+| How many active | One at a time; switching is free | FC 27: One source (PRO11). FC 26: EA stated "Only one Specialization can be equipped at a time" |
+| Attacking Positioning | EA removed it on 19 Oct. The 22 Oct level-55 update put it back on the four forward specializations, and later that day EA replaced it: Runner now Aggression 90 and gives Rapid+ instead of Enforcer+; Hunter Balance; Invader Sprint Speed 90; Joker Curve 90. Forward archetypes were reset again | EA stated (19 Oct); Seen in game footage (Leski, 22 Oct, two videos). PRO11 (1 Nov) still shows Runner as Enforcer+ and the third Joker and Invader targets as unconfirmed: Sources disagree; the footage is newer |
+| Shot Stopper's second Signature PlayStyle | Deflector at first on 22 Oct, changed the same day to Footwork (it overlapped with Octopus). §1 says Deflector (PCHQ) | Seen in game footage (Leski, 22 Oct) |
+
+Specializations, with targets only where footage shows them. PRO11's specializations page (updated 1 Nov, from PCHQ) lists every target; not copied (rule 9). They are game facts, so they can be recorded once Chime reads them in game.
+
+| Archetype | Specializations (PlayStyle+) | Targets seen in footage |
+| --- | --- | --- |
+| Shot Stopper | Shot Stopper+ (Cross Claimer+), Spider (1v1 Close Down+), Octopus (Deflector+) | none |
+| Sweeper Keeper | Sweeper Keeper+ (Far Throw+), Launcher (Long Ball Pass+), Extra (Press Proven+): One source (PRO11) | none |
+| Progressor | Progressor+ (Jockey+), Pioneer (Pinged Pass+), Janitor (Quick Step+) | none |
+| Boss | Boss+ (Slide Tackle+), Enforcer (Press Proven+), Capitano (Block+) | none |
+| Marauder | Marauder+ (Slide Tackle+), Speedster (Rapid+), Athlete (Bruiser+) | none |
+| Disruptor | Disruptor+ (Intercept+), Destroyer (Slide Tackle+), Anchor (Bruiser+) | Disruptor+: Interceptions 92, Balance 90, Reactions 90. Anchor: Short Passing 92, Ball Control 90, Dribbling 90. PRO11 agrees on both |
+| Recycler | Recycler+ (Pinged Pass+), Driver (Enforcer+), Thief (Anticipate+) | none |
+| Maestro | Maestro+ (Technical+), Crasher (First Touch+), Heartbeat (Relentless+) | Maestro+: Vision 92, Balance 90, Dribbling 90. PRO11 agrees |
+| Creator | Creator+ (Whipped Pass+), Architect (Dead Ball+), Sniper (Power Shot+) | Sniper: Finishing, Shot Power and Long Shots (values not said) |
+| Spark | Spark+ (Quick Step+), Joker (Whipped Pass+), Ace (Chip Shot+) | Joker: Curve 90 (others not said) |
+| Magician | Magician+ (First Touch+), Hotshot (Power Shot+), Invader (Incisive Pass+) | Invader: Sprint Speed 90 (others not said) |
+| Finisher | Finisher+ (Chip Shot+), Hunter (Gamechanger+), Presser (Relentless+) | Finisher+: Ball Control, Composure, Reactions (values not said). Hunter: Balance (value not said) |
+| Target | Target+ (Acrobatic+), Roamer (Incisive Pass+), Runner (Rapid+) | Runner: Aggression 90 (others not said) |
+
+Names and PlayStyle+ in this table are seen in game footage (Leski, 15 Sep and 22 Oct) except Sweeper Keeper's.
+
+### 10.5 Respecs and resets
+
+| Question | Finding | Status (date) |
+| --- | --- | --- |
+| Cost of a reset or respec | Free. Single attributes can be lowered and the AP re-spent, from the in-world menu, the Clubhouse or a lobby | EA stated (Pitch Notes); Seen in game footage (Leski, 15 Sep) |
+| What a lowered point refunds | That point's current price. Lowering Target Acceleration 89→88 refunded 15 AP, the new price, though it was bought for 6 | Seen in game footage (Leski, 21 Oct) |
+| Does order of purchase matter? | No for cost: an attribute's cost depends only on its value, not on when or in what order it was bought, and no source shows one attribute's price depending on another | Inferred from the refund above; no counter-example found |
+| When prices change | EA resets every build (22 Oct), and again after a fix (forward archetypes, later on 22 Oct). A missed reset briefly let players gain AP from the new prices | EA stated (19 Oct); Seen in game footage (Leski, 21–22 Oct) |
+| Side effects | A reset "may unequip play styles and any active specialization"; level and total AP don't change | Seen in game footage (Leski, 22 Oct); EA stated |
+
+### 10.6 Masteries (all 13)
+
+EA's Pitch Notes table lists two attributes for every archetype; the earlier search missed it. Levels: +1 to both at level 10 (EA stated for Finisher; seen), +1 to one at level 30, +1 to the other at level 55, so +2 each by 55 (Seen in game footage, Leski, 22 Oct; PCHQ agrees). EA lists the level-55 attribute first in every case checked.
+
+| Archetype | Mastery attributes (EA stated) | Level 30 | Level 55 (Seen, Leski, 22 Oct) |
+| --- | --- | --- | --- |
+| Shot Stopper | GK Positioning, GK Reflexes | GK Reflexes (inferred) | GK Positioning |
+| Sweeper Keeper | GK Handling, GK Diving | GK Diving (inferred) | GK Handling |
+| Progressor | Long Passing, Standing Tackle | Standing Tackle (inferred) | Long Passing |
+| Boss | Aggression, Strength | Strength (inferred) | Aggression |
+| Marauder | Sliding Tackle, Sprint Speed | Sprint Speed (seen) | Sliding Tackle |
+| Disruptor | Stamina, Interceptions | Interceptions (inferred) | Stamina |
+| Recycler | Def. Awareness, Short Passing | Short Passing (inferred) | Def. Awareness |
+| Maestro | Reactions, Ball Control | Ball Control (seen) | Reactions |
+| Creator | Free Kick Accuracy, Vision | Vision (inferred) | Free Kick Accuracy |
+| Spark | Crossing, Dribbling | Dribbling (seen) | Crossing |
+| Magician | Curve, Acceleration | Acceleration (seen) | Curve |
+| Finisher | Composure, Finishing | Finishing (inferred) | Composure |
+| Target | Balance, Jumping | Jumping (seen) | Balance |
+
+The hint is half right: Disruptor is Stamina and Interceptions (confirmed). Magician is Curve and Acceleration, not Crossing; Crossing is Spark's (rejected). Masteries apply to every archetype, don't count for unlocks (10.4) and can push match values over a cap (Seen, 22 Sep).
+
+### 10.7 What this means for the maths
+
+- **Buildable now:** the AP table, the walk through a build's spend order, the specialization check against raw values, and the cap check.
+- **Missing:** prices for each archetype, attribute and band; star prices; starting values and caps for Season 2.
+- **Cost is path-independent** (10.5), so a build's spend order decides only which attributes a lower level can fund, never what they cost.
+- **The cheap route to prices:** if the four community tiers use the same price curve on every archetype, Chime needs about four curves (one attribute per tier, each band) plus one price reading per archetype and attribute to place it in a tier. If tiers differ by archetype, full curves for 13 archetypes and about 34 attributes are needed, which is not practical by hand. Check 3 below tests this first.
+
+### For Chime to check in game
+
+Screens: Clubs → Archetypes → pick the archetype → **Set as active** (Attribute totals shows the active archetype's values; seen as a bug) → **View level rewards**, **Edit → Attributes** with **Attribute totals (L2) off**, and **More info → Specializations**. Screenshots stay in `reference/`.
+
+1. **AP per level.** View level rewards: the AP at levels 5, 30 and 45 (expected +19, +63, +44). On your level-42 Pro, Edit after a free reset: the AP total (expected 1,012).
+2. **Price bands, two archetypes.** Finisher and Maestro, Sprint Speed: the AP shown for each single point 69→70, 70→71, 79→80, 80→81, 84→85, 85→86, 89→90 and 90→91 (16 numbers). This shows where the bands break, whether the price follows the value you raise to, and how two archetypes differ.
+3. **Shared curves.** Disruptor and Boss, Standing Tackle: 80→81 (footage: 7 and 10) and 85→86. If every price row from checks 2 and 3 matches one of a few patterns, the tiers share curves.
+4. **Stars.** Finisher: the AP for the next Skill Moves star and the next Weak Foot star.
+5. **Starting values and a cap.** Maestro after a reset: raw Crossing, Long Passing and Standing Tackle (Season 1 footage: 75, 75, 72), and the highest Sprint Speed it accepts (footage: 90).
+6. **Specializations.** Maestro+: its three targets (footage: Vision 92, Balance 90, Dribbling 90) and any level requirement. Spark's Joker: all three targets (footage: Curve 90 replaced Attacking Positioning).
+
 ## Sources (all opened 18 Nov 2026)
 
 - EA, Pitch Notes, The Grounds deep dive: https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive
@@ -160,3 +319,28 @@ Evidence comes from two places, both kept out of the repo (EA screens): Chime's 
 - Pro Clubs HQ, level cap rise (55, 1,419 AP): https://proclubshq.com/blog/pro-clubs-level-cap-rise/
 - AOEAH, FC 27 AP per level (55, 1,419 AP): https://www.aoeah.com/news/4913--fc-27-pro-clubs-attribute-points-per-level--how-to-reach-max-level
 - r/fifaclubs, "40 → 55" thread: https://www.reddit.com/r/fifaclubs/comments/1xccoib/40_55_new_levels_new_mastery_extra_playstyles/
+
+## Sources for §10 (opened 22 Nov 2026)
+
+- EA, The Grounds developer archetypes update (19 Oct; 58 higher, 29 lower, Attacking Positioning, reset): https://ea.com/games/ea-sports-fc/fc-27/news/fc-27-the-grounds-developer-archetypes-update
+- EA, Pitch Notes, The Grounds deep dive (masteries table for all 13, free resets, Amps, consumables, Season Pass): https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive
+- EA, Title Update 1.2.0 (10 Nov; no cost changes): https://www.ea.com/en/games/ea-sports-fc/fc-27/news/fc27-title-update-v1-2-0
+- EA, FC 26 Clubs deep dive (FC 26 only: rising costs, key attributes, min and max, height and weight, one specialization): https://www.ea.com/en/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-clubs-deep-dive
+- Leski, "The FC 27 Clubs Archetype System…" (15 Sep, pre-release build): https://www.youtube.com/watch?v=ZIFK1UZb7ZU
+- Leski, "How the Max Attribute Cap Works in FC 27 Clubs & The Grounds!" (22 Sep): https://www.youtube.com/watch?v=IKUTxpSpe44
+- Leski, "Masteries Can Make Your Build OP in FC 27 Clubs!" (23 Sep): https://www.youtube.com/watch?v=GULCXPMHfDY
+- Leski, "MAJOR PROBLEMS with the Archetype Update in FC 27 Clubs & The Grounds!" (21 Oct): https://www.youtube.com/watch?v=ttAl2J5L7f4
+- Leski, "ARCHETYPE META SHIFT? New Max Level, Masteries & PlayStyles in FC 27 Clubs!" (22 Oct): https://www.youtube.com/watch?v=YBnOL2XwNmY
+- Leski, "NEW Archetype Specialization Update in FC 27 Clubs & The Grounds!" (22 Oct): https://www.youtube.com/watch?v=xqfMymzuoFg
+- WhiteGamer7, "EAFC 27 Pro Clubs: Attributes are F*CKED!" (20 Sep, Season 1 prices): https://www.youtube.com/watch?v=H36Y4UFaNV8
+- AOEAH, FC 27 AP per level (2 Nov): https://www.aoeah.com/news/4913--fc-27-pro-clubs-attribute-points-per-level--how-to-reach-max-level
+- Pro Clubs Builder, attribute points per level (no date; says milestones to 40 read in game): https://proclubsbuilder.co.uk/attribute-points
+- Pro Clubs HQ, level cap rise (levels 40–55 "read from the game", 22 Oct): https://proclubshq.com/blog/pro-clubs-level-cap-rise/
+- Pro Clubs HQ, Maestro stats (mechanism and band edges only; prices not copied): https://proclubshq.com/blog/pro-clubs-maestro-stats/
+- Pro Clubs HQ, Finisher, Magician, Spark, Disruptor stats pages (star prices, seen in search results only, not copied): https://proclubshq.com/blog/pro-clubs-finisher-stats/
+- PRO11, specializations (updated 1 Nov; full target list, not copied): https://www.pro11.net/pro-clubs-specializations/
+- PRO11, starting stats for all 13 archetypes (no date or method; not copied): https://www.pro11.net/archetypes/
+- games.gg, archetypes AP cost reset (26 Oct): https://games.gg/ea-sports-fc-27/guides/archetypes-ap-cost-reset/
+- Timesaver.gg, 22 Oct AP cost changes (19 Oct; cites PCHQ tiers): https://timesaver.gg/blog/fc-27-archetypes-reset-october-22-ap-cost-changes
+- Blocked: EA forum thread "unfair agility skill point costs 10 points vs 3 points" (HTTP 403): https://forums.ea.com/discussions/fc-27-feedback-en/fc-27-clubs-%e2%80%93-unfair-agility-skill-point-costs-10-points-vs-3-points/13743231
+- Not found: a Reddit AP-per-level spreadsheet; no r/fifaclubs thread came up in search. YouTube transcripts beyond the seven above could not be read (fetch limit reached).
