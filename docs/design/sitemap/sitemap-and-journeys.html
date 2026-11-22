@@ -61,7 +61,7 @@
   .step { flex: 1; border: 1.2px solid var(--ink); border-radius: 2mm; padding: 2mm 2.5mm; background: #fff; display: flex; flex-direction: column; gap: 0.8mm; min-width: 0; }
   .step .s { font-size: 7.5pt; color: var(--accent); font-weight: 700; }
   .step b { font-size: 9pt; line-height: 1.2; }
-  .step code { font-size: 7pt; align-self: flex-start; }
+  .step code { font-size: 7pt; align-self: flex-start; max-width: 100%; overflow-wrap: anywhere; }
   .step p { font-size: 7.8pt; color: var(--muted); line-height: 1.3; }
   .arrow { width: 5mm; display: grid; place-items: center; color: var(--faint); font-size: 11pt; flex-shrink: 0; }
   .side { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
@@ -82,14 +82,14 @@
   <div class="cols3" style="margin-top:6mm">
     <div class="box"><h3>What the site is</h3><p>A free, static, phone-first hub for EA SPORTS FC 27 Clubs, led by faces (D-02). Faces are step-by-step recipes for lookalike and era heads, each paired with a build. Builds are one clean card per archetype and position, each tagged with the season and the date it was checked in game (D-05).</p></div>
     <div class="box"><h3>Who it's for</h3><p>Primary: Chime, on an iPhone next to the console, glancing between controller moves. Secondary: Clubs players and squads with the same need, and lookalike creators. Contributors: anyone who submits a face or build (SPEC §Users). Content is made and checked in game by Chime (PS5, D-17) or Sharon, each item reviewed by Chime (D-08, D-29).</p></div>
-    <div class="box"><h3>At launch (within days, D-25)</h3><p><b>40 pages</b>: home, 2 libraries (faces, builds), 5 face pages, 13 build pages, the archetypes index and 13 archetype pages, the changelog, submit, about, takedown and 404. Faces and builds recorded on Season 2, then re-checked on Season 3 from Thu 3 Dec (D-25).</p></div>
+    <div class="box"><h3>At launch (within days, D-25)</h3><p><b>39 pages</b>: home, 2 libraries (faces, builds), 5 face pages, 13 archetype build lists, 13 build pages, the changelog, submit, about, takedown and 404. Faces and builds recorded on Season 2, then re-checked on Season 3 from Thu 3 Dec (D-25).</p></div>
   </div>
   <div class="box" style="margin-top:auto">
     <h3>How to read this</h3>
     <ul class="plain">
       <li>Page 2: the sitemap. Page 3: navigation and the links between pages. Pages 4–5: every page, what it holds, where it links and its states.</li>
       <li>Pages 6–8: journey 1, the face seeker, and how the face page shows each kind of value. Pages 9–10: journey 2, the meta-build seeker. Page 11: what isn't in the site, and copy still to write. Page 12: open questions (two answered on 20 Nov).</li>
-      <li>Where a line is a proposal rather than something the specs already say, it says "proposal". Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026; v2 the same day after a fresh-context check against the sources; v3 after D-23 to D-27.</li>
+      <li>Where a line is a proposal rather than something the specs already say, it says "proposal". Sources: <code>docs/SPEC.md</code> (routes, flows, acceptance), <code>docs/PRD.md</code>, <code>docs/FORMAT.md</code> (content fields), <code>docs/DECISIONS.md</code> (D-, A- and O- numbers). Written 20 Nov 2026; v2 the same day after a fresh-context check against the sources; v3 after D-23 to D-27; v4 on 22 Nov after D-33 to D-38 (builds by archetype, one Builds section, the face turntable).</li>
     </ul>
   </div>
 </section>
@@ -106,21 +106,14 @@
         <div class="stem"></div>
         <div class="node child"><b>Face</b><code>/faces/[slug]</code><span class="count">5 at launch</span></div>
         <div class="stem"></div>
-        <div class="node child" style="min-width:26mm"><b>Paired build</b><code>→ /builds/[slug]</code></div>
+        <div class="node child" style="min-width:26mm"><b>Paired build</b><code>→ /builds/[archetype]/[build]</code></div>
       </div>
       <div class="branch">
-        <div class="node"><b>Builds</b><code>/builds</code><span class="count">library</span></div>
+        <div class="node"><b>Builds</b><code>/builds</code><span class="count">13 archetypes, 4 groups</span></div>
         <div class="stem"></div>
-        <div class="node child"><b>Build</b><code>/builds/[slug]</code><span class="count">13 at launch</span></div>
+        <div class="node child"><b>Archetype</b><code>/builds/[archetype]</code><span class="count">13: header + its builds</span></div>
         <div class="stem"></div>
-        <div class="node child" style="min-width:26mm"><b>Its archetype</b><code>→ /archetypes/[slug]</code></div>
-      </div>
-      <div class="branch">
-        <div class="node"><b>Archetypes</b><code>/archetypes</code><span class="count">4 groups</span></div>
-        <div class="stem"></div>
-        <div class="node child"><b>Archetype</b><code>/archetypes/[slug]</code><span class="count">13</span></div>
-        <div class="stem"></div>
-        <div class="node child" style="min-width:26mm"><b>Its builds</b><code>→ /builds/[slug]</code></div>
+        <div class="node child" style="min-width:26mm"><b>Build</b><code>/builds/[archetype]/[build]</code><span class="count">13 at launch</span></div>
       </div>
       <div class="branch">
         <div class="node"><b>Changelog</b><code>/changelog</code><span class="count">newest first</span></div>
@@ -146,16 +139,17 @@
   </div>
   <div class="cols" style="margin-top:4mm">
     <div class="box">
-      <h3>Archetypes in their four groups (EA's grouping, <code>fc27.json</code>)</h3>
+      <h3>Builds opens on the archetypes in their four groups (EA's grouping, <code>fc27.json</code>; D-33)</h3>
       <table>
         <tr><th>Goalkeepers (2)</th><th>Defenders (3)</th><th>Midfielders (4)</th><th>Attackers (4)</th></tr>
         <tr><td style="font-weight:400">Shot Stopper<br>Sweeper Keeper</td><td>Progressor<br>Boss<br>Marauder</td><td>Disruptor<br>Recycler<br>Maestro<br>Creator</td><td>Spark<br>Magician<br>Finisher<br>Target</td></tr>
       </table>
+      <p class="faint" style="margin-top:2mm;font-size:8pt">The groups are the way in by position; there is no separate position filter (D-38). An archetype is also listed in every group its typical positions reach (Progressor at CDM, per Chime). <code>typicalPositions</code> is empty until checked in game, so until then each sits only in EA's group.</p>
     </div>
     <div class="box">
       <h3>Rules the structure follows</h3>
       <ul class="plain">
-        <li>Every face, build, archetype and changelog entry has its own URL, so any of them can be shared (FUT.GG's "a URL for everything").</li>
+        <li>Every face, archetype build list, build and changelog entry has its own URL, so any of them can be shared (FUT.GG's "a URL for everything").</li>
         <li>Drafts are never built (FORMAT, status). Withdrawn content is not built, listed or linked (CLAUDE.md rule 8); its old URL returns the 404.</li>
         <li>No accounts, no server. Ticks on a face live on the phone that made them (A-07).</li>
         <li>Every page carries the notice: "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named."</li>
@@ -173,12 +167,12 @@
       <h3>On every page</h3>
       <table>
         <tr><th>Element</th><th>Holds</th></tr>
-        <tr><td>Top bar</td><td>Logo (to Home), search (faces and builds by name; a Should item), and the five sections: Faces, Builds, Archetypes, Changelog, Submit. On a phone the sections sit behind a menu button.</td></tr>
+        <tr><td>Top bar</td><td>Logo (to Home), search (faces and builds by name; a Should item), and the four sections: Faces, Builds, Changelog, Submit (Archetypes is part of Builds, D-33). On a phone the sections sit behind a menu button.</td></tr>
         <tr><td>Season chip</td><td>The current game and season, e.g. "FC 27 · Season 3". UI-BRIEF puts it on Home; on every page is a proposal, so every tag can be read against it.</td></tr>
         <tr><td>Footer</td><td>The notice, then About, Takedown, Submit and the GitHub repo (public, D-23).</td></tr>
-        <tr><td>Back</td><td>Detail pages go back to their library (face to Faces, build to Builds, archetype to Archetypes).</td></tr>
+        <tr><td>Back</td><td>Detail pages go back to their library (face to Faces, build to its archetype's list, archetype's list to Builds).</td></tr>
       </table>
-      <p class="faint" style="margin-top:2mm;font-size:8pt">Proposal: the season chip on every page, and five top-bar sections after FUT.GG's one row of top links (REFERENCES #1). Labels and order are for the UI designer to test.</p>
+      <p class="faint" style="margin-top:2mm;font-size:8pt">Proposal: the season chip on every page, and four top-bar sections after FUT.GG's one row of top links (REFERENCES #1). Labels and order are for the UI designer to test.</p>
       <h3 style="margin-top:4mm">Ways in from outside</h3>
       <p>Expected, not measured: many visitors will land on a detail page, not on Home: a face link shared on X, TikTok or WhatsApp (each face and build gets its own share card, a Should item), or a search like "2008 Ronaldo Pro Clubs face" or "best ST build FC 27 Clubs". So every detail page must make sense on its own: title, season tag, credit and the way back to its library are all on the page, with no assumed context.</p>
     </div>
@@ -187,13 +181,12 @@
       <table>
         <tr><th>From</th><th>To</th><th>Why</th></tr>
         <tr><td>Face</td><td>its paired build</td><td>An era face wants an era build (2008 Ronaldo: Spark or Magician, not Target; PRD). Shown again when the face is finished.</td></tr>
-        <tr><td>Build</td><td>its archetype</td><td>What the archetype gives (signature PlayStyles, masteries) explains the build.</td></tr>
         <tr><td>Build</td><td>faces that pair it</td><td>Proposal (not in SPEC yet): "Wear this face with it", the path from builds into faces. The data exists: each face names its <code>pairedBuild</code>.</td></tr>
-        <tr><td>Archetype</td><td>its builds</td><td>Every build on that archetype, by position.</td></tr>
+        <tr><td>Archetype list</td><td>each of its builds</td><td>"Meta pick" first (D-34).</td></tr>
         <tr><td>Changelog entry</td><td>the builds and faces it changed</td><td>From <code>affects</code>: what a patch moved on this site.</td></tr>
         <tr><td>Build or face</td><td>changelog</td><td>Proposal: link a version change to the entry that caused it. A history line holds only version, date and note today, so FORMAT would need a changelog id on it.</td></tr>
         <tr><td>Face</td><td>creator's channel</td><td>The tutorial credit links out; the video plays in place, only after a tap (A-05).</td></tr>
-        <tr><td>Faces, Builds (empty)</td><td>Submit</td><td>Faces: "No faces here yet. Suggest one on Submit." Builds: wording to write (page 11).</td></tr>
+        <tr><td>Faces, archetype (empty)</td><td>Submit</td><td>"No faces here yet. Suggest one on Submit."; the archetype line is to write (page 11).</td></tr>
       </table>
     </div>
   </div>
@@ -207,12 +200,12 @@
     <tr><td>Home<br><code>/</code></td><td>Get a player to a face in one tap; show what's new and which season it is.</td><td>Faces first (featured and newest, with era and kind), then builds by position, the latest changelog entry and the current season (SPEC). Home shows faces before builds (acceptance test). Proposal: the next season's start date beside the current one.</td><td>Every face, the libraries, the latest change, Submit.</td><td>Normal. A face or build listed here is published and checked.</td></tr>
     <tr><td>Faces<br><code>/faces</code></td><td>Find a face.</td><td>Every published face as a card: "Inspired by" name, era, kind (footballer or musician), the front picture from Chime's capture, the season tag and credit. Filter by kind and era; search by name.</td><td>Each face; Submit.</td><td>Filter with no results: "No faces here yet. Suggest one on Submit."</td></tr>
     <tr><td>Face<br><code>/faces/[slug]</code></td><td>Let a player judge the face, then rebuild it in game, step by step.</td><td>
-      <b>Preview:</b> the head as made in FC 27, turnable (a drag-to-turn sequence from Chime's capture), Front / ¾ / Side and an "In a match" picture (A-16, proposed).<br>
+      <b>Preview:</b> the head as made in FC 27, turnable by drag or finger (a turntable from one in-game turn), six angle buttons and an "In a match" picture (D-35; a 3D test alongside).<br>
       <b>Trust:</b> title "Inspired by …, era", version tag, credit line, limits ("The game can't do this exactly: …").<br>
       <b>Recipe</b>, in FORMAT's order: the starting photo preset; the part tabs Skin, Head, Face, Hair; Sculpt, when the recipe has it (a quick face has none); Visual Age. Every listed step counts toward progress and finishing. Each step shows its value as the hero, with a tick; how each kind of value is shown is on page 8. Progress through the steps (wording to write).<br>
       <b>After:</b> the paired build card, the tutorial (on tap), Chime's screenshots.</td><td>Paired build; creator channel; Faces.</td><td>First visit; coming back ("Continue from step 9"); finished ("Done", then "Now set up the build"); updated since your last visit ("This face was updated. Your ticks start fresh."); older season ("Made for Season 2. Values may have changed since.").</td></tr>
-    <tr><td>Builds<br><code>/builds</code></td><td>Find the meta build for a position or an archetype.</td><td>Build cards grouped by position (PRD: GK, CB, FB, CDM, CM, CAM, W, ST) with an archetype filter. Each card: archetype, positions, the season tag and credit; which headline values a card shows is open (page 12). Each build already lists its own position codes (FORMAT).</td><td>Each build; Archetypes.</td><td>Filter with no results (wording to write); a build from an older season is marked.</td></tr>
-    <tr><td>Build<br><code>/builds/[slug]</code></td><td>Give everything needed to set the build up in game, and say how current it is.</td><td>Archetype, positions, level, height, weight, AcceleRATE, the attribute list, PlayStyles (signature, plus, regular), specialization, skill moves, weak foot. Version tag at the top, credits, sources, history.</td><td>Its archetype; faces that pair it (proposal).</td><td>Checked ("verified &lt;date&gt;"); older season (warning); not yet checked (only in previews).</td></tr>
+    <tr><td>Builds<br><code>/builds</code></td><td>Let a player pick their archetype.</td><td>The 13 archetypes as tiles in four groups: Keeper, Defence, Midfield, Attack (D-33, D-38). Names as text, no EA icons.</td><td>Each archetype's list.</td><td>Normal.</td></tr>
+    <tr><td>Build<br><code>/builds/[archetype]/[build]</code></td><td>Give everything needed to set the build up in game, and say how current it is.</td><td>Badges (D-34), archetype, positions, level, height, weight, AcceleRATE, the attribute list, PlayStyles (signature, plus, regular), specialization, skill moves, weak foot. Version tag at the top, credits, sources, history, "Copy build".</td><td>Its archetype's list; faces that pair it (proposal).</td><td>Checked ("verified &lt;date&gt;"); older season (warning); not yet checked (only in previews).</td></tr>
   </table>
 </section>
 
@@ -221,8 +214,7 @@
   <div class="head"><h2>Page inventory (2 of 2)</h2><span class="n">5</span></div>
   <table>
     <tr><th style="width:30mm">Page</th><th style="width:62mm">Job</th><th>What it must show</th><th style="width:44mm">Links to</th><th style="width:42mm">States</th></tr>
-    <tr><td>Archetypes<br><code>/archetypes</code></td><td>Show all 13 archetypes so a player can pick theirs.</td><td>13 tiles in four groups: Goalkeepers, Defenders, Midfielders, Attackers. Names as text only: no EA archetype icons (CLAUDE.md rule 2).</td><td>Each archetype.</td><td>Normal.</td></tr>
-    <tr><td>Archetype<br><code>/archetypes/[slug]</code></td><td>Explain what the archetype is good at and list its builds.</td><td>Signature PlayStyles (from launch, and added in Season 2), mastery attributes, the count of attribute costs that went up and down on 22 Oct, builds on this archetype by position, and the sources. Fields without a source are empty in the data and say so on the page (wording to write); never guessed. Today 6 of 13 archetypes have no mastery attributes recorded.</td><td>Its builds; sources (EA, guides).</td><td>Proposal: an archetype with no build yet says so and offers Submit.</td></tr>
+    <tr><td>Archetype<br><code>/builds/[archetype]</code></td><td>List every build for one archetype, with just enough about the archetype to choose.</td><td>A short header: signature PlayStyles (from launch, and added in Season 2), mastery attributes, positions, the count of attribute costs that went up and down on 22 Oct, sources. Then every build for it as a card: name, badges ("Meta pick" chosen by Chime after one match, D-30; "Most copied" after launch, D-34), positions, season tag, credit. Fields without a source are empty in the data and say so on the page (wording to write); never guessed. Today 6 of 13 archetypes have no mastery attributes recorded.</td><td>Its builds; Builds; sources (EA, guides).</td><td>Proposal: an archetype with no build yet says so and offers Submit; a build from an older season is marked.</td></tr>
     <tr><td>Changelog<br><code>/changelog</code></td><td>Say what changed in the game and on this site, with EA's source.</td><td>Entries newest first: date, kind (season, title update, archetype update, site), title, the changes in our words, a link to EA's post, and "What we updated": the builds and faces it touched.</td><td>EA sources; the builds and faces each entry changed.</td><td>Normal. Seeded with launch (25 Sep), archetype re-price (22 Oct), TU 1.2.0 (10 Nov); the Season 3 entry is written on Thu 3 Dec (D-18).</td></tr>
     <tr><td>Submit<br><code>/submit</code></td><td>Let anyone send a face or a build for Chime to review.</td><td>Choose face or build, fill the same fields as the format, tab by tab, with problems marked as you go. "Submit for review" opens a prefilled GitHub issue (A-04; the repo is public, D-23); "Copy JSON" copies it. A face also needs its captures (A-16): a link can't carry images, so the page tells the submitter to drag them into the issue before sending it.</td><td>GitHub (new issue).</td><td>Empty; invalid fields marked inline; sent: "Opened on GitHub. Chime reviews every submission before it goes live."</td></tr>
     <tr><td>About<br><code>/about</code></td><td>Earn trust: who makes this and how.</td><td>What the site is, how content is made and checked in game, the sourcing rules, credits and featured creators, the notice. Always free (D-04).</td><td>Takedown, GitHub, creators.</td><td>Normal.</td></tr>
@@ -243,11 +235,11 @@
   <div class="flow">
     <div class="step"><span class="s">1 · Discover</span><b>Lands on Home or a face link</b><code>/</code><p>Sees faces first: name, era, kind, the front picture.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">2 · Narrow</span><b>Filters or searches</b><code>/faces</code><p>Footballers, an era, or a name. No match: "Suggest one on Submit."</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">3 · Judge</span><b>Turns the head</b><code>/faces/[slug]</code><p>Drag to turn; Front, ¾, Side, In a match. Reads the season tag, credit and limits.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">3 · Judge</span><b>Turns the head</b><code>/faces/[slug]</code><p>Drag to turn; Front, ¾, Left, Back, Right, In a match. Reads the season tag, credit and limits.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">4 · Start</span><b>Taps Start, picks the preset</b><code>/faces/[slug]</code><p>Photo preset number, counted among photo presets only.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">5 · Build</span><b>Follows the tabs, ticks each step</b><code>/faces/[slug]</code><p>Skin, Head, Face, Hair; Sculpt if the recipe has it; Visual Age. The value is the biggest thing.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">6 · Finish</span><b>Last tick, then "Done"</b><code>/faces/[slug]</code><p>"Now set up the build": the paired build comes up (SPEC flow 1).</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">7 · Play</span><b>Sets up the build</b><code>/builds/[slug]</code><p>Joins journey 2 at step 5. May share the face.</p></div>
+    <div class="step"><span class="s">7 · Play</span><b>Sets up the build</b><code>/builds/[archetype]/[build]</code><p>Joins journey 2 at step 5. May share the face.</p></div>
   </div>
   <div class="side">
     <div class="box"><h3>Coming back</h3><p>Closes the tab mid-way, or the console needs the TV. Reopens the face: ticks are still there, "Continue from step 9". If Chime has updated the face since, the ticks start fresh and the page says so (A-07).</p></div>
@@ -296,22 +288,21 @@
   <div class="persona">
     <div class="box"><p class="label">Who</p><p>A Clubs player who knows their position or archetype and wants the build that works this season, from a source they can trust.</p></div>
     <div class="box"><p class="label">Goal</p><p>Set up a build in game that's current for this season, without paying (Pro Clubs HQ's extras are paid) or reading a long article.</p></div>
-    <div class="box"><p class="label">Comes in from</p><p>A search like "best ST build FC 27 Clubs"; Home's builds by position; a face's paired build; a new season or patch.</p></div>
+    <div class="box"><p class="label">Comes in from</p><p>A search like "best ST build FC 27 Clubs"; Home's builds; a face's paired build; a new season or patch.</p></div>
     <div class="box"><p class="label">Done when</p><p>The build is set up in game and they know which season and date it was checked.</p></div>
   </div>
   <div class="flow">
-    <div class="step"><span class="s">1 · Discover</span><b>Lands on Home or Builds</b><code>/ · /builds</code><p>Builds by position; the season chip says which season is live.</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">2a · By position</span><b>Picks "ST"</b><code>/builds</code><p>Cards for that position: archetype, headline values, season tag.</p></div><div class="arrow">or</div>
-    <div class="step"><span class="s">2b · By archetype</span><b>Opens Archetypes</b><code>/archetypes</code><p>13 tiles in four groups; picks theirs.</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">3 · Understand</span><b>Reads the archetype</b><code>/archetypes/[slug]</code><p>Signature PlayStyles, masteries, cost changes, its builds.</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">4 · Trust</span><b>Opens a build, checks the tag</b><code>/builds/[slug]</code><p>"FC 27 · Season 2 · verified …" (Season 3 from 3 Dec), credit, sources.</p></div><div class="arrow">→</div>
-    <div class="step"><span class="s">5 · Set up</span><b>Copies it into the game</b><code>/builds/[slug]</code><p>Height, weight, attributes, PlayStyles, specialization, values first.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">1 · Discover</span><b>Lands on Home or Builds</b><code>/ · /builds</code><p>Archetypes in four groups; the season chip says which season is live.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">2 · Pick</span><b>Picks their archetype</b><code>/builds</code><p>"I play ST": opens Attack, picks Finisher (D-38).</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">3 · Choose</span><b>Reads the header, picks a build</b><code>/builds/[archetype]</code><p>Signature PlayStyles, masteries; "Meta pick" first.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">4 · Trust</span><b>Opens a build, checks the tag</b><code>/builds/[archetype]/[build]</code><p>"FC 27 · Season 2 · verified …" (Season 3 from 3 Dec), credit, sources.</p></div><div class="arrow">→</div>
+    <div class="step"><span class="s">5 · Set up</span><b>Copies it into the game</b><code>/builds/[archetype]/[build]</code><p>Height, weight, attributes, PlayStyles, specialization, values first.</p></div><div class="arrow">→</div>
     <div class="step"><span class="s">6 · Extra</span><b>Wears a face with it</b><code>/faces/[slug]</code><p>Proposal: "Faces that pair this build" leads into journey 1.</p></div>
   </div>
   <div class="side">
     <div class="box"><h3>Next season</h3><p>A patch or new season lands. The changelog entry says what EA changed (linked to EA's post) and which builds were re-checked. A build not yet re-checked shows "Made for Season 2. Values may have changed since." (D-05).</p></div>
     <div class="box"><h3>Not a planner</h3><p>The site gives finished builds, not a tool to spend points. A build planner waits until Chime has checked the cost tables in game (D-07). Players who want to plan go to Pro Clubs HQ or PRO11; we don't compete there (D-03).</p></div>
-    <div class="box"><h3>Their build isn't here</h3><p>At launch there's one build per archetype (13); builds for every position come after (a Should item). Proposal: an archetype or position with no build offers Submit.</p></div>
+    <div class="box"><h3>Their build isn't here</h3><p>At launch there's one build per archetype (13); builds for every position come after (a Should item). Proposal: an archetype with no build offers Submit.</p></div>
   </div>
 </section>
 
@@ -320,10 +311,9 @@
   <div class="head"><h2>Journey 2, step by step: what the site must do</h2><span class="n">10</span></div>
   <table>
     <tr><th style="width:24mm">Step</th><th style="width:58mm">The player thinks</th><th>The page must give them</th><th style="width:64mm">Risk, and how the site handles it</th></tr>
-    <tr><td>1 Discover</td><td>"What's the best build for my position right now?"</td><td>Builds by position on Home and in Builds, with the current season on screen.</td><td>Stale builds elsewhere carry no date: ours always say which season and when they were checked (L-03).</td></tr>
-    <tr><td>2a By position</td><td>"I play ST."</td><td>Position filter; cards with archetype, positions and the tag (headline values: open, page 12).</td><td>Too many choices: one checked build per archetype at launch, labelled by position.</td></tr>
-    <tr><td>2b By archetype</td><td>"I'm a Finisher."</td><td>Archetypes in EA's four groups; names as text.</td><td>EA's icons or card art: never used (CLAUDE.md rule 2).</td></tr>
-    <tr><td>3 Understand</td><td>"Why this archetype? What does it unlock?"</td><td>Signature PlayStyles (from launch, and those added in Season 2), mastery attributes, how many attribute costs went up and down on 22 Oct, its builds, sources.</td><td>Guessed facts: fields without a source are empty and say so, never guessed (FORMAT). 6 of 13 archetypes have no mastery attributes yet.</td></tr>
+    <tr><td>1 Discover</td><td>"What's the best build for my position right now?"</td><td>Builds on Home; Builds opens on the archetypes in four groups, with the current season on screen.</td><td>Stale builds elsewhere carry no date: ours always say which season and when they were checked (L-03).</td></tr>
+    <tr><td>2 Pick</td><td>"I play ST." or "I'm a Finisher."</td><td>Archetypes in EA's four groups, names as text; the group is the position path (D-38).</td><td>EA's icons or card art: never used (CLAUDE.md rule 2). An archetype that plays in two groups: listed in both once its positions are checked.</td></tr>
+    <tr><td>3 Choose</td><td>"Why this archetype? Which build is the one?"</td><td>A short header (signature PlayStyles, mastery attributes, cost changes on 22 Oct, sources), then its builds with "Meta pick" first and, after launch, "Most copied" (D-34).</td><td>Guessed facts: fields without a source are empty and say so, never guessed (FORMAT). 6 of 13 archetypes have no mastery attributes yet.</td></tr>
     <tr><td>4 Trust</td><td>"Is this current? Who made it?"</td><td>The version tag at the top in words, the credit line, sources, history (version and date of each change).</td><td>An older season: the warning. Not checked: "Not yet checked in game" in words (only in previews; drafts aren't published).</td></tr>
     <tr><td>5 Set up</td><td>"Give me the numbers, clearly."</td><td>Level, height, weight, AcceleRATE, then attributes, PlayStyles (signature, plus, regular), specialization, skill moves, weak foot, values first and large.</td><td>Misreading at arm's length: values are the hero, labels secondary (DESIGN.md).</td></tr>
     <tr><td>6 Extra</td><td>"Can I look the part too?"</td><td>Proposal: faces that pair this build.</td><td>None yet: no section.</td></tr>
@@ -358,9 +348,8 @@
       <table>
         <tr><th>Where</th><th>Needed</th></tr>
         <tr><td>Face page</td><td>Progress through the steps (UI-BRIEF has the test ID <code>face-progress</code>, no wording).</td></tr>
-        <tr><td>Builds filter, empty</td><td>A line like Faces' "No faces here yet. Suggest one on Submit."</td></tr>
-        <tr><td>Archetype page</td><td>What a field with no source says (6 of 13 archetypes have no mastery attributes yet).</td></tr>
-        <tr><td>Archetype or position with no build</td><td>The line that offers Submit (a proposal).</td></tr>
+        <tr><td>Archetype header</td><td>What a field with no source says (6 of 13 archetypes have no mastery attributes yet).</td></tr>
+        <tr><td>Archetype with no build</td><td>A line like Faces' "No faces here yet. Suggest one on Submit." (a proposal).</td></tr>
         <tr><td>Submit, captures</td><td>The instruction to drag a face's captures into the GitHub issue before sending it.</td></tr>
         <tr><td>Visual Age step</td><td>The save reminder, and "Leave as the preset has it".</td></tr>
       </table>
@@ -379,7 +368,7 @@
     <tr><td>4</td><td>The proposed links: build to the faces that pair it, and a version change to its changelog entry.</td><td>Neither is in SPEC. The first needs no new data; the second needs a changelog id on history lines (FORMAT).</td><td>Add the first to SPEC now; leave the second until after launch.</td></tr>
     <tr><td>O-01</td><td>The name.</td><td>"Pro Clubs Hub" is a working title; it shows in the logo, domain and share cards.</td><td>Decide before the UI designer draws the logo.</td></tr>
     <tr><td>O-05</td><td>The first 5 faces.</td><td>The home grid and the share cards are designed around them.</td><td>The proposal: 2008 Ronaldo, 2017 Ronaldo, one more footballer era, Kanye West, one more living musician.</td></tr>
-    <tr><td>A-16</td><td>The face preview from one capture per face (a turning clip plus an in-match screenshot).</td><td>It decides what the face page's top half can show.</td><td>Record the 10-second test clip; then accept or change A-16.</td></tr>
+    <tr><td>D-35</td><td>The face preview: a turntable from one in-game turn (decided 22 Nov), plus a 3D rebuild tested from the same clip.</td><td>It decides what the face page's top half can show.</td><td>Record the 15-second test clip; then compare turntable and 3D side by side and pick.</td></tr>
     <tr><td>Nav</td><td>The top-bar sections and their order; the season chip on every page.</td><td>Both are proposals (page 3).</td><td>Let the UI designer test them.</td></tr>
     <tr><td>O-13</td><td>The takedown email address.</td><td>The Takedown page needs it (72-hour promise, D-10).</td><td>A dedicated address, not a personal one.</td></tr>
   </table>

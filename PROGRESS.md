@@ -2,6 +2,24 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Planning: builds by archetype, face preview, modes (Sun 22 Nov 2026)
+
+**Changed**
+- Chime, as a Clubs player: the separate Archetypes pages made no sense; builds are picked by archetype. D-33: one Builds section (`/builds` → `/builds/[archetype]` → `/builds/[archetype]/[build]`), no `/archetypes`. D-38: the four groups are the position path, no position filter.
+- D-34: "Meta pick" (Chime's, after one match) at launch; "Most copied" from Copy-button counts after launch, never merged.
+- D-35: face preview is a turntable cut from one in-game turn, plus a 3D rebuild tested from the same clip for comparison. D-36: faces are made in game by Chime and Sharon, never taken from YouTube (rule 5). O-16 opened: creators sending their own faces after launch.
+- D-37: light and dark mode both, following the device, with a switch; selected items get a dark ring in light mode.
+- SPEC routes, PLAN, CLAUDE.md layout and the sitemap brief (v4, still 12 pages) updated to match.
+
+**Checked**
+- Sitemap PDF re-rendered and read back: 12 pages (`pdfinfo`), every section within its page at print width, pages 2, 4 and 9 looked at.
+
+**Not verified**
+- GoatCounter events and API (D-34) not yet checked against its docs. Whether the head turns at an even speed with the stick held fully over (needs Chime's test clip).
+
+**Next**
+- Redesign the draft's Builds screens for D-33; turntable script and 3D test once the clip is in `reference/`; `load.ts` (paused).
+
 ## Light mode for the five colours (Sun 22 Nov 2026)
 
 **Changed**
