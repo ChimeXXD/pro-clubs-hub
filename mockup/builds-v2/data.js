@@ -43,23 +43,42 @@ window.BV2 = (() => {
     face: (file) => `${ASSETS}faces-standin/${file}`,
   };
 
-  // Sample build. Names are real FC 27 attribute and PlayStyle names; the numbers are not a real build.
+  // Sample build (D-43). Attribute and PlayStyle names are real FC 27 names; starting values and the spend
+  // order are layout samples. The level-55 values are where the spend order ends (see level.js).
   const build = {
     id: "meta-finisher",
     name: "Meta Finisher",
     positions: ["ST", "CF"],
     level: 55, height: "6'1\" · 185 cm", weight: "176 lb · 80 kg", accelerate: "Controlled Explosive",
-    skillMoves: 4, weakFoot: 4,
-    stats: { PAC: 88, SHO: 91, PAS: 72, DRI: 85, DEF: 38, PHY: 79 },
     face: "face-a.jpg", heroFace: "hero-a.jpg",
-    groups: [
-      ["Pace", [["Acceleration", 87], ["Sprint Speed", 89]]],
-      ["Shooting", [["Att. Position", 92], ["Finishing", 94], ["Shot Power", 88], ["Long Shots", 84], ["Volleys", 86], ["Penalties", 80]]],
-      ["Passing", [["Vision", 70], ["Crossing", 62], ["FK Accuracy", 58], ["Short Passing", 78], ["Long Passing", 64], ["Curve", 72]]],
-      ["Dribbling", [["Agility", 84], ["Balance", 80], ["Reactions", 90], ["Ball Control", 88], ["Dribbling", 85], ["Composure", 91]]],
-      ["Defending", [["Interceptions", 34], ["Heading Accuracy", 78], ["Def. Awareness", 30], ["Standing Tackle", 40], ["Sliding Tackle", 36]]],
-      ["Physical", [["Jumping", 76], ["Stamina", 78], ["Strength", 82], ["Aggression", 70]]],
+    // SAMPLE starting values (the real ones per archetype are unknown, RESEARCH §10.3).
+    start: {
+      Acceleration: 70, "Sprint Speed": 70, "Att. Position": 70, Finishing: 70, "Shot Power": 70, "Long Shots": 70, Volleys: 70, Penalties: 70,
+      Vision: 55, Crossing: 55, "FK Accuracy": 55, "Short Passing": 55, "Long Passing": 55, Curve: 55,
+      Agility: 65, Balance: 65, Reactions: 65, "Ball Control": 65, Dribbling: 65, Composure: 65,
+      Interceptions: 30, "Heading Accuracy": 30, "Def. Awareness": 30, "Standing Tackle": 30, "Sliding Tackle": 30,
+      Jumping: 60, Stamina: 60, Strength: 60, Aggression: 60,
+    },
+    startStars: { skillMoves: 3, weakFoot: 3 },
+    // The order the build was made in: [attribute or star, value to reach].
+    steps: [
+      ["Finishing", 85], ["Acceleration", 85], ["Sprint Speed", 85], ["Composure", 85], ["weakFoot", 4], ["Att. Position", 85],
+      ["Reactions", 85], ["Ball Control", 85], ["Shot Power", 80], ["Finishing", 90], ["Composure", 90], ["Reactions", 90],
+      ["Ball Control", 90], ["Agility", 80], ["Dribbling", 80], ["Strength", 75], ["Heading Accuracy", 70], ["skillMoves", 4],
+      ["Finishing", 94], ["Composure", 92], ["Reactions", 92], ["Ball Control", 92], ["Att. Position", 90], ["Acceleration", 87],
+      ["Sprint Speed", 89], ["Shot Power", 86], ["Dribbling", 82], ["Short Passing", 65], ["Vision", 60], ["Stamina", 70],
     ],
+    groups: [
+      ["Pace", "PAC", ["Acceleration", "Sprint Speed"]],
+      ["Shooting", "SHO", ["Att. Position", "Finishing", "Shot Power", "Long Shots", "Volleys", "Penalties"]],
+      ["Passing", "PAS", ["Vision", "Crossing", "FK Accuracy", "Short Passing", "Long Passing", "Curve"]],
+      ["Dribbling", "DRI", ["Agility", "Balance", "Reactions", "Ball Control", "Dribbling", "Composure"]],
+      ["Defending", "DEF", ["Interceptions", "Heading Accuracy", "Def. Awareness", "Standing Tackle", "Sliding Tackle"]],
+      ["Physical", "PHY", ["Jumping", "Stamina", "Strength", "Aggression"]],
+    ],
+    // Finisher+ gives Chip Shot+; its targets are Ball Control, Composure and Reactions, one at 92 and two at 90
+    // (RESEARCH §10.4: names seen in footage, values not said for Finisher+).
+    spec: { name: "Finisher+", playStyle: "Chip Shot", targets: ["Ball Control", "Composure", "Reactions"] },
     psPlus: ["Low Driven Shot", "First Touch"],
     ps: ["Finesse Shot", "Power Shot", "Rapid", "Quick Step", "Precision Header", "Acrobatic"],
   };

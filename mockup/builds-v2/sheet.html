@@ -22,6 +22,7 @@
 <h1 class="sheet-title" id="title"></h1>
 <div class="row" id="row"></div>
 <script src="data.js"></script>
+<script src="level.js"></script>
 <script src="screens.js"></script>
 <script>
   const w = new URLSearchParams(location.search).get("w") === "desktop" ? "desktop" : "phone";
@@ -30,7 +31,8 @@
     `Builds · new style · Old Gold dark · ${w === "desktop" ? "Desktop 1440" : "Phone 393"}` +
     `<span>FUT.GG stats page + FC 27 Clubs menus + sports editorial (D-33, D-39). Sample values. Archetype emblems are Pro Clubs HQ's tracings of EA's emblems; PlayStyle icons are EA's art. Reference only, not for launch as is.</span>`;
   const S = window.BV2Screens;
-  const screens = [["Builds · /builds", S.picker], ["Finisher · /builds/finisher", S.archetypePage], ["Meta Finisher · /builds/finisher/meta-finisher", S.buildPage]];
+  const screens = [["Builds · /builds", S.picker], ["Finisher · /builds/finisher", S.archetypePage], ["Meta Finisher · level 55 · /builds/finisher/meta-finisher", () => S.buildPage(55)],
+    ["Meta Finisher · level 32, specialization not reached", () => S.buildPage(32)]];
   const row = document.getElementById("row");
   row.innerHTML = screens.map(([name], i) => `<div class="cell"><h2>${name}</h2><div class="frame" data-screen="${i}"></div></div>`).join("");
   row.querySelectorAll(".frame").forEach((f, i) => { f.innerHTML = screens[i][1](); });

@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Level switch and specialization on the sample build (Sun 22 Nov 2026, evening)
+
+**Changed**
+- D-43 in `mockup/builds-v2/`: the Meta Finisher page has a "Your level" switch (slider 1–55, −/+ steppers, a typed box), sticky under the header so it stays reachable while the attributes scroll (one 140 px bar on phone; the raw-values note sits just below it so only the controls stick). It spends the level's AP in the build's stored spend order, point by point, and stops at the first point the AP can't buy. Rows show the value at that level, solid, over the level-55 target as a ghost bar ("84 / 91"); the six summary stats (group averages, our simplification) update too. "Not affordable yet" lists the next three steps with the AP each still needs. The specialization panel shows Finisher+ (Chip Shot+), its three targets, its status at the chosen level and the level it's reached from. New `level.js` holds the maths and the live update; `index.html` is interactive.
+- AP per level is §10.1's table (reproduces every row total). Prices and starting values are flat made-up samples, labelled "Sample prices and starting values · not yet checked in game". Which Finisher+ target is the 92 one isn't recorded, so the sample counts all three at 92.
+- Motion: the gestures skill set the slider rules (1:1 tracking with no transition while dragging, 44 px hit area, `touch-action: pan-y`); only a stepper press eases the bars (150 ms ease-out, none under reduced motion).
+- Figma (59:2): build screens replaced at level 55 (phone 89:2, desktop 91:2) and a level-32 state added beside them (phone 90:2, desktop 92:2); both sheets grew to fit.
+
+**Checked**
+- Live in `index.html` at 390×844 (touch): drag lands on the level under the finger with no transition, steppers ease 150 ms (0 under reduced motion), typed 0 → 1 and 99 → 55, the bar stays at top 0 while scrolling, every control is at least 44 px, no errors. At 32: 724 AP, 719 spent, 5 left; Reactions 86 → 90 needs 31 AP more; specialization not reached (Ball Control 85, Composure 90, Reactions 86 of 92), reached from 50.
+- Contrast on every new text pair is 6.34:1 or more; slider thumb and fill at least 6.17:1. Code review (medium, fix): 9 findings, 7 fixed (quieter live regions, native thumb sized to the drawn one, per-build work cached, unknown attribute throws, card level, shared stat grid, range text from MIN/MAX).
+
+**Not verified**
+- On Chime's iPhone. Every price, starting value and star price is a sample; the specialization's "reached from" level depends on them.
+
 ## Faces on every build (Sun 22 Nov 2026, late afternoon)
 
 **Changed**

@@ -59,7 +59,7 @@ window.BV2Screens = (() => {
     </main>${footer()}`;
   }
 
-  const statGrid = (f) => `<dl class="statgrid">${Object.entries(f).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`;
+  const statGrid = (f, live = false) => `<dl class="statgrid">${Object.entries(f).map(([k, v]) => `<div><dt>${k}</dt><dd${live ? ` data-sum="${k}"` : ""}>${v}</dd></div>`).join("")}</dl>`;
 
   // 2. /builds/<archetype>: archetype header, then its builds (sample builds exist for Finisher only).
   function archetypePage(id = "finisher") {
@@ -71,7 +71,7 @@ window.BV2Screens = (() => {
         <h3 class="bcard-name">${b.name} <span class="faint">(sample)</span></h3>
         ${b.inspiredBy ? `<p class="inspired">Inspired by ${esc(b.inspiredBy)}. Not endorsed by the player.</p>` : ""}
         <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}<span>Level ${b.level}</span><span>${b.height}</span></p>
-        ${statGrid(b.stats)}
+        ${statGrid(b.stats ?? window.BV2Level.summary(b, window.BV2Level.compute(b, b.level).values))}
         <p class="bcard-ps"><span class="label">PlayStyles+</span>${b.psPlus.map((n) => psIcon(n, true, "sm")).join("")}</p>
       </div>
     </a>`;
@@ -100,34 +100,41 @@ window.BV2Screens = (() => {
     </main>${footer()}`;
   }
 
-  // Gauge arc for a group's average, after FUT.GG's attribute groups. The filled arc is drawn to its
-  // end point (not a dash pattern) so it survives the Figma capture.
-  const gauge = (v) => {
-    const a = Math.PI * (1 - v / 99), x = (20 + 15 * Math.cos(a)).toFixed(2), y = (21 - 15 * Math.sin(a)).toFixed(2);
-    return `<svg class="gauge" viewBox="0 0 40 24" aria-hidden="true"><path class="g-bg" d="M5 21a15 15 0 0 1 30 0"/><path class="g-on" d="M5 21A15 15 0 0 1 ${x} ${y}"/></svg>`;
-  };
-
-  // 3. /builds/finisher/meta-finisher: the build to copy.
-  function buildPage() {
-    const b = D.build, a = D.archetype("finisher");
-    const groups = b.groups.map(([g, rows]) => {
-      const avg = Math.round(rows.reduce((s, r) => s + r[1], 0) / rows.length);
-      return `<section class="agroup"><div class="agroup-head"><h3>${g}</h3><span class="avg">${gauge(avg)}<b>${avg}</b></span></div>
-        ${rows.map(([n, v]) => `<div class="arow${v < 50 ? " low" : ""}"><span>${n}${a.mastery.includes(n) ? ` <em class="tag">Mastery</em>` : ""}</span><b>${v}</b><i><s style="width:${v}%"></s></i></div>`).join("")}
-      </section>`;
-    }).join("");
+  // 3. /builds/finisher/meta-finisher at the reader's level (D-43). Everything level-dependent renders from
+  // BV2Level, and BV2Level.apply() updates the same nodes in place when the level changes.
+  let lvId = 0;
+  function buildPage(level = 55) {
+    const L = window.BV2Level, b = D.build, a = D.archetype("finisher"), r = L.compute(b, level), uid = `lv-${++lvId}`;
+    const sum = L.summary(b, r.values);
+    const groups = b.groups.map(([g, code, keys]) => `<section class="agroup"><div class="agroup-head"><h3>${g}</h3><span class="avg" data-gavg="${code}">${L.gauge(sum[code])}<b>${sum[code]}</b></span></div>
+        ${keys.map((n) => { const v = r.values[n], t = r.target[n]; return `<div class="arow${t < 50 ? " low" : ""}${v < t ? " short" : ""}" data-attr="${esc(n)}"><span>${n}${a.mastery.includes(n) ? ` <em class="tag">Mastery</em>` : ""}</span><b><span data-v>${v}</span><span class="tgt" data-t>${v < t ? ` / ${t}` : ""}</span></b><i><u style="width:${t}%"></u><s style="width:${v}%"></s></i></div>`; }).join("")}
+      </section>`).join("");
     const psList = (names, plus) => names.map((n) => `<li>${psIcon(n, plus, "", false)}<span>${n}${[a.launch, a.season2].includes(n) ? `<em>Signature</em>` : ""}</span></li>`).join("");
     return `${topbar()}<main class="page">
       ${crumbs(["Builds", "#/builds"], [a.name, "#/builds/finisher"], [b.name, ""])}
       <section class="bhead">
         <div class="bhead-text">
-          <div class="badges">${badge("meta")}${sample}</div>
+          <div class="badges">${badge("meta")}${sample}<span class="sample" data-testid="sample-prices">Sample prices and starting values · not yet checked in game</span></div>
           <h1 class="display xl">${b.name} <span class="faint">(sample)</span></h1>
           <p class="vtag" data-testid="version-tag">FC 27 · Season 2 · Not yet checked in game</p>
           <p class="credit" data-testid="credit-line">Made by — (sample) · Played for one match before it's called meta (D-30)</p>
         </div>
         <button class="copy cut" data-testid="copy-build">Copy build</button>
       </section>
+      <section class="levelbar" data-level-bar data-testid="level-switch" aria-label="Your level">
+        <div class="lv-top">
+          <label class="lv-label" for="${uid}">Your level</label>
+          <div class="lv-step">
+            <button type="button" class="lv-btn" data-lv-step="-1" aria-label="Level down">−</button>
+            <input id="${uid}" class="lv-num" type="number" inputmode="numeric" min="${L.MIN}" max="${L.MAX}" value="${r.level}" data-lv-num>
+            <button type="button" class="lv-btn" data-lv-step="1" aria-label="Level up">+</button>
+          </div>
+          <p class="lv-ap" data-lv-ap aria-live="polite">${L.apLine(r)}</p>
+        </div>
+        <div class="lv-slider"><span class="lv-track"><span class="lv-fill" data-lv-fill style="width:${L.pct(r.level)}%"></span></span><span class="lv-thumb" data-lv-thumb style="left:${L.pct(r.level)}%"></span>
+          <input class="lv-range" type="range" min="${L.MIN}" max="${L.MAX}" value="${r.level}" aria-label="Your level, ${L.MIN} to ${L.MAX}" data-lv-range></div>
+      </section>
+      <p class="lv-note">Raw values, as with Attribute totals off: masteries, height and weight and Amps aren't added.</p>
       <div class="bgrid">
         <aside class="panel cut card-panel">
           <div class="card-hero">
@@ -135,14 +142,22 @@ window.BV2Screens = (() => {
             <div class="card-side">
               <div class="card-top">${emblem("finisher", "ring")}<div><b class="card-arch">${a.name}</b>
                 <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}</p></div></div>
-              ${statGrid(b.stats)}
+              ${statGrid(sum, true)}
             </div>
           </div>
+          <section class="afford" aria-live="polite"><h2 class="label" data-afford-h>${L.affordHead(r)}</h2><div data-afford>${L.affordBody(r)}</div></section>
+          <section class="spec" data-testid="specialization">
+            <h2 class="label">Specialization</h2>
+            <div class="spec-head">${psIcon(b.spec.playStyle, true, "", false)}<div><b>${b.spec.name}</b><em>${b.spec.playStyle}+</em></div></div>
+            <p class="spec-why">Targets ${b.spec.targets.join(", ")}: one at 92, two at 90. Which one is 92 isn't recorded yet, so this sample counts all three at 92.</p>
+            <ul class="spec-rows" data-spec-rows>${L.specRows(b, r)}</ul>
+            <p class="spec-status" data-spec-status aria-live="polite">${L.specStatus(r)}</p>
+            <p class="spec-from">${r.specFrom ? `Reached from level ${r.specFrom} with the sample prices.` : `Not reached by level ${L.MAX} with the sample prices.`} Counts raw values only.</p>
+          </section>
           <dl class="body">
-            <div><dt>Level</dt><dd>${b.level}</dd></div><div><dt>Height</dt><dd>${b.height}</dd></div>
+            <div><dt>Built at level</dt><dd>${b.level}</dd></div><div><dt>Height</dt><dd>${b.height}</dd></div>
             <div><dt>Weight</dt><dd>${b.weight}</dd></div><div><dt>AcceleRATE</dt><dd>${b.accelerate}</dd></div>
-            <div><dt>Skill moves</dt><dd>${"★".repeat(b.skillMoves)}</dd></div><div><dt>Weak foot</dt><dd>${"★".repeat(b.weakFoot)}</dd></div>
-            <div><dt>Specialization</dt><dd class="faint">Not yet recorded</dd></div>
+            ${Object.entries(L.STARS).map(([k, label]) => `<div><dt>${label}</dt><dd data-star="${k}">${L.stars(r.values[k], r.target[k])}</dd></div>`).join("")}
           </dl>
           <h2 class="label">PlayStyles+</h2><ul class="pslist">${psList(b.psPlus, true)}</ul>
           <h2 class="label">PlayStyles</h2><ul class="pslist">${psList(b.ps, false)}</ul>

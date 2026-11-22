@@ -7,7 +7,7 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 500 15px/1.45
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
 img { display: block; }
-.frame { container-type: inline-size; position: relative; background: var(--bg); overflow: hidden;
+.frame { container-type: inline-size; position: relative; background: var(--bg); overflow: clip; /* clip, not hidden: hidden would break the sticky level bar */
   background-image: radial-gradient(900px 320px at 85% 0, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
     repeating-linear-gradient(115deg, transparent 0 22px, color-mix(in srgb, var(--text) 2%, transparent) 22px 23px); }
 
@@ -140,8 +140,51 @@ img { display: block; }
 .arow { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 6px 0 8px; position: relative; font-size: 14px; }
 .arow b { font: 800 18px/1 var(--display); }
 .arow i { position: absolute; left: 0; bottom: 2px; height: 3px; width: 100%; background: var(--raised); border-radius: 2px; overflow: hidden; }
-.arow s { display: block; height: 100%; background: var(--accent-line); border-radius: 2px; }
+.arow s, .arow u { position: absolute; left: 0; top: 0; height: 100%; border-radius: 2px; }
+.arow s { background: var(--accent-line); }
+.arow u { background: color-mix(in srgb, var(--accent-line) 30%, var(--raised)); } /* the level-55 target, behind the value */
 .arow.low s { background: var(--muted); }
+.arow.low u { background: color-mix(in srgb, var(--muted) 30%, var(--raised)); }
+.tgt { color: var(--muted); font: 600 13px var(--font); }
+
+/* Level switch (D-43): sticky so it stays under the thumb while the attributes scroll past */
+.levelbar { position: sticky; top: 0; z-index: 5; margin: 0 calc(-1 * var(--s4)) var(--s2); padding: var(--s2) var(--s4) var(--s3); background: var(--bg); border-bottom: 1px solid var(--line); }
+.lv-top { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
+.lv-label { font: 800 20px/1 var(--display); text-transform: uppercase; }
+.lv-step { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); }
+.lv-btn { width: 44px; height: 44px; border: 0; background: none; color: var(--text); font: 700 22px/1 var(--font); cursor: pointer; touch-action: manipulation; }
+.lv-num { width: 52px; height: 44px; border: 0; background: none; color: var(--text); text-align: center; font: 800 24px/1 var(--display); appearance: textfield; -moz-appearance: textfield; }
+.lv-num::-webkit-inner-spin-button, .lv-num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.lv-ap { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 13px; }
+.lv-ap b { color: var(--text); font-weight: 700; }
+.lv-slider { position: relative; height: 44px; margin: 2px 14px 0; }
+.lv-track { position: absolute; left: -14px; right: -14px; top: 19px; height: 6px; border-radius: 3px; background: var(--raised); overflow: hidden; }
+.lv-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent-line); }
+.lv-thumb { position: absolute; top: 8px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg); pointer-events: none; }
+.lv-range { position: absolute; inset: 0 -14px; width: calc(100% + 28px); height: 44px; margin: 0; opacity: 0; cursor: pointer; touch-action: pan-y; -webkit-appearance: none; appearance: none; }
+/* The native thumb matches the drawn one (28px), so the value under the finger is the one the drawn thumb shows. */
+.lv-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; }
+.lv-range::-moz-range-thumb { width: 28px; height: 28px; border: 0; }
+.lv-slider:has(.lv-range:focus-visible) .lv-thumb, .lv-btn:focus-visible, .lv-num:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.lv-note { margin: 0 0 var(--s4); color: var(--muted); font-size: 12px; }
+@media (prefers-reduced-motion: no-preference) { .lv-eased .arow s { transition: width 150ms var(--ease-out); } }
+
+/* What the level can't buy yet, and the specialization */
+.afford, .spec { margin-bottom: var(--s4); padding: var(--s3); background: var(--raised); border-radius: var(--r-sm); }
+.afford-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.afford-list li { display: flex; justify-content: space-between; gap: var(--s2); font-size: 14px; }
+.afford-list b { color: var(--warning); white-space: nowrap; font-weight: 700; }
+.afford-ok { margin: 0; font-size: 14px; }
+.spec-head { display: flex; gap: var(--s2); align-items: center; margin-bottom: var(--s2); }
+.spec-head b { display: block; font: 800 22px/1 var(--display); text-transform: uppercase; }
+.spec-head em { font-style: normal; color: var(--accent-text); font-size: 13px; font-weight: 700; }
+.spec-why, .spec-from { margin: 0 0 var(--s2); color: var(--muted); font-size: 13px; }
+.spec-from { margin: 0; }
+.spec-rows { list-style: none; margin: 0 0 var(--s2); padding: 0; display: grid; gap: 4px; }
+.spec-rows li { display: flex; justify-content: space-between; font-size: 14px; }
+.spec-rows li b { font: 800 18px/1 var(--display); }
+.spec-rows li.ok b { color: var(--accent-text); }
+.spec-status { margin: 0 0 var(--s2); font-weight: 700; }
 .tag { font-style: normal; font-size: 11px; font-weight: 700; color: var(--accent-ink); background: var(--accent); padding: 1px 5px; border-radius: 4px; margin-left: 4px; }
 
 .foot { padding: var(--s5) var(--s4); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
@@ -174,6 +217,10 @@ img { display: block; }
   .bhead { grid-template-columns: 1fr auto; align-items: end; }
   .copy { width: auto; height: 60px; font-size: 22px; }
   .bgrid { grid-template-columns: 400px minmax(0, 1fr); gap: var(--s5); align-items: start; }
+  .levelbar { display: flex; align-items: center; gap: var(--s5); margin: 0 calc(-1 * var(--s7)) var(--s2); padding: var(--s3) var(--s7); }
+  .lv-top { flex: none; flex-wrap: nowrap; }
+  .lv-ap { flex: none; }
+  .lv-slider { flex: 1; margin-top: 0; }
   .panel { padding: var(--s5); }
   .agroups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6) var(--s5); }
   .foot { padding: var(--s5) var(--s7); }
