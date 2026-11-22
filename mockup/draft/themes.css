@@ -48,6 +48,53 @@
   --warning: #ffb547; --danger: #ff9a52;
 }
 
+/* Light mode: data-mode="light" on <html> (the mode switch, or ?mode=light on the frame sheets).
+   Each colour keeps its own accent fill and ink, so buttons, chips and hero cards look the same in
+   both modes. Made here, not measured: light surfaces tinted towards each colour's dark bg (paper
+   for Old Gold, cool grey for Floodlight), dark text, and a darker accent-text and accent-line,
+   because the bright accents fail AA as text and as borders on white. Warning and danger darken
+   for the same reason. The floating tab bar gets a softer shadow. */
+[data-mode="light"][data-theme="volt"], [data-mode="light"] [data-theme="volt"] {
+  --bg: #f3f3ef; --surface: #ffffff; --raised: #e9e9e3; --line: #d6d6ce;
+  --text: #111113; --muted: #5d5c56;
+  --accent-text: #3d6600; --accent-line: #4d7d00;
+  --warning: #8a4f00; --danger: #b8322a;
+}
+
+[data-mode="light"][data-theme="pitch"], [data-mode="light"] [data-theme="pitch"] {
+  --bg: #f1f5ef; --surface: #ffffff; --raised: #e4ebe1; --line: #d0dbcc;
+  --text: #0d150b; --muted: #536050;
+  --accent-text: #006b35; --accent-line: #00843f;
+  --warning: #8a4f00; --danger: #b8322a;
+}
+
+[data-mode="light"][data-theme="gold"], [data-mode="light"] [data-theme="gold"] {
+  --bg: #f5efe4; --surface: #fffbf4; --raised: #ebe2d2; --line: #dacdb7;
+  --text: #1e170e; --muted: #67583f;
+  --accent-text: #75550c; --accent-line: #8c6714;
+  --warning: #8f4500; --danger: #b8322a;
+}
+
+[data-mode="light"][data-theme="floodlight"], [data-mode="light"] [data-theme="floodlight"] {
+  --bg: #f2f2f1; --surface: #ffffff; --raised: #e6e6e4; --line: #d4d4d1;
+  --text: #0b0b0a; --muted: #595956;
+  --accent-text: #1d5aa6; --accent-line: #2f6fc0;
+  --warning: #8a4f00; --danger: #b8322a;
+}
+
+[data-mode="light"][data-theme="derby"], [data-mode="light"] [data-theme="derby"] {
+  /* Errors stay orange so they never read as the crimson accent */
+  --bg: #f4f3f4; --surface: #ffffff; --raised: #e8e6e9; --line: #d7d4d8;
+  --text: #151316; --muted: #5c5960;
+  --accent-text: #b0124a; --accent-line: #c8174f;
+  --warning: #8a4f00; --danger: #a44400;
+}
+
+[data-mode="light"][data-theme], [data-mode="light"] [data-theme] {
+  --focus: var(--accent-line);
+  --shadow-float: 0 8px 24px rgb(20 20 20 / .14);
+}
+
 :root, [data-theme] {
   /* Shared: derived colours (recomputed on every themed element, so a page can show several themes), type, spacing, radius, motion */
   --accent-soft: color-mix(in srgb, var(--accent) 14%, var(--surface));
@@ -55,6 +102,8 @@
   --hover-fill-raised: color-mix(in srgb, var(--text) 2%, var(--raised));
   --hover-fill-page: color-mix(in srgb, var(--text) 1%, var(--bg));
   --focus: var(--accent);
+  --accent-line: var(--accent); /* selected borders, slider, progress and stat bars; darker in light mode */
+  --shadow-float: 0 10px 30px rgb(0 0 0 / .45);
   --hero: linear-gradient(155deg, color-mix(in srgb, var(--accent) 82%, #fff) 0%, var(--accent) 45%, var(--accent-2) 100%);
 
   --font: "Barlow", system-ui, sans-serif;

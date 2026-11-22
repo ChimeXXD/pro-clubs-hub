@@ -31,9 +31,17 @@
     .map((id) => PHONE.find((p) => p[0] === id));
 
   const mode = window.FRAME_MODE || "phone";
-  // ?theme=pitch renders every frame in that colour (used for the Figma pages)
-  const theme = new URLSearchParams(location.search).get("theme");
+  // ?theme=pitch renders every frame in that colour, ?mode=light in light mode (used for the Figma pages)
+  const qs = new URLSearchParams(location.search);
+  const theme = qs.get("theme");
   if (theme && D.THEMES.some((x) => x.id === theme)) document.documentElement.dataset.theme = theme;
+  const light = qs.get("mode") === "light";
+  if (light) document.documentElement.dataset.mode = "light";
+  // Name the colour and mode in the heading; compare shows all five colours, so it names only the mode
+  const th = mode === "compare" ? null : D.THEMES.find((x) => x.id === document.documentElement.dataset.theme);
+  const h1 = document.querySelector(".sheet-page > h1");
+  const tag = [th && (theme || light) ? th.name : "", light ? "Light" : ""].filter(Boolean).join(" · ");
+  if (tag && h1) h1.textContent = h1.textContent.replace("first draft", `· ${tag}`);
   const wrap = document.getElementById("frames");
   const frame = (id, html, w, label, theme) => `<figure class="frame-wrap"${theme ? ` data-theme="${theme}"` : ""}>
     <figcaption>${label}</figcaption>

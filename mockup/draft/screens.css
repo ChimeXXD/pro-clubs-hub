@@ -23,28 +23,28 @@
 .round { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--bg); color: var(--text); border: 1px solid var(--line); }
 .angles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .angle { min-height: 44px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 600; }
-.angle.on { border-color: var(--accent); color: var(--accent-text); background: var(--accent-soft); }
+.angle.on { border-color: var(--accent-line); color: var(--accent-text); background: var(--accent-soft); }
 
 .recipe-col { display: grid; gap: var(--s3); align-content: start; }
 .limits { padding: 12px 14px; border-radius: 10px; background: var(--raised); color: var(--text); font-size: 15px; }
 .start-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); margin-top: var(--s2); }
 .progress { height: 6px; border-radius: 99px; background: var(--raised); overflow: hidden; margin-top: var(--s2); }
-.progress i { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform var(--dur-base) var(--ease-out); }
+.progress i { display: block; height: 100%; background: var(--accent-line); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform var(--dur-base) var(--ease-out); }
 .steps { display: grid; gap: 6px; }
 .step { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: var(--s3); padding: 10px 14px 10px 10px; border-radius: 14px; border: 1px solid transparent; transition: background-color var(--dur-fast), opacity var(--dur-base); }
 .step.current { background: var(--raised); border-color: var(--line); }
 .step.done .step-label { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
 .step.done .value { color: var(--muted); }
 .tick { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line); color: transparent; transition: background-color var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast); }
-.step.current .tick { border-color: var(--accent); }
-.step.done .tick { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.step.current .tick { border-color: var(--accent-line); }
+.step.done .tick { background: var(--accent); border-color: var(--accent-line); color: var(--accent-ink); }
 .step-main { display: grid; gap: 2px; min-width: 0; }
 .step-label { font-weight: 700; font-size: 16px; }
 .step-kind { color: var(--muted); font-size: 13px; }
 .step-help { color: var(--muted); font-size: 14px; }
 .value { font: 800 40px/1 var(--display); font-variant-numeric: tabular-nums; text-align: right; }
 .value-word { font-size: 24px; max-width: 9ch; text-wrap: balance; }
-.slider { position: relative; height: 6px; margin: 10px 0 2px; border-radius: 99px; background: linear-gradient(to right, var(--accent) var(--at), var(--line) var(--at)); }
+.slider { position: relative; height: 6px; margin: 10px 0 2px; border-radius: 99px; background: linear-gradient(to right, var(--accent-line) var(--at), var(--line) var(--at)); }
 .slider i { position: absolute; left: var(--at); top: 50%; width: 18px; height: 18px; border-radius: 50%; background: var(--text); box-shadow: 0 0 0 4px var(--bg); transform: translate(-50%, -50%); }
 .slider-ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
 .side-col { display: grid; gap: var(--s3); align-content: start; }
@@ -77,7 +77,7 @@
 .attr-list li:last-child { border-bottom: 0; }
 .attr-name { font-weight: 600; }
 .bar { height: 6px; border-radius: 99px; background: var(--raised); overflow: hidden; }
-.bar i { display: block; height: 100%; background: var(--accent); }
+.bar i { display: block; height: 100%; background: var(--accent-line); }
 .attr-value { font: 800 34px/1 var(--display); font-variant-numeric: tabular-nums; text-align: right; }
 .build-side { display: grid; gap: var(--s4); }
 .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2); }
@@ -86,7 +86,7 @@
 .ps-group { color: var(--muted); font-size: 14px; font-weight: 700; margin-top: var(--s1); }
 .ps-list { display: grid; gap: 6px; }
 .ps-list li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: var(--raised); font-weight: 600; }
-.ps-mark { width: 10px; height: 10px; background: var(--accent); transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
+.ps-mark { width: 10px; height: 10px; background: var(--accent-line); transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
 .warn-bar { display: flex; align-items: center; gap: var(--s2); padding: 12px 14px; border-radius: 10px; background: var(--raised); color: var(--warning); font-weight: 600; }
 
 /* Archetypes: our own pitch drawing (World Cup line-up), then the four groups */
@@ -156,17 +156,17 @@
 .sig { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); width: 100%; min-height: 56px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--raised); text-align: left; transition: border-color var(--dur-fast), background-color var(--dur-fast); }
 .sig b { font: 800 24px/1 var(--display); text-transform: uppercase; }
 .sig span { color: var(--muted); font-size: 14px; }
-.sig.on { border-color: var(--accent); background: var(--accent-soft); }
+.sig.on { border-color: var(--accent-line); background: var(--accent-soft); }
 .sig-detail { display: grid; gap: 4px; padding: 14px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); }
 .creator-list { display: grid; gap: 2px; }
 
 @media (hover: hover) and (pointer: fine) {
-  .pitch-chip:hover, .arch-tile:hover { border-color: var(--accent); }
+  .pitch-chip:hover, .arch-tile:hover { border-color: var(--accent-line); }
   .round:hover, .angle:not(.on):hover { background: var(--hover-fill-raised); }
   .embed:hover { background: var(--hover-fill); }
   .step:not(.current):hover { background: var(--hover-fill-page); }
   .sig:not(.on):hover { background: var(--hover-fill-raised); }
-  .tick:hover { border-color: var(--accent); }
+  .tick:hover { border-color: var(--accent-line); }
   .src:hover { text-decoration-thickness: 2px; }
 }
 

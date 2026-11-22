@@ -13,10 +13,24 @@
     store.set("draft-theme", id);
     document.querySelectorAll("[data-theme-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.themeBtn === id)));
   };
+  const setMode = (m) => {
+    document.documentElement.dataset.mode = m;
+    store.set("draft-mode", m);
+    document.querySelectorAll("[data-mode-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modeBtn === m)));
+  };
   document.getElementById("themes").innerHTML = `<span class="tools-label">Colour</span>${D.THEMES.map((th) =>
-    `<button data-theme-btn="${th.id}" aria-pressed="false" title="From ${th.from}"><i style="background:${th.swatch}"></i>${th.name}</button>`).join("")}`;
-  document.getElementById("themes").addEventListener("click", (e) => { const b = e.target.closest("[data-theme-btn]"); if (b) setTheme(b.dataset.themeBtn); });
-  setTheme(new URLSearchParams(location.search).get("theme") || store.get("draft-theme", "volt"));
+    `<button data-theme-btn="${th.id}" aria-pressed="false" title="From ${th.from}"><i style="background:${th.swatch}"></i>${th.name}</button>`).join("")}
+    <span class="tools-label tools-gap">Mode</span>${["dark", "light"].map((m) =>
+    `<button data-mode-btn="${m}" aria-pressed="false">${m === "dark" ? "Dark" : "Light"}</button>`).join("")}`;
+  document.getElementById("themes").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-theme-btn]"); if (b) setTheme(b.dataset.themeBtn);
+    const m = e.target.closest("[data-mode-btn]"); if (m) setMode(m.dataset.modeBtn);
+  });
+  const qs = new URLSearchParams(location.search);
+  // Only known values: an unknown theme would leave light mode with the dark palette (no light block matches it)
+  const pick = (ok, ...vals) => vals.find(ok);
+  setTheme(pick((v) => D.THEMES.some((t) => t.id === v), qs.get("theme"), store.get("draft-theme", "volt"), "volt"));
+  setMode(pick((v) => v === "light" || v === "dark", qs.get("mode"), store.get("draft-mode", "dark"), "dark"));
 
   // Ticks are saved per face with the face's version; a new version starts fresh and says so (SPEC flow 2).
   const ticks = (f) => {

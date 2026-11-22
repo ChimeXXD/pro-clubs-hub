@@ -2,6 +2,26 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Light mode for the five colours (Sun 22 Nov 2026)
+
+**Changed**
+- Chime asked to see the light mode. `mockup/draft/themes.css` gains a light block per colour (`data-mode="light"`): each keeps its accent fill and ink; surfaces, text, muted, warning and danger are new, plus a darker `--accent-text` and a new `--accent-line` token (selected borders, slider, progress and stat bars), because the bright accents fail as text and as borders on white. The tab bar shadow became a token (`--shadow-float`). Dark mode is unchanged (`--accent-line` = `--accent` there).
+- Prototype: a Dark / Light switch next to the colour switcher (remembered per browser). `frames.html` and `desktop.html` take `?theme=<id>&mode=light` and name the colour in the sheet title.
+- Figma: new page "Light mode" (34:2) in https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD: one column per colour, phone sheet (21 frames at 393) above desktop sheet (11 at 1440), captured as editable layers.
+
+**Checked**
+- Contrast script: every text pair ≥ 4.5:1 and every accent line ≥ 3:1 on bg and surface, in both modes and all five colours.
+- Design check PASS for all 20 sheets (5 colours × 2 modes × phone and desktop); 64 click-through checks PASS at 390 and 1440 (the 56 before plus mode switch, light background, persistence across reload, back to dark). Lint clean.
+- `/code-review medium --fix`: 8 findings, 2 fixed (unknown theme or mode from the URL or storage now falls back to a known one; sheet headings name the colour and mode in every case). Open: see "For Chime" below.
+- Read back from Figma: 10 sheets; Barlow 867 and Barlow Condensed 236 text layers per phone sheet (783 and 196 per desktop sheet); no section wider than its frame; each sheet's background is its light bg.
+
+**Not verified**
+- Light mode on Chime's iPhone (L-01). The light palettes are made here, not measured from a reference.
+
+**For Chime**
+- In light mode the selected chip, segment and tab-bar item are shown by the bright accent fill alone, which is faint on white (Volt lime on white 1.2:1; under the 3:1 guideline for every colour but Derby). The label still changes colour. Fix if wanted: a thin dark accent ring on selected items, light mode only.
+- Light mode needs a decision entry once Chime picks: light, dark, or both with a switch.
+
 ## The draft in Figma, and Pro Clubs assets (Sat 21 Nov 2026, later)
 
 **Changed**
