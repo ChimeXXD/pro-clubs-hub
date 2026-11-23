@@ -2,6 +2,24 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Core lane: loader, version wording, issue URL (Mon 23 Nov 2026, evening)
+
+Phase 1's three remaining core-lane units, each test-first (red, then green), committed one at a time.
+
+**Changed**
+- `src/lib/content/load.ts` (7f279b6, 87b43dc): reads content/, validates it, keeps only published builds, faces and changelog entries, and resolves archetype, `pairedBuild`, creators and changelog `affects` (newest entry first). The build fails, naming file and field, when published content links to a draft or withdrawn file (D-10), on a missing build, archetype or creator, on two files with one id, and on broken JSON. `scripts/validate-content.mjs` now runs the loader, so prebuild and CI enforce the links too. Fixtures: a whole good content tree plus one overlay folder per bad case in `tests/unit/fixtures/content/`.
+- `src/lib/content/version.ts` (6b0f1d8): FORMAT's exact tag lines ("FC 27 · Season 2 · verified 19 Nov 2026", "… · not yet checked in game") and the older-season warning. The current season is a parameter; the repo doesn't store it yet.
+- `src/lib/submit/toIssueUrl.ts` (15735d7): an issue URL on `ChimeXXD/pro-clubs-hub` (`REPO` in `src/lib/site.ts`) with the submission as compact JSON in a json code block, so @names and #12 ping and link nothing. No `labels` parameter: GitHub returns 404 for anyone who can't label issues. Over 6,500 characters it returns "too-long" instead of cutting, for Copy JSON. `readIssueBody` reads the JSON back.
+
+**Checked**
+- `npm run lint`, `typecheck`, `test` (66 tests: loader 16, version 8, submit 12) and `build` pass after each unit and after the review.
+- The URL limit was measured with curl on 23 Nov while signed out: up to 6,986 characters redirected to login, 7,026 and up failed with 500, and 8,166 and up with 414.
+- Code review (medium, fix) found 5 issues. 3 were fixed: duplicate ids no longer replace each other silently, the link loop doesn't re-sort, and `verifiedOn` is tested once. 2 were left: the "is missing" message is hidden behind validation errors, and the bad fixtures are full copies of good ones.
+
+**Not verified**
+- No page uses the loader, the wording or the issue link yet (Phase 2). The URL limit for signed-in visitors wasn't measured. The small fixture face is already 3,195 characters, so many full faces will probably need Copy JSON.
+- TODO and open questions for Chime: the issue title wording ("Face: …", "Build: …" stand in); submission labels need an issue template in `.github/ISSUE_TEMPLATE/`; where the current season lives; FORMAT's "not yet checked in game" tag line against SPEC and A-08's "Not yet checked in game".
+
 ## Stances off the picker, pictures aligned, cut corners and textures gone (Mon 23 Nov 2026, later)
 
 Chime: stances belong in the build section, not on "Pick your archetype"; the Finisher pictures weren't aligned on phone; the whole draft read as AI slop. Fixed in `mockup/builds-v2/`, then recaptured; Chime plans a full redesign after this.
