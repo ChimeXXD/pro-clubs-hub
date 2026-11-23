@@ -43,7 +43,7 @@ docs/
   logo-usage.md                     Logo system, clear space, minimum sizes, misuse, app icon, favicon
   design-system.md                  UI foundations, component specs and states, accessibility
   logo-construction.md              Reference analysis and the logo's geometry
-previews/                           PNG renders for review (not production assets)
+previews/                           PNG renders for review (not production assets); product/light/ has light mode
 scripts/                            Generators for everything above
 archive/                            Stage 2 logo options (not for use)
 ```
@@ -59,6 +59,8 @@ archive/                            Stage 2 logo options (not for use)
 <a class="ps-btn ps-btn--primary" href="/builds">Start building</a>
 <div class="ps-attr r-elite"><span class="ps-attr__label">Finishing</span><span class="ps-attr__value">94</span><span class="ps-attr__bar"><i style="--v:94"></i></span></div>
 ```
+
+**Light mode ("Fresh Cut"):** dark is the default. Add `data-theme="light"` to `<html>` and everything switches: same components, daylight colours, Grass as the accent. See `docs/design-system.md` → Themes. Every example page has a Light/Dark toggle in the nav, or add `?theme=light` to the URL.
 
 **React / Tailwind / other stacks:** read the values from `tokens/tokens.json`. Aliases such as `{color.pitch.900}` follow the W3C token format, which Style Dictionary or Tokens Studio can transform into a Tailwind config, TypeScript or native platforms.
 

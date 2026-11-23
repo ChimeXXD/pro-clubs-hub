@@ -52,11 +52,22 @@ Fast 120 ms (hover, press), base 200 ms (cards, tabs), slow 320 ms (modals). Eas
 - Face guide: two columns (sticky preview + steps) above 900 px. Stacked below.
 - Touch targets ≥ 44 px (sm buttons are 34 px and only for dense desktop rows).
 
+### Themes: dark and light
+Dark is the default. Light mode ("Fresh Cut") is one attribute on the page:
+```html
+<html data-theme="light">
+```
+- `tokens.css` re-points the semantic tokens under `[data-theme="light"]`. Components don't change. The aliases in `pitchside.css` are declared on `:root, [data-theme]`, so a single section can be themed too.
+- To follow the phone's setting, set the attribute from `matchMedia('(prefers-color-scheme: light)')`. Let players override it, and save their choice. The example pages have a toggle that saves the choice (`[data-theme-toggle]`).
+- Hairlines and tracks are mixed from the current text colour (`color-mix(in srgb, var(--text) 8%, transparent)`), so they work on both grounds. Never hard-code a chalk or pitch tint in a component.
+- Inline logos use `fill="currentColor"` with `.ps-logo`, so they follow the theme. For logo files, use `-on-dark` on dark and `-on-light` on light.
+- Light-only motif: `.ps-stripes-bg` (mowing stripes) for heroes.
+
 ## 2. Component colour rules
-1. **Floodlight is for the one primary action per view** (or the active indicator). It is never a large surface.
+1. **The accent (Floodlight on dark, Grass on light) is for the one primary action per view** (or the active indicator). It is never a large surface, except Grass in the light-mode mowing stripes.
 2. Secondary actions are outlined in Chalk. Tertiary actions are ghost.
-3. **Selected** = Turf fill (chips, tags) or a Floodlight indicator line (tabs, nav).
-4. Text on Floodlight and Chalk fills is always Pitch.
+3. **Selected** = Turf fill on dark or Pitch fill on light (chips, tags), or an accent indicator line (tabs, nav).
+4. Text on Floodlight, Grass and Chalk fills is always Pitch (or Grass 950 on Grass).
 5. Attribute colour follows the rating band. The number is always shown next to it.
 6. Disabled = surface-raised fill with chalk-500 text. Never just reduced opacity on text people need to read.
 7. Errors use danger for the border and message. Never colour the whole field red.

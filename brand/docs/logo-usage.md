@@ -19,7 +19,7 @@
 | Suffix | Fill | Use on |
 |---|---|---|
 | `-on-dark` | Chalk `#F6F6EE` | Pitch, Turf, Night, dark photography |
-| `-on-light` | Pitch `#0D1F17` | Chalk, white, Floodlight |
+| `-on-light` | Pitch `#0D1F17` | Chalk, white, Floodlight, Grass. The logo for light mode. |
 | `-mono-black` | Night `#0A0A0A` | Single-colour print, stamps, embossing |
 | `-mono-white` | `#FFFFFF` | Over photography, partner placements |
 

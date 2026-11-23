@@ -72,8 +72,9 @@ Three principles, from the reference board:
 The rating colours always sit next to the number. Colour alone never carries the value, so the scale still works for colour-blind players.
 
 ### Proportions
-Pitch ~60% · Turf and surfaces ~18% · Chalk ~14% · Floodlight ≤5% · Night ~3%.
-**One Floodlight element per view.** If two compete, one of them is wrong.
+Dark: Pitch ~60% · Turf and surfaces ~18% · Chalk ~14% · Floodlight ≤5% · Night ~3%.
+Light: Chalk ~60% · White cards ~18% · Pitch ~14% · Grass ≤5%.
+**One accent element per view** (Floodlight on dark, Grass on light). If two compete, one of them is wrong.
 
 ### Contrast (WCAG 2.2, measured)
 - Chalk on Pitch: 15.8:1 · Chalk-300 on Pitch: 10.6:1 · Chalk-400 on any surface: ≥ 5.4:1 (AA)
@@ -82,8 +83,26 @@ Pitch ~60% · Turf and surfaces ~18% · Chalk ~14% · Floodlight ≤5% · Night 
 - Chalk-500 (4.9:1 on Pitch, 3.5:1 on pitch-750) is reserved for disabled and placeholder text
 - Don't use Floodlight as text on Chalk (1.2:1). Use floodlight-800 (5.9:1) or Pitch.
 
-### Light contexts
-The product is dark-first. For light surfaces (docs, print, partner decks), use a Chalk background with Pitch text and the on-light logo. Floodlight on light backgrounds works only as a fill with Pitch text on top.
+### Light mode: "Fresh Cut"
+Dark is the default and the brand's first impression. Light mode is the same brand in daylight: same logo, type, layout and components, with the roles re-pointed. Use it for the app's light theme, docs, print and partner decks.
+
+| Role | Dark (default) | Light (Fresh Cut) |
+|---|---|---|
+| Background | Pitch `#0D1F17` | Chalk `#F6F6EE` |
+| Cards | `#11271D` | White `#FFFFFF` |
+| Hover / pressed | `#163023` / `#1B3A2A` | `#F0F1E8` / `#E4E7DA` |
+| Text | Chalk `#F6F6EE` | Pitch `#0D1F17` |
+| Secondary / tertiary text | `#C8CDBF` / `#A3AD9F` | `#33473C` / `#52645A` |
+| Accent (primary action) | Floodlight `#D6F16A` | **Grass `#1FC46E`** (text on it `#062214`) |
+| Accent as text | Floodlight `#D6F16A` | Grass 800 `#0E7A43` |
+| Selected, tags | Turf `#2E5E3D` | Pitch `#0D1F17` with Chalk text |
+| Ratings (elite → low) | `#D6F16A` `#8FDB7A` `#E9D45C` `#EFA14A` `#EE6A55` | `#0E7A43` `#3A7317` `#856100` `#A84B00` `#B52D1B` |
+| Logo | on-dark (Chalk) | on-light (Pitch) |
+
+- **Grass** (`#1FC46E`, ramp 400 `#45D287` · 600 `#13AE5D` · 800 `#0E7A43` · 950 `#062214`) is the one new colour. Like Floodlight, it's for the single primary action per view.
+- Floodlight lime stays a dark-mode colour. On light it fails contrast and loses its glow.
+- **Mowing stripes:** light-mode heroes may use 80 px vertical stripes of Grass and Grass darkened by 12% (`.ps-stripes-bg`), with Pitch text and a Pitch primary button. It's the light-mode counterpart of the grid.
+- Every light text pair passes WCAG AA on the background, cards and hover surfaces: tertiary text ≥ 5.5:1, ratings ≥ 4.7:1, Grass 800 as text ≥ 4.7:1, ink on Grass 7.4:1. On pressed surfaces (`#E4E7DA`), use Pitch or secondary text only.
 
 ## 3. Typography
 
