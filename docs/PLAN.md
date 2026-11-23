@@ -69,7 +69,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [x] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject not allowed by name, D-26)
 - [x] `lib/content/load.ts` resolves relations, fails on broken links, drops drafts and withdrawn
 - [x] `lib/content/version.ts` wording (verified, not checked, older season)
-- [ ] `lib/submit/toIssueUrl.ts`
+- [x] `lib/submit/toIssueUrl.ts`
 - [x] `npm run validate:content` and prebuild hook
 - [ ] GoatCounter on every page (D-27): Chime creates the account; script within the budget; About says what is counted; events for recipes finished and face to build
 
