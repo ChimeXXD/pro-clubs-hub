@@ -6,3 +6,7 @@ export const NOTICE = "Not endorsed by or affiliated with EA or its licensors. N
 
 // The public GitHub repo (D-12, D-23; the git remote). Submissions open issues here (A-04).
 export const REPO = "ChimeXXD/pro-clubs-hub";
+
+// The season the site is on (D-45). Change by hand when a season starts: Season 3 on Thu 3 Dec 2026 (D-25).
+// Content made for an earlier season shows the older-season warning (D-05).
+export const CURRENT_SEASON = 2;

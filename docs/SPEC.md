@@ -53,8 +53,8 @@ The loader (`src/lib/content/load.ts`) reads everything at build time, validates
 2. **Come back later:** reopen the face → ticks still there → "Continue from step 9". A new face version starts fresh and says so.
 3. **Check a build:** Builds → filter "ST" → a card → read the version tag → set it up in game.
 4. **Old season:** a build with `season` below the current one shows "Made for Season 2. Values may have changed since."
-5. **Unverified:** a card with `verifiedOn: null` says "Not yet checked in game" (only possible in previews; drafts aren't built).
-6. **Submit:** `/submit` → choose face or build → fill tabs → the validator marks problems inline → "Submit for review" opens GitHub with the JSON in the issue body → Chime reviews, credits and merges.
+5. **Unverified:** a card with `verifiedOn: null` says "FC 27 · Season 2 · not yet checked in game" (D-45; only possible in previews; drafts aren't built).
+6. **Submit:** `/submit` → choose face or build → fill tabs → the validator marks problems inline → "Submit for review" opens the GitHub issue form with the JSON prefilled (too long for a link: the empty form, plus "Copy JSON" to paste, D-45) → Chime reviews, credits and merges.
 7. **Watch the tutorial:** a face with an embed shows the title and channel → tap → the YouTube no-cookie player loads.
 
 ## Acceptance (Playwright, 390×844 and 360×800)

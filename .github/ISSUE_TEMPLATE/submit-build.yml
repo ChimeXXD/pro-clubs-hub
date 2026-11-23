@@ -1,0 +1,23 @@
+# Opened by "Submit for review" on the site (A-04, D-45). The site prefills the json field; a submission
+# too long for a link opens this empty and the site offers "Copy JSON" to paste here.
+name: Submit a build
+description: A build from the site's builder, for Chime to review, credit and add (D-09).
+title: "Build: "
+labels: [submission, build]
+body:
+  - type: markdown
+    attributes:
+      value: Made on the site's Submit page. Chime reviews every submission before it goes live.
+  - type: textarea
+    id: json
+    attributes:
+      label: Submission (JSON)
+      description: Prefilled by the site. If it's empty, go back to the site, press "Copy JSON" and paste it here.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Optional. A tutorial you followed, your platform, anything Chime should know.

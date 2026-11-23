@@ -2,6 +2,22 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Submissions through issue forms, one season setting, full unchecked tag (Mon 23 Nov 2026, afternoon)
+
+Chime picked the recommended option on the core lane's three open questions (D-45).
+
+**Changed**
+- "Submit for review" now opens a GitHub issue form, `.github/ISSUE_TEMPLATE/submit-face.yml` or `submit-build.yml`, with the JSON prefilled in its `json` field (`render: json`, so it lands in a code block). Over 6,500 characters it opens the empty form (`{ prefilled: false }`) for the page's Copy JSON; a title too long for a link falls back to the form alone. The forms add the labels `submission` plus `face` or `build`, which now exist on the repo. The face form has a required "In-game captures" field to drag screenshots and the turn clip into (A-16). `readIssueBody` also reads JSON pasted with its own fence.
+- `CURRENT_SEASON = 2` in `src/lib/site.ts`, `versionWording`'s default. Change it by hand on Thu 3 Dec.
+- Unchecked content keeps FORMAT's full line, "FC 27 · Season 2 · not yet checked in game"; SPEC flows 5 and 6 updated; D-45 recorded; P1-8 evidence updated.
+
+**Checked**
+- Tests first (red, then green): 71 unit tests, lint, typecheck and build pass. Code review (medium, fix): 7 findings, 5 fixed (fallback link length, template path in the test, missing labels, captures field, nested fence); hard-coded season test dropped.
+
+**Not verified**
+- That GitHub prefills a `render: json` textarea from the query parameter; the forms only take effect once on `main`. Try one submission link after the push.
+- Form copy is draft: the intro line follows the sitemap ("Chime reviews every submission before it goes live"); the field labels and descriptions are new and need Chime's OK. Issue titles "Face: …" / "Build: …" are still TODO(Chime).
+
 ## Core lane: loader, version wording, issue URL (Mon 23 Nov 2026, evening)
 
 Phase 1's three remaining core-lane units, each test-first (red, then green), committed one at a time.

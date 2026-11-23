@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { formatDay, versionWording } from "@/lib/content/version";
+import { CURRENT_SEASON } from "@/lib/site";
 import type { VersionTag } from "@/lib/content/types";
 
 // The strings are FORMAT §Version tag's, word for word (A-08: one function, tested).
@@ -58,5 +59,13 @@ describe("formatDay", () => {
   it("refuses a value that isn't a date like 2026-11-20", () => {
     expect(() => formatDay("19 Nov 2026")).toThrow('not a date like 2026-11-20: "19 Nov 2026"');
     expect(() => formatDay("2026-13-01")).toThrow('not a date like 2026-11-20: "2026-13-01"');
+  });
+});
+
+describe("the current season", () => {
+  // One setting, changed by hand when a season starts (D-45): Season 3 on Thu 3 Dec 2026 (D-25).
+  it("is what versionWording compares against when no season is passed", () => {
+    expect(versionWording(tag()).olderSeason).toBeNull();
+    expect(versionWording(tag({ season: CURRENT_SEASON - 1 })).olderSeason).toBe(`Made for Season ${CURRENT_SEASON - 1}. Values may have changed since.`);
   });
 });

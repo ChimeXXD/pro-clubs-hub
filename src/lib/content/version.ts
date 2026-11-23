@@ -1,7 +1,9 @@
 // Version-tag wording, from one function (A-08, D-05). The strings are FORMAT §Version tag's:
 // "FC 27 · Season 2 · verified 19 Nov 2026", "FC 27 · Season 2 · not yet checked in game", and for a
 // season older than the current one, "Made for Season 2. Values may have changed since."
-// The current season is a parameter: the repo doesn't store it yet (until 3 Dec it is 2, D-25).
+// The full line for unchecked content, not "Not yet checked in game" alone (D-45). The current season
+// is the one setting in site.ts unless a caller passes another.
+import { CURRENT_SEASON } from "../site.ts";
 import type { Game, IsoDate, VersionTag } from "./types.ts";
 
 const GAME_NAME: Record<Game, string> = { fc27: "FC 27" };
@@ -16,7 +18,7 @@ export interface VersionWording {
   olderSeason: string | null;
 }
 
-export function versionWording(version: VersionTag, currentSeason: number): VersionWording {
+export function versionWording(version: VersionTag, currentSeason: number = CURRENT_SEASON): VersionWording {
   const day = version.verifiedOn;
   return {
     tag: `${GAME_NAME[version.game]} · Season ${version.season} · ${day === null ? "not yet checked in game" : `verified ${formatDay(day)}`}`,
