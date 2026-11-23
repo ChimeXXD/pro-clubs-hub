@@ -192,9 +192,9 @@
       "criteria": [
         "verified, not checked and older-season sentences match SPEC"
       ],
-      "verify": "npx vitest run tests/unit/lib/content/version.test.ts",
-      "passes": false,
-      "evidence": null
+      "verify": "npx vitest run tests/unit/content/version.test.ts",
+      "passes": true,
+      "evidence": "npx vitest run tests/unit/content/version.test.ts: 8 tests pass, red first ('Cannot find package @/lib/content/version'). Strings are FORMAT §Version tag's word for word: 'FC 27 · Season 2 · verified 19 Nov 2026', 'FC 27 · Season 2 · not yet checked in game', and 'Made for Season 2. Values may have changed since.' when the season is below the current one (also on unchecked content); no warning on the current season; days without a leading zero, every month named, a malformed date refused. The current season is a parameter: the repo doesn't store it yet. SPEC flow 5 and A-08 write the unchecked line as 'Not yet checked in game'; FORMAT's tag line is used (open question for Chime)."
     },
     {
       "id": "P1-8",
