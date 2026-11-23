@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "game": "fc27",
+  "updated": "2026-11-19",
+  "note": "Test fixture: two archetypes and one test source.",
+  "archetypes": [
+    {
+      "id": "spark",
+      "name": "Spark",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [{ "name": "Test PlayStyle", "since": "launch", "sourceIds": ["test-source"] }],
+      "masteryAttributes": null,
+      "apCostChange20261022": null,
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    },
+    {
+      "id": "finisher",
+      "name": "Finisher",
+      "positionGroup": "attacker",
+      "signaturePlayStyles": [{ "name": "Test PlayStyle", "since": "launch", "sourceIds": ["test-source"] }],
+      "masteryAttributes": null,
+      "apCostChange20261022": null,
+      "specializations": null,
+      "typicalPositions": null,
+      "verifiedInGame": false,
+      "notes": null
+    }
+  ],
+  "sources": [{ "id": "test-source", "title": "Test source", "url": "https://example.com/test-source", "accessed": "2026-11-18" }]
+}

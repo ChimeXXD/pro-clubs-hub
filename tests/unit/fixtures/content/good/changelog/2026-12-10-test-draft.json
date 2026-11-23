@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-12-10-test-draft",
+  "status": "draft",
+  "date": "2026-12-10",
+  "kind": "title-update",
+  "game": "fc27",
+  "season": 3,
+  "title": "Test draft entry",
+  "changes": ["Test change."],
+  "source": { "title": "Test source", "url": "https://example.com/test-draft", "accessed": "2026-12-10" },
+  "affects": { "builds": ["test-withdrawn-build"], "faces": ["test-draft-face"] },
+  "siteNote": null
+}

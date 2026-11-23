@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "test-withdrawn-build",
+  "slug": "test-withdrawn-build",
+  "status": "withdrawn",
+  "title": "Test withdrawn build",
+  "archetype": "spark",
+  "positions": [
+    "RW",
+    "LW"
+  ],
+  "summary": "Test fixture summary.",
+  "level": 55,
+  "body": {
+    "heightCm": 180,
+    "weightKg": 75,
+    "accelerate": "explosive"
+  },
+  "attributes": [
+    {
+      "name": "Acceleration",
+      "value": 90
+    }
+  ],
+  "playStyles": {
+    "signature": [
+      "Trickster",
+      "Rapid"
+    ],
+    "plus": [
+      "Test PlayStyle"
+    ],
+    "regular": []
+  },
+  "specialization": null,
+  "skillMoves": 5,
+  "weakFoot": 4,
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 3,
+    "verifiedOn": "2026-12-04",
+    "verifiedBy": "Chime",
+    "platform": "ps5"
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "Chime",
+      "url": null,
+      "creatorId": null
+    }
+  ],
+  "sources": [],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-12-04",
+      "note": "Test fixture."
+    }
+  ],
+  "createdAt": "2026-12-04",
+  "updatedAt": "2026-12-04"
+}

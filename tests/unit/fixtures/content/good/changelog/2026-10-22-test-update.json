@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-22-test-update",
+  "status": "published",
+  "date": "2026-10-22",
+  "kind": "archetype-update",
+  "game": "fc27",
+  "season": 2,
+  "title": "Test archetype update",
+  "changes": ["Test change."],
+  "source": { "title": "Test source", "url": "https://example.com/test-update", "accessed": "2026-11-18" },
+  "affects": { "builds": [], "faces": [] },
+  "siteNote": "Test site note."
+}

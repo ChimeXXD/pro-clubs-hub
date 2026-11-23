@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-12-03-test-season",
+  "status": "published",
+  "date": "2026-12-03",
+  "kind": "season",
+  "game": "fc27",
+  "season": 3,
+  "title": "Test season entry",
+  "changes": ["Test change."],
+  "source": { "title": "Test source", "url": "https://example.com/test-season", "accessed": "2026-12-03" },
+  "affects": { "builds": ["test-spark-build"], "faces": ["test-footballer-2010"] },
+  "siteNote": null
+}

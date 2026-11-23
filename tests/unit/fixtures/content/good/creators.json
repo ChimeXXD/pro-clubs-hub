@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "creators": [
+    {
+      "id": "test-creator",
+      "name": "Test Channel",
+      "url": "https://example.com/test-channel",
+      "platform": "youtube",
+      "permission": "not-asked",
+      "featured": false,
+      "notes": "Test fixture."
+    }
+  ]
+}

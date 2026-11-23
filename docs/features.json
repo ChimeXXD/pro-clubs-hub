@@ -180,9 +180,9 @@
         "drafts and withdrawn files dropped",
         "pairedBuild and archetype links checked"
       ],
-      "verify": "npx vitest run tests/unit/lib/content/load.test.ts",
-      "passes": false,
-      "evidence": null
+      "verify": "npx vitest run tests/unit/content/load.test.ts",
+      "passes": true,
+      "evidence": "npx vitest run tests/unit/content/load.test.ts: 15 tests pass, red first ('Cannot find package @/lib/content/load'). On fixtures/content/good it keeps only published builds, faces and changelog entries (drafts and withdrawn dropped), resolves archetype, pairedBuild, creators and changelog affects, newest entry first. Fails naming file and field on: a published face pairing a withdrawn or draft build, a changelog entry listing a withdrawn face or build, a pairedBuild with no build, an unknown archetype, an unknown creatorId, broken JSON. Loads today's content/ (13 archetypes, nothing published yet). scripts/validate-content.mjs now runs the loader, so prebuild and CI fail on these links too (tests/unit/validate-content.test.ts)."
     },
     {
       "id": "P1-7",

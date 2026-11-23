@@ -67,7 +67,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 **Core lane (tests first)**
 - [x] `lib/content/types.ts` from FORMAT v1
 - [x] `lib/content/validate.ts` with good and bad fixtures (PLACEHOLDER, `_example`, unknown archetype, missing credit, deceased subject not allowed by name, D-26)
-- [ ] `lib/content/load.ts` resolves relations, fails on broken links, drops drafts and withdrawn
+- [x] `lib/content/load.ts` resolves relations, fails on broken links, drops drafts and withdrawn
 - [ ] `lib/content/version.ts` wording (verified, not checked, older season)
 - [ ] `lib/submit/toIssueUrl.ts`
 - [x] `npm run validate:content` and prebuild hook

@@ -1,27 +1,22 @@
-// Content check run before every build and in CI (A-02, CLAUDE.md rule 6): reads every .json file
-// in content/ and validates it with src/lib/content/validate.ts, field by field against
-// docs/FORMAT.md. One problem fails the build. Node runs the TypeScript module by stripping types.
-import { readdirSync, readFileSync } from "node:fs";
-import { join, relative } from "node:path";
+// Content check run before every build and in CI (A-02, CLAUDE.md rule 6): loads content/ with
+// src/lib/content/load.ts, which validates every file field by field against docs/FORMAT.md and then
+// checks that published content links only to published content. One problem fails the build.
+// Node runs the TypeScript modules by stripping types.
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { validateAll } from "../src/lib/content/validate.ts";
+import { ContentError, loadContent, problemLine } from "../src/lib/content/load.ts";
 
 const CONTENT = join(import.meta.dirname, "..", "content");
 
 /** Problems with every .json file under `dir`, as "file path: message" lines. */
 export function validateDir(dir) {
-  const files = [];
-  const problems = [];
-  for (const entry of readdirSync(dir, { recursive: true, withFileTypes: true })) {
-    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
-    const path = relative(dir, join(entry.parentPath, entry.name));
-    try {
-      files.push({ path, data: JSON.parse(readFileSync(join(dir, path), "utf8")) });
-    } catch (error) {
-      problems.push({ file: path, path: "", message: `not valid JSON (${error.message})` });
-    }
+  try {
+    loadContent(dir);
+    return [];
+  } catch (error) {
+    if (error instanceof ContentError) return error.problems.map(problemLine);
+    throw error;
   }
-  return [...problems, ...validateAll(files)].map((p) => `${p.file}${p.path ? ` ${p.path}` : ""}: ${p.message}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
