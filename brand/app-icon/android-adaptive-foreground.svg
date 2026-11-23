@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 432 432" width="432" height="432" role="img" aria-labelledby="t">
+  <title id="t">Pitchside</title>
+  <path id="tile-top-left" fill="#F6F6EE" d="M142.82 203.12L148.57 181.65C153.65 162.68 173.15 147.31 192.12 147.31L226.47 147.31L211.51 203.12Z"/>
+  <path id="tile-top-right" fill="#F6F6EE" d="M220.1 203.12L235.05 147.31L260.81 147.31C284.53 147.31 298.6 166.53 292.24 190.24L288.79 203.12Z"/>
+  <path id="tile-stem" fill="#F6F6EE" d="M140.52 211.71L209.21 211.71L189.65 284.69L120.96 284.69Z"/>
+  <path id="tile-bottom-right" fill="#F6F6EE" d="M217.8 211.71L286.28 211.71C278.19 233.65 255.25 250.35 233.2 250.35L207.44 250.35Z"/>
+</svg>

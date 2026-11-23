@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.14 90" width="119.14" height="90" role="img" aria-labelledby="t">
+  <title id="t">Pitchside symbol</title>
+  <g id="pitchside-symbol">
+    <path id="tile-top-left" fill="#F6F6EE" d="M13.67 39L17.68 24C21.24 10.75 34.86 0 48.12 0L72.12 0L61.67 39Z"/>
+    <path id="tile-top-right" fill="#F6F6EE" d="M67.67 39L78.12 0L96.12 0C112.68 0 122.52 13.43 118.08 30L115.67 39Z"/>
+    <path id="tile-stem" fill="#F6F6EE" d="M12.06 45L60.06 45L48 90L0 90Z"/>
+    <path id="tile-bottom-right" fill="#F6F6EE" d="M66.06 45L113.91 45C108.26 60.33 92.23 72 76.82 72L58.82 72Z"/>
+  </g>
+</svg>
