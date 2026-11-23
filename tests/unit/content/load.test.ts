@@ -1,4 +1,4 @@
-import { cpSync, mkdtempSync, rmSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -13,12 +13,12 @@ const GOOD = join(FIXTURES, "good");
 const temp: string[] = [];
 afterEach(() => temp.splice(0).forEach((dir) => rmSync(dir, { recursive: true, force: true })));
 
-/** The good tree with one bad case copied over it, in a temporary folder. */
-function goodWith(bad: string): string {
+/** The good tree, with one bad case copied over it if named, in a temporary folder. */
+function goodWith(bad?: string): string {
   const dir = mkdtempSync(join(tmpdir(), "load-"));
   temp.push(dir);
   cpSync(GOOD, dir, { recursive: true });
-  cpSync(join(FIXTURES, "bad", bad), dir, { recursive: true });
+  if (bad) cpSync(join(FIXTURES, "bad", bad), dir, { recursive: true });
   return dir;
 }
 
@@ -111,6 +111,13 @@ describe("loadContent fails the build on a broken link, naming the file and fiel
     expect(lines).toHaveLength(2);
     expect(lines[0]).toMatch(/^faces\/test-footballer-2010\.json : not valid JSON/);
     expect(lines[1]).toBe('changelog/2026-12-03-test-season.json affects.faces[0]: unknown face "test-footballer-2010"');
+  });
+
+  it("two files with one id, which would otherwise replace each other", () => {
+    const dir = goodWith();
+    mkdirSync(join(dir, "builds", "old"));
+    cpSync(join(GOOD, "builds", "test-spark-build.json"), join(dir, "builds", "old", "test-spark-build.json"));
+    expect(failures(dir)).toEqual(['builds/test-spark-build.json id: "test-spark-build" is used by another file']);
   });
 
   it("puts every problem in the error message, one per line", () => {

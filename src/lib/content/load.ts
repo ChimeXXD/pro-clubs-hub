@@ -88,7 +88,16 @@ export function loadContent(root: string): Content {
     if (status === "withdrawn") problems.push({ file, path, message: `${kind} "${id}" is withdrawn, so nothing may link to it (D-10)` });
     if (status === "draft") problems.push({ file, path, message: `${kind} "${id}" is a draft, so it has no page` });
   };
-  for (const { path, item } of [...builds, ...changelog, ...faces].sort((a, b) => a.path.localeCompare(b.path))) {
+  // Two files with one id (builds/x.json and builds/old/x.json) would silently replace each other below.
+  for (const list of [builds, faces, changelog]) {
+    const seen = new Set<string>();
+    for (const { path, item } of list) {
+      if (seen.has(item.id)) problems.push({ file: path, path: "id", message: `"${item.id}" is used by another file` });
+      seen.add(item.id);
+    }
+  }
+  // Only changelog entries and faces link; files are sorted by path, so this reports in path order.
+  for (const { path, item } of [...changelog, ...faces]) {
     if (item.status !== "published") continue;
     if ("pairedBuild" in item) link(path, "pairedBuild", "build", item.pairedBuild);
     if ("affects" in item) {

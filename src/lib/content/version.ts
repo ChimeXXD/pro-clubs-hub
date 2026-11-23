@@ -17,11 +17,10 @@ export interface VersionWording {
 }
 
 export function versionWording(version: VersionTag, currentSeason: number): VersionWording {
-  const checked = version.verifiedOn !== null;
-  const state = version.verifiedOn === null ? "not yet checked in game" : `verified ${formatDay(version.verifiedOn)}`;
+  const day = version.verifiedOn;
   return {
-    tag: `${GAME_NAME[version.game]} · Season ${version.season} · ${state}`,
-    checked,
+    tag: `${GAME_NAME[version.game]} · Season ${version.season} · ${day === null ? "not yet checked in game" : `verified ${formatDay(day)}`}`,
+    checked: day !== null,
     olderSeason: version.season < currentSeason ? `Made for Season ${version.season}. Values may have changed since.` : null,
   };
 }
