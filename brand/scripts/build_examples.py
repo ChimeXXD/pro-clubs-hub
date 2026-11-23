@@ -18,7 +18,8 @@ def icon(name, cls='ps-icon'):
 
 def logo_inline(height=22):
     svg = re.sub(r'width="[^"]+" height="[^"]+"', f'height="{height}" style="width:auto;height:{height}px"', LOGO, count=1)
-    return svg.replace('role="img" aria-labelledby="t"', 'role="img" aria-label="Pitchside"').replace('<title id="t">Pitchside</title>', '')
+    svg = svg.replace('role="img" aria-labelledby="t"', 'class="ps-logo" role="img" aria-label="Pitchside"').replace('<title id="t">Pitchside</title>', '')
+    return svg.replace('#F6F6EE', 'currentColor')   # takes the theme's text colour
 
 
 def rating(v):
@@ -35,6 +36,7 @@ def nav(active=''):
     <div class="ps-nav__actions">
       <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Search">{icon('search')}</button>
       <a class="ps-btn ps-btn--primary ps-btn--sm" href="builds.html">New build</a>
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm ps-theme-toggle" data-theme-toggle aria-label="Switch to light mode">{icon('sun')}{icon('moon')}</button>
       <span class="ps-avatar" aria-label="Your profile">SA</span>
     </div>
   </div>
@@ -62,6 +64,9 @@ def page(name, title, body, active='', extra_css=''):
 <link rel="icon" href="../favicon/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png">
 <meta name="theme-color" content="#0D1F17">
+<script>/* Theme before paint: ?theme=light|dark, else the saved choice, else dark. */
+(function(){{var q=new URLSearchParams(location.search).get('theme'),t=null;try{{t=localStorage.getItem('ps-theme')}}catch(e){{}}
+var v=q||t;if(v==='light')document.documentElement.dataset.theme='light';}})();</script>
 <link rel="stylesheet" href="../tokens/tokens.css">
 <link rel="stylesheet" href="../css/pitchside.css">
 {f"<style>{extra_css}</style>" if extra_css else ""}
@@ -71,6 +76,9 @@ def page(name, title, body, active='', extra_css=''):
 {nav(active) if active is not None else ""}
 {body}
 {FOOTER if active is not None else ""}
+<script>{{ const b=document.querySelector('[data-theme-toggle]'); const h=document.documentElement;
+const sync=()=>{{const l=h.dataset.theme==='light'; if(b) b.setAttribute('aria-label', l?'Switch to dark mode':'Switch to light mode'); document.querySelector('meta[name=theme-color]').content=l?'#F6F6EE':'#0D1F17';}};
+if(b) b.addEventListener('click',()=>{{ if(h.dataset.theme==='light') delete h.dataset.theme; else h.dataset.theme='light'; try{{localStorage.setItem('ps-theme', h.dataset.theme||'dark')}}catch(e){{}} sync(); }}); sync(); }}</script>
 </body>
 </html>
 '''
@@ -144,6 +152,8 @@ def media(label, ratio='16/10', extra=''):
     return f'''<div class="ps-media ps-grid-bg" style="aspect-ratio:{ratio};{extra}"><span class="ps-media__label ps-tag ps-tag--ghost">{label}</span></div>'''
 
 
+PITCH_INLINE = re.sub(r'<title>.*?</title>', '<title>Pitch diagram with a 4-3-3 formation</title>', open(os.path.join(ROOT, 'graphics/pitch/pitch-formation-433.svg')).read().replace('#F6F6EE', 'currentColor').replace('<svg ', '<svg role="img" ', 1))
+
 # ---------------- Home ----------------
 home_extra = '''
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
@@ -156,6 +166,13 @@ home_extra = '''
 .hero__proof { display: flex; gap: 32px; margin-top: 40px; }
 .hero__proof div { display: grid; gap: 4px; }
 @media (max-width: 960px) { .hero__inner { grid-template-columns: 1fr; padding-top: 56px; } .hero__float { display: none; } }
+.hero__pitch > svg { width: 100%; height: auto; color: var(--text); }
+/* Light mode: the hero becomes a freshly mown pitch (Fresh Cut). */
+[data-theme="light"] .hero { --text: var(--ps-color-grass-950); --text-2: var(--ps-color-grass-950); --text-3: var(--ps-color-grass-950); }
+[data-theme="light"] .hero.ps-grid-bg { background: var(--ps-stripes); color: var(--text); border-bottom: 0; }
+[data-theme="light"] .hero .hero__copy .ps-btn--primary { background: var(--ps-color-pitch-900); color: var(--ps-color-chalk-100); }
+[data-theme="light"] .hero .hero__copy .ps-btn--secondary { border-color: color-mix(in srgb, var(--text) 40%, transparent); }
+[data-theme="light"] .hero__pitch { --text: var(--ps-color-pitch-900); --text-3: var(--ps-color-semantic-text-tertiary); color: var(--text); }
 '''
 home = f'''<main>
 <section class="hero ps-grid-bg">
@@ -176,7 +193,7 @@ home = f'''<main>
     </div>
     <div class="hero__pitch ps-card">
       <div class="ps-row" style="justify-content:space-between;margin-bottom:16px"><span class="ps-overline">Your XI · 4-3-3</span><span class="ps-badge">Draft</span></div>
-      <img src="../graphics/pitch/pitch-formation-433.svg" alt="Pitch diagram with a 4-3-3 formation">
+      {PITCH_INLINE}
       <div class="hero__float">{build_card(BUILDS[0])}</div>
     </div>
   </div>
@@ -313,7 +330,7 @@ face = f'''<main class="ps-container" style="padding-top:40px;padding-bottom:96p
   <div class="ps-face">
     <aside class="ps-face__preview">
       <div class="ps-face__frame"><div class="ps-grid-bg"></div>
-        <svg viewBox="0 0 24 24" class="ps-icon" style="position:absolute;inset:0;margin:auto;width:46%;height:46%;stroke-width:0.6;color:rgba(246,246,238,.22)"><use href="#i-face"/></svg>
+        <svg viewBox="0 0 24 24" class="ps-icon" style="position:absolute;inset:0;margin:auto;width:46%;height:46%;stroke-width:0.6;color:color-mix(in srgb, var(--text) 22%, transparent)"><use href="#i-face"/></svg>
         <span class="ps-media__label ps-tag ps-tag--ghost">In-game screenshot</span>
       </div>
       <div class="ps-face__thumbs"><span class="ps-face__thumb" aria-current="true"></span><span class="ps-face__thumb"></span><span class="ps-face__thumb"></span><span class="ps-face__thumb"></span></div>
@@ -337,9 +354,9 @@ cmp_css = '''
 .states { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; align-items: end; }
 .force-hover.ps-btn--primary { background: var(--accent-hover); }
 .force-active.ps-btn--primary { background: var(--accent-pressed); transform: translateY(1px); }
-.force-hover.ps-btn--secondary { background: var(--surface); border-color: rgba(246,246,238,.32); }
+.force-hover.ps-btn--secondary { background: var(--surface); border-color: color-mix(in srgb, var(--text) 32%, transparent); }
 .force-focus { box-shadow: var(--ps-shadow-focus); }
-.force-hover.ps-input { border-color: rgba(246,246,238,.32); }
+.force-hover.ps-input { border-color: color-mix(in srgb, var(--text) 32%, transparent); }
 .force-focus.ps-input { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
 .force-hover.ps-card { border-color: var(--line-strong); background: var(--surface-raised); }
 .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
@@ -359,7 +376,7 @@ sw = lambda name, hexv, txt='': f'<div class="sw"><i style="background:{hexv}"><
 cmp = f'''<main class="ps-container" style="padding-top:48px;padding-bottom:96px">
   <span class="ps-overline">Design system</span><h1 class="ps-display-lg" style="margin:10px 0 8px">Components</h1>
   <p class="ps-body-lg" style="margin:0 0 16px">Every component with its states. Built from tokens/tokens.css and css/pitchside.css only.</p>
-  {spec('Colour', '<div class="swatches">' + sw('Pitch', '#0D1F17', 'Background') + sw('Turf', '#2E5E3D', 'Selected, tags') + sw('Floodlight', '#D6F16A', 'Accent ≤ 5%') + sw('Chalk', '#F6F6EE', 'Text, logo') + sw('Night', '#0A0A0A', 'Overlays') + sw('Surface', '#11271D', 'Cards') + sw('Raised', '#163023', 'Hover') + sw('Strong', '#1B3A2A', 'Modal') + '</div><div class="swatches">' + sw('Elite 90+', '#D6F16A') + sw('Great 80–89', '#8FDB7A') + sw('Good 70–79', '#E9D45C') + sw('Average 60–69', '#EFA14A') + sw('Low <60', '#EE6A55') + '</div>')}
+  {spec('Colour', '<div class="swatches">' + sw('Pitch', '#0D1F17', 'Background') + sw('Turf', '#2E5E3D', 'Selected, tags') + sw('Floodlight', '#D6F16A', 'Accent ≤ 5%') + sw('Chalk', '#F6F6EE', 'Text, logo') + sw('Night', '#0A0A0A', 'Overlays') + sw('Surface', '#11271D', 'Cards') + sw('Raised', '#163023', 'Hover') + sw('Strong', '#1B3A2A', 'Modal') + '</div><div class="swatches">' + sw('Elite 90+', '#D6F16A') + sw('Great 80–89', '#8FDB7A') + sw('Good 70–79', '#E9D45C') + sw('Average 60–69', '#EFA14A') + sw('Low <60', '#EE6A55') + '</div><h3 class="ps-h4" style="margin:8px 0 0">Light mode · Fresh Cut</h3><div class="swatches">' + sw('Chalk', '#F6F6EE', 'Background') + sw('White', '#FFFFFF', 'Cards') + sw('Pitch', '#0D1F17', 'Text, selected') + sw('Grass', '#1FC46E', 'Accent') + sw('Grass 800', '#0E7A43', 'Accent as text') + sw('Raised', '#F0F1E8', 'Hover') + sw('Strong', '#E4E7DA', 'Pressed') + '</div><div class="swatches">' + sw('Elite 90+', '#0E7A43') + sw('Great 80–89', '#3A7317') + sw('Good 70–79', '#856100') + sw('Average 60–69', '#A84B00') + sw('Low <60', '#B52D1B') + '</div>', 'Dark is the default; light via data-theme="light"')}
   {spec('Typography', '''<div class="ps-display-xl">Build Smarter.</div><div class="ps-h1">Heading 1 · Inter Display 34 Bold</div><div class="ps-h2">Heading 2 · Inter Display 26 Bold</div><div class="ps-h3">Heading 3 · Inter 20 Semibold</div><p class="ps-body-lg" style="margin:0">Body large · 18/28. Create, compare and share Pro Clubs builds.</p><p class="ps-body" style="margin:0">Body · 16/24. Every value laid out in the order you set it in game.</p><span class="ps-overline">Overline · 11 semibold, +14% tracking</span><div class="ps-row" style="gap:32px"><span class="ps-stat-xl ps-num">88</span><span class="ps-stat-lg ps-num">1,240</span><span class="ps-attr__value r-great ps-num">84</span></div>''', 'Inter + Inter Display (OFL)')}
   {spec('Buttons', f'<div class="ps-stack" style="gap:28px">{states_btn("primary", "Start building")}{states_btn("secondary", "Browse builds")}{states_btn("ghost", "Cancel")}<div class="ps-row"><button class="ps-btn ps-btn--primary ps-btn--lg">Large {icon("arrow-right")}</button><button class="ps-btn ps-btn--primary">Medium</button><button class="ps-btn ps-btn--primary ps-btn--sm">Small</button><button class="ps-btn ps-btn--chalk">Chalk</button><button class="ps-btn ps-btn--secondary ps-btn--icon" aria-label="Share">{icon("share")}</button></div></div>', 'Pill, 44px default height, 15px semibold')}
   {spec('Inputs', f'''<div class="states" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
@@ -396,7 +413,7 @@ body { background: var(--bg-sunken); }
 '''
 status = '<div class="phone__status"><span class="ps-num">9:41</span><span>●●● ▮</span></div>'
 tabbar = lambda a: '<nav class="ps-tabbar">' + ''.join(f'<a class="ps-tabbar__item" href="#"{" aria-current=\"page\"" if n == a else ""}>{icon(i)}<span>{n}</span></a>' for n, i in (('Home', 'pitch'), ('Builds', 'build'), ('Archetypes', 'archetype'), ('Faces', 'face'), ('Saved', 'save'))) + '</nav>'
-sym_small = open(os.path.join(ROOT, 'logo/symbol/pitchside-symbol-on-dark.svg')).read().replace('width="120.74" height="96"', 'style="height:22px;width:auto"').replace('<title id="t">Pitchside symbol</title>', '')
+sym_small = open(os.path.join(ROOT, 'logo/symbol/pitchside-symbol-on-dark.svg')).read().replace('width="120.74" height="96"', 'style="height:22px;width:auto"').replace('<title id="t">Pitchside symbol</title>', '').replace('#F6F6EE', 'currentColor')
 m_home = f'''<div class="phone">{status}<div class="phone__body">
   <div class="phone__top">{logo_inline(20)}<span class="ps-avatar">SA</span></div>
   <div class="ps-grid-bg" style="margin:8px -16px 0;padding:24px 16px 28px;border-bottom:1px solid var(--line)">
@@ -421,8 +438,8 @@ m_build = f'''<div class="phone">{status}<div class="phone__body">
 st = steps[2]
 m_face = f'''<div class="phone">{status}<div class="phone__body">
   <div class="phone__top"><span class="ps-h4">The Maestro</span><span class="ps-caption ps-num">Step 3 of 5</span></div>
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:16px">{''.join(f'<i style="height:4px;border-radius:2px;background:{"var(--accent)" if i < 3 else "rgba(246,246,238,.12)"}"></i>' for i in range(5))}</div>
-  <div class="ps-face__frame" style="aspect-ratio:4/3"><div class="ps-grid-bg" style="position:absolute;inset:0"></div><svg viewBox="0 0 24 24" class="ps-icon" style="position:absolute;inset:0;margin:auto;width:40%;height:50%;stroke-width:.6;color:rgba(246,246,238,.22)"><use href="#i-face"/></svg><span class="ps-media__label ps-tag ps-tag--ghost">Nose close-up</span></div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:16px">{''.join(f'<i style="height:4px;border-radius:2px;background:{"var(--accent)" if i < 3 else "color-mix(in srgb, var(--text) 12%, transparent)"}"></i>' for i in range(5))}</div>
+  <div class="ps-face__frame" style="aspect-ratio:4/3"><div class="ps-grid-bg" style="position:absolute;inset:0"></div><svg viewBox="0 0 24 24" class="ps-icon" style="position:absolute;inset:0;margin:auto;width:40%;height:50%;stroke-width:.6;color:color-mix(in srgb, var(--text) 22%, transparent)"><use href="#i-face"/></svg><span class="ps-media__label ps-tag ps-tag--ghost">Nose close-up</span></div>
   <section class="ps-card ps-face-step" style="margin-top:14px;counter-reset:step 2"><div class="ps-face-step__head"><span class="ps-face-step__num" aria-hidden="true"></span><h3 class="ps-face-step__title">{st[0]}</h3><span class="ps-face-step__sub">{st[1]}</span></div>
   <div class="ps-sliders" style="grid-template-columns:1fr">{''.join(f'<div class="ps-slider-val"><span>{n}</span><b>{v}</b><span class="ps-slider-val__track"><i style="--v:{v}"></i></span></div>' for n, v in st[3])}</div></section>
   <div class="ps-row" style="margin-top:14px;flex-wrap:nowrap"><button class="ps-btn ps-btn--secondary" style="flex:1">Previous</button><button class="ps-btn ps-btn--primary" style="flex:1">Next: Mouth</button></div>
@@ -438,7 +455,7 @@ brand_css = '''
 .bsec h2 { margin: 10px 0 8px; }
 .bsec > p { max-width: 640px; color: var(--text-2); margin: 0 0 32px; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.tile { border-radius: 16px; border: 1px solid var(--line); min-height: 240px; display: grid; place-items: center; padding: 40px; position: relative; }
+.tile { border-radius: 16px; border: 1px solid var(--line); min-height: 240px; display: grid; place-items: center; padding: 40px; position: relative; background: #0D1F17; color: #F6F6EE; --text: #F6F6EE; --text-3: #A3AD9F; --line: rgba(246,246,238,.10); --ps-color-semantic-grid-line: rgba(246,246,238,.06); }
 .tile img { max-height: 72px; width: auto; }
 .tile figcaption, .tile .cap { position: absolute; left: 16px; bottom: 12px; font-size: 12px; color: var(--text-3); }
 .tile.light { background: #F6F6EE; } .tile.light .cap { color: #4A5E52; }
@@ -494,8 +511,11 @@ brand = f'''<main class="ps-container" style="padding-bottom:64px">
   <div class="tile bad"><img src="{L}symbol/pitchside-symbol-on-dark.svg" alt="" style="height:80px;transform:scaleX(-1)"><span class="cap">Mirror or re-slant the symbol</span></div>
 </div></section>
 
-<section class="bsec"><span class="ps-overline">03 · Colour</span><h2 class="ps-h1">Pitch, Turf, Floodlight, Chalk, Night</h2><p>Dark-first. Pitch carries the surface, Chalk the content, Floodlight the one thing to do next. If a screen has more than one Floodlight element competing, one of them is wrong.</p>
+<section class="bsec"><span class="ps-overline">03 · Colour</span><h2 class="ps-h1">Pitch, Turf, Floodlight, Chalk, Night, Grass</h2><p>Dark-first. Pitch carries the surface, Chalk the content, Floodlight the one thing to do next. If a screen has more than one Floodlight element competing, one of them is wrong.</p>
 <div class="prop"><div style="flex:60;background:#0D1F17;color:#C8CDBF">Pitch 60%</div><div style="flex:18;background:#2E5E3D">Turf + surfaces 18%</div><div style="flex:14;background:#F6F6EE;color:#0D1F17">Chalk 14%</div><div style="flex:5;background:#D6F16A;color:#0D1F17">5%</div><div style="flex:3;background:#0A0A0A"></div></div>
+<h3 class="ps-h3" style="margin:40px 0 12px">Light mode · Fresh Cut</h3><p style="margin:0 0 20px">The same brand in daylight. Chalk becomes the ground, white the cards and Pitch the ink, with Grass as the accent. Floodlight lime stays a dark-mode colour. On light, heroes can use the mowing stripes.</p>
+<div class="prop"><div style="flex:60;background:#F6F6EE;color:#33473C">Chalk 60%</div><div style="flex:18;background:#FFFFFF;color:#33473C;border-left:1px solid #E4E7DA">White cards 18%</div><div style="flex:14;background:#0D1F17;color:#C8CDBF">Pitch 14%</div><div style="flex:5;background:#1FC46E;color:#062214">5%</div><div style="flex:3;background:#0E7A43"></div></div>
+<div class="ps-stripes-bg" style="height:96px;border-radius:14px;margin-top:12px;display:flex;align-items:end;padding:10px 12px;font-size:12px;font-weight:600">Mowing stripes · light-mode heroes only</div>
 <p class="ps-caption" style="margin-top:12px">Full ramps, semantic roles and rating colours: tokens/tokens.json · components.html</p></section>
 
 <section class="bsec"><span class="ps-overline">04 · Typography</span><h2 class="ps-h1">Inter Display and Inter</h2><p>One superfamily, two optical sizes. Inter Display (grotesk) for headlines and big numbers, set tight. Inter (neo-grotesk) for everything you read and tap. Tabular figures on for every number. Both are free under the SIL Open Font License.</p>
@@ -506,7 +526,7 @@ brand = f'''<main class="ps-container" style="padding-bottom:64px">
 
 <section class="bsec"><span class="ps-overline">05 · Graphic language</span><h2 class="ps-h1">Grid, pitch, cut, tile</h2><p>Four motifs, all drawn from the symbol and the game. Use one or two per layout, always in hairline Chalk at low opacity. Floodlight only for the single marker that matters.</p>
 <div class="tiles">
-  <div class="tile ps-crosshair-bg" style="background-color:var(--bg)"><span class="cap">The grid · 48 px module, crosshairs at intersections</span></div>
+  <div class="tile ps-crosshair-bg" style="background-color:#0D1F17"><span class="cap">The grid · 48 px module, crosshairs at intersections</span></div>
   <div class="tile"><img src="../graphics/pitch/pitch-formation-433.svg" alt="" style="max-height:170px"><span class="cap">Pitch markings · formations, positions</span></div>
   <div class="tile"><div class="ps-row"><span class="ps-tag">ST</span><span class="ps-tag ps-tag--accent">Finisher</span><span class="ps-tag ps-tag--chalk">01</span></div><span class="cap">The cut · 15° on tags, steps, markers</span></div>
   <div class="tile" style="padding:24px"><div class="ps-tile-crop" style="width:100%;aspect-ratio:1.26;background:#2E5E3D url(../graphics/pitch/pitch-formation-433.svg) center / 140% no-repeat"></div><span class="cap">The tile crop · imagery masked by the symbol (stand-in shown)</span></div>
