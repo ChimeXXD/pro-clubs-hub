@@ -12,14 +12,14 @@ window.BV2Screens = (() => {
   const sample = `<span class="sample" data-testid="sample-label">Sample values · not a real build</span>`;
   const badge = (b) => (b === "meta" ? `<span class="badge meta">Meta pick</span>`
     : b === "copied" ? `<span class="badge copied">Most copied <em>after launch</em></span>` : "");
-  // Stand-in face (D-41): a crop of EA's Clubs screenshots, always tagged. A player-named build shows no face at
-  // all, only its archetype emblem, until Chime's or Sharon's in-game recreation exists (D-10, Chime 22 Nov).
-  // A build with no face file is that slot.
-  const portrait = (file, archId, cls = "", testid = "build-face") => !file
+  // Chime's in-game pro in an archetype's stance (crops of Chime's own screenshots, tagged). A player-named build
+  // shows no picture at all, only its archetype emblem, until our in-game recreation exists (D-42, D-10).
+  const STANCE_TAG = "Chime's in-game pro";
+  const portrait = (stanceId, archId, cls = "", testid = "build-face") => !stanceId
     ? `<figure class="portrait slot ${cls}" data-testid="${testid}">${emblem(archId, "ring", false)}<figcaption class="slot-note">Face coming soon</figcaption></figure>`
     : `<figure class="portrait ${cls}" data-testid="${testid}">
-      <img src="${D.icon.face(file)}" alt="">
-      <figcaption class="standin">Stand-in face</figcaption>
+      <img src="${D.icon.stance(stanceId)}" alt="">
+      <figcaption class="standin">${STANCE_TAG}</figcaption>
     </figure>`;
   const slash = `<svg class="slash" viewBox="0 0 14 28" aria-hidden="true"><path d="M8 0h6L6 28H0z"/></svg>`;
 
@@ -31,7 +31,7 @@ window.BV2Screens = (() => {
       <button class="menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
     </header>`;
   }
-  const footer = () => `<footer class="foot"><p>${D.notice}</p><p class="faint">PlayStyle icons are EA's art; archetype emblems are Pro Clubs HQ's tracings of EA's emblems. Reference only in this draft (D-39).</p><p class="faint">Stand-in faces are crops of EA's Clubs screenshots, kept out of the repo, and will be replaced by Chime's and Sharon's in-game faces (D-41).</p></footer>`;
+  const footer = () => `<footer class="foot"><p>${D.notice}</p><p class="faint">PlayStyle icons are EA's art; archetype emblems are Pro Clubs HQ's tracings of EA's emblems. Reference only in this draft (D-39).</p><p class="faint">Chime's in-game pro, one stance per archetype · reference only in this draft.</p></footer>`;
   const crumbs = (...parts) => `<nav class="crumbs" aria-label="Breadcrumb">${parts.map((p, i) =>
     i < parts.length - 1 ? `<a href="${p[1]}">${esc(p[0])}</a><span aria-hidden="true">/</span>` : `<span aria-current="page">${esc(p[0])}</span>`).join("")}</nav>`;
 
@@ -40,7 +40,7 @@ window.BV2Screens = (() => {
     const tile = (id) => {
       const a = D.archetype(id);
       return `<a class="tile cut" href="#/builds/${id}" data-testid="archetype-tile-${id}">
-        ${emblem(id, "ring")}
+        <span class="tile-art">${a.stance ? `<img class="tile-stance" src="${D.icon.stance(a.stance)}" alt=""><span class="tile-fade"></span>` : ""}${emblem(id, "ring", false)}</span>
         <span class="tile-name">${a.name}</span>
         <span class="tile-sig">${psIcon(a.launch, false, "sm", false)}${psIcon(a.season2, false, "sm", false)}
           <span class="tile-sig-names">${a.launch} · ${a.season2}</span></span>
@@ -65,7 +65,7 @@ window.BV2Screens = (() => {
   function archetypePage(id = "finisher") {
     const a = D.archetype(id), g = a.group, builds = id === "finisher" ? D.builds : [];
     const card = (b) => `<a class="bcard cut" href="#/builds/${id}/${b.id}" data-testid="build-card-${b.id}">
-      ${portrait(b.face, id, "card", `build-face-${b.id}`)}
+      ${portrait(b.stance, id, "card", `build-face-${b.id}`)}
       <div class="bcard-body">
         <div class="badges">${b.badges.map(badge).join("")}</div>
         <h3 class="bcard-name">${b.name} <span class="faint">(sample)</span></h3>
@@ -78,11 +78,12 @@ window.BV2Screens = (() => {
     return `${topbar()}<main class="page">
       ${crumbs(["Builds", "#/builds"], [g.name, `#/builds`], [a.name, ""])}
       <section class="hero cut" aria-labelledby="arch-name">
-        <div class="hero-mark">${emblem(id, "ring big")}</div>
+        <div class="hero-mark">${a.stance ? `${portrait(a.stance, id, "hero-stance cut", "archetype-stance")}${emblem(id, "ring on-stance")}` : emblem(id, "ring big")}</div>
         <div class="hero-text">
           <p class="kicker">${g.name} · Archetype</p>
           <h1 id="arch-name" class="display xl">${a.name}</h1>
           <p class="lede">Every ${a.name} build, the Meta pick first.</p>
+          ${a.inspiration ? `<p class="inspo" data-testid="inspiration">EA's inspiration: ${esc(a.inspiration)}</p>` : ""}
         </div>
         <div class="facts">
           <div class="fact"><span class="label">Signature PlayStyles</span>
@@ -138,7 +139,7 @@ window.BV2Screens = (() => {
       <div class="bgrid">
         <aside class="panel cut card-panel">
           <div class="card-hero">
-            ${portrait(b.heroFace, a.id, "hero-face cut")}
+            ${portrait(b.stance, a.id, "hero-face cut")}
             <div class="card-side">
               <div class="card-top">${emblem("finisher", "ring")}<div><b class="card-arch">${a.name}</b>
                 <p class="meta">${b.positions.map((p) => `<span class="pos">${p}</span>`).join("")}</p></div></div>

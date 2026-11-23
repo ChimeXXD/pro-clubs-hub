@@ -1,16 +1,16 @@
 // Builds · new style (D-33, D-39). Archetype facts are copied from content/archetypes/fc27.json
 // (sourced there); every build number below is a layout sample, labelled as such on screen.
-// Icons and stand-in faces load from reference/assets/ (git-ignored, never committed: EA art, Pro Clubs HQ
-// tracings, and crops of EA's Clubs screenshots standing in for Chime's and Sharon's in-game faces, D-41).
+// Icons and stances load from reference/assets/ (git-ignored, never committed: EA art, Pro Clubs HQ tracings,
+// and crops of Chime's own PS5 screenshots of their pro in each archetype's stance, 22 Nov).
 window.BV2 = (() => {
   const ASSETS = "../../reference/assets/";
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
   const groups = [
     { id: "goalkeeper", name: "Keeper", ids: ["shot-stopper", "sweeper-keeper"] },
-    { id: "defender", name: "Defence", ids: ["progressor", "boss", "marauder"] },
-    { id: "midfielder", name: "Midfield", ids: ["disruptor", "recycler", "maestro", "creator"] },
-    { id: "attacker", name: "Attack", ids: ["spark", "magician", "finisher", "target"] },
+    { id: "defender", name: "Defender", ids: ["progressor", "boss", "marauder"] },
+    { id: "midfielder", name: "Midfielder", ids: ["disruptor", "recycler", "maestro", "creator"] },
+    { id: "attacker", name: "Forward", ids: ["spark", "magician", "finisher", "target"] },
   ];
 
   // From fc27.json: launch signature, Season 2 signature, mastery attributes (null = not recorded),
@@ -31,16 +31,20 @@ window.BV2 = (() => {
     target: ["Target", "Precision Header", "Enforcer", ["Balance", "Jumping"], { up: 5, down: 3 }],
   };
   const has = (id) => Object.hasOwn(archetypes, id);
+  // Chime's 22 Nov screenshots have a stance for every archetype but Progressor (its screen showed the Maestro card).
+  const stances = new Set(["shot-stopper", "sweeper-keeper", "boss", "marauder", "disruptor", "recycler", "maestro", "creator", "spark", "magician", "finisher", "target"]);
+  // EA's "Inspired by" line on the Archetypes screen; only the ones this draft shows. Names as plain text (D-10).
+  const inspiration = { finisher: "Alex Morgan" };
   const archetype = (id) => {
     const [name, launch, season2, mastery, costs] = archetypes[id];
-    return { id, name, launch, season2, mastery, costs, group: groups.find((g) => g.ids.includes(id)) };
+    return { id, name, launch, season2, mastery, costs, group: groups.find((g) => g.ids.includes(id)), stance: stances.has(id) ? id : null, inspiration: inspiration[id] ?? null };
   };
 
   const icon = {
     emblem: (id) => `${ASSETS}archetypes/${id}.svg`,
     ps: (name) => `${ASSETS}playstyles/${slug(name)}.png`,
     psPlus: (name) => `${ASSETS}playstyles-plus/${slug(name)}.png`,
-    face: (file) => `${ASSETS}faces-standin/${file}`,
+    stance: (id) => `${ASSETS}stances/${id}.png`,
   };
 
   // Sample build (D-43). Attribute and PlayStyle names are real FC 27 names; starting values and the spend
@@ -50,7 +54,7 @@ window.BV2 = (() => {
     name: "Meta Finisher",
     positions: ["ST", "CF"],
     level: 55, height: "6'1\" · 185 cm", weight: "176 lb · 80 kg", accelerate: "Controlled Explosive",
-    face: "face-a.jpg", heroFace: "hero-a.jpg",
+    stance: "finisher",
     // SAMPLE starting values (the real ones per archetype are unknown, RESEARCH §10.3).
     start: {
       Acceleration: 70, "Sprint Speed": 70, "Att. Position": 70, Finishing: 70, "Shot Power": 70, "Long Shots": 70, Volleys: 70, Penalties: 70,
@@ -85,13 +89,13 @@ window.BV2 = (() => {
 
   const builds = [
     { ...build, badges: ["meta"] },
-    { id: "target-style-finisher", name: "Tall Finisher", positions: ["ST"], level: 55, height: "6'4\" · 193 cm", face: "face-c.jpg",
+    { id: "target-style-finisher", name: "Tall Finisher", positions: ["ST"], level: 55, height: "6'4\" · 193 cm", stance: "finisher",
       stats: { PAC: 80, SHO: 90, PAS: 66, DRI: 78, DEF: 42, PHY: 88 }, psPlus: ["Low Driven Shot", "Power Shot"], badges: ["copied"] },
-    { id: "quick-finisher", name: "Quick Finisher", positions: ["ST", "CF"], level: 55, height: "5'8\" · 173 cm", face: "face-b.jpg",
+    { id: "quick-finisher", name: "Quick Finisher", positions: ["ST", "CF"], level: 55, height: "5'8\" · 173 cm", stance: "finisher",
       stats: { PAC: 94, SHO: 88, PAS: 74, DRI: 89, DEF: 34, PHY: 66 }, psPlus: ["First Touch", "Rapid"], badges: [] },
-    // Named after a player: no face until Chime's in-game recreation exists; the card shows the emblem (D-41, D-10).
+    // Named after a player: no face until Chime's in-game recreation exists; the card shows the emblem (D-42, D-10).
     { id: "2008-ronaldo-inspired", name: "2008 Ronaldo-inspired", inspiredBy: "2008 Ronaldo", positions: ["ST", "LW"], level: 55,
-      height: "6'1\" · 185 cm", face: null,
+      height: "6'1\" · 185 cm", stance: null,
       stats: { PAC: 92, SHO: 88, PAS: 70, DRI: 90, DEF: 36, PHY: 74 }, psPlus: ["Trickster", "Power Shot"], badges: [] },
   ];
 

@@ -54,14 +54,22 @@ img { display: block; }
 .group-head .count { color: var(--muted); font-size: 13px; }
 .rule { flex: 1; height: 2px; align-self: center; background: linear-gradient(90deg, var(--accent), transparent); }
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
-.tile { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s4); background: var(--surface); min-height: 168px; }
+.tile { --tile-bg: var(--surface); display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s4); background: var(--tile-bg); min-height: 168px; }
+/* The stance fills the right of the tile's top band and fades into the tile; the emblem sits on the faded side */
+.tile-art { position: relative; display: flex; align-items: flex-end; align-self: stretch; height: 116px; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) 0; padding: 0 var(--s4); overflow: hidden; }
+.tile-stance { position: absolute; top: 0; right: 0; width: 64%; height: 100%; object-fit: cover; object-position: 50% 6%; }
+.tile-fade { position: absolute; inset: 0; background: linear-gradient(90deg, var(--tile-bg) 30%, transparent 75%), linear-gradient(0deg, var(--tile-bg) 0%, transparent 45%); }
+.tile-art .emblem { position: relative; }
 .tile-name { font: 800 24px/1 var(--display); text-transform: uppercase; margin-top: var(--s1); }
 .tile-sig { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: auto; }
 .tile-sig-names { width: 100%; color: var(--muted); font-size: 12px; line-height: 1.3; }
 
 /* 2. Archetype page */
 .hero { display: grid; gap: var(--s4); padding: var(--s5) var(--s4); background: linear-gradient(160deg, var(--raised), var(--surface) 60%); --cut: 22px; }
-.hero-mark { display: flex; }
+.hero-mark { display: flex; position: relative; align-self: start; justify-self: start; }
+.hero-stance { --cut: 16px; --notch-tr: var(--raised); --notch-bl: var(--raised); width: 168px; height: 210px; }
+.emblem.on-stance { position: absolute; right: -20px; bottom: -14px; background: var(--surface); }
+.inspo { margin: var(--s2) 0 0; color: var(--muted); font-size: 14px; }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4) var(--s3); padding-top: var(--s4); border-top: 1px solid var(--line); }
 .fact .label { margin-bottom: var(--s2); }
 .fact:first-child { grid-column: 1 / -1; }
@@ -80,10 +88,10 @@ img { display: block; }
 .bcard .statgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s3); }
 .inspired { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
 
-/* Stand-in faces (D-41): a crop with a tag. A player-named build gets a plain slot with its emblem, no face (D-10) */
+/* Chime's in-game pro, one stance per archetype, tagged. A player-named build gets a plain slot with its emblem (D-42) */
 .portrait { position: relative; margin: 0; overflow: hidden; background: var(--raised); }
-.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
-.portrait .standin { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: var(--r-pill); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text); font-size: 11px; font-weight: 700; line-height: 1.4; }
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; } /* fills the box, never sizes it */
+.portrait .standin { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: var(--r-sm); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text); font-size: 11px; font-weight: 700; line-height: 1.4; }
 .portrait.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s2); padding: var(--s3); text-align: center; }
 .slot-note { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.3; }
 .hero-face { --cut: 16px; --notch-bl: var(--surface); width: 160px; min-height: 200px; margin-top: -48px; flex: none; z-index: 1; }
@@ -206,6 +214,9 @@ img { display: block; }
   .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s4); }
   .tile { min-height: 210px; padding: var(--s5); }
   .tile .emblem.ring { width: 80px; height: 80px; }
+  .tile-art { height: 150px; margin: calc(-1 * var(--s5)) calc(-1 * var(--s5)) 0; padding: 0 var(--s5); }
+  .hero-stance { width: 208px; height: 260px; }
+  .emblem.on-stance { width: 80px; height: 80px; right: -28px; bottom: -18px; }
   .tile-name { font-size: 30px; }
   .hero { grid-template-columns: auto 1fr minmax(0, 560px); align-items: center; gap: var(--s6); padding: var(--s6); --cut: 32px; }
   .emblem.big { width: 176px; height: 176px; }
@@ -225,5 +236,7 @@ img { display: block; }
   .agroups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6) var(--s5); }
   .foot { padding: var(--s5) var(--s7); }
 }
-@media (hover: hover) and (pointer: fine) { .tile:hover, .bcard:hover { background: var(--raised); } }
-@media (prefers-reduced-motion: no-preference) { .tile, .bcard { transition: background-color var(--dur-fast) var(--ease-out); } }
+@media (hover: hover) and (pointer: fine) { .tile:hover { --tile-bg: var(--raised); } .bcard:hover { background: var(--raised); } }
+/* Registered so the tile and its stance fade (a gradient, which can't transition) change colour together on hover */
+@property --tile-bg { syntax: "<color>"; inherits: true; initial-value: transparent; }
+@media (prefers-reduced-motion: no-preference) { .tile { transition: --tile-bg var(--dur-fast) var(--ease-out); } .bcard { transition: background-color var(--dur-fast) var(--ease-out); } }

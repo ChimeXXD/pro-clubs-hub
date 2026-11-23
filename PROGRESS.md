@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Chime's in-game stances replace the stand-in faces (Mon 23 Nov 2026)
+
+**Changed**
+- `mockup/builds-v2/` now shows Chime's own pro, cropped from 13 PS5 screenshots of the Archetypes screen (`Screenshots/Stance/`, git-ignored) to git-ignored `reference/assets/stances/<id>.png`. One rectangle (native x 370–664, y 825–1550) clears the card frame, crest, flag, LEVEL badge, PlayStyle icons, Amp slots and name strip on every card; the card's own background (bronze pattern, or the gold hex on the levelled Maestro and Finisher cards) can't be avoided and stays.
+- Picker: each tile's top band shows its stance, fading into the tile, with the emblem in front; no text sits on a picture. Progressor has no stance: its screenshot shows the Maestro card. Finisher header, the three generic Finisher cards (one shared stance for now) and the build hero at levels 55 and 32 use the Finisher stance; the 2008 Ronaldo-inspired card keeps its empty slot (D-42). Old stand-in crops deleted. Tag "Chime's in-game pro"; footer "Chime's in-game pro, one stance per archetype · reference only in this draft."
+- Group labels follow the game: Keeper, Defender, Midfielder, Forward (tiles, kickers, breadcrumbs). Finisher header adds "EA's inspiration: Alex Morgan" as plain text.
+- Figma (59:2): all eight screens recaptured into their cells: phone 96:2, 97:2, 98:2, 99:2; desktop 100:2, 101:2, 102:2, 103:2. The capture centres `object-fit` images, so the 36 stance fills were re-cropped in Figma to the browser's top alignment.
+
+**Checked**
+- 393 and 1440: no overflow, every stance and icon loads, no errors; routes and the level switch still pass live. Figma read-back: 12 stances on each picker, 4 on each Finisher screen, 1 per build screen, no old group words or stand-in tags, sizes equal to the browser. Code review (medium, fix): 9 findings, 3 fixed (tile hover seam via `@property`, tile emblem hidden from screen readers, decision reference).
+
+**Not verified**
+- On Chime's iPhone. The pro wears a face mask on every card, so no stance shows the face.
+
 ## Level switch and specialization on the sample build (Sun 22 Nov 2026, evening)
 
 **Changed**
