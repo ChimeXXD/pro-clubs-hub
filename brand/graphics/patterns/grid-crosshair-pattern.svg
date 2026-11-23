@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <title>Pitchside grid pattern (tileable)</title>
+  <g fill="none" stroke="#F6F6EE" stroke-opacity="0.06" stroke-width="1"><path d="M0.5 0V192M0 0.5H192"/><path d="M48.5 0V192M0 48.5H192"/><path d="M96.5 0V192M0 96.5H192"/><path d="M144.5 0V192M0 144.5H192"/></g>
+  <g fill="none" stroke="#F6F6EE" stroke-opacity="0.35" stroke-width="1"><path d="M0.5 -6V7M-6 0.5H7M192.5 -6V7M186 0.5H199M0.5 186V199M-6 192.5H7M192.5 186V199M186 192.5H199"/></g>
+  <circle cx="96" cy="96" r="2" fill="#F6F6EE" fill-opacity="0.5"/>
+</svg>

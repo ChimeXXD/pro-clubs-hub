@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <title>Pitchside grid hairlines (tileable, 48px module)</title>
+  <path d="M0.5 0V48M0 0.5H48" fill="none" stroke="#F6F6EE" stroke-opacity="0.06"/>
+</svg>
