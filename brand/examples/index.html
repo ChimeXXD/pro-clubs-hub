@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pitchside · Build smarter</title>
+<link rel="icon" href="../favicon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png">
+<meta name="theme-color" content="#0D1F17">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../css/pitchside.css">
+<style>
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero__inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding: 88px 24px 96px; }
+.hero__copy p { max-width: 460px; margin: 20px 0 32px; }
+.hero__pitch { position: relative; padding: 28px; }
+.hero__pitch img { width: 100%; height: auto; }
+.hero__float { position: absolute; right: -8px; bottom: -34px; width: 270px; }
+.hero__float .ps-build-card__attrs { padding-top: 12px; }
+.hero__proof { display: flex; gap: 32px; margin-top: 40px; }
+.hero__proof div { display: grid; gap: 4px; }
+@media (max-width: 960px) { .hero__inner { grid-template-columns: 1fr; padding-top: 56px; } .hero__float { display: none; } }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></g></defs><symbol id="i-build" viewBox="0 0 24 24"><path d="M8.5 3 4 5.2 2.5 10.2l3.2 1.3V21h12.6v-9.5l3.2-1.3L20 5.2 15.5 3a3.5 3.5 0 0 1-7 0Z"/><path d="M10.5 14.5h3"/></symbol><symbol id="i-archetype" viewBox="0 0 24 24"><path d="M12 2.8 20 7.4v9.2l-8 4.6-8-4.6V7.4Z"/><path d="M12.0 6.0L14.8 10.4L16.3 14.5L12.0 14.6L8.0 14.3L9.1 10.3Z"/></symbol><symbol id="i-face" viewBox="0 0 24 24"><path d="M12 3c3.9 0 6.5 2.9 6.5 7.3 0 5.2-3.2 10.7-6.5 10.7S5.5 15.5 5.5 10.3C5.5 5.9 8.1 3 12 3Z"/><path d="M5.6 10.5h12.8"/><path d="M13.6 3.2 10.4 20.8"/></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M4.5 20v-6M8.5 20V6M15.5 20V9M19.5 20v-4"/><path d="M12 4v16" stroke-opacity=".45"/></symbol><symbol id="i-meta" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol><symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M6 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4-6 4Z"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></symbol><symbol id="i-pitch" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><path d="M12 5v14"/><circle cx="12" cy="12" r="2.6"/><path d="M2.5 9.5h2.5v5H2.5M21.5 9.5H19v5h2.5"/></symbol><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.2 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10Z"/></symbol></svg>
+
+<header class="ps-nav">
+  <div class="ps-container ps-nav__inner">
+    <a class="ps-nav__logo" href="index.html" aria-label="Pitchside home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.26 96" height="22" style="width:auto;height:22px" role="img" aria-label="Pitchside">
+  
+  <g id="pitchside-symbol">
+    <path id="tile-top-left" fill="#F6F6EE" d="M15.27 39L19.29 24C22.84 10.75 36.47 0 49.72 0L73.72 0L63.27 39Z"/>
+    <path id="tile-top-right" fill="#F6F6EE" d="M69.27 39L79.72 0L97.72 0C114.29 0 124.12 13.43 119.68 30L117.27 39Z"/>
+    <path id="tile-stem" fill="#F6F6EE" d="M13.67 45L61.67 45L48 96L0 96Z"/>
+    <path id="tile-bottom-right" fill="#F6F6EE" d="M67.67 45L115.52 45C109.87 60.33 93.84 72 78.43 72L60.43 72Z"/>
+  </g>
+  <path id="pitchside-wordmark" fill="#F6F6EE" d="M147.41 72H158.33V54.57H167.96C180.23 54.57 187.29 47.23 187.29 36.67C187.29 26.18 180.34 18.67 168.21 18.67H147.41ZM158.33 45.76V27.69H166.17C172.86 27.69 176.01 31.3 176.01 36.67C176.01 42.04 172.86 45.76 166.2 45.76ZM196.09 72H206.83V31.98H196.09ZM198.67 26.61H204.25C205.68 26.61 206.83 25.46 206.83 24.04V18.45C206.83 17.03 205.68 15.87 204.25 15.87H198.67C197.25 15.87 196.09 17.03 196.09 18.45V24.04C196.09 25.46 197.25 26.61 198.67 26.61ZM236.54 31.98H229.06V22.46H218.32V31.98H212.81V40.18H218.32V61.23C218.32 68.56 222.69 72.57 230.7 72.57C232.85 72.57 235.25 72.32 237.65 71.61L236.11 63.55C235.32 63.77 233.53 64.02 232.71 64.02C230.1 64.02 229.06 62.84 229.06 60.3V40.18H236.54ZM262.13 72.79C271.72 72.79 278.49 67.6 279.99 59.19L270.01 57.36C269.15 61.69 266.39 64.34 262.24 64.34C256.51 64.34 253.51 59.29 253.51 52.13C253.51 44.9 256.51 39.93 262.24 39.93C266.39 39.93 269.04 42.51 269.93 46.66L279.92 44.8C278.42 36.56 271.62 31.48 262.13 31.48C250.07 31.48 242.55 39.79 242.55 52.17C242.55 64.48 250.07 72.79 262.13 72.79ZM299.39 48.84C299.39 43.54 302.58 40.47 307.16 40.47C311.67 40.47 314.39 43.44 314.39 48.41V72H325.17V46.55C325.17 37.17 319.69 31.48 311.38 31.48C305.44 31.48 301.51 34.42 299.18 39.64V18.67H288.66V72H299.39ZM350.9 72.79C361.39 72.79 368.8 67.53 368.8 59.65C368.8 53.96 365.08 50.42 357.34 48.84L350.15 47.41C346.36 46.62 345 45.23 345 43.22C345 40.82 347.72 39.18 351.22 39.18C355.12 39.18 357.38 41.11 358.24 43.83L367.76 42.15C366.26 35.63 360.57 31.48 351.08 31.48C340.95 31.48 334.26 36.21 334.26 43.9C334.26 49.88 338.05 53.67 345.78 55.25L352.69 56.68C356.2 57.4 357.85 58.68 357.85 60.8C357.85 63.19 355.3 64.91 351.22 64.91C346.82 64.91 344.24 63.09 343.21 59.33L333.22 61.05C334.61 68.49 341.24 72.79 350.9 72.79ZM376.78 72H387.52V31.98H376.78ZM379.36 26.61H384.94C386.36 26.61 387.52 25.46 387.52 24.04V18.45C387.52 17.03 386.36 15.87 384.94 15.87H379.36C377.93 15.87 376.78 17.03 376.78 18.45V24.04C376.78 25.46 377.93 26.61 379.36 26.61ZM412 72.68C418.52 72.68 421.85 68.81 423.31 65.59H423.85V72H434.41V18.67H423.67V38.71H423.31C421.88 35.53 418.73 31.48 411.93 31.48C403.05 31.48 395.68 38.39 395.68 52.06C395.68 65.38 402.77 72.68 412 72.68ZM415.29 64.05C409.71 64.05 406.7 59.08 406.7 52.03C406.7 45.01 409.64 40.07 415.29 40.07C420.81 40.07 423.89 44.76 423.89 52.03C423.89 59.26 420.77 64.05 415.29 64.05ZM462.01 72.79C471.31 72.79 477.68 68.46 479.65 61.8L469.92 59.97C468.77 63.05 465.94 64.7 462.19 64.7C456.78 64.7 453.13 61.33 452.88 54.78H480.26V51.78C480.26 38.1 471.92 31.48 461.47 31.48C449.76 31.48 442.25 39.86 442.25 52.21C442.25 64.84 449.76 72.79 462.01 72.79ZM452.95 48.05C453.38 43.11 456.46 39.57 461.58 39.57C466.55 39.57 469.38 42.83 469.92 48.05Z"/>
+</svg>
+</a>
+    <ul class="ps-nav__links"><li><a class="ps-nav__link" href="builds.html">Builds</a></li><li><a class="ps-nav__link" href="archetype.html">Archetypes</a></li><li><a class="ps-nav__link" href="face-guide.html">Faces</a></li><li><a class="ps-nav__link" href="#">Compare</a></li></ul>
+    <div class="ps-nav__actions">
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Search"><svg class="ps-icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <a class="ps-btn ps-btn--primary ps-btn--sm" href="builds.html">New build</a>
+      <span class="ps-avatar" aria-label="Your profile">SA</span>
+    </div>
+  </div>
+</header>
+<main>
+<section class="hero ps-grid-bg">
+  <div class="ps-container hero__inner">
+    <div class="hero__copy">
+      <span class="ps-overline">The Pro Clubs companion</span>
+      <h1 class="ps-display-2xl" style="margin-top:16px">Build<br>Smarter.</h1>
+      <p class="ps-body-lg">Create, compare and share Pro Clubs builds with clarity. Meta builds, archetypes and face guides in one place.</p>
+      <div class="ps-row">
+        <a class="ps-btn ps-btn--primary ps-btn--lg" href="builds.html">Start building <svg class="ps-icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="ps-btn ps-btn--secondary ps-btn--lg" href="builds.html">Browse meta builds</a>
+      </div>
+      <div class="hero__proof">
+        <div><span class="ps-stat-lg ps-num">1,240</span><span class="ps-caption">Builds shared</span></div>
+        <div><span class="ps-stat-lg ps-num">18</span><span class="ps-caption">Archetypes mapped</span></div>
+        <div><span class="ps-stat-lg ps-num">96</span><span class="ps-caption">Face guides</span></div>
+      </div>
+    </div>
+    <div class="hero__pitch ps-card">
+      <div class="ps-row" style="justify-content:space-between;margin-bottom:16px"><span class="ps-overline">Your XI · 4-3-3</span><span class="ps-badge">Draft</span></div>
+      <img src="../graphics/pitch/pitch-formation-433.svg" alt="Pitch diagram with a 4-3-3 formation">
+      <div class="hero__float"><article class="ps-card ps-card--interactive ps-build-card">
+  <div class="ps-build-card__head">
+    <div>
+      <div class="ps-row" style="gap:8px"><span class="ps-tag">LW</span><span class="ps-badge ps-badge--meta"><span class="ps-dot"></span>Meta</span></div>
+      <h3 class="ps-build-card__title"><a href="#" style="text-decoration:none">Pacey Inside Forward</a></h3>
+      <div class="ps-build-card__meta"><span>Wide Threat</span><span>175 cm</span><span>68 kg</span></div>
+    </div>
+    <div class="ps-build-card__ovr"><span class="ps-stat-lg ps-num">88</span><span class="ps-overline">OVR</span></div>
+  </div>
+  <div class="ps-build-card__attrs"><div class="ps-attr r-elite"><span class="ps-attr__label">Acceleration</span><span class="ps-attr__value">95</span><span class="ps-attr__bar"><i style="--v:95"></i></span></div><div class="ps-attr r-elite"><span class="ps-attr__label">Sprint Speed</span><span class="ps-attr__value">92</span><span class="ps-attr__bar"><i style="--v:92"></i></span></div><div class="ps-attr r-elite"><span class="ps-attr__label">Dribbling</span><span class="ps-attr__value">90</span><span class="ps-attr__bar"><i style="--v:90"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Finishing</span><span class="ps-attr__value">84</span><span class="ps-attr__bar"><i style="--v:84"></i></span></div></div>
+  <div class="ps-build-card__foot">
+    <span class="ps-row" style="gap:6px"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-heart"/></svg><span class="ps-num">2.4k</span></span>
+    <span class="ps-actions">
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Save build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-save"/></svg></button>
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Share build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-share"/></svg></button>
+    </span>
+  </div>
+</article></div>
+    </div>
+  </div>
+</section>
+
+<section class="ps-section">
+  <div class="ps-container">
+    <div class="ps-section-head">
+      <div><span class="ps-overline">This week</span><h2 class="ps-display-lg" style="margin-top:10px">Meta builds</h2></div>
+      <a class="ps-btn ps-btn--secondary" href="builds.html">All builds <svg class="ps-icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="ps-grid"><article class="ps-card ps-card--interactive ps-build-card">
+  <div class="ps-build-card__head">
+    <div>
+      <div class="ps-row" style="gap:8px"><span class="ps-tag">LW</span><span class="ps-badge ps-badge--meta"><span class="ps-dot"></span>Meta</span></div>
+      <h3 class="ps-build-card__title"><a href="#" style="text-decoration:none">Pacey Inside Forward</a></h3>
+      <div class="ps-build-card__meta"><span>Wide Threat</span><span>175 cm</span><span>68 kg</span></div>
+    </div>
+    <div class="ps-build-card__ovr"><span class="ps-stat-lg ps-num">88</span><span class="ps-overline">OVR</span></div>
+  </div>
+  <div class="ps-build-card__attrs"><div class="ps-attr r-elite"><span class="ps-attr__label">Acceleration</span><span class="ps-attr__value">95</span><span class="ps-attr__bar"><i style="--v:95"></i></span></div><div class="ps-attr r-elite"><span class="ps-attr__label">Sprint Speed</span><span class="ps-attr__value">92</span><span class="ps-attr__bar"><i style="--v:92"></i></span></div><div class="ps-attr r-elite"><span class="ps-attr__label">Dribbling</span><span class="ps-attr__value">90</span><span class="ps-attr__bar"><i style="--v:90"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Finishing</span><span class="ps-attr__value">84</span><span class="ps-attr__bar"><i style="--v:84"></i></span></div></div>
+  <div class="ps-build-card__foot">
+    <span class="ps-row" style="gap:6px"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-heart"/></svg><span class="ps-num">2.4k</span></span>
+    <span class="ps-actions">
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Save build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-save"/></svg></button>
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Share build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-share"/></svg></button>
+    </span>
+  </div>
+</article><article class="ps-card ps-card--interactive ps-build-card">
+  <div class="ps-build-card__head">
+    <div>
+      <div class="ps-row" style="gap:8px"><span class="ps-tag">CM</span><span class="ps-badge ps-badge--meta"><span class="ps-dot"></span>Meta</span></div>
+      <h3 class="ps-build-card__title"><a href="#" style="text-decoration:none">Box-to-Box Engine</a></h3>
+      <div class="ps-build-card__meta"><span>Engine</span><span>183 cm</span><span>78 kg</span></div>
+    </div>
+    <div class="ps-build-card__ovr"><span class="ps-stat-lg ps-num">86</span><span class="ps-overline">OVR</span></div>
+  </div>
+  <div class="ps-build-card__attrs"><div class="ps-attr r-elite"><span class="ps-attr__label">Stamina</span><span class="ps-attr__value">96</span><span class="ps-attr__bar"><i style="--v:96"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Short Passing</span><span class="ps-attr__value">88</span><span class="ps-attr__bar"><i style="--v:88"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Interceptions</span><span class="ps-attr__value">82</span><span class="ps-attr__bar"><i style="--v:82"></i></span></div><div class="ps-attr r-good"><span class="ps-attr__label">Long Shots</span><span class="ps-attr__value">79</span><span class="ps-attr__bar"><i style="--v:79"></i></span></div></div>
+  <div class="ps-build-card__foot">
+    <span class="ps-row" style="gap:6px"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-heart"/></svg><span class="ps-num">1.9k</span></span>
+    <span class="ps-actions">
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Save build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-save"/></svg></button>
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Share build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-share"/></svg></button>
+    </span>
+  </div>
+</article><article class="ps-card ps-card--interactive ps-build-card">
+  <div class="ps-build-card__head">
+    <div>
+      <div class="ps-row" style="gap:8px"><span class="ps-tag">CB</span></div>
+      <h3 class="ps-build-card__title"><a href="#" style="text-decoration:none">Ball-Playing Centre-Back</a></h3>
+      <div class="ps-build-card__meta"><span>Stopper</span><span>191 cm</span><span>84 kg</span></div>
+    </div>
+    <div class="ps-build-card__ovr"><span class="ps-stat-lg ps-num">85</span><span class="ps-overline">OVR</span></div>
+  </div>
+  <div class="ps-build-card__attrs"><div class="ps-attr r-elite"><span class="ps-attr__label">Standing Tackle</span><span class="ps-attr__value">91</span><span class="ps-attr__bar"><i style="--v:91"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Defensive Aware.</span><span class="ps-attr__value">89</span><span class="ps-attr__bar"><i style="--v:89"></i></span></div><div class="ps-attr r-elite"><span class="ps-attr__label">Strength</span><span class="ps-attr__value">90</span><span class="ps-attr__bar"><i style="--v:90"></i></span></div><div class="ps-attr r-great"><span class="ps-attr__label">Long Passing</span><span class="ps-attr__value">80</span><span class="ps-attr__bar"><i style="--v:80"></i></span></div></div>
+  <div class="ps-build-card__foot">
+    <span class="ps-row" style="gap:6px"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-heart"/></svg><span class="ps-num">1.3k</span></span>
+    <span class="ps-actions">
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Save build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-save"/></svg></button>
+      <button class="ps-btn ps-btn--ghost ps-btn--icon ps-btn--sm" aria-label="Share build"><svg class="ps-icon ps-icon--sm" aria-hidden="true"><use href="#i-share"/></svg></button>
+    </span>
+  </div>
+</article></div>
+  </div>
+</section>
+
+<section class="ps-section" style="padding-top:0">
+  <div class="ps-container">
+    <div class="ps-section-head">
+      <div><span class="ps-overline">Know your role</span><h2 class="ps-display-lg" style="margin-top:10px">Archetypes</h2></div>
+      <a class="ps-btn ps-btn--secondary" href="archetype.html">Explore <svg class="ps-icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="ps-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr))"><a class="ps-card ps-archetype-card" href="archetype.html">
+  <span class="ps-archetype-card__tile" aria-hidden="true"></span>
+  <span class="ps-overline">Archetype</span>
+  <h3 class="ps-archetype-card__name">Finisher</h3>
+  <p class="ps-archetype-card__desc">Lives in the box. Built for clean contact and first-time shots.</p>
+  <div class="ps-archetype-card__spark" aria-hidden="true"><i style="--v:70"></i><i style="--v:92" class="is-key"></i><i style="--v:64"></i><i style="--v:78"></i><i style="--v:32"></i><i style="--v:80" class="is-key"></i></div>
+  <div class="ps-archetype-card__spark-labels" aria-hidden="true"><span>PAC</span><span>SHO</span><span>PAS</span><span>DRI</span><span>DEF</span><span>PHY</span></div>
+</a><a class="ps-card ps-archetype-card" href="archetype.html">
+  <span class="ps-archetype-card__tile" aria-hidden="true"></span>
+  <span class="ps-overline">Archetype</span>
+  <h3 class="ps-archetype-card__name">Engine</h3>
+  <p class="ps-archetype-card__desc">Covers every blade of grass and keeps the press alive.</p>
+  <div class="ps-archetype-card__spark" aria-hidden="true"><i style="--v:76"></i><i style="--v:70"></i><i style="--v:82" class="is-key"></i><i style="--v:74"></i><i style="--v:72"></i><i style="--v:84" class="is-key"></i></div>
+  <div class="ps-archetype-card__spark-labels" aria-hidden="true"><span>PAC</span><span>SHO</span><span>PAS</span><span>DRI</span><span>DEF</span><span>PHY</span></div>
+</a><a class="ps-card ps-archetype-card" href="archetype.html">
+  <span class="ps-archetype-card__tile" aria-hidden="true"></span>
+  <span class="ps-overline">Archetype</span>
+  <h3 class="ps-archetype-card__name">Playmaker</h3>
+  <p class="ps-archetype-card__desc">Sees the pass before it exists. Dictates tempo from deep.</p>
+  <div class="ps-archetype-card__spark" aria-hidden="true"><i style="--v:62"></i><i style="--v:68"></i><i style="--v:94" class="is-key"></i><i style="--v:82" class="is-key"></i><i style="--v:60"></i><i style="--v:66"></i></div>
+  <div class="ps-archetype-card__spark-labels" aria-hidden="true"><span>PAC</span><span>SHO</span><span>PAS</span><span>DRI</span><span>DEF</span><span>PHY</span></div>
+</a><a class="ps-card ps-archetype-card" href="archetype.html">
+  <span class="ps-archetype-card__tile" aria-hidden="true"></span>
+  <span class="ps-overline">Archetype</span>
+  <h3 class="ps-archetype-card__name">Stopper</h3>
+  <p class="ps-archetype-card__desc">Wins the duel, wins the header, starts the move.</p>
+  <div class="ps-archetype-card__spark" aria-hidden="true"><i style="--v:68"></i><i style="--v:40"></i><i style="--v:70"></i><i style="--v:58"></i><i style="--v:92" class="is-key"></i><i style="--v:88" class="is-key"></i></div>
+  <div class="ps-archetype-card__spark-labels" aria-hidden="true"><span>PAC</span><span>SHO</span><span>PAS</span><span>DRI</span><span>DEF</span><span>PHY</span></div>
+</a></div>
+  </div>
+</section>
+
+<section class="ps-section" style="padding-top:0">
+  <div class="ps-container">
+    <div class="ps-card" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:40px;overflow:hidden">
+      <div>
+        <span class="ps-overline">Face guides</span>
+        <h2 class="ps-display-lg" style="margin:10px 0 14px">Recreate any face,<br>slider by slider.</h2>
+        <p class="ps-body-lg" style="margin:0 0 28px">Every value for head, eyes, nose, mouth and hair, laid out in the order you set them in game.</p>
+        <a class="ps-btn ps-btn--chalk" href="face-guide.html">Open a face guide <svg class="ps-icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="ps-media ps-grid-bg" style="aspect-ratio:4/5;"><span class="ps-media__label ps-tag ps-tag--ghost">Face</span></div><div class="ps-media ps-grid-bg" style="aspect-ratio:4/5;"><span class="ps-media__label ps-tag ps-tag--ghost">Face</span></div><div class="ps-media ps-grid-bg" style="aspect-ratio:4/5;"><span class="ps-media__label ps-tag ps-tag--ghost">Face</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="ps-footer">
+  <div class="ps-container ps-footer__inner">
+    <div class="ps-stack" style="gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.26 96" height="18" style="width:auto;height:18px" role="img" aria-label="Pitchside">
+  
+  <g id="pitchside-symbol">
+    <path id="tile-top-left" fill="#F6F6EE" d="M15.27 39L19.29 24C22.84 10.75 36.47 0 49.72 0L73.72 0L63.27 39Z"/>
+    <path id="tile-top-right" fill="#F6F6EE" d="M69.27 39L79.72 0L97.72 0C114.29 0 124.12 13.43 119.68 30L117.27 39Z"/>
+    <path id="tile-stem" fill="#F6F6EE" d="M13.67 45L61.67 45L48 96L0 96Z"/>
+    <path id="tile-bottom-right" fill="#F6F6EE" d="M67.67 45L115.52 45C109.87 60.33 93.84 72 78.43 72L60.43 72Z"/>
+  </g>
+  <path id="pitchside-wordmark" fill="#F6F6EE" d="M147.41 72H158.33V54.57H167.96C180.23 54.57 187.29 47.23 187.29 36.67C187.29 26.18 180.34 18.67 168.21 18.67H147.41ZM158.33 45.76V27.69H166.17C172.86 27.69 176.01 31.3 176.01 36.67C176.01 42.04 172.86 45.76 166.2 45.76ZM196.09 72H206.83V31.98H196.09ZM198.67 26.61H204.25C205.68 26.61 206.83 25.46 206.83 24.04V18.45C206.83 17.03 205.68 15.87 204.25 15.87H198.67C197.25 15.87 196.09 17.03 196.09 18.45V24.04C196.09 25.46 197.25 26.61 198.67 26.61ZM236.54 31.98H229.06V22.46H218.32V31.98H212.81V40.18H218.32V61.23C218.32 68.56 222.69 72.57 230.7 72.57C232.85 72.57 235.25 72.32 237.65 71.61L236.11 63.55C235.32 63.77 233.53 64.02 232.71 64.02C230.1 64.02 229.06 62.84 229.06 60.3V40.18H236.54ZM262.13 72.79C271.72 72.79 278.49 67.6 279.99 59.19L270.01 57.36C269.15 61.69 266.39 64.34 262.24 64.34C256.51 64.34 253.51 59.29 253.51 52.13C253.51 44.9 256.51 39.93 262.24 39.93C266.39 39.93 269.04 42.51 269.93 46.66L279.92 44.8C278.42 36.56 271.62 31.48 262.13 31.48C250.07 31.48 242.55 39.79 242.55 52.17C242.55 64.48 250.07 72.79 262.13 72.79ZM299.39 48.84C299.39 43.54 302.58 40.47 307.16 40.47C311.67 40.47 314.39 43.44 314.39 48.41V72H325.17V46.55C325.17 37.17 319.69 31.48 311.38 31.48C305.44 31.48 301.51 34.42 299.18 39.64V18.67H288.66V72H299.39ZM350.9 72.79C361.39 72.79 368.8 67.53 368.8 59.65C368.8 53.96 365.08 50.42 357.34 48.84L350.15 47.41C346.36 46.62 345 45.23 345 43.22C345 40.82 347.72 39.18 351.22 39.18C355.12 39.18 357.38 41.11 358.24 43.83L367.76 42.15C366.26 35.63 360.57 31.48 351.08 31.48C340.95 31.48 334.26 36.21 334.26 43.9C334.26 49.88 338.05 53.67 345.78 55.25L352.69 56.68C356.2 57.4 357.85 58.68 357.85 60.8C357.85 63.19 355.3 64.91 351.22 64.91C346.82 64.91 344.24 63.09 343.21 59.33L333.22 61.05C334.61 68.49 341.24 72.79 350.9 72.79ZM376.78 72H387.52V31.98H376.78ZM379.36 26.61H384.94C386.36 26.61 387.52 25.46 387.52 24.04V18.45C387.52 17.03 386.36 15.87 384.94 15.87H379.36C377.93 15.87 376.78 17.03 376.78 18.45V24.04C376.78 25.46 377.93 26.61 379.36 26.61ZM412 72.68C418.52 72.68 421.85 68.81 423.31 65.59H423.85V72H434.41V18.67H423.67V38.71H423.31C421.88 35.53 418.73 31.48 411.93 31.48C403.05 31.48 395.68 38.39 395.68 52.06C395.68 65.38 402.77 72.68 412 72.68ZM415.29 64.05C409.71 64.05 406.7 59.08 406.7 52.03C406.7 45.01 409.64 40.07 415.29 40.07C420.81 40.07 423.89 44.76 423.89 52.03C423.89 59.26 420.77 64.05 415.29 64.05ZM462.01 72.79C471.31 72.79 477.68 68.46 479.65 61.8L469.92 59.97C468.77 63.05 465.94 64.7 462.19 64.7C456.78 64.7 453.13 61.33 452.88 54.78H480.26V51.78C480.26 38.1 471.92 31.48 461.47 31.48C449.76 31.48 442.25 39.86 442.25 52.21C442.25 64.84 449.76 72.79 462.01 72.79ZM452.95 48.05C453.38 43.11 456.46 39.57 461.58 39.57C466.55 39.57 469.38 42.83 469.92 48.05Z"/>
+</svg>
+<span class="ps-caption">Independent companion for Pro Clubs players. Not affiliated with EA.</span></div>
+    <nav class="ps-footer__links" aria-label="Design system">
+      <a href="components.html">Components</a><a href="mobile.html">Mobile</a><a href="brand.html">Brand</a><a href="../README.md">Asset package</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
