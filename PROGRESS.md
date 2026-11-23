@@ -2,6 +2,26 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stances off the picker, pictures aligned, cut corners and textures gone (Mon 23 Nov 2026, later)
+
+Chime: stances belong in the build section, not on "Pick your archetype"; the Finisher pictures weren't aligned on phone; the whole draft read as AI slop. Fixed in `mockup/builds-v2/`, then recaptured; Chime plans a full redesign after this.
+
+**Changed**
+- Picker: stances removed; each tile is the emblem ring, name and Signature PlayStyles on a plain surface (min height 168 → 196 phone, 210 → 236 desktop).
+- Finisher header: the stance and the emblem overlapping its corner replaced by the big emblem ring alone, so the stance isn't shown four times on one page. "EA's inspiration: Alex Morgan" no longer sits beside a picture.
+- Build cards: the picture was a full-height left column (116 px phone, 168 desktop) cropped differently per card, with a "Chime's in-game pro" tag wrapping over it. Now a fixed 104 × 130 (desktop 128 × 160) portrait inside the card padding, top-aligned with the badges, zoomed to head and shoulders with the face centred (`stanceFocus` in `data.js`, Finisher 0.61). Tags removed; one line under "4 builds": "Pictures: Chime's own pro in the Finisher stance, from the game."
+- Build page: the portrait no longer pokes 48 px out of the top of its panel (bgrid margin 64 → 16); 128 × 160 phone, 152 × 190 desktop; same credit line, singular.
+- Everywhere: cut corners (page-coloured triangles) → 14 px radius (8 on the button and portraits); diagonal stripe texture and gold glow on the page removed; gold gradient rule → 1 px hairline; hero gradient → plain surface; Copy build gradient → solid accent; emblem ring gradient → plain.
+- Copy: "(sample)" after every build name removed (the page's sample label covers it); the build page's two sample pills merged into "Sample build · values and prices not checked in game"; "(D-30)" and "(D-39)" no longer shown; footer note shortened to one line.
+- Data: Shot Stopper's Season 2 signature Deflector → Footwork (RESEARCH §9: EA swapped it on 22 Oct).
+- Figma (59:2): all eight screens recaptured into their cells: phone 109:2, 110:2, 111:2, 112:2; desktop 113:2, 114:2, 115:2, 116:2 (old 96:2–103:2 removed). No image re-crop needed: the portraits no longer use `object-fit`.
+
+**Checked**
+- 393 and 1440 in headless Chromium: no visible overflow (the only flags are the zoomed pictures inside their clipped boxes), every emblem, icon and stance loads, no errors. Figma screenshots of the phone Finisher and build screens match the browser.
+
+**Not verified**
+- On Chime's iPhone. The level switch wasn't re-tested live (its markup didn't change). Stance focus is measured for Finisher only.
+
 ## Chime's in-game stances replace the stand-in faces (Mon 23 Nov 2026)
 
 **Changed**

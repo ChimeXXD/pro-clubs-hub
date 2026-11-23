@@ -16,7 +16,9 @@ window.BV2 = (() => {
   // From fc27.json: launch signature, Season 2 signature, mastery attributes (null = not recorded),
   // Season 2 cost change counts (apCostChange20261022).
   const archetypes = {
-    "shot-stopper": ["Shot Stopper", "Far Reach", "Deflector", ["GK Positioning", "GK Reflexes"], { up: 3, down: 1 }],
+    // Shot Stopper's Season 2 signature is Footwork: EA swapped it from Deflector on 22 Oct (RESEARCH §10.4).
+    // content/archetypes/fc27.json still says Deflector until Chime confirms in game.
+    "shot-stopper": ["Shot Stopper", "Far Reach", "Footwork", ["GK Positioning", "GK Reflexes"], { up: 3, down: 1 }],
     "sweeper-keeper": ["Sweeper Keeper", "Footwork", "Cross Claimer", ["GK Handling", "GK Diving"], { up: 5, down: 1 }],
     progressor: ["Progressor", "Long Ball Pass", "Anticipate", ["Long Passing", "Standing Tackle"], { up: 4, down: 1 }],
     boss: ["Boss", "Bruiser", "Aerial Fortress", ["Aggression", "Strength"], { up: 3, down: 0 }],
@@ -32,6 +34,7 @@ window.BV2 = (() => {
   };
   const has = (id) => Object.hasOwn(archetypes, id);
   // Chime's 22 Nov screenshots have a stance for every archetype but Progressor (its screen showed the Maestro card).
+  // Stances show on build cards and build pages only, never on the archetype picker (Chime, 23 Nov).
   const stances = new Set(["shot-stopper", "sweeper-keeper", "boss", "marauder", "disruptor", "recycler", "maestro", "creator", "spark", "magician", "finisher", "target"]);
   // EA's "Inspired by" line on the Archetypes screen; only the ones this draft shows. Names as plain text (D-10).
   const inspiration = { finisher: "Alex Morgan" };
@@ -46,6 +49,9 @@ window.BV2 = (() => {
     psPlus: (name) => `${ASSETS}playstyles-plus/${slug(name)}.png`,
     stance: (id) => `${ASSETS}stances/${id}.png`,
   };
+  // Where the head sits across each stance crop (0 = left edge, 1 = right), measured on the crop, so the
+  // head-and-shoulders portrait centres the face. Unmeasured crops centre the middle.
+  const stanceFocus = { finisher: 0.61 };
 
   // Sample build (D-43). Attribute and PlayStyle names are real FC 27 names; starting values and the spend
   // order are layout samples. The level-55 values are where the spend order ends (see level.js).
@@ -100,5 +106,5 @@ window.BV2 = (() => {
   ];
 
   const notice = "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named.";
-  return { groups, has, archetype, icon, build, builds, notice, slug };
+  return { groups, has, archetype, icon, stanceFocus: (id) => stanceFocus[id] ?? 0.5, build, builds, notice, slug };
 })();

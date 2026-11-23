@@ -1,21 +1,15 @@
 /* Builds · new style. Colours are the Old Gold dark tokens from ../draft/themes.css (data-theme="gold").
-   FUT.GG's player stats page gives the structure, FC 27's Clubs menus the cut corners and emblem rings,
-   sports editorial the type scale. Each .frame is a size container: 393 lays out as phone, 900+ as desktop. */
+   FUT.GG's player stats page gives the structure, FC 27's Clubs menus the emblem rings, sports editorial
+   the type scale. Plain surfaces, rounded corners, no textures or gradients. Each .frame is a size container: 393 lays out as phone, 900+ as desktop. */
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 500 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
 img { display: block; }
-.frame { container-type: inline-size; position: relative; background: var(--bg); overflow: clip; /* clip, not hidden: hidden would break the sticky level bar */
-  background-image: radial-gradient(900px 320px at 85% 0, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
-    repeating-linear-gradient(115deg, transparent 0 22px, color-mix(in srgb, var(--text) 2%, transparent) 22px 23px); }
+.frame { container-type: inline-size; position: relative; background: var(--bg); overflow: clip; } /* clip, not hidden: hidden would break the sticky level bar */
 
 /* Shapes and type */
-.cut { --cut: 14px; position: relative; }
-.notch { position: absolute; width: var(--cut); height: var(--cut); pointer-events: none; }
-.notch.tr { top: 0; right: 0; fill: var(--notch-tr, var(--bg)); }
-.notch.bl { bottom: 0; left: 0; fill: var(--notch-bl, var(--bg)); }
 .display { font: 800 34px/0.95 var(--display); text-transform: uppercase; margin: 0; letter-spacing: 0; }
 .display.xl { font-size: 48px; }
 .kicker { margin: 0 0 var(--s2); color: var(--accent-text); font-weight: 600; font-size: 14px; }
@@ -41,7 +35,7 @@ img { display: block; }
 /* Emblems: ring like the game's Masteries list */
 .emblem { display: grid; place-items: center; color: var(--accent-text); flex: none; }
 .emblem svg { width: 62%; height: auto; }
-.emblem.ring { width: 64px; height: 64px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line)); background: radial-gradient(circle at 50% 35%, var(--raised), var(--surface)); }
+.emblem.ring { width: 64px; height: 64px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line)); background: var(--raised); }
 .emblem.big { width: 112px; height: 112px; border-width: 3px; box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line); }
 .ps { width: 36px; height: 36px; }
 .ps.sm { width: 24px; height: 24px; }
@@ -52,23 +46,16 @@ img { display: block; }
 .group { margin-bottom: var(--s6); }
 .group-head { display: flex; align-items: baseline; gap: var(--s3); margin-bottom: var(--s3); }
 .group-head .count { color: var(--muted); font-size: 13px; }
-.rule { flex: 1; height: 2px; align-self: center; background: linear-gradient(90deg, var(--accent), transparent); }
+.rule { flex: 1; height: 1px; align-self: center; background: var(--line); }
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
-.tile { --tile-bg: var(--surface); display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s4); background: var(--tile-bg); min-height: 168px; }
-/* The stance fills the right of the tile's top band and fades into the tile; the emblem sits on the faded side */
-.tile-art { position: relative; display: flex; align-items: flex-end; align-self: stretch; height: 116px; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) 0; padding: 0 var(--s4); overflow: hidden; }
-.tile-stance { position: absolute; top: 0; right: 0; width: 64%; height: 100%; object-fit: cover; object-position: 50% 6%; }
-.tile-fade { position: absolute; inset: 0; background: linear-gradient(90deg, var(--tile-bg) 30%, transparent 75%), linear-gradient(0deg, var(--tile-bg) 0%, transparent 45%); }
-.tile-art .emblem { position: relative; }
+.tile { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s4); background: var(--surface); border-radius: var(--r); min-height: 196px; }
 .tile-name { font: 800 24px/1 var(--display); text-transform: uppercase; margin-top: var(--s1); }
 .tile-sig { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: auto; }
 .tile-sig-names { width: 100%; color: var(--muted); font-size: 12px; line-height: 1.3; }
 
 /* 2. Archetype page */
-.hero { display: grid; gap: var(--s4); padding: var(--s5) var(--s4); background: linear-gradient(160deg, var(--raised), var(--surface) 60%); --cut: 22px; }
-.hero-mark { display: flex; position: relative; align-self: start; justify-self: start; }
-.hero-stance { --cut: 16px; --notch-tr: var(--raised); --notch-bl: var(--raised); width: 168px; height: 210px; }
-.emblem.on-stance { position: absolute; right: -20px; bottom: -14px; background: var(--surface); }
+.hero { display: grid; gap: var(--s4); padding: var(--s5) var(--s4); background: var(--surface); border-radius: var(--r); }
+.hero-mark { display: flex; align-self: start; justify-self: start; }
 .inspo { margin: var(--s2) 0 0; color: var(--muted); font-size: 14px; }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4) var(--s3); padding-top: var(--s4); border-top: 1px solid var(--line); }
 .fact .label { margin-bottom: var(--s2); }
@@ -81,22 +68,25 @@ img { display: block; }
 .costs b { font: 800 26px/1 var(--display); color: var(--text); margin-right: 2px; }
 .costs b + b { margin-left: var(--s2); }
 .list { margin-top: var(--s6); }
-.list-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin-bottom: var(--s4); flex-wrap: wrap; }
+.list-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin-bottom: var(--s2); flex-wrap: wrap; }
+.pic-credit { margin: 0 0 var(--s4); color: var(--muted); font-size: 12px; }
 .bcards { display: grid; gap: var(--s3); }
-.bcard { display: grid; grid-template-columns: 116px minmax(0, 1fr); background: var(--surface); }
-.bcard-body { padding: var(--s3) var(--s4) var(--s4); min-width: 0; }
+/* The portrait sits inside the card's padding, top-aligned with the badges, the same size on every card */
+.bcard { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: var(--s4); align-items: start; padding: var(--s4); background: var(--surface); border-radius: var(--r); }
+.bcard-body { min-width: 0; }
+.portrait.card { width: 104px; height: 130px; }
 .bcard .statgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s3); }
 .inspired { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
 
-/* Chime's in-game pro, one stance per archetype, tagged. A player-named build gets a plain slot with its emblem (D-42) */
-.portrait { position: relative; margin: 0; overflow: hidden; background: var(--raised); }
-.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; } /* fills the box, never sizes it */
-.portrait .standin { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: var(--r-sm); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text); font-size: 11px; font-weight: 700; line-height: 1.4; }
-.portrait.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s2); padding: var(--s3); text-align: center; }
-.slot-note { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.3; }
-.hero-face { --cut: 16px; --notch-bl: var(--surface); width: 160px; min-height: 200px; margin-top: -48px; flex: none; z-index: 1; }
+/* Chime's in-game pro, one stance per archetype: the crop is zoomed to head and shoulders and slid so the face
+   (--fx, from data.js) sits in the middle. A player-named build gets a plain slot with its emblem (D-42) */
+.portrait { position: relative; margin: 0; overflow: hidden; background: var(--raised); border-radius: var(--r-sm); flex: none; }
+.portrait img { position: absolute; top: 0; width: 160%; max-width: none; height: auto; left: clamp(-60%, calc(50% - var(--fx, 0.5) * 160%), 0%); } /* never sizes the box; clamped so a face near the crop's edge leaves no gap */
+.portrait.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s2); padding: var(--s2); text-align: center; }
+.portrait.slot .emblem.ring { width: 48px; height: 48px; }
+.slot-note { color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.3; }
+.hero-face { width: 128px; height: 160px; }
 .bcard-name { margin: var(--s1) 0; font: 800 24px/1 var(--display); text-transform: uppercase; }
-.bcard-name .faint { font: 600 13px var(--font); text-transform: none; }
 .bcard-ps { display: flex; align-items: center; gap: 6px; margin: var(--s2) 0 0; }
 .bcard-ps .label { margin: 0 4px 0 0; }
 .badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 24px; }
@@ -116,13 +106,12 @@ img { display: block; }
 /* 3. Build page */
 .bhead { display: grid; gap: var(--s4); margin-bottom: var(--s5); }
 .bhead .display { margin-top: var(--s2); }
-.bhead .display .faint { font: 600 16px var(--font); text-transform: none; }
 .vtag { margin: var(--s3) 0 0; font-weight: 700; color: var(--warning); }
 .credit { margin: var(--s1) 0 0; color: var(--muted); font-size: 14px; }
-.copy { --cut: 12px; height: 52px; padding: 0 var(--s6); border: 0; background: var(--hero); color: var(--accent-ink); font: 800 20px/1 var(--display); text-transform: uppercase; cursor: pointer; width: 100%; }
-.bgrid { display: grid; gap: var(--s4); margin-top: 64px; }
-.panel { background: var(--surface); padding: var(--s4); }
-.card-hero { display: flex; gap: var(--s4); align-items: stretch; margin-bottom: var(--s4); }
+.copy { height: 52px; padding: 0 var(--s6); border: 0; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); font: 800 20px/1 var(--display); text-transform: uppercase; cursor: pointer; width: 100%; }
+.bgrid { display: grid; gap: var(--s4); margin-top: var(--s4); }
+.panel { background: var(--surface); padding: var(--s4); border-radius: var(--r); }
+.card-hero { display: flex; gap: var(--s4); align-items: flex-start; margin-bottom: var(--s2); }
 .card-side { min-width: 0; flex: 1; }
 .card-top { display: flex; gap: var(--s3); align-items: center; margin-bottom: var(--s4); }
 .card-hero .card-top { flex-direction: column; align-items: flex-start; gap: var(--s2); margin-bottom: var(--s3); }
@@ -212,19 +201,17 @@ img { display: block; }
   .intro .display { font-size: 104px; }
   .lede { font-size: 18px; }
   .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s4); }
-  .tile { min-height: 210px; padding: var(--s5); }
+  .tile { min-height: 236px; padding: var(--s5); }
   .tile .emblem.ring { width: 80px; height: 80px; }
-  .tile-art { height: 150px; margin: calc(-1 * var(--s5)) calc(-1 * var(--s5)) 0; padding: 0 var(--s5); }
-  .hero-stance { width: 208px; height: 260px; }
-  .emblem.on-stance { width: 80px; height: 80px; right: -28px; bottom: -18px; }
   .tile-name { font-size: 30px; }
-  .hero { grid-template-columns: auto 1fr minmax(0, 560px); align-items: center; gap: var(--s6); padding: var(--s6); --cut: 32px; }
+  .hero { grid-template-columns: auto 1fr minmax(0, 560px); align-items: center; gap: var(--s6); padding: var(--s6); }
   .emblem.big { width: 176px; height: 176px; }
   .facts { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 var(--s6); }
   .bcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); }
-  .bcard { grid-template-columns: 168px minmax(0, 1fr); min-height: 210px; }
-  .bcard-body { padding: var(--s4) var(--s5); }
-  .hero-face { width: 184px; margin-top: -64px; }
+  .bcard { grid-template-columns: 128px minmax(0, 1fr); gap: var(--s5); padding: var(--s5); }
+  .portrait.card { width: 128px; height: 160px; }
+  .bcard .statgrid { grid-template-columns: repeat(3, minmax(0, max-content)); column-gap: var(--s6); }
+  .hero-face { width: 152px; height: 190px; }
   .bhead { grid-template-columns: 1fr auto; align-items: end; }
   .copy { width: auto; height: 60px; font-size: 22px; }
   .bgrid { grid-template-columns: 400px minmax(0, 1fr); gap: var(--s5); align-items: start; }
@@ -236,7 +223,5 @@ img { display: block; }
   .agroups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6) var(--s5); }
   .foot { padding: var(--s5) var(--s7); }
 }
-@media (hover: hover) and (pointer: fine) { .tile:hover { --tile-bg: var(--raised); } .bcard:hover { background: var(--raised); } }
-/* Registered so the tile and its stance fade (a gradient, which can't transition) change colour together on hover */
-@property --tile-bg { syntax: "<color>"; inherits: true; initial-value: transparent; }
-@media (prefers-reduced-motion: no-preference) { .tile { transition: --tile-bg var(--dur-fast) var(--ease-out); } .bcard { transition: background-color var(--dur-fast) var(--ease-out); } }
+@media (hover: hover) and (pointer: fine) { .tile:hover, .bcard:hover { background: var(--raised); } }
+@media (prefers-reduced-motion: no-preference) { .tile, .bcard { transition: background-color var(--dur-fast) var(--ease-out); } }
