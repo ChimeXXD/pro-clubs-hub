@@ -27,7 +27,7 @@ Chime: the Score ring and Limits callout were not done well; audit every compone
 
 **Not verified / open**
 - PlayStyle categories follow the order EasySBC lists them in (which matches EA's FC 26 groups); not checked against FC 27's own menu.
-- Sections 00–04 (the documentation sheets) still use Inter and Brygada, have no text styles, and 188 labels are under 14 px (182 in Colour). Not changed: needs Chime's OK (see below).
+- Sections 00–04 (the documentation sheets) were in Inter and Brygada with 188 labels under 14 px. Chime picked "Convert all": 521 texts moved to the Barlow text styles; the two hero titles became Barlow Condensed at their size; the 66 step and hex labels in Colour › Scales were re-spaced (they overlapped at 14 px); "12 text styles" corrected to 15. Checked by script: no text overlaps or overflows in any section, nothing under 14 px, Barlow only. 31 display texts (heroes, 01–06 numbers, spacing values, two type specimens) keep sizes outside the type scale on purpose.
 - Chime to look at the components in Figma, including the 7 that get_screenshot used to fail on (they render now).
 
 ## Rename to ProBuilds everywhere (Tue 24 Nov 2026, later)
