@@ -2,6 +2,25 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stance card: references and three options (Tue 24 Nov 2026, night)
+
+Chime: the card is bland because the stances have no background; design our own card in the spirit of the EA FC card.
+
+**References:** 11 references on the local board (`reference/board/`, section "Stance card", file `refs-cards.js`): Chime's FC 27 screenshot plus 10 from Mobbin. Chime marked "Like parts" on Paramount+ UFC, NFL team leaders, NFL player header and Fanatics Live. The board server was stopped afterwards.
+
+**Built (Figma, Design screens → section "Options · Stance card (pick one)" 252:447):** three copies of option E, with only the stance cards changed:
+- **1 · Facets** (252:448), after Paramount+: two flat diamonds in green 800/700 on green 900 behind the player, with the name and group centred under the figure.
+- **2 · Pitch lines** (252:649), after NFL's cards: a faint halfway line, centre circle and spot in green 700 on green 800, with the emblem, name and group top left and the player bottom right.
+- **3 · Collectible frame** (252:873), after Fanatics Live and NFL: an inner frame line the head breaks over, and a green 950 name plate (emblem, name, group) the player stands on.
+
+In all three the name is on the card, so the Name block under the card is hidden. There are no gradients or textures, and all colours come from variables (primitives for the green tones).
+
+**Also fixed:** the headings in both options sections were cream on a cream section. They are now set to Light mode.
+
+**Checked:** a render of the whole section.
+
+**Next:** Chime picks a card. That card goes into option E and the build cards. Chime still needs to pick B or D for the Builds page.
+
 ## Stances complete: all 13 in Figma, option E uses them (Tue 24 Nov 2026, night)
 
 Chime added `11. magician.png` and `12 finisher.png`.
