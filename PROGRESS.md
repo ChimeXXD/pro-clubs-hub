@@ -2,6 +2,34 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds desktop: three ways to fill the space (Tue 24 Nov 2026, late)
+
+**Chime:** the desktop Builds page has too much empty space; find a way to fill it.
+
+**Done:** new section on Design screens, "Options · Builds desktop 1440, fill the space (pick one)" (276:737, x 4111, y 2015). Phone and tablet are unchanged.
+- **A · Five-card row** (276:741), from Artlist's character studio and FC 27's archetype row.
+  - Spark and Shot Stopper are added as faded outer cards. The row loops: after Target comes Shot Stopper.
+  - The arrows move under the card with "12 of 13".
+- **B · Big card beside the facts** (276:1073), from Higgsfield's character page and OpenSea's item page.
+  - The left column has the Finisher card at 392 px, with blurred neighbours behind it and the arrows.
+  - The right column has a kicker, FINISHER in Display, "Not yet checked in game", and the Signature PlayStyles with "Since launch" and "Since Season 2". It also has two fact tiles (Mastery attributes; AP cost changes, 22 Oct: 6 up · 4 down), the button and the sources.
+  - All facts come from `content/archetypes/fc27.json`.
+- **C · All 13 cards by position** (276:1348), from MLS's roster and Premier League's squad.
+  - There is no rail and no carousel: one row per group (Keeper, Defender, Midfielder, Forward), each with a count.
+  - Each card is 212 px with its two signature PlayStyles underneath, taken from fc27.json.
+  - The Finisher card shows a hover state: a lime ring and "See Finisher builds →".
+
+**Checked:**
+- Renders of all three.
+- No overlaps on Design screens.
+- C's rows fit inside the 1200 px content width.
+
+**Open points for Chime:**
+- B shows FINISHER twice: on the card's plate and as the panel title.
+- In C, the plate text on the 212 px cards drops below 14 px. It is card art, but small.
+
+**Next:** Chime picks A, B or C for desktop (tablet may follow the pick), and picks the Archetype page option.
+
 ## Builds page on tablet and desktop; Phase 1 organised by screen (Tue 24 Nov 2026, late)
 
 **Chime's direction:** every finished section also gets desktop and iPad designs, and the file gets organised (D-58).
