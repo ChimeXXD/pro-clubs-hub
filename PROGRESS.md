@@ -2,6 +2,32 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Figma file organised like Sinima, plus a cover (Tue 24 Nov 2026, late evening)
+
+Chime: organise the file like their Sinima draft (2WxAK7rxGC6t4Wkd5IQ6p2) and make a cover like its thumbnail.
+
+**Changed (Figma only)**
+- Pages now follow Sinima's order and names:
+  - Main pages: Cover, Design screens, Design System, Storyboard (new, empty, for the launch video), Archive.
+  - Then, between dividers: Logo Options; Reference · Pro Clubs assets; the "Previous · …" pages (The Grid by Sharon, Builds new style, Old Gold, Volt, Pitch, Floodlight, Derby, Light mode).
+- Logo rounds 1–4 moved from their own pages into sections on Logo Options, under the main logo ("Round N · rejected 24 Nov"). Every node was moved, not copied, and the four empty pages were removed.
+- The Archive frame was renamed in Sinima's style ("Superseded 24 Nov · Meta Finisher A · …").
+- Cover: a 1920 × 1080 "Thumbnail" frame laid out like Sinima's:
+  - background: chalk cream with a soft green glow;
+  - lockup: the app icon tile (rounded, with a shadow) next to the PROBUILDS wordmark in its on-light colours;
+  - "Web App" in Barlow Light 64;
+  - two tilted pills, FACES (lime) and BUILDS (green), where Sinima has its cities;
+  - "November 2026" and "Prepared for ProBuilds".
+  - Colours are bound to the primitive variables.
+
+**Checked**
+- Figma screenshot of the cover, compared with Sinima's thumbnail: same layering (glow under a centred column, shadowed icon tile, tilted shadowed pills).
+- The page list was read back after the move: 19 pages, nothing left on the removed pages.
+
+**Not done**
+- The plugin API can't set the file thumbnail: Chime right-clicks the Thumbnail frame and chooses "Set as thumbnail".
+- "Web App" and the FACES and BUILDS pills follow Sinima's pattern. They are draft copy for Chime to confirm.
+
 ## Component audit and game assets in the design system (Tue 24 Nov 2026, evening)
 
 Chime: the Score ring and Limits callout were not done well; audit every component. Then: put the FC assets (archetype emblems, the 36 PlayStyles) into the design system. All work in Figma (file hyFx4…, page Design system); no code changed.
