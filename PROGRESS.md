@@ -2,6 +2,47 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stance card 3C picked; 13 patterns, one per archetype (Tue 24 Nov 2026, night)
+
+Chime picked 3C (honeycomb) and asked for a different pattern for each of the 13 archetypes, in the same style.
+
+**Built:**
+- **Generator:** `reference/card-patterns/archetypes.py` (git-ignored) renders all 13 in the 3C style. The ridges, engraved lines, bevel, light, streaks, glow, vignette and fade are shared; only the panel shape changes. Each shape is tied to the role:
+
+  | Archetype | Pattern |
+  | --- | --- |
+  | Shot Stopper | brick wall |
+  | Sweeper Keeper | herringbone (footwork) |
+  | Progressor | forward arrows |
+  | Boss | armour plates with studs |
+  | Marauder | slanted runs |
+  | Disruptor | broken triangles |
+  | Recycler | discs |
+  | Maestro | octagon floor |
+  | Creator | tumbling blocks |
+  | Spark | zigzag |
+  | Magician | eight-point stars |
+  | Finisher | honeycomb |
+  | Target | rings round the chest |
+
+- **Component** "Stance card" (258:585, 13 variants, `Archetype=<Name>`), in Design System → 06 Game assets → "Stance card · 13" (258:227). Each variant has:
+  - the pattern;
+  - the inner frame line;
+  - the stance at one shared scale, with feet just under the plate (the kneeling Shot Stopper at 80% because it was drawn large);
+  - a frosted name plate with the emblem, the name and the game's group name.
+  - The plate was tightened (emblem 36 → 28, gap 10 → 8, padding 12 → 10) so "SWEEPER KEEPER" fits. Measured: 0 px to spare on that one, 29 px or more on the rest.
+- **Option E** (241:556) now uses instances: Finisher in the centre, Magician and Target rescaled, blurred 3 and at 60%. The duplicate name under the card is hidden.
+- 3A and 3B are on the Archive page. 3C stays in its section, marked as picked.
+
+**Checked:**
+- a render of all 13 variants and of option E;
+- the name widths, measured;
+- no section overlaps.
+
+**Next:**
+- Chime reviews the 13 patterns.
+- Then B vs D for the Builds page, and whether the build cards use this card.
+
 ## Stance card: designed backgrounds (3A–3C) (Tue 24 Nov 2026, night)
 
 Chime: the cards are still bland and nothing like the references. Card 3 is closest. Add blur or fade, give the background a real pattern, and study FC 27's card background.
