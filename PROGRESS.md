@@ -2,6 +2,34 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Component audit and game assets in the design system (Tue 24 Nov 2026, evening)
+
+Chime: the Score ring and Limits callout were not done well; audit every component. Then: put the FC assets (archetype emblems, the 36 PlayStyles) into the design system. All work in Figma (file hyFx4…, page Design system); no code changed.
+
+**Fixed in 05 · Components**
+- Score ring: drawn as pie slices with the number off-centre. Rebuilt as a 270° gauge open at the bottom (ellipse arcs with inner radius 100 % and round caps; still editable with Figma's Arc handle), value centred, label tucked into the gap, new "Show label" toggle. Sizes 72 and 48.
+- Limits callout: fixed 60 px height cut its text off. Now grows with its text, on the raised surface the Meta Finisher screen uses for panels, amber warning icon aligned to the first line.
+- Same root cause elsewhere (frames that hug their content collapsed): Step row's done tick (18 px instead of 28, now a lime circle), the emblem circles on Build card and Archetype tile (narrow pills, now 44 and 40 px circles), Button loading spinner (pie slice, now a round-capped arc on all 24 loading variants).
+- Overflow: Build card's credit line sat outside the card; Embed facade's title row and Search field's error text were clipped. All hug their content now.
+- Build card: "Meta pick" was an eyebrow above the title (UI8 guide: no eyebrows); now a tag beside the title, same style as Mastery.
+- Credit line: "Tutorial by creator" was lime; lime stays for Copy build, slider, chips and score rings (version B), so it is cream and underlined. It and the other single components now sit on dark backdrops (they were on the beige canvas, unreadable).
+- Icons sheet: title in Brygada and labels in Inter 13 px; now Barlow text styles, 14 px minimum, colours on variables.
+- Toast and Face card had 6 unlinked border colours; Toast variants overlapped by 4 px; Archetype tile's selected state was 2 px taller (strokes counted in layout).
+- Overview: 05's description ran over its divider; counts updated and 06 added.
+
+**Added: 06 · Game assets**
+- 36 PlayStyle component sets, `PlayStyle/<Category>/<Name>`, in EA's six categories (Shooting 8, Passing 6, Defending 6, Ball control 5, Physical 5, Goalkeeper 6), each with `Tier` = PlayStyle | PlayStyle+ | Glyph (108 components). Images reused from the Reference page (EA's art: badges via EasySBC, glyphs via FUT.GG). Glyphs are alpha masks over `text/primary`, so they follow the theme.
+- 13 Archetype emblem components, `Archetype/<Name>`, vectors coloured `text/primary`. Marked as stand-ins in the sheet and every description: they are Pro Clubs HQ's tracings and can't ship (D-39).
+- PlayStyle item component (badge, name, optional "Signature" in accent/text, as on the Meta Finisher screen); Build card and Archetype tile got an `Emblem` swap property with the 13 emblems as preferred values.
+
+**Checked**
+- Figma screenshots of every changed component and both new sheets. A script over all of 05 and 06: no text under 14 px, every text on a text style, every colour bound to a variable, nothing overflowing its parent, no overlapping variants, only Barlow and Barlow Condensed.
+
+**Not verified / open**
+- PlayStyle categories follow the order EasySBC lists them in (which matches EA's FC 26 groups); not checked against FC 27's own menu.
+- Sections 00–04 (the documentation sheets) still use Inter and Brygada, have no text styles, and 188 labels are under 14 px (182 in Colour). Not changed: needs Chime's OK (see below).
+- Chime to look at the components in Figma, including the 7 that get_screenshot used to fail on (they render now).
+
 ## Rename to ProBuilds everywhere (Tue 24 Nov 2026, later)
 
 **Changed (D-52)**
