@@ -2,6 +2,23 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Bottom nav fixed after review (Wed 25 Nov 2026)
+
+- **Chime:** "most of the icons are cropped out… Review what you have done before you submit it to me."
+- **Cause:** `figma.flatten` had moved each glyph of the four new icons to the top-left of its 24 px frame, which clipped it. I only looked at a 1× render and missed it.
+- **Fixed:**
+  - Icon/home, face, card and list are redrawn on a 24 px grid at the icon set's 1.5 px stroke (they were 1.9 px, heavier than plus, menu and search) and centred in the frame.
+  - The Faces icon is now a head and shoulders; the old one read as a medal.
+  - The flattened shape data brought its own black fill from the SVG, which overrode the token colours. That is stripped; the icons are text/primary, inactive nav icons text/secondary, and the active pill icon text/inverse.
+  - Every Bottom nav variant is now a fixed 344 px with even spacing (it was 313–344), so the bar no longer changes width between pages.
+  - The nav is recentred on the five phone frames (x 25).
+  - The new icon labels in the Icons sheet use the label style and the sheet's 140 px row step.
+- **Checked:**
+  - A temporary 3× board of all five variants and a 5× board of the icons with frame outlines, deleted afterwards.
+  - An audit script over Nav item, Bottom nav and the four icons: no clipped glyphs, unbound fills, text under 14 px, unstyled text or overlaps in section 05.
+  - The Builds phone render and the Icons sheet render.
+- **Known:** in the static phone frames the fixed nav covers whatever sits behind it at y 758 (on Builds, the PlayStyle names). That is how a fixed bar behaves while scrolling; the 96 px space after the footer keeps the end of the page clear.
+
 ## Phone bottom nav, after Old Gold (Tue 24 Nov 2026, late)
 
 - **Request:** Chime asked for the floating bottom nav from the Old Gold phone draft (D-61).
