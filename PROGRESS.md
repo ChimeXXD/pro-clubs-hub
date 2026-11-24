@@ -24,9 +24,20 @@ Chime: organise the file like their Sinima draft (2WxAK7rxGC6t4Wkd5IQ6p2) and ma
 - Figma screenshot of the cover, compared with Sinima's thumbnail: same layering (glow under a centred column, shadowed icon tile, tilted shadowed pills).
 - The page list was read back after the move: 19 pages, nothing left on the removed pages.
 
+**Cover redone in our own style.** Chime: "don't just copy what they designed… design the thumbnail in our own style".
+- The Sinima-style cover moved to Archive as "Superseded 24 Nov · Cover in Sinima's style".
+- The new Thumbnail (233:8):
+  - background: pitch green;
+  - top: the PROBUILDS lockup on dark, with "FC 27 · Season 2" at the right;
+  - left: "FACES & BUILDS" in Barlow Condensed ExtraBold 190, with "Lookalike faces and meta builds for Pro Clubs" under it;
+  - right: three Score ring instances from the design system (PAC 88, SHO 80, DRI 84, the Meta Finisher screen's sample values);
+  - bottom: a hairline, then "Web app · Design file · probuilds.club · November 2026".
+  - No glow, no pills; lime only on the gauges.
+- Bug found and fixed while building it: the Score ring's number had lost its link to the `Value` property during the evening rebuild, so changing Value did nothing. It's re-linked, and a scan of every component found no other text property without a link.
+
 **Not done**
 - The plugin API can't set the file thumbnail: Chime right-clicks the Thumbnail frame and chooses "Set as thumbnail".
-- "Web App" and the FACES and BUILDS pills follow Sinima's pattern. They are draft copy for Chime to confirm.
+- The cover copy ("Faces & builds", the subline) is draft, taken from CLAUDE.md's description; Chime to confirm.
 
 ## Component audit and game assets in the design system (Tue 24 Nov 2026, evening)
 
