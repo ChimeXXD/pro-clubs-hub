@@ -2,6 +2,27 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stances round 1 in the design system (Tue 24 Nov 2026, night)
+
+Chime made the stances in ChatGPT and saved them to `reference/stances-ai/out/` (git-ignored).
+
+**Checked (Claude, every file):**
+- 12 files, 1024 × 1536. The face matches the pro's turntable frames in all of them.
+- `10. spark.png` and `11. finisher.png` are the same file (same MD5), and the pose is Spark's sole roll. **Finisher is missing.**
+- **Magician is missing.**
+- The kit is red, not the brief's off-white and green, with three white stripes on the shoulders (they read as Adidas's mark). Chime chose to keep them as made (D-55). This is an open risk to recheck before launch.
+- `8. maestro.png` and `9. creator.png` had a checkerboard painted in instead of transparency. Claude removed it with a flood fill from the edges; the clean copies are in `reference/stances-ai/clean/`. The ball and hair edges were checked at zoom.
+- Figure height varies from 71% (Sweeper Keeper, lunging) to 98%. The kneeling Shot Stopper is drawn larger than the standing poses.
+
+**Built (Figma, Design System → 06 Game assets → "Stances" 245:227):** 13 slots in rail order. 11 are filled; Magician and Finisher show "Not made yet". Section 221:308 was grown and "In use" moved down; there are no overlaps.
+
+**Not done:** option E. Its visible stances are Magician, Finisher and Target, and two of those three are missing. Build cards are unchanged until Chime picks B or D.
+
+**Next:**
+- Chime makes Finisher (volley) and Magician (fist raised) in the same ChatGPT chat, using the prompts in `reference/stances-ai/PROMPTS.md`.
+- Then Claude puts the stances into option E and fills the two empty slots.
+- Chime picks between B and D.
+
 ## Phase 1 · Builds page: three options for Chime (Tue 24 Nov 2026, night)
 
 Chime: start Phase 1 page by page; three layout options for the Builds page; Chime picks, then it moves into the design.
