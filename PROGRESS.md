@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds header alignment and spaced rail (Tue 24 Nov 2026, late)
+
+- **Why:** Chime asked why the title was centred on tablet and desktop but left-aligned on phone. I had centred it to sit over the centred card, and that wasn't a rule. It is now left-aligned at every size (D-59).
+- **Rail and header:** the desktop emblem rail now spans the full 1200 px column (24 px between emblems, about 51 px between groups); on tablet it spans the full 754 px. This applies to tablet 275:378, desktop 275:632 and options A, B and C (276:741, 276:1073, 276:1348).
+- **Edges:** the padding was 48 px on the desktop top bar and footer and 32 px on tablet. It is now 120 px and 40 px, so the logo, title, content and footer share one left edge.
+- **Checked:** renders of desktop 275:632, option B and tablet; the logo, title, rail and footer line up at x 120 on desktop and x 40 on tablet.
+
 ## Builds desktop: three ways to fill the space (Tue 24 Nov 2026, late)
 
 **Chime:** the desktop Builds page has too much empty space; find a way to fill it.
