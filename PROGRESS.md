@@ -25,7 +25,20 @@ Chime: start Phase 1 page by page; three layout options for the Builds page; Chi
 - C's centre circle collided with the names, and its halfway line was invisible.
 - C's cells were stuck at 10 px tall.
 
-**Next:** Chime picks A, B or C (or a mix). The pick moves into "Phase 1 · Builds"; the others go to Archive as proposals. Then the Archetype page (Finisher) gets three options the same way.
+**Added at Chime's request: two more options**
+- **D** · The Old Gold picker (from "Previous · Builds new style") rebuilt in the green system:
+  - "Pick your archetype" header;
+  - EA's group names with a count and a hairline;
+  - two-column archetype cards: emblem ring, name, signature PlayStyle badges and names;
+  - each pair of cards is the same height.
+- **E** · After FC 27's archetype screen (Chime imported 13 in-game shots, 238:1708–1720):
+  - a sideways emblem rail grouped Keeper / Defender / Midfielder / Forward, with Finisher selected by a lime ring;
+  - Chime's Finisher stance as a swipeable card, with Magician and Target peeking at the sides;
+  - name and group, signature PlayStyle badges, mastery attributes from fc27.json, and a secondary "See Finisher builds" button.
+- Not shippable as is: the stance crops include EA card art, the club crest and the level. The Progressor screenshot shows the Maestro card, so there is no Progressor stance.
+- Open: A–C use SPEC's group names (Keeper, Defence, Midfield, Attack); D and E use the game's (Keeper, Defender, Midfielder, Forward).
+
+**Next:** Chime picks one of A–E (or a mix). The pick moves into "Phase 1 · Builds"; the others go to Archive as proposals. Then the Archetype page (Finisher) gets three options the same way.
 
 ## Figma file organised like Sinima, plus a cover (Tue 24 Nov 2026, late evening)
 
