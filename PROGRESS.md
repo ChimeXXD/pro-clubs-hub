@@ -16,8 +16,10 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - Cloudflare: old Pages project deleted (Chime's OK); new project `probuilds` from `ChimeXXD/probuilds` (npm run build, out, main). First "Save and Deploy" gave "An unknown error occurred" and created nothing; the second worked. Deploy of e361212 succeeded. Fetched from outside (Firecrawl): / → 200 ProBuilds, /does-not-exist → 404 with the notice. From the Mac the address timed out for 15+ minutes (network, not the site). Old address no longer resolves.
 - Stray chat log deleted (Chime's OK). CI on e361212 green on the renamed repo. Code review (medium): no bugs, nothing changed.
 
+- Domain (D-53): Chime bought probuilds.club at Porkbun. Claude added it to Cloudflare (Free), removed Porkbun's 4 parking records, set Cloudflare's nameservers at Porkbun (the first save didn't stick; the second did, confirmed by whois and by a.nic.club), attached probuilds.club and www to the Pages project, and set up takedown@probuilds.club → Chime's Gmail (Email Routing; Gmail was already a verified destination). Checked: Firecrawl (maxAge 0) gets 200 with h1 ProBuilds and the notice on both; curl from the Mac 200; MX records public. O-13 closed.
+
 **Not done yet**
-- Chime opens probuilds.pages.dev on the iPhone.
+- Chime opens https://probuilds.club on the iPhone and sends a test email to takedown@probuilds.club.
 - Rename the local folder to `ProBuilds` and move Claude's memory folder with it (last step; restart Claude Code in the new folder).
 
 ## Name, logo, colours and design system Phase 0 (Tue 24 Nov 2026)

@@ -46,7 +46,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [x] Public repo `ChimeXXD/probuilds` (D-12), first commit of these docs
 - [x] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
 - [x] CI green on push to main
-- [x] Host chosen (O-12, A-14) and the empty site deployed: https://probuilds.pages.dev
+- [x] Host chosen (O-12, A-14) and the empty site deployed: https://probuilds.club (D-53; also https://probuilds.pages.dev)
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
 - [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
 

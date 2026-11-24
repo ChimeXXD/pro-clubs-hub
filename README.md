@@ -4,7 +4,7 @@
 
 **Look like a legend. Play like one.** *(draft)* A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era faces you build step by step, each paired with a build, plus meta-build cards for all 13 archetypes, each dated and credited.
 
-> Live (work in progress): https://probuilds.pages.dev
+> Live (work in progress): https://probuilds.club
 >
 > Work in progress by [Chime Ekpendu](https://chimexd.work), built with Claude Code. The repo is public from day one.
 

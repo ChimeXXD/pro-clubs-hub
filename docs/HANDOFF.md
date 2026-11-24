@@ -5,8 +5,8 @@
 Nothing is running (no dev server or watcher).
 
 ### Where things stand
-- **Name: ProBuilds** everywhere (D-49, D-50, D-52): GitHub repo `ChimeXXD/probuilds`, every file, the site, Claude's memory notes, Figma. Web address probuilds.club, not bought yet ($4.12 the first year at Porkbun, then $15.96/yr).
-- **Hosting:** old Cloudflare Pages project deleted (Chime's OK); new project `probuilds` from `ChimeXXD/probuilds` (build `npm run build`, output `out`, branch `main`). Live at https://probuilds.pages.dev: checked from outside the Mac's network (200, ProBuilds; 404 with the notice). From the Mac itself it timed out for 15+ minutes after the deploy; Chime to open it on the iPhone.
+- **Name: ProBuilds** everywhere (D-49, D-50, D-52): GitHub repo `ChimeXXD/probuilds`, every file, the site, Claude's memory notes, Figma. Web address https://probuilds.club, bought at Porkbun (renews at $15.96/yr), DNS on Cloudflare (D-53). Takedowns: takedown@probuilds.club → Chime's Gmail.
+- **Hosting:** old Cloudflare Pages project deleted (Chime's OK); new project `probuilds` from `ChimeXXD/probuilds` (build `npm run build`, output `out`, branch `main`). Live at https://probuilds.club and https://www.probuilds.club (both 200 with the heading and notice, from outside and from the Mac); https://probuilds.pages.dev also serves it.
 - **Figma file "ProBuilds":** https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD. Replaces the older file named in CLAUDE.md (1mjxm…).
   - **Logo:** Touchline mark + PROBUILDS wordmark; guide and SVG exports.
   - **Design system** (one page): Overview, Colour, Typography, Spacing & layout, Radius & elevation, Components. All values are Figma variables.
@@ -20,12 +20,12 @@ Nothing is running (no dev server or watcher).
 
 **1. Finish the rename (Claude, minutes)**
 - [x] https://probuilds.pages.dev loads from outside (heading, 404 with notice); recorded in `docs/features.json` P0-6.
-- [ ] Chime opens https://probuilds.pages.dev on the iPhone (the Mac's network timed out on it).
+- [x] probuilds.club and www connected (D-53); takedown@probuilds.club forwards to Chime's Gmail.
+- [ ] Chime opens https://probuilds.club on the iPhone and sends one test email to takedown@probuilds.club.
 - [ ] Rename the folder to `Projects/Personal Projects/ProBuilds` (memory notes are already copied to the new location). Then Chime restarts Claude Code there and accepts the folder-trust prompt again.
 
 **2. Chime, now (unblocks design)**
 - [ ] Review the Phase 0 components in Figma (Design system → 05 · Components): Build card, Archetype tile, Sheet, Version tag, Score ring, Limits callout, Tab item. Approve or list changes.
-- [ ] Buy probuilds.club at Porkbun (tab open in Brave); then Claude points it at the Pages project.
 - [ ] Delete the stray Figma file g1t6DqicHT8w4Lq790DC2G.
 
 **3. Design, Phase 1 · Builds (Claude, after step 2's approval)**
@@ -45,7 +45,7 @@ Nothing is running (no dev server or watcher).
 **7. Launch, then Season 3 (Thu 3 Dec)** — launch post; re-check every face and build on Season 3, changelog entry, "Updated for Season 3" post; video ships with one of the two.
 
 ### Small open questions for Chime
-- O-13 takedown email address · O-11 submissions without GitHub (Google Form fallback?) · O-08 tagline · GoatCounter account (D-27) · trademark search for ProBuilds · test one submission link (D-45).
+O-11 submissions without GitHub (Google Form fallback?) · O-08 tagline · GoatCounter account (D-27) · trademark search for ProBuilds · test one submission link (D-45).
 - Sharon: her open PRs #3 and #4 may still say the old name in their files; they need rebasing before any merge.
 
 ### How to work with Chime on design (learned this session)

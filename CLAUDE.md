@@ -1,6 +1,6 @@
 # CLAUDE.md — ProBuilds
 
-**ProBuilds** is the name (D-49, D-50, D-52); the web address will be probuilds.club (not bought yet). "Facecard" is at most the name of the faces feature. You are building this project. Read this file first. **Design source of truth: the Figma *Design System* page (tokens, styles, components) and the *Design screens* page (D-14) in https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ; build from them.** Before building or changing UI, read `DESIGN.md` (Chime's taste rules). Then `docs/HANDOFF.md` (the latest session summary), `docs/PLAN.md` for the current phase and `PROGRESS.md` for where the last session stopped.
+**ProBuilds** is the name (D-49, D-50, D-52); the site is https://probuilds.club (D-53); takedowns go to takedown@probuilds.club. "Facecard" is at most the name of the faces feature. You are building this project. Read this file first. **Design source of truth: the Figma *Design System* page (tokens, styles, components) and the *Design screens* page (D-14) in https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ; build from them.** Before building or changing UI, read `DESIGN.md` (Chime's taste rules). Then `docs/HANDOFF.md` (the latest session summary), `docs/PLAN.md` for the current phase and `PROGRESS.md` for where the last session stopped.
 Every product and architecture decision so far is in `docs/DECISIONS.md`. Don't reopen one unless it blocks you. If it does, write the problem under "Open" in `docs/DECISIONS.md` and ask Chime. Chime is they/them.
 
 ## What we are building
