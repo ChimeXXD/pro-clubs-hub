@@ -2,6 +2,33 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stance card: designed backgrounds (3A–3C) (Tue 24 Nov 2026, night)
+
+Chime: the cards are still bland and nothing like the references. Card 3 is closest. Add blur or fade, give the background a real pattern, and study FC 27's card background.
+
+**Studied (FC 27 card at full resolution):**
+- The background is large hexagon panels, recessed between raised ridges, with an engraved line inside each ridge.
+- Soft diagonal light bands run across the whole card, with sharp light streaks in the corners.
+- The player is cropped big, and the bottom plate cuts the legs.
+
+**Built:**
+- **Backgrounds:** drawn by our own generator (git-ignored `reference/card-patterns/gen.py`, 756 × 1044, 3× the hero card). Each has a pattern, diagonal light, a lime-tinted glow behind the chest, a vignette and a fade into the plate.
+  - 3A · Goal net: hexagonal netting that bulges where the ball hits.
+  - 3B · Floodlit pitch: mowing bands in perspective under floodlight beams.
+  - 3C · Honeycomb: bevelled panels and light streaks, closest to FC 27, in our green.
+- **Figma** (section 252:447): 3A 255:832, 3B 255:1046, 3C 255:1260. Each is card 3's frame with:
+  - the pattern as an image layer;
+  - a bigger stance whose head breaks the frame line;
+  - a frosted name plate (green 950 at 72%, background blur 14) over the lower legs;
+  - the cards either side blurred (3) and dimmed (60%).
+- Cards 1–3 are on the Archive page with Chime's reasons.
+
+**Rule change:** gradients, blur and fades are used here because Chime asked for them. They are on the card art only, not in the UI.
+
+**Checked:** a render of each card in Figma.
+
+**Next:** Chime picks 3A, 3B or 3C, or a mix.
+
 ## Stance card: references and three options (Tue 24 Nov 2026, night)
 
 Chime: the card is bland because the stances have no background; design our own card in the spirit of the EA FC card.
