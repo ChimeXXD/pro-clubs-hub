@@ -2,6 +2,24 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Archetype page: full build cards, three options (Wed 25 Nov 2026)
+
+- **Chime's ask:** each build in the Finisher list needs more than its name, archetype and position. Use the Old Gold build card (Builds new style, Finisher screen 110:2, the build cards only, not its header): a Meta pick or Recommended tag, the face, positions, level, height, key attributes and PlayStyles+. That is option A; then two more styles.
+- **New section on Design screens:** "Options · Archetype page build cards (pick one)" (288:858, x 4111 y 580).
+  - A · Old Gold build card (288:859): a 104 px face, the tag, name, position chips, "Level 55 · height", a 3 × 2 stat grid, PlayStyles+ icons.
+  - B · Stat strip (288:1031): a 76 px face with tag, name, chips, level and height; the six stats in one ruled row; PlayStyles+ with names.
+  - C · Two-up cards (288:1212): the face on top with the tag on it, then name, chips, level, height, the stats as label over value, PlayStyles+ icons. The fourth slot is "Submit a build".
+- **Content:**
+  - Values are the Old Gold draft's samples (Meta / Tall / Quick Finisher), labelled "Sample values: not real builds yet".
+  - Faces are Chime's in-game screenshots.
+  - The tags reuse the approved Meta pick style (accent fill); Recommended is a raised pill with a strong border.
+  - PlayStyle+ icons are the DS PlayStyle sets, Tier=PlayStyle+.
+- **Review before showing:**
+  - Problems found and fixed: in C the stat numbers overlapped their labels; in B the PlayStyles+ names ran off the card; the fixed nav hid the third card in the static frames (phone frames now show the nav at the page end, over the 96 px space, including Builds 241:556 and Meta Finisher 184:209); C's faces were 1 px wider than the card and their crop was too high.
+  - The audit script now reports no small or unstyled text, no unbound fills and no overflow.
+- **Archive:** the face-only options section 270:525 moved to the Archive page.
+- **Unclear:** Chime also said "boots and fit"; not added, asked.
+
 ## Bottom nav fixed after review (Wed 25 Nov 2026)
 
 - **Chime:** "most of the icons are cropped out… Review what you have done before you submit it to me."
