@@ -37,7 +37,11 @@ Chime: organise the file like their Sinima draft (2WxAK7rxGC6t4Wkd5IQ6p2) and ma
 
 **Not done**
 - The plugin API can't set the file thumbnail: Chime right-clicks the Thumbnail frame and chooses "Set as thumbnail".
-- The cover copy ("Faces & builds", the subline) is draft, taken from CLAUDE.md's description; Chime to confirm.
+- Chime: "FACES and BUILDS doesn't make sense… it's supposed to be a thumbnail for Pro Clubs." The headline is gone, and the cover now leads with the brand, in the same style:
+  - the PROBUILDS lockup at 150 px, with "For EA SPORTS FC 27 Pro Clubs" under it;
+  - the gauges at 160 px;
+  - top row: "Web app · Design file" and "FC 27 · Season 2";
+  - footer: "probuilds.club" and "November 2026".
 
 ## Component audit and game assets in the design system (Tue 24 Nov 2026, evening)
 
