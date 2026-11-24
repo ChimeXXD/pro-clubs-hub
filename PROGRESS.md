@@ -13,8 +13,11 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - `grep -i` for every spelling of the old name over tracked and untracked files: none left except the stray chat log `2026-11-21-064551-…txt` (untracked; Chime to decide).
 - `npm run build`: `out/index.html` title is ProBuilds; no old name in `out/`. Playwright home test passes at 390 and 360. Gate: types, lint, unit, content, build-budget-e2e all pass.
 
+- Cloudflare: old Pages project deleted (Chime's OK); new project `probuilds` from `ChimeXXD/probuilds` (npm run build, out, main). First "Save and Deploy" gave "An unknown error occurred" and created nothing; the second worked. Deploy of e361212 succeeded. Fetched from outside (Firecrawl): / → 200 ProBuilds, /does-not-exist → 404 with the notice. From the Mac the address timed out for 15+ minutes (network, not the site). Old address no longer resolves.
+- Stray chat log deleted (Chime's OK). CI on e361212 green on the renamed repo. Code review (medium): no bugs, nothing changed.
+
 **Not done yet**
-- Cloudflare Pages project `probuilds` (probuilds.pages.dev): waits for Chime to sign in to Cloudflare; then delete the old project with Chime's OK.
+- Chime opens probuilds.pages.dev on the iPhone.
 - Rename the local folder to `ProBuilds` and move Claude's memory folder with it (last step; restart Claude Code in the new folder).
 
 ## Name, logo, colours and design system Phase 0 (Tue 24 Nov 2026)
