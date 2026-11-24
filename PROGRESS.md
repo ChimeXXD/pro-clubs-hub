@@ -2,6 +2,33 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds page on tablet and desktop; Phase 1 organised by screen (Tue 24 Nov 2026, late)
+
+**Chime's direction:** every finished section also gets desktop and iPad designs, and the file gets organised (D-58).
+
+**Done:**
+- **New variants:** Top bar and Footer notice now have a `Breakpoint=tablet` variant (273:635 and 273:654: 834 wide, 32 px padding, desktop nav). Design System section 05 grew to fit, and section 06 plus the screenshots below it moved down 278 px.
+- **Builds · 13 archetypes · tablet 834** (275:378):
+  - The header is centred.
+  - All 13 emblems are visible: 48 px circles with 28 px emblems, under group labels.
+  - The Finisher Stance card is at 290 px, with Magician and Target (214 px, blurred) fully visible beside it.
+  - The PlayStyles, mastery attributes and a 360 px button come after the card.
+- **Builds · 13 archetypes · desktop 1440** (275:632): the same layout, with these differences:
+  - 64 px emblem circles.
+  - Centre card at 353 px and neighbour cards at 252 px.
+  - Previous and next icon buttons (Icon button secondary large, chevron-left and chevron-right).
+- **Phase 1 · Builds is now one row per screen:**
+  - Builds: phone, tablet, desktop.
+  - Archetype · Finisher: the phone placeholder.
+  - Build · Meta Finisher and its states.
+  - The section's description now states the rule. Phases 2–5 moved down 2664 px to make room.
+
+**Checked:** renders of both new screens and of the whole Phase 1 section. The desktop emblems were too small inside their circles, so they were scaled up to 36 px. No sections overlap on Design screens or on the Design System page.
+
+**Not checked:** how the stage behaves at widths between the breakpoints. The code build needs a rule for that.
+
+**Next:** Chime picks the Archetype page option (A/B/C, section 270:525), then that screen gets its tablet and desktop versions.
+
 ## Archetype page redirected: builds with in-game faces (Tue 24 Nov 2026, late)
 
 **Chime's direction:** "all these examples you gave me is not in the direction". Tapping an archetype opens a page of its builds. Each build shows a close-up in-game face (not the full-body stance), the build name, its positions and the archetype. At least three Finisher builds; three options to pick from.
