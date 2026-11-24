@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Archetype page is option B, on phone, tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** picked option B (stat strip) (D-62).
+- **Phase 1, row "Archetype · Finisher":**
+  - Phone (288:1031): option B.
+  - Tablet (290:796): two columns of 365 px; the gap after Quick Finisher holds a "Submit a build" tile.
+  - Desktop (290:1084): three columns of 384 px.
+  - The row "Build · Meta Finisher and its states" moved down 475 px, and Phases 2–5 moved down 572 px.
+- **Archive:** options A and C, their notes and the old "To design" placeholder (197:218) are in section 288:858 on the Archive page.
+- **Review:**
+  - The first desktop render had stat rows at different heights, because Quick Finisher has no tag and Recommended is 2 px taller than Meta pick. Tags are now 26 px and card headers share the row's height; all stat rows sit at y 121.
+  - The audit over all three frames found no small or unstyled text, no unbound fills and no overflow. No overlaps in Phase 1 or on the page.
+- **Next:** the Build page (Meta Finisher) and its states, phone first.
+
 ## Archetype page: full build cards, three options (Wed 25 Nov 2026)
 
 - **Chime's ask:** each build in the Finisher list needs more than its name, archetype and position. Use the Old Gold build card (Builds new style, Finisher screen 110:2, the build cards only, not its header): a Meta pick or Recommended tag, the face, positions, level, height, key attributes and PlayStyles+. That is option A; then two more styles.
