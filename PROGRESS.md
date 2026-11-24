@@ -2,6 +2,34 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds page set (E); Archetype page: three options (Tue 24 Nov 2026, night)
+
+**Builds page:**
+- Chime picked option E and the game's group names (D-57). SPEC's `/builds` row was updated to match.
+- Option E (241:556) replaced the "To design" placeholder in "Phase 1 · Builds" and is named "Builds · 13 archetypes · phone 390".
+- The Builds options section and the stance-card options section are on the Archive page.
+
+**Archetype page (`/builds/finisher`):**
+- **References (Mobbin, iOS):** F1 driver page (Lando Norris), Gymshark athlete page, F1 Leclerc page, Premier League and NBA player pages. Also Chime's 23 Nov pick, DAZN's portrait cards with the facts beside the picture.
+- **Built** (Design screens → "Options · Archetype page (pick one)" 266:222). All three use option E's top bar and footer, Finisher's honeycomb pattern and stance, E's Signature PlayStyles block, the Build card (Meta Finisher) and a secondary button:
+  - **A · Immersive hero** (266:223): the pattern and stance fill the top and fade into the page, with FINISHER in Display, two fact tiles, then the sources.
+  - **B · Card beside the facts** (266:430): the Stance card (160 wide) beside label and value facts, then the Signature PlayStyles and the sources.
+  - **C · Banner and ruled rows** (266:628): a 236-tall banner with the stance cropped at the waist and the name on the left, then hairline label and value rows.
+- **Data,** all from `content/archetypes/fc27.json`:
+  - signature PlayStyles;
+  - mastery attributes (Finishing, Composure);
+  - AP cost changes on 22 Oct (6 up, 4 down);
+  - "not yet checked in game" (`verifiedInGame: false`);
+  - the four sources.
+  - Typical positions are null, so they're left out. Finisher has one build, so each option shows it plus a "Submit a build" prompt (draft copy).
+- **Fixed before showing:** B's fact rows cut off their values (they now hug the text), and B's Group row repeated the card's plate (removed).
+- **Checked:** renders of all three.
+- **Not checked:**
+  - The Meta Finisher card says "verified 19 Nov 2026" while the archetype facts say "not yet checked". These are different things, but they could confuse.
+  - The hero fade gradient uses bg/page's raw colour, because a gradient stop can't be bound to a variable.
+
+**Next:** Chime picks A, B or C. Then the build page.
+
 ## Stance card 3C picked; 13 patterns, one per archetype (Tue 24 Nov 2026, night)
 
 Chime picked 3C (honeycomb) and asked for a different pattern for each of the 13 archetypes, in the same style.
