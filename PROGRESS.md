@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds desktop is option B, and tablet follows it (Tue 24 Nov 2026, late)
+
+- Chime picked desktop option B and asked for the same layout on iPad (D-60).
+- **Phase 1, row "Builds · 13 archetypes":**
+  - Phone: 241:556.
+  - Tablet: 279:1399, new. It uses tablet top bar and footer variants and the tablet rail. The 280 px card with 180 px neighbours sits in a 350 px column; the facts take 364 px, with tiles stacked and the button full width.
+  - Desktop: 276:1073, option B.
+- **Archive:** section 276:737 now holds options A and C plus the replaced centred tablet (275:378) and desktop (275:632).
+- **Checked:** the first tablet render showed the stacked fact tiles squashed to 30 px tall. They now hug their content (90 px each). Phase 1 render checked.
+- **Next:** Chime picks the Archetype page option (section 270:525), then its tablet and desktop versions.
+
 ## Builds header alignment and spaced rail (Tue 24 Nov 2026, late)
 
 - **Why:** Chime asked why the title was centred on tablet and desktop but left-aligned on phone. I had centred it to sit over the centred card, and that wasn't a rule. It is now left-aligned at every size (D-59).
