@@ -2,6 +2,19 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phone bottom nav, after Old Gold (Tue 24 Nov 2026, late)
+
+- **Request:** Chime asked for the floating bottom nav from the Old Gold phone draft (D-61).
+- **Design System:**
+  - Icons: Icon/home 282:333, Icon/face 282:343, Icon/card 282:355 and Icon/list 282:365, redrawn from the Old Gold nav's SVGs with outlined glyphs bound to text/primary.
+  - "Nav item" set 282:390 (Active/Inactive, Icon swap, Label text).
+  - "Bottom nav" set 282:521 (Page=Home/Faces/Builds/Changelog/Submit, 313–344 px wide, 60 tall).
+- **Placed:** Page=Builds on Builds phone 241:556, Meta Finisher phone 184:209 (now hugs its height) and the three Archetype phone options. Each nav is fixed in place (numberOfFixedChildren 1) at y 758 inside the first 852 px viewport, with a 96 px space after the footer.
+- **Checked:** renders of the Bottom nav set and the Builds phone; no overlaps in section 05.
+- **Open:**
+  - The nav's width changes a little from page to page because the active label differs ("Changelog" is the longest).
+  - The phone top bar still has its menu button, which now partly duplicates the nav (About and Takedown are only in the footer).
+
 ## Builds desktop is option B, and tablet follows it (Tue 24 Nov 2026, late)
 
 - Chime picked desktop option B and asked for the same layout on iPad (D-60).
