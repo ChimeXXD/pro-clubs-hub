@@ -2,6 +2,26 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Archetype page redirected: builds with in-game faces (Tue 24 Nov 2026, late)
+
+**Chime's direction:** "all these examples you gave me is not in the direction". Tapping an archetype opens a page of its builds. Each build shows a close-up in-game face (not the full-body stance), the build name, its positions and the archetype. At least three Finisher builds; three options to pick from.
+
+**Done:**
+- The A–C options section (266:222) moved to the Archive page and was renamed "rejected 24 Nov: not the direction".
+- New section on Design screens: "Options · Archetype page with face builds (pick one)" (270:525). All three use the same page header (breadcrumb, Finisher emblem, FINISHER, "Forward · 3 builds") so only the build list differs.
+  - A · Face rows (270:222), from Premier League's squad list and NFL's roster: 92 px face tile, then name, archetype and position chips.
+  - B · Two-up face cards (270:323), from MLS's roster and DAZN's squad: a square face on top and the text below. The fourth slot is a "Submit a build" tile.
+  - C · Wide face cards (270:424), from NFL's team cards and X's Top 100: positions, name and archetype on the left; the face on the right fades into the card.
+- Faces are square crops of Chime's in-game screenshots (`reference/stances-ai/face-refs`: front, three-quarter, side), cropped above the club crest and name.
+
+**Checked:** two screenshots of the section. The first showed the about heading unreadable on the light section (fixed with the explicit Light mode), the submit tile shorter than the cards, and C's text sitting high. All three are fixed.
+
+**Not real yet:**
+- "Box Poacher", "Pace Finisher" and their positions are samples; only Meta Finisher exists.
+- All three faces are Chime's pro until each build has its own face screenshot.
+
+**Next:** Chime picks A, B or C. Then move the pick into Phase 1 (replace placeholder 197:218) and archive the rest.
+
 ## Builds page set (E); Archetype page: three options (Tue 24 Nov 2026, night)
 
 **Builds page:**
