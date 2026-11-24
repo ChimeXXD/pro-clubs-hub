@@ -1,12 +1,12 @@
 # Kickoff prompts for Claude CLI
 
-Open Terminal in this folder (`Projects/Personal Projects/Pro Clubs Hub`) and run `claude`. Paste one prompt per session. Stop Oya Ball's dev server first: one dev server at a time.
+Open Terminal in this folder (`Projects/Personal Projects/ProBuilds`) and run `claude`. Paste one prompt per session. Stop Oya Ball's dev server first: one dev server at a time.
 
 ## Session 1: Day 0 (in-game checks, setup)
 
 ```
 Read CLAUDE.md, docs/HANDOFF.md, docs/PLAN.md, docs/DECISIONS.md, docs/FORMAT.md and docs/RESEARCH.md.
-We're starting Phase 0 of Pro Clubs Hub (working title).
+We're starting Phase 0 of ProBuilds.
 
 First, before any setup, ask me the in-game checks (D-13), one click-through question at a time where you can:
   a. Which platform am I on (PS5, Xbox, PC)?
@@ -21,7 +21,7 @@ kinds) and close O-02, O-03, O-09 and O-10 with new decisions. If I can't check 
 Then ask me O-12 (host: Cloudflare Pages or Vercel Hobby).
 
 Setup:
-1. git init, public GitHub repo ChimeXXD/pro-clubs-hub (D-12), MIT, first commit of these docs.
+1. git init, public GitHub repo ChimeXXD/probuilds (D-12), MIT, first commit of these docs.
 2. Scaffold Next.js in place with exact versions: next 16.4.6, react 19.3.1, react-dom 19.3.1,
    typescript 5.9.3, tailwindcss 4.3.3 + @tailwindcss/postcss 4.3.3, eslint 9 + eslint-config-next 16.4.6,
    @playwright/test 1.64.1, vitest. App Router, src/, static export. npm scripts from CLAUDE.md.
@@ -46,7 +46,7 @@ Design lane:
 2. Write the pattern summary.
 3. Build three distinct directions at 390 px wide on docs/design/direction-board/index.html. Each shows:
    home with faces first; a face page mid-way with ticks, the version tag and credit line; a build card for a
-   Spark; the old-season warning; the notice. Use "Pro Clubs Hub" as the wordmark placeholder.
+   Spark; the old-season warning; the notice. Use "ProBuilds" as the wordmark placeholder.
 Core lane, while I look (tests first):
 4. src/lib/content/types.ts, validate.ts, load.ts, version.ts and src/lib/submit/toIssueUrl.ts, with good and
    bad fixtures in tests/unit/fixtures/. The two example files in content/ must validate as drafts and fail

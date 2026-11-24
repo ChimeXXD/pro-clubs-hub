@@ -1,4 +1,4 @@
-# Pro Clubs Hub: the plan to launch
+# ProBuilds: the plan to launch
 
 Written 19 Nov 2026; replanned 20 Nov for a fast launch (D-25). Decisions are in `DECISIONS.md`; the PRD is `PRD.md`. **We ship within days, as soon as the Must list passes, on Season 2** (D-25 supersedes D-18's 19/21 Dec date). **Season 3 starts Thu 3 Dec** (EA's Launch Rewards page): that day every face and build is re-checked on Season 3 and the changelog entry written. Season 4 (and PhotoFit, O-07) starts Thu 14 Jan 2027.
 
@@ -43,10 +43,10 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 
 - [x] Chime's in-game checks recorded in `docs/RESEARCH.md` §9: value display, ranges, preset count, hairstyles, street vs matchday face, level cap, AP at cap, platform
 - [x] `docs/FORMAT.md` control ids and value kinds updated from the checks; a decision logged
-- [x] Public repo `ChimeXXD/pro-clubs-hub` (D-12), first commit of these docs
+- [x] Public repo `ChimeXXD/probuilds` (D-12), first commit of these docs
 - [x] Scaffold with exact versions (CLAUDE.md stack); npm scripts; one Vitest and one Playwright test
 - [x] CI green on push to main
-- [x] Host chosen (O-12, A-14) and the empty site deployed: https://pro-clubs-hub.pages.dev
+- [x] Host chosen (O-12, A-14) and the empty site deployed: https://probuilds.pages.dev
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
 - [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
 
@@ -61,7 +61,13 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [ ] Chime picks one reference (or a mix) per screen and says what to take from each
 - [ ] Only then: Sharon designs the screens in Figma from the sitemap brief and the picks; Chime approves
 - [ ] Design System page: tokens as variables, text and effect styles, components with states (FaceCard, BuildCard, VersionTag, CreditLine, StepRow, ValueChip, Tabs, Sheet, Toast)
-- [ ] Design screens: home, faces, face, builds, build, archetypes, archetype, changelog, submit, about, takedown, 404, at iPhone, iPad and desktop
+- [ ] Design screens in six phases (Chime, 24 Nov; Figma page "Design", one section per phase). Each phase: phone 390 first, then tablet 834 and desktop 1440; Chime approves a phase before the next starts.
+  - [ ] **Phase 0 · Components** (Design system page, section 05): Button, Chip, Tabs, Search, VersionTag, CreditLine, ValueChip, StepRow, attribute bar, score ring, BuildCard, FaceCard, archetype tile, Sheet, Toast, top bar, footer notice, embed facade, limits callout
+  - [ ] **Phase 1 · Builds:** Builds (13 archetypes) · Archetype (Finisher) · Build (Meta Finisher, started) + specialization not reached · not yet checked · older season · copied
+  - [ ] **Phase 2 · Faces:** Faces library + empty filter · Face not started · in progress · finished → paired build · ticks reset
+  - [ ] **Phase 3 · Home & frame:** Home · menu sheet · footer and notice · 404 · search results (Should)
+  - [ ] **Phase 4 · Changelog & Submit:** Changelog · Submit choose / face form / build form / inline errors / sent
+  - [ ] **Phase 5 · About & Takedown:** About · Takedown · share cards for face and build (Should)
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma
 
 **Core lane (tests first)**

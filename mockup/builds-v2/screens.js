@@ -24,7 +24,7 @@ window.BV2Screens = (() => {
 
   function topbar() {
     return `<header class="top">
-      <a class="logo" href="#/builds">${slash}<b>Pro Clubs Hub</b></a>
+      <a class="logo" href="#/builds">${slash}<b>ProBuilds</b></a>
       <nav class="nav" aria-label="Sections"><a href="#">Faces</a><a href="#/builds" aria-current="page">Builds</a><a href="#">Changelog</a><a href="#">Submit</a></nav>
       <span class="season">FC 27 · Season 2</span>
       <button class="menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>

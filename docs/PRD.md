@@ -1,12 +1,12 @@
-> **PRD v2.1**, 20 Nov 2026, by Sharon (`sharrygold`) with Claude. Replaces v1 of 19 Nov; v2.1 is Sharon's review after v2 merged. "Pro Clubs Hub" is a working title (O-01). Decisions in `docs/DECISIONS.md` win where this disagrees. What changed from v1 is listed at the end.
+> **PRD v2.1**, 20 Nov 2026, by Sharon (`sharrygold`) with Claude. Replaces v1 of 19 Nov; v2.1 is Sharon's review after v2 merged. The name is ProBuilds (D-49, D-50). Decisions in `docs/DECISIONS.md` win where this disagrees. What changed from v1 is listed at the end.
 
-# Pro Clubs Hub
+# ProBuilds
 
 A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era faces you build step by step, each paired with a build, plus clean meta-build cards for every archetype, all dated and credited.
 
 ## Summary
 
-Clubs players want two things for their Pro: to look like someone and to play like the meta. Copying a look today means pausing a YouTube tutorial for about 15 minutes, or following a written guide that says "medium tan shade" where the editor shows an exact value. Builds live on sites that change without a date or credit. Pro Clubs Hub leads with a library of faces (2008 Ronaldo, 2017 Ronaldo and more), each a tab-by-tab checklist with the editor's real values, checked in game and paired with a build. Beside it sit build cards for all 13 FC 27 archetypes, each tagged with its season and date, e.g. "FC 27 · Season 2 · verified <date>", with a source and credit line, plus archetype pages and a public changelog. It is a static site, free forever, built for $0. It ships within days, on Season 2, and is re-checked and updated for Season 3 on Thu 3 Dec (D-25). We leave tools to Pro Clubs HQ and win on design, mobile speed, honesty and faces (D-03).
+Clubs players want two things for their Pro: to look like someone and to play like the meta. Copying a look today means pausing a YouTube tutorial for about 15 minutes, or following a written guide that says "medium tan shade" where the editor shows an exact value. Builds live on sites that change without a date or credit. ProBuilds leads with a library of faces (2008 Ronaldo, 2017 Ronaldo and more), each a tab-by-tab checklist with the editor's real values, checked in game and paired with a build. Beside it sit build cards for all 13 FC 27 archetypes, each tagged with its season and date, e.g. "FC 27 · Season 2 · verified <date>", with a source and credit line, plus archetype pages and a public changelog. It is a static site, free forever, built for $0. It ships within days, on Season 2, and is re-checked and updated for Season 3 on Thu 3 Dec (D-25). We leave tools to Pro Clubs HQ and win on design, mobile speed, honesty and faces (D-03).
 
 ## Who it's for
 

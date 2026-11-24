@@ -1,4 +1,4 @@
-# DESIGN.md — Pro Clubs Hub taste rules
+# DESIGN.md — ProBuilds taste rules
 
 Rules learned from Chime's corrections, read before building or changing UI. Values come from `src/styles/tokens.css`, which mirrors the Figma Design System page (D-14). Decisions behind them are in `docs/DECISIONS.md`. A rule marked *inferred* has a reason Chime approved but did not word. A rule marked *carried* comes from Sinima and holds until Chime says otherwise for this project.
 

@@ -29,7 +29,7 @@ const asGitHubRendersIt = (json: string) => `### Submission (JSON)\n\n\`\`\`json
 describe("toIssueUrl", () => {
   it("opens a new issue on the project's repo, in the issue form for the kind", () => {
     const url = urlOf(toIssueUrl({ kind: "face", data: face }));
-    expect(`${url.origin}${url.pathname}`).toBe("https://github.com/ChimeXXD/pro-clubs-hub/issues/new");
+    expect(`${url.origin}${url.pathname}`).toBe("https://github.com/ChimeXXD/probuilds/issues/new");
     expect(url.searchParams.get("template")).toBe("submit-face.yml");
     expect(urlOf(toIssueUrl({ kind: "build", data: build })).searchParams.get("template")).toBe("submit-build.yml");
   });

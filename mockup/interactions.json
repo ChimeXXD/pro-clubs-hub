@@ -650,7 +650,7 @@
       "pressed",
       "focus"
     ],
-    "effect": "navigate:https://github.com/ChimeXXD/pro-clubs-hub",
+    "effect": "navigate:https://github.com/ChimeXXD/probuilds",
     "duration_ms": 300,
     "easing": "cubic-bezier(0.2, 0, 0, 1)",
     "delay_ms": 0,

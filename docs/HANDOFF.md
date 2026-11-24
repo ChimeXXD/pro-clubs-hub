@@ -1,40 +1,34 @@
 # Handoff: read this first when you pick the project back up
 
-## Latest: Fri 20 Nov 2026, afternoon. Two people on the project now
+## Latest: Tue 24 Nov 2026. Renamed to ProBuilds everywhere (D-52); brand and design system set
 
-Chime invited a collaborator, Sharon (`sharrygold`), who will design the UI. The repo is **public** again and `main` is protected: only pull requests Chime approves merge (D-23). Nothing is running (no dev server, browser or watcher).
+Nothing is running (no dev server or watcher). The rename (later on 24 Nov) changed the GitHub repo (`ChimeXXD/probuilds`), every file, the site name and Claude's memory notes. Still to do: the Cloudflare Pages project `probuilds` (Chime signs in to Cloudflare first), deleting the old Pages project (Chime's OK), and renaming the local folder to `ProBuilds`.
 
-### New here? Read in this order
-0. `CONTRIBUTING.md`: **only Chime merges into `main`** (GitHub enforces it). Work on a branch and open a pull request (D-22, D-23).
-1. `CLAUDE.md`: what we're building, the stack, the rules that protect correctness. Chime is they/them.
-2. `docs/design/sitemap/sitemap-and-journeys.pdf`: **the brief for the UI**. Every page, how the pages link, what each must show and its states, and the two journeys (face seeker, meta-build seeker). The HTML source is beside it.
-3. `docs/PRD.md` (why and what), `docs/SPEC.md` (routes, flows, acceptance tests), `docs/FORMAT.md` (every content field), `docs/DECISIONS.md` (every decision, numbered).
-4. `DESIGN.md`: Chime's taste rules, learned from their corrections.
-5. `docs/PLAN.md` (phases and checkboxes) and `PROGRESS.md` (session log, newest first).
-
-### Where the design stands (D-21)
-- **Rejected:** the three-direction board (D-19), mockup v1 (FUT.GG home plus a boxed wireframe head) and mockup v2 (avatar-editor face page from Mobbin references). Chime: "the designs … are all trash."
-- **Agreed so far:** the structure in the sitemap PDF. Faces lead (D-02). The start screen takes FUT.GG's structure (dark hub, tab pills, face grid first) (D-19). Each face should be previewable from Chime's own in-game captures, turned by drag (A-16, proposed).
-- **Mobbin references for a 3D character preview:** Chime picked the avatar-editor layout (Meta Quest, Instagram, WhatsApp: the character fills the top, a sheet with tabs below), then rejected the mockup built from it. Treat it as a reference, not a decision. Listed in PROGRESS.md.
-- `mockup/` holds v1/v2 as a record only, not a direction. Don't build from it.
-- **Never in the UI:** photos, drawings or AI images of real people; EA logos, card art, icons or rarity colours; coloured side-stripe cards (CLAUDE.md rules 1–2; Chime's global rule).
+### Where things stand
+- **Name: ProBuilds.** Web address probuilds.club (not bought yet; renews at $15.96/yr). Decisions D-46 → D-51 in `docs/DECISIONS.md`. Repo, site, CLAUDE.md and docs say ProBuilds (D-52).
+- **Figma file "ProBuilds":** https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD (Chime renamed it). This replaces the older Design System file named in CLAUDE.md (1mjxm…).
+  - **Logo:** Touchline mark + PROBUILDS wordmark; guide and SVG exports.
+  - **Design system** (one page): Overview, Colour, Typography, Spacing & layout, Radius & elevation, Components. All values are Figma variables (Colour · Primitives, Colour · Theme with Dark/Light, Tokens and Typography with Desktop/Tablet/Phone).
+  - **Design:** one section per design phase; Meta Finisher (phone, version B) is the only finished screen.
+  - **Archive:** every rejected logo round and old draft.
+- **References:** UI8 Osnova UI (file zu1wAc8aXjcsdcmDg4rNuJ, structure) and Rayum (file MbzXVWzasW9yy8yYiFXniG, dark look), imported into Chime's drafts.
+- **Type:** Barlow Condensed + Barlow (D-51). Smallest text 14 px.
 
 ### Start here next
-**Decided 20 Nov after PR #1 (Sharon's PRD v2, merged):** ship within days on Season 2, re-check on Season 3 from Thu 3 Dec (D-25); Michael Jackson allowed as a launch face (D-26); GoatCounter for counting (D-27).
-1. **Sharon:** references first. For each screen in the sitemap PDF, gather references (Mobbin, FUT.GG, other sites) into `docs/design/REFERENCES.md`; Chime picks per screen (D-28). Only then the screens in Figma (https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ, D-14). Also the smoke test (EVIDENCE §3).
-2. **Chime (and Sharon, D-29):** record 5 faces and 13 builds on Season 2, one match per build (D-30), plus the face-preview captures (A-16, Chime); create the GoatCounter account; answer O-01 (name), O-05 (first faces, including which Michael Jackson era) and O-13 (takedown email); decide whether the video ships at launch or with Season 3.
-3. **Claude:** core lane, test-first: `src/lib/content/load.ts` (relations; drop drafts and withdrawn; fail on broken links), `version.ts` (tag wording, older-season warning), `src/lib/submit/toIssueUrl.ts`; then GoatCounter wiring once the account exists.
+1. **Chime:** look at the Phase 0 components in Figma (Design system → 05 · Components), especially Build card, Archetype tile, Sheet, Version tag, Score ring, Limits callout and Tab item (my screenshot tool couldn't render those). Approve or list changes.
+2. **Claude:** Phase 1 · Builds, phone 390 first, built only from the components: Builds (13 archetypes), Archetype (Finisher), Meta Finisher states (specialization not reached, not yet checked, older season, copied). Then tablet and desktop.
+3. **Before Phase 2 (code):** propose CLAUDE.md and DESIGN.md updates (Figma file, type; the name is done) for Chime's OK; mirror the variables into `src/styles/tokens.css`.
 
 ### Waiting on Chime
-- A test clip in `reference/` (git-ignored) for the face preview: Clubs → Head → Customize, zoom in (L3), press Create to record, turn the Pro one full circle with the right stick (about 10 s). Optionally one match-cutscene screenshot.
-- The account's private-repo Actions minutes are used up for November, mostly by `meridian`'s macOS runs (532 min, counted at 10x). This repo is public, so its CI runs free; other private repos stay blocked until 1 Dec.
+- Delete the stray Figma file g1t6DqicHT8w4Lq790DC2G; decide on the stray chat log `2026-11-21-064551-…txt` in the repo root (untracked).
+- Buy probuilds.club when ready; a trademark search for ProBuilds.
+- From before: record 5 faces and 13 builds on Season 2 (D-29, D-30); GoatCounter account; O-05, O-13; test a submission link (D-45).
 
-### Earlier (19–20 Nov), in short
-- **Phase 0 done:** repo, Next.js 16.4.6 static-export scaffold, CI, commit gate (`.claude/proof.json`), page-weight budget (A-13), live at https://pro-clubs-hub.pages.dev (A-14).
-- **Research (RESEARCH §9):** how FC 27's face editor shows values; level cap 55 / 1,419 AP. Season 3 starts Thu 3 Dec, Season 4 Thu 14 Jan 2027. Launch was Sat 19 or Mon 21 Dec (D-18), now within days on Season 2 (D-25).
-- **Core lane unit 1 done:** content types and a full validator run before every build (26 unit tests).
+### How to work with Chime on design (learned this session)
+- Show work in Figma, not local previews; never create a new Figma file; never ask for links (imported files are listed in `~/Library/Application Support/Figma/settings.json`).
+- Logos need a clear football element and real craft; rejected work goes to Archive pages, never deleted.
+- Follow the UI8 design guide (no eyebrows or decorative pills, 14 px minimum, one family).
 
-### Not verified
-- Sculpt's Weight and Definition modes; whether Skin Tone's arrows step (noted on Chime's first face recording).
-- Whether "Pro Clubs" is a registered mark; the final name's availability (O-01).
-- e2e in WebKit (iPhone Safari): Chime's real-iPhone check covers it for now.
+### Earlier (19–23 Nov), in short
+- Phase 0 (setup) done; live at https://probuilds.pages.dev (A-14). Core lane done test-first: types, validator, loader, version wording, issue URL, issue forms (D-45); 71 unit tests.
+- Sharon's PR #3 (two logo directions) and PR #4 (The Grid) reviewed; Chime chose The Touchline.

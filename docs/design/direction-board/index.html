@@ -1,4 +1,4 @@
-<title>Pro Clubs Hub Directions</title>
+<title>ProBuilds Directions</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,7 +218,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 <div class="wrap">
   <div class="intro">
-    <h1>Three directions for Pro Clubs Hub</h1>
+    <h1>Three directions for ProBuilds</h1>
     <p>Each direction shows the same three screens on a 390 px phone: home with faces first, a face page six steps in, and a Spark build card from an older season. Tap the ticks to see the done state. Pick the one you want to build; parts of the others can be carried over.</p>
     <span class="sample">Sample values for comparing looks. Not a real recipe or build.</span>
   </div>
@@ -258,7 +258,7 @@ const notice = `<p class="p-notice">${NOTICE}</p>`;
 
 function scoreboard() {
   const home = `<div class="scr">
-    <div class="top"><span class="wordmark">Pro Clubs Hub</span><span class="season">FC 27 · Season 3</span></div>
+    <div class="top"><span class="wordmark">ProBuilds</span><span class="season">FC 27 · Season 3</span></div>
     <h3>Faces</h3>
     <div class="rail">${FACES.map(f => `<div class="fcard"><span class="era">${f.era}</span><div><div class="who">${f.who}</div><div class="meta">${f.kind} · ${f.steps} steps · ${f.min} min</div></div></div>`).join("")}</div>
     <h3>Builds by position</h3>
@@ -290,7 +290,7 @@ function scoreboard() {
 
 function almanac() {
   const home = `<div class="scr">
-    <div class="top"><span class="wordmark">Pro Clubs Hub</span><span class="season">FC 27 · Season 3</span></div>
+    <div class="top"><span class="wordmark">ProBuilds</span><span class="season">FC 27 · Season 3</span></div>
     <h3>Faces</h3>
     <div class="rail">${FACES.map(f => `<div class="fcard ${f.c}"><span class="era">${f.era}</span><span class="who">${f.who}</span><span class="meta">${f.kind} · ${f.steps} steps</span></div>`).join("")}</div>
     <h3>Builds by position</h3>
@@ -322,7 +322,7 @@ function almanac() {
 function instrument() {
   const scale = ([lo, hi, v]) => `<div class="scale"><div class="track"><span class="mid"></span><span class="ptr" style="left:${v}%"></span></div><div class="ends"><span>${lo}</span><b>${v}</b><span>${hi}</span></div></div>`;
   const home = `<div class="scr">
-    <div class="top"><span class="wordmark">Pro Clubs Hub</span><span class="season">FC 27 · S3</span></div>
+    <div class="top"><span class="wordmark">ProBuilds</span><span class="season">FC 27 · S3</span></div>
     <h3>Faces</h3>
     <div class="rail">${FACES.map(f => `<div class="fcard"><span class="era">${f.era} · ${f.kind}</span><span class="who">${f.who}</span><span class="meta">${f.steps} steps · ${f.min} min</span></div>`).join("")}</div>
     <h3>Builds by position</h3>

@@ -50,7 +50,7 @@
   };
 
   const topbar = (active) => `<header class="topbar">
-    <a href="#/" class="wordmark" data-testid="wordmark">Pro Clubs Hub</a>
+    <a href="#/" class="wordmark" data-testid="wordmark">ProBuilds</a>
     <nav class="topnav wide-only" aria-label="Sections">${NAV.slice(1).map((n) =>
       `<a href="${n.href}" data-testid="nav-${n.id}"${active === n.id ? ' aria-current="page"' : ""}>${n.name}</a>`).join("")}</nav>
     <label class="search"><span data-testid="search-icon" class="search-icon">${icon("search", 18)}</span>
@@ -63,7 +63,7 @@
 
   const footer = () => `<footer class="footer">
     <div class="footer-row">
-      ${t("footer-wordmark", "Pro Clubs Hub", "footer-mark")}
+      ${t("footer-wordmark", "ProBuilds", "footer-mark")}
       <nav aria-label="Site">${[["About", "#/about"], ["Submit", "#/submit"], ["Takedown", "#/takedown"], ["Changelog", "#/changelog"]]
         .map(([n, h], i) => `<a href="${h}" data-testid="footer-link-${i + 1}">${n}</a>`).join("")}</nav>
     </div>

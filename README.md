@@ -1,12 +1,12 @@
-# Pro Clubs Hub (working title)
+# ProBuilds
 
-[![CI](https://github.com/ChimeXXD/pro-clubs-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/ChimeXXD/pro-clubs-hub/actions/workflows/ci.yml)
+[![CI](https://github.com/ChimeXXD/probuilds/actions/workflows/ci.yml/badge.svg)](https://github.com/ChimeXXD/probuilds/actions/workflows/ci.yml)
 
 **Look like a legend. Play like one.** *(draft)* A free, phone-first hub for EA SPORTS FC 27 Clubs players: lookalike and era faces you build step by step, each paired with a build, plus meta-build cards for all 13 archetypes, each dated and credited.
 
-> Live (work in progress): https://pro-clubs-hub.pages.dev
+> Live (work in progress): https://probuilds.pages.dev
 >
-> Work in progress by [Chime Ekpendu](https://chimexd.work), built with Claude Code. "Pro Clubs Hub" is a working title; the name is not decided. The repo is public from day one.
+> Work in progress by [Chime Ekpendu](https://chimexd.work), built with Claude Code. The repo is public from day one.
 
 - **What and why:** [`docs/PRD.md`](docs/PRD.md) · **Research:** [`docs/RESEARCH.md`](docs/RESEARCH.md)
 - **Plan:** [`docs/PLAN.md`](docs/PLAN.md) · **Decisions:** [`docs/DECISIONS.md`](docs/DECISIONS.md) · **Spec:** [`docs/SPEC.md`](docs/SPEC.md)

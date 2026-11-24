@@ -2,6 +2,52 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Rename to ProBuilds everywhere (Tue 24 Nov 2026, later)
+
+**Changed (D-52)**
+- GitHub repo renamed `ChimeXXD/probuilds` (`gh repo rename`); local remote updated; description says ProBuilds. Branch protection unchanged (required check `test`, code-owner review).
+- Every file in the repo: site name `ProBuilds` (`src/lib/site.ts`), `REPO` `ChimeXXD/probuilds`, package name `probuilds`, README, CLAUDE.md, DESIGN.md, docs, mockups, e2e and unit tests. Older entries say "the working title" where they named it. Sitemap PDF re-printed from its HTML (12 pages, A4 landscape, as before).
+- Claude's project memory notes updated (Figma note renamed `figma-probuilds-file.md`).
+
+**Checked**
+- `grep -i` for every spelling of the old name over tracked and untracked files: none left except the stray chat log `2026-11-21-064551-…txt` (untracked; Chime to decide).
+- `npm run build`: `out/index.html` title is ProBuilds; no old name in `out/`. Playwright home test passes at 390 and 360. Gate: types, lint, unit, content, build-budget-e2e all pass.
+
+**Not done yet**
+- Cloudflare Pages project `probuilds` (probuilds.pages.dev): waits for Chime to sign in to Cloudflare; then delete the old project with Chime's OK.
+- Rename the local folder to `ProBuilds` and move Claude's memory folder with it (last step; restart Claude Code in the new folder).
+
+## Name, logo, colours and design system Phase 0 (Tue 24 Nov 2026)
+
+Long design session with Chime, all in the Figma file hyFx4Audhn4F9KxL9bRCLD (Chime renames it ProBuilds by hand, the API can't).
+
+**Decided**
+- **Name: ProBuilds** (D-47 → D-48 → D-49 → D-50). ClubsHub, then the working title again, then ProBuilds.club; final: the brand is **ProBuilds**, the web address **probuilds.club** (free on 24 Nov; $4.12 first year at Porkbun, then $15.96/yr, over the $10 budget). Risk: probuilds.net is an established League of Legends builds site.
+- **Logo: Sharon's "Touchline" mark** (corner flag + lime slash) with the wordmark PROBUILDS (Brygada 1918 SemiBold, -10%, outlined). Four rounds of new logos (rounds 1–4, about 50 concepts) were rejected and kept on Archive pages.
+- **Foundations after UI8's Osnova UI (structure) and Rayum (dark look)** (D-51): type is Barlow Condensed (headings, numbers) + Barlow (text), Brygada only in the logo; body 17 px, nothing under 14 px.
+- **First screen:** Meta Finisher phone, version B (lime only for Copy build, slider, chips, score rings; bars cream). Version A archived.
+- **Design phases** (PLAN.md): 0 Components · 1 Builds · 2 Faces · 3 Home & frame · 4 Changelog & Submit · 5 About & Takedown; phone 390 first, then 834 and 1440; Chime approves each phase.
+
+**Built in Figma**
+- Pages: Logo · Design system · Design · divider · Reference · Assets · divider · Archive (logo rounds 1–4, Sharon's Grid, old colour drafts, Meta Finisher A).
+- Logo page: components, 10 guide sheets, 16 SVG exports (`probuilds-*.svg`), all PROBUILDS.
+- Design system page, one page in sections: 00 Overview · 01 Colour (6 sheets) · 02 Typography · 03 Spacing & layout · 04 Radius & elevation · 05 Components.
+- Variables: Colour · Primitives (81), Colour · Theme (38, Dark default + Light, Osnova-style state tokens), Tokens (spacing, layout, radius; Desktop/Tablet/Phone), Typography (26; same modes). 15 text styles (incl. Button/*), 3 elevation styles. All 18 text/background pairs pass WCAG AA.
+- Phase 0 components: 24 icons (Emerald Outlined, UI8), 21 components, 154 variants (Button 72, Icon button 36, Chip, Tabs, Search field, Version tag, Credit line, Value chip, Step row, Attribute bar, Score ring, Limits callout, Embed facade, Build card, Face card, Archetype tile, Toast, Sheet, Top bar, Footer notice).
+- Design page: one section per phase with a labelled placeholder per screen and state (28); Meta Finisher B in Phase 1.
+
+**Checked**
+- Screenshots of every logo and colour sheet and most components; contrast computed with the WCAG formula.
+
+**Not verified**
+- get_screenshot fails on 7 components (Build card, Archetype tile, Sheet, Version tag, Score ring, Limits callout, Tab item) although Figma's own export renders them: Chime to look at those in Figma.
+- Rayum could not be read through the Figma API (file too large); only its previews were used.
+- No trademark search for ProBuilds; probuilds.club not bought yet.
+- Nothing in code changed: `src/styles/tokens.css`, `CLAUDE.md` and `DESIGN.md` still describe the old name, Figma file and type. They need updating before Phase 2 (build).
+
+**Next**
+- Chime reviews Phase 0 components; then Phase 1 · Builds screens (Builds index, Archetype Finisher, Meta Finisher states) from the components.
+
 ## Submissions through issue forms, one season setting, full unchecked tag (Mon 23 Nov 2026, afternoon)
 
 Chime picked the recommended option on the core lane's three open questions (D-45).
@@ -25,7 +71,7 @@ Phase 1's three remaining core-lane units, each test-first (red, then green), co
 **Changed**
 - `src/lib/content/load.ts` (7f279b6, 87b43dc): reads content/, validates it, keeps only published builds, faces and changelog entries, and resolves archetype, `pairedBuild`, creators and changelog `affects` (newest entry first). The build fails, naming file and field, when published content links to a draft or withdrawn file (D-10), on a missing build, archetype or creator, on two files with one id, and on broken JSON. `scripts/validate-content.mjs` now runs the loader, so prebuild and CI enforce the links too. Fixtures: a whole good content tree plus one overlay folder per bad case in `tests/unit/fixtures/content/`.
 - `src/lib/content/version.ts` (6b0f1d8): FORMAT's exact tag lines ("FC 27 · Season 2 · verified 19 Nov 2026", "… · not yet checked in game") and the older-season warning. The current season is a parameter; the repo doesn't store it yet.
-- `src/lib/submit/toIssueUrl.ts` (15735d7): an issue URL on `ChimeXXD/pro-clubs-hub` (`REPO` in `src/lib/site.ts`) with the submission as compact JSON in a json code block, so @names and #12 ping and link nothing. No `labels` parameter: GitHub returns 404 for anyone who can't label issues. Over 6,500 characters it returns "too-long" instead of cutting, for Copy JSON. `readIssueBody` reads the JSON back.
+- `src/lib/submit/toIssueUrl.ts` (15735d7): an issue URL on `ChimeXXD/probuilds` (`REPO` in `src/lib/site.ts`) with the submission as compact JSON in a json code block, so @names and #12 ping and link nothing. No `labels` parameter: GitHub returns 404 for anyone who can't label issues. Over 6,500 characters it returns "too-long" instead of cutting, for Copy JSON. `readIssueBody` reads the JSON back.
 
 **Checked**
 - `npm run lint`, `typecheck`, `test` (66 tests: loader 16, version 8, submit 12) and `build` pass after each unit and after the review.
@@ -159,7 +205,7 @@ Chime: stances belong in the build section, not on "Pick your archetype"; the Fi
 ## The draft in Figma, and Pro Clubs assets (Sat 21 Nov 2026, later)
 
 **Changed**
-- New Figma file "Pro Clubs Hub" in Chime's GenAI-Labs drafts (D-32): https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD. Pages Volt, Pitch, Old Gold, Floodlight, Derby each hold the phone sheet (21 screens and states, 393) and the desktop sheet (11 screens, 1440), captured from `mockup/draft/` as editable layers (text, frames, vectors; no flattened images). Page 6, "Assets (reference)": all 36 FC 27 PlayStyles (badge, PlayStyle+ badge, glyph), the 13 archetype emblems plus Engine (FC 26) as vectors, and 21 The Grounds and Clubs screenshots. Files and sources in `reference/assets/` (git-ignored) and its `manifest.json`.
+- New Figma file (now "ProBuilds") in Chime's GenAI-Labs drafts (D-32): https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD. Pages Volt, Pitch, Old Gold, Floodlight, Derby each hold the phone sheet (21 screens and states, 393) and the desktop sheet (11 screens, 1440), captured from `mockup/draft/` as editable layers (text, frames, vectors; no flattened images). Page 6, "Assets (reference)": all 36 FC 27 PlayStyles (badge, PlayStyle+ badge, glyph), the 13 archetype emblems plus Engine (FC 26) as vectors, and 21 The Grounds and Clubs screenshots. Files and sources in `reference/assets/` (git-ignored) and its `manifest.json`.
 - O-15 opened: may the product ever ship EA's badges? Today they're reference only (CLAUDE.md rule 2, D-04).
 - Two draft bugs found while capturing, both fixed: frame sheets rendered body text in the system font (`.app` now sets Barlow), and Home's content was 578 px wide inside a 393 px phone frame, hidden by the clip (`.main` grid column is now `minmax(0, 1fr)`). `frames.html?theme=<id>` renders a sheet in one colour.
 
@@ -292,21 +338,21 @@ Chime: stances belong in the build section, not on "Pick your archetype"; the Fi
 - Sculpt's Weight and Definition modes, and whether Skin Tone's arrows step: noted on Chime's first face recording.
 
 **Later the same session**
-- Public repo `ChimeXXD/pro-clubs-hub` created and pushed; first CI run green (44652883584).
+- Public repo `ChimeXXD/probuilds` created and pushed; first CI run green (44652883584).
 - Figma file created on Chime's personal team: https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ (Cover, Design System, Design screens; read back via use_figma).
 - Season 3 replan applied (D-18); ESLint stays on 9 (A-15, checked plugin peer ranges).
-- Cloudflare Pages: Chime signed in; Claude created the Git-connected project in Chrome (GitHub was already authorised for Cloudflare, no new grant). Deploy succeeded; `curl` shows https://pro-clubs-hub.pages.dev/ 200 with the notice and a missing page 404 with the notice.
+- Cloudflare Pages: Chime signed in; Claude created the Git-connected project in Chrome (GitHub was already authorised for Cloudflare, no new grant). Deploy succeeded; `curl` shows the first Pages address 200 with the notice and a missing page 404 with the notice.
 
-- Chime opened https://pro-clubs-hub.pages.dev on the iPhone and read back the heading, "Work in progress." and the notice: P0-6 passes, and so does Phase 0's gate.
+- Chime opened the first Pages address on the iPhone and read back the heading, "Work in progress." and the notice: P0-6 passes, and so does Phase 0's gate.
 
 **Next**
 - Phase 1: reference board and three directions; core lane test-first.
 
-## Pivot: Facecard becomes Pro Clubs Hub (Thu 19 Nov 2026)
+## Pivot: Facecard becomes a faces-and-builds hub (Thu 19 Nov 2026)
 
 **Changed**
-- Folder renamed `Facecard` to `Pro Clubs Hub` (`mv -n`; the target didn't exist; no git repo yet).
-- Product is now a faces-led hub for FC 27 Clubs with meta-build cards, archetype pages, a changelog and a submit flow (D-02). Planner later (D-07). Name open; "Pro Clubs Hub" is the working title (D-15, O-01).
+- Folder renamed `Facecard` to the working title (`mv -n`; the target didn't exist; no git repo yet).
+- Product is now a faces-led hub for FC 27 Clubs with meta-build cards, archetype pages, a changelog and a submit flow (D-02). Planner later (D-07). Name open; a working title for now (D-15, O-01).
 - Rewritten from the 18 Nov research: CLAUDE.md, DESIGN.md (new, Sinima pattern), README.md, docs/PRD.md, docs/RESEARCH.md, docs/DECISIONS.md (fresh: D-01 to D-16, A-01 to A-08, L-01 to L-13, O-01 to O-14), docs/PLAN.md (phases 0 to 3), docs/SPEC.md, docs/FORMAT.md (v1: archetype, build, face, changelog, creators), docs/HANDOFF.md, docs/KICKOFF-PROMPT.md, docs/features.json (38 items), docs/design/UI-BRIEF.md, docs/design/REFERENCES.md, .claude/settings.json, .github/workflows/ci.yml, .gitignore, .env.example.
 - New content: `content/archetypes/fc27.json` (13 archetypes, sourced fields only), one example build and one example face (all `PLACEHOLDER`, `draft`), three changelog drafts from EA pages, `creators.json` (two candidates, not asked), `content/README.md`.
 - Moved to `_to_delete/` (deletion isn't permitted in this folder): the old Facecard recipes `michael-jackson.fc27.json`, `zinedine-zidane.fc27.json`, their README, and the empty `content/recipes/` folder. Chime can delete `_to_delete/`.

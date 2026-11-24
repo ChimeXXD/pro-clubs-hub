@@ -1,6 +1,6 @@
 # UI brief
 
-How each screen looks and behaves. **Draft, 19 Nov 2026.** §4–6 (screens, copy, states, test IDs) are ready to design from. §1–3 are filled after Chime picks a direction (Phase 1). Then the Figma Design System and Design screens pages are the source of truth (D-14) and this file only records what Figma can't (copy, states, test IDs). "Pro Clubs Hub" stands for the final name (O-01). Copy marked *new* can change at screen review.
+How each screen looks and behaves. **Draft, 19 Nov 2026.** §4–6 (screens, copy, states, test IDs) are ready to design from. §1–3 are filled after Chime picks a direction (Phase 1). Then the Figma Design System and Design screens pages are the source of truth (D-14) and this file only records what Figma can't (copy, states, test IDs). The name is ProBuilds (D-50). Copy marked *new* can change at screen review.
 
 ## 1. Direction (Phase 1)
 

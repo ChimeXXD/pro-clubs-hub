@@ -173,7 +173,7 @@
     "pchq-archetype-changes": { title: "Pro Clubs HQ, FC 27 archetype changes", url: "https://proclubshq.com/blog/fc27-archetype-changes/" },
     "ea-archetypes-update": { title: "EA, The Grounds developer archetypes update", url: "https://ea.com/games/ea-sports-fc/fc-27/news/fc-27-the-grounds-developer-archetypes-update" },
   };
-  const REPO_ISSUES = "https://github.com/ChimeXXD/pro-clubs-hub/issues/new";
+  const REPO_ISSUES = "https://github.com/ChimeXXD/probuilds/issues/new";
 
   window.D = { CREATORS, SOURCES, REPO_ISSUES, THEMES, SEASON, FACES, FACE_FILTERS, ANGLES, TABS, STEP_COUNT, GROUPS, ARCH, BUILDS, POSITIONS, CHANGES, COPY, TAG_OK, TAG_NEW };
 })();
