@@ -2,6 +2,22 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Stances complete: all 13 in Figma, option E uses them (Tue 24 Nov 2026, night)
+
+Chime added `11. magician.png` and `12 finisher.png`.
+
+**Checked:** both are 1024 × 1536 with real transparency, the same face and the same red kit as the other 11. The poses are right: Magician has a fist raised and Finisher volleys at chest height. Nothing is cut off at the edges.
+
+**Built (Figma):**
+- Design System → Stances (245:227): all 13 slots are filled, and the title is now "Archetype stances · 13". The note points to D-55 and the stripe risk.
+- Builds option E (241:556): the Magician, Finisher and Target cards show the AI stances instead of the in-game crops. Each card is a bg/raised surface with the image set to Fit.
+- A render of option E was checked.
+
+**Next:**
+- Chime picks between B and D for the Builds page, or D's cards with a stance.
+- Confirm the group names (the game's or SPEC's).
+- Then the Archetype page (Finisher) gets three options.
+
 ## Stances round 1 in the design system (Tue 24 Nov 2026, night)
 
 Chime made the stances in ChatGPT and saved them to `reference/stances-ai/out/` (git-ignored).
