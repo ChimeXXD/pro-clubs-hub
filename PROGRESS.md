@@ -38,7 +38,22 @@ Chime: start Phase 1 page by page; three layout options for the Builds page; Chi
 - Not shippable as is: the stance crops include EA card art, the club crest and the level. The Progressor screenshot shows the Maestro card, so there is no Progressor stance.
 - Open: A–C use SPEC's group names (Keeper, Defence, Midfield, Attack); D and E use the game's (Keeper, Defender, Midfielder, Forward).
 
-**Next:** Chime picks one of A–E (or a mix). The pick moves into "Phase 1 · Builds"; the others go to Archive as proposals. Then the Archetype page (Finisher) gets three options the same way.
+**Chime's feedback:**
+- D and B are liked, because they show each archetype's PlayStyles.
+- C is out: users might not know the pitch is tappable.
+- A is out: too basic, no PlayStyles.
+- E is liked, but not its in-game crops.
+- A and C moved to Archive as proposals.
+
+**Stances, decided (D-54):**
+- AI-generated images of Chime's own pro, in a plain kit with no logos, made by Chime in ChatGPT (Go plan).
+- Claude can't run ChatGPT for them: there is no connector, the API is paid, and automating the site breaks OpenAI's terms.
+- Prompt pack: `reference/stances-ai/PROMPTS.md` (git-ignored). It has a character sheet from four turntable frames (copied to `face-refs/`), then 13 pose prompts. Poses follow Chime's in-game cards; Progressor's is our own, because its shot shows the Maestro card. Outputs go to `reference/stances-ai/out/<slug>.png`.
+
+**Next:**
+- Chime generates the 13 stances.
+- Claude checks them, crops them to one card size and puts them into option E and the build cards.
+- Chime picks between B and D, or combines them (possibly D's cards with a stance). The pick moves into "Phase 1 · Builds"; the others go to Archive as proposals. Then the Archetype page (Finisher) gets three options the same way.
 
 ## Figma file organised like Sinima, plus a cover (Tue 24 Nov 2026, late evening)
 
