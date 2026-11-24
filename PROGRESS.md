@@ -2,6 +2,27 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Build page: three variants (Wed 25 Nov 2026)
+
+- **Chime asked:** three variants of the build page (`/builds/finisher/meta-finisher`).
+- **New section:** "Options · Build page (pick one)" (294:1627, x 4111 y 580). All three carry the same content: the tag, name, positions, level, height, six key stats, Copy build, your level and AP, "all of it at level 55", specialization, body and skills, PlayStyles+, PlayStyles and attributes.
+  - **A · Stance card beside the numbers** (294:768). From the F1 Leclerc driver card and the NFL player header. It is the current page in order, with the old in-game crop (it showed a club crest) replaced by the Finisher Stance card.
+  - **B · Face hero and tabs** (294:1257). From the MLS and Premier League player pages. The in-game face fades into the page under the name, then the stat strip and Copy build, then tabs (Overview, Attributes, PlayStyles), with Overview shown.
+  - **C · Big card and folding sections** (294:1444). From Alan's character profile and F1's expandable details. A full-size Stance card is centred over the name, then the stat strip, Copy build and level. Specialization is open; Body and skills, PlayStyles and Attributes are folded with one-line summaries.
+- **Reused:** the level, specialization, body, PlayStyles and attributes blocks are copies from the approved Meta Finisher capture (184:209).
+- **Review before showing, problems found and fixed:**
+  - The copied Attributes block collapsed to 103 px.
+  - The level slider ran past the edge and "Your level" was indented 16 px.
+  - A's level and height line was cut off.
+  - C's open section repeated "Specialization" inside a second panel.
+  - C's Attributes summary was cut off.
+  - B had a wide gap between the version and sample lines.
+  - 59 copied text runs were 11–13 px; they are now 14 px.
+  - The two Mastery pills clipped "Mastery" until they were widened; checked on a 3× temp board, then deleted.
+- **Still open:**
+  - The copied blocks still use raw text, not our text styles; they get rebuilt on styles once a variant is picked.
+  - A's Stance card at 160 px renders its "Forward" plate text at 9 px (card art, scaled).
+
 ## Archetype page is option B, on phone, tablet and desktop (Wed 25 Nov 2026)
 
 - **Chime:** picked option B (stat strip) (D-62).
