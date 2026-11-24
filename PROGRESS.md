@@ -2,6 +2,31 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 1 · Builds page: three options for Chime (Tue 24 Nov 2026, night)
+
+Chime: start Phase 1 page by page; three layout options for the Builds page; Chime picks, then it moves into the design.
+
+**References (Mobbin, iOS):**
+- Apple Sports "Browse Sports": a grid of round emblems.
+- stoic.: rich list rows.
+- FotMob, theScore, DAZN and MLS lineups: players placed on a pitch by line.
+
+**Built (Figma, Design screens → section "Options · Builds page (pick one)", phone 393, Dark, Phone modes):**
+- A · Emblem grid: four groups with headers and counts; four columns, so every group fits on one row.
+- B · List: emblem, name, the two signature PlayStyle glyphs with their names, and a chevron, on hairline rows.
+- C · Pitch: the groups placed by line (Attack top, Keeper bottom) on a pitch drawn with hairlines.
+- All three use the design system's top bar, footer notice, Archetype emblems and PlayStyle glyphs, with every colour on theme variables.
+
+**Data:** archetype names, the four groups (SPEC: Keeper, Defence, Midfield, Attack) and the signature PlayStyles come from `content/archetypes/fc27.json`. Positions and build counts are left out because they aren't recorded yet. "Pick your archetype to see its builds." is draft copy.
+
+**Checked:** a Figma screenshot of each option. These fixes were made before showing them:
+- A wrapped to two per row, then 3 + 1; it's now four columns.
+- The group counts were misaligned.
+- C's centre circle collided with the names, and its halfway line was invisible.
+- C's cells were stuck at 10 px tall.
+
+**Next:** Chime picks A, B or C (or a mix). The pick moves into "Phase 1 · Builds"; the others go to Archive as proposals. Then the Archetype page (Finisher) gets three options the same way.
+
 ## Figma file organised like Sinima, plus a cover (Tue 24 Nov 2026, late evening)
 
 Chime: organise the file like their Sinima draft (2WxAK7rxGC6t4Wkd5IQ6p2) and make a cover like its thumbnail.
