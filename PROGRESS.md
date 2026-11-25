@@ -7,8 +7,9 @@ Newest first. Each entry: what changed, what was checked, what wasn't verified, 
 - **Chime:** "B", read as B for both. Recorded as D-82.
 - **Figma, Phase 4 rows:** Changelog at phone, tablet (390:2540) and desktop (390:2700); Submit face question (phone); states row on phone: choose (391:2630), sent (391:2722), inline error (392:2725), build question (392:2825). The six placeholders are gone; options A and C are on Archive.
 - **Checked:** renders of Changelog tablet and desktop, choose and sent; no overlaps; Phase 4 refitted, Phase 5 moved.
-- **Not checked yet:** renders of the inline error and build question frames.
-- **Next:** Submit tablet 834 and desktop 1440 (the question screen and its states).
+- **Then:** Submit at tablet 834 and desktop 1440: question (395:2895 / 395:3031; desktop adds a "Your face so far" panel), choose (396:2975 / 396:3083), sent (396:3191 / 396:3309). The inline error and build question use the question layout at those sizes. Phase 4 is one row per screen; Phase 5 moved.
+- **Fixed after render:** archetype tiles' PlayStyles cut off (now two lines), group chips wrapping (small chips, 6 px gap), the error caret before the value, the Basics progress fill on tablet and desktop.
+- **Checked:** renders of every Phase 4 frame; audit of all 14 (text 14 px or more, text styles, token-bound fills, no overflow); no overlaps.
 
 ## Phase 4: three Changelog and three Submit options on phone (Wed 25 Nov 2026)
 
