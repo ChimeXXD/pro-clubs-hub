@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: demo faces zoomed out so the hair shows (Wed 25 Nov 2026)
+
+- **Chime:** zoom out so most of the hair shows (only LeBron's did); keep one layout for all.
+- **Before → after:** square 600 crops (the 4:5 slots cut their sides, so the eyes were 30% of the visible width, 1.9 eye-widths of room above the eyes) → 4:5 crops at 468 × 576 (eyes 25% of the width, 2.3 eye-widths above). Faces about 18% smaller in the cards; Ronaldo, Lamine, LeBron and MJ show their full hair, Neymar all but the tip of the mohawk.
+- **How:** re-captured the same frames at full resolution in Chrome (canvas crop at computed source boxes), then scaled each to 117 px between the eyes and cropped with the eyes at (234, 272). Limits that set the zoom: no space above MJ's head in his frame, Xaiiros's chest watermark under Ronaldo (its top edge trimmed off).
+- **Checked:** Vision re-measure (234–236, 272–274; 117–118 px); five-up guide image; renders of A, B and C. 15 slots re-uploaded.
+
 ## Faces library: plain titles, kind-only line, no check status (Wed 25 Nov 2026)
 
 - **Chime:** no "Inspired by"; use the name as the video titles it ("2008 Ronaldo", "Neymar Jr (Mohawk)"); the line under it is just Footballer / Athlete / Musician; drop "Not yet checked in game" because everything posted is made in game. Recorded as D-69.
