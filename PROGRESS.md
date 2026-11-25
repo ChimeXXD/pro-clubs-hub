@@ -2,6 +2,18 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 3 finished: footer, 404 and search on all sizes (Wed 25 Nov 2026)
+
+- **Chime:** build the rest of Phase 3 for every size. Recorded as D-80.
+- **Figma, Phase 3 rows (phone 390, tablet 834, desktop 1440 side by side):**
+  - Footer and notice: the bottom of Home at each size (a clipped view: last section, Footer notice, and the bottom nav on phone).
+  - 404: "404" in lime Display, "This page isn't here.", a line of explanation, Go to faces / Go to builds, then "Or try a face" with Home's faces (added after the first desktop render left half the page empty).
+  - Search results (Should): "Search", field filled "Ronaldo", "2 results for “Ronaldo”", Faces 1 (2008 Ronaldo card) and Builds 1 (2008 Winger card).
+- **Removed:** the three placeholders and the "Phase 3 screens" label; Phase 3 widened to 3,147 px and grew; Phases 4–5 moved down.
+- **Checked:** renders; audit of the six new 404 and search frames (text 14 px or more, Barlow only, no overflow); no overlaps; no placeholders left in Phase 3.
+- **Open (D-80 (4)):** no search entry on phone; no "none" state in the bottom nav.
+- **Copy (drafts):** the 404 lines and buttons, "Or try a face", "Search", "2 results for “Ronaldo”".
+
 ## Finished face links its matching build (Wed 25 Nov 2026)
 
 - **Chime:** "link it" (O-18 → D-79).
