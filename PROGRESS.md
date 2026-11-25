@@ -2,6 +2,25 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share sheet on phone refined; toast and bottom nav options (Wed 25 Nov 2026)
+
+- **Chime (screen recording):** tablet and desktop share dialogs and the link preview approved. Phone sheet: the action buttons look odd next to the tablet's, and card 1 sits centred with empty space on its left. The "link copied" toast and the bottom nav are bland: three options each.
+- **References (Mobbin, iOS):** share sheets from Linktree, Lovi, Me+ and Polarsteps; "copied" feedback from Phantom, World App, Notion, Xbox, Crypto.com and Netflix; floating tab bars from Ladder, WHOOP, Comet, Opal, Moonly, Apple Fitness and Tide Guide.
+- **Phone share sheet (319:904), before → after:**
+  - Actions: three 52 px outlined icon tiles with labels under them → DS Button secondary large, the tablet's buttons: "Save images" and "Copy link" side by side (172.5 px each), "Share via…" full width under them. The tablet's three in one row needs 402 px; the phone has 353.
+  - Cards: card 1 at x 64 (centred) → x 0, aligned with the title; card 2 follows 12 px later and runs to the screen edge.
+  - Pager: centred → left-aligned.
+  - Hint: centred, "Saves both cards… More opens your phone's share menu." → left-aligned, "Saves both cards to your photos."
+  - Close button: large 52 → medium 44, title row centred (the ✕ sat below the title's middle); sheet top padding 20 → 14, so the sheet is 740 px and starts below the breadcrumb instead of cutting through it.
+  - Old version on Archive (327:1434).
+- **Options board (Design System page, 329:404), not yet picked:**
+  - Toast A cream pill; B dark bar with a lime tick tile and two lines; C no toast, Copy link turns lime "Copied" in the open sheet.
+  - Bottom nav A Submit split out as a lime circle; B lime active tab with Button/Small uppercase label on darker glass; C every tab labelled, current tab on a raised tile with a lime icon.
+  - Why the current toast reads badly: same bg/raised as the nav, 12 px above it, muted status/success tick.
+- **Checked:** renders of the sheet at 1.5–2× and the board; toast icons at 3×. Audit over the new nodes: no text under 14 px, Barlow only, every fill and stroke bound to a token, nothing overflowing (option B labels re-linked to Button/Small after the audit flagged them).
+- **Copy (drafts):** "Share via…", "Copied", "Link copied" / "Paste it in any chat." split over two lines in toast B.
+- **Next:** Chime picks one toast and one nav; then update the Toast and Bottom nav components and every screen that uses them.
+
 ## Sharon's PRs reviewed; streamer builds approved (D-66) (Wed 25 Nov 2026)
 
 - **Chime:** approved PR #5 (builds from streamers' videos): "We don't have to be waiting for their reply. We publish their build and we credit them by putting the link of the video."
