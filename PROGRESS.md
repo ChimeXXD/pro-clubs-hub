@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Chime's PS5 videos read: 39 specializations, body ranges, face turn test (Wed 25 Nov 2026)
+
+- **Chime:** two clips (360° Michael Jackson turn for A-16; every archetype's specializations and body), "cutting it frame by frame". The USB copies were empty files every time (WebM and MP4 alike); the PS App downloads worked.
+- **Specializations:** frames at 4 per second, one crop per card, read by eye and cross-checked with on-device OCR (0 disagreements). All 39 recorded in `content/archetypes/fc27.json` (PlayStyle+ and targets, source `chime-in-game-20261125`) and RESEARCH §10.4 (with perks). Octopus gives Footwork+, not Deflector+ as footage said. Every one is one target at 92 and two at 90.
+- **Body:** height and weight range for all 13 archetypes in RESEARCH §10.3 (maximums 6'2" to 6'7"); the FCClub Shot Stopper range was wrong.
+- **GK Kicking:** seen in game on two specialization cards; added to the attribute list (the same line as Sharon's PR #8, which this confirms). Keeper cards print "Positioning", recorded as GK Positioning (inferred, noted in the file).
+- **Turn test (A-16):** the second of two turns (3.2 s) cut into 36 frames, cropped clear of the game menus, 900×820 WebP, 738 KB total (20 KB each). Local viewer with drag and six angle buttons: `reference/in-game/2026-11-25/turn/viewer.html` (git-ignored). Checked at 390 px in Playwright: buttons land on the right frame, drag turns, no errors.
+- **Checked:** validate:content, lint, typecheck, 87 unit tests, build.
+- **Not verified:** attribute effects at maximum height and weight; the Progressor starting marker; the PS5 USB copy (still produces empty files).
+
 ## Design complete: shared build page and failure states (Wed 25 Nov 2026)
 
 - **Chime:** design the two gaps (D-100).

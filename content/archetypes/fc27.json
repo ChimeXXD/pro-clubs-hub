@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "game": "fc27",
-  "updated": "2026-11-19",
-  "note": "Names, position groups and the fields below come from the sources listed. Null means not found in a source we opened. verifiedInGame is false until Chime checks each archetype in game. Position groups follow EA's archetypes update (2 GK, 3 DEF, 4 MID, 4 ATT). Level cap is open (O-02) and not stored here.",
+  "updated": "2026-11-25",
+  "note": "Names, position groups and the fields below come from the sources listed. Null means not found in a source we opened. verifiedInGame is false until Chime checks each archetype in game. Position groups follow EA's archetypes update (2 GK, 3 DEF, 4 MID, 4 ATT). Level cap is open (O-02) and not stored here. Specializations (PlayStyle+ and unlock targets) were read in game by Chime on 25 Nov 2026 (Season 2); RESEARCH §10.4 also lists each one's perk.",
   "archetypes": [
     {
       "id": "shot-stopper",
@@ -40,10 +40,74 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Shot Stopper+",
+          "playStyle": "Cross Claimer",
+          "targets": [
+            {
+              "attribute": "Jumping",
+              "value": 90
+            },
+            {
+              "attribute": "GK Handling",
+              "value": 92
+            },
+            {
+              "attribute": "GK Positioning",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Spider",
+          "playStyle": "1v1 Close Down",
+          "targets": [
+            {
+              "attribute": "Acceleration",
+              "value": 90
+            },
+            {
+              "attribute": "Agility",
+              "value": 90
+            },
+            {
+              "attribute": "GK Reflexes",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Octopus",
+          "playStyle": "Footwork",
+          "targets": [
+            {
+              "attribute": "Strength",
+              "value": 90
+            },
+            {
+              "attribute": "GK Diving",
+              "value": 92
+            },
+            {
+              "attribute": "GK Positioning",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
-      "notes": null
+      "notes": "Specialization cards print \"Positioning\"; recorded as GK Positioning (inferred: the keeper attribute). Check in Edit Attributes."
     },
     {
       "id": "sweeper-keeper",
@@ -81,10 +145,74 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Sweeper Keeper+",
+          "playStyle": "Far Throw",
+          "targets": [
+            {
+              "attribute": "Vision",
+              "value": 90
+            },
+            {
+              "attribute": "GK Diving",
+              "value": 92
+            },
+            {
+              "attribute": "GK Kicking",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Launcher",
+          "playStyle": "Long Ball Pass",
+          "targets": [
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "GK Kicking",
+              "value": 92
+            },
+            {
+              "attribute": "GK Reflexes",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Extra",
+          "playStyle": "Press Proven",
+          "targets": [
+            {
+              "attribute": "GK Positioning",
+              "value": 92
+            },
+            {
+              "attribute": "Short Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Composure",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
-      "notes": null
+      "notes": "Specialization cards print \"Positioning\"; recorded as GK Positioning (inferred: the keeper attribute). Check in Edit Attributes."
     },
     {
       "id": "progressor",
@@ -122,7 +250,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Progressor+",
+          "playStyle": "Jockey",
+          "targets": [
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Def. Awareness",
+              "value": 90
+            },
+            {
+              "attribute": "Standing Tackle",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Pioneer",
+          "playStyle": "Pinged Pass",
+          "targets": [
+            {
+              "attribute": "Dribbling",
+              "value": 92
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Short Passing",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Janitor",
+          "playStyle": "Quick Step",
+          "targets": [
+            {
+              "attribute": "Acceleration",
+              "value": 92
+            },
+            {
+              "attribute": "Sprint Speed",
+              "value": 90
+            },
+            {
+              "attribute": "Sliding Tackle",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -163,7 +355,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Boss+",
+          "playStyle": "Slide Tackle",
+          "targets": [
+            {
+              "attribute": "Strength",
+              "value": 90
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            },
+            {
+              "attribute": "Sliding Tackle",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Enforcer",
+          "playStyle": "Press Proven",
+          "targets": [
+            {
+              "attribute": "Composure",
+              "value": 92
+            },
+            {
+              "attribute": "Vision",
+              "value": 90
+            },
+            {
+              "attribute": "Ball Control",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Capitano",
+          "playStyle": "Block",
+          "targets": [
+            {
+              "attribute": "Def. Awareness",
+              "value": 92
+            },
+            {
+              "attribute": "Reactions",
+              "value": 90
+            },
+            {
+              "attribute": "Agility",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -204,7 +460,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Marauder+",
+          "playStyle": "Slide Tackle",
+          "targets": [
+            {
+              "attribute": "Sprint Speed",
+              "value": 92
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            },
+            {
+              "attribute": "Sliding Tackle",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Speedster",
+          "playStyle": "Rapid",
+          "targets": [
+            {
+              "attribute": "Dribbling",
+              "value": 90
+            },
+            {
+              "attribute": "Sprint Speed",
+              "value": 92
+            },
+            {
+              "attribute": "Acceleration",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Athlete",
+          "playStyle": "Bruiser",
+          "targets": [
+            {
+              "attribute": "Strength",
+              "value": 92
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            },
+            {
+              "attribute": "Def. Awareness",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -237,7 +557,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Disruptor+",
+          "playStyle": "Intercept",
+          "targets": [
+            {
+              "attribute": "Balance",
+              "value": 90
+            },
+            {
+              "attribute": "Reactions",
+              "value": 90
+            },
+            {
+              "attribute": "Interceptions",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Destroyer",
+          "playStyle": "Slide Tackle",
+          "targets": [
+            {
+              "attribute": "Sprint Speed",
+              "value": 90
+            },
+            {
+              "attribute": "Strength",
+              "value": 92
+            },
+            {
+              "attribute": "Sliding Tackle",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Anchor",
+          "playStyle": "Bruiser",
+          "targets": [
+            {
+              "attribute": "Ball Control",
+              "value": 90
+            },
+            {
+              "attribute": "Dribbling",
+              "value": 90
+            },
+            {
+              "attribute": "Short Passing",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": "New in FC 27; replaces nothing directly (Engine was removed)."
@@ -270,7 +654,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Recycler+",
+          "playStyle": "Pinged Pass",
+          "targets": [
+            {
+              "attribute": "Strength",
+              "value": 90
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Short Passing",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Driver",
+          "playStyle": "Enforcer",
+          "targets": [
+            {
+              "attribute": "Sprint Speed",
+              "value": 90
+            },
+            {
+              "attribute": "Balance",
+              "value": 92
+            },
+            {
+              "attribute": "Strength",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Thief",
+          "playStyle": "Anticipate",
+          "targets": [
+            {
+              "attribute": "Interceptions",
+              "value": 90
+            },
+            {
+              "attribute": "Def. Awareness",
+              "value": 90
+            },
+            {
+              "attribute": "Standing Tackle",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -303,7 +751,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Maestro+",
+          "playStyle": "Technical",
+          "targets": [
+            {
+              "attribute": "Balance",
+              "value": 90
+            },
+            {
+              "attribute": "Vision",
+              "value": 92
+            },
+            {
+              "attribute": "Dribbling",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Crasher",
+          "playStyle": "First Touch",
+          "targets": [
+            {
+              "attribute": "Finishing",
+              "value": 90
+            },
+            {
+              "attribute": "Ball Control",
+              "value": 90
+            },
+            {
+              "attribute": "Composure",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Heartbeat",
+          "playStyle": "Relentless",
+          "targets": [
+            {
+              "attribute": "Agility",
+              "value": 92
+            },
+            {
+              "attribute": "Stamina",
+              "value": 90
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -336,7 +848,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Creator+",
+          "playStyle": "Whipped Pass",
+          "targets": [
+            {
+              "attribute": "Vision",
+              "value": 92
+            },
+            {
+              "attribute": "Crossing",
+              "value": 90
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Architect",
+          "playStyle": "Dead Ball",
+          "targets": [
+            {
+              "attribute": "Crossing",
+              "value": 92
+            },
+            {
+              "attribute": "FK Accuracy",
+              "value": 90
+            },
+            {
+              "attribute": "Shot Power",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Sniper",
+          "playStyle": "Power Shot",
+          "targets": [
+            {
+              "attribute": "Finishing",
+              "value": 90
+            },
+            {
+              "attribute": "Shot Power",
+              "value": 92
+            },
+            {
+              "attribute": "Long Shots",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -369,7 +945,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Spark+",
+          "playStyle": "Quick Step",
+          "targets": [
+            {
+              "attribute": "Agility",
+              "value": 92
+            },
+            {
+              "attribute": "Sprint Speed",
+              "value": 90
+            },
+            {
+              "attribute": "Acceleration",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Joker",
+          "playStyle": "Whipped Pass",
+          "targets": [
+            {
+              "attribute": "Crossing",
+              "value": 92
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Curve",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Ace",
+          "playStyle": "Chip Shot",
+          "targets": [
+            {
+              "attribute": "Reactions",
+              "value": 90
+            },
+            {
+              "attribute": "Ball Control",
+              "value": 90
+            },
+            {
+              "attribute": "Finishing",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -402,7 +1042,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Magician+",
+          "playStyle": "First Touch",
+          "targets": [
+            {
+              "attribute": "Acceleration",
+              "value": 90
+            },
+            {
+              "attribute": "Composure",
+              "value": 90
+            },
+            {
+              "attribute": "Ball Control",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Hotshot",
+          "playStyle": "Power Shot",
+          "targets": [
+            {
+              "attribute": "Finishing",
+              "value": 90
+            },
+            {
+              "attribute": "Shot Power",
+              "value": 92
+            },
+            {
+              "attribute": "Long Shots",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Invader",
+          "playStyle": "Incisive Pass",
+          "targets": [
+            {
+              "attribute": "Sprint Speed",
+              "value": 90
+            },
+            {
+              "attribute": "Vision",
+              "value": 90
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -443,7 +1147,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Finisher+",
+          "playStyle": "Chip Shot",
+          "targets": [
+            {
+              "attribute": "Ball Control",
+              "value": 90
+            },
+            {
+              "attribute": "Composure",
+              "value": 92
+            },
+            {
+              "attribute": "Reactions",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Presser",
+          "playStyle": "Relentless",
+          "targets": [
+            {
+              "attribute": "Agility",
+              "value": 90
+            },
+            {
+              "attribute": "Stamina",
+              "value": 92
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Hunter",
+          "playStyle": "Gamechanger",
+          "targets": [
+            {
+              "attribute": "Balance",
+              "value": 90
+            },
+            {
+              "attribute": "Finishing",
+              "value": 90
+            },
+            {
+              "attribute": "Curve",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -484,7 +1252,71 @@
           "ea-archetypes-update"
         ]
       },
-      "specializations": null,
+      "specializations": [
+        {
+          "name": "Target+",
+          "playStyle": "Acrobatic",
+          "targets": [
+            {
+              "attribute": "Agility",
+              "value": 90
+            },
+            {
+              "attribute": "Jumping",
+              "value": 92
+            },
+            {
+              "attribute": "Volleys",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Roamer",
+          "playStyle": "Incisive Pass",
+          "targets": [
+            {
+              "attribute": "Vision",
+              "value": 90
+            },
+            {
+              "attribute": "Long Passing",
+              "value": 90
+            },
+            {
+              "attribute": "Short Passing",
+              "value": 92
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        },
+        {
+          "name": "Runner",
+          "playStyle": "Rapid",
+          "targets": [
+            {
+              "attribute": "Sprint Speed",
+              "value": 92
+            },
+            {
+              "attribute": "Strength",
+              "value": 90
+            },
+            {
+              "attribute": "Aggression",
+              "value": 90
+            }
+          ],
+          "sourceIds": [
+            "chime-in-game-20261125"
+          ]
+        }
+      ],
       "typicalPositions": null,
       "verifiedInGame": false,
       "notes": null
@@ -520,6 +1352,12 @@
       "title": "Pro Clubs HQ, FC 27 archetype changes",
       "url": "https://proclubshq.com/blog/fc27-archetype-changes/",
       "accessed": "2026-11-18"
+    },
+    {
+      "id": "chime-in-game-20261125",
+      "title": "Chime's in-game check of every specialization, PS5, Season 2 (RESEARCH §10.4)",
+      "url": "https://github.com/ChimeXXD/probuilds/blob/main/docs/RESEARCH.md#104-specializations",
+      "accessed": "2026-11-25"
     }
   ]
 }

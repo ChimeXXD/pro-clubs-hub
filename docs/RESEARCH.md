@@ -204,38 +204,85 @@ The grants add up to every total in the table (checked). Pro Clubs Builder says 
 | AcceleRATE (25 Nov) | Explosive: 182 cm or shorter, Agility 65+, Agility at least 10 above Strength, Acceleration 80+. Lengthy: about 183–185 cm or taller and Strength at least 4 above Agility (one guide adds Strength 65+, Acceleration 40+). Otherwise Controlled. The Lengthy height cutoff differs between guides (183 vs 185 cm, the latter an FC 26 figure) | Sources disagree on Lengthy ([PCHQ calculator](https://proclubshq.com/blog/lengthy-vs-controlled-vs-explosive/), [PRO11 Target build](https://www.pro11.net/best-target-build/)). Check in game |
 | FC 26, for contrast | EA: height and weight "don't alter the base attribute values of the Archetype itself" and apply in a match. ProLeague called the effects hidden. FC 27 now shows them | EA stated (FC 26); One source (ProLeague, FC 26) |
 
+**Height and weight ranges, read in game (Chime's PS5 video, 25 Nov, Season 2; frames in `reference/in-game/2026-11-25/`).** The Body tab shows a grid: height runs bottom (minimum) to top (maximum), weight left to right. Its text: "Your chosen Height and Weight impacts some of your Archetype's attribute values when you enter a match. Making changes will not impact PlayStyle or Specialization unlocks." Metric is converted by us (the game shows feet and pounds), so a centimetre may be off by one.
+
+| Archetype | Height (maximum in bold) | Weight | Converted | Where the marker starts |
+| --- | --- | --- | --- | --- |
+| Shot Stopper | 5'10" to **6'6"** | 176 to 220 lbs | 178–198 cm, 80–100 kg | 6'2", 198 lbs |
+| Sweeper Keeper | 6'0" to **6'7"** | 176 to 220 lbs | 183–201 cm, 80–100 kg | 6'4", 198 lbs |
+| Progressor | 5'10" to **6'5"** | 165 to 209 lbs | 178–196 cm, 75–95 kg | not captured (Chime had moved it) |
+| Boss | 5'11" to **6'5"** | 176 to 220 lbs | 180–196 cm, 80–100 kg | 6'2", 198 lbs |
+| Marauder | 5'6" to **6'2"** | 143 to 187 lbs | 168–188 cm, 65–85 kg | 5'10", 165 lbs |
+| Disruptor | 5'6" to **6'2"** | 143 to 187 lbs | 168–188 cm, 65–85 kg | 5'10", 165 lbs |
+| Recycler | 5'8" to **6'4"** | 143 to 187 lbs | 173–193 cm, 65–85 kg | 6'0", 165 lbs |
+| Maestro | 5'4" to **6'2"** | 143 to 187 lbs | 163–188 cm, 65–85 kg | 5'9", 165 lbs |
+| Creator | 5'4" to **6'2"** | 143 to 187 lbs | 163–188 cm, 65–85 kg | 5'9", 165 lbs |
+| Spark | 5'4" to **6'2"** | 132 to 176 lbs | 163–188 cm, 60–80 kg | 5'9", 154 lbs |
+| Magician | 5'4" to **6'2"** | 132 to 176 lbs | 163–188 cm, 60–80 kg | 5'9", 154 lbs |
+| Finisher | 5'5" to **6'3"** | 154 to 198 lbs | 165–190 cm, 70–90 kg | 5'10", 176 lbs |
+| Target | 5'10" to **6'5"** | 176 to 220 lbs | 178–196 cm, 80–100 kg | 6'1", 198 lbs |
+
+- This settles the FCClub row above: Finisher and Boss match; Shot Stopper does not (178–198 cm in game, not 184–200). Leski's maximums (Boss and Progressor 6'5", Maestro 6'2") match.
+- What moves: the Body tab lists Acceleration, Agility, Balance, Jumping, Sprint Speed and Strength (keepers: GK Diving, GK Handling, GK Reflexes, Acceleration, Sprint Speed, Strength) with an Effect column. Progressor at minimum height and weight: Acceleration +4, Agility +4, Jumping −4, Strength −4. Effects at the maximums were not captured.
+
 ### 10.4 Specializations
 
 | Question | Finding | Status (date) |
 | --- | --- | --- |
-| How many | Three per archetype, 39 in all | Sources agree (3: PRO11, Timesaver citing PCHQ, games.gg); names seen in footage for 12 of 13 archetypes (all but Sweeper Keeper) |
+| How many | Three per archetype, 39 in all | Seen in game (Chime, 25 Nov): all 39 |
 | What one gives | A Signature PlayStyle+ that can replace one of the archetype's Signature PlayStyles, plus a perk (so up to three perks from level 45) | Seen in game footage (Leski reads each one's PlayStyle+ and perk, 15 Sep); AOEAH agrees |
-| Unlock rule | Three attribute targets: one at 92, two at 90 | Sources agree (3: PRO11, FC Tools Hub, Dexerto in search results); seen for the three rows marked below |
+| Unlock rule | Three attribute targets: one at 92, two at 90 | Seen in game (Chime, 25 Nov): true for all 39 |
 | Which values count | Raw values only. With masteries, height and weight or Amps the target stays grey; the same holds for base PlayStyle thresholds (Whipped Pass: Crossing 80, Long Passing 75) | Seen in game footage (Leski's Maestro+ test, 23 Sep) |
 | Minimum level | None seen; in practice gated by AP | Unknown (PRO11 has seen none) |
 | How many active | One at a time; switching is free | FC 27: One source (PRO11). FC 26: EA stated "Only one Specialization can be equipped at a time" |
 | Attacking Positioning | EA removed it on 19 Oct. The 22 Oct level-55 update put it back on the four forward specializations, and later that day EA replaced it: Runner now Aggression 90 and gives Rapid+ instead of Enforcer+; Hunter Balance; Invader Sprint Speed 90; Joker Curve 90. Forward archetypes were reset again | EA stated (19 Oct); Seen in game footage (Leski, 22 Oct, two videos). PRO11 (1 Nov) still shows Runner as Enforcer+ and the third Joker and Invader targets as unconfirmed: Sources disagree; the footage is newer |
-| Shot Stopper's second Signature PlayStyle | Deflector at first on 22 Oct, changed the same day to Footwork (it overlapped with Octopus). §1 says Deflector (PCHQ) | Seen in game footage (Leski, 22 Oct) |
+| Shot Stopper's second Signature PlayStyle | Deflector at first on 22 Oct, changed the same day to Footwork (it overlapped with Octopus). §1 says Deflector (PCHQ). In game on 25 Nov Octopus gives Footwork+ (below), so the same-day change may have moved Octopus to Footwork+ and kept Deflector (inferred); check Shot Stopper's Signature PlayStyles in game | Seen in game footage (Leski, 22 Oct); Sources disagree (25 Nov) |
 
-Specializations, with targets only where footage shows them. PRO11's specializations page (updated 1 Nov, from PCHQ) lists every target; not copied (rule 9). They are game facts, so they can be recorded once Chime reads them in game.
+Every specialization, read in game by Chime (PS5 video, 25 Nov, Season 2; one frame per card in `reference/in-game/2026-11-25/sheet-1.png` to `sheet-4.png`). Each card says "New Signature PlayStyle" under its PlayStyle+. Targets are the numbers after the slash; the number before it is the player's current value. Perks are named here as the game names them; what each does is on its card.
 
-| Archetype | Specializations (PlayStyle+) | Targets seen in footage |
-| --- | --- | --- |
-| Shot Stopper | Shot Stopper+ (Cross Claimer+), Spider (1v1 Close Down+), Octopus (Deflector+) | none |
-| Sweeper Keeper | Sweeper Keeper+ (Far Throw+), Launcher (Long Ball Pass+), Extra (Press Proven+): One source (PRO11) | none |
-| Progressor | Progressor+ (Jockey+), Pioneer (Pinged Pass+), Janitor (Quick Step+) | none |
-| Boss | Boss+ (Slide Tackle+), Enforcer (Press Proven+), Capitano (Block+) | none |
-| Marauder | Marauder+ (Slide Tackle+), Speedster (Rapid+), Athlete (Bruiser+) | none |
-| Disruptor | Disruptor+ (Intercept+), Destroyer (Slide Tackle+), Anchor (Bruiser+) | Disruptor+: Interceptions 92, Balance 90, Reactions 90. Anchor: Short Passing 92, Ball Control 90, Dribbling 90. PRO11 agrees on both |
-| Recycler | Recycler+ (Pinged Pass+), Driver (Enforcer+), Thief (Anticipate+) | none |
-| Maestro | Maestro+ (Technical+), Crasher (First Touch+), Heartbeat (Relentless+) | Maestro+: Vision 92, Balance 90, Dribbling 90. PRO11 agrees |
-| Creator | Creator+ (Whipped Pass+), Architect (Dead Ball+), Sniper (Power Shot+) | Sniper: Finishing, Shot Power and Long Shots (values not said) |
-| Spark | Spark+ (Quick Step+), Joker (Whipped Pass+), Ace (Chip Shot+) | Joker: Curve 90 (others not said) |
-| Magician | Magician+ (First Touch+), Hotshot (Power Shot+), Invader (Incisive Pass+) | Invader: Sprint Speed 90 (others not said) |
-| Finisher | Finisher+ (Chip Shot+), Hunter (Gamechanger+), Presser (Relentless+) | Finisher+: Ball Control, Composure, Reactions (values not said). Hunter: Balance (value not said) |
-| Target | Target+ (Acrobatic+), Roamer (Incisive Pass+), Runner (Rapid+) | Runner: Aggression 90 (others not said) |
+| Archetype | Specialization | PlayStyle+ | Perk | Unlock targets |
+| --- | --- | --- | --- | --- |
+| Shot Stopper | Shot Stopper+ | Cross Claimer+ | Quick Recovery | Jumping 90, GK Handling 92, Positioning 90 |
+|  | Spider | 1v1 Close Down+ | Boxer | Acceleration 90, Agility 90, GK Reflexes 92 |
+|  | Octopus | Footwork+ | Anticipator | Strength 90, GK Diving 92, Positioning 90 |
+| Sweeper Keeper | Sweeper Keeper+ | Far Throw+ | Box Defender | Vision 90, GK Diving 92, GK Kicking 90 |
+|  | Launcher | Long Ball Pass+ | Distance Assister | Long Passing 90, GK Kicking 92, GK Reflexes 90 |
+|  | Extra | Press Proven+ | El Loco | Positioning 92, Short Passing 90, Composure 90 |
+| Progressor | Progressor+ | Jockey+ | Wall Bounce | Long Passing 90, Defensive Awareness 90, Standing Tackle 92 |
+|  | Pioneer | Pinged Pass+ | Unexpected Forward | Dribbling 92, Long Passing 90, Short Passing 90 |
+|  | Janitor | Quick Step+ | Last Player Back | Acceleration 92, Sprint Speed 90, Sliding Tackle 90 |
+| Boss | Boss+ | Slide Tackle+ | Physical Tackle Specialist | Strength 90, Aggression 90, Sliding Tackle 92 |
+|  | Enforcer | Press Proven+ | Old School | Composure 92, Vision 90, Ball Control 90 |
+|  | Capitano | Block+ | Sweeper | Defensive Awareness 92, Reactions 90, Agility 90 |
+| Marauder | Marauder+ | Slide Tackle+ | On the Move | Sprint Speed 92, Aggression 90, Sliding Tackle 90 |
+|  | Speedster | Rapid+ | Wing Burner | Dribbling 90, Sprint Speed 92, Acceleration 90 |
+|  | Athlete | Bruiser+ | Wide Recovery | Strength 92, Aggression 90, Defensive Awareness 90 |
+| Disruptor | Disruptor+ | Intercept+ | Wide Recovery | Balance 90, Reactions 90, Interceptions 92 |
+|  | Destroyer | Slide Tackle+ | Give and GOOO | Sprint Speed 90, Strength 92, Sliding Tackle 90 |
+|  | Anchor | Bruiser+ | Workhorse | Ball Control 90, Dribbling 90, Short Passing 92 |
+| Recycler | Recycler+ | Pinged Pass+ | Hard and Fast | Strength 90, Long Passing 90, Short Passing 92 |
+|  | Driver | Enforcer+ | Heart | Sprint Speed 90, Balance 92, Strength 90 |
+|  | Thief | Anticipate+ | Quick Fix | Interceptions 90, Defensive Awareness 90, Standing Tackle 92 |
+| Maestro | Maestro+ | Technical+ | Give and GOOO | Balance 90, Vision 92, Dribbling 90 |
+|  | Crasher | First Touch+ | Raider | Finishing 90, Ball Control 90, Composure 92 |
+|  | Heartbeat | Relentless+ | Foot in and Run | Agility 92, Stamina 90, Aggression 90 |
+| Creator | Creator+ | Whipped Pass+ | Assistant | Vision 92, Crossing 90, Long Passing 90 |
+|  | Architect | Dead Ball+ | Air Mail | Crossing 92, FK Accuracy 90, Shot Power 90 |
+|  | Sniper | Power Shot+ | Stunning Shooter | Finishing 90, Shot Power 92, Long Shots 90 |
+| Spark | Spark+ | Quick Step+ | Twinkle Toes | Agility 92, Sprint Speed 90, Acceleration 90 |
+|  | Joker | Whipped Pass+ | Selfless | Crossing 92, Long Passing 90, Curve 90 |
+|  | Ace | Chip Shot+ | Stunning Shooter | Reactions 90, Ball Control 90, Finishing 92 |
+| Magician | Magician+ | First Touch+ | One, Two | Acceleration 90, Composure 90, Ball Control 92 |
+|  | Hotshot | Power Shot+ | Cut and Shoot | Finishing 90, Shot Power 92, Long Shots 90 |
+|  | Invader | Incisive Pass+ | Silver Platter | Sprint Speed 90, Vision 90, Long Passing 92 |
+| Finisher | Finisher+ | Chip Shot+ | 6th Sense | Ball Control 90, Composure 92, Reactions 90 |
+|  | Presser | Relentless+ | Turnover Finisher | Agility 90, Stamina 92, Aggression 90 |
+|  | Hunter | Gamechanger+ | First Time Finisher | Balance 90, Finishing 90, Curve 92 |
+| Target | Target+ | Acrobatic+ | Line Breaker | Agility 90, Jumping 92, Volleys 90 |
+|  | Roamer | Incisive Pass+ | Blind Passer | Vision 90, Long Passing 90, Short Passing 92 |
+|  | Runner | Rapid+ | High Speed Shooter | Sprint Speed 92, Strength 90, Aggression 90 |
 
-Names and PlayStyle+ in this table are seen in game footage (Leski, 15 Sep and 22 Oct) except Sweeper Keeper's.
+Read in game (25 Nov). Changes from the footage table it replaces: Octopus gives **Footwork+**, not Deflector+; Sweeper Keeper's three are now seen; every target is known. Keeper cards print "Positioning", recorded in the archetype file as GK Positioning (inferred). The rule "one target at 92, two at 90" holds for all 39. Perks repeat across archetypes (Wide Recovery, Give and GOOO, Stunning Shooter).
 
 ### 10.5 Respecs and resets
 
