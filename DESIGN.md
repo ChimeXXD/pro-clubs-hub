@@ -18,8 +18,13 @@ This file starts with the Sinima rules that fit any product. Add a rule each tim
   Why: on Sinima, Chime judged hovers too dark twice and landed at 2 %, a third of the first 6 %.
   <!-- Sinima 2026-11-16, D-110, D-111 -->
 
-- **Toasts are coloured by what they say: info and saved in a light action blue, errors in a deep red mixed from Figma's red/500, never pure red, never navy.** *Carried.*
-  <!-- Sinima 2026-11-16, D-109 d -->
+- **Toasts are a cream pill (bg/inverse) with ink text; the icon carries the tone: ink for saved and info, deep amber for a warning, deep red for an error.** Short toasts hug their text; a long warning wraps at 340 px. Supersedes the carried Sinima rule (blue info, red errors).
+  Why: Chime picked "A · Cream pill" from the toast options, 25 Nov 2026.
+  <!-- 2026-11-25, D-94 -->
+
+- **The bottom nav's current tab is a lime pill with its label in condensed capitals; other tabs are icons only, on a page-coloured bar.**
+  Why: Chime picked "the lime tab" (option B, team-sheet type), 25 Nov 2026.
+  <!-- 2026-11-25, D-94 -->
 
 - **No EA look.** No game UI chrome, no card-art frames, no rarity colours copied from Ultimate Team cards. Our own diagrams for slider tracks and preset grids.
   Why (*inferred*): EA's content policy bars implying endorsement (D-04).

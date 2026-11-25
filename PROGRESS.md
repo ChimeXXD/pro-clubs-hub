@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404 replay card; cream-pill toast and lime-tab nav everywhere (Wed 25 Nov 2026)
+
+- **Chime:** 404 option C with the shot replaying (D-93); toast A · Cream pill and bottom nav B · Lime tab across the design (D-94; DESIGN.md updated).
+- **Figma, 404:** phone (420:4819), tablet (423:4713) and desktop (423:4836) in Phase 3's 404 row; desktop and tablet put copy, search and buttons left and the replay card right, with the tag row reset to native size after scaling. "404 · Replay storyboard" (424:4664) shows the ball at 0 s (goal mouth), 0.3 s (at the bar) and 0.6 s (over the bar, speed lines on). Old 404 (three sizes) and options A and B on Archive.
+- **Figma, components:** Nav item State=Active now lime with condensed capitals (from option B); all five Bottom nav variants take option B's bar fill, so every phone screen's nav updates. Toast variants are cream pills (ink text; warning icon deep amber, danger deep red); success, info and danger hug their text, warning wraps at 340 px. The two toasts on screens (link copied, face updated) update with them; the link-copied toast is centred.
+- **Checked:** renders of the Bottom nav set, the Toast set, the link-copied screen, the 404 at desktop and tablet, and the storyboard; no overlaps in Phase 3.
+
 ## 404: three new options without the faces row (Wed 25 Nov 2026)
 
 - **Chime:** the 404 "look[s] weird"; drop "Or try a face"; three new variants to pick from.
