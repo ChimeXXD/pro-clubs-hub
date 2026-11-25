@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home: tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** design Home for iPad and desktop. Recorded as D-76.
+- **Figma, Phase 3 "Home" row:** tablet 367:1629 (834), desktop 367:1836 (1440), beside the phone.
+- **Layout:** avatars spread across (104 / 128 px); Face of the week beside What changed; Meta builds as a grid (tablet 2 × 365 px plus a dashed "View all builds" tile; desktop 3 × 384 px); season card; Top bar with no section current; Footer notice.
+- **Fixed after the first render:** the Face of the week picture stayed phone-sized in a card stretched to the changelog's height (now 171 × 214, filling it); the avatar row clipped the last circle's outline (unclipped).
+- **Checked:** renders of both; audit (text 14 px or more, Barlow only, no overflow); no overlaps in Phase 3 or between phases.
+- **Copy (draft):** "Pick an archetype, then a build."
+
 ## Home picked: C2 with three meta builds (Wed 25 Nov 2026)
 
 - **Chime:** C2; the three builds are attack (Meta Finisher), midfield (Maestro) and defence (Boss), each opening its build page; "View all builds" to the Builds page. Recorded as D-75.
