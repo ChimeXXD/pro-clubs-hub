@@ -2,6 +2,22 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Build page on iPad and desktop (Wed 25 Nov 2026)
+
+- **Chime:** approved the refined build page; asked for iPad and desktop (D-63).
+- **Phase 1, row "Build · Meta Finisher":**
+  - Phone 298:3630.
+  - Tablet 306:794: a 300 px summary column beside the details, 40 px gap.
+  - Desktop 306:1286: a 400 px summary column beside 736 px of details, 64 px gap. Body details and PlayStyles are in three columns, the attribute groups in two.
+  - The four state placeholders moved to their own row, "Build states"; Phases 2–5 moved down 1,135 px.
+- **Fixed while reviewing:**
+  - The desktop attribute groups first came out 2,288 px wide (wrap container hugging); now they are two 348 px columns, with bars and values re-laid.
+  - The sample note and the AP line wrapped into the title and the slider on tablet. Their fixed-height boxes are now auto layout on all three sizes.
+  - The gap above Copy build was 2/22/42 px across sizes; now 20 px everywhere.
+  - Two stretched label boxes on desktop shrank back to their text.
+- **Checked:** full renders of desktop and tablet; 2× renders of the phone and tablet tops. The audit on all three finds no text under 14 px and nothing past the side edges (20 / 40 / 120). No overlaps in Phase 1 or on the page.
+- **Next:** the build states (specialization not reached, not yet checked, older season, copied toast), phone first.
+
 ## Build page: picture block and Mastery made clear (Wed 25 Nov 2026)
 
 - **Chime:** "What does the mastery mean close to finishing and composure?" and "the picture next to the finisher is not aligned properly… find a way to present that information properly."
