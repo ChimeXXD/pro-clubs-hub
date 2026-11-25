@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "finisher-leski",
+  "slug": "finisher-leski",
+  "status": "draft",
+  "_example": "NOT READ YET. Waiting on values from the linked video. Before publishing, confirm in the video: the archetype is finisher (its title names only the position), and it shows Season 2 (season 2 here is assumed).",
+  "title": "PLACEHOLDER",
+  "archetype": "finisher",
+  "positions": [
+    "ST"
+  ],
+  "summary": "PLACEHOLDER",
+  "badge": null,
+  "level": 55,
+  "picture": null,
+  "body": {
+    "heightCm": "PLACEHOLDER",
+    "weightKg": "PLACEHOLDER",
+    "accelerate": "PLACEHOLDER"
+  },
+  "attributes": [
+    {
+      "name": "Acceleration",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Sprint Speed",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Att. Position",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Finishing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Shot Power",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Long Shots",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Volleys",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Penalties",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Vision",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Crossing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "FK Accuracy",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Short Passing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Long Passing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Curve",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Agility",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Balance",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Reactions",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Ball Control",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Dribbling",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Composure",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Interceptions",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Heading Accuracy",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Def. Awareness",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Standing Tackle",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Sliding Tackle",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Jumping",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Stamina",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Strength",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Aggression",
+      "value": "PLACEHOLDER"
+    }
+  ],
+  "playStyles": {
+    "signature": [
+      "Low Driven Shot",
+      "First Touch"
+    ],
+    "plus": [
+      "PLACEHOLDER"
+    ],
+    "regular": [
+      "PLACEHOLDER"
+    ]
+  },
+  "specialization": "PLACEHOLDER",
+  "skillMoves": "PLACEHOLDER",
+  "weakFoot": "PLACEHOLDER",
+  "spend": null,
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "Leski",
+      "url": "https://www.youtube.com/watch?v=dnz3MWQwp3o",
+      "creatorId": null
+    },
+    {
+      "role": "reference",
+      "name": "Leski",
+      "url": "https://www.youtube.com/watch?v=dnz3MWQwp3o",
+      "creatorId": null
+    }
+  ],
+  "sources": [
+    {
+      "title": "Leski, This Level 55 Striker Build is GOATED in FC 27 Clubs!",
+      "url": "https://www.youtube.com/watch?v=dnz3MWQwp3o",
+      "accessed": "2026-11-25"
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-25",
+      "note": "Draft from Leski's video; values not read yet."
+    }
+  ],
+  "createdAt": "2026-11-25",
+  "updatedAt": "2026-11-25"
+}
