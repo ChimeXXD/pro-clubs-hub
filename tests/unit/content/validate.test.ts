@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { validateArchetypeFile } from "@/lib/content/validate-other";
 import { validateAll, validateBuild, validateFace, type Context } from "@/lib/content/validate";
 import faceGood from "../fixtures/face-good.json";
 import buildGood from "../fixtures/build-good.json";
@@ -171,6 +172,136 @@ describe("validateBuild", () => {
   it("fails a status that isn't draft, published or withdrawn", () => {
     const bad = changed(buildGood, (b) => (b.status = "Published"));
     expect(messages(validateBuild("builds/x.json", bad, ctx))).toContain('must be one of draft, published, withdrawn, got "Published"');
+  });
+
+  it("fails an attribute the game doesn't have, so a typo can't ship", () => {
+    const bad = changed(buildGood, (b) => (b.attributes[0].name = "Acceleraton"));
+    expect(messages(validateBuild("builds/x.json", bad, ctx))).toEqual(['"Acceleraton" is not an attribute']);
+  });
+
+  it("fails an attribute listed twice, and a value over 99", () => {
+    const bad = changed(buildGood, (b) => b.attributes.push({ name: "Acceleration", value: 100 }));
+    expect(validateBuild("builds/x.json", bad, ctx).map((p) => [p.path, p.message])).toEqual([
+      ["attributes[1].name", "is listed twice"],
+      ["attributes[1].value", "must be a whole number from 0 to 99"],
+    ]);
+  });
+
+  it("passes each badge, and fails one that isn't in the list (D-34, D-62)", () => {
+    for (const badge of ["meta", "recommended", null]) {
+      expect(validateBuild("builds/x.json", changed(buildGood, (b) => (b.badge = badge)), ctx)).toEqual([]);
+    }
+    const bad = changed(buildGood, (b) => (b.badge = "most-copied"));
+    expect(validateBuild("builds/x.json", bad, ctx).map((p) => p.path)).toEqual(["badge"]);
+  });
+
+  it("fails a published Meta pick nobody has checked in game (D-30)", () => {
+    const bad = changed(buildGood, (b) => {
+      b.badge = "meta";
+      b.versionTag.verifiedOn = null;
+    });
+    expect(messages(validateBuild("builds/x.json", bad, ctx))).toEqual(["a Meta pick must be checked in game (D-30)"]);
+  });
+
+  it("passes a picture under builds/ with its maker, and fails one from anywhere else (D-41)", () => {
+    const picture = { file: "builds/test-spark-build.webp", alt: "Chime's Pro in FC 27", by: "Chime" };
+    expect(validateBuild("builds/x.json", changed(buildGood, (b) => (b.picture = picture)), ctx)).toEqual([]);
+    const bad = changed(buildGood, (b) => (b.picture = { ...picture, file: "https://example.com/a.png" }));
+    expect(messages(validateBuild("builds/x.json", bad, ctx))).toEqual(['must be a file under "builds/"']);
+  });
+
+  it("fails a build missing one of the new fields, which are null when empty", () => {
+    const bad = changed(buildGood, (b) => {
+      delete b.badge;
+      delete b.picture;
+      delete b.spend;
+    });
+    expect(validateBuild("builds/x.json", bad, ctx).map((p) => p.path)).toEqual(["badge", "picture", "spend"]);
+  });
+
+  // The fixture's one attribute, Acceleration 90, as a spend order: 70 at the start, then 85, then 90 (D-43).
+  const spend = {
+    start: [{ name: "Acceleration", value: 70 }],
+    startStars: { skillMoves: 4, weakFoot: 4 },
+    steps: [
+      { raise: "Acceleration", to: 85 },
+      { raise: "Skill Moves", to: 5 },
+      { raise: "Acceleration", to: 90 },
+    ],
+  };
+
+  it("passes a spend order that ends on the build's own values", () => {
+    expect(validateBuild("builds/x.json", changed(buildGood, (b) => (b.spend = spend)), ctx)).toEqual([]);
+  });
+
+  it("fails a spend order that ends somewhere else", () => {
+    const bad = changed(buildGood, (b) => (b.spend = { ...spend, steps: spend.steps.slice(0, 2) }));
+    expect(messages(validateBuild("builds/x.json", bad, ctx))).toEqual(["Acceleration ends at 85, but the build says 90"]);
+  });
+
+  it("fails a step that doesn't raise its value, or raises something with no starting value", () => {
+    const bad = changed(buildGood, (b) => {
+      b.spend = { ...spend, steps: [...spend.steps, { raise: "Acceleration", to: 90 }, { raise: "Agility", to: 80 }] };
+    });
+    expect(validateBuild("builds/x.json", bad, ctx).map((p) => [p.path, p.message])).toEqual([
+      ["spend.steps[3].to", "must raise Acceleration above 90"],
+      ["spend.steps[4].raise", '"Agility" has no starting value'],
+    ]);
+  });
+
+  it("lets a draft hold PLACEHOLDER in a spend order without checking where it ends", () => {
+    const draft = changed(buildGood, (b) => {
+      b.status = "draft";
+      b.spend = { ...spend, steps: [{ raise: "Acceleration", to: "PLACEHOLDER" }] };
+    });
+    expect(validateBuild("builds/x.json", draft, ctx)).toEqual([]);
+  });
+
+  it("fails a specialization the archetype doesn't have, once its list is recorded", () => {
+    const known: Context = { ...ctx, specializations: new Map([["spark", new Set(["Joker"])]]) };
+    const named = (name: string) => changed(buildGood, (b) => (b.specialization = name));
+    expect(validateBuild("builds/x.json", named("Joker"), known)).toEqual([]);
+    expect(messages(validateBuild("builds/x.json", named("Hunter"), known))).toEqual(['"Hunter" is not one of spark\'s specializations']);
+    expect(validateBuild("builds/x.json", named("Hunter"), ctx)).toEqual([]);
+  });
+});
+
+describe("validateFace turn frames (D-35)", () => {
+  it("passes a turn, and null for a face with no clip yet", () => {
+    for (const turn of [null, { folder: "faces/test-footballer-2010/turn", frames: 36, by: "Chime" }]) {
+      expect(validateFace("faces/x.json", changed(faceGood, (f) => (f.turn = turn)), ctx)).toEqual([]);
+    }
+  });
+
+  it("fails a turn outside faces/ or with too few frames to turn", () => {
+    const bad = changed(faceGood, (f) => (f.turn = { folder: "../other", frames: 1, by: "Chime" }));
+    expect(validateFace("faces/x.json", bad, ctx).map((p) => p.path)).toEqual(["turn.folder", "turn.frames"]);
+  });
+});
+
+describe("validateArchetypeFile specializations (RESEARCH 10.4)", () => {
+  const good = read("tests/unit/fixtures/content/good/archetypes/fc27.json");
+  const withSpec = (spec: unknown) => changed(good, (f) => (f.archetypes[0].specializations = [spec]));
+  const problems = (data: unknown) => validateArchetypeFile("archetypes/fc27.json", data);
+  const joker = {
+    name: "Joker",
+    playStyle: "Whipped Pass",
+    targets: [{ attribute: "Curve", value: 90 }],
+    sourceIds: ["test-source"],
+  };
+
+  it("passes targets, and null targets when nobody has read them", () => {
+    expect(problems(withSpec(joker))).toEqual([]);
+    expect(problems(withSpec({ ...joker, targets: null }))).toEqual([]);
+  });
+
+  it("passes a target whose value isn't known yet", () => {
+    expect(problems(withSpec({ ...joker, targets: [{ attribute: "Curve", value: null }] }))).toEqual([]);
+  });
+
+  it("fails a target that isn't an attribute, and a specialization with no source", () => {
+    const bad = withSpec({ ...joker, targets: [{ attribute: "Curv", value: 90 }], sourceIds: [] });
+    expect(problems(bad).map((p) => p.message)).toEqual(['"Curv" is not an attribute', "must have at least 1"]);
   });
 });
 

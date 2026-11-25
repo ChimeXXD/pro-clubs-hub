@@ -11,7 +11,9 @@
     "LW"
   ],
   "summary": "PLACEHOLDER",
+  "badge": null,
   "level": "PLACEHOLDER",
+  "picture": null,
   "body": {
     "heightCm": "PLACEHOLDER",
     "weightKg": "PLACEHOLDER",
@@ -54,6 +56,7 @@
   "specialization": "PLACEHOLDER",
   "skillMoves": "PLACEHOLDER",
   "weakFoot": "PLACEHOLDER",
+  "spend": null,
   "version": 1,
   "versionTag": {
     "game": "fc27",

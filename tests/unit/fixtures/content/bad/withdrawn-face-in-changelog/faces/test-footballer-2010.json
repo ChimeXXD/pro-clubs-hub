@@ -118,6 +118,7 @@
       "by": "Chime"
     }
   ],
+  "turn": null,
   "embeds": [
     {
       "provider": "youtube",

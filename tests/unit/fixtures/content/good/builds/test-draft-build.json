@@ -10,7 +10,9 @@
     "LW"
   ],
   "summary": "Test fixture summary.",
+  "badge": null,
   "level": "PLACEHOLDER",
+  "picture": null,
   "body": {
     "heightCm": 180,
     "weightKg": 75,
@@ -35,6 +37,7 @@
   "specialization": null,
   "skillMoves": 5,
   "weakFoot": 4,
+  "spend": null,
   "version": 1,
   "versionTag": {
     "game": "fc27",
