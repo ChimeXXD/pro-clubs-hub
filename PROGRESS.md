@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: Neymar Jr (Santos, mohawk) added (Wed 25 Nov 2026)
+
+- **Chime:** add the Neymar mohawk face from https://youtu.be/UOrV95yMy50 (CodeName Max, "How to Make SANTOS NEYMAR JR in EA FC 27 (MOHAWK)").
+- **Crop:** frame at 25 s, measured with Vision and cropped to the shared rule: eyes (302, 271), 143 px apart; side by side with the other four, eye line and centre match. The mohawk reaches the top edge.
+- **Figma:** Neymar is the second footballer in A, B and C ("Footballer · Santos"; the era comes from the video title). Chips All 5, Footballers 3. A is now three rows of two, with "Missing a face?" as the sixth grid cell (fixed at 170.5 px after the row split unevenly, 154/188). B's Footballers rail and C's Footballers list have three faces. No overflow; the options still end above the placeholder row.
+- **Next:** Chime picks A, B or C.
+
 ## Faces library: demo faces aligned to one rule (Wed 25 Nov 2026)
 
 - **Chime:** the pictures aren't centred the same way (Michael Jackson especially); "everything is exactly in the same format".
