@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## PlayStyle+ limited to the archetype (Wed 25 Nov 2026)
+
+- **Chime:** only the build's own PlayStyle+ can be picked; specializations can swap one in. Recorded as D-87.
+- **Figma, Submit a build · PlayStyles (401:3315):** counts now "2 of 2 PlayStyle+" and "5 PlayStyles". New PlayStyle+ panel: the two current PlayStyle+ (Low Driven Shot+ Signature, Chip Shot+ from Finisher+), a note that Finisher+ swaps First Touch+ for Chip Shot+, specialization radio list (None, Finisher+ · Chip Shot+, Hunter · Gamechanger+, Presser · Relentless+, from RESEARCH §10.4) and "It replaces" chips. The grid is regular PlayStyles only: Chip Shot and Low Driven Shot show "PlayStyle+ above"; a red note under Shooting explains why Finesse Shot can't be PlayStyle+ on a Finisher.
+- **Checked:** render of the whole screen.
+- **TODO(Chime):** confirm the 39 specializations and their PlayStyle+ in game (§10.4) so they can go into `content/archetypes/fc27.json`; the editor enforces the rule from that file.
+
 ## Submit a build redesigned; faces become requests (Wed 25 Nov 2026)
 
 - **Chime:** Submit is "Submit a build"; faces are requested and voted on, then made by us; the build editor must be fast (level fills the AP, attributes by slider, typing and − / +, AP counter live, 10 minutes down to 5). Answers to three questions: a free database for face votes, design the AP counter now and switch it on after the prices are recorded, share at once and list after review. Recorded as D-83 to D-86 and O-19.
