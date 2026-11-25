@@ -6,7 +6,7 @@ From Sharon, 25 Nov 2026, for Chime to approve, change or reject. Nothing here i
 
 We can't make every build ourselves. Each archetype levels up on its own, and on 22 Nov Chime's were Finisher 44, Maestro 42, Progressor 34 and ten at level 1 (RESEARCH §9). Streamers have maxed theirs and publish builds on YouTube. Pausing videos and copying values by hand is slow, and it was the problem with faces too.
 
-Sharon's idea: take builds from streamers who have tested them, compare where they differ, and work out what a player below level 55 can afford.
+Sharon's idea: take builds from streamers who have tested them, credit and link each streamer, compare where they differ, and work out what a player below level 55 can afford. Streamers are not asked for permission first.
 
 ## What today's rules say
 
@@ -24,14 +24,16 @@ RESEARCH §10 already takes game facts (prices, AP per level) from the captions 
 
 ## Options
 
-| | A. Assisted reading | B. Fully automatic | C. Creators send theirs |
-| --- | --- | --- | --- |
-| How | A person watches, pauses on the final attributes screen and takes one screenshot. Claude reads it into a draft build | A script downloads videos or captions and reads them | Creators submit through `/submit`, or say yes to us using a video |
-| Our time per build | Minutes (estimate, not tested) | Almost none | Waiting for replies |
-| YouTube's terms | No robot. A person is viewing; the screenshot is still a copy, so it stays private | Not allowed without permission | No problem |
-| Accuracy | A person confirms every value against the frame | Misread numbers can slip in | The creator's own numbers |
+| | A. Assisted reading | B. Fully automatic |
+| --- | --- | --- |
+| How | A person watches, pauses on the final attributes screen and takes one screenshot. Claude reads it into a draft build | A script downloads videos or captions and reads them |
+| Our time per build | Minutes (estimate, not tested) | Almost none |
+| YouTube's terms | No robot. A person is viewing; the screenshot is still a copy, so it stays private | Not allowed without permission |
+| Accuracy | A person confirms every value against the frame | Misread numbers can slip in |
 
-**Recommendation: A to prepare, C to publish.** Read the video with A, then publish once the creator says yes. Optional helper: YouTube's official API can list new videos from chosen channels and read their descriptions, where some creators may write the build out. Its free quota and data-storage rules need checking first.
+**Recommendation: A, with credit.** Read the video, credit and link the streamer on the build, and publish after Chime's review. Anyone can ask for removal through `/takedown` (72 hours, D-10). Optional helper: YouTube's official API can list new videos from chosen channels and read their descriptions, where some creators may write the build out. Its free quota and data-storage rules need checking first.
+
+**What this changes:** D-08 and `content/README.md` rule 4 say to ask before publishing a creator's full slider list, and rule 6 says not to bulk-copy builds. Chime would need to allow credited builds without asking. Credit is not the same as permission, so a streamer could object; the takedown route is the answer to that.
 
 ## How A would work
 
@@ -60,7 +62,7 @@ One Finisher video and one Maestro video, because Chime can check those two clos
 
 ## Questions for Chime
 
-1. May we read builds from videos this way, and may a build be published with a creator's yes before one of us makes it in game?
+1. May we read builds from videos this way, and may a credited build be published without asking the streamer, and before one of us makes it in game?
 2. Does D-36 cover builds, or only faces?
 3. Which past project pulled information from YouTube, and how? Nothing was found in your public repos.
 4. Which two or three streamers do you trust for builds?
