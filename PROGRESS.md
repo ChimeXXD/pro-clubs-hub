@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 4: three Changelog and three Submit options on phone (Wed 25 Nov 2026)
+
+- **Chime:** "design the change log and submit screen. Three different variant of each."
+- **Figma, Phase 4, two new rows under the placeholders (phone 390, bottom nav on Changelog / Submit):**
+  - Changelog A · Timeline (383:3075): a rail with a dot per entry (lime for the newest), date and kind/season tags, each entry a card with its changes, Source link and "We updated".
+  - Changelog B · Seasons and filters (383:3158): a "Season 3 starts Thu 3 Dec" note, kind filter chips, entries grouped under Season 2 (Now) and Season 1 as rows with a big date; the newest open.
+  - Changelog C · Latest first (383:3241): the newest entry as a hero with numbered changes and "Read EA's notes"; earlier entries as a plain list.
+  - Submit A · One form with tabs (383:3325): A face / A build switch, section tabs (Basics, Skin, Head, Face, Hair, Sculpt, Credit), Basics fields with one inline error on the preset, Submit for review and Copy JSON.
+  - Submit B · One question at a time (383:3408): section progress bar, "Which preset did you start from?", a large focused preset field, the saved-heads tip (A-09), Back / Next, Copy JSON so far.
+  - Submit C · Checklist and preview (383:3491): how the card will show (title, kind, "not yet checked in game" tag, credit line), the seven parts with Done / In progress / Not started, Submit for review disabled until the parts are done.
+- **Data:** the three entries in `content/changelog/` as written (titles, changes, EA source titles); `affects` is empty in all three, so "No faces or builds changed." The submit examples use Neymar Jr (Mohawk) and CodeName Max's video (UOrV95yMy50); no game values are shown.
+- **Checked:** renders of all six; audit (text 14 px or more, text styles, Barlow only, token-bound fills, no overflow); no overlaps; Phase 4 grew and Phase 5 moved down.
+- **Copy (drafts):** the page intros, "Season 3 starts Thu 3 Dec / Every face and build is checked again that day.", "We updated", "Read EA's notes", "Earlier", field labels, hints and the inline error, "Which preset did you start from?", the C status words and "Finish … to send."
+- **Next:** Chime picks one of each; then the remaining Submit states (build form, inline errors, sent) and tablet 834 / desktop 1440.
+
 ## 404 "Over the bar" on all sizes (Wed 25 Nov 2026)
 
 - **Chime:** picked option C. Recorded as D-81.
