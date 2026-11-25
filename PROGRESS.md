@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home: two variations of C (Wed 25 Nov 2026)
+
+- **Chime:** likes C, but not "builds by position"; wants builds by archetype like B, and a version that sends people to the build page instead of the archetype page.
+- **C1 · builds by archetype (364:1916):** C with B's full-size Stance card rail (Finisher, Spark, Magician, Target) under "Builds by archetype" / "See all", and "Tap a card to see that archetype's builds." Each card opens its archetype page.
+- **C2 · builds first (364:2118):** C with a "Meta builds" / "All builds" rail of the approved stat-strip build cards (the three Finisher samples, 320 px wide) and "Sample builds: values not checked in game yet. Tap one to open its build." Each card opens its build page.
+- Row label now "Home · options (pick one)"; A, B, C stay beside C1 and C2 until the pick.
+- **Checked:** renders of both; text 14 px or more, Barlow only; no overlaps in Phase 3.
+- **Note:** only Finisher sample builds exist, so C2's rail is three Finishers; real content would show one meta pick per archetype.
+
 ## Home: three options for Chime to pick (Wed 25 Nov 2026)
 
 - **Chime:** "design the next page". Next page: Home (Phase 3). Phase 2 still has states left (face finished, ticks reset, library empty filter) and O-18.
