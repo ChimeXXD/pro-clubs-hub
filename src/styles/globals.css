@@ -1,2 +1,55 @@
 @import "tailwindcss";
 @import "./tokens.css";
+
+/* Light mode, as the tokens decide it: the device's setting unless data-theme on <html> overrides it (D-37).
+   Used where a token can't switch on its own, such as the two-colour logo files: class="light:hidden". */
+@custom-variant light {
+  @media (prefers-color-scheme: light) {
+    &:where(:root:not([data-theme="dark"]) *) {
+      @slot;
+    }
+  }
+  &:where(:root[data-theme="light"] *) {
+    @slot;
+  }
+}
+
+/* A one-colour SVG from public/icons used as a mask, so it takes the text colour of its parent (currentColor).
+   The file's shape is untouched; its own fill is ignored. Set the file with style --icon: url(...). */
+@utility icon-mask {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask-image: var(--icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* Makes a small control's tap area at least the touch-target token (44 px on touch screens) without moving
+   anything: an invisible ::before, centred on the control. For text links and chips drawn smaller in Figma. */
+@utility tap-target {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, var(--layout-touch-target));
+    height: max(100%, var(--layout-touch-target));
+    translate: -50% -50%;
+  }
+}
+
+@layer base {
+  /* Greyscale smoothing, as Figma draws text: macOS subpixel smoothing thickens light text on dark pages. */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}

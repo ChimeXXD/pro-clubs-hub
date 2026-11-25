@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDay, versionWording } from "@/lib/content/version";
+import { formatDay, seasonLabel, versionWording } from "@/lib/content/version";
 import { CURRENT_SEASON } from "@/lib/site";
 import type { VersionTag } from "@/lib/content/types";
 
@@ -67,5 +67,15 @@ describe("the current season", () => {
   it("is what versionWording compares against when no season is passed", () => {
     expect(versionWording(tag()).olderSeason).toBeNull();
     expect(versionWording(tag({ season: CURRENT_SEASON - 1 })).olderSeason).toBe(`Made for Season ${CURRENT_SEASON - 1}. Values may have changed since.`);
+  });
+});
+
+describe("seasonLabel", () => {
+  it("names the game and the current season for the top bar's season chip", () => {
+    expect(seasonLabel()).toBe(`FC 27 · Season ${CURRENT_SEASON}`);
+  });
+
+  it("follows the season it is given, for the Season 3 switch on 3 Dec", () => {
+    expect(seasonLabel(3)).toBe("FC 27 · Season 3");
   });
 });

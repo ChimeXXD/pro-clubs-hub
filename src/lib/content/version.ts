@@ -27,6 +27,11 @@ export function versionWording(version: VersionTag, currentSeason: number = CURR
   };
 }
 
+/** The top bar's season chip: "FC 27 · Season 2". Links to the changelog. */
+export function seasonLabel(season: number = CURRENT_SEASON, game: Game = "fc27"): string {
+  return `${GAME_NAME[game]} · Season ${season}`;
+}
+
 /** "2026-12-03" → "3 Dec 2026". Read from the text, not a Date, so no time zone can shift the day. */
 export function formatDay(day: IsoDate): string {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(day);

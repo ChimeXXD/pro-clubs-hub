@@ -56,6 +56,12 @@ describe("src/styles/tokens.css mirrors the Figma snapshot", () => {
     expect(block("@media (pointer: coarse)")).toContain(`--layout-touch-target: ${figma.tokens["layout/touch-target"].phone}px;`);
   });
 
+  it("names the same font variables that src/app/fonts.ts gives next/font", () => {
+    const fonts = readFileSync(join(ROOT, "src", "app", "fonts.ts"), "utf8");
+    for (const v of fonts.matchAll(/variable: "(--font-[a-z-]+)"/g)) expect(css).toContain(`var(${v[1]}, `);
+    expect([...fonts.matchAll(/variable: "/g)]).toHaveLength(Object.keys(figma.fonts).length);
+  });
+
   it("follows the device's light or dark setting, and a switch overrides it (D-37)", () => {
     expect(block(":root {")).toContain("color-scheme: light dark;");
     expect(block(':root[data-theme="light"]')).toContain("color-scheme: light;");

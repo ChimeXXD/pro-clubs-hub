@@ -63,8 +63,8 @@
   --color-system-tooltip: light-dark(#0b3d2e, #f7f3e6);
   --color-system-on-tooltip: light-dark(#f7f3e6, #101113);
 
-  --font-display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
-  --font-text: "Barlow", system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed, "Barlow Condensed"), "Arial Narrow", system-ui, sans-serif;
+  --font-text: var(--font-barlow, "Barlow"), system-ui, sans-serif;
   --default-font-family: var(--font-text);
 
   /* Tokens and Typography at phone (390) */
@@ -123,6 +123,7 @@
   --shadow-elevation-1: 0px 1px 2px 0px #010f0a3d;
   --shadow-elevation-2: 0px 4px 12px -2px #010f0a52, 0px 1px 3px 0px #010f0a33;
   --shadow-elevation-3: 0px 12px 32px -6px #010f0a70, 0px 2px 6px 0px #010f0a3d;
+  --shadow-bottom-nav: 0px 8px 30px 0px #00000066;
 }
 
 /* Tablet (834 in Figma) from 744 px: only the values that differ from phone. */

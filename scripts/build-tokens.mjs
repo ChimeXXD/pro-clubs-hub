@@ -41,7 +41,10 @@ export function contrastRatio(a, b) {
 }
 
 const FALLBACK = { "Barlow Condensed": '"Arial Narrow", system-ui, sans-serif', Barlow: "system-ui, sans-serif" };
-const font = (family) => `"${family}", ${FALLBACK[family] ?? "sans-serif"}`;
+// next/font self-hosts each family and names it in a variable (--font-barlow, --font-barlow-condensed; see
+// src/app/fonts.ts); the plain family name is the fallback when that variable is missing.
+const fontVar = (family) => `--font-${family.toLowerCase().replaceAll(" ", "-")}`;
+const font = (family) => `var(${fontVar(family)}, "${family}"), ${FALLBACK[family] ?? "sans-serif"}`;
 
 /** Sizes that change between two breakpoints, as declarations. */
 function sizeOverrides(sizes, from, to) {

@@ -29,7 +29,7 @@ All of Chime's open decisions are made (D-96, D-99): Supabase for face requests,
 1. Chime answers the decisions above and approves each phase (rule 10: on the iPhone next to the TV).
 2. Claude swaps the drawn copies for component instances.
 3. Done 25 Nov: UI-BRIEF §1–3, `tokens.css` generated from the Figma snapshot (`npm run tokens`, D-101), CLAUDE.md points at hyFx4Audhn4F9KxL9bRCLD. Open for Chime: O-20 (input borders), O-21 (hover fill).
-4. Then build, phase by phase, tests first for `src/lib/`. First unit: the app shell (Barlow through `next/font`, page colours on `<body>`, top bar, bottom nav, notice), then one screen per session (proof fidelity).
+4. Building (25 Nov): the app shell is done (D-102). Next: one screen per session, Phase 3's Home first (Figma 364:2118 / 367:1629 / 367:1836), then Phase 1 Builds and Phase 2 Faces. Each screen: read its Figma frame with get_design_context, e2e test first, render compared with the Figma screenshot at 393, 834 and 1440, verifier and code review, then commit. Sharon's PRs are on hold (Chime, 25 Nov).
 
 ### How to work with Chime on design (learned)
 - Show work in Figma, never a new file; rejected work goes to Archive, never deleted.

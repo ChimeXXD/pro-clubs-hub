@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Build started: the app shell from Figma (Wed 25 Nov 2026)
+
+- **Chime:** "Leave Sharon PR and let's start moving the design on Figma to code."
+- **Built (D-102):** `src/components/shell/` TopBar (205:407: phone 60 px with logo, season chip, search; tablet and desktop 72 px with the four sections, content 1200 px on desktop), BottomNav (282:521: phone-only floating pill, 344 px, 24 px up plus the home indicator, lime current pill, Page=None), SiteFooter (205:434: logo, four links, the notice, 96 px plus safe area below on phone), Logo, Icon. `src/app/fonts.ts`: Barlow 500/600/700 and Barlow Condensed 800 self-hosted by next/font. `src/lib/nav.ts` (sections, footer links, isCurrent); `seasonLabel()` in version.ts. Assets in `public/icons`, `public/brand` (Figma exports, byte-identical).
+- **Tests:** unit 161 (nav and seasonLabel red first); e2e 20 at 390 and 360 (red first: no top bar), covering sizes, 24 px nav offset, current pill, notice, tablet and desktop nav, 1200 px desktop content, no overflow at 360, 744 px padding, 44 px tap areas, the light-mode ring.
+- **Compared with Figma:** renders of the phone top bar, phone footer and desktop top bar at 1x against Figma screenshots: mean pixel difference 1.8–5.2, text within 1–2 px. Computed fonts match the text styles exactly. The first render was visibly heavier: fixed with greyscale smoothing.
+- **Reviews:** code review found 8, fixed 3 (footer space ignored the iPhone safe area, a misplaced comment, duplicate image setting); I fixed 3 more (one name for both navs, unused blur, a test that fonts.ts and tokens name the same font variables). Verifier failed 2 of 15: the chip's tap area was 42 px and short links under 44 px wide; the tablet bar overran its padding at 744 px. Both fixed with tests.
+- **Not verified:** on Chime's iPhone (rule 10); the safe-area spacing on a real home indicator; links to unbuilt pages 404 for now.
+
 ## Code prep: tokens generated from Figma, UI brief §1–3 (Wed 25 Nov 2026)
 
 - **Chime:** "Prep now, build after": do the work that doesn't wait on the iPhone approval.
