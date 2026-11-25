@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Changelog built (Wed 25 Nov 2026)
+
+- **Built:** `/changelog` (Figma 383:3158 / 390:2540 / 390:2700, option B, D-82) from `content/changelog`: published entries only, grouped by season with "Now", filters (All, Title updates, Archetypes, Seasons, Site), entries that open in place (the newest visible one open), EA source in a new tab, "We updated". Phone stacks everything; tablet and desktop indent the body under an H4 title; desktop puts the header, season card and filters in a 352 px column. `src/lib/changelog.ts` holds the rules.
+- **Live today:** the three entries are drafts until Chime approves their wording, so probuilds.club/changelog shows the header and season card only.
+- **Tests:** unit 173 (helpers and a server render of the list, red first); e2e 45. The entry list and chips were checked against a build with the three entries published locally, then restored (`git status content/` clean).
+- **Compared with Figma** (entries published locally): mean pixel diff 3.4 / 2.6 / 2.0 at 393 / 834 / 1440, after fixing a 4 px drift and the tablet/desktop entry layout (H4 titles, 64 px indent, 300 px change columns).
+- **Reviews:** code review fixed 5 (stable test ids incl. filter-chip-N, dates through formatDay, list keys, a needless cast). Verifier failed the chips' tap area (a sideways-scrolling row clipped it to 40 px): fixed with 2 px padding the margin cancels, and tested. Open copy and design questions are in O-22.
+- **Not verified:** on Chime's iPhone.
+
 ## 404 built: the replay card (Wed 25 Nov 2026)
 
 - **Chime:** "Start building the rest, please."
