@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Height and weight, and the share screen (Wed 25 Nov 2026)
+
+- **Chime:** show the screen after Share card (both cards, attributes included); add weight and its effect on attributes, researched. Recorded as D-90; research added to RESEARCH §10.3 (three new rows with sources).
+- **Figma, Submit a build:**
+  - Start (400:3219): "Height and weight" card (185 cm · 6'1", 80 kg · 176 lb, − / +, sliders over the Finisher range 164–190 cm and 70–90 kg with the middle marked), "What your body changes" (Acceleration −2, Agility −2, Strength +2), AcceleRATE Controlled with "Explosive needs 182 cm or less"; intro mentions height and weight.
+  - Attributes (399:3121): Acceleration, Agility and Strength carry "± from height and weight · N in a match".
+  - Overview card (all four copies): Positions · Level · Height 185 cm · Weight 80 kg.
+  - Share card tapped (413:3113): share sheet over name and share, card 1 the player's overview card, card 2 the attributes card with the editor's values, body marks (Acceleration −2, Agility −2, Strength +2), "Your Finisher · Level 44 · Controlled", and the ± note. Card 2 view (413:4271): swiped to the attributes card, pager 2 of 2.
+- **Fixed after render:** card 1 sat 15 px right inside its slot and was clipped; Agility's row took the Dribbling name; "185 cm" clipped once Weight joined the facts.
+- **Samples:** 185 cm, 80 kg and the ± values; ranges are one source (FCClub) and the AcceleRATE rules disagree on Lengthy; all to check in game.
+
 ## Default mannequin face and the story card on name and share (Wed 25 Nov 2026)
 
 - **Chime:** a default mannequin face for when there's no picture; upload a face on name and share; "Your card" like the share story card. Recorded as D-89.
