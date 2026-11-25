@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## The seven open pieces designed; Supabase approved (Wed 25 Nov 2026)
+
+- **Chime:** design all seven; use Supabase (D-96, closes O-19). Recorded as D-97.
+- **Figma:** link previews (face 430:7306, build 430:7325; build facts metric on two lines); build states at tablet and desktop (427:4565 … 427:8038); face states at tablet and desktop (427:8649 … 427:9557) and Faces no results (427:9875, 427:9960); Submit a build error (428:5513, 428:6137, 428:6770) and sent for listing (429:5828, 429:6034, 429:6146); Request a face states (430:6093 … 430:7185); Request a face panel on the Faces library (three sizes); phone Top bar search button; Bottom nav Page=None on About, Takedown, 404 and Search; components panel "Components · Submit a build, requests, 404" (431:843) on Design System with text properties (attribute Name and Value, chip Label, request Name and Votes).
+- **Layout:** Phases 1, 2 and 4 re-laid out as one labelled row per screen or state (phone, tablet, desktop); the phone "review and share" frame renamed "name and share".
+- **Fixed after render:** chip counts left at full on no results; build preview facts ran off the edge, then split "185 / cm"; the components panel was unreadable on the light page, the slots collapsed, and the error row took the shared "86".
+- **Checked:** renders of each new kind; audit of the 35 new frames (no small text, styles and token fills on new parts, no overflow); no overlaps.
+- **Still open:** swapping the drawn copies on screens for the new component instances; the decisions in HANDOFF.
+
 ## 404 without search; what's left before code (Wed 25 Nov 2026)
 
 - **Chime:** remove the 404's search bar (D-95); list what isn't designed and which decisions are open.
