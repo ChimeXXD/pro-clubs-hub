@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home picked: C2 with three meta builds (Wed 25 Nov 2026)
+
+- **Chime:** C2; the three builds are attack (Meta Finisher), midfield (Maestro) and defence (Boss), each opening its build page; "View all builds" to the Builds page. Recorded as D-75.
+- **Figma:** "Home · phone 390" (364:2118) at the start of Phase 3's "Home" row. Rail: Meta Finisher (sample values), Meta Maestro (Midfielder; Pinged Pass+, Long Ball Pass+), Meta Boss (Defender; Bruiser+, Aerial Fortress+), the PlayStyle+ badges swapped to the real components. Maestro and Boss stats, level and height are "—" and their position chips removed: no sample values exist for them and none were invented. Link "All builds" → "View all builds"; note → "Sample builds. Maestro and Boss values come when they are recorded in game. Tap a card to open its build."
+- **Archive:** options A, B, C and C1. The empty Home placeholder removed.
+- **Fixed before showing:** cloning put Maestro first; order is Finisher, Maestro, Boss.
+- **Checked:** render of the three cards; card sizes 320 × 264–266.
+- **Next:** Home tablet and desktop (D-58).
+
 ## Home: two variations of C (Wed 25 Nov 2026)
 
 - **Chime:** likes C, but not "builds by position"; wants builds by archetype like B, and a version that sends people to the build page instead of the archetype page.
