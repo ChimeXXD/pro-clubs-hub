@@ -2,6 +2,19 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Build page: picture block and Mastery made clear (Wed 25 Nov 2026)
+
+- **Chime:** "What does the mastery mean close to finishing and composure?" and "the picture next to the finisher is not aligned properly… find a way to present that information properly."
+- **Mastery (from docs/RESEARCH.md §10.6):** levelling an archetype adds +1 to its two mastery attributes at level 10 and +1 more to each by level 55, on every build of that archetype. EA's Pitch Notes state level 10; levels 30 and 55 are seen in game footage (22 Oct). Build values are raw and exclude it.
+- **Changes, before → after:**
+  - Picture block: a 128 × 243 portrait beside a floating emblem, FINISHER, chips and a stats box → the archetype page's build-card header: a 112 px face beside the emblem, "Finisher / Forward", ST CF chips and "Level 55 · 6'1" · 185 cm", then the six stats in one ruled row and the picture caption.
+  - Mastery pill: lime "Mastery" (unexplained; lime is reserved by D-50) → a neutral raised pill "Mastery +2", centred on the attribute name.
+  - New line under ATTRIBUTES explains Mastery +2, with its sources.
+- **Checked:**
+  - 2.5× renders of the picture block and the Shooting group, plus a full render.
+  - Audit: no text under 14 px, nothing past the 20 px edges.
+  - One script picked the wrong "Composure" (the specialization list) and moved both pills about 1,000–1,700 px up; that was caught on the next render and undone.
+
 ## Build page: the original refined, not replaced (Wed 25 Nov 2026)
 
 - **Chime:** none of the three variants work ("why are we using the archetype stance card for the build section?"). Keep the original Meta Finisher phone screen and refine it.
