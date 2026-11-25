@@ -1,0 +1,615 @@
+{
+  "about": "Snapshot of the Figma Design System variables and styles (file hyFx4Audhn4F9KxL9bRCLD, read 25 Nov 2026). src/styles/tokens.css is generated from it by scripts/build-tokens.mjs; tests/unit/tokens.test.ts keeps them in step. Re-export from Figma when the design system changes.",
+  "theme": {
+    "bg/page": {
+      "dark": "#01261b",
+      "light": "#f7f3e6"
+    },
+    "bg/surface": {
+      "dark": "#0b3d2e",
+      "light": "#ffffff"
+    },
+    "bg/raised": {
+      "dark": "#194738",
+      "light": "#ffffff"
+    },
+    "bg/inverse": {
+      "dark": "#f7f3e6",
+      "light": "#0b3d2e"
+    },
+    "border/subtle": {
+      "dark": "#194738",
+      "light": "#d1cec1"
+    },
+    "border/strong": {
+      "dark": "#426a5b",
+      "light": "#b7b4a9"
+    },
+    "text/primary": {
+      "dark": "#f7f3e6",
+      "light": "#101113"
+    },
+    "text/secondary": {
+      "dark": "#d1cec1",
+      "light": "#4f4d47"
+    },
+    "text/muted": {
+      "dark": "#b7b4a9",
+      "light": "#65635c"
+    },
+    "text/inverse": {
+      "dark": "#101113",
+      "light": "#f7f3e6"
+    },
+    "accent/fill": {
+      "dark": "#d8ff4f",
+      "light": "#d8ff4f"
+    },
+    "accent/fill-hover": {
+      "dark": "#cbf046",
+      "light": "#cbf046"
+    },
+    "accent/on-fill": {
+      "dark": "#101113",
+      "light": "#101113"
+    },
+    "accent/text": {
+      "dark": "#d8ff4f",
+      "light": "#2c5748"
+    },
+    "focus/ring": {
+      "dark": "#d8ff4f",
+      "light": "#426a5b"
+    },
+    "status/success": {
+      "dark": "#9dbdaf",
+      "light": "#426a5b"
+    },
+    "status/warning": {
+      "dark": "#f9ad26",
+      "light": "#734c02"
+    },
+    "status/danger": {
+      "dark": "#fea196",
+      "light": "#c12826"
+    },
+    "status/info": {
+      "dark": "#91c1fe",
+      "light": "#206bc1"
+    },
+    "status/success-bg": {
+      "dark": "#194738",
+      "light": "#e2fcf1"
+    },
+    "status/warning-bg": {
+      "dark": "#402801",
+      "light": "#fff5e8"
+    },
+    "status/danger-bg": {
+      "dark": "#5c0105",
+      "light": "#fff4f2"
+    },
+    "status/info-bg": {
+      "dark": "#012d5d",
+      "light": "#f2f7ff"
+    },
+    "action/hovered": {
+      "dark": "#f7f3e60a",
+      "light": "#1011130a"
+    },
+    "action/pressed": {
+      "dark": "#f7f3e614",
+      "light": "#10111314"
+    },
+    "action/selected": {
+      "dark": "#f7f3e61f",
+      "light": "#1011131f"
+    },
+    "action/disabled-bg": {
+      "dark": "#f7f3e614",
+      "light": "#10111314"
+    },
+    "action/disabled": {
+      "dark": "#f7f3e652",
+      "light": "#10111352"
+    },
+    "accent/state/hovered": {
+      "dark": "#d8ff4f1f",
+      "light": "#0b3d2e1f"
+    },
+    "accent/state/pressed": {
+      "dark": "#d8ff4f3d",
+      "light": "#0b3d2e3d"
+    },
+    "input/bg": {
+      "dark": "#01261b",
+      "light": "#ffffff"
+    },
+    "input/border": {
+      "dark": "#426a5b",
+      "light": "#b7b4a9"
+    },
+    "input/border-hovered": {
+      "dark": "#b7b4a9",
+      "light": "#7f7d75"
+    },
+    "input/border-focused": {
+      "dark": "#d8ff4f",
+      "light": "#2c5748"
+    },
+    "system/divider": {
+      "dark": "#194738",
+      "light": "#d1cec1"
+    },
+    "system/backdrop": {
+      "dark": "#101113a3",
+      "light": "#10111352"
+    },
+    "system/tooltip": {
+      "dark": "#f7f3e6",
+      "light": "#0b3d2e"
+    },
+    "system/on-tooltip": {
+      "dark": "#101113",
+      "light": "#f7f3e6"
+    }
+  },
+  "tokens": {
+    "spacing/none": {
+      "desktop": 0,
+      "tablet": 0,
+      "phone": 0
+    },
+    "spacing/5xs": {
+      "desktop": 2,
+      "tablet": 2,
+      "phone": 2
+    },
+    "spacing/4xs": {
+      "desktop": 4,
+      "tablet": 4,
+      "phone": 4
+    },
+    "spacing/3xs": {
+      "desktop": 8,
+      "tablet": 8,
+      "phone": 8
+    },
+    "spacing/2xs": {
+      "desktop": 12,
+      "tablet": 12,
+      "phone": 12
+    },
+    "spacing/xs": {
+      "desktop": 16,
+      "tablet": 16,
+      "phone": 16
+    },
+    "spacing/sm": {
+      "desktop": 20,
+      "tablet": 20,
+      "phone": 20
+    },
+    "spacing/md": {
+      "desktop": 24,
+      "tablet": 24,
+      "phone": 24
+    },
+    "spacing/lg": {
+      "desktop": 32,
+      "tablet": 32,
+      "phone": 32
+    },
+    "spacing/xl": {
+      "desktop": 40,
+      "tablet": 40,
+      "phone": 40
+    },
+    "spacing/2xl": {
+      "desktop": 48,
+      "tablet": 48,
+      "phone": 48
+    },
+    "spacing/3xl": {
+      "desktop": 64,
+      "tablet": 64,
+      "phone": 64
+    },
+    "spacing/4xl": {
+      "desktop": 80,
+      "tablet": 80,
+      "phone": 80
+    },
+    "layout/page-gutter": {
+      "desktop": 48,
+      "tablet": 32,
+      "phone": 20
+    },
+    "layout/section-gap": {
+      "desktop": 96,
+      "tablet": 72,
+      "phone": 56
+    },
+    "layout/card-padding": {
+      "desktop": 24,
+      "tablet": 20,
+      "phone": 16
+    },
+    "layout/card-gap": {
+      "desktop": 24,
+      "tablet": 16,
+      "phone": 12
+    },
+    "layout/content-max": {
+      "desktop": 1200,
+      "tablet": 770,
+      "phone": 350
+    },
+    "layout/breakpoint": {
+      "desktop": 1440,
+      "tablet": 834,
+      "phone": 390
+    },
+    "layout/touch-target": {
+      "desktop": 40,
+      "tablet": 44,
+      "phone": 44
+    },
+    "radius/none": {
+      "desktop": 0,
+      "tablet": 0,
+      "phone": 0
+    },
+    "radius/xs": {
+      "desktop": 4,
+      "tablet": 4,
+      "phone": 4
+    },
+    "radius/sm": {
+      "desktop": 8,
+      "tablet": 8,
+      "phone": 8
+    },
+    "radius/md": {
+      "desktop": 12,
+      "tablet": 12,
+      "phone": 12
+    },
+    "radius/lg": {
+      "desktop": 16,
+      "tablet": 16,
+      "phone": 16
+    },
+    "radius/xl": {
+      "desktop": 24,
+      "tablet": 24,
+      "phone": 24
+    },
+    "radius/full": {
+      "desktop": 999,
+      "tablet": 999,
+      "phone": 999
+    }
+  },
+  "fonts": {
+    "display": "Barlow Condensed",
+    "text": "Barlow"
+  },
+  "typography": {
+    "size/display": {
+      "desktop": 64,
+      "tablet": 56,
+      "phone": 44
+    },
+    "line/display": {
+      "desktop": 60,
+      "tablet": 52,
+      "phone": 42
+    },
+    "size/h1": {
+      "desktop": 48,
+      "tablet": 40,
+      "phone": 34
+    },
+    "line/h1": {
+      "desktop": 46,
+      "tablet": 38,
+      "phone": 32
+    },
+    "size/h2": {
+      "desktop": 36,
+      "tablet": 32,
+      "phone": 28
+    },
+    "line/h2": {
+      "desktop": 36,
+      "tablet": 32,
+      "phone": 28
+    },
+    "size/h3": {
+      "desktop": 28,
+      "tablet": 26,
+      "phone": 24
+    },
+    "line/h3": {
+      "desktop": 30,
+      "tablet": 28,
+      "phone": 26
+    },
+    "size/h4": {
+      "desktop": 22,
+      "tablet": 21,
+      "phone": 20
+    },
+    "line/h4": {
+      "desktop": 26,
+      "tablet": 25,
+      "phone": 24
+    },
+    "size/body-lg": {
+      "desktop": 19,
+      "tablet": 18,
+      "phone": 17
+    },
+    "line/body-lg": {
+      "desktop": 28,
+      "tablet": 26,
+      "phone": 24
+    },
+    "size/body": {
+      "desktop": 17,
+      "tablet": 17,
+      "phone": 16
+    },
+    "line/body": {
+      "desktop": 26,
+      "tablet": 26,
+      "phone": 24
+    },
+    "size/label": {
+      "desktop": 15,
+      "tablet": 15,
+      "phone": 15
+    },
+    "line/label": {
+      "desktop": 20,
+      "tablet": 20,
+      "phone": 20
+    },
+    "size/caption": {
+      "desktop": 14,
+      "tablet": 14,
+      "phone": 14
+    },
+    "line/caption": {
+      "desktop": 20,
+      "tablet": 20,
+      "phone": 20
+    },
+    "size/number-xl": {
+      "desktop": 56,
+      "tablet": 48,
+      "phone": 40
+    },
+    "line/number-xl": {
+      "desktop": 56,
+      "tablet": 48,
+      "phone": 40
+    },
+    "size/number-lg": {
+      "desktop": 32,
+      "tablet": 30,
+      "phone": 28
+    },
+    "line/number-lg": {
+      "desktop": 32,
+      "tablet": 30,
+      "phone": 28
+    },
+    "size/number-md": {
+      "desktop": 22,
+      "tablet": 22,
+      "phone": 20
+    },
+    "line/number-md": {
+      "desktop": 22,
+      "tablet": 22,
+      "phone": 20
+    }
+  },
+  "textStyles": [
+    {
+      "figma": "Display",
+      "name": "display",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "display",
+      "line": "display",
+      "trackingPercent": -0.5,
+      "uppercase": true
+    },
+    {
+      "figma": "Heading/H1",
+      "name": "h1",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "h1",
+      "line": "h1",
+      "trackingPercent": -0.5,
+      "uppercase": true
+    },
+    {
+      "figma": "Heading/H2",
+      "name": "h2",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "h2",
+      "line": "h2",
+      "trackingPercent": 0,
+      "uppercase": true
+    },
+    {
+      "figma": "Heading/H3",
+      "name": "h3",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "h3",
+      "line": "h3",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Heading/H4",
+      "name": "h4",
+      "family": "Barlow",
+      "weight": 700,
+      "size": "h4",
+      "line": "h4",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Body/Large",
+      "name": "body-lg",
+      "family": "Barlow",
+      "weight": 500,
+      "size": "body-lg",
+      "line": "body-lg",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Body/Default",
+      "name": "body",
+      "family": "Barlow",
+      "weight": 500,
+      "size": "body",
+      "line": "body",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Label/Default",
+      "name": "label",
+      "family": "Barlow",
+      "weight": 600,
+      "size": "label",
+      "line": "label",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Label/Caption",
+      "name": "caption",
+      "family": "Barlow",
+      "weight": 500,
+      "size": "caption",
+      "line": "caption",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Number/XL",
+      "name": "number-xl",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "number-xl",
+      "line": "number-xl",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Number/Large",
+      "name": "number-lg",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "number-lg",
+      "line": "number-lg",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Number/Medium",
+      "name": "number-md",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": "number-md",
+      "line": "number-md",
+      "trackingPercent": 0,
+      "uppercase": false
+    },
+    {
+      "figma": "Button/Large",
+      "name": "button-lg",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": 19,
+      "line": 20,
+      "trackingPercent": 2,
+      "uppercase": true
+    },
+    {
+      "figma": "Button/Medium",
+      "name": "button-md",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": 17,
+      "line": 18,
+      "trackingPercent": 2,
+      "uppercase": true
+    },
+    {
+      "figma": "Button/Small",
+      "name": "button-sm",
+      "family": "Barlow Condensed",
+      "weight": 800,
+      "size": 15,
+      "line": 16,
+      "trackingPercent": 2,
+      "uppercase": true
+    }
+  ],
+  "effects": {
+    "elevation-1": [
+      [
+        0,
+        1,
+        2,
+        0,
+        "#010f0a3d"
+      ]
+    ],
+    "elevation-2": [
+      [
+        0,
+        4,
+        12,
+        -2,
+        "#010f0a52"
+      ],
+      [
+        0,
+        1,
+        3,
+        0,
+        "#010f0a33"
+      ]
+    ],
+    "elevation-3": [
+      [
+        0,
+        12,
+        32,
+        -6,
+        "#010f0a70"
+      ],
+      [
+        0,
+        2,
+        6,
+        0,
+        "#010f0a3d"
+      ]
+    ]
+  }
+}

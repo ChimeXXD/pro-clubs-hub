@@ -215,11 +215,13 @@
       "priority": "must",
       "title": "tokens.css mirrors Figma variables",
       "criteria": [
-        "no hard-coded colours (check-tokens passes)"
+        "no hard-coded colours (check-tokens passes)",
+        "every Figma variable, text style and effect style is in tokens.css (generated from the snapshot)",
+        "text colours pass WCAG AA in light and dark"
       ],
-      "verify": "npm run lint",
-      "passes": false,
-      "evidence": null
+      "verify": "npx vitest run tests/unit/tokens.test.ts && npm run lint",
+      "passes": true,
+      "evidence": "npx vitest run tests/unit/tokens.test.ts: 66 tests pass (red first: 'Cannot find module ../../scripts/build-tokens.mjs'; spacing and touch-target tests red before their fix). A one-digit hand edit to tokens.css fails 2 tests. Snapshot diffed against a second read of Figma: identical. Tailwind compile of globals.css: token classes exist; bg-red-500 and text-xl don't; max-w-md stays var(--container-md). Chromium test page with the compiled CSS at 390 / 834 / 1100 / 1280 / 1440: type-h1 34 / 40 / 40 / 48 / 48 px, gutter 20 / 32 / 32 / 48 / 48. Production CSS (out/, light-dark() rewritten with fallbacks): a test element on var(--color-bg-page) is #01261b dark and #f7f3e6 light, and data-theme overrides both ways. Not yet: nothing applies the tokens to <body> on the live site; that is the app-shell unit."
     },
     {
       "id": "P2-1",

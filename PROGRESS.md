@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Code prep: tokens generated from Figma, UI brief §1–3 (Wed 25 Nov 2026)
+
+- **Chime:** "Prep now, build after": do the work that doesn't wait on the iPhone approval.
+- **Tokens (P1-9, D-101):** Figma variables, text styles and effect styles read into `docs/design/figma-variables.json` (diffed against a second Figma read: identical). `npm run tokens` (`scripts/build-tokens.mjs`) writes `src/styles/tokens.css`: Tailwind 4 namespaces (`bg-bg-page`, `type-h1`, `rounded-md`, `shadow-elevation-2`), Tailwind's own palette and sizes off, `light-dark()` with the device deciding and `data-theme` overriding (D-37), tablet from 744 px, desktop from 1280 px, 44 px touch targets on any touch screen, Barlow as the base font.
+- **Test:** `tests/unit/tokens.test.ts`, 66 tests, red first (missing generator; then the spacing and touch-target cases). Fails on any hand edit; checks every text colour for WCAG AA in both modes.
+- **Checked:** Tailwind compile (token classes exist, `bg-red-500` doesn't, `max-w-md` is a width); Chromium at 390 / 834 / 1100 / 1280 / 1440 (H1 34 / 40 / 40 / 48 / 48 px); production CSS light, dark and the switch both ways.
+- **Reviews:** code review found 10 and fixed 4 (base font, unknown fonts, contrast input, tracking rounding); I fixed 2 more (spacing names took over `max-w-md`; desktop 40 px targets reached an iPad Pro). Verifier failed criterion 6 (the brief overrode DESIGN.md's hover rule and contradicted it on reduced motion); fixed and logged as O-21.
+- **Docs:** UI-BRIEF §1–3 written from the approved design; CLAUDE.md and PLAN point at Figma hyFx4Audhn4F9KxL9bRCLD; O-20 (input borders under 3:1) and O-21 (hover 2 % or 4 %) for Chime.
+- **Not verified:** nothing on the live site uses the tokens yet (the app shell is the first build unit); fonts not yet loaded through `next/font`; no motion tokens.
+
 ## Chime's PS5 videos read: 39 specializations, body ranges, face turn test (Wed 25 Nov 2026)
 
 - **Chime:** two clips (360° Michael Jackson turn for A-16; every archetype's specializations and body), "cutting it frame by frame". The USB copies were empty files every time (WebM and MP4 alike); the PS App downloads worked.

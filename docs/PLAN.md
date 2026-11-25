@@ -48,7 +48,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 - [x] CI green on push to main
 - [x] Host chosen (O-12, A-14) and the empty site deployed: https://probuilds.club (D-53; also https://probuilds.pages.dev)
 - [x] Empty-app weight measured; budget logged as a decision (A-06)
-- [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ
+- [x] Figma file created: cover, Design System page, Design screens page (D-14): https://www.figma.com/design/1mjxmMNZQOrs40MlmzvRTQ (superseded: the design lives in https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD, D-32)
 
 ## Phase 1: screens, core lane and recording (now, in parallel; D-25)
 
@@ -68,7 +68,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
   - [ ] **Phase 3 · Home & frame:** Home · ~~menu sheet~~ (dropped, D-67) · footer and notice · 404 · search results (Should)
   - [ ] **Phase 4 · Changelog & Submit:** Changelog · Submit choose / face form / build form / inline errors / sent
   - [ ] **Phase 5 · About & Takedown:** About · Takedown · share cards for face and build (Should)
-- [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma
+- [ ] Chime approves the screens; [x] `docs/design/UI-BRIEF.md` §1–3 filled (25 Nov); [x] `tokens.css` mirrors Figma (25 Nov, D-101)
 
 **Core lane (tests first)**
 - [x] `lib/content/types.ts` from FORMAT v1

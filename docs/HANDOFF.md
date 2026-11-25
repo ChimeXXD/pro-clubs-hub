@@ -28,8 +28,8 @@ All of Chime's open decisions are made (D-96, D-99): Supabase for face requests,
 ### Before code, in order
 1. Chime answers the decisions above and approves each phase (rule 10: on the iPhone next to the TV).
 2. Claude swaps the drawn copies for component instances.
-3. `docs/design/UI-BRIEF.md` §1–3 filled; `src/styles/tokens.css` mirrors the Figma variables; CLAUDE.md points at Figma file hyFx4Audhn4F9KxL9bRCLD (it still names 1mjxm…).
-4. Then build, phase by phase, tests first for `src/lib/`.
+3. Done 25 Nov: UI-BRIEF §1–3, `tokens.css` generated from the Figma snapshot (`npm run tokens`, D-101), CLAUDE.md points at hyFx4Audhn4F9KxL9bRCLD. Open for Chime: O-20 (input borders), O-21 (hover fill).
+4. Then build, phase by phase, tests first for `src/lib/`. First unit: the app shell (Barlow through `next/font`, page colours on `<body>`, top bar, bottom nav, notice), then one screen per session (proof fidelity).
 
 ### How to work with Chime on design (learned)
 - Show work in Figma, never a new file; rejected work goes to Archive, never deleted.
