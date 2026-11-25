@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** "design the next page". Next page: Home (Phase 3). Phase 2 still has states left (face finished, ticks reset, library empty filter) and O-18.
+- **Brief (SPEC, UI-BRIEF, sitemap):** faces first (featured and newest), builds by position, the latest changelog entry, the current season; faces before builds is an acceptance test.
+- **Where:** Design screens → Phase 3, row "Home · 3 options (pick one)": A 358:1570, B 358:1751, C 359:1783 (phone 390). The "Menu sheet" placeholder was removed (D-67); the other placeholders sit in a row below; Phases 4–5 moved down; no overlaps.
+- **Options:**
+  - A · Featured face: season strip ("Season 3 starts Thu 3 Dec · Every face and build gets re-checked"), a featured-face card (square picture, "Featured face", 2008 Ronaldo, "Start this face") with pager dots, "New faces" rail, "Builds by position" with group chips (Keeper 2, Defender 3, Midfielder 4, Forward 4) and the selected group's archetypes, "What changed" (Title Update 1.2.0). (DAZN, Fixtured, NBA)
+  - B · Tagline and rails: "Look like a legend. Play like one." (draft, O-08) with a one-line intro, a faces rail, a rail of the approved Stance cards ("Builds by archetype"), "What changed", a season card. (Apple TV, Paramount+)
+  - C · Quick picks: round face avatars, "Face of the week" card (Neymar Jr (Mohawk), Start), four position tiles with their archetype emblems, the three real changelog entries as a list, a season card. (NBA, F1)
+- **Real content:** the changelog titles, dates and the first Title Update line come from `content/changelog/`; groups and archetypes from `content/archetypes/fc27.json`; faces are the demo set. Samples: "18 steps".
+- **Fixed before showing:** A's hero panel sat over the face (moved under a square picture); A's strip repeated the top bar's season chip; B's Stance cards were shrunk to 64% (text about 9 px), back to full size; B's nav fell off the frame after a resize.
+- **Checked:** renders of all three; audit: text 14 px or more, Barlow only, no overflow except the swipe rails, no overlaps.
+- **Copy (drafts):** tagline, B's intro, "Featured face", "Start this face", "New faces", "Face of the week", "Builds by archetype", "What changed", the season line.
+
 ## Face page: tablet and desktop (Wed 25 Nov 2026)
 
 - **Chime:** design the iPad and desktop screens for the guided face page. Recorded as D-74.
