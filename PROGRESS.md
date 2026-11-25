@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Mannequin redrawn as the default build face; delegated decisions made (Wed 25 Nov 2026)
+
+- **Chime:** the mannequin's V-neck, clothes and neck were poorly drawn; it is the default face for builds on the site and in images; decide every open item with the best recommendation. Recorded as D-98 and D-99; O-05, O-08 and O-11 closed.
+- **Figma:** "Face/ProBuilds default" (410:808) redrawn (bust proportions, cylindrical neck with jaw shadow, sloped shoulders, dark jersey with lime V-neck band and back collar, ink shading at shape opacity after paint opacity rendered solid black). 57 build picture slots (build cards, build page hero, share story cards, link previews) replaced with the mannequin; 18 captions now "No picture yet, so it shows the ProBuilds face." Faces and the player's own upload keep their pictures.
+- **Instances:** Request row gained Rank and Detail; PlayStyle chip gained a Badge swap. Swapped in: 90 chips and 6 slots (PlayStyles at three sizes), 45 request rows (all request screens), phone AP counter (2), height-and-weight card and replay card. Attribute rows and the wide-layout single cards stay drawn (slider positions and scaled art).
+- **Checked:** renders of the mannequin, a build card, the share story card, the build link preview, desktop PlayStyles and phone Request a face after the swap (unchanged).
+
 ## The seven open pieces designed; Supabase approved (Wed 25 Nov 2026)
 
 - **Chime:** design all seven; use Supabase (D-96, closes O-19). Recorded as D-97.

@@ -11,15 +11,10 @@ Nothing is running (no dev server or watcher). Figma file: https://www.figma.com
 - **Deadline:** Season 3 on Thu 3 Dec (D-25). Launch is on Season 2, before then.
 
 ### Design status
-All seven open pieces are drawn (D-97): link previews, build and face states at tablet and desktop, Submit a build error and sent-for-listing, Request a face states, the Request a face panel on Faces, the phone search button and the no-tab nav, and components for the new parts. One design chore is left before code: swap the drawn copies on screens for the new component instances (Attribute row, PlayStyle chip, PlayStyle+ slot, Request row, AP counter, Height and weight, Replay card).
+Designed and checked: every screen and state at phone, tablet and desktop, link previews, and components for the new parts (D-97). Drawn copies were swapped for instances where the content carries over (90 PlayStyle chips, 6 slots, 45 request rows, and on phone the AP counter, height-and-weight card and replay card). Attribute rows stay drawn: each slider's position follows its value, which code drives. The mannequin is redrawn and is the default face of every build (D-98).
 
-### Decisions Chime hasn't made
-- **How "Send for listing" reaches Chime:** the Supabase database (D-96, no account needed; recommended) or a GitHub issue (A-04). Also O-11.
-- **What the share link points to** (probuilds.club/b/your-finisher): store shared builds in Supabase (short link) or pack the build into the link (no storage, long link).
-- **A-18** Sharon's format fields plus the new submit fields (height, weight, specialization choice); needs Chime's OK before code.
-- **A-16** the face turn capture (waits on Chime's 15-second test clip).
-- **O-05** first five faces and first builds; **O-08** tagline ("Look like a legend. Play like one." is still a draft).
-- **Default face:** keep the drawn mannequin, or replace it with an in-game screenshot of a default Pro.
+### Decisions
+All of Chime's open decisions are made (D-96, D-99): Supabase for face requests, listings and short share links; A-18 approved; first faces and builds named; tagline kept. Still needs Chime's hands: the 15-second PS5 turn clip for A-16, and the in-game checks below.
 
 ### Needs checking in game (blocks the editor's rules, not the design)
 - The 39 specializations and their PlayStyle+ (RESEARCH §10.4).
