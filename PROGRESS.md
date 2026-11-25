@@ -2,6 +2,29 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share build: two story cards instead of one crowded card (Wed 25 Nov 2026)
+
+- **Chime:** the references didn't help; make the information organized, not clustered, with a free hand.
+- **Design:** "Share build: two story cards" (316:1119, x 4111 y 580). Each card is 360 × 640, exported at 3× (1080 × 1920); stories play as a sequence.
+  - **Card 1 · Overview (316:888):**
+    - Logo and "1 / 2".
+    - A 104 px face beside the Meta pick tag, the name (34 px) and "Finisher · Forward" with the emblem.
+    - Three label-over-value facts between hairlines: Positions (ST CF chips), Level 55, Height 6'1" 185 cm.
+    - The version line.
+    - PlayStyles+ (2) and PlayStyles (6), each a titled section with a two-column list of 22 px icons and 14 px names.
+    - Footer: link, credit and notice.
+    - Content 610 of 640 px.
+  - **Card 2 · Attributes (316:973):**
+    - Logo and "2 / 2"; "ATTRIBUTES" with "Meta Finisher · Level 55 · Finisher".
+    - One line explaining +2 Mastery.
+    - Six groups in two columns: group name and a score chip over a hairline, 18 px rows, Mastery +2 marked.
+    - The same footer.
+    - Content 634 of 640 px.
+- **Archived:** the three one-card options (309:1558).
+- **Stopped:** the board server.
+- **Checked:** a 2× render of both cards (temp board deleted); no overlaps on Design screens.
+- **Next:** Chime's OK; then the link preview (1200 × 630) and the share sheet screen.
+
 ## Share image: references on the board (Wed 25 Nov 2026)
 
 - **Chime:** the share image is "so close that there's no space. It looks overwhelming". Find references for downloadable share cards on Mobbin and elsewhere, put them on the board, and let them pick.
