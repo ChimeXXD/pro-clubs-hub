@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Submit a build redesigned; faces become requests (Wed 25 Nov 2026)
+
+- **Chime:** Submit is "Submit a build"; faces are requested and voted on, then made by us; the build editor must be fast (level fills the AP, attributes by slider, typing and − / +, AP counter live, 10 minutes down to 5). Answers to three questions: a free database for face votes, design the AP counter now and switch it on after the prices are recorded, share at once and list after review. Recorded as D-83 to D-86 and O-19.
+- **Figma, Phase 4 (phone 390):** Submit a build in four steps, bottom nav hidden while editing, one sticky action bar:
+  - Start (400:3219): archetype (group chips, then tiles with their two signature PlayStyles from content/archetypes), positions, level with − / + and a 1–55 slider, "1,062 AP to spend · Level 45 adds 44 more" (RESEARCH §10.1).
+  - Attributes (399:3121): sticky "AP left" counter with spent bar and group jumps (PAC … PHY, 44 px), a tip that typing two digits moves to the next attribute, all 29 attributes in the game's groups (src/lib/content/attributes.ts), each with − / typed value / + and a slider, group averages, Skill Moves and Weak Foot stars.
+  - PlayStyles (401:3315): tap grid by category (tap once, again for PlayStyle+, again to clear), the archetype's two signature PlayStyles marked, live counts, Defending collapsed.
+  - Name and share (401:3616): build name, credit name, our build card ("not yet checked in game", "Made by you"), Share card, Copy link, and "Send for listing" after Chime's check.
+  - Request a face (402:3451, Faces tab): request field that finds existing requests, kind filter, ranked list with vote buttons and a "Being made" status.
+- **Archive:** the 11 face-submission Submit frames (choose, face question, other questions, sent; all sizes) as "Superseded 25 Nov (D-83)".
+- **Samples, not data:** attribute values, PlayStyle picks, the build's stats on the card, and the request names and vote counts are layout samples. Real: level 44 = 1,062 AP and +44 at 45 (§10.1); 51 AP left matches Chime's level-44 Finisher (RESEARCH §9 row of 22 Nov).
+- **Time estimate (not measured):** start about 30 s, 29 attributes typed with auto-advance about 90 s, PlayStyles about 30 s, name and share about 30 s: about 3 minutes against the 5-minute target. To prove it: time Chime entering a real build on the built page.
+- **Checked:** renders of all five; audit (text 14 px or more, text styles, token-bound fills, no overflow, 44 px targets); no overlaps; Phase 5 moved.
+- **Open:** O-19 (which database); AP prices per archetype (O-14) before the counter goes live; tablet 834 and desktop 1440 for these five screens.
+
 ## Changelog B and Submit B picked (Wed 25 Nov 2026)
 
 - **Chime:** "B", read as B for both. Recorded as D-82.
