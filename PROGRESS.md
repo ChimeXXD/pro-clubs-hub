@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Face page: B and C merged; 360° badge and rotate icon (Wed 25 Nov 2026)
+
+- **Chime:** picked B, asked to merge in C's step-by-step card and to mark the picture as rotatable 360°. Recorded as D-71.
+- **Screen "Face · not started · phone 390" (349:1392), before → after:** Start button and "0 of 14 steps done" → C's "Step 1 of 14 · Preset" with the section bar and the current-step card (where to find it, Preset, 147 in lime Display, hint, Back disabled, "Done, next"); "All steps" heading added over the section chips and Skin steps; "360°" badge (Icon/rotate-360 + Label, bg/page at 80%, top right of the picture).
+- **Design System:** new Icon/rotate-360 (352:817) in Icons: an orbit arrow round a short axis, drawn at 1.5 px with round ends, outlined, one glyph on text/primary, scale constraints. Checked at 5× in a red box beside Icon/download; first render lost the glyph to flatten's page coordinates (fixed), and the first arrowhead pointed against the orbit (redrawn).
+- **Archive:** options A and C and B as it was before the merge. The "Face · not started" placeholder was removed; the row label is now "Face page".
+- **Checked:** renders of the screen, the picture with the badge and the step card at 1.5×.
+- **Next:** the in-progress, finished → paired build and ticks-reset states, then tablet and desktop.
+
 ## Face page: three options for Chime to pick (Wed 25 Nov 2026)
 
 - **Chime:** start the next screen. It is the face page (`/faces/[slug]`), Phase 2's "Face · not started" state; the empty-filter state of the library is still to add.
