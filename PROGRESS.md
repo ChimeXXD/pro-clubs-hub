@@ -2,6 +2,12 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home tablet and desktop: faces as poster cards (Wed 25 Nov 2026)
+
+- **Chime:** too much empty space beside the four avatars on tablet and desktop. Recorded as D-78.
+- **Before → after (367:1629, 367:1836):** four 104 / 128 px circles grouped on the left → four library poster cards across the width (picture 4:5, kind, name): 171 × 214 on tablet, 282 × 352 on desktop, 24 px gaps. Phone unchanged (round avatars).
+- **Checked:** renders of both faces rows and the full desktop page; audit clean; no overlaps in Phase 3.
+
 ## Home: four faces, not all five (Wed 25 Nov 2026)
 
 - **Chime:** with five faces, showing all five and "See all" makes no sense; show four. Recorded as D-77.
