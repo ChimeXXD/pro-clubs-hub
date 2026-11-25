@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## PlayStyles step: two leaner versions (Wed 25 Nov 2026)
+
+- **Chime:** the PlayStyles page "looks too all over the place… too chunky"; two other versions.
+- **Figma, Phase 4, Submit a build row, beside v1 (401:3315):**
+  - v2 · list (405:2988): one-line counts; a slim PlayStyle+ card (the two PlayStyle+ with where each comes from, specialization as a four-way switch); regular PlayStyles as a checklist of 52 px rows by category with small icons and a tick; Finesse Shot shows "Can't be PlayStyle+ on a Finisher" under its name; PlayStyle+ rows say so; Defending collapsed.
+  - v3 · slots and chips (406:3024): two PlayStyle+ slots; slot 2 open with its four options (First Touch+ Signature, Chip Shot+ Finisher+, Gamechanger+ Hunter, Relentless+ Presser), so picking a specialization is picking its PlayStyle+; regular PlayStyles as 44 px chips by category, ticked when on, PlayStyle+ chips in lime and not tappable.
+- **Fixed after render:** v3's selected chips hid their icon (white on cream; now raised with a cream outline and a tick), slot heights, v2's switch at 44 px.
+- **Checked:** renders of both; no overlaps.
+
 ## PlayStyle+ limited to the archetype (Wed 25 Nov 2026)
 
 - **Chime:** only the build's own PlayStyle+ can be picked; specializations can swap one in. Recorded as D-87.
