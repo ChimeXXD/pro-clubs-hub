@@ -4,7 +4,9 @@ import { expect, test } from "@playwright/test";
 
 // The Changelog (Figma 383:3158 / 390:2540 / 390:2700). It lists exactly the published files in content/changelog.
 const dir = join(process.cwd(), "content", "changelog");
-const published = readdirSync(dir).filter((f) => JSON.parse(readFileSync(join(dir, f), "utf8")).status === "published").length;
+// A preview build (D-104) also lists drafts; withdrawn entries never show.
+const shown = new Set(process.env.PROBUILDS_DRAFTS === "1" ? ["published", "draft"] : ["published"]);
+const published = readdirSync(dir).filter((f) => shown.has(JSON.parse(readFileSync(join(dir, f), "utf8")).status)).length;
 
 test("the changelog page: title, line, the season card, and every published entry", async ({ page }) => {
   await page.goto("/changelog");

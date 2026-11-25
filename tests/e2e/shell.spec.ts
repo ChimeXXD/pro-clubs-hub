@@ -112,6 +112,7 @@ test("every link in the frame is at least 44 × 44 px to touch (CLAUDE.md)", asy
 });
 
 test("the live build never shows the preview bar or drafts (they belong to the preview site)", async ({ page }) => {
+  test.skip(process.env.PROBUILDS_DRAFTS === "1", "this run is a preview build");
   await page.goto("/");
   await expect(page.getByTestId("preview-bar")).toHaveCount(0);
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
