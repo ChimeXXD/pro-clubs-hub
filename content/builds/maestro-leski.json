@@ -3,7 +3,7 @@
   "id": "maestro-leski",
   "slug": "maestro-leski",
   "status": "draft",
-  "_example": "NOT READ YET. Waiting on values from the linked video. Before publishing, confirm in the video: the archetype is maestro (its title names only the position), and it shows Season 2 (season 2 here is assumed).",
+  "_example": "READ FROM VIDEO, NOT CHECKED BY A PERSON. Raw values (Attribute Totals: OFF) read by Claude from Leski's video of 2026-10-29. Before publishing: Chime or Sharon checks every value (D-66), and the height (the game shows 6'0\"; Leski's caption says 180-183 cm; 183 is the conversion) and AcceleRATE (Leski's caption, not the game's text). Title and summary still needed.",
   "title": "PLACEHOLDER",
   "archetype": "maestro",
   "positions": [
@@ -14,126 +14,126 @@
   "level": 55,
   "picture": null,
   "body": {
-    "heightCm": "PLACEHOLDER",
-    "weightKg": "PLACEHOLDER",
-    "accelerate": "PLACEHOLDER"
+    "heightCm": 183,
+    "weightKg": 65,
+    "accelerate": "controlled"
   },
   "attributes": [
     {
       "name": "Acceleration",
-      "value": "PLACEHOLDER"
+      "value": 88
     },
     {
       "name": "Sprint Speed",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Att. Position",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Finishing",
-      "value": "PLACEHOLDER"
+      "value": 65
     },
     {
       "name": "Shot Power",
-      "value": "PLACEHOLDER"
+      "value": 70
     },
     {
       "name": "Long Shots",
-      "value": "PLACEHOLDER"
+      "value": 70
     },
     {
       "name": "Volleys",
-      "value": "PLACEHOLDER"
+      "value": 65
     },
     {
       "name": "Penalties",
-      "value": "PLACEHOLDER"
+      "value": 70
     },
     {
       "name": "Vision",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Crossing",
-      "value": "PLACEHOLDER"
+      "value": 75
     },
     {
       "name": "FK Accuracy",
-      "value": "PLACEHOLDER"
+      "value": 75
     },
     {
       "name": "Short Passing",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Long Passing",
-      "value": "PLACEHOLDER"
+      "value": 87
     },
     {
       "name": "Curve",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Agility",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Balance",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Reactions",
-      "value": "PLACEHOLDER"
+      "value": 86
     },
     {
       "name": "Ball Control",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Dribbling",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Composure",
-      "value": "PLACEHOLDER"
+      "value": 84
     },
     {
       "name": "Interceptions",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Heading Accuracy",
-      "value": "PLACEHOLDER"
+      "value": 50
     },
     {
       "name": "Def. Awareness",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Standing Tackle",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Sliding Tackle",
-      "value": "PLACEHOLDER"
+      "value": 50
     },
     {
       "name": "Jumping",
-      "value": "PLACEHOLDER"
+      "value": 60
     },
     {
       "name": "Stamina",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Strength",
-      "value": "PLACEHOLDER"
+      "value": 80
     },
     {
       "name": "Aggression",
-      "value": "PLACEHOLDER"
+      "value": 80
     }
   ],
   "playStyles": {
@@ -141,16 +141,17 @@
       "Pinged Pass",
       "Long Ball Pass"
     ],
-    "plus": [
-      "PLACEHOLDER"
-    ],
+    "plus": [],
     "regular": [
-      "PLACEHOLDER"
+      "Incisive Pass",
+      "Tiki Taka",
+      "Inventive",
+      "Quick Step"
     ]
   },
-  "specialization": "PLACEHOLDER",
-  "skillMoves": "PLACEHOLDER",
-  "weakFoot": "PLACEHOLDER",
+  "specialization": null,
+  "skillMoves": 5,
+  "weakFoot": 4,
   "spend": null,
   "version": 1,
   "versionTag": {
@@ -185,7 +186,7 @@
     {
       "version": 1,
       "date": "2026-11-25",
-      "note": "Draft from Leski's video; values not read yet."
+      "note": "Draft read from Leski's video."
     }
   ],
   "createdAt": "2026-11-25",
