@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: plain titles, kind-only line, no check status (Wed 25 Nov 2026)
+
+- **Chime:** no "Inspired by"; use the name as the video titles it ("2008 Ronaldo", "Neymar Jr (Mohawk)"); the line under it is just Footballer / Athlete / Musician; drop "Not yet checked in game" because everything posted is made in game. Recorded as D-69.
+- **Figma, before → after (A, B and C, 15 cards):**
+  - Title "Inspired by Cristiano Ronaldo" → "2008 Ronaldo"; "Inspired by Neymar Jr" → "Neymar Jr (Mohawk)"; the other three → "Lamine Yamal", "LeBron James", "Michael Jackson".
+  - Kind line "Footballer · 2008" / "Footballer · Santos" → "Footballer" (A and C); B's era-and-status line → removed (the shelf heading gives the kind).
+  - "Not yet checked in game" → removed everywhere.
+- **Docs pointing at D-69:** CLAUDE.md rule 3, content/README, UI-BRIEF (face title, home rail), SPEC `/faces/[slug]`, FORMAT `title`.
+- **Not done (code, tests first):** `validate.ts` still requires titles to start with "Inspired by"; fixtures and `content/faces/cristiano-ronaldo-2008.json` still use it.
+- **Checked:** renders of all three options.
+
 ## Faces library: Neymar Jr (Santos, mohawk) added (Wed 25 Nov 2026)
 
 - **Chime:** add the Neymar mohawk face from https://youtu.be/UOrV95yMy50 (CodeName Max, "How to Make SANTOS NEYMAR JR in EA FC 27 (MOHAWK)").

@@ -25,7 +25,7 @@ Everything the site shows lives here as JSON. Formats: `docs/FORMAT.md`. The bui
 - Launch faces: footballers and living musicians, plus Michael Jackson (D-26). Any other deceased subject needs a decision naming them.
 - Names as plain text. No photos, drawings or AI portraits of real people.
 - Screenshots: only Chime's own in-game captures of their recreations, in `public/faces/`. Raw captures stay in the git-ignored `reference/`.
-- Titles say "Inspired by", never "official".
+- Titles are the plain name, the way the creator's video names the look ("2008 Ronaldo", "Neymar Jr (Mohawk)"), never "official" (D-69).
 
 ## How Chime records a face
 
