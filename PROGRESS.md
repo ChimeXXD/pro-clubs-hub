@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: option A picked; tablet and desktop designed (Wed 25 Nov 2026)
+
+- **Chime:** picked option A (poster grid); asked for iPad and desktop. Recorded as D-70.
+- **Figma, Phase 2 row "Faces library":** phone 333:1139 (option A, renamed), tablet 345:1310 (834), desktop 345:1391 (1440), side by side (D-58). B and C moved to Archive ("Superseded 25 Nov"). The empty "Faces library · phone 390" placeholder was removed; the other placeholders moved up under the row, Phases 3–5 up 329 px.
+- **Tablet:** Top bar and Footer notice (tablet), 40 px edges; header with the intro at 600 px; chips and a 300 px search in one row; three columns of 235 px cards (4:5 pictures 235 × 294), "Missing a face?" as the sixth cell; 24 px across, 32 px between rows.
+- **Desktop:** 120 px edges, 1200 px column; chips and a 360 px search in one row; six columns of 180 px cards in one row.
+- **Fixed after the first render:** the tablet and desktop Top bar showed Builds as the current page; Faces is current now (text/primary; Builds back to text/secondary).
+- **Checked:** renders of both; audit (no text under 14 px, Barlow only, no overflow, no overlaps in the section or between phases).
+- **Next:** the empty-filter state ("No faces here yet. Suggest one on Submit."), then the face page (Phase 2).
+
 ## Faces library: demo faces zoomed out so the hair shows (Wed 25 Nov 2026)
 
 - **Chime:** zoom out so most of the hair shows (only LeBron's did); keep one layout for all.
