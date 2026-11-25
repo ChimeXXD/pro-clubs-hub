@@ -133,7 +133,7 @@ One file per game. Unverified fields are `null`, never guessed.
   "status": "draft",
   "subject": { "name": "Cristiano Ronaldo", "kind": "footballer", "living": true },
   "era": { "label": "2008", "note": "PLACEHOLDER" },
-  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "title": "2008 Ronaldo",
   "target": { "look": "matchday" },
   "timeMinutes": "PLACEHOLDER",
   "preset": { "number": "PLACEHOLDER" },
@@ -165,8 +165,8 @@ One file per game. Unverified fields are `null`, never guessed.
 }
 ```
 
-- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
-- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69). The validator still requires "Inspired by" until the code change in D-69 (5).
+- `subject.kind`: `"footballer"`, `"athlete"` (another sport's star) or `"musician"` (D-10, D-68). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
+- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69).
 - Order of work: preset, then `parts`, then `sculpt`, then `visualAge`. Sculpting a region turns its part into "Custom <part>" in the game, so parts come first (inferred from the editor; confirm on PS5).
 - `preset.number`: the photo preset's place counted among photo presets only, left to right, top to bottom, under the "All" filter. Never the screen row: the grid starts with each player's own saved heads, so rows differ between players (RESEARCH §9).
 - `parts[].tab`: `"skin"`, `"head"`, `"face"`, `"hair"`, in that order. A step's `label` is the section name as the game prints it ("Facial Hair"); `control` is that label in kebab-case (`facial-hair`). Part values are `item` or `named`. List only sections changed from the preset.

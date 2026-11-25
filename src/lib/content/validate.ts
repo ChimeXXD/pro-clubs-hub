@@ -104,7 +104,7 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
 
   if (c.obj("subject", d.subject)) {
     c.str("subject.name", d.subject.name);
-    c.oneOf("subject.kind", d.subject.kind, ["footballer", "musician"]);
+    c.oneOf("subject.kind", d.subject.kind, ["footballer", "athlete", "musician"]);
     c.bool("subject.living", d.subject.living);
     if (d.subject.living === false && !DECEASED_ALLOWED.has(d.subject.name as string))
       c.add("subject.living", "a deceased subject needs a decision allowing them by name (D-10, D-26)");
@@ -113,8 +113,8 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
     c.str("era.label", d.era.label);
     c.str("era.note", d.era.note, { recorded: true });
   }
-  if (typeof d.title !== "string" || !d.title.startsWith("Inspired by")) c.add("title", 'must start with "Inspired by"');
-  else if (/official/i.test(d.title)) c.add("title", 'must never say "official" (CLAUDE.md rule 3)');
+  c.str("title", d.title);
+  if (typeof d.title === "string" && /official/i.test(d.title)) c.add("title", 'must never say "official" (CLAUDE.md rule 3, D-69)');
   if (c.obj("target", d.target)) c.oneOf("target.look", d.target.look, ["matchday"]);
   c.int("timeMinutes", d.timeMinutes, { min: 1, recorded: true });
   if (c.obj("preset", d.preset)) c.int("preset.number", d.preset.number, { min: 1, recorded: true });
