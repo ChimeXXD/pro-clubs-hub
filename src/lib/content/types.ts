@@ -138,6 +138,13 @@ export interface Embed {
   creatorId: string | null;
 }
 
+/** The turntable: numbered frames in `folder`, cut from one in-game turn clip (D-35). */
+export interface Turn {
+  folder: string;
+  frames: number;
+  by: string;
+}
+
 export interface Face<P = never> extends Versioned {
   subject: { name: string; kind: SubjectKind; living: boolean };
   era: { label: string; note: string | P };
@@ -151,6 +158,7 @@ export interface Face<P = never> extends Versioned {
   limits: (string | P)[];
   pairedBuild: string;
   screenshots: Screenshot[];
+  turn: Turn | null;
   embeds: Embed[];
 }
 
@@ -161,24 +169,45 @@ export const POSITIONS: readonly Position[] = ["GK", "CB", "LB", "RB", "LWB", "R
 
 export type AcceleRate = "explosive" | "controlled" | "lengthy";
 
+/** Set by Chime (D-34, D-62). */
+export type Badge = "meta" | "recommended";
+
+/** The order the build was made in, for the level switch (D-43): raise one attribute or star, to a value. */
+export interface Spend<P = never> {
+  start: { name: string; value: number | P }[];
+  startStars: { skillMoves: number | P; weakFoot: number | P };
+  steps: { raise: string; to: number | P }[];
+}
+
 export interface Build<P = never> extends Versioned {
   title: string | P;
   archetype: string;
   positions: Position[];
   summary: string | P;
+  badge: Badge | null;
   level: number | P;
+  picture: Screenshot | null;
   body: { heightCm: number | P; weightKg: number | P; accelerate: AcceleRate | null | P };
   attributes: { name: string; value: number | P }[];
   playStyles: { signature: string[]; plus: (string | P)[]; regular: (string | P)[] };
   specialization: string | null | P;
   skillMoves: number | P;
   weakFoot: number | P;
+  spend: Spend<P> | null;
   sources: Source[];
 }
 
 // Archetypes (FORMAT §Archetype): one file per game; unverified fields are null.
 
 export type PositionGroup = "goalkeeper" | "defender" | "midfielder" | "attacker";
+
+/** `targets` is null when unread; a target's `value` is null when only its name is known. */
+export interface Specialization {
+  name: string;
+  playStyle: string;
+  targets: { attribute: string; value: number | null }[] | null;
+  sourceIds: string[];
+}
 
 export interface Archetype {
   id: string;
@@ -187,7 +216,7 @@ export interface Archetype {
   signaturePlayStyles: { name: string; since: "launch" | `season-${number}`; sourceIds: string[] }[];
   masteryAttributes: { attributes: string[]; sourceIds: string[] } | null;
   apCostChange20261022: { up: number; down: number; sourceIds: string[] } | null;
-  specializations: string[] | null;
+  specializations: Specialization[] | null;
   typicalPositions: Position[] | null;
   verifiedInGame: boolean;
   notes: string | null;

@@ -2,6 +2,7 @@
 // One problem fails the build. Each file is checked alone, given the ids of the other files
 // (archetypes, creators, builds, faces), so links between files are checked too.
 import { at, Check, isObj, STATUSES, type Obj, type Problem } from "./check.ts";
+import { checkAttributes, checkSpend } from "./validate-build-parts.ts";
 import { PART_TABS, POSITIONS } from "./types.ts";
 import { validateArchetypeFile, validateChangelog, validateCreators } from "./validate-other.ts";
 
@@ -12,6 +13,8 @@ export interface Context {
   creatorIds: Set<string>;
   buildIds: Set<string>;
   faceIds: Set<string>;
+  /** Specialization names by archetype id, for archetypes whose list is recorded. */
+  specializations?: Map<string, Set<string>>;
 }
 
 const ROLES = ["made-by", "tutorial", "submitted-by", "reference"] as const;
@@ -81,6 +84,16 @@ function checkPartValue(c: Check, path: string, v: unknown, control: unknown) {
   // Only Skin Tone shows no number (FORMAT §Face recipe).
   if (v.kind === "position" && control !== "skin-tone") c.add(`${path}.kind`, 'only "skin-tone" takes a position');
   if (v.kind === "position") c.int(`${path}.percent`, v.percent, { min: 0, max: 100, recorded: true });
+}
+
+/** A path inside `folder`, with no ".." to climb back out of it. */
+const isUnder = (v: unknown, folder: string) => typeof v === "string" && v.startsWith(folder) && !v.split("/").includes("..");
+
+/** One of our own in-game captures: where it is, what it shows, who made it (D-10, D-41). */
+function checkPicture(c: Check, path: string, v: Obj, folder: string) {
+  if (!isUnder(v.file, folder)) c.add(`${path}.file`, `must be a file under "${folder}"`);
+  c.str(`${path}.alt`, v.alt);
+  c.str(`${path}.by`, v.by);
 }
 
 export function validateFace(file: string, data: unknown, ctx: Context): Problem[] {
@@ -162,11 +175,14 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
   if (c.arr("screenshots", d.screenshots)) {
     d.screenshots.forEach((shot, i) => {
       const p = at("screenshots", i);
-      if (!c.obj(p, shot)) return;
-      if (typeof shot.file !== "string" || !shot.file.startsWith("faces/")) c.add(`${p}.file`, 'must be a file under "faces/"');
-      c.str(`${p}.alt`, shot.alt);
-      c.str(`${p}.by`, shot.by);
+      if (c.obj(p, shot)) checkPicture(c, p, shot, "faces/");
     });
+  }
+  // The turntable's frames, cut from the maker's own in-game turn clip (D-35).
+  if (c.obj("turn", d.turn, { nullable: true })) {
+    if (!isUnder(d.turn.folder, "faces/")) c.add("turn.folder", 'must be a folder under "faces/"');
+    c.int("turn.frames", d.turn.frames, { min: 12, max: 72 });
+    c.str("turn.by", d.turn.by);
   }
 
   if (c.arr("embeds", d.embeds)) {
@@ -211,14 +227,11 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
     c.int("body.weightKg", d.body.weightKg, { min: 1, recorded: true });
     c.oneOf("body.accelerate", d.body.accelerate, ["explosive", "controlled", "lengthy"], { recorded: true, nullable: true });
   }
-  if (c.arr("attributes", d.attributes)) {
-    d.attributes.forEach((attr, i) => {
-      const p = at("attributes", i);
-      if (!c.obj(p, attr)) return;
-      c.str(`${p}.name`, attr.name);
-      c.int(`${p}.value`, attr.value, { min: 0, recorded: true });
-    });
-  }
+  // Set by Chime; a published Meta pick has been played, so it has a verified date (D-30, D-34, D-62).
+  c.oneOf("badge", d.badge, ["meta", "recommended"], { nullable: true });
+  if (c.published && d.badge === "meta" && isObj(d.versionTag) && d.versionTag.verifiedOn === null) c.add("badge", "a Meta pick must be checked in game (D-30)");
+  if (c.obj("picture", d.picture, { nullable: true })) checkPicture(c, "picture", d.picture, "builds/");
+  checkAttributes(c, "attributes", d.attributes);
   if (c.obj("playStyles", d.playStyles)) {
     for (const kind of ["signature", "plus", "regular"] as const) {
       const list = d.playStyles[kind];
@@ -226,8 +239,13 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
     }
   }
   c.str("specialization", d.specialization, { recorded: true, nullable: true });
+  const known = ctx.specializations?.get(String(d.archetype));
+  if (known && typeof d.specialization === "string" && d.specialization !== "PLACEHOLDER" && !known.has(d.specialization)) {
+    c.add("specialization", `${JSON.stringify(d.specialization)} is not one of ${String(d.archetype)}'s specializations`);
+  }
   c.int("skillMoves", d.skillMoves, { min: 1, max: 5, recorded: true });
   c.int("weakFoot", d.weakFoot, { min: 1, max: 5, recorded: true });
+  checkSpend(c, d);
   if (c.arr("sources", d.sources)) {
     d.sources.forEach((source, i) => {
       const p = at("sources", i);
@@ -238,6 +256,12 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
     });
   }
   return c.problems;
+}
+
+function specializationNames(file: unknown): Map<string, Set<string>> {
+  const list = isObj(file) && Array.isArray(file.archetypes) ? (file.archetypes as unknown[]) : [];
+  const recorded = list.filter((a): a is Obj => isObj(a) && Array.isArray(a.specializations));
+  return new Map(recorded.map((a) => [String(a.id), new Set((a.specializations as unknown[]).map((s) => String(isObj(s) ? s.name : s)))]));
 }
 
 /** Every file under content/, by its path there ("faces/x.json"). Builds the context from the files. */
@@ -253,6 +277,7 @@ export function validateAll(files: { path: string; data: unknown }[]): Problem[]
     creatorIds: ids(creators, "creators"),
     buildIds: idsIn("builds/"),
     faceIds: idsIn("faces/"),
+    specializations: specializationNames(archetypes),
   };
 
   return files.flatMap(({ path, data }) => {

@@ -1,5 +1,6 @@
 // Validators for the archetype file, creators and changelog entries (docs/FORMAT.md).
 import { at, Check, isObj, STATUSES, type Problem } from "./check.ts";
+import { checkTargets } from "./validate-build-parts.ts";
 import { POSITIONS } from "./types.ts";
 
 export function validateArchetypeFile(file: string, data: unknown): Problem[] {
@@ -63,8 +64,15 @@ export function validateArchetypeFile(file: string, data: unknown): Problem[] {
         checkSourceIds(`${p}.apCostChange20261022.sourceIds`, ap.sourceIds);
       }
       if (a.specializations !== null) {
-        if (Array.isArray(a.specializations)) a.specializations.forEach((name, j) => c.str(at(`${p}.specializations`, j), name));
-        else c.add(`${p}.specializations`, "must be a list or null");
+        if (!Array.isArray(a.specializations)) c.add(`${p}.specializations`, "must be a list or null");
+        else a.specializations.forEach((spec, j) => {
+          const s = at(`${p}.specializations`, j);
+          if (!c.obj(s, spec)) return;
+          c.str(`${s}.name`, spec.name);
+          c.str(`${s}.playStyle`, spec.playStyle);
+          checkTargets(c, `${s}.targets`, spec.targets);
+          checkSourceIds(`${s}.sourceIds`, spec.sourceIds);
+        });
       }
       if (a.typicalPositions !== null) {
         if (!Array.isArray(a.typicalPositions)) c.add(`${p}.typicalPositions`, "must be a list or null");

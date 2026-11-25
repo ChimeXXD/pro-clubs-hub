@@ -65,7 +65,9 @@ One file per game. Unverified fields are `null`, never guessed.
       ],
       "masteryAttributes": { "attributes": ["Finishing", "Composure"], "sourceIds": ["ea-grounds-deep-dive"] },
       "apCostChange20261022": { "up": 6, "down": 4, "sourceIds": ["ea-archetypes-update"] },
-      "specializations": null,
+      "specializations": [
+        { "name": "Hunter", "playStyle": "Gamechanger", "targets": [ { "attribute": "Balance", "value": null } ], "sourceIds": ["…"] }
+      ],
       "typicalPositions": null
     }
   ],
@@ -76,6 +78,7 @@ One file per game. Unverified fields are `null`, never guessed.
 - File-level `note` (string) explains what is and isn't sourced. Each archetype also has `verifiedInGame` (boolean, false until Chime checks it) and `notes` (string or `null`).
 - `positionGroup`: `"goalkeeper"`, `"defender"`, `"midfielder"`, `"attacker"` (EA's grouping).
 - `sourceIds` point into the file's `sources`.
+- `specializations` (A-18): `null` until recorded. `playStyle` is the PlayStyle+ it gives. `targets` is `null` when nobody has read them; a target's `value` is `null` when only its attribute is known (RESEARCH §10.4). Once an archetype has a list, its builds may only name a specialization in it.
 
 ## Build (`content/builds/<slug>.json`)
 
@@ -89,13 +92,16 @@ One file per game. Unverified fields are `null`, never guessed.
   "archetype": "spark",
   "positions": ["RW", "LW"],
   "summary": "PLACEHOLDER",
+  "badge": null,
   "level": "PLACEHOLDER",
+  "picture": null,
   "body": { "heightCm": "PLACEHOLDER", "weightKg": "PLACEHOLDER", "accelerate": "PLACEHOLDER" },
   "attributes": [ { "name": "Acceleration", "value": "PLACEHOLDER" } ],
   "playStyles": { "signature": ["Trickster", "Rapid"], "plus": ["PLACEHOLDER"], "regular": ["PLACEHOLDER"] },
   "specialization": "PLACEHOLDER",
   "skillMoves": "PLACEHOLDER",
   "weakFoot": "PLACEHOLDER",
+  "spend": null,
   "version": 1,
   "versionTag": { "game": "fc27", "season": 2, "verifiedOn": null, "verifiedBy": null, "platform": null },
   "credits": [ { "role": "made-by", "name": "Chime", "url": null, "creatorId": null } ],
@@ -109,7 +115,12 @@ One file per game. Unverified fields are `null`, never guessed.
 - `archetype` must match an id in `content/archetypes/fc27.json`.
 - `positions` from: `GK CB LB RB LWB RWB CDM CM CAM LM RM LW RW CF ST`.
 - `accelerate`: `"explosive"`, `"controlled"`, `"lengthy"` or `null`.
-- `level` and attribute values are integers once recorded. Attribute `name` must be one of the game's attribute names (list fixed on Day 0 from the game).
+- `level` and attribute values are integers once recorded. Attribute `name` must be in `ATTRIBUTE_GROUPS` (`src/lib/content/attributes.ts`), once each, with a value from 0 to 99. The names still need checking against the game's own screen.
+- `badge` (A-18, D-34, D-62): `"meta"` (Meta pick), `"recommended"` or `null`. A published Meta pick needs a `verifiedOn` date (D-30). "Most copied" is counted later, so it isn't stored here.
+- `picture` (A-18, D-41, D-42): `{ "file": "builds/<slug>.webp", "alt": "…", "by": "Chime" }`, our own in-game face, or `null` for the empty slot.
+- `spend` (A-18, D-43): the order the build was made in, or `null` (the page then has no level switch). Attribute and star values, raised step by step from the archetype's starting values:
+  `{ "start": [ { "name": "Finishing", "value": 70 } ], "startStars": { "skillMoves": 3, "weakFoot": 3 }, "steps": [ { "raise": "Finishing", "to": 85 }, { "raise": "Weak Foot", "to": 4 } ] }`
+  Every step raises its value, and walking the steps must end on the build's own `attributes`, `skillMoves` and `weakFoot`.
 - Bump `version` and add a `history` line whenever a value changes.
 
 ## Face recipe (`content/faces/<slug>.json`)
@@ -143,6 +154,7 @@ One file per game. Unverified fields are `null`, never guessed.
   "limits": ["PLACEHOLDER"],
   "pairedBuild": "spark-2008-winger",
   "screenshots": [],
+  "turn": null,
   "embeds": [],
   "version": 1,
   "versionTag": { "game": "fc27", "season": 2, "verifiedOn": null, "verifiedBy": null, "platform": null },
@@ -165,6 +177,7 @@ One file per game. Unverified fields are `null`, never guessed.
 - `limits`: what the game can't do for this look ("No 2008 hairstyle; nearest is …").
 - `pairedBuild` must match a build id.
 - `screenshots`: `{ "file": "faces/<slug>-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }`. Only Chime's own in-game captures of their recreation (D-10).
+- `turn` (A-18, D-35): `{ "folder": "faces/<slug>/turn", "frames": 36, "by": "Chime" }`, numbered frames cut from the maker's own turn clip, 12 to 72 of them; `null` until the clip exists.
 - `embeds`: `{ "provider": "youtube", "videoId": "…", "title": "…", "channel": "…", "creatorId": "…" }`. Loaded on tap (A-05). Every embed has a matching `"tutorial"` credit.
 - Step ticks are stored under `face:<id>:v<version>` (A-07).
 

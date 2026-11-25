@@ -41,6 +41,7 @@
   "limits": ["Test limit."],
   "pairedBuild": "test-spark-build",
   "screenshots": [{ "file": "faces/test-footballer-2010-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }],
+  "turn": null,
   "embeds": [{ "provider": "youtube", "videoId": "abc123", "title": "Test tutorial", "channel": "Test Channel", "creatorId": "test-creator" }],
   "version": 1,
   "versionTag": { "game": "fc27", "season": 3, "verifiedOn": "2026-12-04", "verifiedBy": "Chime", "platform": "ps5" },

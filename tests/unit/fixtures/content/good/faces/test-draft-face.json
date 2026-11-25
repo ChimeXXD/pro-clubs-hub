@@ -112,6 +112,7 @@
   ],
   "pairedBuild": "test-draft-build",
   "screenshots": [],
+  "turn": null,
   "embeds": [
     {
       "provider": "youtube",
