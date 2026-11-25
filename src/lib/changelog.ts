@@ -5,6 +5,8 @@ import { formatDay } from "./content/version.ts";
 /** One entry as the page shows it: plain data, so a client component can filter it. */
 export interface ChangelogItem {
   id: string;
+  /** Shown only on the preview site, with a Draft tag. */
+  draft?: boolean;
   date: IsoDate;
   kind: ChangelogKind;
   season: number;

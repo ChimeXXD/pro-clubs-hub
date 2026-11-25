@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Icon } from "@/components/shell/Icon";
+import { DraftTag } from "@/components/ui/DraftTag";
 import {
   dayAndMonth,
   type Filter,
@@ -48,8 +49,11 @@ function Entry({
           <span className="type-caption text-text-muted">{month}</span>
         </span>
         <span className="flex flex-1 flex-col gap-1">
-          <span className="type-caption text-text-muted">
-            {KIND_LABEL[item.kind]}
+          <span className="flex items-center gap-2">
+            <span className="type-caption text-text-muted">
+              {KIND_LABEL[item.kind]}
+            </span>
+            {item.draft && <DraftTag />}
           </span>
           <span className="type-label tablet:type-h4 text-text-primary">
             {item.title}

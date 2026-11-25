@@ -1,18 +1,18 @@
-import { join } from "node:path";
 import type { Metadata } from "next";
 import { ChangelogView } from "@/components/changelog/ChangelogView";
 import { PageContent } from "@/components/ui/PageContent";
 import type { ChangelogItem } from "@/lib/changelog";
-import { loadContent } from "@/lib/content/load";
+import { siteContent } from "@/lib/content/site-content";
 import { CURRENT_SEASON, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = { title: `Changelog · ${SITE_NAME}` };
 
-// Published entries only, newest first (the loader drops drafts and withdrawn ones; D-06, rule 8).
+// Published entries, newest first; the preview site adds drafts, marked. Withdrawn never shows (D-06, rule 8).
 export default function ChangelogPage() {
-  const { changelog } = loadContent(join(process.cwd(), "content"));
+  const { changelog } = siteContent();
   const items: ChangelogItem[] = changelog.map((e) => ({
     id: e.id,
+    draft: e.status === "draft",
     date: e.date,
     kind: e.kind,
     season: e.season,

@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Draft preview mode (Thu 26 Nov 2026)
+
+- **Chime:** "build everything at once"; picked "All now, on a draft preview" (D-104).
+- **Built:** `loadContent(root, { includeDrafts })`; `src/lib/drafts.ts` (drafts on for any Cloudflare branch but main, or PROBUILDS_DRAFTS=1); `siteContent()` reads content once per build; `DraftTag`; `PreviewBar`; noindex on preview builds. The Changelog uses it: drafts show tagged on the preview.
+- **Tests:** unit 182 (red first; a mutation check shows the withdrawn-pair test catches removing the guard); e2e 46, including "the live build never shows the preview bar". A local draft build showed the bar, 3 tagged changelog entries and noindex.
+- **Reviews:** code review fixed 5 (dev-server cache, brittle test, helper renamed, domain from site.ts, double load). Verifier: my comment overstated "missing" links (they still fail validation) and one case was untested; both fixed.
+- **Not verified yet:** that Cloudflare's production branch is main and that the preview branch builds with CF_PAGES_BRANCH set (checked after the first push).
+
 ## Changelog built (Wed 25 Nov 2026)
 
 - **Built:** `/changelog` (Figma 383:3158 / 390:2540 / 390:2700, option B, D-82) from `content/changelog`: published entries only, grouped by season with "Now", filters (All, Title updates, Archetypes, Seasons, Site), entries that open in place (the newest visible one open), EA source in a new tab, "We updated". Phone stacks everything; tablet and desktop indent the body under an H4 title; desktop puts the header, season card and filters in a 352 px column. `src/lib/changelog.ts` holds the rules.

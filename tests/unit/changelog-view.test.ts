@@ -54,3 +54,12 @@ describe("ChangelogView", () => {
     expect(empty).not.toContain("changelog-entry");
   });
 });
+
+describe("ChangelogView on the preview site", () => {
+  it("marks a draft entry with a Draft tag", () => {
+    const first = items[0];
+    if (!first) throw new Error("no sample entry");
+    const html = renderToStaticMarkup(createElement(ChangelogView, { items: [{ ...first, draft: true }], currentSeason: 2 }));
+    expect(html).toContain(">Draft<");
+  });
+});

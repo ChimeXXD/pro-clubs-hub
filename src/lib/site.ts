@@ -11,5 +11,8 @@ export const REPO = "ChimeXXD/probuilds";
 // Content made for an earlier season shows the older-season warning (D-05).
 export const CURRENT_SEASON = 2;
 
+// The live site (D-53). Preview builds name it so nobody takes a draft for it.
+export const SITE_DOMAIN = "probuilds.club";
+
 // Where takedown requests go (D-10, D-53). Acted on within 72 hours.
 export const TAKEDOWN_EMAIL = "takedown@probuilds.club";
