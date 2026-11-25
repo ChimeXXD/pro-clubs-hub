@@ -2,6 +2,32 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share build and the share image, three options (Wed 25 Nov 2026)
+
+- **Chime:** Copy build → Share build: a rendered image of the whole build to download and send, plus a link to the page (D-64). Picked a story image plus a link preview, showing everything.
+- **Figma:**
+  - "Copy build" → "Share build" on phone, tablet and desktop build pages.
+  - The toast placeholder is renamed "share sheet and link copied".
+  - New section "Options · Share image, story 1080×1920 (pick one)" (309:1558), drawn at 360 × 640 and exported at 3×:
+    - A · Stat sheet (309:868): logo, face 76 px, tag, name, positions and level, version line, stat strip, PlayStyles+, attributes in two columns, footer with link, credit and notice.
+    - B · Face poster (309:1099): the in-game face full width, fading into the page under the name.
+    - C · Light spec card (309:1331): Light theme mode, the details in a bordered card on cream.
+  - References: Runna and Slopes share sheets, the pliability photo card, Mimo's story card.
+- **Review before showing:**
+  - First render problems, all fixed:
+    - Attribute bars read as underlines and hit the numbers; removed, so rows are name and value only.
+    - A's logo and version line collided.
+    - B's last rows were cut off.
+    - C's lime text was unreadable on cream; accent text now uses accent/text.
+    - C's version line was cut off.
+    - C's wordmark disappeared on cream; recoloured to text/primary.
+  - All three fit inside 640 px (content ends at 624 of 624).
+  - Checked A at a full 1080 × 1920 render and B and C at 2×.
+- **Type:** attribute rows use 13 px at the 360 scale (39 px in the image, about 14 px when shown full-screen on a 393 px phone).
+- **Open:**
+  - The lime mark in C's logo is faint on cream.
+  - The link preview is designed after the pick.
+
 ## Build page on iPad and desktop (Wed 25 Nov 2026)
 
 - **Chime:** approved the refined build page; asked for iPad and desktop (D-63).
