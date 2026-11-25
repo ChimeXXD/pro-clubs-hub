@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404: three new options without the faces row (Wed 25 Nov 2026)
+
+- **Chime:** the 404 "look[s] weird"; drop "Or try a face"; three new variants to pick from.
+- **Figma, Phase 3, row "404 · three new options" under the 404 row (phone 390; Search results moved down):**
+  - A · Centred (420:4566): the "Over the bar" art at full size, centred headline and line, Go to faces and Go to builds, "Back to Home".
+  - B · Pitch scene (420:4689): the art on a full-width surface band, "404" kicker, headline left-aligned, then "Head back to" with Faces, Builds, Changelog and Submit a build as rows.
+  - C · Replay card (420:4819): the art inside a "Replay" card tagged 404, headline, a search field "Search faces and builds", Faces and Builds side by side.
+- **Copy:** the headline and line are the approved D-81 text minus "Faces and builds start here:"; the row descriptions in B ("Look like a legend", "Meta builds by archetype", "What changed in FC 27 Clubs", "Share yours as a card") are drafts.
+- **Checked:** renders of all three; no overlaps in Phase 3 after moving the new row under the 404 row.
+
 ## Type made consistent; weight next to every height (Wed 25 Nov 2026)
 
 - **Chime:** titles at different sizes (Changelog 64 on desktop); add weight wherever height shows. Recorded as D-92 and in DESIGN.md §Type.
