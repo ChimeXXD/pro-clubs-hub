@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: demo faces aligned to one rule (Wed 25 Nov 2026)
+
+- **Chime:** the pictures aren't centred the same way (Michael Jackson especially); "everything is exactly in the same format".
+- **Measured** with Apple Vision face landmarks (script in the session scratchpad): before, eye midpoints ranged x 293–319, y 220–269 and eye distance 106–135 px on 600 px crops (MJ 27% larger and right of centre, Ronaldo higher).
+- **Rule:** eye midpoint centred, eye line 45% down, eyes 24% of the width apart (the largest size MJ's crop allows without the creator's panel or watermark). After: x 299–301, y 268–271, distance 144–146 px.
+- **Figma:** the 12 slots in A, B and C re-uploaded (FILL, untransformed, so the 4:5 and 96 × 120 slots crop the sides evenly). Renders of all three checked.
+- **Trade-off:** faces are larger than before; the tops of the hair sit close to the edge.
+- **Ronaldo swapped** at Chime's request for Xaiiros's video (https://youtu.be/SHmX5Z8BxFs, frame at 25 s; the chest watermark, reference inset and menu panel kept out of frame), cropped to the same rule: eyes (299, 270), 143 px apart. The demo note now credits Xaiiros and CodeName Max.
+
 ## Faces library: four real-looking demo faces, kind filters (Wed 25 Nov 2026)
 
 - **Chime:** use YouTube frames of 2008 Ronaldo, Michael Jackson, LeBron James and Lamine Yamal, cropped like the pro's face; chips All, Footballers, Athletes, Musicians; drop the era chips. Recorded as D-68.
