@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Face page: section progress bar back (Wed 25 Nov 2026)
+
+- **Chime:** keep the new guided layout but bring back the earlier segmented bar, because it shows how long each section is. Recorded as D-73.
+- **Before → after (353:1410, 353:1524, 353:1648):** one 6 px bar filled to N/18 → seven segments with 4 px gaps, widths by values per section (sample counts: Preset 1, Skin 4, Head 3, Face 2, Hair 4, Sculpt 24, Visual Age 1 → 8, 34, 25, 17, 34, 202, 8 px). Done sections lime; the current one fills by screens done in it (Sculpt 4 of 12 at step 9); the rest bg/raised. Label "Step 1 of 18" → "Step 1 of 18 · Preset" (Skin, Sculpt on the others).
+- **Fixed before showing:** the first pass lit the whole current segment, so step 9 looked nearly finished.
+- **Checked:** the bar on all three frames at 2× and full-frame renders.
+
 ## Face page simplified: one game screen per step (Wed 25 Nov 2026)
 
 - **Chime:** confused by the chips and the repeated list; remove "Pairs with this build"; "Have you watched the videos?… we need to simplify it more." Honest answer given: the videos had only been sampled for frames, not studied for how they guide.
