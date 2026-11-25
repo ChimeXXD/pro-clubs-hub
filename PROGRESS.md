@@ -2,6 +2,29 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Build page: the original refined, not replaced (Wed 25 Nov 2026)
+
+- **Chime:** none of the three variants work ("why are we using the archetype stance card for the build section?"). Keep the original Meta Finisher phone screen and refine it.
+- **Done:**
+  - Variants A–C are archived (294:1627).
+  - The original is archived as "before refine" (184:209).
+  - The refined page (298:3630) is in its Phase 1 slot as "Build · Meta Finisher · phone 390".
+- **Changes, before → after:**
+  - Header: captured copy → Top bar component (phone).
+  - Footer: captured copy → Footer notice component (phone); the draft note stays above it.
+  - Left edge: 16 px (and 32 px for the panels, details and lists, 36 for "Your level") → 20 px for every block (D-59).
+  - Picture: old full-body in-game crop (face mask, club crest showing) → the in-game face close-up used on the archetype page cards. Caption "…in the Finisher stance, from the game." → "Chime's own pro, from the game."
+  - Text: 11–13 px (stat labels, sample note, tag, details labels, Mastery, AP line) → 14 px minimum; 85 texts now on DS text styles (Label/Caption, Label/Default, Body/Default, Heading/H1, Number/Medium, Button/Large). Condensed headings (Your level, Finisher, Attributes, group names, values) keep their original condensed caps.
+  - Sample note: outlined pill (overflowed at 14 px) → plain muted caption, as on the archetype page.
+  - Stats beside the picture: fixed 185 px panel (gap on the right) → fills its column, label and value on one baseline.
+  - Copy build: 361 px (ran 8 px past the edge) → full content width.
+  - Level slider: ran past the right edge → track from edge to edge, knob ends on the edge.
+  - Specialization rows: 12 px further in than the paragraph and ending short → aligned to the paragraph, values on the right edge.
+  - Attributes: groups at 32 px, bars ending 24 px short → full width, bars scaled to keep their proportions.
+  - Mastery pills: clipped at 14 px → widened to fit.
+- **Checked:** five full renders and two 2.5× renders of the top half (temporary boards deleted). The audit finds no text under 14 px and nothing past the 20 px edges. No overlaps in Phase 1.
+- **Still raw:** 60 texts keep raw styling on purpose (condensed headings and numbers that have no matching DS style, mixed-weight lines such as the AP line).
+
 ## Build page: three variants (Wed 25 Nov 2026)
 
 - **Chime asked:** three variants of the build page (`/builds/finisher/meta-finisher`).
