@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404 "Over the bar" on all sizes (Wed 25 Nov 2026)
+
+- **Chime:** picked option C. Recorded as D-81.
+- **Figma, Phase 3's 404 row:** phone 390 is option C (377:2500); tablet 834 (375:2638) and desktop 1440 (375:2690) edited in place: a Hero row with the copy and buttons on the left (360 / 520 px) and the goal art on the right, scaled from the phone art (370 / 600 px). "Or try a face" and the footer unchanged.
+- **Archive:** the plain 404 (phone, tablet, desktop) as "Superseded 25 Nov · …"; options A and B as "Not picked 25 Nov · …".
+- **Checked:** renders of tablet and desktop; no frame overlaps in Phase 3; the Search row moved down 206 px; Phase 3 refitted and Phases 4–5 moved up so the gap is 160 px again.
+- **Copy (draft):** "Over the bar." / "That link went high. The page may have moved, …".
+
 ## 404 with character: three phone options (Wed 25 Nov 2026)
 
 - **Chime:** the 404 is "too basic"; 15 Mobbin 404s gathered on the local board (section "not-found"), none liked: "build something not generic… a 404 with character… design, not build."
