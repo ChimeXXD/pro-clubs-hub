@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: demo face in, phone menu button out (Wed 25 Nov 2026)
+
+- **Chime (screen recording):** "Why is there a hamburger icon here when we already have the navbar?" and "can we put a demo face… use this face" (the pro's face from the Meta Finisher share cards).
+- **Top bar, phone (205:375):** the Menu button (205:385) is removed; the season chip moves to the right edge, 20 px in. Every phone screen updates through the component. Recorded as D-67; PLAN Phase 3 "menu sheet" dropped.
+- **Faces library options A, B and C:** all 12 picture slots now show the pro's in-game face (the link preview's image, scale FILL) in place of "Face coming soon" and the big era. The sample note reads "Demo: Chime's own pro stands in for every in-game capture" and wraps to two lines; the bottom nav was re-pinned after the frames grew 20 px.
+- **Kept:** the empty-slot versions are on Archive (336:2059, 336:2124, 336:2195) for the "no capture yet" state.
+- **Open risk:** D-42 bars a stand-in face next to a real person's name in drafts or the product. The demo is in Figma only, labelled, and goes nowhere near the repo; each real card will show its own recreation.
+- **Checked:** renders of all three at 0.75× and the Top bar at 2×; the note fits; the nav sits inside its space on all three.
+- **Next:** Chime picks A, B or C.
+
 ## Faces library: three options for Chime to pick (Wed 25 Nov 2026)
 
 - **Chime:** "work on the next page… create three variants of the page for me to choose from." The next page not yet designed is the Faces library (Phase 2). Phase 1's three build states are still to design; the toast and bottom-nav picks are still open.
