@@ -41,6 +41,30 @@
   }
 }
 
+/* The 404 replay (D-93): the ball rises from the goal mouth over the bar in 0.6 s, ease-out (Figma 424:4664).
+   Offsets are in the ball box's own height: 154.5 art pixels above rest, over an 88.1 px box. One segment, not
+   three frames: an easing applies per keyframe segment, so a mid keyframe would stop the ball dead at 0.3 s and
+   kick it again. ReplayCard's cubic-bezier(0.3, 0.3, 0.7, 1) passes the storyboard's 0.3 s frame (70.9%) at
+   68%, then settles. The speed lines show only at rest. */
+@keyframes over-the-bar {
+  0% {
+    translate: 0 175.4%;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes at-rest {
+  0%,
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @layer base {
   /* Greyscale smoothing, as Figma draws text: macOS subpixel smoothing thickens light text on dark pages. */
   html {

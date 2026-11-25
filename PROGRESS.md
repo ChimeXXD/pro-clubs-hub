@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404 built: the replay card (Wed 25 Nov 2026)
+
+- **Chime:** "Start building the rest, please."
+- **Built:** `src/app/not-found.tsx` and `ReplayCard` (Figma 420:4819 / 423:4713 / 423:4836, 431:1219; D-81, D-93, D-95): "Over the bar." with Faces and Builds, no search. The art is Figma's vectors at their design positions (percentages of the art box, 324.76 / 340.4 / 552 px wide); net, frame and speed lines are masks in token colours, the ball keeps its cream and ink, the 1.38 px goal line is a CSS bar (Chrome painted nothing for a mask that thin). The shot rises over the bar in 0.6 s on arrival and on Replay; reduced motion shows the last frame and hides Replay.
+- **Tests:** e2e 38 at 390 and 360 (red first: Next's default 404 showed "404"); status 404 for unknown paths.
+- **Compared with Figma:** at rest, mean pixel diff 2.3 / 2.1 / 1.0 at 393 / 834 / 1440; the goal line's pixel row matches (#426a5b at y 388).
+- **Reviews:** code review fixed 3 (the ball stalled mid-rise because CSS eases each keyframe segment: now one curve, within 1.6 px of the 0.3 s storyboard frame; tablet art 2.4 px wider than the card's inside; two timing-based test checks now poll). The verifier's one failure was that same stall.
+- **Not verified:** the motion on Chime's iPhone (rule 10).
+
 ## About and Takedown built; type is one size everywhere (Wed 25 Nov 2026)
 
 - **Chime:** "Continue building. When you're done building, give me the preview link."
