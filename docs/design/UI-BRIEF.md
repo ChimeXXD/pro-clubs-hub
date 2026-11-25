@@ -34,7 +34,7 @@ To be written from Chime's pick. Constraints any direction must meet:
 | Screen | Must show |
 | --- | --- |
 | Home | Current season chip ("FC 27 · Season 2"); faces rail (era badge, kind, "Inspired by" name); builds by position; latest changelog line |
-| Faces | Filter chips (All, Footballers, Musicians, eras); search; grid of FaceCards |
+| Faces | Filter chips (All, Footballers, Athletes, Musicians; D-68); search; FaceCards (layout: Chime's pick of the three options) |
 | Face | Title, era, version tag, credit line; limits callout; Start; tabs; StepRows with ValueChips; progress; paired BuildCard; tutorial embed facade; Chime's screenshots |
 | Builds | Position chips; archetype filter; BuildCards |
 | Build | Archetype, positions, height, weight, AcceleRATE, attribute list, PlayStyles (Signature, Plus, Regular), specialization, skill moves, weak foot, version tag, credits, history |

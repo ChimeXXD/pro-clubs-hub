@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: four real-looking demo faces, kind filters (Wed 25 Nov 2026)
+
+- **Chime:** use YouTube frames of 2008 Ronaldo, Michael Jackson, LeBron James and Lamine Yamal, cropped like the pro's face; chips All, Footballers, Athletes, Musicians; drop the era chips. Recorded as D-68.
+- **Frames:** found the creators' FC 27 tutorials on YouTube in Chrome, drew the frame at 15 s to a page canvas, cropped a square around the head (creator watermark, captions, menu panels and club crests kept out of frame, not edited out), saved with the screenshot tool, trimmed with ffmpeg. All four from CodeName Max (the studio framing matched the pro's shot best; JaxStash's MJ was turned and had sculpt highlights). Files and links: git-ignored `reference/faces-demo/` with `SOURCES.md`. No video downloaded.
+- **Figma (options A 333:1139, B 333:1199, C 333:1257):** the 12 picture slots got the four crops (upload_assets, FILL); cards now Cristiano Ronaldo (Footballer · 2008), Lamine Yamal (Footballer), LeBron James (Athlete), Michael Jackson (Musician); chips All 4, Footballers 2, Athletes 1, Musicians 1; B and C gained an Athletes shelf/group; the note credits CodeName Max. The placeholder row moved to y 2247 and Phases 3–5 down 398 px; no overlaps.
+- **Checked:** every slot has an image fill; renders of all three at 0.75×.
+- **Not done:** `athlete` in the content format and validator (code, tests first).
+- **Next:** Chime picks A, B or C.
+
 ## Faces library: demo face in, phone menu button out (Wed 25 Nov 2026)
 
 - **Chime (screen recording):** "Why is there a hamburger icon here when we already have the navbar?" and "can we put a demo face… use this face" (the pro's face from the Meta Finisher share cards).
