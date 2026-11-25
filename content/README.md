@@ -15,7 +15,7 @@ Everything the site shows lives here as JSON. Formats: `docs/FORMAT.md`. The bui
 1. **Facts are free.** Archetype names, PlayStyle names, EA's stated targets and patch-note changes. Cite the page in `sources`.
 2. **Chime makes every build and face themself, in game.** Only then does `versionTag.verifiedOn` get a date.
 3. **Credit what you followed.** A creator tutorial that shaped a face gets a `"tutorial"` credit with a link, and its video goes in `embeds` (loaded on tap). Never transcribe or re-upload a video.
-4. **Ask before publishing a creator's full slider list.** Record the answer in `creators.json`. Publish only with `"permission": "yes"`.
+4. **Ask before publishing a creator's full slider list.** Record the answer in `creators.json`. Publish only with `"permission": "yes"`. Builds read from a streamer's video don't wait for an answer (D-66): credit the streamer with a `reference` credit linking the exact video, keep `verifiedOn` `null` until one of us makes it in game, and never make it a Meta pick.
 5. **Offer featured creator spots** to creators who say yes.
 6. **Never bulk-copy** another site's builds, tier lists or cost tables. Link to them instead.
 7. **Never invent values.** Use `"PLACEHOLDER"` and keep the file `draft`.

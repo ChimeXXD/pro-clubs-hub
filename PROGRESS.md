@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Sharon's PRs reviewed; streamer builds approved (D-66) (Wed 25 Nov 2026)
+
+- **Chime:** approved PR #5 (builds from streamers' videos): "We don't have to be waiting for their reply. We publish their build and we credit them by putting the link of the video."
+- **Done:** PR #5 approved with a reply to Sharon and squash-merged (6696926). D-66 recorded; O-17 closed. Pointers to D-66 added in CLAUDE.md rules 5 and 9, `content/README.md` rule 4 and SPEC flow 5.
+- **Reviewed, not merged:** #6 (build, face and archetype formats, A-18) and #7 (level engine, draft, builds on #6). Both CI green. Both line up with D-30, D-34, D-35, D-41 to D-44, D-62 and D-63; #7's AP totals match RESEARCH §10.1. Waiting on Chime's OK to merge #6, then Sharon updates #7 from main.
+- **Not checked:** #6 and #7 weren't run locally (CI ran them). Attribute spellings and the fifth GK attribute need Chime's Edit Attributes screen.
+- **Next:** Chime's call on #6, #7 and closing #3 and #4 (old Pitchside brand).
+
 ## Share build: link preview and share sheet on every size (Wed 25 Nov 2026)
 
 - **Chime:** approved the two story cards; asked for the link preview and the share sheet (D-65).
