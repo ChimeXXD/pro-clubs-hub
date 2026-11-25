@@ -2,6 +2,19 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share image: PlayStyles in, the six-stat row out (Wed 25 Nov 2026)
+
+- **Chime:**
+  - Remove the PAC/SHO/PAS/DRI/DEF/PHY row; the group scores next to PACE, SHOOTING and the other groups already show those six numbers.
+  - The image showed only the PlayStyles+; show the PlayStyles too.
+- **Changes, before → after (all three options):**
+  - Six-stat strip → removed.
+  - PlayStyles+ row (2 icons) → a "PlayStyles" block: a heading with "2 PlayStyles+ · 6 PlayStyles" and a two-column list. Low Driven Shot+ and First Touch+ come first with gold icons; then Finesse Shot, Power Shot, Rapid, Quick Step, Precision Header and Acrobatic.
+  - A: the logo at the top → removed (the footer keeps it).
+  - B: face hero 150 → 122 px.
+  - C: version line moved under the hero; card padding 14/12 → 12/10; plain PlayStyle icons on 18 px dark tiles (white icons vanished on the cream card).
+- **Checked:** a 2× board of all three and a 2.5× close-up of C's PlayStyles (temporary boards deleted). All three fit in 640 px.
+
 ## Share build and the share image, three options (Wed 25 Nov 2026)
 
 - **Chime:** Copy build → Share build: a rendered image of the whole build to download and send, plus a link to the page (D-64). Picked a story image plus a link preview, showing everything.
