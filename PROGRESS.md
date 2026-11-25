@@ -2,6 +2,12 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## PlayStyles step: v3 picked (Wed 25 Nov 2026)
+
+- **Chime:** v3 with v1's count boxes; v1 and v2 to Archive. Recorded as D-88.
+- **Figma:** "Submit a build · PlayStyles · phone 390" (406:3024) now has v1's two count boxes in its sticky header; the row reads start · attributes · PlayStyles · name and share. v1 and v2 are on Archive.
+- **Checked:** render; no overlaps.
+
 ## PlayStyles step: two leaner versions (Wed 25 Nov 2026)
 
 - **Chime:** the PlayStyles page "looks too all over the place… too chunky"; two other versions.
