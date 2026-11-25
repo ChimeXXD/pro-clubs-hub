@@ -2,6 +2,19 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share image: references on the board (Wed 25 Nov 2026)
+
+- **Chime:** the share image is "so close that there's no space. It looks overwhelming". Find references for downloadable share cards on Mobbin and elsewhere, put them on the board, and let them pick.
+- **Board** (git-ignored `reference/board/`):
+  - New group "Share build" with two sections, "1 · A share image with room to breathe" (15 refs) and "2 · The share sheet around it" (3 refs).
+  - Data in `refs-share.js`; images in `img/share-card/`.
+- **Sources:**
+  - Mobbin: Spotify Wrapped, Beli, Brink, Duolingo, Marriott, Future Pro, pushr, Hevy, Bevel, Strava, MD Vinyl, Polarsteps, Runna.
+  - Other sites: two Sofascore cards, NBA 2K27's official Community Builds sheet, two Dribbble football stats concepts.
+  - Left out: a spreadsheet table and a badge chart (as crowded as our problem).
+- **Recommendation on the board:** split the build into two or three swipeable cards (Bevel, Strava), each laid out like Sofascore's (one hero number, tall ruled rows). Card 1 is the face, facts and PlayStyles; card 2 is the attributes in grouped columns.
+- **Server:** the board server (port 4310) is running for Chime's picks; stop it after reading `notes.json`.
+
 ## Share image: PlayStyles in, the six-stat row out (Wed 25 Nov 2026)
 
 - **Chime:**
