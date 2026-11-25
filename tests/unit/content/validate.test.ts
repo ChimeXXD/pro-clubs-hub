@@ -219,6 +219,43 @@ describe("validateBuild", () => {
     expect(validateBuild("builds/x.json", bad, ctx).map((p) => p.path)).toEqual(["badge", "picture", "spend"]);
   });
 
+  // The game's own six numbers, recorded as shown and never worked out (Chime's answer on PR #6, A-19).
+  const keyStats = ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"].map((name, i) => ({ name, value: 80 + i }));
+  const withKeyStats = (value: unknown) => changed(buildGood, (b) => (b.keyStats = value));
+
+  it("passes the six key stats, and null when nobody has read them", () => {
+    for (const value of [keyStats, null]) expect(validateBuild("builds/x.json", withKeyStats(value), ctx)).toEqual([]);
+  });
+
+  it("fails key stats that are missing one, out of order or misnamed", () => {
+    const misnamed = keyStats.map((s) => (s.name === "PAC" ? { ...s, name: "PACE" } : s));
+    for (const value of [keyStats.slice(1), [...keyStats].reverse(), misnamed]) {
+      expect(messages(validateBuild("builds/x.json", withKeyStats(value), ctx))).toEqual(["must be PAC, SHO, PAS, DRI, DEF, PHY in that order"]);
+    }
+  });
+
+  it("fails a key stat over 99, and a build with no keyStats field", () => {
+    const over = keyStats.map((s) => (s.name === "PHY" ? { ...s, value: 100 } : s));
+    expect(validateBuild("builds/x.json", withKeyStats(over), ctx).map((p) => [p.path, p.message])).toEqual([
+      ["keyStats[5].value", "must be a whole number from 0 to 99"],
+    ]);
+    const missing = changed(buildGood, (b) => delete b.keyStats);
+    expect(validateBuild("builds/x.json", missing, ctx).map((p) => p.path)).toEqual(["keyStats"]);
+  });
+
+  it("lets a draft hold PLACEHOLDER for a key stat it couldn't read, but not a published build", () => {
+    const unread = keyStats.map((s) => (s.name === "DEF" ? { ...s, value: "PLACEHOLDER" } : s));
+    const build = withKeyStats(unread);
+    expect(messages(validateBuild("builds/x.json", build, ctx))).toEqual(['published but holds "PLACEHOLDER"']);
+    expect(validateBuild("builds/x.json", changed(build, (b) => (b.status = "draft")), ctx)).toEqual([]);
+  });
+
+  it("passes every goalkeeper attribute, GK Kicking included", () => {
+    const names = ["GK Diving", "GK Handling", "GK Kicking", "GK Positioning", "GK Reflexes"];
+    const keeper = changed(buildGood, (b) => (b.attributes = names.map((name) => ({ name, value: 80 }))));
+    expect(validateBuild("builds/x.json", keeper, ctx)).toEqual([]);
+  });
+
   // The fixture's one attribute, Acceleration 90, as a spend order: 70 at the start, then 85, then 90 (D-43).
   const spend = {
     start: [{ name: "Acceleration", value: 70 }],
