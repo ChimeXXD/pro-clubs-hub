@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phase 5 started: three About and three Takedown options (Wed 25 Nov 2026)
+
+- **Chime:** keep the share sheet with card 1 (the card-2 view moved to Archive as "Not picked 25 Nov"); start Phase 5.
+- **Figma, Phase 5, rows under the placeholders (phone 390, Home current in the bottom nav as on the 404):**
+  - About A · Long read (416:3168): lead line, "How a face or build gets here" in four numbered steps (made in game, played before it's called meta, dated with the version tag, credited), then builds from players and streamers, faces of real people, free always, a Takedown link.
+  - About B · Promises and people (416:3368): the tagline as the headline, four promise tiles, "Who makes it" (Chime, Sharon), "Get involved" (Submit a build, Request a face, Takedown).
+  - About C · Questions (416:3589): eight questions, first two open, and the notice in a card.
+  - Takedown A · One clear page (417:3306): 72-hour promise, Email takedown@probuilds.club, what to include, what happens next.
+  - Takedown B · Guided email (417:3509): which page, you are (chips), what should come down, "Open my email" (a prefilled mailto; nothing stored).
+  - Takedown C · The 72-hour promise (417:3706): big "72 hours", three-step timeline, the address with Email and Copy.
+- **Copy (drafts):** all page text, built from D-04, D-05, D-10, D-29, D-30, D-53, D-66, D-83 to D-86 and rule 8; the tagline is still O-08.
+- **Checked:** renders of all six; audit (text 14 px or more, styles, token-bound fills, no overflow); no overlaps.
+- **Next:** Chime picks one of each; then tablet and desktop, and the 1200×630 link-preview share cards (Should).
+
 ## Height and weight, and the share screen (Wed 25 Nov 2026)
 
 - **Chime:** show the screen after Share card (both cards, attributes included); add weight and its effect on attributes, researched. Recorded as D-90; research added to RESEARCH §10.3 (three new rows with sources).
