@@ -2,6 +2,22 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Phases 1 and 2: the seven empty states designed (Wed 25 Nov 2026)
+
+- **Chime:** "why are there still empty screens on the Phase 2 and Phase 1?… revisit them first." They were states of approved pages, left as placeholders when each page's main design moved on.
+- **Phase 1 · build page (phone 390, the top of the page at 852 px):**
+  - Specialization not reached (371:1697): Your level 32; "AP at level 32: 724 · spent 724 · left 0" (RESEARCH §10.1); slider at 32 of 55; callout "At level 32 you're 695 AP short of this build. Its specialization needs level 50." (50 is the page's sample).
+  - Not yet checked in game (371:2208): no Meta pick tag (D-30); credit "Read from a creator's video · Watch the video" (D-66); callout explaining it becomes a Meta pick only after Chime or Sharon makes it and plays a match.
+  - Older season (371:2719): top bar "FC 27 · Season 3"; callout "Made for Season 2. Values may have changed since." (UI-BRIEF copy); version line "FC 27 · Season 2 · verified 19 Nov 2026" (sample date from UI-BRIEF).
+- **Phase 2 · faces:**
+  - Library, no results (372:1853): search "Zidane", every chip at 0, empty card (face icon, "No faces here yet.", "Suggest one on Submit." from UI-BRIEF, "Suggest a face" button).
+  - In progress (353:1648, the step 9 frame): "Continuing from step 9" with "Start over" above the section bar.
+  - Finished (372:1984): "All 18 steps done", the whole bar lime; a "Face done" card ("Save it, then check it in a match cutscene, not only in the editor." from content/README's recording steps), Start over and Back to faces. No build link: O-18 still open.
+  - Updated, ticks reset (372:2108): step 1 with the info toast "This face was updated. Your ticks start fresh." (UI-BRIEF copy).
+- **Fixed before showing:** the level-32 slider knob still sat at 55; a "↗" rendered as an emoji box; the finished bar rendered black (bound token with a black base colour; base now the token's lime).
+- **Checked:** renders of all seven; audit (text 14 px or more, Barlow only; the only overflows are the slider parts inherited from the approved page and the scrolling chips); no placeholders left in Phases 1 and 2; no overlaps (Phase 2 grew 1,093 px, Phases 3–5 moved down).
+- **Copy (drafts):** "Continuing from step 9", "Start over", "Face done", "Back to faces", "Suggest a face", the two build-state callouts, "Read from a creator's video · Watch the video".
+
 ## Home tablet and desktop: faces as poster cards (Wed 25 Nov 2026)
 
 - **Chime:** too much empty space beside the four avatars on tablet and desktop. Recorded as D-78.
