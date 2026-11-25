@@ -14,7 +14,7 @@ Nothing is running (no dev server or watcher). Figma file: https://www.figma.com
 Designed and checked: every screen and state at phone, tablet and desktop, link previews, components for the new parts (D-97), and the shared build page with its not-found state and the Supabase failure states (D-100). Design is complete pending Chime's approval. Drawn copies were swapped for instances where the content carries over (90 PlayStyle chips, 6 slots, 45 request rows, and on phone the AP counter, height-and-weight card and replay card). Attribute rows stay drawn: each slider's position follows its value, which code drives. The mannequin is redrawn and is the default face of every build (D-98).
 
 ### Decisions
-All of Chime's open decisions are made (D-96, D-99): Supabase for face requests, listings and short share links; A-18 approved; first faces and builds named; tagline kept. A-16's test clip arrived (25 Nov): 36 frames, 738 KB, viewer at `reference/in-game/2026-11-25/turn/viewer.html`; Chime to judge it, then the 3D comparison (D-35).
+All of Chime's open decisions are made (D-96, D-99): Supabase for face requests, listings and short share links; A-18 approved; first faces and builds named; tagline kept. A-16's test clip arrived (25 Nov): 36 frames centred on the turning axis, 729 KB, viewer at `reference/in-game/2026-11-25/turn/viewer.html`; Chime to judge it, then the 3D comparison (D-35).
 
 ### Needs checking in game (blocks the editor's rules, not the design)
 - Done 25 Nov from Chime's video: all 39 specializations (PlayStyle+, targets, perks; §10.4 and the archetype file) and every archetype's height and weight range (§10.3).
