@@ -11,7 +11,7 @@ Nothing is running (no dev server or watcher). Figma file: https://www.figma.com
 - **Deadline:** Season 3 on Thu 3 Dec (D-25). Launch is on Season 2, before then.
 
 ### Design status
-Designed and checked: every screen and state at phone, tablet and desktop, link previews, and components for the new parts (D-97). Drawn copies were swapped for instances where the content carries over (90 PlayStyle chips, 6 slots, 45 request rows, and on phone the AP counter, height-and-weight card and replay card). Attribute rows stay drawn: each slider's position follows its value, which code drives. The mannequin is redrawn and is the default face of every build (D-98).
+Designed and checked: every screen and state at phone, tablet and desktop, link previews, components for the new parts (D-97), and the shared build page with its not-found state and the Supabase failure states (D-100). Design is complete pending Chime's approval. Drawn copies were swapped for instances where the content carries over (90 PlayStyle chips, 6 slots, 45 request rows, and on phone the AP counter, height-and-weight card and replay card). Attribute rows stay drawn: each slider's position follows its value, which code drives. The mannequin is redrawn and is the default face of every build (D-98).
 
 ### Decisions
 All of Chime's open decisions are made (D-96, D-99): Supabase for face requests, listings and short share links; A-18 approved; first faces and builds named; tagline kept. Still needs Chime's hands: the 15-second PS5 turn clip for A-16, and the in-game checks below.

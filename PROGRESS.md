@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Design complete: shared build page and failure states (Wed 25 Nov 2026)
+
+- **Chime:** design the two gaps (D-100).
+- **Figma, Phase 1:** "Shared build (player's link)" at phone (439:8847), tablet (439:9404), desktop (439:9925); "Shared build · link doesn't work" (440:8514, 440:8634, 440:8734).
+- **Figma, Phase 4:** "Submit a build · send for listing failed" (441:8928, 441:9162, 441:9380), "Request a face · request failed" (441:9598, 441:9740, 441:9865), "Request a face · vote failed" (441:9992, 441:10035, 441:10075; tablet and desktop as viewport frames with the toast).
+- **Layout:** Phases 1 and 4 re-laid out with each new row after the screen it belongs to; no overlaps.
+- **Checked:** renders of the shared page header (phone) and desktop, the not-found phone and desktop, both inline errors and the desktop vote toast.
+- **Design phase:** every screen and state is designed; what remains is Chime's approval on the iPhone (rule 10), then UI-BRIEF and tokens before code.
+
 ## Mannequin redrawn as the default build face; delegated decisions made (Wed 25 Nov 2026)
 
 - **Chime:** the mannequin's V-neck, clothes and neck were poorly drawn; it is the default face for builds on the site and in images; decide every open item with the best recommendation. Recorded as D-98 and D-99; O-05, O-08 and O-11 closed.
