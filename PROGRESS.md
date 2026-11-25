@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404 with character: three phone options (Wed 25 Nov 2026)
+
+- **Chime:** the 404 is "too basic"; 15 Mobbin 404s gathered on the local board (section "not-found"), none liked: "build something not generic… a 404 with character… design, not build."
+- **Figma, Phase 3, row "404 · three options" under Search results:** three clones of the phone 404 with the 404 text replaced by drawn art (vectors and token-bound colours, no images, no people), top bar, faces row, footer and bottom nav kept:
+  - A · Subbed off (377:2404): a fourth official's LED board, tilted, red ▼404 off and lime ▲FACES on, dot-matrix drawn as 5×7 glyphs.
+  - B · Not in the squad (377:2452): a cream shirt back on a hanger, lime collar and cuffs, arched "NOT FOUND" nameset, number 404.
+  - C · Over the bar (377:2500): a goal frame and net with "4 ⚽ 4", the ball as the 0 flying over the crossbar.
+- **Checked:** renders of each frame and each art at 2×; no art overflows its frame; Phase 3 grew and Phases 4–5 moved down 1,409 px.
+- **Copy (drafts, Chime to approve):** "Subbed off." / "This page has come off."; "Not in the squad." / "No page wears this number."; "Over the bar." / "That link went high." The rest is D-80's approved wording.
+- **Next:** Chime picks one; then tablet 834 and desktop 1440 for it (D-58), and a D-entry.
+
 ## Phase 3 finished: footer, 404 and search on all sizes (Wed 25 Nov 2026)
 
 - **Chime:** build the rest of Phase 3 for every size. Recorded as D-80.
