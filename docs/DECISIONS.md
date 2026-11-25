@@ -128,6 +128,7 @@ Kinds: **D-** decided by Chime. **A-** architecture proposal (Claude's call unti
 | O-11 | **Submissions without GitHub.** A Google Form fallback, or GitHub only at launch? | Chime |
 | O-14 | **How the cost tables get verified for the later planner.** Proposal: Chime records each archetype's cost per point band in game, 13 sessions, logged in `docs/RESEARCH.md`. | Chime |
 | O-16 | **Faces sent in by the people who made them.** Proposal: after launch, invite face creators to send their own values and their own turn clip through `/submit`, credited by name, shown as "Not yet checked in game" until Chime or Sharon makes it in game (D-36). Claude drafts the invitations; Chime sends them. Open: when to start, and whether unchecked faces are listed at all. | Chime |
+| O-17 | **Builds from streamers' videos.** Sharon's proposal, 25 Nov: a person reads a streamer's build from their video with Claude's help, and we publish it credited, with the creator's yes, tagged "not yet checked in game" until one of us makes it. Touches D-08, D-29, D-36, SPEC flow 5 and CLAUDE.md rules 5 and 9. Options, YouTube's terms and a two-video test: `docs/proposals/build-sourcing.md`. | Chime |
 
 ## Closed
 
