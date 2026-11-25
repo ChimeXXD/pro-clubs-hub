@@ -2,6 +2,12 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Home: four faces, not all five (Wed 25 Nov 2026)
+
+- **Chime:** with five faces, showing all five and "See all" makes no sense; show four. Recorded as D-77.
+- **Before → after (364:2118, 367:1629, 367:1836):** five avatars → four (2008 Ronaldo, Lamine Yamal, LeBron James, Michael Jackson); Neymar Jr left out because he is the Face of the week below. Phone: swipe row of 76 px circles → four equal 82 px columns, 72 px circles, names centred and wrapping to two lines (the names had run together at first). Tablet and desktop: spread across the width → grouped on the left, 40 px apart (spread out, four looked sparse).
+- **Checked:** renders of the faces row on all three sizes; nothing past the row's edge.
+
 ## Home: tablet and desktop (Wed 25 Nov 2026)
 
 - **Chime:** design Home for iPad and desktop. Recorded as D-76.
