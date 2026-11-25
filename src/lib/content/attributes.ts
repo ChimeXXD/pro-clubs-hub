@@ -1,7 +1,6 @@
 // The game's attributes in the six groups the build page shows (D-63), plus goalkeeping. Names come from
 // the approved Meta Finisher screen and RESEARCH §10.6, not yet checked against the game's own screen.
-// TODO(Chime): confirm each spelling in Edit Attributes, and the name of the fifth GK attribute (§10.7
-// counts about 34 attributes; only four GK names have been seen, so a fifth isn't guessed here).
+// TODO(Chime): confirm each spelling in Edit Attributes. GK Kicking is Chime's answer on PR #6, not yet seen on screen.
 export const ATTRIBUTE_GROUPS = [
   { code: "PAC", name: "Pace", attributes: ["Acceleration", "Sprint Speed"] },
   { code: "SHO", name: "Shooting", attributes: ["Att. Position", "Finishing", "Shot Power", "Long Shots", "Volleys", "Penalties"] },
@@ -9,10 +8,13 @@ export const ATTRIBUTE_GROUPS = [
   { code: "DRI", name: "Dribbling", attributes: ["Agility", "Balance", "Reactions", "Ball Control", "Dribbling", "Composure"] },
   { code: "DEF", name: "Defending", attributes: ["Interceptions", "Heading Accuracy", "Def. Awareness", "Standing Tackle", "Sliding Tackle"] },
   { code: "PHY", name: "Physical", attributes: ["Jumping", "Stamina", "Strength", "Aggression"] },
-  { code: "GK", name: "Goalkeeping", attributes: ["GK Diving", "GK Handling", "GK Positioning", "GK Reflexes"] },
+  { code: "GK", name: "Goalkeeping", attributes: ["GK Diving", "GK Handling", "GK Kicking", "GK Positioning", "GK Reflexes"] },
 ] as const;
 
 export const ATTRIBUTES: ReadonlySet<unknown> = new Set(ATTRIBUTE_GROUPS.flatMap((g) => g.attributes as readonly string[]));
+
+/** The six key stats on the build card, in screen order (D-62). Recorded as the game shows them, never worked out (A-19). */
+export const KEY_STATS = ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"] as const;
 
 /** The highest an attribute can read (RESEARCH §10.2: prices run to 99). */
 export const ATTRIBUTE_MAX = 99;

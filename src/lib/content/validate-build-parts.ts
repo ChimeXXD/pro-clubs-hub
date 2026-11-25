@@ -1,6 +1,6 @@
-// The parts of a build that have rules of their own: attributes, the spend order (D-43), and a
+// The parts of a build that have rules of their own: attributes, the key stats, the spend order (D-43), and a
 // specialization's attribute targets (archetype file). Split from validate.ts to keep both short.
-import { ATTRIBUTE_MAX, ATTRIBUTES, isStar, STARS, STARS_MAX } from "./attributes.ts";
+import { ATTRIBUTE_MAX, ATTRIBUTES, isStar, KEY_STATS, STARS, STARS_MAX } from "./attributes.ts";
 import { at, isObj, type Check, type Obj } from "./check.ts";
 
 const isAttribute = (c: Check, path: string, name: unknown) => {
@@ -21,6 +21,16 @@ export function checkAttributes(c: Check, path: string, v: unknown) {
     seen.add(attr.name);
     c.int(`${p}.value`, attr.value, { min: 0, max: ATTRIBUTE_MAX, recorded: true });
   });
+}
+
+/** The six key stats, all of them in screen order, or null when nobody has read them (A-19). */
+export function checkKeyStats(c: Check, path: string, v: unknown) {
+  if (v === null || !c.arr(path, v)) return;
+  const names = v.map((stat) => (isObj(stat) ? stat.name : undefined));
+  if (names.length !== KEY_STATS.length || KEY_STATS.some((name, i) => names[i] !== name)) {
+    return c.add(path, `must be ${KEY_STATS.join(", ")} in that order`);
+  }
+  v.forEach((stat, i) => isObj(stat) && c.int(`${at(path, i)}.value`, stat.value, { min: 0, max: ATTRIBUTE_MAX, recorded: true }));
 }
 
 /** Specialization targets: null when nobody has read them; a value is null when only the name is known. */

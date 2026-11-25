@@ -2,7 +2,7 @@
 // One problem fails the build. Each file is checked alone, given the ids of the other files
 // (archetypes, creators, builds, faces), so links between files are checked too.
 import { at, Check, isObj, STATUSES, type Obj, type Problem } from "./check.ts";
-import { checkAttributes, checkSpend } from "./validate-build-parts.ts";
+import { checkAttributes, checkKeyStats, checkSpend } from "./validate-build-parts.ts";
 import { PART_TABS, POSITIONS } from "./types.ts";
 import { validateArchetypeFile, validateChangelog, validateCreators } from "./validate-other.ts";
 
@@ -232,6 +232,7 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
   if (c.published && d.badge === "meta" && isObj(d.versionTag) && d.versionTag.verifiedOn === null) c.add("badge", "a Meta pick must be checked in game (D-30)");
   if (c.obj("picture", d.picture, { nullable: true })) checkPicture(c, "picture", d.picture, "builds/");
   checkAttributes(c, "attributes", d.attributes);
+  checkKeyStats(c, "keyStats", d.keyStats);
   if (c.obj("playStyles", d.playStyles)) {
     for (const kind of ["signature", "plus", "regular"] as const) {
       const list = d.playStyles[kind];

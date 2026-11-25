@@ -3,6 +3,8 @@
 // there (`Face<Placeholder>`), published content may not (`Face`, where P is never). The validator
 // checks drafts; the loader returns only published content, so pages never see a placeholder.
 
+import type { KEY_STATS } from "./attributes.ts";
+
 export type Placeholder = "PLACEHOLDER";
 export type Status = "draft" | "published" | "withdrawn";
 export type Game = "fc27";
@@ -167,6 +169,8 @@ export interface Face<P = never> extends Versioned {
 export type Position = "GK" | "CB" | "LB" | "RB" | "LWB" | "RWB" | "CDM" | "CM" | "CAM" | "LM" | "RM" | "LW" | "RW" | "CF" | "ST";
 export const POSITIONS: readonly Position[] = ["GK", "CB", "LB", "RB", "LWB", "RWB", "CDM", "CM", "CAM", "LM", "RM", "LW", "RW", "CF", "ST"];
 
+export type KeyStat = (typeof KEY_STATS)[number];
+
 export type AcceleRate = "explosive" | "controlled" | "lengthy";
 
 /** Set by Chime (D-34, D-62). */
@@ -189,6 +193,8 @@ export interface Build<P = never> extends Versioned {
   picture: Screenshot | null;
   body: { heightCm: number | P; weightKg: number | P; accelerate: AcceleRate | null | P };
   attributes: { name: string; value: number | P }[];
+  /** In KEY_STATS order; null when nobody has read them. */
+  keyStats: { name: KeyStat; value: number | P }[] | null;
   playStyles: { signature: string[]; plus: (string | P)[]; regular: (string | P)[] };
   specialization: string | null | P;
   skillMoves: number | P;

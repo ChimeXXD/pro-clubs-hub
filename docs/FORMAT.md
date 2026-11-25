@@ -97,6 +97,7 @@ One file per game. Unverified fields are `null`, never guessed.
   "picture": null,
   "body": { "heightCm": "PLACEHOLDER", "weightKg": "PLACEHOLDER", "accelerate": "PLACEHOLDER" },
   "attributes": [ { "name": "Acceleration", "value": "PLACEHOLDER" } ],
+  "keyStats": null,
   "playStyles": { "signature": ["Trickster", "Rapid"], "plus": ["PLACEHOLDER"], "regular": ["PLACEHOLDER"] },
   "specialization": "PLACEHOLDER",
   "skillMoves": "PLACEHOLDER",
@@ -116,6 +117,9 @@ One file per game. Unverified fields are `null`, never guessed.
 - `positions` from: `GK CB LB RB LWB RWB CDM CM CAM LM RM LW RW CF ST`.
 - `accelerate`: `"explosive"`, `"controlled"`, `"lengthy"` or `null`.
 - `level` and attribute values are integers once recorded. Attribute `name` must be in `ATTRIBUTE_GROUPS` (`src/lib/content/attributes.ts`), once each, with a value from 0 to 99. The names still need checking against the game's own screen.
+- `keyStats` (A-19, D-62): the six numbers as the game shows them, all six in this order, or `null` when nobody has read them (the page then has no stat strip). Never worked out from the attributes: EA doesn't publish the weighting.
+  `[ { "name": "PAC", "value": 91 }, { "name": "SHO", … }, { "name": "PAS", … }, { "name": "DRI", … }, { "name": "DEF", … }, { "name": "PHY", … } ]`
+  Values are 0 to 99. They belong to the build's own `level`. A goalkeeper's are `null` until the names the game shows for one are confirmed.
 - `badge` (A-18, D-34, D-62): `"meta"` (Meta pick), `"recommended"` or `null`. A published Meta pick needs a `verifiedOn` date (D-30). "Most copied" is counted later, so it isn't stored here.
 - `picture` (A-18, D-41, D-42): `{ "file": "builds/<slug>.webp", "alt": "…", "by": "Chime" }`, our own in-game face, or `null` for the empty slot.
 - `spend` (A-18, D-43): the order the build was made in, or `null` (the page then has no level switch). Attribute and star values, raised step by step from the archetype's starting values:
