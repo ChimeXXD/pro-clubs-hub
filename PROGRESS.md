@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Face page: tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** design the iPad and desktop screens for the guided face page. Recorded as D-74.
+- **Figma, Phase 2 "Face page" row:** tablet 355:1469 and desktop 355:1582 (step 2, Skin), to the right of the three phone frames; Phase 2 widened to 4,173 px.
+- **Layout:** breadcrumb; summary column (picture 300 × 375 on tablet, 400 × 500 on desktop, 360° badge, Footballer, 2008 Ronaldo, credit, sample note); steps column (section bar, step card, "Next: Customize › Head · 3 values", limits callout, tutorial). Top bar with Faces current; Footer notice; no bottom nav.
+- **Checked:** renders of both; audit (no text under 14 px, Barlow only, no overflow); no overlaps in Phase 2 or between phases.
+- **Watch:** on desktop the step card is 736 px wide, so each value sits about 580 px from its label; if that reads as too far on a real screen, cap the card or split the values into two columns.
+- **Next:** the finished and ticks-reset states; Chime's call on O-18.
+
 ## Face page: section progress bar back (Wed 25 Nov 2026)
 
 - **Chime:** keep the new guided layout but bring back the earlier segmented bar, because it shows how long each section is. Recorded as D-73.
