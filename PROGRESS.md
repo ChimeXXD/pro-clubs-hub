@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** "work on the next page… create three variants of the page for me to choose from." The next page not yet designed is the Faces library (Phase 2). Phase 1's three build states are still to design; the toast and bottom-nav picks are still open.
+- **Where:** Design screens → Phase 2 · Faces, row "Faces library · 3 options (pick one)": A 333:1139, B 333:1199, C 333:1257 (phone 390). The six placeholder frames moved to a row below; Phases 3–5 moved down 1,703 px (no overlaps).
+- **Shared:** Top bar, "Faces" title, intro, sample note, Search field, filter chips with counts (All 4, Footballers 3, Musicians 1, 2000s 2, 2010s 1), Footer notice, Bottom nav (Page=Faces, fixed).
+- **Options:**
+  - A · Poster grid: two columns of 4:5 cards; the empty picture slot shows "Face coming soon" and the era (or surname) in Number/XL; then kind and era, "Inspired by …", "Not yet checked in game"; a dashed "Missing a face?" tile. (Letterboxd, Moonly)
+  - B · Shelves: a heading per kind with a swipeable rail of 216 × 270 cards, era in Display; "Missing a face?" closes the Musicians rail. (Calm, Hatch)
+  - C · List by kind: grouped lists on a surface card; each row a 96 × 120 slot, name, kind and era, status, chevron. (Oura, IMDb)
+- **Sample content:** Cristiano Ronaldo 2008, 2017 and 2007, Kanye West (O-05, CLAUDE.md). No picture: no recreation exists, and D-10/D-42 rule out stand-ins; the slot is where Chime's in-game capture goes. Kanye has no era on record, so his slot shows his surname.
+- **Checked:** renders of all three at 1.5×; audit: text 14 px or more, Barlow only, fills and strokes bound to tokens, no overflow (C's name text fixed after the audit).
+- **Copy (drafts):** intro "Lookalike and era faces, each a step-by-step recipe with a build to match.", "Search faces by name", "Sample cards: no face is recorded in game yet", "Missing a face?" / "Suggest one on Submit.", "See all", era chips "2000s" / "2010s".
+- **Next:** Chime picks A, B or C; then the empty-filter state, then tablet 834 and desktop 1440 (D-58).
+
 ## Share sheet on phone refined; toast and bottom nav options (Wed 25 Nov 2026)
 
 - **Chime (screen recording):** tablet and desktop share dialogs and the link preview approved. Phone sheet: the action buttons look odd next to the tablet's, and card 1 sits centred with empty space on its left. The "link copied" toast and the bottom nav are bland: three options each.
