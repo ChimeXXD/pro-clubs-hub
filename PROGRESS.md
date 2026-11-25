@@ -2,6 +2,12 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Finished face links its matching build (Wed 25 Nov 2026)
+
+- **Chime:** "link it" (O-18 → D-79).
+- **Figma, "Face · finished → matching build · phone 390" (372:1984):** under the Face done card, "Set up the matching build" with a build card for 2008 Ronaldo's `pairedBuild`, spark-2008-winger: the 2008 Ronaldo demo face, "2008 Winger", RW and LW (positions from content/builds), "Spark · not recorded yet", stats "—", PlayStyles+ Trickster and Rapid (Spark's signature PlayStyles, content/archetypes); no Meta pick tag. Phase 2 grew 107 px; Phases 3–5 moved; no overlaps.
+- **Note:** the build's name is PLACEHOLDER in the content file; "2008 Winger" comes from its slug and is a draft.
+
 ## Phases 1 and 2: the seven empty states designed (Wed 25 Nov 2026)
 
 - **Chime:** "why are there still empty screens on the Phase 2 and Phase 1?… revisit them first." They were states of approved pages, left as placeholders when each page's main design moved on.
