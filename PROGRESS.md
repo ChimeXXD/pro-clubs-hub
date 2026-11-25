@@ -2,6 +2,12 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## 404 without search; what's left before code (Wed 25 Nov 2026)
+
+- **Chime:** remove the 404's search bar (D-95); list what isn't designed and which decisions are open.
+- **Figma:** search field and its spacer removed from the 404 at phone (420:4819), tablet (423:4713) and desktop (423:4836); phone nav re-pinned. Checked: phone render.
+- **docs/HANDOFF.md rewritten** with the not-designed list, Chime's open decisions, the in-game checks and the before-code order.
+
 ## 404 replay card; cream-pill toast and lime-tab nav everywhere (Wed 25 Nov 2026)
 
 - **Chime:** 404 option C with the shot replaying (D-93); toast A · Cream pill and bottom nav B · Lime tab across the design (D-94; DESIGN.md updated).

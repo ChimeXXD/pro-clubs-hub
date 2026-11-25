@@ -1,58 +1,49 @@
 # Handoff: read this first when you pick the project back up
 
-## Latest: Tue 24 Nov 2026. Renamed to ProBuilds everywhere (D-52); brand and design system set
+## Latest: Wed 25 Nov 2026. All five design phases drawn; what's left before code
 
-Nothing is running (no dev server or watcher).
+Nothing is running (no dev server or watcher). Figma file: https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD (page "Design screens", one section per phase; rejected work on "Archive").
 
 ### Where things stand
-- **Name: ProBuilds** everywhere (D-49, D-50, D-52): GitHub repo `ChimeXXD/probuilds`, every file, the site, Claude's memory notes, Figma. Web address https://probuilds.club, bought at Porkbun (renews at $15.96/yr), DNS on Cloudflare (D-53). Takedowns: takedown@probuilds.club → Chime's Gmail.
-- **Hosting:** old Cloudflare Pages project deleted (Chime's OK); new project `probuilds` from `ChimeXXD/probuilds` (build `npm run build`, output `out`, branch `main`). Live at https://probuilds.club and https://www.probuilds.club (both 200 with the heading and notice, from outside and from the Mac); https://probuilds.pages.dev also serves it.
-- **Figma file "ProBuilds":** https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD. Replaces the older file named in CLAUDE.md (1mjxm…).
-  - **Logo:** Touchline mark + PROBUILDS wordmark; guide and SVG exports.
-  - **Design system** (one page): Overview, Colour, Typography, Spacing & layout, Radius & elevation, Components. All values are Figma variables.
-  - **Design:** one section per design phase; Meta Finisher (phone, version B) is the only finished screen.
-  - **Archive:** every rejected logo round and old draft.
-- **References:** UI8 Osnova UI (file zu1wAc8aXjcsdcmDg4rNuJ, structure) and Rayum (file MbzXVWzasW9yy8yYiFXniG, dark look).
-- **Type:** Barlow Condensed + Barlow (D-51). Smallest text 14 px.
+- **Phases 1–5 are designed at phone 390, tablet 834 and desktop 1440**, one row per screen. Decisions D-66 to D-95 cover this session; DESIGN.md holds the rules Chime set (type roles §Type, weight beside height, cream-pill toast, lime-tab nav).
+- **Changed shape this session:** Submit is "Submit a build" only; faces are requested and voted on (D-83, D-84). The build editor fills AP from the level, sets attributes by slider, typing or − / +, limits PlayStyle+ to the archetype's own (D-85 to D-88), records height and weight (D-90), and shares the player's card with a default mannequin face (D-89). About and Takedown are option C (D-91). The 404 is the replay card, no faces row and no search (D-93, D-95).
+- **Toast and bottom nav picked** (D-94): changed in the components, so every screen uses them.
 - **Deadline:** Season 3 on Thu 3 Dec (D-25). Launch is on Season 2, before then.
 
-### What's next, in order
+### Not designed yet
+1. **Link-preview images (1200 × 630), Should (Phase 5):** a face one is missing; the build one exists in Phase 1. The two Phase 5 placeholders are still empty.
+2. **States still only on phone:** build page states (specialization not reached, not yet checked, older season, link copied) and face page states (not started, in progress, no results, finished, ticks reset). D-58 asks for tablet and desktop of every screen; states may follow their page's layout. Chime to say.
+3. **Submit a build states:** an error (e.g. an attribute over its cap, nothing picked), "Send for listing" done, and an empty or loading moment, if any.
+4. **Request a face states:** after sending a request, "already requested, vote instead", voted, an empty list, and how a request reaches Chime for moderation.
+5. **A way into Request a face from the Faces library** (it lives under the Faces tab but nothing links to it yet).
+6. **D-80 (4):** no search entry on phone, and the bottom nav has no "no tab" state (About, Takedown and 404 show Home as current).
+7. **Components for the new parts** before code: attribute row (stepper, typed value, slider), PlayStyle chip, PlayStyle+ slot, height-and-weight card, replay card, request row with vote.
 
-**1. Finish the rename (Claude, minutes)**
-- [x] https://probuilds.pages.dev loads from outside (heading, 404 with notice); recorded in `docs/features.json` P0-6.
-- [x] probuilds.club and www connected (D-53); takedown@probuilds.club forwards to Chime's Gmail.
-- [ ] Chime opens https://probuilds.club on the iPhone and sends one test email to takedown@probuilds.club.
-- [ ] Rename the folder to `Projects/Personal Projects/ProBuilds` (memory notes are already copied to the new location). Then Chime restarts Claude Code there and accepts the folder-trust prompt again.
+### Decisions Chime hasn't made
+- **O-19** which free database for face requests (proposal: Supabase free tier; a new service and dependency).
+- **How "Send for listing" reaches Chime** now that a database is coming: GitHub issue (A-04, needs a GitHub account) or the same database. Also O-11 (submissions without GitHub).
+- **What the share link points to** (probuilds.club/b/your-finisher is drawn): a static site can't host a page per unlisted build unless the build is stored (database) or packed into the link itself.
+- **A-18** Sharon's format fields (badge, picture, spend, specializations, turn) plus the new submit fields; needs Chime's OK before code.
+- **A-16** the face turn capture (waits on Chime's 15-second test clip).
+- **O-05** first five faces and first builds; **O-08** tagline ("Look like a legend. Play like one." is still a draft).
+- **Link previews (Should):** make them now or after launch.
+- **Default face:** keep the drawn mannequin, or replace it with an in-game screenshot of a default Pro.
 
-**2. Chime, now (unblocks design)**
-- [ ] Review the Phase 0 components in Figma (Design system → 05 · Components): Build card, Archetype tile, Sheet, Version tag, Score ring, Limits callout, Tab item. Approve or list changes.
-- [ ] Delete the stray Figma file g1t6DqicHT8w4Lq790DC2G.
+### Needs checking in game (blocks the editor's rules, not the design)
+- The 39 specializations and their PlayStyle+ (RESEARCH §10.4).
+- Each archetype's height and weight range, what they change, and the AcceleRATE cut-offs (§10.3, sources disagree on Lengthy).
+- Attribute prices per archetype (O-14), before the live "AP left" counter turns on (D-85).
 
-**3. Design, Phase 1 · Builds (Claude, after step 2's approval)**
-- [ ] Phone 390 from the components only: Builds (13 archetypes), Archetype (Finisher), Meta Finisher states (specialization not reached, not yet checked, older season, copied).
-- [ ] Then tablet 834 and desktop 1440. Chime approves before the next phase (faces, home, changelog, submit, about/takedown/404).
+### Pull requests waiting on Chime
+- #7 level engine ported from the prototype (Sharon), #8 six key stats and GK Kicking (Sharon), #9 athlete faces and plain face titles (Sharon, D-68, D-69).
 
-**4. Content, in game (Chime or Sharon, in parallel with design)**
-- [ ] Pick the first 5 faces (O-05) and record them on Season 2 (D-29).
-- [ ] Record 13 builds, one per archetype, each played for one match (D-30).
+### Before code, in order
+1. Chime answers the decisions above and approves each phase (rule 10: on the iPhone next to the TV).
+2. Claude designs the remaining states and components (list above).
+3. `docs/design/UI-BRIEF.md` §1–3 filled; `src/styles/tokens.css` mirrors the Figma variables; CLAUDE.md points at Figma file hyFx4Audhn4F9KxL9bRCLD (it still names 1mjxm…).
+4. Then build, phase by phase, tests first for `src/lib/`.
 
-**5. Before code (Claude, needs Chime's OK)**
-- [ ] CLAUDE.md and DESIGN.md: point at the new Figma file and Barlow type.
-- [ ] Mirror the Figma variables into `src/styles/tokens.css`.
-
-**6. Build, Phase 2 (Claude)** — shared components, then home, faces, face page, builds, changelog, submit, about/takedown/404; motion pass; budget, Lighthouse 90+, accessibility, Chime's iPhone check next to the TV.
-
-**7. Launch, then Season 3 (Thu 3 Dec)** — launch post; re-check every face and build on Season 3, changelog entry, "Updated for Season 3" post; video ships with one of the two.
-
-### Small open questions for Chime
-O-11 submissions without GitHub (Google Form fallback?) · O-08 tagline · GoatCounter account (D-27) · trademark search for ProBuilds · test one submission link (D-45).
-- Sharon: her open PRs #3 and #4 may still say the old name in their files; they need rebasing before any merge.
-
-### How to work with Chime on design (learned this session)
-- Show work in Figma, not local previews; never create a new Figma file; never ask for links (imported files are listed in `~/Library/Application Support/Figma/settings.json`).
-- Logos need a clear football element and real craft; rejected work goes to Archive pages, never deleted.
-- Follow the UI8 design guide (no eyebrows or decorative pills, 14 px minimum, one family).
-
-### Earlier (19–23 Nov), in short
-- Phase 0 (setup) done; site on Cloudflare Pages (A-14). Core lane done test-first: types, validator, loader, version wording, issue URL, issue forms (D-45); 71 unit tests.
-- Sharon's PR #3 (two logo directions) and PR #4 (The Grid) reviewed; Chime chose The Touchline.
+### How to work with Chime on design (learned)
+- Show work in Figma, never a new file; rejected work goes to Archive, never deleted.
+- Three options per new screen when asked; Chime picks; then tablet and desktop (D-58).
+- One type style per role (DESIGN.md §Type); check renders up close before showing; never invent values (samples are labelled).
