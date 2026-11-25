@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Share build: link preview and share sheet on every size (Wed 25 Nov 2026)
+
+- **Chime:** approved the two story cards; asked for the link preview and the share sheet (D-65).
+- **Design System:** new Icon/download (318:414). Drawn on a 24 px grid at a 1.5 px stroke, centred, with region fills stripped; it uses the text/primary token.
+- **Phase 1 rows:**
+  - "Share build · sheet and dialogs":
+    - Phone sheet (319:904): the DS Sheet, detached and refilled with a title and close button, the two cards at 62.5 % with the next one peeking, a "1 of 2" pager, three round actions (Save images, Copy link, More) and a hint.
+    - Phone link copied (319:1674): DS Toast (success), "Link copied. Paste it in any chat.", 12 px above the nav.
+    - Tablet dialog (319:2234) and desktop dialog (319:2952): both cards at 75 %, Button secondary "Save images" and "Copy link", plus the share icon button on tablet only.
+  - "Share build · story cards and link preview": card 1 (316:888), card 2 (316:973), link preview (319:885), plus an export note.
+- **Archived:** the old toast placeholder (197:226) and the emptied section shell (316:1119).
+- **Moved:** Phases 2–5 down 2,262 px; Phase 1 widened to 3,660 px.
+- **Checked:** renders of the phone sheet, toast, tablet and desktop dialogs and the link preview. The first sheet render hid the close button (the title filled the row); fixed. No overlaps on the page.
+- **Copy (drafts):** "Share build", "Saves both cards to your photos…", "Link copied. Paste it in any chat."
+
 ## Share build: two story cards instead of one crowded card (Wed 25 Nov 2026)
 
 - **Chime:** the references didn't help; make the information organized, not clustered, with a free hand.
