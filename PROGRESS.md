@@ -2,6 +2,20 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Face page: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** start the next screen. It is the face page (`/faces/[slug]`), Phase 2's "Face · not started" state; the empty-filter state of the library is still to add.
+- **Where:** Design screens → Phase 2, row "Face page · 3 options (pick one)": A 348:1284, B 349:1392, C 350:1498 (phone 390). Placeholders moved under it (y 4728); Phases 3–5 down 2,810 px; no overlaps.
+- **Shared parts:** Top bar, breadcrumb, 2008 Ronaldo demo picture (Xaiiros frame), "Footballer" + "2008 Ronaldo", sample note, Version tag, Credit line ("Made by Chime in game · Tutorial by Xaiiros"), Limits callout, Step rows with the game's section names, the approved stat-strip build card (Meta Finisher, sample), Embed facade (Xaiiros's video title), Footer, Bottom nav (Faces).
+- **Options:**
+  - A · Recipe page: 4:5 picture with angle chips (Front, ¾ Left, Left, Back, Right, ¾ Right; D-35) and "Drag the picture to turn the head."; facts row (Preset 147, Steps 14, Sculpt Optional); lime Start; Recipe with Skin/Head/Face/Hair tabs and steps; Sculpt and Visual Age rows. (Postmates, Woolworths, NYT Cooking)
+  - B · Picture and sheet: full-width picture with angle chips, a rounded sheet lip with a handle over it; Start; "0 of 14 steps done" with a segmented bar; section chips with counts (Preset … Visual Age); steps. (MasterClass, Cherrypick)
+  - C · One step at a time: small picture beside the title; "Step 1 of 14 · Preset" with a section bar; a step card where the value is the hero (147 in Display, lime), where to find it, a hint, Back and "Done, next"; Up next; All steps by section. (Recime, Kitchen Stories, Crouton)
+- **Sample values:** section names and numbers are ones seen in game (RESEARCH §9), not Ronaldo's recipe; the preset 147 and the counts are samples. Every frame says "Sample recipe: values are placeholders until Chime records this face."
+- **Copy (drafts):** "Drag the picture to turn the head.", "Tap the picture to turn the head.", "Done, next", "Up next", "All steps", "0 of 14 steps done", "Pairs with this build", the preset hint "Count photo presets only: left to right, top to bottom. Skip your own saved heads.", "Optional deeper pass · 12 sliders", "Last step · push toward Younger".
+- **Checked:** renders of all three; audit (no text under 14 px, Barlow only, no overflow, no overlaps).
+- **Next:** Chime picks A, B or C; then the in-progress, finished and ticks-reset states, then tablet and desktop.
+
 ## Faces library: option A picked; tablet and desktop designed (Wed 25 Nov 2026)
 
 - **Chime:** picked option A (poster grid); asked for iPad and desktop. Recorded as D-70.
