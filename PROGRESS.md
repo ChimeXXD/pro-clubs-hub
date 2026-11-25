@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## About and Takedown built; type is one size everywhere (Wed 25 Nov 2026)
+
+- **Chime:** "Continue building. When you're done building, give me the preview link."
+- **Order:** Builds and Home wait: every content file is still a draft (nothing to list), today's archetype emblems are Pro Clubs HQ tracings that can't ship (D-39), and Home's face pictures and "face of the week" rule aren't defined. About and Takedown (D-91, option C) needed none of that.
+- **Built:** `/about` (questions that open in place; the design's two answered questions; six more wait for copy, O-22) and `/takedown` (72-hour promise, three steps, email card with Email and Copy, the copied toast). Shared: `PageContent`, `Button` (Large), `Toast` (cream pill, Elevation/3, 4 s, live region). Icons: chevrons, copy, external, check-circle (Figma exports).
+- **Type fix (D-103):** the first phone render was far off (mean diff 18–21) because the approved frames use Figma's Desktop type at every width. Type is now one size per style everywhere (D-92); renders vs Figma at 393 / 834 / 1440: 1.1–2.8.
+- **Tests:** e2e 30 at 390 and 360 (red first: no /about); unit 162 (tokens test updated to the D-92 rule).
+- **Reviews:** code review found 7, fixed 2 (clipboard failure handled; toast live region stays mounted so VoiceOver announces it); I moved the icon names to `src/lib/icons.ts`. Verifier: "Email copied." has no design source (TODO, O-22); steps list gets role="list" for Safari.
+- **Not verified:** VoiceOver on the iPhone; Chime's iPhone check (rule 10).
+
 ## Build started: the app shell from Figma (Wed 25 Nov 2026)
 
 - **Chime:** "Leave Sharon PR and let's start moving the design on Figma to code."

@@ -1,7 +1,7 @@
 // The site's sections, in the order the Figma bottom nav (282:521) and footer (205:434) show them.
 // The tablet and desktop top bar shows the same sections without Home (the logo is the way home).
 
-export type IconName = "home" | "faces" | "builds" | "changelog" | "submit" | "search";
+import type { IconName } from "./icons";
 
 export interface Section {
   href: string;

@@ -324,8 +324,8 @@
         "72-hour takedown promise and email"
       ],
       "verify": "npm run test:e2e -- legal",
-      "passes": false,
-      "evidence": null
+      "passes": true,
+      "evidence": "npx playwright test tests/e2e/about-takedown.spec.ts tests/e2e/shell.spec.ts: pass at 390 and 360 (red first: no /about). The notice is in the layout's footer on every route (shell.spec: 'the footer has its links and the notice'). /takedown shows the 72-hour promise, takedown@probuilds.club as a mailto link and a Copy button (clipboard checked). Renders vs Figma 417:3706 / 418:3678 / 418:3784: mean pixel diff 2.84 / 1.6 / 1.08. About ships 2 of its 8 questions until Chime gives answer copy for the other six (O-22)."
     },
     {
       "id": "P2-9",

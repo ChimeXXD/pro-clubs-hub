@@ -72,9 +72,15 @@ function textStyleUtility(style, fonts) {
 
 /** The whole of tokens.css for a snapshot. */
 export function buildTokensCss(figma) {
+  // D-92: one text size per style at every width. The approved screens show Figma's Desktop typography on
+  // phone and tablet too (their frames never switch the Typography mode), so type takes the Desktop value
+  // everywhere; only the layout tokens change with the breakpoint.
+  const typography = Object.fromEntries(
+    Object.entries(figma.typography).map(([name, v]) => [name, { phone: v.desktop, tablet: v.desktop, desktop: v.desktop }]),
+  );
   // layout/breakpoint only names Figma's frame widths; the CSS breakpoints are TABLET_MIN and DESKTOP_MIN.
   const sizes = Object.fromEntries(
-    Object.entries({ ...figma.tokens, ...figma.typography }).filter(([name]) => name !== "layout/breakpoint"),
+    Object.entries({ ...figma.tokens, ...typography }).filter(([name]) => name !== "layout/breakpoint"),
   );
   const shadows = Object.entries(figma.effects).map(
     ([name, layers]) => `  --shadow-${name}: ${layers.map(([x, y, blur, spread, c]) => `${x}px ${y}px ${blur}px ${spread}px ${c}`).join(", ")};`,

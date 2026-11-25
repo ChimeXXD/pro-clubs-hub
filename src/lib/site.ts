@@ -10,3 +10,6 @@ export const REPO = "ChimeXXD/probuilds";
 // The season the site is on (D-45). Change by hand when a season starts: Season 3 on Thu 3 Dec 2026 (D-25).
 // Content made for an earlier season shows the older-season warning (D-05).
 export const CURRENT_SEASON = 2;
+
+// Where takedown requests go (D-10, D-53). Acted on within 72 hours.
+export const TAKEDOWN_EMAIL = "takedown@probuilds.club";
