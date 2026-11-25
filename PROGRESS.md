@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Face page simplified: one game screen per step (Wed 25 Nov 2026)
+
+- **Chime:** confused by the chips and the repeated list; remove "Pairs with this build"; "Have you watched the videos?… we need to simplify it more." Honest answer given: the videos had only been sampled for frames, not studied for how they guide.
+- **Studied:** CodeName Max's young Ronaldo tutorial sampled every 25 s and every 5 s for the first minute: preset grid → Skin tab (several values on one screen) → Hair (colour, style grid, eyebrows, facial hair) → Sculpt for most of the video, one region per screen, the region highlighted on the face, its sliders set together. No values were taken from it.
+- **Redesign (D-72):** three frames in the "Face page" row: step 1 Preset (353:1410, the not-started state), step 2 Skin with four values (353:1524), step 9 Sculpt "Eyes · Eyelid Upper" with two end-labelled sliders (353:1648). Each: picture with the 360° badge (angle chips removed), name and credit, "Step N of 18" with a bar and "All steps", the step card ("In the game" + path, title, values, hint, Back, "Done, next"), "Next: …", limits callout, tutorial.
+- **Removed:** section chips, the repeated list, "Pairs with this build" (open question O-18: does a face still lead to its build?). The chip version is on Archive.
+- **Corrected before showing:** invented slider names ("Height", "Width") and a region read off a blurry frame were replaced with documented ones (FORMAT's Chin example, RESEARCH's "Eyelid Upper") and end labels.
+- **Checked:** renders of all three; audit clean; no overlaps.
+- **Copy (drafts):** "In the game", "Pick the preset", "Set them top to bottom, as the game lists them.", "Symmetry on. Each slider runs 0 to 100.", "Next: …", "All steps".
+
 ## Face page: B and C merged; 360° badge and rotate icon (Wed 25 Nov 2026)
 
 - **Chime:** picked B, asked to merge in C's step-by-step card and to mark the picture as rotatable 360°. Recorded as D-71.
