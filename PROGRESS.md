@@ -2,6 +2,21 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## About C and Takedown C; every open screen at tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** "Let's use option C" (both pages; D-91), and design the other sizes for everything not yet done.
+- **Phase 5:** About and Takedown rows at phone (416:3589, 417:3706), tablet (418:3457, 418:3678) and desktop (418:3567, 418:3784). The About and Takedown placeholders are gone; A and B of each are on Archive. The link-preview share card placeholders stay (Should).
+- **Phase 4, one row per screen, phone · tablet · desktop:**
+  - Start: 400:3219 · 418:3972 · 418:4161 (desktop: archetype and positions left, level and body right; tiles four across on tablet, 2 × 2 on desktop).
+  - Attributes: 399:3121 · 418:4526 · 418:5198 (groups in two stacked columns; desktop side panel with the AP counter, group jumps, tip and stars).
+  - PlayStyles: 406:3024 · 418:5876 · 418:6127 (desktop: counts and PlayStyle+ slots left, chips right).
+  - Name and share, no picture: 401:3616 · 418:6420 · 418:6599; picture added: 412:2989 · 418:6778 · 418:6957 (form and face left, card and share right).
+  - Share card tapped: 413:3113 · 418:7348 · 418:8464 (tablet and desktop use the share dialog with both of the player's cards).
+  - Request a face: 402:3451 · 418:9607 · 418:9742 (desktop: request box left, ranked list right).
+- **Fixed after render:** sliders kept their phone width in wider frames (now stretched to fit, knob and fill scaled); archetype tiles left one orphan on desktop; the attribute grid left a hole beside Pace (now two stacked columns); desktop About's notice touched the intro.
+- **Checked:** renders of desktop start, attributes, PlayStyles, name and share, share dialog, Request a face, About and Takedown, and tablet picture-added and About; audit of the 16 new frames (no overflow, text 14 px or more outside the shared card, token-bound fills); no overlaps in Phases 4 and 5.
+- **Next:** the link-preview share cards (Should), then Phase 5's gate.
+
 ## Phase 5 started: three About and three Takedown options (Wed 25 Nov 2026)
 
 - **Chime:** keep the share sheet with card 1 (the card-2 view moved to Archive as "Not picked 25 Nov"); start Phase 5.
