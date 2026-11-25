@@ -37,7 +37,7 @@ The loader (`src/lib/content/load.ts`) reads everything at build time, validates
 | --- | --- |
 | `/` | Faces first (featured and newest), then builds by position, latest changelog entry, the current season |
 | `/faces` | Face library; filter by kind (footballer, musician) and era; search by name |
-| `/faces/[slug]` | Title "Inspired by …", era, version tag, credit line, limits, steps by tab with ticks, paired build card, embed on tap, Chime's screenshots |
+| `/faces/[slug]` | Title (the plain name, D-69), era, version tag, credit line, limits, steps by tab with ticks, paired build card, embed on tap, Chime's screenshots |
 | `/builds` | The 13 archetypes in four groups, named as the game names them (Keeper, Defender, Midfielder, Forward, D-57); one in two groups is listed in both (D-33). Layout: emblem rail, a swipeable Stance card (D-56), then the signature PlayStyles and a "See builds" button (D-57) |
 | `/builds/[archetype]` | Archetype header (signature PlayStyles, mastery attributes, positions, Season 2 cost change counts, sources), then every build for it, "Meta pick" and later "Most copied" badges (D-34) |
 | `/builds/[archetype]/[build]` | Full build card: archetype, positions, body, attributes, PlayStyles, specialization, version tag, credits, history, "Copy build" |
@@ -53,7 +53,7 @@ The loader (`src/lib/content/load.ts`) reads everything at build time, validates
 2. **Come back later:** reopen the face → ticks still there → "Continue from step 9". A new face version starts fresh and says so.
 3. **Check a build:** Builds → filter "ST" → a card → read the version tag → set it up in game.
 4. **Old season:** a build with `season` below the current one shows "Made for Season 2. Values may have changed since."
-5. **Unverified:** a card with `verifiedOn: null` says "FC 27 · Season 2 · not yet checked in game" (D-45; only possible in previews; drafts aren't built).
+5. **Unverified:** a card with `verifiedOn: null` says "FC 27 · Season 2 · not yet checked in game" (D-45; drafts aren't built, so on the live site this is a published build read from a streamer's video, D-66).
 6. **Submit:** `/submit` → choose face or build → fill tabs → the validator marks problems inline → "Submit for review" opens the GitHub issue form with the JSON prefilled (too long for a link: the empty form, plus "Copy JSON" to paste, D-45) → Chime reviews, credits and merges.
 7. **Watch the tutorial:** a face with an embed shows the title and channel → tap → the YouTube no-cookie player loads.
 

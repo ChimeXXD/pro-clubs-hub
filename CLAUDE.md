@@ -72,13 +72,13 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 
 1. **No images of real people, ever** (D-10). No photos, drawings, AI portraits or silhouettes. Names appear as plain text. Face pages may show only Chime's own in-game screenshots of their own recreations, exported by them, never EA marketing art.
 2. **No EA logos, fonts or card art.** Archetype emblems and PlayStyle icons are allowed (D-39), but only EA's own files or our own drawings, never another site's tracings, and they stay out of the repo until shipped. "EA", "FC" and "FUT" never appear in the product name, domain or logo (D-04).
-3. **The notice is on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named." Faces say "inspired by", never "official".
+3. **The notice is on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named." A face's title is its plain name ("2008 Ronaldo", "Neymar Jr (Mohawk)"), never "official" (D-69).
 4. **Every build and face carries a version tag** (`game`, `season`, `verifiedOn`). Unverified content says "Not yet checked in game" in words. Content from an older season shows a warning; it is never silently carried over (D-05).
-5. **Every build and face carries a source and credit line** (D-08). A creator whose tutorial was followed is named and linked. Creator videos are embedded with `youtube-nocookie.com`, never re-uploaded or transcribed.
+5. **Every build and face carries a source and credit line** (D-08). A creator whose tutorial was followed is named and linked. Creator videos are embedded with `youtube-nocookie.com`, never re-uploaded or transcribed. Exception, builds only (D-66): a build may be read from a streamer's video by hand, published as "not yet checked in game" and credited with a link to that video.
 6. **Never trust a content file.** `validate.ts` checks every field against `docs/FORMAT.md`. One bad file fails the build. Submissions are validated the same way before Chime sees them.
 7. **Values are stored as the game shows them** (A-09, A-12): `item` ("Nose 116"), `named` ("Warm Black"), `slider` (Sculpt, 0–100 with its end labels), and `position` for controls with no number (Skin Tone, Visual Age), measured from Chime's screenshot. The editor's structure is in `docs/RESEARCH.md` §9.
 8. **Withdrawn means gone.** `"status": "withdrawn"` is not built, listed or linked. Takedowns are acted on within 72 hours (D-10).
-9. **Never copy another site's builds or cost tables.** Facts (a PlayStyle name, a specialization target EA states) are free. Another site's finished build, tier list or cost table is not (D-08).
+9. **Never copy another site's builds or cost tables.** Facts (a PlayStyle name, a specialization target EA states) are free. Another site's finished build, tier list or cost table is not (D-08). A streamer's build read from their video follows D-66.
 10. **Renders are not enough.** Check pages on Chime's iPhone next to the TV before a gate passes (L-01).
 
 ## Two people, one review gate (D-22, D-23)

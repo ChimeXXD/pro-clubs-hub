@@ -2,6 +2,288 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Changelog B and Submit B picked (Wed 25 Nov 2026)
+
+- **Chime:** "B", read as B for both. Recorded as D-82.
+- **Figma, Phase 4 rows:** Changelog at phone, tablet (390:2540) and desktop (390:2700); Submit face question (phone); states row on phone: choose (391:2630), sent (391:2722), inline error (392:2725), build question (392:2825). The six placeholders are gone; options A and C are on Archive.
+- **Checked:** renders of Changelog tablet and desktop, choose and sent; no overlaps; Phase 4 refitted, Phase 5 moved.
+- **Not checked yet:** renders of the inline error and build question frames.
+- **Next:** Submit tablet 834 and desktop 1440 (the question screen and its states).
+
+## Phase 4: three Changelog and three Submit options on phone (Wed 25 Nov 2026)
+
+- **Chime:** "design the change log and submit screen. Three different variant of each."
+- **Figma, Phase 4, two new rows under the placeholders (phone 390, bottom nav on Changelog / Submit):**
+  - Changelog A · Timeline (383:3075): a rail with a dot per entry (lime for the newest), date and kind/season tags, each entry a card with its changes, Source link and "We updated".
+  - Changelog B · Seasons and filters (383:3158): a "Season 3 starts Thu 3 Dec" note, kind filter chips, entries grouped under Season 2 (Now) and Season 1 as rows with a big date; the newest open.
+  - Changelog C · Latest first (383:3241): the newest entry as a hero with numbered changes and "Read EA's notes"; earlier entries as a plain list.
+  - Submit A · One form with tabs (383:3325): A face / A build switch, section tabs (Basics, Skin, Head, Face, Hair, Sculpt, Credit), Basics fields with one inline error on the preset, Submit for review and Copy JSON.
+  - Submit B · One question at a time (383:3408): section progress bar, "Which preset did you start from?", a large focused preset field, the saved-heads tip (A-09), Back / Next, Copy JSON so far.
+  - Submit C · Checklist and preview (383:3491): how the card will show (title, kind, "not yet checked in game" tag, credit line), the seven parts with Done / In progress / Not started, Submit for review disabled until the parts are done.
+- **Data:** the three entries in `content/changelog/` as written (titles, changes, EA source titles); `affects` is empty in all three, so "No faces or builds changed." The submit examples use Neymar Jr (Mohawk) and CodeName Max's video (UOrV95yMy50); no game values are shown.
+- **Checked:** renders of all six; audit (text 14 px or more, text styles, Barlow only, token-bound fills, no overflow); no overlaps; Phase 4 grew and Phase 5 moved down.
+- **Copy (drafts):** the page intros, "Season 3 starts Thu 3 Dec / Every face and build is checked again that day.", "We updated", "Read EA's notes", "Earlier", field labels, hints and the inline error, "Which preset did you start from?", the C status words and "Finish … to send."
+- **Next:** Chime picks one of each; then the remaining Submit states (build form, inline errors, sent) and tablet 834 / desktop 1440.
+
+## 404 "Over the bar" on all sizes (Wed 25 Nov 2026)
+
+- **Chime:** picked option C. Recorded as D-81.
+- **Figma, Phase 3's 404 row:** phone 390 is option C (377:2500); tablet 834 (375:2638) and desktop 1440 (375:2690) edited in place: a Hero row with the copy and buttons on the left (360 / 520 px) and the goal art on the right, scaled from the phone art (370 / 600 px). "Or try a face" and the footer unchanged.
+- **Archive:** the plain 404 (phone, tablet, desktop) as "Superseded 25 Nov · …"; options A and B as "Not picked 25 Nov · …".
+- **Checked:** renders of tablet and desktop; no frame overlaps in Phase 3; the Search row moved down 206 px; Phase 3 refitted and Phases 4–5 moved up so the gap is 160 px again.
+- **Copy (draft):** "Over the bar." / "That link went high. The page may have moved, …".
+
+## 404 with character: three phone options (Wed 25 Nov 2026)
+
+- **Chime:** the 404 is "too basic"; 15 Mobbin 404s gathered on the local board (section "not-found"), none liked: "build something not generic… a 404 with character… design, not build."
+- **Figma, Phase 3, row "404 · three options" under Search results:** three clones of the phone 404 with the 404 text replaced by drawn art (vectors and token-bound colours, no images, no people), top bar, faces row, footer and bottom nav kept:
+  - A · Subbed off (377:2404): a fourth official's LED board, tilted, red ▼404 off and lime ▲FACES on, dot-matrix drawn as 5×7 glyphs.
+  - B · Not in the squad (377:2452): a cream shirt back on a hanger, lime collar and cuffs, arched "NOT FOUND" nameset, number 404.
+  - C · Over the bar (377:2500): a goal frame and net with "4 ⚽ 4", the ball as the 0 flying over the crossbar.
+- **Checked:** renders of each frame and each art at 2×; no art overflows its frame; Phase 3 grew and Phases 4–5 moved down 1,409 px.
+- **Copy (drafts, Chime to approve):** "Subbed off." / "This page has come off."; "Not in the squad." / "No page wears this number."; "Over the bar." / "That link went high." The rest is D-80's approved wording.
+- **Next:** Chime picks one; then tablet 834 and desktop 1440 for it (D-58), and a D-entry.
+
+## Phase 3 finished: footer, 404 and search on all sizes (Wed 25 Nov 2026)
+
+- **Chime:** build the rest of Phase 3 for every size. Recorded as D-80.
+- **Figma, Phase 3 rows (phone 390, tablet 834, desktop 1440 side by side):**
+  - Footer and notice: the bottom of Home at each size (a clipped view: last section, Footer notice, and the bottom nav on phone).
+  - 404: "404" in lime Display, "This page isn't here.", a line of explanation, Go to faces / Go to builds, then "Or try a face" with Home's faces (added after the first desktop render left half the page empty).
+  - Search results (Should): "Search", field filled "Ronaldo", "2 results for “Ronaldo”", Faces 1 (2008 Ronaldo card) and Builds 1 (2008 Winger card).
+- **Removed:** the three placeholders and the "Phase 3 screens" label; Phase 3 widened to 3,147 px and grew; Phases 4–5 moved down.
+- **Checked:** renders; audit of the six new 404 and search frames (text 14 px or more, Barlow only, no overflow); no overlaps; no placeholders left in Phase 3.
+- **Open (D-80 (4)):** no search entry on phone; no "none" state in the bottom nav.
+- **Copy (drafts):** the 404 lines and buttons, "Or try a face", "Search", "2 results for “Ronaldo”".
+
+## Finished face links its matching build (Wed 25 Nov 2026)
+
+- **Chime:** "link it" (O-18 → D-79).
+- **Figma, "Face · finished → matching build · phone 390" (372:1984):** under the Face done card, "Set up the matching build" with a build card for 2008 Ronaldo's `pairedBuild`, spark-2008-winger: the 2008 Ronaldo demo face, "2008 Winger", RW and LW (positions from content/builds), "Spark · not recorded yet", stats "—", PlayStyles+ Trickster and Rapid (Spark's signature PlayStyles, content/archetypes); no Meta pick tag. Phase 2 grew 107 px; Phases 3–5 moved; no overlaps.
+- **Note:** the build's name is PLACEHOLDER in the content file; "2008 Winger" comes from its slug and is a draft.
+
+## Phases 1 and 2: the seven empty states designed (Wed 25 Nov 2026)
+
+- **Chime:** "why are there still empty screens on the Phase 2 and Phase 1?… revisit them first." They were states of approved pages, left as placeholders when each page's main design moved on.
+- **Phase 1 · build page (phone 390, the top of the page at 852 px):**
+  - Specialization not reached (371:1697): Your level 32; "AP at level 32: 724 · spent 724 · left 0" (RESEARCH §10.1); slider at 32 of 55; callout "At level 32 you're 695 AP short of this build. Its specialization needs level 50." (50 is the page's sample).
+  - Not yet checked in game (371:2208): no Meta pick tag (D-30); credit "Read from a creator's video · Watch the video" (D-66); callout explaining it becomes a Meta pick only after Chime or Sharon makes it and plays a match.
+  - Older season (371:2719): top bar "FC 27 · Season 3"; callout "Made for Season 2. Values may have changed since." (UI-BRIEF copy); version line "FC 27 · Season 2 · verified 19 Nov 2026" (sample date from UI-BRIEF).
+- **Phase 2 · faces:**
+  - Library, no results (372:1853): search "Zidane", every chip at 0, empty card (face icon, "No faces here yet.", "Suggest one on Submit." from UI-BRIEF, "Suggest a face" button).
+  - In progress (353:1648, the step 9 frame): "Continuing from step 9" with "Start over" above the section bar.
+  - Finished (372:1984): "All 18 steps done", the whole bar lime; a "Face done" card ("Save it, then check it in a match cutscene, not only in the editor." from content/README's recording steps), Start over and Back to faces. No build link: O-18 still open.
+  - Updated, ticks reset (372:2108): step 1 with the info toast "This face was updated. Your ticks start fresh." (UI-BRIEF copy).
+- **Fixed before showing:** the level-32 slider knob still sat at 55; a "↗" rendered as an emoji box; the finished bar rendered black (bound token with a black base colour; base now the token's lime).
+- **Checked:** renders of all seven; audit (text 14 px or more, Barlow only; the only overflows are the slider parts inherited from the approved page and the scrolling chips); no placeholders left in Phases 1 and 2; no overlaps (Phase 2 grew 1,093 px, Phases 3–5 moved down).
+- **Copy (drafts):** "Continuing from step 9", "Start over", "Face done", "Back to faces", "Suggest a face", the two build-state callouts, "Read from a creator's video · Watch the video".
+
+## Home tablet and desktop: faces as poster cards (Wed 25 Nov 2026)
+
+- **Chime:** too much empty space beside the four avatars on tablet and desktop. Recorded as D-78.
+- **Before → after (367:1629, 367:1836):** four 104 / 128 px circles grouped on the left → four library poster cards across the width (picture 4:5, kind, name): 171 × 214 on tablet, 282 × 352 on desktop, 24 px gaps. Phone unchanged (round avatars).
+- **Checked:** renders of both faces rows and the full desktop page; audit clean; no overlaps in Phase 3.
+
+## Home: four faces, not all five (Wed 25 Nov 2026)
+
+- **Chime:** with five faces, showing all five and "See all" makes no sense; show four. Recorded as D-77.
+- **Before → after (364:2118, 367:1629, 367:1836):** five avatars → four (2008 Ronaldo, Lamine Yamal, LeBron James, Michael Jackson); Neymar Jr left out because he is the Face of the week below. Phone: swipe row of 76 px circles → four equal 82 px columns, 72 px circles, names centred and wrapping to two lines (the names had run together at first). Tablet and desktop: spread across the width → grouped on the left, 40 px apart (spread out, four looked sparse).
+- **Checked:** renders of the faces row on all three sizes; nothing past the row's edge.
+
+## Home: tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** design Home for iPad and desktop. Recorded as D-76.
+- **Figma, Phase 3 "Home" row:** tablet 367:1629 (834), desktop 367:1836 (1440), beside the phone.
+- **Layout:** avatars spread across (104 / 128 px); Face of the week beside What changed; Meta builds as a grid (tablet 2 × 365 px plus a dashed "View all builds" tile; desktop 3 × 384 px); season card; Top bar with no section current; Footer notice.
+- **Fixed after the first render:** the Face of the week picture stayed phone-sized in a card stretched to the changelog's height (now 171 × 214, filling it); the avatar row clipped the last circle's outline (unclipped).
+- **Checked:** renders of both; audit (text 14 px or more, Barlow only, no overflow); no overlaps in Phase 3 or between phases.
+- **Copy (draft):** "Pick an archetype, then a build."
+
+## Home picked: C2 with three meta builds (Wed 25 Nov 2026)
+
+- **Chime:** C2; the three builds are attack (Meta Finisher), midfield (Maestro) and defence (Boss), each opening its build page; "View all builds" to the Builds page. Recorded as D-75.
+- **Figma:** "Home · phone 390" (364:2118) at the start of Phase 3's "Home" row. Rail: Meta Finisher (sample values), Meta Maestro (Midfielder; Pinged Pass+, Long Ball Pass+), Meta Boss (Defender; Bruiser+, Aerial Fortress+), the PlayStyle+ badges swapped to the real components. Maestro and Boss stats, level and height are "—" and their position chips removed: no sample values exist for them and none were invented. Link "All builds" → "View all builds"; note → "Sample builds. Maestro and Boss values come when they are recorded in game. Tap a card to open its build."
+- **Archive:** options A, B, C and C1. The empty Home placeholder removed.
+- **Fixed before showing:** cloning put Maestro first; order is Finisher, Maestro, Boss.
+- **Checked:** render of the three cards; card sizes 320 × 264–266.
+- **Next:** Home tablet and desktop (D-58).
+
+## Home: two variations of C (Wed 25 Nov 2026)
+
+- **Chime:** likes C, but not "builds by position"; wants builds by archetype like B, and a version that sends people to the build page instead of the archetype page.
+- **C1 · builds by archetype (364:1916):** C with B's full-size Stance card rail (Finisher, Spark, Magician, Target) under "Builds by archetype" / "See all", and "Tap a card to see that archetype's builds." Each card opens its archetype page.
+- **C2 · builds first (364:2118):** C with a "Meta builds" / "All builds" rail of the approved stat-strip build cards (the three Finisher samples, 320 px wide) and "Sample builds: values not checked in game yet. Tap one to open its build." Each card opens its build page.
+- Row label now "Home · options (pick one)"; A, B, C stay beside C1 and C2 until the pick.
+- **Checked:** renders of both; text 14 px or more, Barlow only; no overlaps in Phase 3.
+- **Note:** only Finisher sample builds exist, so C2's rail is three Finishers; real content would show one meta pick per archetype.
+
+## Home: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** "design the next page". Next page: Home (Phase 3). Phase 2 still has states left (face finished, ticks reset, library empty filter) and O-18.
+- **Brief (SPEC, UI-BRIEF, sitemap):** faces first (featured and newest), builds by position, the latest changelog entry, the current season; faces before builds is an acceptance test.
+- **Where:** Design screens → Phase 3, row "Home · 3 options (pick one)": A 358:1570, B 358:1751, C 359:1783 (phone 390). The "Menu sheet" placeholder was removed (D-67); the other placeholders sit in a row below; Phases 4–5 moved down; no overlaps.
+- **Options:**
+  - A · Featured face: season strip ("Season 3 starts Thu 3 Dec · Every face and build gets re-checked"), a featured-face card (square picture, "Featured face", 2008 Ronaldo, "Start this face") with pager dots, "New faces" rail, "Builds by position" with group chips (Keeper 2, Defender 3, Midfielder 4, Forward 4) and the selected group's archetypes, "What changed" (Title Update 1.2.0). (DAZN, Fixtured, NBA)
+  - B · Tagline and rails: "Look like a legend. Play like one." (draft, O-08) with a one-line intro, a faces rail, a rail of the approved Stance cards ("Builds by archetype"), "What changed", a season card. (Apple TV, Paramount+)
+  - C · Quick picks: round face avatars, "Face of the week" card (Neymar Jr (Mohawk), Start), four position tiles with their archetype emblems, the three real changelog entries as a list, a season card. (NBA, F1)
+- **Real content:** the changelog titles, dates and the first Title Update line come from `content/changelog/`; groups and archetypes from `content/archetypes/fc27.json`; faces are the demo set. Samples: "18 steps".
+- **Fixed before showing:** A's hero panel sat over the face (moved under a square picture); A's strip repeated the top bar's season chip; B's Stance cards were shrunk to 64% (text about 9 px), back to full size; B's nav fell off the frame after a resize.
+- **Checked:** renders of all three; audit: text 14 px or more, Barlow only, no overflow except the swipe rails, no overlaps.
+- **Copy (drafts):** tagline, B's intro, "Featured face", "Start this face", "New faces", "Face of the week", "Builds by archetype", "What changed", the season line.
+
+## Face page: tablet and desktop (Wed 25 Nov 2026)
+
+- **Chime:** design the iPad and desktop screens for the guided face page. Recorded as D-74.
+- **Figma, Phase 2 "Face page" row:** tablet 355:1469 and desktop 355:1582 (step 2, Skin), to the right of the three phone frames; Phase 2 widened to 4,173 px.
+- **Layout:** breadcrumb; summary column (picture 300 × 375 on tablet, 400 × 500 on desktop, 360° badge, Footballer, 2008 Ronaldo, credit, sample note); steps column (section bar, step card, "Next: Customize › Head · 3 values", limits callout, tutorial). Top bar with Faces current; Footer notice; no bottom nav.
+- **Checked:** renders of both; audit (no text under 14 px, Barlow only, no overflow); no overlaps in Phase 2 or between phases.
+- **Watch:** on desktop the step card is 736 px wide, so each value sits about 580 px from its label; if that reads as too far on a real screen, cap the card or split the values into two columns.
+- **Next:** the finished and ticks-reset states; Chime's call on O-18.
+
+## Face page: section progress bar back (Wed 25 Nov 2026)
+
+- **Chime:** keep the new guided layout but bring back the earlier segmented bar, because it shows how long each section is. Recorded as D-73.
+- **Before → after (353:1410, 353:1524, 353:1648):** one 6 px bar filled to N/18 → seven segments with 4 px gaps, widths by values per section (sample counts: Preset 1, Skin 4, Head 3, Face 2, Hair 4, Sculpt 24, Visual Age 1 → 8, 34, 25, 17, 34, 202, 8 px). Done sections lime; the current one fills by screens done in it (Sculpt 4 of 12 at step 9); the rest bg/raised. Label "Step 1 of 18" → "Step 1 of 18 · Preset" (Skin, Sculpt on the others).
+- **Fixed before showing:** the first pass lit the whole current segment, so step 9 looked nearly finished.
+- **Checked:** the bar on all three frames at 2× and full-frame renders.
+
+## Face page simplified: one game screen per step (Wed 25 Nov 2026)
+
+- **Chime:** confused by the chips and the repeated list; remove "Pairs with this build"; "Have you watched the videos?… we need to simplify it more." Honest answer given: the videos had only been sampled for frames, not studied for how they guide.
+- **Studied:** CodeName Max's young Ronaldo tutorial sampled every 25 s and every 5 s for the first minute: preset grid → Skin tab (several values on one screen) → Hair (colour, style grid, eyebrows, facial hair) → Sculpt for most of the video, one region per screen, the region highlighted on the face, its sliders set together. No values were taken from it.
+- **Redesign (D-72):** three frames in the "Face page" row: step 1 Preset (353:1410, the not-started state), step 2 Skin with four values (353:1524), step 9 Sculpt "Eyes · Eyelid Upper" with two end-labelled sliders (353:1648). Each: picture with the 360° badge (angle chips removed), name and credit, "Step N of 18" with a bar and "All steps", the step card ("In the game" + path, title, values, hint, Back, "Done, next"), "Next: …", limits callout, tutorial.
+- **Removed:** section chips, the repeated list, "Pairs with this build" (open question O-18: does a face still lead to its build?). The chip version is on Archive.
+- **Corrected before showing:** invented slider names ("Height", "Width") and a region read off a blurry frame were replaced with documented ones (FORMAT's Chin example, RESEARCH's "Eyelid Upper") and end labels.
+- **Checked:** renders of all three; audit clean; no overlaps.
+- **Copy (drafts):** "In the game", "Pick the preset", "Set them top to bottom, as the game lists them.", "Symmetry on. Each slider runs 0 to 100.", "Next: …", "All steps".
+
+## Face page: B and C merged; 360° badge and rotate icon (Wed 25 Nov 2026)
+
+- **Chime:** picked B, asked to merge in C's step-by-step card and to mark the picture as rotatable 360°. Recorded as D-71.
+- **Screen "Face · not started · phone 390" (349:1392), before → after:** Start button and "0 of 14 steps done" → C's "Step 1 of 14 · Preset" with the section bar and the current-step card (where to find it, Preset, 147 in lime Display, hint, Back disabled, "Done, next"); "All steps" heading added over the section chips and Skin steps; "360°" badge (Icon/rotate-360 + Label, bg/page at 80%, top right of the picture).
+- **Design System:** new Icon/rotate-360 (352:817) in Icons: an orbit arrow round a short axis, drawn at 1.5 px with round ends, outlined, one glyph on text/primary, scale constraints. Checked at 5× in a red box beside Icon/download; first render lost the glyph to flatten's page coordinates (fixed), and the first arrowhead pointed against the orbit (redrawn).
+- **Archive:** options A and C and B as it was before the merge. The "Face · not started" placeholder was removed; the row label is now "Face page".
+- **Checked:** renders of the screen, the picture with the badge and the step card at 1.5×.
+- **Next:** the in-progress, finished → paired build and ticks-reset states, then tablet and desktop.
+
+## Face page: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** start the next screen. It is the face page (`/faces/[slug]`), Phase 2's "Face · not started" state; the empty-filter state of the library is still to add.
+- **Where:** Design screens → Phase 2, row "Face page · 3 options (pick one)": A 348:1284, B 349:1392, C 350:1498 (phone 390). Placeholders moved under it (y 4728); Phases 3–5 down 2,810 px; no overlaps.
+- **Shared parts:** Top bar, breadcrumb, 2008 Ronaldo demo picture (Xaiiros frame), "Footballer" + "2008 Ronaldo", sample note, Version tag, Credit line ("Made by Chime in game · Tutorial by Xaiiros"), Limits callout, Step rows with the game's section names, the approved stat-strip build card (Meta Finisher, sample), Embed facade (Xaiiros's video title), Footer, Bottom nav (Faces).
+- **Options:**
+  - A · Recipe page: 4:5 picture with angle chips (Front, ¾ Left, Left, Back, Right, ¾ Right; D-35) and "Drag the picture to turn the head."; facts row (Preset 147, Steps 14, Sculpt Optional); lime Start; Recipe with Skin/Head/Face/Hair tabs and steps; Sculpt and Visual Age rows. (Postmates, Woolworths, NYT Cooking)
+  - B · Picture and sheet: full-width picture with angle chips, a rounded sheet lip with a handle over it; Start; "0 of 14 steps done" with a segmented bar; section chips with counts (Preset … Visual Age); steps. (MasterClass, Cherrypick)
+  - C · One step at a time: small picture beside the title; "Step 1 of 14 · Preset" with a section bar; a step card where the value is the hero (147 in Display, lime), where to find it, a hint, Back and "Done, next"; Up next; All steps by section. (Recime, Kitchen Stories, Crouton)
+- **Sample values:** section names and numbers are ones seen in game (RESEARCH §9), not Ronaldo's recipe; the preset 147 and the counts are samples. Every frame says "Sample recipe: values are placeholders until Chime records this face."
+- **Copy (drafts):** "Drag the picture to turn the head.", "Tap the picture to turn the head.", "Done, next", "Up next", "All steps", "0 of 14 steps done", "Pairs with this build", the preset hint "Count photo presets only: left to right, top to bottom. Skip your own saved heads.", "Optional deeper pass · 12 sliders", "Last step · push toward Younger".
+- **Checked:** renders of all three; audit (no text under 14 px, Barlow only, no overflow, no overlaps).
+- **Next:** Chime picks A, B or C; then the in-progress, finished and ticks-reset states, then tablet and desktop.
+
+## Faces library: option A picked; tablet and desktop designed (Wed 25 Nov 2026)
+
+- **Chime:** picked option A (poster grid); asked for iPad and desktop. Recorded as D-70.
+- **Figma, Phase 2 row "Faces library":** phone 333:1139 (option A, renamed), tablet 345:1310 (834), desktop 345:1391 (1440), side by side (D-58). B and C moved to Archive ("Superseded 25 Nov"). The empty "Faces library · phone 390" placeholder was removed; the other placeholders moved up under the row, Phases 3–5 up 329 px.
+- **Tablet:** Top bar and Footer notice (tablet), 40 px edges; header with the intro at 600 px; chips and a 300 px search in one row; three columns of 235 px cards (4:5 pictures 235 × 294), "Missing a face?" as the sixth cell; 24 px across, 32 px between rows.
+- **Desktop:** 120 px edges, 1200 px column; chips and a 360 px search in one row; six columns of 180 px cards in one row.
+- **Fixed after the first render:** the tablet and desktop Top bar showed Builds as the current page; Faces is current now (text/primary; Builds back to text/secondary).
+- **Checked:** renders of both; audit (no text under 14 px, Barlow only, no overflow, no overlaps in the section or between phases).
+- **Next:** the empty-filter state ("No faces here yet. Suggest one on Submit."), then the face page (Phase 2).
+
+## Faces library: demo faces zoomed out so the hair shows (Wed 25 Nov 2026)
+
+- **Chime:** zoom out so most of the hair shows (only LeBron's did); keep one layout for all.
+- **Before → after:** square 600 crops (the 4:5 slots cut their sides, so the eyes were 30% of the visible width, 1.9 eye-widths of room above the eyes) → 4:5 crops at 468 × 576 (eyes 25% of the width, 2.3 eye-widths above). Faces about 18% smaller in the cards; Ronaldo, Lamine, LeBron and MJ show their full hair, Neymar all but the tip of the mohawk.
+- **How:** re-captured the same frames at full resolution in Chrome (canvas crop at computed source boxes), then scaled each to 117 px between the eyes and cropped with the eyes at (234, 272). Limits that set the zoom: no space above MJ's head in his frame, Xaiiros's chest watermark under Ronaldo (its top edge trimmed off).
+- **Checked:** Vision re-measure (234–236, 272–274; 117–118 px); five-up guide image; renders of A, B and C. 15 slots re-uploaded.
+
+## Faces library: plain titles, kind-only line, no check status (Wed 25 Nov 2026)
+
+- **Chime:** no "Inspired by"; use the name as the video titles it ("2008 Ronaldo", "Neymar Jr (Mohawk)"); the line under it is just Footballer / Athlete / Musician; drop "Not yet checked in game" because everything posted is made in game. Recorded as D-69.
+- **Figma, before → after (A, B and C, 15 cards):**
+  - Title "Inspired by Cristiano Ronaldo" → "2008 Ronaldo"; "Inspired by Neymar Jr" → "Neymar Jr (Mohawk)"; the other three → "Lamine Yamal", "LeBron James", "Michael Jackson".
+  - Kind line "Footballer · 2008" / "Footballer · Santos" → "Footballer" (A and C); B's era-and-status line → removed (the shelf heading gives the kind).
+  - "Not yet checked in game" → removed everywhere.
+- **Docs pointing at D-69:** CLAUDE.md rule 3, content/README, UI-BRIEF (face title, home rail), SPEC `/faces/[slug]`, FORMAT `title`.
+- **Not done (code, tests first):** `validate.ts` still requires titles to start with "Inspired by"; fixtures and `content/faces/cristiano-ronaldo-2008.json` still use it.
+- **Checked:** renders of all three options.
+
+## Faces library: Neymar Jr (Santos, mohawk) added (Wed 25 Nov 2026)
+
+- **Chime:** add the Neymar mohawk face from https://youtu.be/UOrV95yMy50 (CodeName Max, "How to Make SANTOS NEYMAR JR in EA FC 27 (MOHAWK)").
+- **Crop:** frame at 25 s, measured with Vision and cropped to the shared rule: eyes (302, 271), 143 px apart; side by side with the other four, eye line and centre match. The mohawk reaches the top edge.
+- **Figma:** Neymar is the second footballer in A, B and C ("Footballer · Santos"; the era comes from the video title). Chips All 5, Footballers 3. A is now three rows of two, with "Missing a face?" as the sixth grid cell (fixed at 170.5 px after the row split unevenly, 154/188). B's Footballers rail and C's Footballers list have three faces. No overflow; the options still end above the placeholder row.
+- **Next:** Chime picks A, B or C.
+
+## Faces library: demo faces aligned to one rule (Wed 25 Nov 2026)
+
+- **Chime:** the pictures aren't centred the same way (Michael Jackson especially); "everything is exactly in the same format".
+- **Measured** with Apple Vision face landmarks (script in the session scratchpad): before, eye midpoints ranged x 293–319, y 220–269 and eye distance 106–135 px on 600 px crops (MJ 27% larger and right of centre, Ronaldo higher).
+- **Rule:** eye midpoint centred, eye line 45% down, eyes 24% of the width apart (the largest size MJ's crop allows without the creator's panel or watermark). After: x 299–301, y 268–271, distance 144–146 px.
+- **Figma:** the 12 slots in A, B and C re-uploaded (FILL, untransformed, so the 4:5 and 96 × 120 slots crop the sides evenly). Renders of all three checked.
+- **Trade-off:** faces are larger than before; the tops of the hair sit close to the edge.
+- **Ronaldo swapped** at Chime's request for Xaiiros's video (https://youtu.be/SHmX5Z8BxFs, frame at 25 s; the chest watermark, reference inset and menu panel kept out of frame), cropped to the same rule: eyes (299, 270), 143 px apart. The demo note now credits Xaiiros and CodeName Max.
+
+## Faces library: four real-looking demo faces, kind filters (Wed 25 Nov 2026)
+
+- **Chime:** use YouTube frames of 2008 Ronaldo, Michael Jackson, LeBron James and Lamine Yamal, cropped like the pro's face; chips All, Footballers, Athletes, Musicians; drop the era chips. Recorded as D-68.
+- **Frames:** found the creators' FC 27 tutorials on YouTube in Chrome, drew the frame at 15 s to a page canvas, cropped a square around the head (creator watermark, captions, menu panels and club crests kept out of frame, not edited out), saved with the screenshot tool, trimmed with ffmpeg. All four from CodeName Max (the studio framing matched the pro's shot best; JaxStash's MJ was turned and had sculpt highlights). Files and links: git-ignored `reference/faces-demo/` with `SOURCES.md`. No video downloaded.
+- **Figma (options A 333:1139, B 333:1199, C 333:1257):** the 12 picture slots got the four crops (upload_assets, FILL); cards now Cristiano Ronaldo (Footballer · 2008), Lamine Yamal (Footballer), LeBron James (Athlete), Michael Jackson (Musician); chips All 4, Footballers 2, Athletes 1, Musicians 1; B and C gained an Athletes shelf/group; the note credits CodeName Max. The placeholder row moved to y 2247 and Phases 3–5 down 398 px; no overlaps.
+- **Checked:** every slot has an image fill; renders of all three at 0.75×.
+- **Not done:** `athlete` in the content format and validator (code, tests first).
+- **Next:** Chime picks A, B or C.
+
+## Faces library: demo face in, phone menu button out (Wed 25 Nov 2026)
+
+- **Chime (screen recording):** "Why is there a hamburger icon here when we already have the navbar?" and "can we put a demo face… use this face" (the pro's face from the Meta Finisher share cards).
+- **Top bar, phone (205:375):** the Menu button (205:385) is removed; the season chip moves to the right edge, 20 px in. Every phone screen updates through the component. Recorded as D-67; PLAN Phase 3 "menu sheet" dropped.
+- **Faces library options A, B and C:** all 12 picture slots now show the pro's in-game face (the link preview's image, scale FILL) in place of "Face coming soon" and the big era. The sample note reads "Demo: Chime's own pro stands in for every in-game capture" and wraps to two lines; the bottom nav was re-pinned after the frames grew 20 px.
+- **Kept:** the empty-slot versions are on Archive (336:2059, 336:2124, 336:2195) for the "no capture yet" state.
+- **Open risk:** D-42 bars a stand-in face next to a real person's name in drafts or the product. The demo is in Figma only, labelled, and goes nowhere near the repo; each real card will show its own recreation.
+- **Checked:** renders of all three at 0.75× and the Top bar at 2×; the note fits; the nav sits inside its space on all three.
+- **Next:** Chime picks A, B or C.
+
+## Faces library: three options for Chime to pick (Wed 25 Nov 2026)
+
+- **Chime:** "work on the next page… create three variants of the page for me to choose from." The next page not yet designed is the Faces library (Phase 2). Phase 1's three build states are still to design; the toast and bottom-nav picks are still open.
+- **Where:** Design screens → Phase 2 · Faces, row "Faces library · 3 options (pick one)": A 333:1139, B 333:1199, C 333:1257 (phone 390). The six placeholder frames moved to a row below; Phases 3–5 moved down 1,703 px (no overlaps).
+- **Shared:** Top bar, "Faces" title, intro, sample note, Search field, filter chips with counts (All 4, Footballers 3, Musicians 1, 2000s 2, 2010s 1), Footer notice, Bottom nav (Page=Faces, fixed).
+- **Options:**
+  - A · Poster grid: two columns of 4:5 cards; the empty picture slot shows "Face coming soon" and the era (or surname) in Number/XL; then kind and era, "Inspired by …", "Not yet checked in game"; a dashed "Missing a face?" tile. (Letterboxd, Moonly)
+  - B · Shelves: a heading per kind with a swipeable rail of 216 × 270 cards, era in Display; "Missing a face?" closes the Musicians rail. (Calm, Hatch)
+  - C · List by kind: grouped lists on a surface card; each row a 96 × 120 slot, name, kind and era, status, chevron. (Oura, IMDb)
+- **Sample content:** Cristiano Ronaldo 2008, 2017 and 2007, Kanye West (O-05, CLAUDE.md). No picture: no recreation exists, and D-10/D-42 rule out stand-ins; the slot is where Chime's in-game capture goes. Kanye has no era on record, so his slot shows his surname.
+- **Checked:** renders of all three at 1.5×; audit: text 14 px or more, Barlow only, fills and strokes bound to tokens, no overflow (C's name text fixed after the audit).
+- **Copy (drafts):** intro "Lookalike and era faces, each a step-by-step recipe with a build to match.", "Search faces by name", "Sample cards: no face is recorded in game yet", "Missing a face?" / "Suggest one on Submit.", "See all", era chips "2000s" / "2010s".
+- **Next:** Chime picks A, B or C; then the empty-filter state, then tablet 834 and desktop 1440 (D-58).
+
+## Share sheet on phone refined; toast and bottom nav options (Wed 25 Nov 2026)
+
+- **Chime (screen recording):** tablet and desktop share dialogs and the link preview approved. Phone sheet: the action buttons look odd next to the tablet's, and card 1 sits centred with empty space on its left. The "link copied" toast and the bottom nav are bland: three options each.
+- **References (Mobbin, iOS):** share sheets from Linktree, Lovi, Me+ and Polarsteps; "copied" feedback from Phantom, World App, Notion, Xbox, Crypto.com and Netflix; floating tab bars from Ladder, WHOOP, Comet, Opal, Moonly, Apple Fitness and Tide Guide.
+- **Phone share sheet (319:904), before → after:**
+  - Actions: three 52 px outlined icon tiles with labels under them → DS Button secondary large, the tablet's buttons: "Save images" and "Copy link" side by side (172.5 px each), "Share via…" full width under them. The tablet's three in one row needs 402 px; the phone has 353.
+  - Cards: card 1 at x 64 (centred) → x 0, aligned with the title; card 2 follows 12 px later and runs to the screen edge.
+  - Pager: centred → left-aligned.
+  - Hint: centred, "Saves both cards… More opens your phone's share menu." → left-aligned, "Saves both cards to your photos."
+  - Close button: large 52 → medium 44, title row centred (the ✕ sat below the title's middle); sheet top padding 20 → 14, so the sheet is 740 px and starts below the breadcrumb instead of cutting through it.
+  - Old version on Archive (327:1434).
+- **Options board (Design System page, 329:404), not yet picked:**
+  - Toast A cream pill; B dark bar with a lime tick tile and two lines; C no toast, Copy link turns lime "Copied" in the open sheet.
+  - Bottom nav A Submit split out as a lime circle; B lime active tab with Button/Small uppercase label on darker glass; C every tab labelled, current tab on a raised tile with a lime icon.
+  - Why the current toast reads badly: same bg/raised as the nav, 12 px above it, muted status/success tick.
+- **Checked:** renders of the sheet at 1.5–2× and the board; toast icons at 3×. Audit over the new nodes: no text under 14 px, Barlow only, every fill and stroke bound to a token, nothing overflowing (option B labels re-linked to Button/Small after the audit flagged them).
+- **Copy (drafts):** "Share via…", "Copied", "Link copied" / "Paste it in any chat." split over two lines in toast B.
+- **Next:** Chime picks one toast and one nav; then update the Toast and Bottom nav components and every screen that uses them.
+
+## Sharon's PRs reviewed; streamer builds approved (D-66) (Wed 25 Nov 2026)
+
+- **Chime:** approved PR #5 (builds from streamers' videos): "We don't have to be waiting for their reply. We publish their build and we credit them by putting the link of the video."
+- **Done:** PR #5 approved with a reply to Sharon and squash-merged (6696926). D-66 recorded; O-17 closed. Pointers to D-66 added in CLAUDE.md rules 5 and 9, `content/README.md` rule 4 and SPEC flow 5.
+- **Reviewed, not merged:** #6 (build, face and archetype formats, A-18) and #7 (level engine, draft, builds on #6). Both CI green. Both line up with D-30, D-34, D-35, D-41 to D-44, D-62 and D-63; #7's AP totals match RESEARCH §10.1. Chime approved: #6 squash-merged (26533d1) with answers to Sharon's four questions; #7 told to update from main. #3 and #4 (Pitchside) closed. All 5 checks pass on main after the merge.
+- **Not checked:** #6 and #7 weren't run locally (CI ran them). Attribute spellings and the fifth GK attribute need Chime's Edit Attributes screen.
+- **Next (Chime, on the console):** attribute spellings and GK Kicking on Edit Attributes; AcceleRATE names; whether Edit Attributes shows a price you can't afford (#7). Then review #7 once Sharon updates it.
+
 ## Share build: link preview and share sheet on every size (Wed 25 Nov 2026)
 
 - **Chime:** approved the two story cards; asked for the link preview and the share sheet (D-65).

@@ -65,7 +65,7 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
   - [ ] **Phase 0 · Components** (Design system page, section 05): Button, Chip, Tabs, Search, VersionTag, CreditLine, ValueChip, StepRow, attribute bar, score ring, BuildCard, FaceCard, archetype tile, Sheet, Toast, top bar, footer notice, embed facade, limits callout
   - [ ] **Phase 1 · Builds:** Builds (13 archetypes) · Archetype (Finisher) · Build (Meta Finisher, started) + specialization not reached · not yet checked · older season · copied
   - [ ] **Phase 2 · Faces:** Faces library + empty filter · Face not started · in progress · finished → paired build · ticks reset
-  - [ ] **Phase 3 · Home & frame:** Home · menu sheet · footer and notice · 404 · search results (Should)
+  - [ ] **Phase 3 · Home & frame:** Home · ~~menu sheet~~ (dropped, D-67) · footer and notice · 404 · search results (Should)
   - [ ] **Phase 4 · Changelog & Submit:** Changelog · Submit choose / face form / build form / inline errors / sent
   - [ ] **Phase 5 · About & Takedown:** About · Takedown · share cards for face and build (Should)
 - [ ] Chime approves the screens; `docs/design/UI-BRIEF.md` §1–3 filled; `tokens.css` mirrors Figma

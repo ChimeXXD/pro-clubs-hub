@@ -33,8 +33,8 @@ To be written from Chime's pick. Constraints any direction must meet:
 
 | Screen | Must show |
 | --- | --- |
-| Home | Current season chip ("FC 27 · Season 2"); faces rail (era badge, kind, "Inspired by" name); builds by position; latest changelog line |
-| Faces | Filter chips (All, Footballers, Musicians, eras); search; grid of FaceCards |
+| Home | Current season chip ("FC 27 · Season 2"); faces rail (picture, name, kind; D-69); builds by position; latest changelog line |
+| Faces | Filter chips (All, Footballers, Athletes, Musicians; D-68); search; FaceCards (layout: Chime's pick of the three options) |
 | Face | Title, era, version tag, credit line; limits callout; Start; tabs; StepRows with ValueChips; progress; paired BuildCard; tutorial embed facade; Chime's screenshots |
 | Builds | Position chips; archetype filter; BuildCards |
 | Build | Archetype, positions, height, weight, AcceleRATE, attribute list, PlayStyles (Signature, Plus, Regular), specialization, skill moves, weak foot, version tag, credits, history |
@@ -54,7 +54,7 @@ To be written from Chime's pick. Constraints any direction must meet:
 | Version tag, not checked | "FC 27 · Season 2 · not yet checked in game" |
 | Older season | "Made for Season 2. Values may have changed since." |
 | Credit line | "Made by Chime in game" or "Made by Sharon in game" (D-29) · "Tutorial by <creator>" · "Submitted by <name>" |
-| Face title | "Inspired by <name>, <era>" |
+| Face title | The plain name, era or look included: "2008 Ronaldo", "Neymar Jr (Mohawk)" (D-69) |
 | Limits | "The game can't do this exactly: <limit>" *new* |
 | Ticks reset | "This face was updated. Your ticks start fresh." *new* |
 | Continue | "Continue from step <n>" |
