@@ -2,6 +2,18 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Default mannequin face and the story card on name and share (Wed 25 Nov 2026)
+
+- **Chime:** a default mannequin face for when there's no picture; upload a face on name and share; "Your card" like the share story card. Recorded as D-89.
+- **Figma:**
+  - Design System: component "Face/ProBuilds default" (410:808), 240 × 240, a mannequin bust drawn in token colours (raised background, muted-grey head with soft brow, nose and mouth shading, dark kit with a lime collar).
+  - Name and share (401:3616): "Your Pro's face" box (mannequin thumbnail, "No picture yet", Add a picture, "goes on your card only, never on the site"); "Your card" is now the share story card (from 316:888) with YOUR FINISHER, Finisher · Forward, ST, level 44, 185 cm, not yet checked, Low Driven Shot+ and Chip Shot+, five PlayStyles, probuilds.club/b/your-finisher, "Made by you", the notice, and the mannequin in the picture slot.
+  - New state, picture added (412:2989): the same page with the player's picture (the Meta Finisher in-game face as the example), Change and Remove.
+  - Start (400:3219): a Height row (185 cm · 6'1", − / +).
+- **Fixed after render:** the mannequin's shapes had black outlines and too-strong features; the card had no edge on the page background; the cloned card's PlayStyles wrapped to one column (gap 15.7 → 12).
+- **Checked:** renders of the mannequin, both name-and-share states, the card alone and start; no overlaps.
+- **Draft:** the share link format probuilds.club/b/<slug> and the upload copy. Height 185 cm is a sample.
+
 ## PlayStyles step: v3 picked (Wed 25 Nov 2026)
 
 - **Chime:** v3 with v1's count boxes; v1 and v2 to Archive. Recorded as D-88.
