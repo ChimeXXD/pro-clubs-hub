@@ -24,6 +24,16 @@ This file starts with the Sinima rules that fit any product. Add a rule each tim
 - **No EA look.** No game UI chrome, no card-art frames, no rarity colours copied from Ultimate Team cards. Our own diagrams for slider tracks and preset grids.
   Why (*inferred*): EA's content policy bars implying endorsement (D-04).
 
+## Type
+
+- **One style per role, the same on every screen and every size.** Page title: Heading/H1 (48). The selected item's name under a page title (an archetype on Builds): Heading/H2 (36). Section heading: Heading/H3 (28). Card or row title: Heading/H4 (22). Body, labels and captions as their styles. Display (64) is never a page title; it is kept for art inside cards. Every text in a screen has a text style.
+  Why: Chime, 25 Nov 2026: "Why is the title of your build 42?… Why change log is 64? Please make sure everything is consistent across all screens." Desktop Changelog and About had switched to Display, the Builds title was 34 px with no style, the phone 404 headline was H3 while its other sizes were H1, and Submit's section headings were H4 while every other page used H3.
+  <!-- 2026-11-25, D-92 -->
+
+- **Wherever height shows, weight shows next to it.** One-line summaries use metric: "Level 55 · 185 cm · 80 kg"; full lists keep both units ("6'1\" · 185 cm", "176 lb · 80 kg").
+  Why: Chime, 25 Nov 2026: "every place on the app that you have height, make sure there's weights as well."
+  <!-- 2026-11-25, D-92 -->
+
 ## Content
 
 - **The value is the hero.** On a face step or a build card, the number or notch is the biggest thing; labels and tips are secondary.

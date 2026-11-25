@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Type made consistent; weight next to every height (Wed 25 Nov 2026)
+
+- **Chime:** titles at different sizes (Changelog 64 on desktop); add weight wherever height shows. Recorded as D-92 and in DESIGN.md §Type.
+- **Audit first:** page titles were H1 48 on most screens, but Display 64 on desktop Changelog and About, 34 px unstyled on Builds, unstyled 48 on the Meta Finisher pages, and H3 28 on the phone 404; Submit's section headings were H4 22 where every other page uses H3 28. No text measured 42 px.
+- **Figma:** 53 texts restyled by script across Phases 1 to 5, plus the Builds archetype name → H2 at all sizes. 25 one-line summaries now "Level 55 · 185 cm · 80 kg" (Meta 80, Tall 193 cm 88, Quick 173 cm 72; samples); their rows wrap and fill the card header so nothing clips; four Meta Finisher share-card copies gain a Weight fact; the link preview gains 80 kg. Every section re-flowed (120 px between rows, 160 px between phases), bottom navs re-pinned.
+- **Checked:** re-audit: every non-number text of 40 px or more outside card art is H1 (the six 40 px left are the canvas's phase labels); no summary line overflows its card; renders of the Meta Finisher build card and share card; no overlaps.
+
 ## About C and Takedown C; every open screen at tablet and desktop (Wed 25 Nov 2026)
 
 - **Chime:** "Let's use option C" (both pages; D-91), and design the other sizes for everything not yet done.
