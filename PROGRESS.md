@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Changelog B and Submit B picked (Wed 25 Nov 2026)
+
+- **Chime:** "B", read as B for both. Recorded as D-82.
+- **Figma, Phase 4 rows:** Changelog at phone, tablet (390:2540) and desktop (390:2700); Submit face question (phone); states row on phone: choose (391:2630), sent (391:2722), inline error (392:2725), build question (392:2825). The six placeholders are gone; options A and C are on Archive.
+- **Checked:** renders of Changelog tablet and desktop, choose and sent; no overlaps; Phase 4 refitted, Phase 5 moved.
+- **Not checked yet:** renders of the inline error and build question frames.
+- **Next:** Submit tablet 834 and desktop 1440 (the question screen and its states).
+
 ## Phase 4: three Changelog and three Submit options on phone (Wed 25 Nov 2026)
 
 - **Chime:** "design the change log and submit screen. Three different variant of each."
