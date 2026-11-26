@@ -62,9 +62,14 @@ export function sinceLabel(since: Archetype["signaturePlayStyles"][number]["sinc
   return since === "launch" ? "Since launch" : `Since Season ${since.replace("season-", "")}`;
 }
 
+/** "1v1 Close Down" → "1v1-close-down": a PlayStyle's badge file name, in public/art/playstyles and playstyles-plus. */
+export function playStyleSlug(name: string): string {
+  return name.toLowerCase().replace(/\s+/g, "-");
+}
+
 /** The PlayStyle badge file (Figma PlayStyle/…, Tier=PlayStyle; EA's art, D-39). */
 export function playStyleIcon(name: string): string {
-  return `/art/playstyles/${name.toLowerCase().replace(/\s+/g, "-")}.webp`;
+  return `/art/playstyles/${playStyleSlug(name)}.webp`;
 }
 
 /** The sources an archetype's shown facts come from, in the file's order, one per short name. */
