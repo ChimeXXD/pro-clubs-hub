@@ -34,8 +34,18 @@ describe("src/styles/tokens.css mirrors the Figma snapshot", () => {
     }
   });
 
-  it("puts phone sizes in the theme, then tablet and desktop sizes in their media blocks", () => {
-    const sizes = { ...figma.tokens, ...figma.typography } as Record<string, Record<string, number>>;
+  it("gives each text style one size at every width, Figma's Desktop value (D-92)", () => {
+    const tablet = block("@media (min-width: 744px)");
+    const desktop = block("@media (min-width: 1280px)");
+    for (const [name, v] of Object.entries(figma.typography as Record<string, Record<string, number>>)) {
+      expect(block("@theme static {")).toContain(`--${cssName(name)}: ${v.desktop}px;`);
+      expect(tablet).not.toContain(`--${cssName(name)}:`);
+      expect(desktop).not.toContain(`--${cssName(name)}:`);
+    }
+  });
+
+  it("puts phone layout sizes in the theme, then tablet and desktop sizes in their media blocks", () => {
+    const sizes = figma.tokens as Record<string, Record<string, number>>;
     const phone = block("@theme static {");
     const tablet = block("@media (min-width: 744px)");
     const desktop = block("@media (min-width: 1280px)");
@@ -62,8 +72,10 @@ describe("src/styles/tokens.css mirrors the Figma snapshot", () => {
     expect([...fonts.matchAll(/variable: "/g)]).toHaveLength(Object.keys(figma.fonts).length);
   });
 
-  it("follows the device's light or dark setting, and a switch overrides it (D-37)", () => {
-    expect(block(":root {")).toContain("color-scheme: light dark;");
+  it("is dark by default whatever the device says; only the switch makes it light (D-112, supersedes D-37)", () => {
+    expect(block(":root {")).toContain("color-scheme: dark;");
+    expect(block(":root {")).not.toContain("light dark");
+    expect(css).not.toContain("prefers-color-scheme");
     expect(block(':root[data-theme="light"]')).toContain("color-scheme: light;");
     expect(block(':root[data-theme="dark"]')).toContain("color-scheme: dark;");
   });

@@ -122,7 +122,7 @@ export interface VisualAge<P = never> {
 
 // Faces (FORMAT §Face recipe).
 
-export type SubjectKind = "footballer" | "musician";
+export type SubjectKind = "footballer" | "athlete" | "musician";
 
 export interface Screenshot {
   file: string;
@@ -160,6 +160,11 @@ export interface Face<P = never> extends Versioned {
   screenshots: Screenshot[];
   turn: Turn | null;
   embeds: Embed[];
+  /**
+   * Figma's sample face (D-107, D-108): a draft whose picture may be Figma's stand-in, under sample/faces/. `place` is
+   * where Figma's library draws it (1 first).
+   */
+  sample?: { place: number };
 }
 
 // Builds (FORMAT §Build).
@@ -167,7 +172,26 @@ export interface Face<P = never> extends Versioned {
 export type Position = "GK" | "CB" | "LB" | "RB" | "LWB" | "RWB" | "CDM" | "CM" | "CAM" | "LM" | "RM" | "LW" | "RW" | "CF" | "ST";
 export const POSITIONS: readonly Position[] = ["GK", "CB", "LB", "RB", "LWB", "RWB", "CDM", "CM", "CAM", "LM", "RM", "LW", "RW", "CF", "ST"];
 
-export type AcceleRate = "explosive" | "controlled" | "lengthy";
+/** The seven AcceleRATE types the game shows, fastest start first (FORMAT §Build). */
+export const ACCELERATE_RATES = [
+  "explosive", "mostly-explosive", "controlled-explosive", "controlled", "controlled-lengthy", "mostly-lengthy", "lengthy",
+] as const;
+export type AcceleRate = (typeof ACCELERATE_RATES)[number];
+
+/** The six key stats, in the game's order (D-62). */
+export type KeyStatCode = "PAC" | "SHO" | "PAS" | "DRI" | "DEF" | "PHY";
+
+/**
+ * Figma's sample figures (D-107): what the sample build shows that no recorded build can give yet (key stats, A-18;
+ * AP by level, O-14). Drafts only, so it shows on the preview and never on probuilds.club.
+ */
+export interface BuildSample {
+  keyStats: Record<KeyStatCode, number>;
+  /** The levels the design draws: the AP the level gives, the AP spent, and how far short of the whole build it is. */
+  levels: { level: number; ap: number; spent: number; apShort: number | null }[];
+  /** The note under the specialization, the target value the sample counts, and the level it is reached from. */
+  specialization: { note: string; target: number; reachedFrom: number } | null;
+}
 
 /** Set by Chime (D-34, D-62). */
 export type Badge = "meta" | "recommended";
@@ -194,6 +218,8 @@ export interface Build<P = never> extends Versioned {
   skillMoves: number | P;
   weakFoot: number | P;
   spend: Spend<P> | null;
+  /** Figma's sample figures, on a draft only (D-107). Absent on every recorded build. */
+  sample?: BuildSample;
   sources: Source[];
 }
 

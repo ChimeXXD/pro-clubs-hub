@@ -73,12 +73,23 @@ test("phone: nothing is wider than the screen, so the page never zooms out", asy
   expect(scrollWidth).toBe(clientWidth);
 });
 
-test("light mode: the current pill gets a thin dark ring, since lime on cream is 1.03:1 (D-37)", async ({ page }) => {
+test("dark by default, even on a device set to light (D-112)", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
+  const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  expect(bg).toBe("rgb(1, 38, 27)"); // bg/page in dark (#01261b)
+  const ring = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
+  expect(ring).not.toContain("0px 0px 0px 1px inset");
+});
+
+test("light mode, once picked: the current pill gets a thin dark ring, since lime on cream is 1.03:1 (D-37, D-112)", async ({ page }) => {
+  await page.goto("/");
+  // The switch (not built yet, D-112 (1)) sets data-theme on <html>; light whatever the device says.
+  await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
   const shadow = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
   expect(shadow).toContain("rgb(16, 17, 19) 0px 0px 0px 1px inset");
-  await page.emulateMedia({ colorScheme: "dark" });
+  expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe("rgb(247, 243, 230)"); // #f7f3e6
+  await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
   const none = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
   expect(none).not.toContain("0px 0px 0px 1px inset");
 });
@@ -109,4 +120,11 @@ test("every link in the frame is at least 44 × 44 px to touch (CLAUDE.md)", asy
     );
     expect(small).toEqual([]);
   }
+});
+
+test("the live build never shows the preview bar or drafts (they belong to the preview site)", async ({ page }) => {
+  test.skip(process.env.PROBUILDS_DRAFTS === "1", "this run is a preview build");
+  await page.goto("/");
+  await expect(page.getByTestId("preview-bar")).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
 });

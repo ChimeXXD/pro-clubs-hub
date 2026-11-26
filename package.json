@@ -9,15 +9,18 @@
     "dev": "next dev",
     "prebuild": "node scripts/validate-content.mjs",
     "build": "next build",
+    "postbuild": "node scripts/strip-samples.mjs",
     "lint": "eslint . && node scripts/check-tokens.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:e2e:preview": "PROBUILDS_DRAFTS=1 playwright test",
     "validate:content": "node scripts/validate-content.mjs",
     "budget": "node scripts/check-budget.mjs",
     "tokens": "node scripts/build-tokens.mjs"
   },
   "dependencies": {
+    "html-to-image": "1.11.13",
     "next": "16.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1"

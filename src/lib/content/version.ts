@@ -1,5 +1,5 @@
 // Version-tag wording, from one function (A-08, D-05). The strings are FORMAT §Version tag's:
-// "FC 27 · Season 2 · verified 19 Nov 2026", "FC 27 · Season 2 · not yet checked in game", and for a
+// "FC 27 · Season 2 · verified 19 Nov 2026", "FC 27 · Season 2 · Not yet checked in game", and for a
 // season older than the current one, "Made for Season 2. Values may have changed since."
 // The full line for unchecked content, not "Not yet checked in game" alone (D-45). The current season
 // is the one setting in site.ts unless a caller passes another.
@@ -12,7 +12,7 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 export interface VersionWording {
   /** The tag line every build and face shows. */
   tag: string;
-  /** False when verifiedOn is null: the tag then says "not yet checked in game" (CLAUDE.md rule 4). */
+  /** False when verifiedOn is null: the tag then says "Not yet checked in game" (CLAUDE.md rule 4). */
   checked: boolean;
   /** The older-season warning, or null when the content is for the current season. */
   olderSeason: string | null;
@@ -21,7 +21,7 @@ export interface VersionWording {
 export function versionWording(version: VersionTag, currentSeason: number = CURRENT_SEASON): VersionWording {
   const day = version.verifiedOn;
   return {
-    tag: `${GAME_NAME[version.game]} · Season ${version.season} · ${day === null ? "not yet checked in game" : `verified ${formatDay(day)}`}`,
+    tag: `${GAME_NAME[version.game]} · Season ${version.season} · ${day === null ? "Not yet checked in game" : `verified ${formatDay(day)}`}`,
     checked: day !== null,
     olderSeason: version.season < currentSeason ? `Made for Season ${version.season}. Values may have changed since.` : null,
   };

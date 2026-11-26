@@ -17,7 +17,7 @@ Every piece of content is one UTF-8 JSON file in `content/`. The site, the build
 ```
 
 - `game`: `"fc27"`. `season`: integer. `verifiedOn`: ISO date or `null`. `verifiedBy`: name or `null`. `platform`: `"ps5"`, `"xbox"`, `"pc"` or `null` (O-09).
-- Wording (one function, A-08): verified gives "FC 27 · Season 2 · verified 19 Nov 2026"; `verifiedOn: null` gives "FC 27 · Season 2 · not yet checked in game". A season older than the current one adds: "Made for Season 2. Values may have changed since."
+- Wording (one function, A-08): verified gives "FC 27 · Season 2 · verified 19 Nov 2026"; `verifiedOn: null` gives "FC 27 · Season 2 · Not yet checked in game". A season older than the current one adds: "Made for Season 2. Values may have changed since."
 
 **Credit** (D-08).
 
@@ -114,13 +114,16 @@ One file per game. Unverified fields are `null`, never guessed.
 
 - `archetype` must match an id in `content/archetypes/fc27.json`.
 - `positions` from: `GK CB LB RB LWB RWB CDM CM CAM LM RM LW RW CF ST`.
-- `accelerate`: `"explosive"`, `"controlled"`, `"lengthy"` or `null`.
+- `accelerate`: one of the game's seven AcceleRATE types, `"explosive"`, `"mostly-explosive"`, `"controlled-explosive"`, `"controlled"`, `"controlled-lengthy"`, `"mostly-lengthy"`, `"lengthy"`, or `null`.
 - `level` and attribute values are integers once recorded. Attribute `name` must be in `ATTRIBUTE_GROUPS` (`src/lib/content/attributes.ts`), once each, with a value from 0 to 99. The names still need checking against the game's own screen.
 - `badge` (A-18, D-34, D-62): `"meta"` (Meta pick), `"recommended"` or `null`. A published Meta pick needs a `verifiedOn` date (D-30). "Most copied" is counted later, so it isn't stored here.
 - `picture` (A-18, D-41, D-42): `{ "file": "builds/<slug>.webp", "alt": "…", "by": "Chime" }`, our own in-game face, or `null` for the empty slot.
 - `spend` (A-18, D-43): the order the build was made in, or `null` (the page then has no level switch). Attribute and star values, raised step by step from the archetype's starting values:
   `{ "start": [ { "name": "Finishing", "value": 70 } ], "startStars": { "skillMoves": 3, "weakFoot": 3 }, "steps": [ { "raise": "Finishing", "to": 85 }, { "raise": "Weak Foot", "to": 4 } ] }`
   Every step raises its value, and walking the steps must end on the build's own `attributes`, `skillMoves` and `weakFoot`.
+- `sample` (D-107, optional): Figma's sample figures, for the sample build drawn in the Build frames. Only a `"draft"` may have it (a published file with `sample` fails), so it shows on the preview only. It holds what no recorded build can give yet:
+  `{ "keyStats": { "PAC": 88, "SHO": 80, "PAS": 58, "DRI": 84, "DEF": 38, "PHY": 66 }, "levels": [ { "level": 55, "ap": 1419, "spent": 1410, "apShort": null }, { "level": 32, "ap": 724, "spent": 724, "apShort": 695 } ], "specialization": { "note": "Targets …", "target": 92, "reachedFrom": 50 } }`
+  `keyStats`: all six, 0 to 99 (also the attribute groups' gauges). `levels`: the levels the design draws, each once, 1 to 55, including the build's own `level`; `spent` is at most `ap`; `apShort` is how far short of the whole build that level is, or `null`. `specialization`: the note under the card, the one target value the sample counts, and the level it is reached from; or `null`.
 - Bump `version` and add a `history` line whenever a value changes.
 
 ## Face recipe (`content/faces/<slug>.json`)
@@ -133,7 +136,7 @@ One file per game. Unverified fields are `null`, never guessed.
   "status": "draft",
   "subject": { "name": "Cristiano Ronaldo", "kind": "footballer", "living": true },
   "era": { "label": "2008", "note": "PLACEHOLDER" },
-  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "title": "2008 Ronaldo",
   "target": { "look": "matchday" },
   "timeMinutes": "PLACEHOLDER",
   "preset": { "number": "PLACEHOLDER" },
@@ -165,8 +168,8 @@ One file per game. Unverified fields are `null`, never guessed.
 }
 ```
 
-- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
-- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69). The validator still requires "Inspired by" until the code change in D-69 (5).
+- `subject.kind`: `"footballer"`, `"athlete"` (another sport's star) or `"musician"` (D-10, D-68). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
+- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69).
 - Order of work: preset, then `parts`, then `sculpt`, then `visualAge`. Sculpting a region turns its part into "Custom <part>" in the game, so parts come first (inferred from the editor; confirm on PS5).
 - `preset.number`: the photo preset's place counted among photo presets only, left to right, top to bottom, under the "All" filter. Never the screen row: the grid starts with each player's own saved heads, so rows differ between players (RESEARCH §9).
 - `parts[].tab`: `"skin"`, `"head"`, `"face"`, `"hair"`, in that order. A step's `label` is the section name as the game prints it ("Facial Hair"); `control` is that label in kebab-case (`facial-hair`). Part values are `item` or `named`. List only sections changed from the preset.
@@ -177,6 +180,7 @@ One file per game. Unverified fields are `null`, never guessed.
 - `limits`: what the game can't do for this look ("No 2008 hairstyle; nearest is …").
 - `pairedBuild` must match a build id.
 - `screenshots`: `{ "file": "faces/<slug>-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }`. Only Chime's own in-game captures of their recreation (D-10).
+- `sample` (D-107, D-108, optional): `{ "place": 1 }` marks one of Figma's sample faces, the demo faces drawn in the Faces library; `place` is where the library draws it (from 1), and the library lists samples in that order, before other faces. Only a `"draft"` may have it (a published file with `sample` fails), so it shows on the preview only. A sample's screenshot may be Figma's stand-in picture, kept under `sample/faces/` (`"by"` names the creator whose video it is from); no other face may use that folder. Two samples may not share a place. The library shows the demo note instead of the Draft tag on a sample's card (D-113). A build without drafts deletes `sample/` from `out/`.
 - `turn` (A-18, D-35): `{ "folder": "faces/<slug>/turn", "frames": 36, "by": "Chime" }`, numbered frames cut from the maker's own turn clip, 12 to 72 of them; `null` until the clip exists.
 - `embeds`: `{ "provider": "youtube", "videoId": "…", "title": "…", "channel": "…", "creatorId": "…" }`. Loaded on tap (A-05). Every embed has a matching `"tutorial"` credit.
 - Step ticks are stored under `face:<id>:v<version>` (A-07).

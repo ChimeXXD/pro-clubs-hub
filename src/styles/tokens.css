@@ -2,9 +2,9 @@
    D-14). Do not edit by hand: re-export the snapshot from Figma, then run `npm run tokens`.
    The only file in src/ allowed to hold colours (check-tokens). */
 
-/* Light or dark follows the device; a switch sets data-theme on <html> to override it (D-37). */
+/* Dark by default on every device; light only when the user's switch sets data-theme="light" on <html> (D-112). */
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 :root[data-theme="light"] {
   color-scheme: light;
@@ -94,30 +94,30 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 999px;
-  --text-display: 44px;
-  --text-display--line-height: 42px;
-  --text-h1: 34px;
-  --text-h1--line-height: 32px;
-  --text-h2: 28px;
-  --text-h2--line-height: 28px;
-  --text-h3: 24px;
-  --text-h3--line-height: 26px;
-  --text-h4: 20px;
-  --text-h4--line-height: 24px;
-  --text-body-lg: 17px;
-  --text-body-lg--line-height: 24px;
-  --text-body: 16px;
-  --text-body--line-height: 24px;
+  --text-display: 64px;
+  --text-display--line-height: 60px;
+  --text-h1: 48px;
+  --text-h1--line-height: 46px;
+  --text-h2: 36px;
+  --text-h2--line-height: 36px;
+  --text-h3: 28px;
+  --text-h3--line-height: 30px;
+  --text-h4: 22px;
+  --text-h4--line-height: 26px;
+  --text-body-lg: 19px;
+  --text-body-lg--line-height: 28px;
+  --text-body: 17px;
+  --text-body--line-height: 26px;
   --text-label: 15px;
   --text-label--line-height: 20px;
   --text-caption: 14px;
   --text-caption--line-height: 20px;
-  --text-number-xl: 40px;
-  --text-number-xl--line-height: 40px;
-  --text-number-lg: 28px;
-  --text-number-lg--line-height: 28px;
-  --text-number-md: 20px;
-  --text-number-md--line-height: 20px;
+  --text-number-xl: 56px;
+  --text-number-xl--line-height: 56px;
+  --text-number-lg: 32px;
+  --text-number-lg--line-height: 32px;
+  --text-number-md: 22px;
+  --text-number-md--line-height: 22px;
 
   /* Elevation (Figma effect styles) */
   --shadow-elevation-1: 0px 1px 2px 0px #010f0a3d;
@@ -134,26 +134,6 @@
     --layout-card-padding: 20px;
     --layout-card-gap: 16px;
     --layout-content-max: 770px;
-    --text-display: 56px;
-    --text-display--line-height: 52px;
-    --text-h1: 40px;
-    --text-h1--line-height: 38px;
-    --text-h2: 32px;
-    --text-h2--line-height: 32px;
-    --text-h3: 26px;
-    --text-h3--line-height: 28px;
-    --text-h4: 21px;
-    --text-h4--line-height: 25px;
-    --text-body-lg: 18px;
-    --text-body-lg--line-height: 26px;
-    --text-body: 17px;
-    --text-body--line-height: 26px;
-    --text-number-xl: 48px;
-    --text-number-xl--line-height: 48px;
-    --text-number-lg: 30px;
-    --text-number-lg--line-height: 30px;
-    --text-number-md: 22px;
-    --text-number-md--line-height: 22px;
   }
 }
 
@@ -166,22 +146,6 @@
     --layout-card-gap: 24px;
     --layout-content-max: 1200px;
     --layout-touch-target: 40px;
-    --text-display: 64px;
-    --text-display--line-height: 60px;
-    --text-h1: 48px;
-    --text-h1--line-height: 46px;
-    --text-h2: 36px;
-    --text-h2--line-height: 36px;
-    --text-h3: 28px;
-    --text-h3--line-height: 30px;
-    --text-h4: 22px;
-    --text-h4--line-height: 26px;
-    --text-body-lg: 19px;
-    --text-body-lg--line-height: 28px;
-    --text-number-xl: 56px;
-    --text-number-xl--line-height: 56px;
-    --text-number-lg: 32px;
-    --text-number-lg--line-height: 32px;
   }
 }
 

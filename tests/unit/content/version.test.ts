@@ -24,7 +24,7 @@ describe("versionWording", () => {
 
   it("says in words when it's not yet checked in game", () => {
     expect(versionWording(tag({ verifiedOn: null, verifiedBy: null }), 2)).toEqual({
-      tag: "FC 27 · Season 2 · not yet checked in game",
+      tag: "FC 27 · Season 2 · Not yet checked in game",
       checked: false,
       olderSeason: null,
     });
@@ -36,7 +36,7 @@ describe("versionWording", () => {
 
   it("warns about an older season on unchecked content too", () => {
     const wording = versionWording(tag({ season: 1, verifiedOn: null }), 3);
-    expect(wording.tag).toBe("FC 27 · Season 1 · not yet checked in game");
+    expect(wording.tag).toBe("FC 27 · Season 1 · Not yet checked in game");
     expect(wording.olderSeason).toBe("Made for Season 1. Values may have changed since.");
   });
 

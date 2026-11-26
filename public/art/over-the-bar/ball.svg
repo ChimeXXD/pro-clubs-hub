@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="69.92" height="69.92" viewBox="0 0 69.92 69.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Ball (the 0)">
+<g clip-path="url(#clip0_0_195)">
+<circle id="Disc" cx="34.9601" cy="34.9597" r="34.96" fill="#F7F3E6"/>
+<path id="Pentagon" d="M33.8786 22.8655C34.5235 22.397 35.3967 22.397 36.0416 22.8655L46.1282 30.1938C46.7731 30.6624 47.0429 31.4929 46.7966 32.251L42.9439 44.1085C42.6975 44.8666 41.9911 45.3799 41.1939 45.3799H28.7263C27.9291 45.3799 27.2226 44.8666 26.9763 44.1085L23.1236 32.251C22.8773 31.4929 23.1471 30.6624 23.792 30.1938L33.8786 22.8655Z" fill="#101113" stroke-width="0.92" stroke="black"/>
+<path id="Seams" d="M34.96 22.08V-1.83995M47.2096 30.9799L69.9589 23.5882M42.5307 45.3802L56.5905 64.7319M27.3893 45.3802L13.3295 64.7319M22.7104 30.9799L-0.0388576 23.5882" stroke-width="2.76" stroke-linecap="round" stroke="#101113"/>
+<circle id="Rim" cx="34.9601" cy="34.9597" r="33.58" stroke-width="2.76" stroke="#101113"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_195">
+<rect width="69.92" height="69.92" rx="34.96" fill="white"/>
+</clipPath>
+</defs>
+</svg>

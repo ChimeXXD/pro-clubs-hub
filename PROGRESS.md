@@ -2,6 +2,59 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library (Thu 26 Nov 2026)
+
+- **Built** (`/faces`, preview only, D-105; Figma 333:1139 / 345:1310 / 345:1391, no results 372:1853 / 427:9875 / 427:9960): header, search (case- and accent-blind), kind chips with counts (D-68), poster grid 2 / 3 / 6 columns (D-70), the "Missing a face?" tile, the "Who should we make next?" panel and the no-results card (D-97 (5)). Shared `FilterChip` (Changelog uses it too). The 11 missing PlayStyle badges went in first (1cabe40).
+- **Fix after the verifier:** the chips' focus ring was clipped by their scrolling row (top, bottom, first chip's left, last chip's right): 4 px padding and scroll padding on the Faces and Changelog rows, with an e2e test that fails without it.
+- **Tests:** unit 246; e2e 92 on the preview build, 46 live. Pixel diff vs Figma within ~3 except the cards and chips, which differ because Figma shows 5 demo faces with stand-in photos and the repo has one draft face with no picture.
+- **Open for Chime:** the "Missing a face?" tile says "Suggest one on Submit." (Figma, D-70) but D-83 makes faces requests, not submissions; Request a face goes to `/faces/request`, which waits on Supabase (D-96); "Clear search" (screen-reader label) has no source; Athletes counts 0 until PR #9; tab order on tablet and desktop reaches the search before the chips.
+- **Not verified:** Chime's iPhone (rule 10), VoiceOver, light mode (no light Faces frames). Face cards open a 404 until face pages are built.
+
+## Builds and archetype pages, with emblems (Thu 26 Nov 2026)
+
+- **Builds page** (`/builds`, preview only, D-105): archetype rail grouped Keeper / Defender / Midfielder / Forward, swipeable Stance cards with Chime's 13 AI stances (Progressor included: Figma had all 13), signature PlayStyles, mastery attributes, "See <archetype> builds". Visual vs Figma: 1.9 at 1440, 2.4 at 834 (phone frame is in Figma's Phone mode, so it differs by D-103).
+- **Archetype pages** (`/builds/<id>`, all 13, preview only): header, the archetype's builds as cards (the mannequin face, version tag and credit line per rule 4 and 5), Submit tile. Key stats show "–" until A-18 is settled.
+- **Emblems (D-106):** Chime: "just add the archetype… Add the archetype on the page, please." The 13 emblems (Figma emblem art, one colour, drawn as masks) are in the rail, on each Stance card and in the archetype header. CLAUDE.md rule 2 notes the exception.
+- **PlayStyle and PlayStyle+ badges** (EA art, D-39) pushed at Chime's word ("push both").
+- **Tests:** unit 210; e2e 64 on the preview build, 46 on the live build. Code reviews ran on each page.
+- **Not verified:** Chime's iPhone (swipe, rail); light-mode art (Figma has none for the Stance card, badges or mannequin).
+
+## Draft preview mode (Thu 26 Nov 2026)
+
+- **Chime:** "build everything at once"; picked "All now, on a draft preview" (D-104).
+- **Built:** `loadContent(root, { includeDrafts })`; `src/lib/drafts.ts` (drafts on for any Cloudflare branch but main, or PROBUILDS_DRAFTS=1); `siteContent()` reads content once per build; `DraftTag`; `PreviewBar`; noindex on preview builds. The Changelog uses it: drafts show tagged on the preview.
+- **Tests:** unit 182 (red first; a mutation check shows the withdrawn-pair test catches removing the guard); e2e 46, including "the live build never shows the preview bar". A local draft build showed the bar, 3 tagged changelog entries and noindex.
+- **Reviews:** code review fixed 5 (dev-server cache, brittle test, helper renamed, domain from site.ts, double load). Verifier: my comment overstated "missing" links (they still fail validation) and one case was untested; both fixed.
+- **Not verified yet:** that Cloudflare's production branch is main and that the preview branch builds with CF_PAGES_BRANCH set (checked after the first push).
+
+## Changelog built (Wed 25 Nov 2026)
+
+- **Built:** `/changelog` (Figma 383:3158 / 390:2540 / 390:2700, option B, D-82) from `content/changelog`: published entries only, grouped by season with "Now", filters (All, Title updates, Archetypes, Seasons, Site), entries that open in place (the newest visible one open), EA source in a new tab, "We updated". Phone stacks everything; tablet and desktop indent the body under an H4 title; desktop puts the header, season card and filters in a 352 px column. `src/lib/changelog.ts` holds the rules.
+- **Live today:** the three entries are drafts until Chime approves their wording, so probuilds.club/changelog shows the header and season card only.
+- **Tests:** unit 173 (helpers and a server render of the list, red first); e2e 45. The entry list and chips were checked against a build with the three entries published locally, then restored (`git status content/` clean).
+- **Compared with Figma** (entries published locally): mean pixel diff 3.4 / 2.6 / 2.0 at 393 / 834 / 1440, after fixing a 4 px drift and the tablet/desktop entry layout (H4 titles, 64 px indent, 300 px change columns).
+- **Reviews:** code review fixed 5 (stable test ids incl. filter-chip-N, dates through formatDay, list keys, a needless cast). Verifier failed the chips' tap area (a sideways-scrolling row clipped it to 40 px): fixed with 2 px padding the margin cancels, and tested. Open copy and design questions are in O-22.
+- **Not verified:** on Chime's iPhone.
+
+## 404 built: the replay card (Wed 25 Nov 2026)
+
+- **Chime:** "Start building the rest, please."
+- **Built:** `src/app/not-found.tsx` and `ReplayCard` (Figma 420:4819 / 423:4713 / 423:4836, 431:1219; D-81, D-93, D-95): "Over the bar." with Faces and Builds, no search. The art is Figma's vectors at their design positions (percentages of the art box, 324.76 / 340.4 / 552 px wide); net, frame and speed lines are masks in token colours, the ball keeps its cream and ink, the 1.38 px goal line is a CSS bar (Chrome painted nothing for a mask that thin). The shot rises over the bar in 0.6 s on arrival and on Replay; reduced motion shows the last frame and hides Replay.
+- **Tests:** e2e 38 at 390 and 360 (red first: Next's default 404 showed "404"); status 404 for unknown paths.
+- **Compared with Figma:** at rest, mean pixel diff 2.3 / 2.1 / 1.0 at 393 / 834 / 1440; the goal line's pixel row matches (#426a5b at y 388).
+- **Reviews:** code review fixed 3 (the ball stalled mid-rise because CSS eases each keyframe segment: now one curve, within 1.6 px of the 0.3 s storyboard frame; tablet art 2.4 px wider than the card's inside; two timing-based test checks now poll). The verifier's one failure was that same stall.
+- **Not verified:** the motion on Chime's iPhone (rule 10).
+
+## About and Takedown built; type is one size everywhere (Wed 25 Nov 2026)
+
+- **Chime:** "Continue building. When you're done building, give me the preview link."
+- **Order:** Builds and Home wait: every content file is still a draft (nothing to list), today's archetype emblems are Pro Clubs HQ tracings that can't ship (D-39), and Home's face pictures and "face of the week" rule aren't defined. About and Takedown (D-91, option C) needed none of that.
+- **Built:** `/about` (questions that open in place; the design's two answered questions; six more wait for copy, O-22) and `/takedown` (72-hour promise, three steps, email card with Email and Copy, the copied toast). Shared: `PageContent`, `Button` (Large), `Toast` (cream pill, Elevation/3, 4 s, live region). Icons: chevrons, copy, external, check-circle (Figma exports).
+- **Type fix (D-103):** the first phone render was far off (mean diff 18–21) because the approved frames use Figma's Desktop type at every width. Type is now one size per style everywhere (D-92); renders vs Figma at 393 / 834 / 1440: 1.1–2.8.
+- **Tests:** e2e 30 at 390 and 360 (red first: no /about); unit 162 (tokens test updated to the D-92 rule).
+- **Reviews:** code review found 7, fixed 2 (clipboard failure handled; toast live region stays mounted so VoiceOver announces it); I moved the icon names to `src/lib/icons.ts`. Verifier: "Email copied." has no design source (TODO, O-22); steps list gets role="list" for Safari.
+- **Not verified:** VoiceOver on the iPhone; Chime's iPhone check (rule 10).
+
 ## Build started: the app shell from Figma (Wed 25 Nov 2026)
 
 - **Chime:** "Leave Sharon PR and let's start moving the design on Figma to code."

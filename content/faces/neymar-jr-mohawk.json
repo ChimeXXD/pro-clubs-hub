@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "neymar-jr-mohawk",
+  "slug": "neymar-jr-mohawk",
+  "status": "draft",
+  "_example": "Figma's sample face (D-107, D-108): title, kind, place and stand-in picture copied from the Faces library frames (333:1139). The picture is a frame from the credited creator's YouTube tutorial, shown on the preview only. Nothing of the recipe is recorded: every PLACEHOLDER is unknown, and no value here may be published.",
+  "sample": {
+    "place": 2
+  },
+  "subject": {
+    "name": "Neymar Jr",
+    "kind": "footballer",
+    "living": true
+  },
+  "era": {
+    "label": "PLACEHOLDER",
+    "note": "PLACEHOLDER"
+  },
+  "title": "Neymar Jr (Mohawk)",
+  "target": {
+    "look": "matchday"
+  },
+  "timeMinutes": "PLACEHOLDER",
+  "preset": {
+    "number": "PLACEHOLDER"
+  },
+  "parts": [],
+  "sculpt": null,
+  "visualAge": null,
+  "limits": [],
+  "pairedBuild": "meta-finisher",
+  "screenshots": [
+    {
+      "file": "sample/faces/neymar-jr-mohawk.webp",
+      "alt": "Stand-in from CodeName Max's YouTube tutorial: Neymar Jr (Mohawk), front view",
+      "by": "CodeName Max"
+    }
+  ],
+  "turn": null,
+  "embeds": [],
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "— (sample)",
+      "url": null,
+      "creatorId": null
+    },
+    {
+      "role": "reference",
+      "name": "CodeName Max",
+      "url": "https://www.youtube.com/watch?v=UOrV95yMy50",
+      "creatorId": null
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-26",
+      "note": "Figma's sample face, copied from the Faces library frames (D-107, D-108)."
+    }
+  ],
+  "createdAt": "2026-11-26",
+  "updatedAt": "2026-11-26"
+}

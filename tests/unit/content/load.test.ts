@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -120,6 +120,15 @@ describe("loadContent fails the build on a broken link, naming the file and fiel
     expect(failures(dir)).toEqual(['builds/test-spark-build.json id: "test-spark-build" is used by another file']);
   });
 
+  it("two sample faces in one place, which would leave Figma's order to file names (D-107 (2))", () => {
+    const dir = goodWith();
+    const draft = JSON.parse(readFileSync(join(GOOD, "faces", "test-draft-face.json"), "utf8"));
+    const sample = (id: string) => ({ ...draft, id, slug: id, sample: { place: 1 } });
+    writeFileSync(join(dir, "faces", "test-draft-face.json"), JSON.stringify(sample(draft.id)));
+    writeFileSync(join(dir, "faces", "test-sample-b.json"), JSON.stringify(sample("test-sample-b")));
+    expect(failures(dir)).toEqual(["faces/test-sample-b.json sample.place: place 1 is used by another sample face"]);
+  });
+
   it("puts every problem in the error message, one per line", () => {
     expect(() => loadContent(goodWith("unknown-archetype"))).toThrow(
       'content: 1 problem(s)\nbuilds/test-spark-build.json archetype: unknown archetype "engine"',
@@ -132,5 +141,59 @@ describe("loadContent on the real content/ folder", () => {
     const content = loadContent(join(import.meta.dirname, "..", "..", "..", "content"));
     expect(content.archetypeFile.archetypes).toHaveLength(13);
     for (const item of [...content.builds, ...content.faces, ...content.changelog]) expect(item.status).toBe("published");
+  });
+});
+
+// Preview builds (Chime, 26 Nov: "all now, on a draft preview") show drafts too, marked as drafts on the page.
+// Production never does; withdrawn content never shows anywhere (rule 8).
+describe("loadContent with drafts, for the preview site", () => {
+  it("adds drafts but never withdrawn content", () => {
+    const content = loadContent(GOOD, { includeDrafts: true });
+    const ids = [...content.builds, ...content.faces, ...content.changelog].map((i) => i.id);
+    expect(ids).toEqual(expect.arrayContaining(["test-draft-build", "test-draft-face", "2026-12-10-test-draft"]));
+    expect(ids).not.toContain("test-withdrawn-build");
+    for (const item of [...content.builds, ...content.faces, ...content.changelog]) expect(item.status).not.toBe("withdrawn");
+  });
+
+  it("still lists only published content by default", () => {
+    const content = loadContent(GOOD);
+    const ids = [...content.builds, ...content.faces].map((i) => i.id);
+    expect(ids).not.toContain("test-draft-build");
+    expect(ids).not.toContain("test-draft-face");
+  });
+
+  it("still fails a published item that links to a draft, so publishing stays all-or-nothing", () => {
+    const lines = (() => {
+      try {
+        loadContent(goodWith("draft-paired-build"), { includeDrafts: true });
+      } catch (error) {
+        if (error instanceof ContentError) return error.problems.map((p) => p.message);
+      }
+      return [];
+    })();
+    expect(lines.some((m) => m.includes("is a draft, so it has no page"))).toBe(true);
+  });
+
+  it("loads the real drafts: the sample build, its face and the changelog entries", () => {
+    const content = loadContent(join(import.meta.dirname, "..", "..", "..", "content"), { includeDrafts: true });
+    expect(content.builds.map((b) => b.id)).toContain("spark-2008-winger");
+    expect(content.faces.find((f) => f.id === "cristiano-ronaldo-2008")?.pairedBuild.id).toBe("spark-2008-winger");
+    expect(content.changelog.map((e) => e.id)).toEqual(
+      expect.arrayContaining(["2026-09-25-launch", "2026-10-22-archetype-update", "2026-11-10-title-update-1-2-0"]),
+    );
+  });
+});
+
+describe("loadContent with drafts: a draft linking to withdrawn content", () => {
+  it("leaves out a draft face whose build is withdrawn, and drops it from the draft entry that lists it", () => {
+    const dir = goodWith();
+    const file = join(dir, "faces", "test-draft-face.json");
+    const face = JSON.parse(readFileSync(file, "utf8"));
+    writeFileSync(file, JSON.stringify({ ...face, pairedBuild: "test-withdrawn-build" }));
+    const content = loadContent(dir, { includeDrafts: true });
+    expect(content.faces.map((f) => f.id)).not.toContain("test-draft-face");
+    const entry = content.changelog.find((e) => e.id === "2026-12-10-test-draft");
+    expect(entry?.affects.builds.map((b) => b.id)).not.toContain("test-withdrawn-build");
+    expect(entry?.affects.faces.map((f) => f.id)).not.toContain("test-draft-face");
   });
 });
