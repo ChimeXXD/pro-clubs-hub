@@ -30,7 +30,7 @@ const sample: LoadedBuild = {
     { name: "Composure", value: 92 },
     { name: "Reactions", value: 92 },
   ],
-  playStyles: { signature: ["Low Driven Shot", "First Touch"], plus: [], regular: ["Finesse Shot"] },
+  playStyles: { signature: ["Low Driven Shot", "First Touch"], plus: [], regular: ["Finesse Shot", "Slide Tackle"] },
   specialization: "Finisher+",
   skillMoves: 4,
   weakFoot: 4,
@@ -96,6 +96,7 @@ describe("BuildPageView", () => {
     expect(meta).toContain("/art/playstyles-plus/low-driven-shot.webp");
     expect(meta).toMatch(/<h2[^>]*>PlayStyles<\/h2>/);
     expect(meta).toContain("/art/playstyles/finesse-shot.webp");
+    expect(meta).toContain("/art/playstyles/slide-tackle.webp");
   });
 
   it("lists attributes by group with readable names and values, Mastery marked and explained", () => {

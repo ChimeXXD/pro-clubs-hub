@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -6,6 +7,7 @@ import {
   heightLine,
   masteryNote,
   pageBuilds,
+  playStyleBadge,
   specializationView,
   stars,
   weightLine,
@@ -49,6 +51,19 @@ const recorded = (over: Partial<LoadedBuild> = {}): LoadedBuild => ({
 describe("build page data", () => {
   it("gives every shown build its page under its archetype", () => {
     expect(pageBuilds(content.builds)).toEqual([{ archetype: "spark", build: "spark-2008-winger" }]);
+  });
+
+  it("has a badge file for every regular PlayStyle in the Figma PlayStyle set (D-39)", () => {
+    const names = [
+      "Chip Shot", "Power Shot", "Dead Ball", "Acrobatic", "Gamechanger", "Tiki Taka", "Block", "Slide Tackle",
+      "Long Throw", "Far Throw", "1v1 Close Down", "Rapid",
+    ];
+    for (const name of names) {
+      const badge = playStyleBadge(name);
+      expect(badge, name).not.toBeNull();
+      expect(existsSync(join(process.cwd(), "public", badge as string)), name).toBe(true);
+    }
+    expect(playStyleBadge("PLACEHOLDER")).toBeNull();
   });
 
   it("words height in feet and inches and weight in pounds beside the metric value (D-92)", () => {
@@ -172,7 +187,7 @@ describe("build page data", () => {
     expect(view.facts[4]).toEqual({ term: "Skill moves", value: "★★★★", label: "4 stars" });
     expect(view.playStyles).toEqual([
       { name: "Finesse Shot", icon: "/art/playstyles/finesse-shot.webp" },
-      { name: "Power Shot", icon: null },
+      { name: "Power Shot", icon: "/art/playstyles/power-shot.webp" },
     ]);
   });
 

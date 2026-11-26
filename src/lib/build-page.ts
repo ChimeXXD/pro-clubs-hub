@@ -19,10 +19,11 @@ const UNCHECKED_NOTE =
 // TODO(Chime): 11 regular badges aren't exported yet (Chip Shot, Power Shot, Dead Ball, Acrobatic, Gamechanger,
 // Tiki Taka, Block, Slide Tackle, Long Throw, Far Throw, 1v1 Close Down); those show their name with no badge.
 const REGULAR_BADGES = new Set([
-  "aerial-fortress", "anticipate", "bruiser", "cross-claimer", "deflector", "enforcer", "far-reach", "finesse-shot",
-  "first-touch", "footwork", "incisive-pass", "intercept", "inventive", "jockey", "long-ball-pass", "low-driven-shot",
-  "pinged-pass", "precision-header", "press-proven", "quick-step", "rapid", "relentless", "technical", "trickster",
-  "whipped-pass",
+  "1v1-close-down", "acrobatic", "aerial-fortress", "anticipate", "block", "bruiser", "chip-shot", "cross-claimer",
+  "dead-ball", "deflector", "enforcer", "far-reach", "far-throw", "finesse-shot", "first-touch", "footwork",
+  "gamechanger", "incisive-pass", "intercept", "inventive", "jockey", "long-ball-pass", "long-throw", "low-driven-shot",
+  "pinged-pass", "power-shot", "precision-header", "press-proven", "quick-step", "rapid", "relentless", "slide-tackle",
+  "technical", "tiki-taka", "trickster", "whipped-pass",
 ]);
 
 const isNumber = (v: unknown): v is number => typeof v === "number";
