@@ -32,7 +32,11 @@ export function BuildDetails({ view }: { view: BuildPageView }) {
                 f.value
               ) : (
                 <>
-                  <span aria-hidden="true">{f.value}</span>
+                  {f.stars !== undefined ? (
+                    <Stars count={f.stars} />
+                  ) : (
+                    <span aria-hidden="true">{f.value}</span>
+                  )}
                   <span className="sr-only">{f.label}</span>
                 </>
               )}
@@ -115,5 +119,19 @@ function Specialization({ spec }: { spec: SpecializationView }) {
         {spec.reachedFrom && <p className="type-caption max-w-[305px] pt-2 text-text-secondary tablet:max-w-none">{spec.reachedFrom}</p>}
       </div>
     </section>
+  );
+}
+
+/* Barlow has no ★, so the glyph fell back to a system font that differs by device and drew bigger, heavier stars
+   than Figma (4 stars span 54 px at 11 px tall there). Drawn as one shape instead, so every device matches. */
+function Stars({ count }: { count: number }) {
+  return (
+    <span aria-hidden="true" className="flex h-5 items-center gap-[3px]">
+      {Array.from({ length: count }, (_, i) => (
+        <svg key={i} viewBox="2 2 20 19.02" width={11.6} height={11} className="shrink-0 fill-current">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
+        </svg>
+      ))}
+    </span>
   );
 }

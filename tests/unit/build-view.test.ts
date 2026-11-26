@@ -76,7 +76,14 @@ describe("BuildPageView", () => {
   it("lists body and skills as a definition list, height with weight (D-92)", () => {
     expect(meta).toMatch(/<dt[^>]*>Height<\/dt><dd[^>]*>6&#x27;1&quot; · 185 cm<\/dd>/);
     expect(meta).toMatch(/<dt[^>]*>Weight<\/dt><dd[^>]*>176 lb · 80 kg<\/dd>/);
-    expect(meta).toMatch(/<dt[^>]*>Skill moves<\/dt><dd[^>]*><span aria-hidden="true">★★★★<\/span><span class="sr-only">4 stars<\/span><\/dd>/);
+    // Stars are drawn as shapes (Barlow has no ★), one per star, and read out in words.
+    const skill = meta.match(/<dt[^>]*>Skill moves<\/dt><dd[^>]*>(.*?)<\/dd>/)?.[1] ?? "";
+    expect(skill.match(/<svg/g)).toHaveLength(4);
+    expect(skill).toMatch(/<span aria-hidden="true"[^>]*>.*<\/span><span class="sr-only">4 stars<\/span>$/);
+    expect(skill).not.toContain("★");
+    const weak = meta.match(/<dt[^>]*>Weak foot<\/dt><dd[^>]*>(.*?)<\/dd>/)?.[1] ?? "";
+    expect(weak).toMatch(/<svg/);
+    expect(weak).toMatch(/<span class="sr-only">\d stars?<\/span>$/);
     expect(page).toMatch(/<dt[^>]*>Built at level<\/dt><dd[^>]*>PLACEHOLDER<\/dd>/);
   });
 

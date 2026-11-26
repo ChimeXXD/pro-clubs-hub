@@ -189,7 +189,7 @@ describe("build page data", () => {
       { term: "Weight", value: "176 lb · 80 kg" },
       { term: "AcceleRATE", value: "Controlled" },
     ]);
-    expect(view.facts[4]).toEqual({ term: "Skill moves", value: "★★★★", label: "4 stars" });
+    expect(view.facts[4]).toEqual({ term: "Skill moves", value: "★★★★", label: "4 stars", stars: 4 });
     expect(view.playStyles).toEqual([
       { name: "Finesse Shot", icon: "/art/playstyles/finesse-shot.webp" },
       { name: "Power Shot", icon: "/art/playstyles/power-shot.webp" },

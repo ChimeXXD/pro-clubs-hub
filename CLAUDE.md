@@ -70,7 +70,7 @@ Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before s
 
 ## Rules that protect correctness
 
-1. **No images of real people, ever** (D-10). No photos, drawings, AI portraits or silhouettes. Names appear as plain text. Face pages may show only Chime's own in-game screenshots of their own recreations, exported by them, never EA marketing art.
+1. **No images of real people, ever** (D-10). No photos, drawings, AI portraits or silhouettes. Names appear as plain text. Face pages may show only Chime's own in-game screenshots of their own recreations, exported by them, never EA marketing art. Exception (D-108): the draft sample faces may use Figma's stand-in in-game pictures, on the preview only.
 2. **No EA logos, fonts or card art.** Archetype emblems and PlayStyle icons are allowed (D-39), but only EA's own files or our own drawings, never another site's tracings, and they stay out of the repo until shipped. Exception (D-106): Chime chose to ship the 13 archetype emblems we have, which are Pro Clubs HQ's tracings. "EA", "FC" and "FUT" never appear in the product name, domain or logo (D-04).
 3. **The notice is on every page:** "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named." A face's title is its plain name ("2008 Ronaldo", "Neymar Jr (Mohawk)"), never "official" (D-69).
 4. **Every build and face carries a version tag** (`game`, `season`, `verifiedOn`). Unverified content says "Not yet checked in game" in words. Content from an older season shows a warning; it is never silently carried over (D-05).
@@ -90,6 +90,7 @@ Chime (`ChimeXXD`, the owner) and Sharon (`sharrygold`, a collaborator) both wor
 - Work phase by phase from `docs/PLAN.md`. Pass a phase's gate before starting the next.
 - **Tests first** for `src/lib/content/` (types, validator, loader, version wording) and `src/lib/submit/`. Fixtures are JSON in `tests/unit/fixtures/` (good and bad files).
 - Playwright e2e at 390×844 and 360×800 for the flows in `docs/SPEC.md` §Acceptance, using the test IDs in `docs/design/UI-BRIEF.md`.
+- **Build exactly what Figma draws (D-107):** every section, state, line and value. Where real content is missing, fill it with the sample data drawn in Figma, in draft files (preview only); never "–", an empty slot or a left-out section, and never your own wording. Any difference needs Chime's OK first.
 - After UI work: build, screenshot at 390, 834 and 1440, compare with the Figma frame before calling the step done. For UI units, run the motion skills and name them in PROGRESS (Sinima D-102).
 - Commit after each green step with a conventional message (`feat:`, `fix:`, `test:`, `chore:`, `docs:`, `content:`). Push after every commit (the repo is public).
 - Update the checkbox in `docs/PLAN.md` and the matching item in `docs/features.json` (with evidence) when a task is done. Log each session in `PROGRESS.md` (newest first) and rewrite `docs/HANDOFF.md` at the end of each session.

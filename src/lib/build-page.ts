@@ -70,7 +70,7 @@ export interface BuildPageView extends Omit<BuildCardView, "credit" | "playStyle
   share: ShareCardsView;
   uncheckedNote: string | null;
   specialization: SpecializationView | null;
-  facts: { term: string; value: string; label?: string }[];
+  facts: { term: string; value: string; label?: string; stars?: number }[];
   playStylesPlus: { name: string; icon: string | null; signature: boolean }[];
   playStyles: { name: string; icon: string | null }[];
   mastery: { note: string; source: { label: string; url: string } | null } | null;
@@ -180,6 +180,11 @@ const ACCELERATE: Record<AcceleRate, string> = {
   lengthy: "Lengthy",
 };
 
+/** A recorded star rating, so the page draws its stars as shapes (Barlow has no ★). */
+function starCount(count: number): { stars?: number } {
+  return isNumber(count) ? { stars: count } : {};
+}
+
 function facts(build: LoadedBuild): BuildPageView["facts"] {
   const accelerate = build.body.accelerate;
   const skill = stars(build.skillMoves);
@@ -189,8 +194,8 @@ function facts(build: LoadedBuild): BuildPageView["facts"] {
     { term: "Height", value: heightLine(build.body.heightCm) },
     { term: "Weight", value: weightLine(build.body.weightKg) },
     ...(accelerate === null ? [] : [{ term: "AcceleRATE", value: ACCELERATE[accelerate as AcceleRate] ?? String(accelerate) }]),
-    { term: "Skill moves", value: skill.text, label: skill.label },
-    { term: "Weak foot", value: weak.text, label: weak.label },
+    { term: "Skill moves", value: skill.text, label: skill.label, ...starCount(build.skillMoves) },
+    { term: "Weak foot", value: weak.text, label: weak.label, ...starCount(build.weakFoot) },
   ];
 }
 
