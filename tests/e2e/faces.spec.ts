@@ -26,6 +26,37 @@ test("faces: the grid shows each face's kind and name, linking to its page; Face
   await expect(page.getByText("Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named.")).toBeVisible();
 });
 
+// The focus ring (outline plus offset) of the first and last chip must fit inside their scrolling row, which clips.
+const ringFits = (page: Page) =>
+  Promise.all(
+    [1, 4].map((n) =>
+      chip(page, n).evaluate((el) => {
+        (el as HTMLElement).focus();
+        // What a browser does when Tab lands on a chip outside the row's view (focus() alone may not scroll it).
+        el.scrollIntoView({ block: "nearest", inline: "nearest" });
+        const style = getComputedStyle(el);
+        const ring = parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset);
+        const r = el.getBoundingClientRect();
+        const row = (el.parentElement as HTMLElement).getBoundingClientRect();
+        // All four edges: scrolled into view, the last chip can land against the row's right edge.
+        return (
+          ring > 0 &&
+          r.top - ring >= row.top &&
+          r.bottom + ring <= row.bottom &&
+          r.left - ring >= row.left &&
+          r.right + ring <= row.right
+        );
+      }),
+    ),
+  );
+
+test("faces: a chip's focus ring is not clipped by its scrolling row, on phone and tablet", async ({ page }) => {
+  await page.goto("/faces");
+  expect(await ringFits(page)).toEqual([true, true]);
+  await page.setViewportSize({ width: 834, height: 1100 });
+  expect(await ringFits(page)).toEqual([true, true]);
+});
+
 test("faces: chips show counts and filter; a kind with no faces shows the no-results state", async ({ page }) => {
   await page.goto("/faces");
   expect(await counts(page)).toEqual(["1", "1", "0", "0"]);

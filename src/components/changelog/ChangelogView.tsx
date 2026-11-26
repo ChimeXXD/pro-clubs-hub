@@ -140,10 +140,11 @@ export function ChangelogView({
             <p className="type-label mt-6 hidden text-text-secondary desktop:block">
               Show
             </p>
-            {/* A sideways-scrolling row also clips up and down, so 2 px of padding (cancelled by -2 px margin) leaves room
-                for each chip's 44 px tap area around its 40 px pill. */}
+            {/* A sideways-scrolling row also clips up and down, so 4 px of padding (cancelled by -4 px margin) leaves room
+                for each chip's 44 px tap area and its focus ring (2 px outline, 2 px offset); 4 px of scroll padding keeps
+                the ring in view when focus scrolls a chip to the row's edge. */}
             <div className="mt-5 desktop:mt-2.5">
-              <div className="-my-0.5 flex gap-2 overflow-x-auto py-0.5 desktop:flex-wrap">
+              <div className="-m-1 flex scroll-px-1 gap-2 overflow-x-auto p-1 desktop:flex-wrap">
                 {FILTERS.map((f, i) => (
                   <FilterChip
                     key={f.value}

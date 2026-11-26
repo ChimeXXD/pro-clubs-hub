@@ -44,9 +44,11 @@ export function FacesView({ cards }: { cards: FaceCardView[] }) {
       </header>
       <div className="flex flex-col gap-5 tablet:flex-row-reverse tablet:items-center tablet:gap-6">
         <FaceSearch value={query} onChange={setQuery} />
-        {/* A sideways-scrolling row also clips up and down: 2 px of padding (cancelled by -2 px margin) keeps each
-            chip's 44 px tap area. On phone it runs to the screen's edges, as Figma's chips run off the frame. */}
-        <div className="-mx-5 -my-0.5 flex gap-2 overflow-x-auto px-5 py-0.5 tablet:mx-0 tablet:min-w-0 tablet:flex-1 tablet:px-0">
+        {/* A sideways-scrolling row also clips up and down: 4 px of padding (cancelled by -4 px margin) keeps each
+            chip's 44 px tap area and its focus ring (2 px outline, 2 px offset); 4 px of scroll padding keeps the ring
+            in view when focus scrolls a chip to the row's edge. On phone it runs to the screen's edges, as Figma's
+            chips run off the frame. */}
+        <div className="-mx-5 -my-1 flex scroll-px-1 gap-2 overflow-x-auto px-5 py-1 tablet:-mx-1 tablet:min-w-0 tablet:flex-1 tablet:px-1">
           {FACE_FILTERS.map((f, i) => (
             <FilterChip
               key={f.value}

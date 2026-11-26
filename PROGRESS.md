@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Faces library (Thu 26 Nov 2026)
+
+- **Built** (`/faces`, preview only, D-105; Figma 333:1139 / 345:1310 / 345:1391, no results 372:1853 / 427:9875 / 427:9960): header, search (case- and accent-blind), kind chips with counts (D-68), poster grid 2 / 3 / 6 columns (D-70), the "Missing a face?" tile, the "Who should we make next?" panel and the no-results card (D-97 (5)). Shared `FilterChip` (Changelog uses it too). The 11 missing PlayStyle badges went in first (1cabe40).
+- **Fix after the verifier:** the chips' focus ring was clipped by their scrolling row (top, bottom, first chip's left, last chip's right): 4 px padding and scroll padding on the Faces and Changelog rows, with an e2e test that fails without it.
+- **Tests:** unit 246; e2e 92 on the preview build, 46 live. Pixel diff vs Figma within ~3 except the cards and chips, which differ because Figma shows 5 demo faces with stand-in photos and the repo has one draft face with no picture.
+- **Open for Chime:** the "Missing a face?" tile says "Suggest one on Submit." (Figma, D-70) but D-83 makes faces requests, not submissions; Request a face goes to `/faces/request`, which waits on Supabase (D-96); "Clear search" (screen-reader label) has no source; Athletes counts 0 until PR #9; tab order on tablet and desktop reaches the search before the chips.
+- **Not verified:** Chime's iPhone (rule 10), VoiceOver, light mode (no light Faces frames). Face cards open a 404 until face pages are built.
+
 ## Builds and archetype pages, with emblems (Thu 26 Nov 2026)
 
 - **Builds page** (`/builds`, preview only, D-105): archetype rail grouped Keeper / Defender / Midfielder / Forward, swipeable Stance cards with Chime's 13 AI stances (Progressor included: Figma had all 13), signature PlayStyles, mastery attributes, "See <archetype> builds". Visual vs Figma: 1.9 at 1440, 2.4 at 834 (phone frame is in Figma's Phone mode, so it differs by D-103).
