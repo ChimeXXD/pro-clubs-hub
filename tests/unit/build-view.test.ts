@@ -51,7 +51,7 @@ describe("BuildPageView", () => {
   it("titles the page with the build, marked Draft, its version tag in words and its credit (rules 4, 5)", () => {
     expect(page).toMatch(/<h1[^>]*>PLACEHOLDER<\/h1>/);
     expect(page).toContain(">Draft<");
-    expect(page).toContain("FC 27 · Season 2 · not yet checked in game");
+    expect(page).toContain("FC 27 · Season 2 · Not yet checked in game");
     expect(page).toContain("Made by Chime in game");
     expect(meta).toContain(">Meta pick<");
     expect(meta).toContain("Made by Chime in game · Played for one match before it&#x27;s called meta");

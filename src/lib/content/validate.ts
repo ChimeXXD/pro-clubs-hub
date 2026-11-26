@@ -2,8 +2,8 @@
 // One problem fails the build. Each file is checked alone, given the ids of the other files
 // (archetypes, creators, builds, faces), so links between files are checked too.
 import { at, Check, isObj, STATUSES, type Obj, type Problem } from "./check.ts";
-import { checkAttributes, checkSpend } from "./validate-build-parts.ts";
-import { PART_TABS, POSITIONS } from "./types.ts";
+import { checkAttributes, checkSample, checkSpend } from "./validate-build-parts.ts";
+import { ACCELERATE_RATES, PART_TABS, POSITIONS } from "./types.ts";
 import { validateArchetypeFile, validateChangelog, validateCreators } from "./validate-other.ts";
 
 export type { Problem } from "./check.ts";
@@ -225,7 +225,7 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
   if (c.obj("body", d.body)) {
     c.int("body.heightCm", d.body.heightCm, { min: 1, recorded: true });
     c.int("body.weightKg", d.body.weightKg, { min: 1, recorded: true });
-    c.oneOf("body.accelerate", d.body.accelerate, ["explosive", "controlled", "lengthy"], { recorded: true, nullable: true });
+    c.oneOf("body.accelerate", d.body.accelerate, ACCELERATE_RATES, { recorded: true, nullable: true });
   }
   // Set by Chime; a published Meta pick has been played, so it has a verified date (D-30, D-34, D-62).
   c.oneOf("badge", d.badge, ["meta", "recommended"], { nullable: true });
@@ -246,6 +246,7 @@ export function validateBuild(file: string, data: unknown, ctx: Context): Proble
   c.int("skillMoves", d.skillMoves, { min: 1, max: 5, recorded: true });
   c.int("weakFoot", d.weakFoot, { min: 1, max: 5, recorded: true });
   checkSpend(c, d);
+  checkSample(c, d);
   if (c.arr("sources", d.sources)) {
     d.sources.forEach((source, i) => {
       const p = at("sources", i);

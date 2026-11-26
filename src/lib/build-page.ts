@@ -1,12 +1,15 @@
 // The build page's rules (`/builds/[archetype]/[build]`, Figma 298:3630 / 306:794 / 306:1286; D-63). Values reach
 // the page as the build file writes them: a draft's "PLACEHOLDER" stays "PLACEHOLDER", and nothing here works out
-// a game number the file doesn't hold (CLAUDE.md). The level switch, AP and "All of it at level N" need each
-// archetype's attribute prices (O-14) and the level engine (Sharon's PR #7), so they aren't here (D-43).
+// a game number the file doesn't hold (CLAUDE.md). The level switch, AP, key stats and "All of it at level N" show
+// only Figma's sample figures (D-107): a recorded build needs each archetype's attribute prices (O-14), the level
+// engine (Sharon's PR #7) and a rule for the key stats (A-18) first.
 import { buildCardView, type BuildCardView, playStylePlusIcon } from "./archetype-page.ts";
+import { allOfItView, type LevelsView, levelsView, SAMPLE_FOOTNOTE, SAMPLE_LABEL } from "./build-level.ts";
 import { GROUPS, playStyleSlug } from "./builds.ts";
 import { ATTRIBUTE_GROUPS } from "./content/attributes.ts";
 import type { LoadedBuild } from "./content/load.ts";
-import type { Archetype, ArchetypeFile } from "./content/types.ts";
+import type { AcceleRate, Archetype, ArchetypeFile } from "./content/types.ts";
+import { shareCardsView, type ShareCardsView } from "./share-cards.ts";
 
 // Copy from the Figma frames, word for word.
 export const RAW_VALUES_NOTE = "Raw values, as with Attribute totals off: masteries, height and weight and Amps aren't added.";
@@ -31,7 +34,7 @@ const isNumber = (v: unknown): v is number => typeof v === "number";
 export interface AttributeGroupView {
   code: string;
   name: string;
-  /** The group's rating (the gauge). Null: how the six key stats are worked out is still open (A-18). */
+  /** The group's rating (the gauge): the sample's key stat, else null (how they are worked out is open, A-18). */
   value: number | null;
   attributes: { name: string; value: number | string; mastery: boolean; percent: number }[];
 }
@@ -45,15 +48,26 @@ export interface SpecializationView {
   targets: { attribute: string; value: number | string | null; target: number | null }[];
   /** The build's own level when its raw values meet every target, else null. */
   reachedAt: number | null;
+  /** The sample's note on how it counts the targets (D-107), or null. */
+  note: string | null;
+  /** "Reached from level 50 with the sample prices. Counts raw values only.", or null. */
+  reachedFrom: string | null;
 }
 
 export interface BuildPageView extends Omit<BuildCardView, "credit" | "playStylesPlus"> {
   archetype: { id: string; name: string; groupLabel: string };
   checked: boolean;
-  /** "Made by Chime in game · Played for one match before it's called meta". */
+  /** "Sample build · values and prices not checked in game" on Figma's sample (D-107), in place of the Draft tag. */
+  sampleLabel: string | null;
+  /** "Made by Chime in game · Played for one match before it's called meta"; null when a reference line stands in. */
   credit: string | null;
-  /** A streamer's video the build was read from (D-66). */
+  /** A streamer's video the build was read from (D-66): "Read from <name>'s video · Watch the video". */
   reference: { name: string; url: string | null } | null;
+  levels: LevelsView | null;
+  allOfIt: { heading: string; text: string } | null;
+  /** The sample's closing note on the draft art (Figma 298:4135). */
+  footnote: string | null;
+  share: ShareCardsView;
   uncheckedNote: string | null;
   specialization: SpecializationView | null;
   facts: { term: string; value: string; label?: string }[];
@@ -93,7 +107,11 @@ export function playStyleBadge(name: string): string | null {
 }
 
 /** The build's attributes in the game's six groups (D-63), plus goalkeeping; groups it has none in are left out. */
-export function attributeGroups(attributes: LoadedBuild["attributes"], mastery: readonly string[]): AttributeGroupView[] {
+export function attributeGroups(
+  attributes: LoadedBuild["attributes"],
+  mastery: readonly string[],
+  keyStats?: Partial<Record<string, number>>,
+): AttributeGroupView[] {
   const byName = new Map(attributes.map((a) => [a.name, a.value]));
   return ATTRIBUTE_GROUPS.flatMap((g) => {
     const rows = (g.attributes as readonly string[]).flatMap((name) => {
@@ -101,8 +119,8 @@ export function attributeGroups(attributes: LoadedBuild["attributes"], mastery: 
       if (value === undefined) return [];
       return [{ name, value, mastery: mastery.includes(name), percent: isNumber(value) ? value : 0 }];
     });
-    // TODO(Chime): the group gauges show the six key stats, and how those are worked out is still open (A-18).
-    return rows.length > 0 ? [{ code: g.code, name: g.name, value: null, attributes: rows }] : [];
+    // The gauges show the six key stats: the sample's (D-107); how a recorded build's are worked out is open (A-18).
+    return rows.length > 0 ? [{ code: g.code, name: g.name, value: keyStats?.[g.code] ?? null, attributes: rows }] : [];
   });
 }
 
@@ -127,9 +145,19 @@ export function masteryNote(archetype: Archetype, sources: ArchetypeFile["source
 export function specializationView(build: LoadedBuild): SpecializationView | null {
   if (build.specialization === null) return null;
   const known = build.archetype.specializations?.find((s) => s.name === build.specialization);
-  if (!known) return { name: String(build.specialization), plus: null, icon: null, targets: [], reachedAt: null };
+  const sample = build.sample?.specialization ?? null;
+  const notes = {
+    note: sample?.note ?? null,
+    reachedFrom: sample ? `Reached from level ${sample.reachedFrom} with the sample prices. Counts raw values only.` : null,
+  };
+  if (!known) return { name: String(build.specialization), plus: null, icon: null, targets: [], reachedAt: null, ...notes };
   const byName = new Map(build.attributes.map((a) => [a.name, a.value]));
-  const targets = (known.targets ?? []).map((t) => ({ attribute: t.attribute, value: byName.get(t.attribute) ?? null, target: t.value }));
+  // The sample counts every target at one value (its note says why, D-107); a recorded build uses the archetype's.
+  const targets = (known.targets ?? []).map((t) => ({
+    attribute: t.attribute,
+    value: byName.get(t.attribute) ?? null,
+    target: sample ? sample.target : t.value,
+  }));
   const reached =
     targets.length > 0 && targets.every((t) => isNumber(t.value) && isNumber(t.target) && t.value >= t.target) && isNumber(build.level);
   return {
@@ -138,10 +166,19 @@ export function specializationView(build: LoadedBuild): SpecializationView | nul
     icon: playStylePlusIcon(known.playStyle),
     targets,
     reachedAt: reached ? build.level : null,
+    ...notes,
   };
 }
 
-const ACCELERATE = { explosive: "Explosive", controlled: "Controlled", lengthy: "Lengthy" } as const;
+const ACCELERATE: Record<AcceleRate, string> = {
+  explosive: "Explosive",
+  "mostly-explosive": "Mostly Explosive",
+  "controlled-explosive": "Controlled Explosive",
+  controlled: "Controlled",
+  "controlled-lengthy": "Controlled Lengthy",
+  "mostly-lengthy": "Mostly Lengthy",
+  lengthy: "Lengthy",
+};
 
 function facts(build: LoadedBuild): BuildPageView["facts"] {
   const accelerate = build.body.accelerate;
@@ -151,7 +188,7 @@ function facts(build: LoadedBuild): BuildPageView["facts"] {
     { term: "Built at level", value: String(build.level) },
     { term: "Height", value: heightLine(build.body.heightCm) },
     { term: "Weight", value: weightLine(build.body.weightKg) },
-    ...(accelerate === null ? [] : [{ term: "AcceleRATE", value: ACCELERATE[accelerate] ?? String(accelerate) }]),
+    ...(accelerate === null ? [] : [{ term: "AcceleRATE", value: ACCELERATE[accelerate as AcceleRate] ?? String(accelerate) }]),
     { term: "Skill moves", value: skill.text, label: skill.label },
     { term: "Weak foot", value: weak.text, label: weak.label },
   ];
@@ -161,24 +198,46 @@ function facts(build: LoadedBuild): BuildPageView["facts"] {
 export function buildPageView(build: LoadedBuild, sources: ArchetypeFile["sources"], currentSeason?: number): BuildPageView {
   const card = buildCardView(build, currentSeason);
   const reference = build.credits.find((c) => c.role === "reference");
-  const credit = [card.credit, build.badge === "meta" ? PLAYED_NOTE : null].filter(Boolean).join(" · ") || null;
+  const sample = build.sample ?? null;
+  const maker = card.credit;
+  // A build read from a video shows that line in place of the maker's (Figma 371:2208).
+  const credit = reference ? null : [maker, build.badge === "meta" ? PLAYED_NOTE : null].filter(Boolean).join(" · ") || null;
   const signature = new Set(build.playStyles.signature);
+  const archetype = {
+    id: build.archetype.id,
+    name: build.archetype.name,
+    groupLabel: GROUPS.find((g) => g.group === build.archetype.positionGroup)?.label ?? build.archetype.positionGroup,
+  };
+  const playStyles = build.playStyles.regular.map((name) => ({ name, icon: playStyleBadge(name) }));
+  const groups = attributeGroups(build.attributes, build.archetype.masteryAttributes?.attributes ?? [], sample?.keyStats);
   return {
     ...card,
-    archetype: {
-      id: build.archetype.id,
-      name: build.archetype.name,
-      groupLabel: GROUPS.find((g) => g.group === build.archetype.positionGroup)?.label ?? build.archetype.positionGroup,
-    },
+    archetype,
     checked: build.versionTag.verifiedOn !== null,
+    sampleLabel: sample ? SAMPLE_LABEL : null,
     credit,
     reference: reference ? { name: reference.name, url: reference.url } : null,
     uncheckedNote: reference && build.versionTag.verifiedOn === null ? UNCHECKED_NOTE : null,
+    levels: levelsView(build),
+    allOfIt: allOfItView(build),
     specialization: specializationView(build),
     facts: facts(build),
     playStylesPlus: card.playStylesPlus.map((p) => ({ ...p, signature: signature.has(p.name) })),
-    playStyles: build.playStyles.regular.map((name) => ({ name, icon: playStyleBadge(name) })),
+    playStyles,
     mastery: masteryNote(build.archetype, sources),
-    attributeGroups: attributeGroups(build.attributes, build.archetype.masteryAttributes?.attributes ?? []),
+    attributeGroups: groups,
+    footnote: sample ? SAMPLE_FOOTNOTE : null,
+    share: shareCardsView(build, {
+      title: card.title,
+      badge: card.badge,
+      href: card.href,
+      archetype,
+      positions: card.positions,
+      versionTag: card.versionTag,
+      maker,
+      playStylesPlus: card.playStylesPlus,
+      regularBadges: playStyles,
+      attributeGroups: groups,
+    }),
   };
 }

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 // The archetype page (Figma 288:1031 / 290:796 / 290:1084, D-62): one static page per archetype. Preview only
-// (D-105): the one build is a draft. Emblems ship since D-106. Spark has that draft; Finisher has none.
+// (D-105): the builds are drafts. Emblems ship since D-106. Spark has one draft; Finisher has Figma's sample (D-107).
 test.skip(process.env.PROBUILDS_DRAFTS !== "1", "preview page");
 
 test("archetype: See Finisher builds opens the Finisher page, and the breadcrumb goes back to it", async ({ page }) => {
@@ -9,7 +9,8 @@ test("archetype: See Finisher builds opens the Finisher page, and the breadcrumb
   await page.getByRole("link", { name: "See Finisher builds" }).click();
   await expect(page).toHaveURL(/\/builds\/finisher$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Finisher");
-  await expect(page.getByText("Forward · 0 builds")).toBeVisible();
+  await expect(page.getByText("Forward · 1 build", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("build-card-meta-finisher")).toBeVisible();
   await expect(page.getByRole("img", { name: "Finisher" })).toBeVisible();
   await expect(page.getByTestId("bottom-nav").getByRole("link", { name: "Builds" })).toHaveAttribute("aria-current", "page");
   const crumb = page.getByRole("navigation", { name: "Breadcrumb" });
@@ -27,7 +28,7 @@ test("archetype: the draft build's card shows its values as written, its version
   await expect(card.getByRole("heading", { level: 2 })).toHaveText("PLACEHOLDER");
   await expect(card.getByText("Draft", { exact: true })).toBeVisible();
   await expect(card.getByText("Level PLACEHOLDER · PLACEHOLDER cm · PLACEHOLDER kg")).toBeVisible();
-  await expect(card.getByText("FC 27 · Season 2 · not yet checked in game")).toBeVisible();
+  await expect(card.getByText("FC 27 · Season 2 · Not yet checked in game")).toBeVisible();
   await expect(card.getByText("Made by Chime in game")).toBeVisible();
   for (const code of ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"]) await expect(card.getByText(code, { exact: true })).toBeVisible();
   await expect(card.getByText("Trickster")).toBeVisible();

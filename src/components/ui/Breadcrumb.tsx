@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 
-// Figma "Navigation - Breadcrumb" (build page, 298:3641): caption links in text/secondary, "/" in text/muted,
+// Figma "Navigation - Breadcrumb" (build page, 298:3641): caption links and "/" in text/secondary,
 // the current page last in text/primary, 8 px apart. Each link has a 44 px tap area (D-102 (4)).
 export function Breadcrumb({ links, current }: { links: { href: string; label: string }[]; current: string }) {
   return (
@@ -14,7 +14,7 @@ export function Breadcrumb({ links, current }: { links: { href: string; label: s
                 {l.label}
               </Link>
             </li>
-            <li aria-hidden="true" className="text-text-muted">
+            <li aria-hidden="true" className="text-text-secondary">
               /
             </li>
           </Fragment>

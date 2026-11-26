@@ -50,7 +50,10 @@ const recorded = (over: Partial<LoadedBuild> = {}): LoadedBuild => ({
 
 describe("build page data", () => {
   it("gives every shown build its page under its archetype", () => {
-    expect(pageBuilds(content.builds)).toEqual([{ archetype: "spark", build: "spark-2008-winger" }]);
+    expect(pageBuilds(content.builds)).toEqual([
+      { archetype: "finisher", build: "meta-finisher" },
+      { archetype: "spark", build: "spark-2008-winger" },
+    ]);
   });
 
   it("has a badge file for every regular PlayStyle in the Figma PlayStyle set (D-39)", () => {
@@ -127,6 +130,8 @@ describe("build page data", () => {
         { attribute: "Reactions", value: 92, target: 90 },
       ],
       reachedAt: 55,
+      note: null,
+      reachedFrom: null,
     });
     // A target the build doesn't reach: no "Reached" line.
     const short = recorded({ attributes: [{ name: "Ball Control", value: 80 }, { name: "Composure", value: 92 }, { name: "Reactions", value: 92 }] });
@@ -134,7 +139,7 @@ describe("build page data", () => {
     // An attribute the build doesn't list has no value.
     expect(specializationView(recorded({ attributes: [] }))?.targets[0]).toEqual({ attribute: "Ball Control", value: null, target: 90 });
     // The draft names a placeholder: shown as written, with nothing else.
-    expect(specializationView(draft)).toEqual({ name: "PLACEHOLDER", plus: null, icon: null, targets: [], reachedAt: null });
+    expect(specializationView(draft)).toEqual({ name: "PLACEHOLDER", plus: null, icon: null, targets: [], reachedAt: null, note: null, reachedFrom: null });
     expect(specializationView(recorded({ specialization: null }))).toBeNull();
   });
 
@@ -146,7 +151,7 @@ describe("build page data", () => {
       draft: true,
       badge: null,
       archetype: { id: "spark", name: "Spark", groupLabel: "Forward" },
-      versionTag: "FC 27 · Season 2 · not yet checked in game",
+      versionTag: "FC 27 · Season 2 · Not yet checked in game",
       checked: false,
       olderSeason: null,
       credit: "Made by Chime in game",

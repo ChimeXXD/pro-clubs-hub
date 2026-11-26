@@ -67,7 +67,7 @@ No motion values are in Figma. DESIGN.md sets page and tab changes at `--dur-pag
 | Where | Copy |
 | --- | --- |
 | Version tag, verified | "FC 27 · Season 2 · verified 19 Nov 2026" |
-| Version tag, not checked | "FC 27 · Season 2 · not yet checked in game" |
+| Version tag, not checked | "FC 27 · Season 2 · Not yet checked in game" |
 | Older season | "Made for Season 2. Values may have changed since." |
 | Credit line | "Made by Chime in game" or "Made by Sharon in game" (D-29) · "Tutorial by <creator>" · "Submitted by <name>" |
 | Face title | The plain name, era or look included: "2008 Ronaldo", "Neymar Jr (Mohawk)" (D-69) |

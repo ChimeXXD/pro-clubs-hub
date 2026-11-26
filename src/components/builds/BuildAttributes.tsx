@@ -9,7 +9,7 @@ export const NUMBER_SM = "font-display text-[18px] leading-[18px] font-extrabold
 
 export function BuildAttributes({ groups, mastery }: { groups: AttributeGroupView[]; mastery: BuildPageView["mastery"] }) {
   return (
-    <section aria-labelledby="attributes" className="flex flex-col pt-8 pb-4 tablet:pt-4">
+    <section aria-labelledby="attributes" className="flex flex-col pt-12 pb-4 tablet:pt-4">
       <h2 id="attributes" className="type-h3 text-text-primary">
         Attributes
       </h2>
@@ -19,7 +19,7 @@ export function BuildAttributes({ groups, mastery }: { groups: AttributeGroupVie
           {mastery.source && (
             <p className="type-caption text-text-muted">
               {"Sources: "}
-              <a href={mastery.source.url} target="_blank" rel="noopener noreferrer" className="underline">
+              <a href={mastery.source.url} target="_blank" rel="noopener noreferrer">
                 {mastery.source.label}
               </a>
               {" (level 10); levels 30 and 55 seen in game footage, 22 Oct."}
@@ -38,7 +38,7 @@ export function BuildAttributes({ groups, mastery }: { groups: AttributeGroupVie
             </div>
             <ul className="flex flex-col pt-2">
               {g.attributes.map((a) => (
-                <li key={a.name} className="relative flex items-start justify-between gap-2 pt-1.75 pb-2">
+                <li key={a.name} className="relative flex min-h-[35.297px] items-start justify-between gap-2 pt-1.75">
                   <div className="flex min-w-0 flex-wrap items-center gap-x-0.75">
                     <span className="type-caption text-text-primary">{a.name}</span>
                     {a.mastery && (

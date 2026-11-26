@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "id": "meta-finisher",
+  "slug": "meta-finisher",
+  "status": "draft",
+  "_example": "Figma's sample build (D-107), copied value for value from the Build frames (Figma 298:3630, 306:794, 306:1286, the level-32 state 371:1697 and the share cards 316:888, 316:973). Nothing here was checked in game; it shows on the preview only. summary is not drawn anywhere, so it stays PLACEHOLDER.",
+  "title": "Meta Finisher",
+  "archetype": "finisher",
+  "positions": [
+    "ST",
+    "CF"
+  ],
+  "summary": "PLACEHOLDER",
+  "badge": "meta",
+  "level": 55,
+  "picture": null,
+  "body": {
+    "heightCm": 185,
+    "weightKg": 80,
+    "accelerate": "controlled-explosive"
+  },
+  "attributes": [
+    {
+      "name": "Acceleration",
+      "value": 87
+    },
+    {
+      "name": "Sprint Speed",
+      "value": 89
+    },
+    {
+      "name": "Att. Position",
+      "value": 90
+    },
+    {
+      "name": "Finishing",
+      "value": 94
+    },
+    {
+      "name": "Shot Power",
+      "value": 86
+    },
+    {
+      "name": "Long Shots",
+      "value": 70
+    },
+    {
+      "name": "Volleys",
+      "value": 70
+    },
+    {
+      "name": "Penalties",
+      "value": 70
+    },
+    {
+      "name": "Vision",
+      "value": 60
+    },
+    {
+      "name": "Crossing",
+      "value": 55
+    },
+    {
+      "name": "FK Accuracy",
+      "value": 55
+    },
+    {
+      "name": "Short Passing",
+      "value": 65
+    },
+    {
+      "name": "Long Passing",
+      "value": 55
+    },
+    {
+      "name": "Curve",
+      "value": 55
+    },
+    {
+      "name": "Agility",
+      "value": 80
+    },
+    {
+      "name": "Balance",
+      "value": 65
+    },
+    {
+      "name": "Reactions",
+      "value": 92
+    },
+    {
+      "name": "Ball Control",
+      "value": 92
+    },
+    {
+      "name": "Dribbling",
+      "value": 82
+    },
+    {
+      "name": "Composure",
+      "value": 92
+    },
+    {
+      "name": "Interceptions",
+      "value": 30
+    },
+    {
+      "name": "Heading Accuracy",
+      "value": 70
+    },
+    {
+      "name": "Def. Awareness",
+      "value": 30
+    },
+    {
+      "name": "Standing Tackle",
+      "value": 30
+    },
+    {
+      "name": "Sliding Tackle",
+      "value": 30
+    },
+    {
+      "name": "Jumping",
+      "value": 60
+    },
+    {
+      "name": "Stamina",
+      "value": 70
+    },
+    {
+      "name": "Strength",
+      "value": 75
+    },
+    {
+      "name": "Aggression",
+      "value": 60
+    }
+  ],
+  "playStyles": {
+    "signature": [
+      "Low Driven Shot",
+      "First Touch"
+    ],
+    "plus": [],
+    "regular": [
+      "Finesse Shot",
+      "Power Shot",
+      "Rapid",
+      "Quick Step",
+      "Precision Header",
+      "Acrobatic"
+    ]
+  },
+  "specialization": "Finisher+",
+  "skillMoves": 4,
+  "weakFoot": 4,
+  "spend": null,
+  "sample": {
+    "keyStats": {
+      "PAC": 88,
+      "SHO": 80,
+      "PAS": 58,
+      "DRI": 84,
+      "DEF": 38,
+      "PHY": 66
+    },
+    "levels": [
+      {
+        "level": 55,
+        "ap": 1419,
+        "spent": 1410,
+        "apShort": null
+      },
+      {
+        "level": 32,
+        "ap": 724,
+        "spent": 724,
+        "apShort": 695
+      }
+    ],
+    "specialization": {
+      "note": "Targets Ball Control, Composure, Reactions: one at 92, two at 90. Which one is 92 isn't recorded yet, so this sample counts all three at 92.",
+      "target": 92,
+      "reachedFrom": 50
+    }
+  },
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "— (sample)",
+      "url": null,
+      "creatorId": null
+    }
+  ],
+  "sources": [],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-26",
+      "note": "Figma's sample build, copied from the Build frames (D-107)."
+    }
+  ],
+  "createdAt": "2026-11-26",
+  "updatedAt": "2026-11-26"
+}

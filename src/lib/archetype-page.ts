@@ -2,13 +2,13 @@
 // "stat strip" cards. Values reach the card as the build file writes them: a draft's "PLACEHOLDER" stays
 // "PLACEHOLDER" (CLAUDE.md: never invent values).
 import { playStyleSlug } from "./builds.ts";
-import { ATTRIBUTE_GROUPS } from "./content/attributes.ts";
+import { KEY_STATS } from "./content/attributes.ts";
 import type { LoadedBuild, ResolvedCredit } from "./content/load.ts";
-import type { Badge, Position } from "./content/types.ts";
+import type { Badge, KeyStatCode, Position } from "./content/types.ts";
 import { versionWording } from "./content/version.ts";
 
 /** The six key stats the card's strip shows (D-62), in the game's order. */
-export const KEY_STATS = ATTRIBUTE_GROUPS.slice(0, 6).map((g) => g.code);
+export { KEY_STATS };
 
 /** The PlayStyle+ badges in public/art/playstyles-plus (Figma PlayStyle/…, Tier=PlayStyle+; EA's art, D-39). */
 const PLUS_BADGES = new Set([
@@ -62,11 +62,15 @@ export function bodyLine(build: LoadedBuild): string {
   return `Level ${build.level} · ${build.body.heightCm} cm · ${build.body.weightKg} kg`;
 }
 
-/** "Made by Chime in game · tutorial by <creator>" (DESIGN.md §Content), or null with no maker. */
-export function creditLine(credits: ResolvedCredit[]): string | null {
+/**
+ * "Made by Chime in game · tutorial by <creator>" (DESIGN.md §Content), or null with no maker. Figma's sample wasn't
+ * made in game, so its line is "Made by — (sample)" (298:3665, D-107).
+ */
+export function creditLine(credits: ResolvedCredit[], sample = false): string | null {
   const names = (role: string) => credits.filter((c) => c.role === role).map((c) => c.name).join(" and ");
   const made = names("made-by");
   if (!made) return null;
+  if (sample) return `Made by ${made}`;
   const tutorial = names("tutorial");
   // TODO(Chime): no wording yet for "submitted-by" and "reference" credits on a card; they are left out. A build read
   // from a streamer's video (D-66) credits them as "reference" and needs that wording before one is published.
@@ -87,13 +91,14 @@ export function buildCardView(build: LoadedBuild, currentSeason?: number): Build
     picture: build.picture ? { src: `/${build.picture.file}`, alt: build.picture.alt } : null,
     positions: build.positions,
     body: bodyLine(build),
-    // TODO(Chime): how the six key stats are worked out (A-18; Sharon's PR #8 records them per build).
-    keyStats: KEY_STATS.map((code) => ({ code, value: null })),
+    // Figma's sample has its own (D-107). TODO(Chime): how a recorded build's six key stats are worked out (A-18;
+    // Sharon's PR #8 records them per build).
+    keyStats: KEY_STATS.map((code) => ({ code, value: build.sample?.keyStats[code as KeyStatCode]?.toString() ?? null })),
     // Signature PlayStyles are PlayStyle+ in game; a specialization's PlayStyle+ may replace one (D-87).
     playStylesPlus: plus.map((name) => ({ name, icon: playStylePlusIcon(name) })),
     versionTag: version.tag,
     olderSeason: version.olderSeason,
-    credit: creditLine(build.credits),
+    credit: creditLine(build.credits, Boolean(build.sample)),
   };
 }
 

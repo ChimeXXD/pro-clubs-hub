@@ -21,20 +21,20 @@ test("build: the archetype page's card opens the build page, and the breadcrumb 
 test("build: the draft shows its version tag in words, its credit and every section, values as written", async ({ page }) => {
   await page.goto(URL);
   await expect(page.getByText("Draft", { exact: true })).toBeVisible();
-  await expect(page.getByTestId("version-tag")).toHaveText("FC 27 · Season 2 · not yet checked in game");
-  await expect(page.getByText("Made by Chime in game")).toBeVisible();
+  await expect(page.getByTestId("version-tag")).toHaveText("FC 27 · Season 2 · Not yet checked in game");
+  await expect(page.getByText("Made by Chime in game", { exact: true })).toBeVisible();
   await expect(page.getByText("Level PLACEHOLDER · PLACEHOLDER cm · PLACEHOLDER kg")).toBeVisible();
   await expect(page.getByText("No picture yet, so it shows the ProBuilds face.")).toBeVisible();
   for (const code of ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"]) await expect(page.getByText(code, { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Specialization" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "PlayStyles+" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "PlayStyles", exact: true })).toBeVisible();
-  await expect(page.getByText("Trickster")).toBeVisible();
+  await expect(page.getByText("Trickster").filter({ visible: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Attributes" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Pace" })).toBeVisible();
   await expect(page.getByRole("listitem").filter({ hasText: "Acceleration" })).toContainText("PLACEHOLDER");
-  // The face and the PlayStyle badges load.
-  for (const img of await page.locator("main img").all()) expect(await img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
+  // The face and the PlayStyle badges load (the share cards' images load lazily once the sheet opens).
+  for (const img of await page.locator("main img").filter({ visible: true }).all()) expect(await img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
 });
 
 test("build: Share build opens the sheet; Copy link puts the page's address on the clipboard and says so", async ({ page, context }) => {

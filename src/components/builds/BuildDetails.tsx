@@ -1,8 +1,8 @@
 import type { BuildPageView, SpecializationView } from "@/lib/build-page";
 import { NUMBER_SM } from "./BuildAttributes";
 
-// The build page's details (Figma 298:3739 to 298:3849, D-63): the specialization card, body and skills, PlayStyles+
-// and PlayStyles. Returned as siblings so the details column's 24 px gap (tablet, desktop) falls between them. Two
+// The build page's details (Figma 298:3733 to 298:3849, D-63): "All of it at level N" (the sample's, D-107), the
+// specialization card, body and skills, PlayStyles+ and PlayStyles. Returned as siblings so the details column's 24 px gap (tablet, desktop) falls between them. Two
 // columns on phone and tablet (159 px each, as drawn), three on desktop.
 // TODO(Chime): Figma's specialization values are 18 px Barlow Condensed with no text style; built as drawn, in
 // status/warning, the nearest token to the drawn gold, which is not a token.
@@ -11,12 +11,23 @@ const COLUMNS = "grid grid-cols-[repeat(2,minmax(0,159px))] gap-x-3 desktop:grid
 export function BuildDetails({ view }: { view: BuildPageView }) {
   return (
     <>
+      {view.allOfIt && (
+        <section aria-labelledby="all-of-it" data-testid="all-of-it" className="pt-4">
+          <div className="flex flex-col rounded-sm bg-bg-surface p-3">
+            <h2 id="all-of-it" className="type-label text-text-secondary">
+              {view.allOfIt.heading}
+            </h2>
+            <p className="type-caption min-h-[29px] pt-2 text-text-primary">{view.allOfIt.text}</p>
+          </div>
+        </section>
+      )}
       {view.specialization && <Specialization spec={view.specialization} />}
-      <dl className={`${COLUMNS} gap-y-3 pt-4`}>
+      {/* Figma's rows are 41.14 px on phone and tablet (a 2 px-padded description overflows them) and 44 px on desktop. */}
+      <dl className={`${COLUMNS} auto-rows-[41.14px] gap-y-3 pt-4 desktop:auto-rows-[44px]`}>
         {view.facts.map((f) => (
           <div key={f.term} className="flex flex-col">
             <dt className="type-label text-text-secondary">{f.term}</dt>
-            <dd className="type-label pt-px text-text-primary">
+            <dd className="type-label pt-0.5 text-text-primary">
               {f.label === undefined || f.label === f.value ? (
                 f.value
               ) : (
@@ -74,7 +85,7 @@ function Specialization({ spec }: { spec: SpecializationView }) {
         <h2 id="specialization" className="type-label text-text-secondary">
           Specialization
         </h2>
-        <div className="flex items-center gap-2 pt-2">
+        <div className="flex h-[49px] items-center gap-2 pt-2">
           {spec.icon && (
             // eslint-disable-next-line @next/next/no-img-element -- static export, files already sized
             <img src={spec.icon} alt="" width={36} height={36} className="size-9 shrink-0" />
@@ -84,21 +95,24 @@ function Specialization({ spec }: { spec: SpecializationView }) {
             {spec.plus && <p className="type-label text-accent-text">{spec.plus}</p>}
           </div>
         </div>
+        {/* Figma sets the sample's two notes 305 px wide on phone (298:3750, 298:3771). */}
+        {spec.note && <p className="type-caption max-w-[305px] pt-2 text-text-secondary tablet:max-w-none">{spec.note}</p>}
         {spec.targets.length > 0 && (
           <ul aria-label="Unlock targets" className="flex flex-col gap-1 pt-2">
             {spec.targets.map((t) => (
-              <li key={t.attribute} className="flex items-start justify-between gap-3">
+              <li key={t.attribute} className="flex h-5 items-start justify-between gap-3">
                 <span className="type-caption text-text-primary">{t.attribute}</span>
-                <span className="whitespace-nowrap">
+                <span className="leading-[18px] whitespace-nowrap">
                   <span className={`${NUMBER_SM} text-status-warning`}>{t.value ?? "–"}</span>
-                  <span className="type-caption text-text-muted">{` / ${t.target ?? "–"}`}</span>
+                  <span className="font-text text-[14px] leading-[18px] font-semibold text-text-muted">{` / ${t.target ?? "–"}`}</span>
                 </span>
               </li>
             ))}
           </ul>
         )}
         {/* TODO(Chime): no design says when a build's values fall short of a target; the line is left out then. */}
-        {spec.reachedAt !== null && <p className="type-label pt-2 text-text-primary">{`Reached at level ${spec.reachedAt}`}</p>}
+        {spec.reachedAt !== null && <p className="type-label h-7.5 pt-2 text-text-primary">{`Reached at level ${spec.reachedAt}`}</p>}
+        {spec.reachedFrom && <p className="type-caption max-w-[305px] pt-2 text-text-secondary tablet:max-w-none">{spec.reachedFrom}</p>}
       </div>
     </section>
   );

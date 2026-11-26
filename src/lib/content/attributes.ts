@@ -12,6 +12,9 @@ export const ATTRIBUTE_GROUPS = [
   { code: "GK", name: "Goalkeeping", attributes: ["GK Diving", "GK Handling", "GK Kicking", "GK Positioning", "GK Reflexes"] },
 ] as const;
 
+/** The six key stats (D-62), in the game's order: the first six groups' codes. */
+export const KEY_STATS: readonly string[] = ATTRIBUTE_GROUPS.slice(0, 6).map((g) => g.code);
+
 export const ATTRIBUTES: ReadonlySet<unknown> = new Set(ATTRIBUTE_GROUPS.flatMap((g) => g.attributes as readonly string[]));
 
 /** The highest an attribute can read (RESEARCH §10.2: prices run to 99). */
@@ -21,3 +24,6 @@ export const ATTRIBUTE_MAX = 99;
 export const STARS = { "Skill Moves": "skillMoves", "Weak Foot": "weakFoot" } as const;
 export const STARS_MAX = 5;
 export const isStar = (name: unknown): name is keyof typeof STARS => typeof name === "string" && Object.hasOwn(STARS, name);
+
+/** The top level: the end of the level switch's track in Figma (298:3684), and mastery's last step (RESEARCH §10.6). */
+export const LEVEL_MAX = 55;

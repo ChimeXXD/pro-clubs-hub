@@ -17,7 +17,7 @@ Every piece of content is one UTF-8 JSON file in `content/`. The site, the build
 ```
 
 - `game`: `"fc27"`. `season`: integer. `verifiedOn`: ISO date or `null`. `verifiedBy`: name or `null`. `platform`: `"ps5"`, `"xbox"`, `"pc"` or `null` (O-09).
-- Wording (one function, A-08): verified gives "FC 27 · Season 2 · verified 19 Nov 2026"; `verifiedOn: null` gives "FC 27 · Season 2 · not yet checked in game". A season older than the current one adds: "Made for Season 2. Values may have changed since."
+- Wording (one function, A-08): verified gives "FC 27 · Season 2 · verified 19 Nov 2026"; `verifiedOn: null` gives "FC 27 · Season 2 · Not yet checked in game". A season older than the current one adds: "Made for Season 2. Values may have changed since."
 
 **Credit** (D-08).
 
@@ -114,13 +114,16 @@ One file per game. Unverified fields are `null`, never guessed.
 
 - `archetype` must match an id in `content/archetypes/fc27.json`.
 - `positions` from: `GK CB LB RB LWB RWB CDM CM CAM LM RM LW RW CF ST`.
-- `accelerate`: `"explosive"`, `"controlled"`, `"lengthy"` or `null`.
+- `accelerate`: one of the game's seven AcceleRATE types, `"explosive"`, `"mostly-explosive"`, `"controlled-explosive"`, `"controlled"`, `"controlled-lengthy"`, `"mostly-lengthy"`, `"lengthy"`, or `null`.
 - `level` and attribute values are integers once recorded. Attribute `name` must be in `ATTRIBUTE_GROUPS` (`src/lib/content/attributes.ts`), once each, with a value from 0 to 99. The names still need checking against the game's own screen.
 - `badge` (A-18, D-34, D-62): `"meta"` (Meta pick), `"recommended"` or `null`. A published Meta pick needs a `verifiedOn` date (D-30). "Most copied" is counted later, so it isn't stored here.
 - `picture` (A-18, D-41, D-42): `{ "file": "builds/<slug>.webp", "alt": "…", "by": "Chime" }`, our own in-game face, or `null` for the empty slot.
 - `spend` (A-18, D-43): the order the build was made in, or `null` (the page then has no level switch). Attribute and star values, raised step by step from the archetype's starting values:
   `{ "start": [ { "name": "Finishing", "value": 70 } ], "startStars": { "skillMoves": 3, "weakFoot": 3 }, "steps": [ { "raise": "Finishing", "to": 85 }, { "raise": "Weak Foot", "to": 4 } ] }`
   Every step raises its value, and walking the steps must end on the build's own `attributes`, `skillMoves` and `weakFoot`.
+- `sample` (D-107, optional): Figma's sample figures, for the sample build drawn in the Build frames. Only a `"draft"` may have it (a published file with `sample` fails), so it shows on the preview only. It holds what no recorded build can give yet:
+  `{ "keyStats": { "PAC": 88, "SHO": 80, "PAS": 58, "DRI": 84, "DEF": 38, "PHY": 66 }, "levels": [ { "level": 55, "ap": 1419, "spent": 1410, "apShort": null }, { "level": 32, "ap": 724, "spent": 724, "apShort": 695 } ], "specialization": { "note": "Targets …", "target": 92, "reachedFrom": 50 } }`
+  `keyStats`: all six, 0 to 99 (also the attribute groups' gauges). `levels`: the levels the design draws, each once, 1 to 55, including the build's own `level`; `spent` is at most `ap`; `apShort` is how far short of the whole build that level is, or `null`. `specialization`: the note under the card, the one target value the sample counts, and the level it is reached from; or `null`.
 - Bump `version` and add a `history` line whenever a value changes.
 
 ## Face recipe (`content/faces/<slug>.json`)

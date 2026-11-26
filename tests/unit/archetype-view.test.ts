@@ -8,7 +8,7 @@ import { archetypeViews } from "@/lib/builds";
 import { loadContent } from "@/lib/content/load";
 
 // The archetype page as the static export renders it (Figma 288:1031 / 290:796 / 290:1084, D-62), from the real
-// content with drafts on (the preview). Spark has the one draft build; Finisher has none yet.
+// content with drafts on (the preview). Spark and Finisher have one draft build each (Finisher's is Figma's sample, D-107); Target has none yet.
 const content = loadContent(join(process.cwd(), "content"), { includeDrafts: true });
 const views = archetypeViews(content.archetypeFile);
 const render = (id: string) => {
@@ -18,7 +18,7 @@ const render = (id: string) => {
   return renderToStaticMarkup(createElement(ArchetypeBuildsView, { archetype, cards }));
 };
 const spark = render("spark");
-const finisher = render("finisher");
+const target = render("target");
 
 describe("ArchetypeBuildsView", () => {
   it("has the breadcrumb back to Builds, opening on this archetype", () => {
@@ -30,8 +30,8 @@ describe("ArchetypeBuildsView", () => {
   it("titles the page with the archetype, its group and build count", () => {
     expect(spark).toMatch(/<h1[^>]*>Spark<\/h1>/);
     expect(spark).toContain("Forward · 1 build");
-    expect(finisher).toMatch(/<h1[^>]*>Finisher<\/h1>/);
-    expect(finisher).toContain("Forward · 0 builds");
+    expect(target).toMatch(/<h1[^>]*>Target<\/h1>/);
+    expect(target).toContain("Forward · 0 builds");
   });
 
   it("shows the archetype's emblem, named by the archetype (D-106)", () => {
@@ -58,7 +58,7 @@ describe("ArchetypeBuildsView", () => {
   });
 
   it("carries the version tag and credit line on the card (D-05, D-08)", () => {
-    expect(spark).toContain("FC 27 · Season 2 · not yet checked in game");
+    expect(spark).toContain("FC 27 · Season 2 · Not yet checked in game");
     expect(spark).toContain("Made by Chime in game");
   });
 
@@ -67,6 +67,6 @@ describe("ArchetypeBuildsView", () => {
     expect(spark).toMatch(/<li class="row-span-4 hidden tablet:flex desktop:flex desktop:col-span-2"><a [^>]*data-testid="submit-tile"/);
     expect(spark).toMatch(/<a [^>]*href="\/submit"[^>]*data-testid="submit-tile"|<a [^>]*data-testid="submit-tile"[^>]*href="\/submit"/);
     expect(spark).toContain("Submit a build");
-    expect(finisher).not.toContain("submit-tile");
+    expect(target).not.toContain("submit-tile");
   });
 });
