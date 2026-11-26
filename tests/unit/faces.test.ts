@@ -1,0 +1,116 @@
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+import { loadContent, type LoadedFace } from "@/lib/content/load";
+import {
+  FACE_FILTERS,
+  faceCardView,
+  type FaceCardView,
+  filterCounts,
+  matchesSearch,
+  REQUEST_FACE_HREF,
+  SUBMIT_HREF,
+  visibleFaces,
+} from "@/lib/faces";
+
+// The Faces library's rules (`/faces`, Figma 333:1139 / 345:1310 / 345:1391; D-68, D-69, D-70, D-97 (5)), read from
+// the real content with drafts on, as the preview builds it. Today there is one draft face (2008 Ronaldo).
+const content = loadContent(join(process.cwd(), "content"), { includeDrafts: true });
+const draft = content.faces.find((f) => f.id === "cristiano-ronaldo-2008") as LoadedFace;
+const none = () => false;
+
+/** Test cards, one per kind plus a second footballer (layout data, not content). */
+const card = (over: Partial<FaceCardView>): FaceCardView => ({
+  id: "x",
+  href: "/faces/x",
+  title: "X",
+  name: "X",
+  kind: "footballer",
+  kindLabel: "Footballer",
+  draft: false,
+  picture: null,
+  ...over,
+});
+const cards = [
+  card({ id: "ronaldo", title: "2008 Ronaldo", name: "Cristiano Ronaldo" }),
+  card({ id: "yamal", title: "Lamine Yamal", name: "Lamine Yamal" }),
+  card({ id: "lebron", title: "LeBron James", name: "LeBron James", kind: "athlete", kindLabel: "Athlete" }),
+  card({ id: "mj", title: "Michael Jackson", name: "Michael Jackson", kind: "musician", kindLabel: "Musician" }),
+  card({ id: "mbappe", title: "Kylian Mbappé", name: "Kylian Mbappé" }),
+];
+const ids = (list: FaceCardView[]) => list.map((c) => c.id);
+
+describe("faces library data", () => {
+  it("has the four filters in the design's order: All, Footballers, Athletes, Musicians (D-68)", () => {
+    expect(FACE_FILTERS.map((f) => f.label)).toEqual(["All", "Footballers", "Athletes", "Musicians"]);
+    expect(FACE_FILTERS.map((f) => f.value)).toEqual(["all", "footballer", "athlete", "musician"]);
+  });
+
+  it("words a face for its card: plain title as written, the kind, its page, draft marked (D-69)", () => {
+    const view = faceCardView(draft, none);
+    expect(view).toEqual({
+      id: "cristiano-ronaldo-2008",
+      href: "/faces/cristiano-ronaldo-2008",
+      title: draft.title,
+      name: "Cristiano Ronaldo",
+      kind: "footballer",
+      kindLabel: "Footballer",
+      draft: true,
+      picture: null,
+    });
+  });
+
+  it("shows the first screenshot only when its file is in the repo; otherwise the empty slot (D-10)", () => {
+    const withShot: LoadedFace = {
+      ...draft,
+      screenshots: [
+        { file: "faces/cristiano-ronaldo-2008-1.webp", alt: "Chime's Pro in FC 27, front view", by: "Chime" },
+        { file: "faces/cristiano-ronaldo-2008-2.webp", alt: "Side view", by: "Chime" },
+      ],
+    };
+    const seen: string[] = [];
+    const exists = (file: string) => (seen.push(file), true);
+    expect(faceCardView(withShot, exists).picture).toEqual({
+      src: "/faces/cristiano-ronaldo-2008-1.webp",
+      alt: "Chime's Pro in FC 27, front view",
+    });
+    expect(seen).toEqual(["faces/cristiano-ronaldo-2008-1.webp"]);
+    expect(faceCardView(withShot, none).picture).toBeNull();
+    expect(faceCardView(draft, () => true).picture).toBeNull();
+  });
+
+  it("searches by title or name, ignoring case, accents and extra spaces", () => {
+    const ronaldo = cards[0] as FaceCardView;
+    const mbappe = cards[4] as FaceCardView;
+    expect(matchesSearch(ronaldo, "")).toBe(true);
+    expect(matchesSearch(ronaldo, "   ")).toBe(true);
+    expect(matchesSearch(ronaldo, "ronaldo")).toBe(true);
+    expect(matchesSearch(ronaldo, "CRISTIANO")).toBe(true);
+    expect(matchesSearch(ronaldo, "2008")).toBe(true);
+    expect(matchesSearch(ronaldo, "  2008   ronaldo ")).toBe(true);
+    expect(matchesSearch(ronaldo, "ronaldo 2006")).toBe(false);
+    expect(matchesSearch(ronaldo, "Zidane")).toBe(false);
+    expect(matchesSearch(mbappe, "mbappe")).toBe(true);
+    expect(matchesSearch(mbappe, "MBAPPÉ")).toBe(true);
+  });
+
+  it("counts each chip over the faces the search leaves (every chip at 0 for a name we lack)", () => {
+    expect(filterCounts(cards, "")).toEqual({ all: 5, footballer: 3, athlete: 1, musician: 1 });
+    expect(filterCounts(cards, "james")).toEqual({ all: 1, footballer: 0, athlete: 1, musician: 0 });
+    expect(filterCounts(cards, "Zidane")).toEqual({ all: 0, footballer: 0, athlete: 0, musician: 0 });
+    expect(filterCounts([], "")).toEqual({ all: 0, footballer: 0, athlete: 0, musician: 0 });
+  });
+
+  it("shows the faces of the chosen kind that match the search, in the content's order", () => {
+    expect(ids(visibleFaces(cards, "all", ""))).toEqual(["ronaldo", "yamal", "lebron", "mj", "mbappe"]);
+    expect(ids(visibleFaces(cards, "footballer", ""))).toEqual(["ronaldo", "yamal", "mbappe"]);
+    expect(ids(visibleFaces(cards, "athlete", ""))).toEqual(["lebron"]);
+    expect(ids(visibleFaces(cards, "musician", "jackson"))).toEqual(["mj"]);
+    expect(ids(visibleFaces(cards, "musician", "ronaldo"))).toEqual([]);
+    expect(ids(visibleFaces(cards, "all", "Zidane"))).toEqual([]);
+  });
+
+  it("sends Missing a face to Submit (D-70) and Request a face to the Faces section's request page", () => {
+    expect(SUBMIT_HREF).toBe("/submit");
+    expect(REQUEST_FACE_HREF).toBe("/faces/request");
+  });
+});

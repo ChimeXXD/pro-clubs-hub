@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { DraftTag } from "@/components/ui/DraftTag";
+import { FilterChip } from "@/components/ui/FilterChip";
 import {
   dayAndMonth,
   type Filter,
@@ -18,11 +19,6 @@ import {
 // season card, the filters and the seasons; desktop puts the first three in a 352 px side column, 64 px from the
 // entries. Entries open in place; the newest starts open. With nothing published yet, only the header and the
 // season card show.
-const CHIP =
-  "type-label tap-target h-10 shrink-0 rounded-full px-4 whitespace-nowrap";
-const CHIP_ON =
-  "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
-const CHIP_OFF = "border border-border-strong bg-bg-surface text-text-primary";
 
 function Entry({
   item,
@@ -149,16 +145,13 @@ export function ChangelogView({
             <div className="mt-5 desktop:mt-2.5">
               <div className="-my-0.5 flex gap-2 overflow-x-auto py-0.5 desktop:flex-wrap">
                 {FILTERS.map((f, i) => (
-                  <button
+                  <FilterChip
                     key={f.value}
-                    data-testid={`filter-chip-${i + 1}`}
-                    type="button"
-                    aria-pressed={filter === f.value}
-                    onClick={() => setFilter(f.value)}
-                    className={`${CHIP} ${filter === f.value ? CHIP_ON : CHIP_OFF}`}
-                  >
-                    {f.label}
-                  </button>
+                    testId={`filter-chip-${i + 1}`}
+                    label={f.label}
+                    pressed={filter === f.value}
+                    onPress={() => setFilter(f.value)}
+                  />
                 ))}
               </div>
             </div>
