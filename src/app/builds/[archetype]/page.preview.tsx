@@ -7,7 +7,7 @@ import { siteContent } from "@/lib/content/site-content";
 import { SITE_NAME } from "@/lib/site";
 
 // One page per archetype, its builds as stat strip cards (Figma 288:1031 / 290:796 / 290:1084; D-62). Preview only
-// (D-105) until the archetype emblems can ship (D-39) and builds are published: rename this file to page.tsx to put
+// (D-105) until builds are published (its emblems ship since D-106): rename this file to page.tsx to put
 // the pages on probuilds.club. Static export: the 13 archetypes are every page there is.
 export const dynamicParams = false;
 

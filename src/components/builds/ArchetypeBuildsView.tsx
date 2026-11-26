@@ -3,6 +3,7 @@ import { Icon } from "@/components/shell/Icon";
 import { type BuildCardView, buildCountLabel, submitTile } from "@/lib/archetype-page";
 import type { ArchetypeView } from "@/lib/builds";
 import { BuildCard } from "./BuildCard";
+import { Emblem } from "./Emblem";
 
 // Figma "Archetype · Finisher" (phone 288:1031, tablet 290:796, desktop 290:1084; D-62): the breadcrumb, the
 // archetype's emblem, name and "<group> · N builds", then its builds as stat strip cards, one column on phone, two
@@ -30,13 +31,9 @@ export function ArchetypeBuildsView({ archetype, cards }: { archetype: Archetype
         </ol>
       </nav>
       <header className="flex items-center gap-3.5">
-        {/* TODO(Chime): emblem. Today's emblem files are Pro Clubs HQ's tracings and can't ship (D-39, rule 9). */}
-        <span
-          role="img"
-          aria-label={archetype.name}
-          data-testid="archetype-emblem"
-          className="size-14 shrink-0 rounded-full border-[1.5px] border-text-primary"
-        />
+        <span role="img" aria-label={archetype.name} data-testid="archetype-emblem" className="flex size-14 shrink-0">
+          <Emblem id={archetype.id} className="size-full" />
+        </span>
         <div className="flex min-w-0 flex-col gap-0.5">
           <h1 className="type-h1 break-words text-text-primary">{archetype.name}</h1>
           <p className="type-caption text-text-secondary">{buildCountLabel(archetype.groupLabel, cards.length)}</p>

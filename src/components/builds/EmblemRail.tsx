@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { ArchetypeView } from "@/lib/builds";
+import { Emblem } from "./Emblem";
 
 // Figma "Emblem rail" (241:573 / 279:1538 / 276:1078): the 13 archetypes grouped Keeper, Defender, Midfielder,
 // Forward (D-57), each group over a hairline label. Phone: 56 px emblems 10 px apart, groups 28 px apart, the row
@@ -60,11 +61,7 @@ export function EmblemRail({
                       onClick={() => onSelect(a.id)}
                       className={`${EMBLEM} ${on ? ON : OFF}`}
                     >
-                      {/* TODO(Chime): emblem. Today's emblem files are Pro Clubs HQ's tracings and can't ship (D-39, rule 9). */}
-                      <span
-                        aria-hidden="true"
-                        className="size-8 rounded-full border-[1.5px] border-text-primary tablet:size-[27.4px] desktop:size-9"
-                      />
+                      <Emblem id={a.id} className="size-8 tablet:size-[27.4px] desktop:size-9" />
                     </button>
                   );
                 })}

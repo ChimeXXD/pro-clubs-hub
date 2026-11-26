@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -22,8 +22,11 @@ describe("BuildsView", () => {
     expect(html.match(/data-testid="emblem-[a-z-]+"/g)).toHaveLength(13);
     expect(html.match(/aria-pressed="true"/g)).toHaveLength(1);
     expect(html).toMatch(/aria-label="Finisher"[^>]*aria-pressed="true"|aria-pressed="true"[^>]*aria-label="Finisher"/);
-    // The emblem art can't ship yet (D-39): each slot is an empty circle.
-    expect(html).not.toMatch(/emblem[^"]*\.(svg|png|webp)/);
+    // Every slot shows its archetype's emblem (D-106): 13 in the rail, plus the selected Stance card's plate.
+    for (const { id } of views) {
+      expect(html).toContain(`/art/archetypes/${id}.svg`);
+      expect(existsSync(join(process.cwd(), "public", "art", "archetypes", `${id}.svg`))).toBe(true);
+    }
   });
 
   it("labels the four groups", () => {

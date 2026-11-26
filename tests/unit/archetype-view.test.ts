@@ -34,9 +34,9 @@ describe("ArchetypeBuildsView", () => {
     expect(finisher).toContain("Forward · 0 builds");
   });
 
-  it("keeps the emblem slot empty, named by the archetype (D-39)", () => {
+  it("shows the archetype's emblem, named by the archetype (D-106)", () => {
     expect(spark).toMatch(/data-testid="archetype-emblem"[^>]*role="img"[^>]*aria-label="Spark"|role="img"[^>]*aria-label="Spark"[^>]*data-testid="archetype-emblem"/);
-    expect(spark).not.toMatch(/archetypes\/[a-z-]+\.(svg|png|webp)/);
+    expect(spark).toContain("/art/archetypes/spark.svg");
   });
 
   it("shows the draft build as a card linking to its page, values as written", () => {

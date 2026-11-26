@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-// The Builds page (Figma 241:556 / 279:1399 / 276:1073, D-57, D-60). Preview only until its emblems can ship (D-105).
+// The Builds page (Figma 241:556 / 279:1399 / 276:1073, D-57, D-60). Preview only for now (D-105); emblems ship since D-106.
 test.skip(process.env.PROBUILDS_DRAFTS !== "1", "preview page");
 
 test("builds: pick an archetype from the rail and see its card and facts", async ({ page }) => {

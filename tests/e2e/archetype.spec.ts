@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 // The archetype page (Figma 288:1031 / 290:796 / 290:1084, D-62): one static page per archetype. Preview only
-// (D-105): the emblems can't ship yet (D-39) and the one build is a draft. Spark has that draft; Finisher has none.
+// (D-105): the one build is a draft. Emblems ship since D-106. Spark has that draft; Finisher has none.
 test.skip(process.env.PROBUILDS_DRAFTS !== "1", "preview page");
 
 test("archetype: See Finisher builds opens the Finisher page, and the breadcrumb goes back to it", async ({ page }) => {

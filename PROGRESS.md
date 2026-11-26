@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Builds and archetype pages, with emblems (Thu 26 Nov 2026)
+
+- **Builds page** (`/builds`, preview only, D-105): archetype rail grouped Keeper / Defender / Midfielder / Forward, swipeable Stance cards with Chime's 13 AI stances (Progressor included: Figma had all 13), signature PlayStyles, mastery attributes, "See <archetype> builds". Visual vs Figma: 1.9 at 1440, 2.4 at 834 (phone frame is in Figma's Phone mode, so it differs by D-103).
+- **Archetype pages** (`/builds/<id>`, all 13, preview only): header, the archetype's builds as cards (the mannequin face, version tag and credit line per rule 4 and 5), Submit tile. Key stats show "–" until A-18 is settled.
+- **Emblems (D-106):** Chime: "just add the archetype… Add the archetype on the page, please." The 13 emblems (Figma emblem art, one colour, drawn as masks) are in the rail, on each Stance card and in the archetype header. CLAUDE.md rule 2 notes the exception.
+- **PlayStyle and PlayStyle+ badges** (EA art, D-39) pushed at Chime's word ("push both").
+- **Tests:** unit 210; e2e 64 on the preview build, 46 on the live build. Code reviews ran on each page.
+- **Not verified:** Chime's iPhone (swipe, rail); light-mode art (Figma has none for the Stance card, badges or mannequin).
+
 ## Draft preview mode (Thu 26 Nov 2026)
 
 - **Chime:** "build everything at once"; picked "All now, on a draft preview" (D-104).

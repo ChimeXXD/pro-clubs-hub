@@ -1,4 +1,5 @@
 import type { ArchetypeView } from "@/lib/builds";
+import { Emblem } from "./Emblem";
 
 // Figma Stance card (258:585, D-56): the archetype's pattern (our own drawing), Chime's AI stance (D-54, D-55), an
 // inner frame line, and a name plate with the emblem, name and group. The card is art that scales as one piece,
@@ -52,12 +53,7 @@ export function StanceCard({ archetype, eager = false }: { archetype: ArchetypeV
             borderBottomRightRadius: cqw(10),
           }}
         >
-          {/* TODO(Chime): emblem. Today's emblem files are Pro Clubs HQ's tracings and can't ship (D-39, rule 9). */}
-          <span
-            aria-hidden="true"
-            className="shrink-0 rounded-full border-[1.5px] border-text-primary"
-            style={{ width: cqw(28), height: cqw(28) }}
-          />
+          <Emblem id={archetype.id} className="shrink-0" style={{ width: cqw(28), height: cqw(28) }} />
           <span className="flex flex-col">
             <span
               className="font-display font-extrabold text-text-primary uppercase"
