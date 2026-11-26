@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { DraftTag } from "@/components/ui/DraftTag";
 import type { BuildCardView } from "@/lib/archetype-page";
+import { KeyStats } from "./KeyStats";
 
 // Figma "Build · Meta Finisher" (288:1096, D-62 option B, the "stat strip" card): the build's in-game face, or the
 // ProBuilds mannequin when it has none (D-89, D-98); a Meta pick or Recommended tag; the name; position chips with
 // level, height and weight; the six key stats in one ruled row; the PlayStyles+. Under them, the version tag and
 // credit line every build carries (D-05, D-08; not drawn on the Figma card). The card is a subgrid of four rows so
 // headers in a row share one height and the stat rows line up (D-62).
-const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
+export const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
 
 export function BuildCard({ card }: { card: BuildCardView }) {
   return (
@@ -49,15 +50,7 @@ export function BuildCard({ card }: { card: BuildCardView }) {
             </div>
           </div>
         </div>
-        <dl className="flex justify-between border-y border-border-subtle py-2.5">
-          {card.keyStats.map((s) => (
-            <div key={s.code} className="flex flex-col items-center">
-              <dt className="type-caption text-text-secondary">{s.code}</dt>
-              {/* TODO(Chime): no key stat values yet (A-18); a dash holds the place. */}
-              <dd className="type-number-md text-text-primary">{s.value ?? "–"}</dd>
-            </div>
-          ))}
-        </dl>
+        <KeyStats stats={card.keyStats} />
         <div className="flex flex-col gap-2">
           <h3 className="type-caption text-text-secondary">PlayStyles+</h3>
           <ul className="flex flex-wrap gap-x-4 gap-y-2">
