@@ -7,7 +7,7 @@ How each screen looks and behaves. **§1–3 written 25 Nov 2026 from the approv
 The look Chime approved, phase by phase, on 24–25 Nov:
 
 - **A FUT.GG-style hub led by faces** (DESIGN.md §Direction): dense grids of face cards first, then builds; one accent; small badges.
-- **Colours from the logo** (D-46): deep green pages and surfaces, cream text, lime accent; cream pages in light mode (D-37). The site follows the device's light or dark setting and a switch overrides it.
+- **Colours from the logo** (D-46): deep green pages and surfaces, cream text, lime accent; cream pages in light mode (D-37). The site is dark by default on every device; light only when the user picks it with the switch (D-112).
 - **Type** (D-92, DESIGN.md §Type): Barlow Condensed ExtraBold for headings and numbers (H1 and H2 in capitals), Barlow for text, both free. One style per role on every screen: page title H1, selected item's name H2, section heading H3, card or row title H4; Display only inside card art. Values use the Number styles with tabular figures.
 - **Frame:** cream-pill toast and lime-tab bottom nav (D-94); the mannequin is every build's default face (D-98); the notice on every page.
 

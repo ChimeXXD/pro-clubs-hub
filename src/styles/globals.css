@@ -1,18 +1,10 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
-/* Light mode, as the tokens decide it: the device's setting unless data-theme on <html> overrides it (D-37).
-   Used where a token can't switch on its own, such as the two-colour logo files: class="light:hidden". */
-@custom-variant light {
-  @media (prefers-color-scheme: light) {
-    &:where(:root:not([data-theme="dark"]) *) {
-      @slot;
-    }
-  }
-  &:where(:root[data-theme="light"] *) {
-    @slot;
-  }
-}
+/* Light mode, as the tokens decide it: only when the user's switch sets data-theme="light" on <html>; the device's
+   setting is ignored (D-112). Used where a token can't switch on its own, such as the two-colour logo files:
+   class="light:hidden". */
+@custom-variant light (&:where(:root[data-theme="light"] *));
 
 /* A one-colour SVG from public/icons used as a mask, so it takes the text colour of its parent (currentColor).
    The file's shape is untouched; its own fill is ignored. Set the file with style --icon: url(...). */

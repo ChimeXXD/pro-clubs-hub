@@ -72,8 +72,10 @@ describe("src/styles/tokens.css mirrors the Figma snapshot", () => {
     expect([...fonts.matchAll(/variable: "/g)]).toHaveLength(Object.keys(figma.fonts).length);
   });
 
-  it("follows the device's light or dark setting, and a switch overrides it (D-37)", () => {
-    expect(block(":root {")).toContain("color-scheme: light dark;");
+  it("is dark by default whatever the device says; only the switch makes it light (D-112, supersedes D-37)", () => {
+    expect(block(":root {")).toContain("color-scheme: dark;");
+    expect(block(":root {")).not.toContain("light dark");
+    expect(css).not.toContain("prefers-color-scheme");
     expect(block(':root[data-theme="light"]')).toContain("color-scheme: light;");
     expect(block(':root[data-theme="dark"]')).toContain("color-scheme: dark;");
   });
