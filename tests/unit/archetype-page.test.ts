@@ -31,7 +31,7 @@ const recorded = (over: Partial<LoadedBuild> = {}): LoadedBuild => ({
 describe("archetype page data", () => {
   it("keeps an archetype's builds only, Meta pick first, then Recommended, then the rest", () => {
     expect(archetypeBuilds(content.builds, "spark").map((b) => b.id)).toEqual(["spark-2008-winger"]);
-    expect(archetypeBuilds(content.builds, "finisher").map((b) => b.id)).toEqual(["meta-finisher"]);
+    expect(archetypeBuilds(content.builds, "finisher").map((b) => b.id)).toEqual(["meta-finisher", "finisher-leski"]);
     expect(archetypeBuilds(content.builds, "target")).toEqual([]);
     const a = recorded({ id: "a", badge: null });
     const b = recorded({ id: "b", badge: "recommended" });
