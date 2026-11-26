@@ -5,7 +5,7 @@
   "status": "published",
   "subject": { "name": "Test Footballer", "kind": "footballer", "living": true },
   "era": { "label": "2010", "note": "Test fixture era note." },
-  "title": "Inspired by Test Footballer, 2010",
+  "title": "2010 Test Footballer",
   "target": { "look": "matchday" },
   "timeMinutes": 12,
   "preset": { "number": 7 },

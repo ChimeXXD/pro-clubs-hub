@@ -122,7 +122,7 @@ export interface VisualAge<P = never> {
 
 // Faces (FORMAT §Face recipe).
 
-export type SubjectKind = "footballer" | "musician";
+export type SubjectKind = "footballer" | "athlete" | "musician";
 
 export interface Screenshot {
   file: string;

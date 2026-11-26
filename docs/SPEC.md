@@ -36,7 +36,7 @@ The loader (`src/lib/content/load.ts`) reads everything at build time, validates
 | Route | Shows |
 | --- | --- |
 | `/` | Faces first (featured and newest), then builds by position, latest changelog entry, the current season |
-| `/faces` | Face library; filter by kind (footballer, musician) and era; search by name |
+| `/faces` | Face library; filter by kind (footballer, athlete, musician; D-68); search by name |
 | `/faces/[slug]` | Title (the plain name, D-69), era, version tag, credit line, limits, steps by tab with ticks, paired build card, embed on tap, Chime's screenshots |
 | `/builds` | The 13 archetypes in four groups, named as the game names them (Keeper, Defender, Midfielder, Forward, D-57); one in two groups is listed in both (D-33). Layout: emblem rail, a swipeable Stance card (D-56), then the signature PlayStyles and a "See builds" button (D-57) |
 | `/builds/[archetype]` | Archetype header (signature PlayStyles, mastery attributes, positions, Season 2 cost change counts, sources), then every build for it, "Meta pick" and later "Most copied" badges (D-34) |

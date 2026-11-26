@@ -49,7 +49,7 @@ describe("toIssueUrl", () => {
   });
 
   it("titles the issue with the kind and the submission's title", () => {
-    expect(urlOf(toIssueUrl({ kind: "face", data: face })).searchParams.get("title")).toBe("Face: Inspired by Test Footballer, 2010");
+    expect(urlOf(toIssueUrl({ kind: "face", data: face })).searchParams.get("title")).toBe("Face: 2010 Test Footballer");
     expect(urlOf(toIssueUrl({ kind: "build", data: build })).searchParams.get("title")).toBe("Build: Test Spark build");
   });
 
