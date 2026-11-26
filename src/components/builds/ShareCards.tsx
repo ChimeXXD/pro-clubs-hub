@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Logo } from "@/components/shell/Logo";
 import type { ShareCardsView } from "@/lib/share-cards";
+import { CARD } from "@/lib/share-images";
 import { Emblem } from "./Emblem";
 
 // The two story cards (Figma 316:888 "Overview" and 316:973 "Attributes", D-64), drawn at their own 360 × 640 and
@@ -14,7 +15,7 @@ type Attributes = ShareCardsView["attributes"];
 
 /** A card at 360 × 640, shown at `scale` inside a box of the scaled size. */
 export function ScaledCard({ scale, label, children }: { scale: number; label: string; children: ReactNode }) {
-  const box = { width: 360 * scale, height: 640 * scale } as CSSProperties;
+  const box = { width: CARD.width * scale, height: CARD.height * scale } as CSSProperties;
   return (
     <figure aria-label={label} className="relative shrink-0 overflow-hidden rounded-md shadow-[0_8px_24px_0_var(--color-system-backdrop)]" style={box}>
       <div className="absolute top-0 left-0 origin-top-left" style={{ transform: `scale(${scale})` }}>
@@ -26,7 +27,8 @@ export function ScaledCard({ scale, label, children }: { scale: number; label: s
 
 function Card({ page, children }: { page: string; children: ReactNode }) {
   return (
-    <div className="flex h-160 w-90 flex-col bg-bg-page px-6 pt-5.5 pb-5 text-left">
+    // data-share-card: the node "Save images" turns into a PNG (saveShareImages.ts), at its own 360 × 640.
+    <div data-share-card className="flex h-160 w-90 flex-col bg-bg-page px-6 pt-5.5 pb-5 text-left">
       <div className="flex h-4.5 items-center justify-between">
         <Logo size="card" />
         <span className="font-text text-[13px] leading-4.5 font-semibold text-text-muted">{page}</span>

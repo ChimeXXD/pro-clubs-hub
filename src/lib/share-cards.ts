@@ -3,6 +3,7 @@
 // the cards never say something the page doesn't.
 import type { AttributeGroupView } from "./build-page.ts";
 import type { LoadedBuild } from "./content/load.ts";
+import { shareImageNames } from "./share-images.ts";
 import { NOTICE, SITE_DOMAIN } from "./site.ts";
 
 export interface ShareCardsView {
@@ -31,6 +32,8 @@ export interface ShareCardsView {
     /** Two columns: Pace, Shooting, Passing; then Dribbling, Defending, Physical (and Goalkeeping). */
     columns: AttributeGroupView[][];
   };
+  /** "Save images" file names, one per card: "meta-finisher-1.png", "meta-finisher-2.png". */
+  files: [string, string];
 }
 
 interface CardInput {
@@ -72,5 +75,6 @@ export function shareCardsView(build: LoadedBuild, input: CardInput): ShareCards
       masteryNote: mastery ? `+2 is Mastery: levelling ${mastery} to 55 adds it. Not included in the values.` : null,
       columns: [input.attributeGroups.slice(0, half), input.attributeGroups.slice(half)],
     },
+    files: shareImageNames(build.slug),
   };
 }

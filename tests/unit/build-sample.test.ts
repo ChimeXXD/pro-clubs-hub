@@ -89,6 +89,7 @@ describe("the sample build's page (D-107)", () => {
     });
     expect(overview.plus.map((p) => p.name)).toEqual(["Low Driven Shot", "First Touch"]);
     expect(overview.regular.map((p) => p.name)).toEqual(["Finesse Shot", "Power Shot", "Rapid", "Quick Step", "Precision Header", "Acrobatic"]);
+    expect(view.share.files).toEqual(["meta-finisher-1.png", "meta-finisher-2.png"]);
     expect(attributes.subtitle).toBe("Meta Finisher · Level 55 · Finisher");
     expect(attributes.masteryNote).toBe("+2 is Mastery: levelling Finisher to 55 adds it. Not included in the values.");
     expect(attributes.columns.map((col) => col.map((g) => `${g.name} ${g.value}`))).toEqual([

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { type MouseEvent, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
@@ -12,8 +12,10 @@ import { AttributesCard, OverviewCard, ScaledCard } from "./ShareCards";
 // sideways with a pager under them; from tablet they sit side by side. Copy link puts the page's address on the
 // clipboard, closes the sheet and shows the "Link copied" toast (319:1674). "Share via…" (phone) and the share icon
 // (tablet) open the device's own share menu with the link, shown only where the browser has one; desktop has none.
-// TODO(Chime): "Save images" needs the cards made into image files. That needs a renderer (an HTML-to-image library
-// or a build-time tool), a new dependency that needs Chime's OK, so the button does nothing yet.
+// "Save images" (D-111) turns the two cards on screen into 1080 × 1920 PNGs and shares them (phone) or downloads
+// them (saveShareImages.ts, which loads html-to-image only on tap).
+// TODO(Chime): Figma draws no saving, saved or failed state for Save images, so there is none: while it works the
+// button is busy (aria-busy) and a second tap is ignored; a failure is only logged to the console.
 // A native <dialog> opened with showModal(): focus moves in, Escape closes it, the page behind is inert, and focus
 // returns to the Share build button. The sheet slides up and the dialog grows in, ease-out under 300 ms; with
 // reduced motion both only fade.
@@ -30,6 +32,7 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
   const trigger = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useState(0);
   const [card, setCard] = useState(0);
+  const saving = useRef(false);
   const canShare = useSyncExternalStore(noSubscribe, hasShare, () => false);
 
   useEffect(() => {
@@ -59,8 +62,24 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
       // Dismissed, or refused: nothing to undo.
     }
   };
-  // TODO(Chime): save both cards as images once a renderer is approved (see above).
-  const saveImages = () => {};
+  const saveImages = async (e: MouseEvent<HTMLButtonElement>) => {
+    if (saving.current || !dialog.current) return;
+    const button = e.currentTarget;
+    // The cards on screen: the phone's swipe row or the tablet and desktop pair; the other set is display: none.
+    const shown = Array.from(dialog.current.querySelectorAll<HTMLElement>("[data-share-card]")).filter((el) => el.getClientRects().length > 0);
+    saving.current = true;
+    button.setAttribute("aria-busy", "true");
+    try {
+      const { saveShareImages } = await import("./saveShareImages");
+      await saveShareImages(shown, share.files);
+    } catch (error) {
+      // TODO(Chime): no failed state in Figma (see above).
+      console.error("Save images failed", error);
+    } finally {
+      saving.current = false;
+      button.removeAttribute("aria-busy");
+    }
+  };
 
   const cards = (scale: number) => [
     <ScaledCard key="overview" scale={scale} label="Share card 1 of 2">
