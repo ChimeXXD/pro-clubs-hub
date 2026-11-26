@@ -136,7 +136,7 @@ One file per game. Unverified fields are `null`, never guessed.
   "status": "draft",
   "subject": { "name": "Cristiano Ronaldo", "kind": "footballer", "living": true },
   "era": { "label": "2008", "note": "PLACEHOLDER" },
-  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "title": "2008 Ronaldo",
   "target": { "look": "matchday" },
   "timeMinutes": "PLACEHOLDER",
   "preset": { "number": "PLACEHOLDER" },
@@ -168,8 +168,8 @@ One file per game. Unverified fields are `null`, never guessed.
 }
 ```
 
-- `subject.kind`: `"footballer"` or `"musician"` at launch (D-10). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
-- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69). The validator still requires "Inspired by" until the code change in D-69 (5).
+- `subject.kind`: `"footballer"`, `"athlete"` (another sport's star) or `"musician"` (D-10, D-68). `living: false` fails validation unless a decision allows that subject by exact name (D-10, D-26: Michael Jackson).
+- `title` is the plain name, era or look included ("2008 Ronaldo"), never "official" (D-69).
 - Order of work: preset, then `parts`, then `sculpt`, then `visualAge`. Sculpting a region turns its part into "Custom <part>" in the game, so parts come first (inferred from the editor; confirm on PS5).
 - `preset.number`: the photo preset's place counted among photo presets only, left to right, top to bottom, under the "All" filter. Never the screen row: the grid starts with each player's own saved heads, so rows differ between players (RESEARCH §9).
 - `parts[].tab`: `"skin"`, `"head"`, `"face"`, `"hair"`, in that order. A step's `label` is the section name as the game prints it ("Facial Hair"); `control` is that label in kebab-case (`facial-hair`). Part values are `item` or `named`. List only sections changed from the preset.
@@ -180,6 +180,7 @@ One file per game. Unverified fields are `null`, never guessed.
 - `limits`: what the game can't do for this look ("No 2008 hairstyle; nearest is …").
 - `pairedBuild` must match a build id.
 - `screenshots`: `{ "file": "faces/<slug>-1.webp", "alt": "Chime's Pro in FC 27, front view", "by": "Chime" }`. Only Chime's own in-game captures of their recreation (D-10).
+- `sample` (D-107, D-108, optional): `{ "place": 1 }` marks one of Figma's sample faces, the demo faces drawn in the Faces library; `place` is where the library draws it (from 1), and the library lists samples in that order, before other faces. Only a `"draft"` may have it (a published file with `sample` fails), so it shows on the preview only. A sample's screenshot may be Figma's stand-in picture, kept under `sample/faces/` (`"by"` names the creator whose video it is from); no other face may use that folder. Two samples may not share a place. The library shows the demo note instead of the Draft tag on a sample's card (D-113). A build without drafts deletes `sample/` from `out/`.
 - `turn` (A-18, D-35): `{ "folder": "faces/<slug>/turn", "frames": 36, "by": "Chime" }`, numbered frames cut from the maker's own turn clip, 12 to 72 of them; `null` until the clip exists.
 - `embeds`: `{ "provider": "youtube", "videoId": "…", "title": "…", "channel": "…", "creatorId": "…" }`. Loaded on tap (A-05). Every embed has a matching `"tutorial"` credit.
 - Step ticks are stored under `face:<id>:v<version>` (A-07).

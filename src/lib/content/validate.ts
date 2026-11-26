@@ -90,8 +90,10 @@ function checkPartValue(c: Check, path: string, v: unknown, control: unknown) {
 const isUnder = (v: unknown, folder: string) => typeof v === "string" && v.startsWith(folder) && !v.split("/").includes("..");
 
 /** One of our own in-game captures: where it is, what it shows, who made it (D-10, D-41). */
-function checkPicture(c: Check, path: string, v: Obj, folder: string) {
-  if (!isUnder(v.file, folder)) c.add(`${path}.file`, `must be a file under "${folder}"`);
+function checkPicture(c: Check, path: string, v: Obj, ...folders: string[]) {
+  if (!folders.some((folder) => isUnder(v.file, folder))) {
+    c.add(`${path}.file`, `must be a file under ${folders.map((folder) => `"${folder}"`).join(" or ")}`);
+  }
   c.str(`${path}.alt`, v.alt);
   c.str(`${path}.by`, v.by);
 }
@@ -104,7 +106,7 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
 
   if (c.obj("subject", d.subject)) {
     c.str("subject.name", d.subject.name);
-    c.oneOf("subject.kind", d.subject.kind, ["footballer", "musician"]);
+    c.oneOf("subject.kind", d.subject.kind, ["footballer", "athlete", "musician"]);
     c.bool("subject.living", d.subject.living);
     if (d.subject.living === false && !DECEASED_ALLOWED.has(d.subject.name as string))
       c.add("subject.living", "a deceased subject needs a decision allowing them by name (D-10, D-26)");
@@ -113,8 +115,8 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
     c.str("era.label", d.era.label);
     c.str("era.note", d.era.note, { recorded: true });
   }
-  if (typeof d.title !== "string" || !d.title.startsWith("Inspired by")) c.add("title", 'must start with "Inspired by"');
-  else if (/official/i.test(d.title)) c.add("title", 'must never say "official" (CLAUDE.md rule 3)');
+  c.str("title", d.title);
+  if (typeof d.title === "string" && /official/i.test(d.title)) c.add("title", 'must never say "official" (CLAUDE.md rule 3, D-69)');
   if (c.obj("target", d.target)) c.oneOf("target.look", d.target.look, ["matchday"]);
   c.int("timeMinutes", d.timeMinutes, { min: 1, recorded: true });
   if (c.obj("preset", d.preset)) c.int("preset.number", d.preset.number, { min: 1, recorded: true });
@@ -172,10 +174,19 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
     c.add("pairedBuild", `unknown build ${JSON.stringify(d.pairedBuild)}`);
   }
 
+  // Figma's sample faces (D-107, D-108): a draft marked as a sample may show Figma's stand-in picture, which lives
+  // under sample/faces/ so it can never pass for one of our own captures. Its place is where Figma's library draws it.
+  let sample = false;
+  if ("sample" in d && c.obj("sample", d.sample)) {
+    sample = true;
+    c.int("sample.place", d.sample.place, { min: 1 });
+  }
+  if ("sample" in d && c.published) c.add("sample", "published but is still a sample (D-107)");
+  const folders = sample && !c.published ? ["faces/", "sample/faces/"] : ["faces/"];
   if (c.arr("screenshots", d.screenshots)) {
     d.screenshots.forEach((shot, i) => {
       const p = at("screenshots", i);
-      if (c.obj(p, shot)) checkPicture(c, p, shot, "faces/");
+      if (c.obj(p, shot)) checkPicture(c, p, shot, ...folders);
     });
   }
   // The turntable's frames, cut from the maker's own in-game turn clip (D-35).

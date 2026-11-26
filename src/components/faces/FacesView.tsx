@@ -21,9 +21,13 @@ import { FaceSearch } from "./FaceSearch";
 // header, search and kind chips (D-68), the faces two / three / six across with the dashed "Missing a face?" tile
 // last, then "Who should we make next?" (D-97 (5)). Phone stacks search over chips (the chips scroll sideways to
 // the screen's edge); tablet and desktop put the chips left and the search right on one row. Nothing matching shows
-// the no-results card instead of the grid and panel (372:1853 / 427:9875 / 427:9960). Figma's demo note about its
-// stand-in pictures is left out: the product shows only our own captures (D-68 (4)).
+// the no-results card instead of the grid and panel (372:1853 / 427:9875 / 427:9960). While Figma's sample faces are
+// listed (drafts, preview only), its demo note says their pictures are stand-ins (D-107, D-108); it marks them in place
+// of the Draft tag (D-113). It is page-level, so it stays when a search leaves nothing (as 427:9875 and 427:9960 draw it).
 // Content: 16 / 20 / 32 px on phone (top / gaps / bottom), 24 / 24 / 64 on tablet and desktop.
+const DEMO_NOTE =
+  "Demo: stand-in faces from Xaiiros's and CodeName Max's YouTube tutorials. Each real card shows our own in-game recreation.";
+
 export function FacesView({ cards }: { cards: FaceCardView[] }) {
   const [filter, setFilter] = useState<FaceFilter>("all");
   const [query, setQuery] = useState("");
@@ -41,14 +45,16 @@ export function FacesView({ cards }: { cards: FaceCardView[] }) {
         <p className="type-body text-text-secondary tablet:max-w-[600px]">
           Lookalike and era faces, each a step-by-step recipe with a build to match.
         </p>
+        {cards.some((c) => c.sample) && <p className="type-caption text-text-muted tablet:max-w-[600px]">{DEMO_NOTE}</p>}
       </header>
       <div className="flex flex-col gap-5 tablet:flex-row-reverse tablet:items-center tablet:gap-6">
         <FaceSearch value={query} onChange={setQuery} />
         {/* A sideways-scrolling row also clips up and down: 4 px of padding (cancelled by -4 px margin) keeps each
-            chip's 44 px tap area and its focus ring (2 px outline, 2 px offset); 4 px of scroll padding keeps the ring
-            in view when focus scrolls a chip to the row's edge. On phone it runs to the screen's edges, as Figma's
+            chip's 44 px tap area and its focus ring (2 px outline, 2 px offset); 6 px of scroll padding keeps the ring
+            in view when focus scrolls a chip to the row's edge (4 px for the ring, 2 for rounding: chips are fractional
+            widths, the scroll lands on whole pixels). On phone it runs to the screen's edges, as Figma's
             chips run off the frame. */}
-        <div className="-mx-5 -my-1 flex scroll-px-1 gap-2 overflow-x-auto px-5 py-1 tablet:-mx-1 tablet:min-w-0 tablet:flex-1 tablet:px-1">
+        <div className="-mx-5 -my-1 flex scroll-px-1.5 gap-2 overflow-x-auto px-5 py-1 tablet:-mx-1 tablet:min-w-0 tablet:flex-1 tablet:px-1">
           {FACE_FILTERS.map((f, i) => (
             <FilterChip
               key={f.value}
@@ -116,7 +122,9 @@ function NoFaces() {
         <Icon name="faces" size={40} />
       </span>
       <h2 className="type-h3 text-text-primary">No faces here yet.</h2>
-      <p className="type-body text-balance text-text-secondary">Ask for it, and vote for what we make next.</p>
+      {/* Figma sets this line on one line at 393, running 3 px into the card's 24 px padding: -4 px each side allows
+          that, and it still wraps, balanced, on narrower phones. */}
+      <p className="type-body -mx-1 text-balance text-text-secondary">Ask for it, and vote for what we make next.</p>
       <Link href={REQUEST_FACE_HREF} className={buttonClass("secondary", "", "medium")}>
         <ButtonLabel icon="arrow-right">Request a face</ButtonLabel>
       </Link>

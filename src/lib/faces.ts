@@ -2,10 +2,10 @@
 // face with its kind and plain title, chips by kind with counts, and a search by name. The chips count what the
 // search leaves, so a name we don't have puts every chip at 0 (Figma 372:1853).
 import type { LoadedFace } from "./content/load.ts";
+import type { SubjectKind } from "./content/types.ts";
 
-// "athlete" is D-68's third kind. The content types gain it with Sharon's PR #9 (on hold); until then no face has it,
-// so the Athletes chip counts 0.
-export type FaceKind = "footballer" | "athlete" | "musician";
+/** Footballers, Athletes, Musicians (D-68). */
+export type FaceKind = SubjectKind;
 export type FaceFilter = "all" | FaceKind;
 
 const KIND_LABEL = { footballer: "Footballer", athlete: "Athlete", musician: "Musician" } as const satisfies Record<FaceKind, string>;
@@ -34,7 +34,9 @@ export interface FaceCardView {
   kind: FaceKind;
   kindLabel: string;
   draft: boolean;
-  /** Chime's own in-game capture (D-10), or null for the empty slot. */
+  /** One of Figma's sample faces (D-107): the demo note marks it, so its card carries no Draft tag. */
+  sample: boolean;
+  /** Chime's own in-game capture (D-10), a sample's stand-in (D-108), or null for the empty slot. */
   picture: { src: string; alt: string } | null;
 }
 
@@ -52,8 +54,17 @@ export function faceCardView(face: LoadedFace, pictureExists: (file: string) => 
     kind: face.subject.kind,
     kindLabel: KIND_LABEL[face.subject.kind],
     draft: face.status === "draft",
+    sample: face.sample !== undefined,
     picture: shot && pictureExists(shot.file) ? { src: `/${shot.file}`, alt: shot.alt } : null,
   };
+}
+
+/** The library's cards: Figma's sample faces first, in the places it draws them, then the others in content order. */
+export function faceCards(faces: LoadedFace[], pictureExists: (file: string) => boolean): FaceCardView[] {
+  const place = (f: LoadedFace) => f.sample?.place ?? Infinity;
+  // Array sort is stable, so faces of equal place (all the non-samples) keep the content's order.
+  const byPlace = (a: LoadedFace, b: LoadedFace) => (place(a) === place(b) ? 0 : place(a) < place(b) ? -1 : 1);
+  return [...faces].sort(byPlace).map((f) => faceCardView(f, pictureExists));
 }
 
 /** Lower case, accents dropped ("Mbappé" finds "mbappe"). */

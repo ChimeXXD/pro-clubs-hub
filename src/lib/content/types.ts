@@ -122,7 +122,7 @@ export interface VisualAge<P = never> {
 
 // Faces (FORMAT §Face recipe).
 
-export type SubjectKind = "footballer" | "musician";
+export type SubjectKind = "footballer" | "athlete" | "musician";
 
 export interface Screenshot {
   file: string;
@@ -160,6 +160,11 @@ export interface Face<P = never> extends Versioned {
   screenshots: Screenshot[];
   turn: Turn | null;
   embeds: Embed[];
+  /**
+   * Figma's sample face (D-107, D-108): a draft whose picture may be Figma's stand-in, under sample/faces/. `place` is
+   * where Figma's library draws it (1 first).
+   */
+  sample?: { place: number };
 }
 
 // Builds (FORMAT §Build).

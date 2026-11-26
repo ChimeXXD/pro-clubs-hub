@@ -4,9 +4,10 @@ import type { FaceCardView } from "@/lib/faces";
 
 // Figma face card in the Faces library (333:1316, D-70 option A): a 4:5 picture with a 1 px border/subtle outline
 // and 12 px corners, then the kind (Label/Caption, muted) and the plain title (Label/Default, D-69), 10 px below.
-// The picture is only ever Chime's own in-game capture (D-10). With none in the repo yet, the slot is drawn as the
-// Design System's Face card (205:329) draws it: surface fill and "In-game screenshot" in the middle. A draft
-// carries the Draft tag in the picture's 12 px inset (preview only, D-104).
+// The picture is Chime's own in-game capture (D-10), or on one of Figma's sample faces its stand-in (D-108). With
+// none in the repo, the slot is drawn as the Design System's Face card (205:329) draws it: surface fill and "In-game
+// screenshot" in the middle. A draft carries the Draft tag in the picture's 12 px inset (preview only, D-104), except
+// a sample: Figma draws none, the library's demo note marks it instead (D-113).
 export function FaceCard({ card, place }: { card: FaceCardView; place: number }) {
   return (
     <li>
@@ -31,7 +32,7 @@ export function FaceCard({ card, place }: { card: FaceCardView; place: number })
               In-game screenshot
             </span>
           )}
-          {card.draft && (
+          {card.draft && !card.sample && (
             <span className="absolute top-3 left-3 flex">
               <DraftTag />
             </span>

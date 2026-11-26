@@ -120,6 +120,15 @@ describe("loadContent fails the build on a broken link, naming the file and fiel
     expect(failures(dir)).toEqual(['builds/test-spark-build.json id: "test-spark-build" is used by another file']);
   });
 
+  it("two sample faces in one place, which would leave Figma's order to file names (D-107 (2))", () => {
+    const dir = goodWith();
+    const draft = JSON.parse(readFileSync(join(GOOD, "faces", "test-draft-face.json"), "utf8"));
+    const sample = (id: string) => ({ ...draft, id, slug: id, sample: { place: 1 } });
+    writeFileSync(join(dir, "faces", "test-draft-face.json"), JSON.stringify(sample(draft.id)));
+    writeFileSync(join(dir, "faces", "test-sample-b.json"), JSON.stringify(sample("test-sample-b")));
+    expect(failures(dir)).toEqual(["faces/test-sample-b.json sample.place: place 1 is used by another sample face"]);
+  });
+
   it("puts every problem in the error message, one per line", () => {
     expect(() => loadContent(goodWith("unknown-archetype"))).toThrow(
       'content: 1 problem(s)\nbuilds/test-spark-build.json archetype: unknown archetype "engine"',

@@ -9,6 +9,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/validate-content.mjs",
     "build": "next build",
+    "postbuild": "node scripts/strip-samples.mjs",
     "lint": "eslint . && node scripts/check-tokens.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

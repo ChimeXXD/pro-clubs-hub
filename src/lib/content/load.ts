@@ -101,6 +101,14 @@ export function loadContent(root: string, { includeDrafts = false }: LoadOptions
       seen.add(item.id);
     }
   }
+  // Two sample faces in one place would leave Figma's library order to file names (D-107 (2)).
+  const places = new Set<number>();
+  for (const { path, item } of faces) {
+    const place = item.sample?.place;
+    if (place === undefined) continue;
+    if (places.has(place)) problems.push({ file: path, path: "sample.place", message: `place ${place} is used by another sample face` });
+    places.add(place);
+  }
   // Only changelog entries and faces link; files are sorted by path, so this reports in path order.
   for (const { path, item } of [...changelog, ...faces]) {
     if (item.status !== "published") continue;

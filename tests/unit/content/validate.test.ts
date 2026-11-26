@@ -61,7 +61,7 @@ describe("validateFace", () => {
   it("passes Michael Jackson, allowed by name (D-26)", () => {
     const mj = changed(faceGood, (f) => {
       f.subject = { name: "Michael Jackson", kind: "musician", living: false };
-      f.title = "Inspired by Michael Jackson";
+      f.title = "Michael Jackson";
     });
     expect(validateFace("faces/x.json", mj, ctx)).toEqual([]);
   });
@@ -69,7 +69,7 @@ describe("validateFace", () => {
   it("allows only the exact name D-26 names", () => {
     const near = changed(faceGood, (f) => {
       f.subject = { name: "michael jackson", kind: "musician", living: false };
-      f.title = "Inspired by Michael Jackson";
+      f.title = "Michael Jackson";
     });
     expect(messages(validateFace("faces/x.json", near, ctx))).toContain(
       "a deceased subject needs a decision allowing them by name (D-10, D-26)",
@@ -79,7 +79,7 @@ describe("validateFace", () => {
   it("fails a subject whose living is missing, even an allowed name", () => {
     const bad = changed(faceGood, (f) => {
       f.subject = { name: "Michael Jackson", kind: "musician" };
-      f.title = "Inspired by Michael Jackson";
+      f.title = "Michael Jackson";
     });
     expect(validateFace("faces/x.json", bad, ctx).map((p) => p.path)).toContain("subject.living");
   });
@@ -89,9 +89,29 @@ describe("validateFace", () => {
     expect(messages(validateFace("faces/x.json", bad, ctx))).toContain('needs at least one "made-by" credit (D-08)');
   });
 
-  it("fails a title that doesn't start with \"Inspired by\"", () => {
-    const bad = changed(faceGood, (f) => (f.title = "Official Test Footballer face"));
-    expect(messages(validateFace("faces/x.json", bad, ctx))).toContain('must start with "Inspired by"');
+  it("passes plain titles, with the look or era in them (D-69)", () => {
+    for (const title of ["2010 Test Footballer", "Test Footballer (Mohawk)", "Test Footballer"]) {
+      expect(validateFace("faces/x.json", changed(faceGood, (f) => (f.title = title)), ctx)).toEqual([]);
+    }
+  });
+
+  it("fails a face with no title", () => {
+    for (const title of ["", "  ", null]) {
+      expect(validateFace("faces/x.json", changed(faceGood, (f) => (f.title = title)), ctx).map((p) => p.path)).toEqual(["title"]);
+    }
+  });
+
+  it("passes each kind the library filters by, and fails any other (D-68)", () => {
+    for (const kind of ["footballer", "athlete", "musician"]) {
+      expect(validateFace("faces/x.json", changed(faceGood, (f) => (f.subject.kind = kind)), ctx)).toEqual([]);
+    }
+    const bad = changed(faceGood, (f) => (f.subject.kind = "actor"));
+    expect(messages(validateFace("faces/x.json", bad, ctx))).toEqual(['must be one of footballer, athlete, musician, got "actor"']);
+  });
+
+  it("holds an athlete to the same living rule as everyone else (D-10)", () => {
+    const bad = changed(faceGood, (f) => (f.subject = { ...f.subject, kind: "athlete", living: false }));
+    expect(validateFace("faces/x.json", bad, ctx).map((p) => p.path)).toEqual(["subject.living"]);
   });
 
   it("fails a value kind the format doesn't have", () => {
@@ -131,9 +151,11 @@ describe("validateFace", () => {
     expect(messages(validateFace("faces/x.json", bad, ctx))).toEqual(["must be a web link starting with https://"]);
   });
 
-  it("fails a title that says official, even after \"Inspired by\"", () => {
-    const bad = changed(faceGood, (f) => (f.title = "Inspired by Test Footballer, the official 2010 look"));
-    expect(messages(validateFace("faces/x.json", bad, ctx))).toEqual(['must never say "official" (CLAUDE.md rule 3)']);
+  it("fails a title that says official, anywhere in it and in any case", () => {
+    for (const title of ["Test Footballer, the official 2010 look", "Official Test Footballer"]) {
+      const bad = changed(faceGood, (f) => (f.title = title));
+      expect(messages(validateFace("faces/x.json", bad, ctx))).toEqual(['must never say "official" (CLAUDE.md rule 3, D-69)']);
+    }
   });
 
   it("fails a version with no history line", () => {

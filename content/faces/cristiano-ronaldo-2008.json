@@ -4,6 +4,9 @@
   "slug": "cristiano-ronaldo-2008",
   "status": "draft",
   "_example": "EXAMPLE FILE. Every PLACEHOLDER value is fake. Section labels and slider end labels are real FC 27 labels seen in the editor (docs/RESEARCH.md §9); which ones a 2008 Ronaldo face needs is not known yet. Never publish this file as it is.",
+  "sample": {
+    "place": 1
+  },
   "subject": {
     "name": "Cristiano Ronaldo",
     "kind": "footballer",
@@ -13,7 +16,7 @@
     "label": "2008",
     "note": "PLACEHOLDER"
   },
-  "title": "Inspired by Cristiano Ronaldo, 2008",
+  "title": "2008 Ronaldo",
   "target": {
     "look": "matchday"
   },
@@ -140,7 +143,13 @@
     "PLACEHOLDER"
   ],
   "pairedBuild": "spark-2008-winger",
-  "screenshots": [],
+  "screenshots": [
+    {
+      "file": "sample/faces/cristiano-ronaldo-2008.webp",
+      "alt": "Stand-in from Xaiiros's YouTube tutorial: 2008 Ronaldo, front view",
+      "by": "Xaiiros"
+    }
+  ],
   "turn": null,
   "embeds": [],
   "version": 1,
@@ -157,6 +166,12 @@
       "name": "Chime",
       "url": null,
       "creatorId": null
+    },
+    {
+      "role": "reference",
+      "name": "Xaiiros",
+      "url": "https://www.youtube.com/watch?v=SHmX5Z8BxFs",
+      "creatorId": null
     }
   ],
   "history": [
@@ -169,8 +184,13 @@
       "version": 1,
       "date": "2026-11-20",
       "note": "Reshaped to the editor's real structure (A-09): numbered parts, Sculpt sliders 0 to 100, preset counted among photo presets. Still placeholders. Skin Tone as a knob position and Visual Age as a pad position (A-12)."
+    },
+    {
+      "version": 1,
+      "date": "2026-11-26",
+      "note": "Plain title (D-69). Figma's sample face: place 1 in the library and its stand-in picture, a frame from Xaiiros's YouTube tutorial (D-107, D-108)."
     }
   ],
   "createdAt": "2026-11-19",
-  "updatedAt": "2026-11-20"
+  "updatedAt": "2026-11-26"
 }
