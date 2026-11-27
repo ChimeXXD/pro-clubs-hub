@@ -68,15 +68,15 @@ export function faceCards(faces: LoadedFace[], pictureExists: (file: string) => 
 }
 
 /** Lower case, accents dropped ("Mbappé" finds "mbappe"). */
-const fold = (s: string) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+export const fold = (s: string) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+
+/** The words typed, folded; blank words dropped. */
+export const searchWords = (query: string) => fold(query).split(/\s+/).filter(Boolean);
 
 /** True when every word typed is in the face's title or name. An empty search matches everything. */
 export function matchesSearch(card: FaceCardView, query: string): boolean {
   const haystack = fold(`${card.title} ${card.name}`);
-  return fold(query)
-    .split(/\s+/)
-    .filter(Boolean)
-    .every((word) => haystack.includes(word));
+  return searchWords(query).every((word) => haystack.includes(word));
 }
 
 /** Each chip's count: the faces of that kind the search leaves. */
