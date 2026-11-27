@@ -88,12 +88,12 @@ The real limit on "days" is the work in phase 1: screens, the core lane, and 18 
 
 ## Phase 2: build (right after the screens are approved)
 
-- [ ] Shared components and layout from Figma, with motion (DESIGN.md)
-- [ ] Home, faces library, face page with ticks
-- [ ] Builds: archetype picker, archetype build list, build card (D-33)
-- [ ] Changelog page
-- [ ] Submit page
-- [ ] About, takedown, 404
+- [ ] Shared components and layout from Figma, with motion (DESIGN.md) — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
+- [ ] Home, faces library, face page with ticks — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
+- [ ] Builds: archetype picker, archetype build list, build card (D-33) — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
+- [ ] Changelog page — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
+- [ ] Submit page — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
+- [ ] About, takedown, 404 — built to Figma on the preview, 27 Nov (PROGRESS); waits on the iPhone check and real content
 - [ ] Motion pass with the motion skills, named in PROGRESS (L-10)
 - [ ] Creator outreach drafts for featured spots (Chime sends)
 - [ ] Video script (30–45 s) and storyboard; ships with the launch or with the Season 3 update (open, D-25)

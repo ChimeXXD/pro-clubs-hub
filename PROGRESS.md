@@ -2,6 +2,19 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Every Figma frame built, by three agents (Fri 27 Nov 2026)
+
+- **Chime:** "implement every single thing on Figma… one to one… don't speedrun… If you need two agents to help… no problem." Coordinator plus two agents at a time; lane B in its own worktree, merged by fast-forward.
+- **Lane A** (1e34640, 7fff5c3, 5d7392d, bbfde3b, b0debd9): Builds + archetype pages with Figma's Tall and Quick Finisher samples; every Build page state re-measured (≤1 px drift fixed, Attributes heading pinned by e2e); D-114 (Save images toasts, level-32 and light story cards, tinted PlayStyle icons); `/b/` shared build and "link doesn't work" on `src/lib/supabase/client.ts` and `docs/supabase-schema.sql`; next/og link previews (319:885, diff 1.5). Audits: builds, build-page items 41–45, shared-build, link-preview.
+- **Lane B** (d119712, 7bcd432, 0b10deb, d485102, 0b811a8, 74475d5, 6b96888): face page (5 states × 3 widths, ticks per version, reset toast, youtube-nocookie facade, All steps sheet); Home; `/search`; theme switch A (applied before paint); shell re-audit (no drift); face link preview (1.55). Audits: face-page, home, search, theme-switch (with a light-mode contrast sweep), shell, face-link-preview.
+- **Lane C** (fe5630b, d4641f3, 4afd8fa): Submit a build, all 27 frames (editor rules D-85 to D-90, Send for listing, Share link); Request a face, all 18 frames (requests, one vote per browser, moderation); Supabase schema extended and tested in PGlite; Changelog, About, Takedown and 404 re-audited (About's six drawn questions added, preview only). Audits: submit, request-a-face, pages-reaudit.
+- **Coordinator** (108221c): the 2008 Winger build takes Figma's title (it printed PLACEHOLDER on the face page, search and its card); title assertions in 4 unit tests and `tests/e2e/build.spec.ts` changed to it, flagged to Chime. Lane B's branch re-checked before merging (types, lint, 365 unit).
+- **Measured:** per section, Figma vs Chromium at 1x, dark, at 393 / 834 / 1440; most sections ≤3, every higher one explained in its audit (Phone type mode D-103, 1 px text offsets, the theme button now in the top bar, placeholder text).
+- **Checks:** 407 unit; preview e2e 221 passed, 5 skipped; live e2e 66; budget passes (index ~219 of 220 KB, close to the limit). Code review on every unit (high for the Supabase schema and anything that writes); each agent's fixes are in its commit messages and audits.
+- **Decisions:** the agents' proposals are A-19 to A-23 and the open questions O-23 to O-27 (DECISIONS), for Chime.
+- **Motion skills:** not run as a pass (L-10); the motion added is small (section bar fill 200 ms, matching build slides up 12 px once, dialogs reuse the share sheet's), softened under reduced motion. The motion pass is next, with refinement.
+- **Not verified:** Chime's iPhone next to the TV (rule 10) for any of it; Save images to Photos and Share via… on iOS Safari; link previews in X's composer and WhatsApp; Supabase for real (no project yet).
+
 ## Screens brought to match Figma, with its sample data (Thu 26 – Fri 27 Nov 2026)
 
 - **Chime:** "Look at the Figma and implement what is on the Figma… stop putting placeholder value… Put sample data." Rule recorded as D-107 (CLAUDE.md, memory); D-108 to D-114 settle the details (stand-in face pictures on the preview, bars by value, html-to-image, dark by default, theme switch option A, toasts, light and level-32 cards, tinted icons).
