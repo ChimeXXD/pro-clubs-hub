@@ -5,7 +5,8 @@ import { GROUPS } from "@/lib/builds";
 import type { Archetype, ArchetypeFile, Position, PositionGroup } from "@/lib/content/types";
 import { apAtLevel, archetypesIn, LEVEL_MAX, levelLine, POSITIONS_BY_GROUP, type SubmitDraft, withArchetype } from "@/lib/submit/editor";
 import { BodyCard } from "./BodyCard";
-import { RoundButton, SectionTitle, SmallChip, Slider, StepLine } from "./controls";
+import { SmallChip } from "@/components/ui/SmallChip";
+import { RoundButton, SectionTitle, Slider, StepLine } from "./controls";
 
 // Step 1 of 4, "Your build" (Figma 400:3219 / 418:3972 / 418:4161): archetype (group chips over the group's
 // archetype tiles), positions, level and height and weight. Phone stacks them; tablet too, with the four tiles in a

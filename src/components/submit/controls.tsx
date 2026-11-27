@@ -5,7 +5,7 @@ import { Icon } from "@/components/shell/Icon";
 import { buttonClass, ButtonLabel } from "@/components/ui/Button";
 
 // Small pieces Submit a build's steps share, each from its Figma part: the step line ("Submit a build · 1 of 4"),
-// the small Chip (200:337, Size=small), the round − / + buttons, the slider (a 4 px track, the value in lime and a
+// the round − / + buttons, the slider (a 4 px track, the value in lime and a
 // 20 px cream knob), the stars, and the actions bar (sticky on phone, under the content from tablet).
 
 /** "Submit a build" (Label/Default, text/secondary) and "1 of 4" (Label/Caption, text/muted), 20 px tall. */
@@ -15,24 +15,6 @@ export function StepLine({ label, step }: { label: string; step: number }) {
       <p className="type-label min-w-0 flex-1 text-text-secondary">{label}</p>
       <p className="type-caption shrink-0 text-text-muted">{`${step} of 4`}</p>
     </div>
-  );
-}
-
-/** Figma Chip, Size=small: 32 px tall, 12 px sides, with a 44 px tap area. */
-export function SmallChip({ label, pressed, onPress, testId }: { label: string; pressed: boolean; onPress: () => void; testId?: string }) {
-  const tone = pressed
-    ? "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset"
-    : "border border-border-strong bg-bg-surface text-text-primary";
-  return (
-    <button
-      type="button"
-      data-testid={testId}
-      aria-pressed={pressed}
-      onClick={onPress}
-      className={`type-label tap-target inline-flex h-8 shrink-0 items-center rounded-full px-3 whitespace-nowrap transition-colors duration-150 ${tone}`}
-    >
-      {label}
-    </button>
   );
 }
 

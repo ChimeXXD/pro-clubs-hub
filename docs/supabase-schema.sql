@@ -191,3 +191,108 @@ $$;
 
 revoke all on function public.submit_build(jsonb) from public;
 grant execute on function public.submit_build(jsonb) to anon, authenticated;
+
+-- Face requests and votes (D-83, D-84, D-96): players ask for a face, everyone votes, Chime and Sharon make the
+-- most-wanted ones. A new request is 'pending' until checked; only 'listed' and 'being-made' requests show. The
+-- moderator sets `kind` (footballer, athlete, musician) and the status in Table Editor → face_requests; 'made' takes
+-- a request off the list once its face is published, 'rejected' keeps it off. One vote per browser: the site sends
+-- a random voter id kept in the browser, and a voter counts once per request. Shared addresses (mobile networks in
+-- Lagos put many phones behind one) only meet the hourly per-caller limits, never a one-vote-per-address rule.
+create table if not exists public.face_requests (
+  id uuid primary key default gen_random_uuid(),
+  name text not null check (char_length(name) between 1 and 80),
+  kind text check (kind in ('footballer', 'athlete', 'musician')),
+  status text not null default 'pending' check (status in ('pending', 'listed', 'being-made', 'made', 'rejected')),
+  -- A listed request needs its kind.
+  check (status in ('pending', 'rejected') or kind is not null),
+  created_at timestamptz not null default now(),
+  sender text not null default ''
+);
+create index if not exists face_requests_sender on public.face_requests (sender, created_at);
+create index if not exists face_requests_created on public.face_requests (created_at);
+create index if not exists face_requests_status on public.face_requests (status);
+
+create table if not exists public.face_votes (
+  request_id uuid not null references public.face_requests (id) on delete cascade,
+  voter uuid not null,
+  created_at timestamptz not null default now(),
+  sender text not null default '',
+  primary key (request_id, voter)
+);
+create index if not exists face_votes_sender on public.face_votes (sender, created_at);
+create index if not exists face_votes_created on public.face_votes (created_at);
+
+alter table public.face_requests enable row level security;
+alter table public.face_votes enable row level security;
+-- No policies on purpose: the browser reads and writes only through the three functions below.
+revoke all on table public.face_requests from anon, authenticated;
+revoke all on table public.face_votes from anon, authenticated;
+
+-- The list: listed and being-made requests with their votes, most votes first (the site ranks them the same way).
+create or replace function public.face_requests()
+returns table (id uuid, name text, kind text, votes integer, status text)
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  select r.id, r.name, r.kind, (select count(*) from public.face_votes v where v.request_id = r.id)::integer as votes, r.status
+  from public.face_requests r
+  where r.status in ('listed', 'being-made')
+  order by votes desc, r.created_at
+  limit 200;
+$$;
+
+-- A new request, pending until checked. 5 an hour from one caller, 200 an hour from everyone.
+create or replace function public.request_face(name text)
+returns void
+language plpgsql
+volatile
+security definer
+set search_path = ''
+as $$
+declare
+  who text := public.client_hash();
+  clean text := regexp_replace(btrim(coalesce(name, '')), '\s+', ' ', 'g');
+begin
+  if char_length(clean) not between 1 and 80 then
+    raise exception 'a request needs a name of 1 to 80 characters' using errcode = '22023';
+  end if;
+  if (select count(*) from public.face_requests where sender = who and created_at > now() - interval '1 hour') >= 5
+     or (select count(*) from public.face_requests where created_at > now() - interval '1 hour') >= 200 then
+    raise exception 'too many requests, try again later' using errcode = 'P0001';
+  end if;
+  insert into public.face_requests (name, sender) values (clean, who);
+end;
+$$;
+
+-- One vote from one browser for a listed request; a second vote from the same voter id counts once. 60 votes an
+-- hour from one caller, 5,000 an hour from everyone.
+create or replace function public.vote_face_request(request_id uuid, voter uuid)
+returns void
+language plpgsql
+volatile
+security definer
+set search_path = ''
+as $$
+declare
+  who text := public.client_hash();
+begin
+  if not exists (select 1 from public.face_requests r where r.id = request_id and r.status in ('listed', 'being-made')) then
+    raise exception 'no such request' using errcode = '22023';
+  end if;
+  if (select count(*) from public.face_votes where sender = who and created_at > now() - interval '1 hour') >= 60
+     or (select count(*) from public.face_votes where created_at > now() - interval '1 hour') >= 5000 then
+    raise exception 'too many votes, try again later' using errcode = 'P0001';
+  end if;
+  insert into public.face_votes (request_id, voter, sender) values (request_id, voter, who)
+  on conflict do nothing;
+end;
+$$;
+
+revoke all on function public.face_requests() from public;
+revoke all on function public.request_face(text) from public;
+revoke all on function public.vote_face_request(uuid, uuid) from public;
+grant execute on function public.face_requests() to anon, authenticated;
+grant execute on function public.request_face(text) to anon, authenticated;
+grant execute on function public.vote_face_request(uuid, uuid) to anon, authenticated;
