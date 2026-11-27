@@ -83,4 +83,6 @@ No motion values are in Figma. DESIGN.md sets page and tab changes at `--dur-pag
 
 `home-faces`, `home-builds`, `season-chip`, `face-card`, `build-card`, `version-tag`, `credit-line`, `step-row`, `step-tick`, `value-chip`, `face-progress`, `paired-build`, `embed-facade`, `limits-callout`, `filter-chip`, `search-input`, `archetype-tile`, `changelog-entry`, `submit-kind`, `submit-issue`, `submit-copy`, `site-notice`.
 
+Added 27 Nov with the face page and Home: `step-card`, `next-line`, `section-bar`, `face-resume`, `face-reset`, `face-summary`, `face-steps`, `face-picture-hero`; on Home `home-face-N` (phone avatars), `face-of-the-week`, `build-preview-N`, `view-all-builds-tile`, `home-changes`, `home-season`.
+
 Repeated items add a suffix, so IDs stay unique on a page (mockup v1, 20 Nov): `face-card-1`, `step-row-9`, `step-tick-9`, `value-chip-9`, `filter-chip-2`, `build-card-3`, `changelog-entry-1`. A tag or credit inside a card says which card: `version-tag-face-1`, `credit-line-build-2`, `version-tag-paired`. Tests match these by prefix (`[data-testid^="face-card-"]`). The full list per screen is in `mockup/interactions.json` and the mockup's DOM.

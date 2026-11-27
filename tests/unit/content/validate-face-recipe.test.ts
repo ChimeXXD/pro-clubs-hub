@@ -85,3 +85,10 @@ describe("validateFace sample recipe (D-107)", () => {
     expect(paths(withRecipe((r) => (r.screens[0].next = 3)))).toContain("sample.recipe.screens[0].next");
   });
 });
+
+describe("validateFace sample face of the week (Figma Home 364:2141)", () => {
+  it("passes a sample marked as Figma's face of the week, and fails anything but true or false", () => {
+    expect(problems(withRecipe((_, f) => (f.sample.faceOfTheWeek = true)))).toEqual([]);
+    expect(paths(withRecipe((_, f) => (f.sample.faceOfTheWeek = "yes")))).toEqual(["sample.faceOfTheWeek"]);
+  });
+});

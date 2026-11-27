@@ -10,6 +10,7 @@ import {
   FILTERS,
   groupBySeason,
   KIND_LABEL,
+  NEXT_SEASON,
   visibleGroups,
   weUpdated,
   type ChangelogItem,
@@ -126,10 +127,7 @@ export function ChangelogView({
             <Icon name="history" size={22} />
           </span>
           <span className="flex flex-1 flex-col gap-0.5">
-            {/* TODO(Chime): dated copy from the design; change it once Season 3 starts on Thu 3 Dec. */}
-            <span className="type-label text-text-primary">
-              Season 3 starts Thu 3 Dec
-            </span>
+            <span className="type-label text-text-primary">{NEXT_SEASON}</span>
             <span className="type-caption text-text-secondary">
               Every face and build is checked again that day.
             </span>

@@ -182,6 +182,7 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
     sample = true;
     c.int("sample.place", d.sample.place, { min: 1 });
     if ("recipe" in d.sample) checkSampleRecipe(c, d.sample.recipe);
+    if ("faceOfTheWeek" in d.sample) c.bool("sample.faceOfTheWeek", d.sample.faceOfTheWeek);
   }
   if ("sample" in d && c.published) c.add("sample", "published but is still a sample (D-107)");
   const folders = sample && !c.published ? ["faces/", "sample/faces/"] : ["faces/"];

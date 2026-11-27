@@ -5,7 +5,7 @@ import type { LoadedFace } from "./content/load.ts";
 import { versionWording } from "./content/version.ts";
 import { type Recipe, faceRecipe } from "./face-page.ts";
 import { KIND_LABEL } from "./faces.ts";
-import { type PairedBuildView, pairedBuildView } from "./paired-build.ts";
+import { type BuildPreviewView, buildPreviewView } from "./build-preview.ts";
 
 /** Figma 353:1442: the sample's marker in place of the Draft tag (D-113). */
 export const SAMPLE_NOTE = "Sample recipe: values are placeholders until Chime records this face.";
@@ -31,7 +31,7 @@ export interface FacePageView {
   limits: string[];
   embed: { videoId: string; title: string; channelLine: string } | null;
   recipe: Recipe;
-  paired: PairedBuildView;
+  paired: BuildPreviewView;
   storage: { id: string; version: number };
 }
 
@@ -60,7 +60,7 @@ export function facePageView(face: LoadedFace, pictureExists: (file: string) => 
     limits: face.limits.map((limit) => `${LIMIT_PREFIX}${limit}`),
     embed: embed ? { videoId: embed.videoId, title: embed.title, channelLine: `${embed.channel} · Tap to play` } : null,
     recipe: faceRecipe(face),
-    paired: pairedBuildView(face.pairedBuild, { sample }),
+    paired: buildPreviewView(face.pairedBuild, { sample }),
     storage: { id: face.id, version: face.version },
   };
 }

@@ -6,6 +6,7 @@
   "_example": "Figma's sample face (D-107, D-108): title, kind, place and stand-in picture copied from the Faces library frames (333:1139). The picture is a frame from the credited creator's YouTube tutorial, shown on the preview only. Nothing of the recipe is recorded: every PLACEHOLDER is unknown, and no value here may be published.",
   "sample": {
     "place": 2,
+    "faceOfTheWeek": true,
     "recipe": {
       "sections": [
         {
@@ -176,6 +177,11 @@
       "version": 1,
       "date": "2026-11-27",
       "note": "Figma's sample recipe, limit and tutorial from the face page frames (353:1410, 353:1524, 353:1648; D-107). The video title is YouTube's own."
+    },
+    {
+      "version": 1,
+      "date": "2026-11-27",
+      "note": "Figma's face of the week on Home (364:2141, D-107)."
     }
   ],
   "createdAt": "2026-11-26",

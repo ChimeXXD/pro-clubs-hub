@@ -2,7 +2,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { loadContent, type LoadedFace } from "@/lib/content/load";
 import { facePageView } from "@/lib/face-view";
-import { pairedBuildView } from "@/lib/paired-build";
+import { buildPreviewView } from "@/lib/build-preview";
 
 // What the face page shows around the steps (Figma 353:1410 / 427:8649 / 427:8767 and 372:1984): kind, plain title,
 // version tag (rule 4), credit line (rule 5), the sample note, the limits callout, the tutorial facade and the matching
@@ -59,13 +59,13 @@ describe("facePageView", () => {
   });
 });
 
-describe("pairedBuildView (D-79)", () => {
+describe("buildPreviewView, the matching build (D-79)", () => {
   const spark = content.builds.find((b) => b.id === "spark-2008-winger");
   const finisher = content.builds.find((b) => b.id === "meta-finisher");
 
   it("shows an unrecorded build as Figma 374:2045 draws it: archetype, not recorded yet, dashes, signature PlayStyles+", () => {
     if (!spark) throw new Error("spark-2008-winger missing");
-    expect(pairedBuildView(spark, { sample: true })).toMatchObject({
+    expect(buildPreviewView(spark, { sample: true })).toMatchObject({
       href: "/builds/spark/spark-2008-winger",
       // Figma draws "2008 WINGER"; the card shows the build file's own title (lane A owns content/builds).
       title: spark.title,
@@ -83,14 +83,14 @@ describe("pairedBuildView (D-79)", () => {
 
   it("shows a recorded build's level, height and weight and Figma's sample key stats", () => {
     if (!finisher) throw new Error("meta-finisher missing");
-    const view = pairedBuildView(finisher, { sample: true });
+    const view = buildPreviewView(finisher, { sample: true });
     expect(view.line).toBe("Level 55 · 185 cm · 80 kg");
     expect(view.keyStats.map((s) => s.value)).toEqual(["88", "80", "58", "84", "38", "66"]);
   });
 
   it("adds the version tag and credit on a real face's page (rules 4, 5)", () => {
     if (!finisher) throw new Error("meta-finisher missing");
-    const view = pairedBuildView(finisher, { sample: false });
+    const view = buildPreviewView(finisher, { sample: false });
     expect(view.versionTag).toBe("FC 27 · Season 2 · Not yet checked in game");
     expect(view.credit).toBe("Made by — (sample)");
   });

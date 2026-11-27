@@ -24,6 +24,10 @@ export const KIND_LABEL: Record<ChangelogKind, string> = {
   site: "Site", // TODO(Chime): no design entry shows the site kind; this follows its filter chip.
 };
 
+/** The season card's title on the Changelog and Home (Figma 383:3158, 364:2118). */
+// TODO(Chime): dated copy from the design; change it once Season 3 starts on Thu 3 Dec.
+export const NEXT_SEASON = "Season 3 starts Thu 3 Dec";
+
 export type Filter = "all" | ChangelogKind;
 
 export const FILTERS: readonly { value: Filter; label: string }[] = [

@@ -15,7 +15,7 @@ import {
   screenAt,
   sectionBar,
 } from "@/lib/face-page";
-import type { PairedBuildView } from "@/lib/paired-build";
+import type { BuildPreviewView } from "@/lib/build-preview";
 import { AllSteps } from "./AllSteps";
 import { DoneCard } from "./DoneCard";
 import { SectionBar } from "./SectionBar";
@@ -28,7 +28,7 @@ import { StepCard } from "./StepCard";
 // walk then still works, it just isn't remembered.
 export const RESET_TOAST = "This face was updated. Your ticks start fresh.";
 
-export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage: { id: string; version: number }; paired: PairedBuildView }) {
+export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage: { id: string; version: number }; paired: BuildPreviewView }) {
   const [step, setStep] = useState(() => firstStep(recipe));
   // Shown on arrival only; any move hides them.
   const [notice, setNotice] = useState<"resumed" | "reset" | null>(null);

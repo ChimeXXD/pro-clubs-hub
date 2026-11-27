@@ -109,6 +109,9 @@ export function loadContent(root: string, { includeDrafts = false }: LoadOptions
     if (places.has(place)) problems.push({ file: path, path: "sample.place", message: `place ${place} is used by another sample face` });
     places.add(place);
   }
+  // Home features one face of the week (Figma 364:2141).
+  const weeks = faces.filter(({ item }) => item.status !== "withdrawn" && item.sample?.faceOfTheWeek === true);
+  for (const { path } of weeks.slice(1)) problems.push({ file: path, path: "sample.faceOfTheWeek", message: "another sample face is already the face of the week" });
   // Only changelog entries and faces link; files are sorted by path, so this reports in path order.
   for (const { path, item } of [...changelog, ...faces]) {
     if (item.status !== "published") continue;

@@ -1,22 +1,24 @@
 import Link from "next/link";
 import { KeyStats } from "@/components/builds/KeyStats";
-import type { PairedBuildView } from "@/lib/paired-build";
+import type { BuildPreviewView } from "@/lib/build-preview";
 
-// Figma "Build · 2008 Winger" (374:2045; D-62's stat-strip card, D-79): bg/surface, 1 px border/subtle, 16 px corners,
-// 16 px in, 14 px apart. The build's in-game face or the ProBuilds mannequin (76 px, D-98); the name (H3) over the
-// position chips and "Level … " or "<archetype> · not recorded yet"; the six key stats; the PlayStyles+. On a real
-// face's page the version tag and credit follow (rules 4, 5); beside Figma's sample they are left out, as drawn.
+// D-62's stat-strip card as a preview: the matching build on a finished face (Figma 374:2045, D-79) and Home's meta
+// builds (364:2220, D-75). bg/surface, 1 px border/subtle, 16 px corners, 16 px in, 14 px apart. The build's in-game
+// face or the ProBuilds mannequin (76 px, D-98); the tag, if any; the name (H3) over the position chips and "Level …"
+// or "… · not recorded yet"; the six key stats; the PlayStyles+. On a real face's page the version tag and credit
+// follow (rules 4, 5); beside Figma's samples they are left out, as drawn.
 const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
 
-export function PairedBuildCard({ build }: { build: PairedBuildView }) {
+export function BuildPreviewCard({ build, testId, className = "" }: { build: BuildPreviewView; testId: string; className?: string }) {
   return (
-    <Link href={build.href} data-testid="paired-build" className="flex flex-col gap-3.5 rounded-lg border border-border-subtle bg-bg-surface p-4">
+    <Link href={build.href} data-testid={testId} className={`flex flex-col gap-3.5 rounded-lg border border-border-subtle bg-bg-surface p-4 ${className}`}>
       <div className="flex items-center gap-3.5">
         <div className="size-19 shrink-0 overflow-hidden rounded-md">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export; an SVG or a sized WebP */}
           <img src={build.picture?.src ?? "/art/probuilds-face.svg"} alt={build.picture?.alt ?? ""} width={76} height={76} className="size-full object-cover" />
         </div>
         <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5">
+          {build.tag && <span className={`type-caption rounded-full px-2.5 py-0.5 ${LIME}`}>{build.tag}</span>}
           <h3 className="type-h3 max-w-full break-words text-text-primary uppercase">{build.title}</h3>
           <div className="flex w-full flex-wrap items-center gap-1.5">
             {build.positions.map((p) => (

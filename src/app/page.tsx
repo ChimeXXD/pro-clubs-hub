@@ -1,7 +1,19 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { HomeView } from "@/components/home/HomeView";
+import { siteContent } from "@/lib/content/site-content";
+import { homeView } from "@/lib/home";
 import { SITE_NAME } from "@/lib/site";
 
-// Placeholder until the Phase 2 home page (faces first, SPEC §Routes).
+// Home (Figma 364:2118 / 367:1629 / 367:1836; D-75 to D-78). It shows once content fills every section: faces, the
+// face of the week, the three lines' builds and the latest changes. On the preview that is Figma's samples and the
+// draft changelog (D-107). probuilds.club keeps the placeholder: only a sample face can be the face of the week
+// today, and samples are never published, so Home goes live once Chime sets the rule for real faces (lib/home.ts).
+const publicDir = join(process.cwd(), "public");
+
 export default function Home() {
+  const view = homeView(siteContent(), (file) => existsSync(join(publicDir, file)));
+  if (view) return <HomeView view={view} />;
   return (
     <main>
       <h1>{SITE_NAME}</h1>
