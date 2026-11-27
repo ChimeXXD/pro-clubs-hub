@@ -45,13 +45,14 @@ export function BuildDetails({ view }: { view: BuildPageView }) {
         ))}
       </dl>
       <h2 className="type-label pt-4 text-text-secondary">PlayStyles+</h2>
-      <ul className={`${COLUMNS} gap-y-2 pt-2`}>
+      {/* Figma's phone and tablet lists are 36 px tall around 36.8 px items (298:3630, 306:794); desktop's hug them. */}
+      <ul className={`${COLUMNS} -mb-[0.8px] gap-y-2 pt-2 desktop:mb-0`}>
         {view.playStylesPlus.map((p) => (
           <li key={p.name} className="flex items-center gap-2">
             <Badge icon={p.icon} />
             <span className="flex min-w-0 flex-col">
-              {/* Figma's name line is 17 px tall, so "Signature" sits 3 px into it (298:3811). */}
-              <span className={`type-label break-words text-text-primary ${p.signature ? "-mb-0.75" : ""}`}>{p.name}</span>
+              {/* Figma's name line is 16.8 px tall, so "Signature" sits 3.2 px into it (298:3811). */}
+              <span className={`type-label break-words text-text-primary ${p.signature ? "-mb-[3.2px]" : ""}`}>{p.name}</span>
               {p.signature && <span className="type-label text-accent-text">Signature</span>}
             </span>
           </li>
@@ -102,9 +103,10 @@ function Specialization({ spec }: { spec: SpecializationView }) {
         {/* Figma sets the sample's two notes 305 px wide on phone (298:3750, 298:3771). */}
         {spec.note && <p className="type-caption max-w-[305px] pt-2 text-text-secondary tablet:max-w-none">{spec.note}</p>}
         {spec.targets.length > 0 && (
+          // Figma's target rows are 20.3 px tall, 4 px apart (every Build frame).
           <ul aria-label="Unlock targets" className="flex flex-col gap-1 pt-2">
             {spec.targets.map((t) => (
-              <li key={t.attribute} className="flex h-5 items-start justify-between gap-3">
+              <li key={t.attribute} className="flex h-[20.3px] items-start justify-between gap-3">
                 <span className="type-caption text-text-primary">{t.attribute}</span>
                 <span className="leading-[18px] whitespace-nowrap">
                   <span className={`${NUMBER_SM} text-status-warning`}>{t.value ?? "–"}</span>

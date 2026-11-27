@@ -76,3 +76,21 @@ test("sample build: the share sheet shows both story cards, the pager, Save imag
   const box = await cards.getByRole("figure", { name: "Share card 1 of 2" }).boundingBox();
   expect(box && [Math.round(box.width), Math.round(box.height)]).toEqual([225, 400]);
 });
+
+test("sample build: the Attributes heading sits where every Build frame puts it (298:3630, 306:794, 306:1286)", async ({ page }, testInfo) => {
+  // Sets its own viewports, so one project is enough.
+  test.skip(testInfo.project.name !== "phone-390", "viewport-independent of the project");
+  // Figma's target rows are 20.3 px and its PlayStyles+ list 36 px on phone and tablet (36.8 on desktop); rounding
+  // them moved everything below by up to a pixel.
+  for (const [width, y] of [[393, 1718.31], [834, 1244.31], [1440, 1093.69]] as const) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(URL);
+    await page.addStyleTag({ content: "[data-testid=preview-bar]{display:none!important}" });
+    // Positions depend on the web fonts' metrics; measure only once they are in.
+    await page.evaluate(() => document.fonts.ready);
+    const rows = page.getByRole("list", { name: "Unlock targets" }).getByRole("listitem");
+    expect((await rows.first().boundingBox())?.height).toBeCloseTo(20.3, 1);
+    const top = await page.getByRole("heading", { level: 2, name: "Attributes" }).evaluate((el) => el.getBoundingClientRect().top + scrollY);
+    expect(Math.abs(top - y), `${width}: ${top}`).toBeLessThan(0.5);
+  }
+});

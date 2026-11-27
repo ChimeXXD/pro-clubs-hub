@@ -91,3 +91,27 @@ Status: **fixed** = now as Figma draws it; **not fixed** = still different, with
 ## Across the page
 
 40. Chrome draws Barlow 14/20 and 15/20 glyphs about 1 px higher than Figma inside the same line box (the raw-values box is at y 514 in both; its glyphs start at 528 in Figma and 527 here). **Not fixed:** a renderer difference; it is why text-heavy sections score higher on the strict pixel diff.
+
+## Re-check, 27 Nov 2026 (after 1e34640)
+
+Every state frame in the table above, re-read and re-measured at 393, 834 and 1440 (Chromium, 1x, dark; full pages with the bottom nav and preview bar hidden; the 393 × 852 state frames and the share and toast frames as one viewport, nav shown as Figma draws it). The not-yet-checked state was rendered from a copy of the sample with a "reference" credit and no badge, the older-season state from a copy verified on 19 Nov with the site on Season 3; the copies were never committed. The share frames were taken in a browser with a share menu (`navigator.share`), as on a phone or iPad, so "Share via…" and the tablet share icon show (item 38).
+
+41. Figma's specialization target rows are 20.3 px tall and its PlayStyles+ name line 16.8 px (every Build frame; code 20 and 17), and the PlayStyles+ list is 36 px tall on phone and tablet around its 36.8 px items (desktop hugs them). Rounding moved everything below the specialization up to a pixel: the desktop page was 2332 px (Figma 2333) and the Attributes heading sat at 1718.9 on phone (Figma 1718.3). **Fixed:** the three values as drawn; boxes now land within 0.2 px of Figma's down the page (pinned by an e2e test). Desktop details bottom 7.0 → 4.5, desktop footer 1.8 → 1.3, phone footnote 8.1 (best match now at Figma's position plus item 40's glyph offset), tablet details top 4.5 → 3.3.
+42. The phone toast and the bottom nav both sit 6 px higher than in 319:1674 and the 393 × 852 state frames (the nav section scores 16). **Not fixed:** Toast and BottomNav are shared shell components (D-94); the shell is another unit's work. Item 39 stands.
+43. The share sheet's story cards (phone 6.7, tablet 3.0) have the same boxes as Figma (sheet at 112, title row 146, cards 206 to 606, buttons 658); the rest is their small text drawn at 0.625 scale. **Not fixed:** renderer.
+44. The level switch is 139.84 px tall in Chrome (Figma 140). Not visible; no change.
+45. Everything else matched: level 32, not yet checked, older season (Season 3 chip, warning above the badge, "verified 19 Nov 2026"), the tablet and desktop dialogs and the link-copied toasts. No change.
+
+| State | Section | 393 | 834 | 1440 |
+| --- | --- | --- | --- | --- |
+| Main | Top bar | 4.0 | 3.1 | 1.8 |
+| | Header to raw-values note | 2.9 / 2.3 / 10.9 (item 40) | summary 2.9 | summary 2.0 |
+| | Details, top to bottom (4 bands at 393 and 834, 3 at 1440) | 4.4 → 4.1, 6.1 → 5.1, 4.2 → 4.4, 4.5 → 4.8 | 4.5 → 3.3, 4.3 → 4.5, 4.2 → 4.3, 4.4 → 4.5 | 2.7 → 2.0, 3.9 → 2.2, 7.0 → 4.5 |
+| | Footnote, footer | 8.1, 5.0 | footer 2.1 | footer 1.8 → 1.3 |
+| Level 32 | Viewport (393) or summary | 3.0 (nav 16, item 42) | 3.0 | 2.1 |
+| Not yet checked | Viewport or summary | 2.7 (nav 16) | 1.8 | 1.4 |
+| Older season | Viewport or summary | 2.9 (top bar 4.5) | 2.1 (top bar 3.5) | 1.5 (top bar 2.0) |
+| Share sheet / dialog | Whole frame | sheet 6.7 (item 43; 24.8 without a share menu) | 3.0 | 2.4 |
+| Link copied | Whole frame | 6.7 (item 42) | 2.7 | 1.8 |
+
+Details bands of the other states at 834 and 1440 equal Main's (same content). The phone details bands are dense text (attribute rows); a pixel search finds each at Figma's position, and the residual is item 40.
