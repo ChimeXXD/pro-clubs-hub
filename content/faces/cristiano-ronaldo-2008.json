@@ -5,7 +5,103 @@
   "status": "draft",
   "_example": "EXAMPLE FILE. Every PLACEHOLDER value is fake. Section labels and slider end labels are real FC 27 labels seen in the editor (docs/RESEARCH.md §9); which ones a 2008 Ronaldo face needs is not known yet. Never publish this file as it is.",
   "sample": {
-    "place": 1
+    "place": 1,
+    "recipe": {
+      "sections": [
+        {
+          "name": "Preset",
+          "values": 1,
+          "screens": 1
+        },
+        {
+          "name": "Skin",
+          "values": 4,
+          "screens": 1
+        },
+        {
+          "name": "Head",
+          "values": 3,
+          "screens": 1
+        },
+        {
+          "name": "Face",
+          "values": 2,
+          "screens": 1
+        },
+        {
+          "name": "Hair",
+          "values": 4,
+          "screens": 1
+        },
+        {
+          "name": "Sculpt",
+          "values": 24,
+          "screens": 12
+        },
+        {
+          "name": "Visual Age",
+          "values": 1,
+          "screens": 1
+        }
+      ],
+      "screens": [
+        {
+          "step": 1,
+          "where": "Head › Presets",
+          "title": "Pick the preset",
+          "values": [
+            {
+              "label": "Preset",
+              "value": "147"
+            }
+          ],
+          "hint": "Count photo presets only: left to right, top to bottom. Skip your own saved heads.",
+          "next": "Customize › Skin · 4 values"
+        },
+        {
+          "step": 2,
+          "where": "Customize › Skin",
+          "title": "Skin",
+          "values": [
+            {
+              "label": "Complexion",
+              "value": "8"
+            },
+            {
+              "label": "Skin Surface",
+              "value": "33"
+            },
+            {
+              "label": "Scarring",
+              "value": "None"
+            },
+            {
+              "label": "Lip Makeup",
+              "value": "54"
+            }
+          ],
+          "hint": "Set them top to bottom, as the game lists them.",
+          "next": "Customize › Head · 3 values"
+        },
+        {
+          "step": 9,
+          "where": "Sculpt › Shape › Skeletal",
+          "title": "Eyes · Eyelid Upper",
+          "values": [
+            {
+              "label": "Down ← → Up",
+              "value": "62"
+            },
+            {
+              "label": "Narrow ← → Widen",
+              "value": "48"
+            }
+          ],
+          "hint": "Symmetry on. Each slider runs 0 to 100.",
+          "next": "Sculpt › Chin · Chin · 1 slider"
+        }
+      ]
+    }
   },
   "subject": {
     "name": "Cristiano Ronaldo",
@@ -140,7 +236,7 @@
     "percent": "PLACEHOLDER"
   },
   "limits": [
-    "PLACEHOLDER"
+    "the hairline sits a little higher than the real one."
   ],
   "pairedBuild": "spark-2008-winger",
   "screenshots": [
@@ -151,7 +247,15 @@
     }
   ],
   "turn": null,
-  "embeds": [],
+  "embeds": [
+    {
+      "provider": "youtube",
+      "videoId": "SHmX5Z8BxFs",
+      "title": "How to create CRISTIANO RONALDO in EA FC27",
+      "channel": "Xaiiros",
+      "creatorId": null
+    }
+  ],
   "version": 1,
   "versionTag": {
     "game": "fc27",
@@ -168,7 +272,7 @@
       "creatorId": null
     },
     {
-      "role": "reference",
+      "role": "tutorial",
       "name": "Xaiiros",
       "url": "https://www.youtube.com/watch?v=SHmX5Z8BxFs",
       "creatorId": null
@@ -189,8 +293,13 @@
       "version": 1,
       "date": "2026-11-26",
       "note": "Plain title (D-69). Figma's sample face: place 1 in the library and its stand-in picture, a frame from Xaiiros's YouTube tutorial (D-107, D-108)."
+    },
+    {
+      "version": 1,
+      "date": "2026-11-27",
+      "note": "Figma's sample recipe, limit and tutorial from the face page frames (353:1410, 353:1524, 353:1648; D-107). The video title is YouTube's own."
     }
   ],
   "createdAt": "2026-11-19",
-  "updatedAt": "2026-11-26"
+  "updatedAt": "2026-11-27"
 }

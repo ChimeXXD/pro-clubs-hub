@@ -8,7 +8,7 @@ import type { SubjectKind } from "./content/types.ts";
 export type FaceKind = SubjectKind;
 export type FaceFilter = "all" | FaceKind;
 
-const KIND_LABEL = { footballer: "Footballer", athlete: "Athlete", musician: "Musician" } as const satisfies Record<FaceKind, string>;
+export const KIND_LABEL = { footballer: "Footballer", athlete: "Athlete", musician: "Musician" } as const satisfies Record<FaceKind, string>;
 
 export const FACE_FILTERS: readonly { value: FaceFilter; label: string }[] = [
   { value: "all", label: "All" },

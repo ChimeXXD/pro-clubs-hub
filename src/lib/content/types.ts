@@ -162,9 +162,31 @@ export interface Face<P = never> extends Versioned {
   embeds: Embed[];
   /**
    * Figma's sample face (D-107, D-108): a draft whose picture may be Figma's stand-in, under sample/faces/. `place` is
-   * where Figma's library draws it (1 first).
+   * where Figma's library draws it (1 first). `recipe` is the sample recipe the face page frames draw, when it has one.
    */
-  sample?: { place: number };
+  sample?: { place: number; recipe?: SampleRecipe };
+}
+
+/** The face page's sections, in the game's order (D-72, D-73). */
+export const RECIPE_SECTIONS = ["Preset", "Skin", "Head", "Face", "Hair", "Sculpt", "Visual Age"] as const;
+export type RecipeSectionName = (typeof RECIPE_SECTIONS)[number];
+
+/**
+ * Figma's sample recipe (D-107), copied from the face page frames (353:1410, 353:1524, 353:1648): how many values and
+ * game screens each section has, and the screens the frames draw, by their step number. Screens no frame draws are
+ * absent, never made up, so the walk goes from one drawn screen to the next.
+ */
+export interface SampleRecipe {
+  sections: { name: RecipeSectionName; values: number; screens: number }[];
+  screens: {
+    step: number;
+    where: string;
+    title: string;
+    values: { label: string; value: string }[];
+    hint: string;
+    /** The "Next: …" line under the card, as drawn; null when no frame draws one. */
+    next: string | null;
+  }[];
 }
 
 // Builds (FORMAT §Build).

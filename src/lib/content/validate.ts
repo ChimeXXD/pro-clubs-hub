@@ -3,6 +3,7 @@
 // (archetypes, creators, builds, faces), so links between files are checked too.
 import { at, Check, isObj, STATUSES, type Obj, type Problem } from "./check.ts";
 import { checkAttributes, checkSample, checkSpend } from "./validate-build-parts.ts";
+import { checkSampleRecipe } from "./validate-face-recipe.ts";
 import { ACCELERATE_RATES, PART_TABS, POSITIONS } from "./types.ts";
 import { validateArchetypeFile, validateChangelog, validateCreators } from "./validate-other.ts";
 
@@ -180,6 +181,7 @@ export function validateFace(file: string, data: unknown, ctx: Context): Problem
   if ("sample" in d && c.obj("sample", d.sample)) {
     sample = true;
     c.int("sample.place", d.sample.place, { min: 1 });
+    if ("recipe" in d.sample) checkSampleRecipe(c, d.sample.recipe);
   }
   if ("sample" in d && c.published) c.add("sample", "published but is still a sample (D-107)");
   const folders = sample && !c.published ? ["faces/", "sample/faces/"] : ["faces/"];

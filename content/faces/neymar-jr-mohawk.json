@@ -5,7 +5,103 @@
   "status": "draft",
   "_example": "Figma's sample face (D-107, D-108): title, kind, place and stand-in picture copied from the Faces library frames (333:1139). The picture is a frame from the credited creator's YouTube tutorial, shown on the preview only. Nothing of the recipe is recorded: every PLACEHOLDER is unknown, and no value here may be published.",
   "sample": {
-    "place": 2
+    "place": 2,
+    "recipe": {
+      "sections": [
+        {
+          "name": "Preset",
+          "values": 1,
+          "screens": 1
+        },
+        {
+          "name": "Skin",
+          "values": 4,
+          "screens": 1
+        },
+        {
+          "name": "Head",
+          "values": 3,
+          "screens": 1
+        },
+        {
+          "name": "Face",
+          "values": 2,
+          "screens": 1
+        },
+        {
+          "name": "Hair",
+          "values": 4,
+          "screens": 1
+        },
+        {
+          "name": "Sculpt",
+          "values": 24,
+          "screens": 12
+        },
+        {
+          "name": "Visual Age",
+          "values": 1,
+          "screens": 1
+        }
+      ],
+      "screens": [
+        {
+          "step": 1,
+          "where": "Head › Presets",
+          "title": "Pick the preset",
+          "values": [
+            {
+              "label": "Preset",
+              "value": "147"
+            }
+          ],
+          "hint": "Count photo presets only: left to right, top to bottom. Skip your own saved heads.",
+          "next": "Customize › Skin · 4 values"
+        },
+        {
+          "step": 2,
+          "where": "Customize › Skin",
+          "title": "Skin",
+          "values": [
+            {
+              "label": "Complexion",
+              "value": "8"
+            },
+            {
+              "label": "Skin Surface",
+              "value": "33"
+            },
+            {
+              "label": "Scarring",
+              "value": "None"
+            },
+            {
+              "label": "Lip Makeup",
+              "value": "54"
+            }
+          ],
+          "hint": "Set them top to bottom, as the game lists them.",
+          "next": "Customize › Head · 3 values"
+        },
+        {
+          "step": 9,
+          "where": "Sculpt › Shape › Skeletal",
+          "title": "Eyes · Eyelid Upper",
+          "values": [
+            {
+              "label": "Down ← → Up",
+              "value": "62"
+            },
+            {
+              "label": "Narrow ← → Widen",
+              "value": "48"
+            }
+          ],
+          "hint": "Symmetry on. Each slider runs 0 to 100.",
+          "next": "Sculpt › Chin · Chin · 1 slider"
+        }
+      ]
+    }
   },
   "subject": {
     "name": "Neymar Jr",
@@ -27,7 +123,9 @@
   "parts": [],
   "sculpt": null,
   "visualAge": null,
-  "limits": [],
+  "limits": [
+    "the hairline sits a little higher than the real one."
+  ],
   "pairedBuild": "meta-finisher",
   "screenshots": [
     {
@@ -37,7 +135,15 @@
     }
   ],
   "turn": null,
-  "embeds": [],
+  "embeds": [
+    {
+      "provider": "youtube",
+      "videoId": "UOrV95yMy50",
+      "title": "How to Make SANTOS NEYMAR JR in EA FC 27 (MOHAWK)",
+      "channel": "CodeName Max",
+      "creatorId": null
+    }
+  ],
   "version": 1,
   "versionTag": {
     "game": "fc27",
@@ -54,7 +160,7 @@
       "creatorId": null
     },
     {
-      "role": "reference",
+      "role": "tutorial",
       "name": "CodeName Max",
       "url": "https://www.youtube.com/watch?v=UOrV95yMy50",
       "creatorId": null
@@ -65,8 +171,13 @@
       "version": 1,
       "date": "2026-11-26",
       "note": "Figma's sample face, copied from the Faces library frames (D-107, D-108)."
+    },
+    {
+      "version": 1,
+      "date": "2026-11-27",
+      "note": "Figma's sample recipe, limit and tutorial from the face page frames (353:1410, 353:1524, 353:1648; D-107). The video title is YouTube's own."
     }
   ],
   "createdAt": "2026-11-26",
-  "updatedAt": "2026-11-26"
+  "updatedAt": "2026-11-27"
 }
