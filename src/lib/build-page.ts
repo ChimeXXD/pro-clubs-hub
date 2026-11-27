@@ -36,7 +36,7 @@ export interface AttributeGroupView {
   name: string;
   /** The group's rating (the gauge): the sample's key stat, else null (how they are worked out is open, A-18). */
   value: number | null;
-  attributes: { name: string; value: number | string; mastery: boolean; percent: number }[];
+  attributes: { name: string; value: number | string; mastery: boolean; percent: number; body?: number }[];
 }
 
 export interface SpecializationView {

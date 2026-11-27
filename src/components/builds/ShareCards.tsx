@@ -28,11 +28,12 @@ export function ScaledCard({ scale, label, children }: { scale: number; label: s
   );
 }
 
-function Card({ page, children }: { page: string; children: ReactNode }) {
+// `page` is null on Submit a build's "Your card" (Figma 411:3019): no "1 / 2", so the logo row is the logo's 14 px.
+function Card({ page, children }: { page: string | null; children: ReactNode }) {
   return (
     // data-share-card: the node "Save images" turns into a PNG (saveShareImages.ts), at its own 360 × 640.
     <div data-share-card className="flex h-160 w-90 flex-col bg-bg-page px-6 pt-5.5 pb-5 text-left">
-      <div className="flex h-4.5 items-center justify-between">
+      <div className={`flex items-center justify-between ${page ? "h-4.5" : "h-3.5"}`}>
         <Logo size="card" />
         <span className="font-text text-[13px] leading-4.5 font-semibold text-text-muted">{page}</span>
       </div>
@@ -80,7 +81,7 @@ function Badges({ items, plus }: { items: Overview["plus"]; plus: boolean }) {
 }
 
 /** Card 1 of 2: the face, name, archetype, positions, level, height and weight, version tag and PlayStyles. */
-export function OverviewCard({ card }: { card: Overview }) {
+export function OverviewCard({ card, page = "1 / 2" }: { card: Overview; page?: string | null }) {
   const fact = (label: string, value: string) => (
     <div className="flex min-w-0 flex-1 basis-0 flex-col gap-1 border-l border-border-subtle pl-3.5">
       <p className={LABEL}>{label}</p>
@@ -88,10 +89,10 @@ export function OverviewCard({ card }: { card: Overview }) {
     </div>
   );
   return (
-    <Card page="1 / 2">
+    <Card page={page}>
       <div className="flex items-center gap-4 pt-5.5">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static export; the ProBuilds face until a picture exists */}
-        <img src="/art/probuilds-face.svg" alt="" width={104} height={104} className="size-26 shrink-0 rounded-lg" />
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export; the player's own picture (Submit a build, D-89), else the ProBuilds face */}
+        <img src={card.picture ?? "/art/probuilds-face.svg"} alt="" width={104} height={104} className="size-26 shrink-0 rounded-lg object-cover" />
         <div className="flex min-w-0 flex-col items-start gap-1.5">
           {card.badge === "Meta pick" && (
             <span className={`rounded-full bg-accent-fill px-2.25 font-text text-[13px] leading-5.5 font-semibold text-accent-on-fill ${LIME_RING}`}>Meta pick</span>
@@ -142,6 +143,12 @@ export function AttributesCard({ card, link, footer }: { card: Attributes; link:
         <p className="font-text text-[14px] leading-5 font-medium text-text-secondary">{card.subtitle}</p>
       </div>
       {card.masteryNote && <p className="pt-2 font-text text-[12px] leading-4 font-medium text-text-muted">{card.masteryNote}</p>}
+      {card.bodyNote && (
+        // Submit a build (413:3113, D-90 (3)): "±" in lime, then what height and weight add.
+        <p className="pt-2 font-text text-[12px] leading-4 font-medium text-text-muted">
+          <span className="text-accent-text">±</span> {card.bodyNote}
+        </p>
+      )}
       <div className="flex gap-5 pt-4">
         {card.columns.map((column, i) => (
           <div key={i} className="flex min-w-0 flex-1 flex-col gap-3">
@@ -156,9 +163,10 @@ export function AttributesCard({ card, link, footer }: { card: Attributes; link:
                 <ul className="flex flex-col pt-1">
                   {g.attributes.map((a) => (
                     <li key={a.name} className="flex h-4.5 items-center justify-between gap-1">
-                      <span className="font-text text-[13px] leading-4.5 font-medium text-text-secondary">
+                      <span className={`font-text text-[13px] leading-4.5 font-medium ${card.strongNames ? "text-text-primary" : "text-text-secondary"}`}>
                         {a.name}
                         {a.mastery && <span className="text-accent-text"> +2</span>}
+                        {a.body !== undefined && <span className={a.body < 0 ? "text-status-danger" : "text-accent-text"}>{` ${a.body < 0 ? "−" : "+"}${Math.abs(a.body)}`}</span>}
                       </span>
                       <span className="font-display text-[15px] leading-4.5 font-extrabold text-text-primary">{a.value}</span>
                     </li>

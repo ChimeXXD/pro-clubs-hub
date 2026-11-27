@@ -24,11 +24,17 @@ export interface ShareCardsView {
     link: string;
     /** "Made by — (sample). Not endorsed by …": the maker and the notice (rule 3). */
     footer: string;
+    /** A player's own picture on their own card (Submit a build, D-89 (2), (4)); else the ProBuilds face. */
+    picture?: string | null;
   };
   attributes: {
     /** "Meta Finisher · Level 55 · Finisher". */
     subtitle: string;
     masteryNote: string | null;
+    /** Submit a build's line after "±": what height and weight add in a match (Figma 413:3113, D-90 (3)). */
+    bodyNote?: string | null;
+    /** Submit a build's card draws the attribute names in text/primary (413:3113); the build page's in secondary. */
+    strongNames?: boolean;
     /** Two columns: Pace, Shooting, Passing; then Dribbling, Defending, Physical (and Goalkeeping). */
     columns: AttributeGroupView[][];
   };

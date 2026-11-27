@@ -49,7 +49,7 @@ export function toBuildDocument(build: LoadedBuild): Record<string, unknown> {
 }
 
 /** The validator's context for a shared build: the archetypes, and nothing else to link to. */
-function sharedContext(file: ArchetypeFile): Context {
+export function sharedContext(file: ArchetypeFile): Context {
   return {
     archetypeIds: new Set(file.archetypes.map((a) => a.id)),
     creatorIds: new Set(),

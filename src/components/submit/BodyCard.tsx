@@ -1,0 +1,96 @@
+"use client";
+
+import { bodyChanges, bodyRange, heightImperial, signed, type SubmitDraft, weightImperial } from "@/lib/submit/editor";
+import { RoundButton, Slider } from "./controls";
+
+// Figma "Height and weight" (component 431:1129, on the start step 436:8531; D-90 (1)): height and weight, each with
+// − / +, a slider across the archetype's range with its middle marked, and the range under it; then "What your body
+// changes" and the AcceleRATE it gives. Those last two are Figma's sample figures, shown only for the sample's own
+// body (src/lib/submit/editor.ts): no other body's effects are known yet (RESEARCH §10.3).
+export function BodyCard({ draft, archetypeName, onChange }: { draft: SubmitDraft; archetypeName: string; onChange: (next: Partial<SubmitDraft>) => void }) {
+  const range = bodyRange(draft.archetype);
+  const body = bodyChanges(draft);
+  return (
+    <div data-testid="submit-body" className="flex flex-col gap-4 rounded-lg bg-bg-surface p-4">
+      <Measure
+        label="Height"
+        value={draft.heightCm}
+        unit="cm"
+        imperial={heightImperial(draft.heightCm)}
+        range={range.height}
+        archetypeName={archetypeName}
+        onChange={(heightCm) => onChange({ heightCm })}
+      />
+      <hr className="border-system-divider" />
+      <Measure
+        label="Weight"
+        value={draft.weightKg}
+        unit="kg"
+        imperial={weightImperial(draft.weightKg)}
+        range={range.weight}
+        archetypeName={archetypeName}
+        onChange={(weightKg) => onChange({ weightKg })}
+      />
+      {body && (
+        <div data-testid="body-changes" className="flex flex-col gap-2.5 rounded-md bg-bg-raised p-3.5">
+          <p className="type-label text-text-primary">What your body changes</p>
+          <ul className="flex flex-wrap gap-1.5">
+            {body.changes.map((c) => (
+              <li key={c.attribute} className="flex items-center gap-1.5 rounded-full border border-border-strong px-2.5 py-1.5">
+                <span className="type-caption text-text-secondary">{c.attribute}</span>
+                <span className={`type-label ${c.delta < 0 ? "text-status-danger" : "text-accent-text"}`}>{signed(c.delta)}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="type-caption text-text-muted">Added in a match, on top of the values you type. Measured from the middle of the range.</p>
+          <div className="flex items-center gap-2 border-t border-system-divider pt-2.5">
+            <p className="type-caption min-w-0 flex-1 text-text-muted">AcceleRATE</p>
+            <p className="type-label text-text-primary">{body.accelerate}</p>
+          </div>
+          <p className="type-caption text-text-muted">{body.rule}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Measure({
+  label,
+  value,
+  unit,
+  imperial,
+  range,
+  archetypeName,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  unit: string;
+  imperial: string;
+  range: { min: number; max: number };
+  archetypeName: string;
+  onChange: (value: number) => void;
+}) {
+  const set = (next: number) => onChange(Math.min(Math.max(next, range.min), range.max));
+  return (
+    <div className="flex flex-col gap-2.5">
+      <div className="flex items-center gap-2.5">
+        <div className="flex min-w-0 flex-1 flex-col">
+          <p className="type-caption text-text-muted">{label}</p>
+          <p className="flex items-baseline gap-2" aria-live="polite">
+            <span className="type-number-lg text-text-primary">{`${value} ${unit}`}</span>
+            <span className="type-caption text-text-muted">{imperial}</span>
+          </p>
+        </div>
+        <RoundButton sign="minus" label={`${label} down`} size={44} disabled={value <= range.min} onPress={() => set(value - 1)} />
+        <RoundButton sign="plus" label={`${label} up`} size={44} disabled={value >= range.max} onPress={() => set(value + 1)} />
+      </div>
+      <Slider label={label} min={range.min} max={range.max} value={value} onChange={set} fill={false} mark />
+      <div className="type-caption grid grid-cols-[1fr_auto_1fr] text-text-muted">
+        <span>{`${range.min} ${unit}`}</span>
+        <span>{`${archetypeName} range`}</span>
+        <span className="text-right">{`${range.max} ${unit}`}</span>
+      </div>
+    </div>
+  );
+}

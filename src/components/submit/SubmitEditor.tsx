@@ -1,0 +1,226 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { COPIED, ShareSheet, type ShareSheetHandle } from "@/components/builds/ShareSheet";
+import { Toast } from "@/components/ui/Toast";
+import type { ArchetypeFile, PositionGroup } from "@/lib/content/types";
+import { SITE_DOMAIN } from "@/lib/site";
+import { submitShareCards, toSubmission } from "@/lib/submit/document";
+import { type SubmitDraft, titleOf } from "@/lib/submit/editor";
+import { makeShareLink, sendForListing, type StandIn, standInFrom } from "@/lib/submit/send";
+import { SUPABASE } from "@/lib/supabase/client";
+import { ActionsBar } from "./controls";
+import { SentForListing } from "./SentForListing";
+import { hasAttributeError, StepAttributes } from "./StepAttributes";
+import { StepNameShare } from "./StepNameShare";
+import { StepPlayStyles } from "./StepPlayStyles";
+import { StepStart } from "./StepStart";
+
+// Submit a build (D-85 to D-90, D-99, D-100): four steps and "Sent for listing", all on /submit. Phone hides the
+// bottom nav on steps 1 to 3 (Figma draws them with a sticky actions bar instead) and shows it, on Submit, from
+// step 4. On the preview, ?state= opens each state Figma draws (start, attributes, attributes-error, playstyles,
+// name, share, sent, send-failed), and ?send=fail / ?share=fail make the stand-in fail (src/lib/submit/send.ts).
+type Step = 1 | 2 | 3 | 4 | "sent";
+const FAILED = "Couldn't send. Check your connection and try again.";
+const TOAST_MS = 4000;
+const today = () => new Date().toISOString().slice(0, 10);
+
+// `preview`: the build shows drafts (SHOW_DRAFTS is read on the server; the browser bundle doesn't have it).
+export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; initial: SubmitDraft; preview: boolean }) {
+  const [step, setStep] = useState<Step>(1);
+  const [draft, setDraft] = useState(initial);
+  const [group, setGroup] = useState<PositionGroup>(() => file.archetypes.find((a) => a.id === initial.archetype)?.positionGroup ?? "attacker");
+  const [active, setActive] = useState("PAC");
+  const [open, setOpen] = useState<0 | 1 | null>(null);
+  const [picture, setPicture] = useState<string | null>(null);
+  const [link, setLink] = useState<{ key: string; id: string } | null>(null);
+  const [send, setSend] = useState<"idle" | "sending" | "failed">("idle");
+  const [toast, setToast] = useState<{ id: number; message: string; tone: "success" | "danger" } | null>(null);
+  const standIn = useRef<{ send: StandIn | null; share: StandIn | null }>({ send: null, share: null });
+  const sheet = useRef<ShareSheetHandle>(null);
+  const main = useRef<HTMLElement>(null);
+  // The short link being made for a version of the build, so a second tap doesn't store it twice.
+  const making = useRef<{ key: string; promise: Promise<string> } | null>(null);
+  // The picture's object URL, revoked when it is swapped or the editor goes away.
+  const pictureUrl = useRef<string | null>(null);
+
+  const archetype = file.archetypes.find((a) => a.id === draft.archetype) ?? file.archetypes[0]!;
+  const submission = useMemo(() => toSubmission(draft, file, today()), [draft, file]);
+  const key = useMemo(() => JSON.stringify(submission.document), [submission]);
+  const shareId = link?.key === key ? link.id : null;
+  const cards = useMemo(() => submitShareCards(draft, file, { link: shareId, picture }), [draft, file, shareId, picture]);
+  const change = (next: Partial<SubmitDraft> | ((d: SubmitDraft) => SubmitDraft)) =>
+    setDraft((d) => (typeof next === "function" ? next(d) : { ...d, ...next }));
+
+  /** One of Figma's states, opened from the address on the preview (?state=). */
+  const openState = (state: string | null) => {
+    if (state === "attributes" || state === "attributes-error") {
+      setStep(2);
+      setActive("SHO");
+      if (state === "attributes-error") change((d) => ({ ...d, attributes: d.attributes.map((a) => (a.name === "Finishing" ? { ...a, value: 100 } : a)) }));
+      else
+        requestAnimationFrame(() => {
+          // Figma 399:3121 draws Finishing being typed in: focused, the caret after "92".
+          const input = document.getElementById("attr-finishing") as HTMLInputElement | null;
+          input?.focus({ preventScroll: true });
+          input?.setSelectionRange(input.value.length, input.value.length);
+        });
+    } else if (state === "playstyles") {
+      setStep(3);
+      setOpen(1);
+    } else if (state === "name" || state === "share" || state === "send-failed") {
+      setStep(4);
+      if (state === "send-failed") setSend("failed");
+      if (state === "share") requestAnimationFrame(() => sheet.current?.open(null));
+    } else if (state === "sent") setStep("sent");
+  };
+  const openStateOnce = useRef(openState);
+
+  // The preview's stand-in and its sample states, read once from the address.
+  useEffect(() => {
+    const where = { drafts: preview, config: SUPABASE, search: window.location.search };
+    standIn.current = { send: standInFrom(where, "send"), share: standInFrom(where, "share") };
+    if (preview) openStateOnce.current(new URLSearchParams(window.location.search).get("state"));
+  }, [preview]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), TOAST_MS);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  // A new step starts at the top, with focus on its heading for screen readers.
+  const go = (next: Step) => {
+    setStep(next);
+    setOpen(null);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      main.current?.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
+    });
+  };
+
+  /** The build's short link, made once per version of the build (D-99 (2)); throws when it can't be made. */
+  const makeLink = async (): Promise<string> => {
+    if (submission.problems.length > 0) throw new Error(submission.problems.map((p) => `${p.path}: ${p.message}`).join("; "));
+    if (shareId) return `https://${SITE_DOMAIN}/b/${shareId}`;
+    if (making.current?.key !== key) {
+      const promise = makeShareLink(submission.document, { config: SUPABASE, standIn: standIn.current.share }).then((id) => {
+        setLink({ key, id });
+        return id;
+      });
+      // A failed try is forgotten, so the next tap tries again.
+      promise.catch(() => {
+        if (making.current?.promise === promise) making.current = null;
+      });
+      making.current = { key, promise };
+    }
+    return `https://${SITE_DOMAIN}/b/${await making.current.promise}`;
+  };
+  /** The same, for the page's Copy link: null, with the red toast, when it can't be made. */
+  const resolveLink = async (): Promise<string | null> => {
+    try {
+      return await makeLink();
+    } catch (error) {
+      console.warn("Share link wasn't made", error);
+      setToast({ id: Date.now(), message: FAILED, tone: "danger" });
+      return null;
+    }
+  };
+  // The link starts being made as the sheet opens; a failure shows only when the sheet asks for it (its own toast,
+  // since a page toast sits under the open sheet).
+  const share = (from: HTMLElement | null) => {
+    sheet.current?.open(from);
+    makeLink().catch((error) => console.warn("Share link wasn't made", error));
+  };
+  const copy = async () => {
+    const url = await resolveLink();
+    if (!url) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      setToast({ id: Date.now(), message: COPIED, tone: "success" });
+    } catch {
+      // The clipboard was refused: nothing changes.
+    }
+  };
+  const sendIt = async () => {
+    if (send === "sending") return;
+    setSend("sending");
+    try {
+      if (submission.problems.length > 0) throw new Error(submission.problems.map((p) => `${p.path}: ${p.message}`).join("; "));
+      await sendForListing(submission.document, { config: SUPABASE, standIn: standIn.current.send });
+      setSend("idle");
+      go("sent");
+    } catch (error) {
+      console.warn("Send for listing didn't go through", error);
+      setSend("failed");
+    }
+  };
+  const setPictureFile = (f: File | null) => {
+    if (pictureUrl.current) URL.revokeObjectURL(pictureUrl.current);
+    pictureUrl.current = f && f.type.startsWith("image/") ? URL.createObjectURL(f) : null;
+    setPicture(pictureUrl.current);
+  };
+  useEffect(
+    () => () => {
+      if (pictureUrl.current) URL.revokeObjectURL(pictureUrl.current);
+      pictureUrl.current = null;
+    },
+    [],
+  );
+  const another = () => {
+    setDraft(initial);
+    setGroup(file.archetypes.find((a) => a.id === initial.archetype)?.positionGroup ?? "attacker");
+    setPictureFile(null);
+    setLink(null);
+    making.current = null;
+    setSend("idle");
+    go(1);
+  };
+
+  const wide = step === 2 || step === 3;
+  return (
+    <main ref={main} data-testid="submit" data-step={step} className="flex flex-col">
+      {/* Steps 1 to 3 have their own actions bar where the bottom nav sits on phone (Figma hides the nav there). */}
+      {typeof step === "number" && step < 4 && <style>{"[data-testid=bottom-nav],[data-testid=bottom-nav-space]{display:none}"}</style>}
+      <div
+        className={`flex flex-col px-5 tablet:px-10 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0 ${
+          step === "sent"
+            ? "pt-14 pb-12 tablet:pt-18 tablet:pb-30"
+            : wide
+              ? `pb-6 tablet:pt-16 ${step === 3 ? "tablet:pb-6 desktop:pb-0" : "tablet:pb-0"}`
+              : step === 4
+                ? "pt-10 pb-8 tablet:pt-16 tablet:pb-30"
+                : "pt-10 pb-8 tablet:pt-16 tablet:pb-0"
+        }`}
+      >
+        {step === 1 && <StepStart file={file} draft={draft} group={group} onGroup={setGroup} onChange={change} />}
+        {step === 2 && <StepAttributes draft={draft} archetype={archetype} active={active} onActive={setActive} onChange={change} />}
+        {step === 3 && <StepPlayStyles draft={draft} archetype={archetype} open={open} onOpen={setOpen} onChange={change} />}
+        {step === 4 && (
+          <StepNameShare
+            draft={draft}
+            cards={cards}
+            picture={picture}
+            sending={send === "sending"}
+            failed={send === "failed"}
+            onChange={change}
+            onPicture={setPictureFile}
+            onShare={share}
+            onCopy={copy}
+            onSend={sendIt}
+          />
+        )}
+        {step === "sent" && <SentForListing onShare={share} onAnother={another} />}
+      </div>
+      {typeof step === "number" && step < 4 && (
+        <div className="tablet:px-10 tablet:pb-30 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
+          {step === 1 && <ActionsBar next={{ label: "Attributes", onPress: () => go(2) }} nextWidth="tablet:w-70 desktop:w-80" gap="tablet:pt-8 desktop:pt-10" />}
+          {step === 2 && <ActionsBar back={() => go(1)} next={{ label: "PlayStyles", onPress: () => go(3), disabled: hasAttributeError(draft) }} />}
+          {step === 3 && <ActionsBar back={() => go(2)} next={{ label: "Review", onPress: () => go(4) }} />}
+        </div>
+      )}
+      <ShareSheet ref={sheet} title={titleOf(draft, archetype)} share={cards} linkUrl={makeLink} linkFailed={FAILED} />
+      <Toast id={toast?.id} message={toast?.message ?? null} tone={toast?.tone} />
+    </main>
+  );
+}
