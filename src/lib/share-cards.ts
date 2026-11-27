@@ -49,6 +49,24 @@ interface CardInput {
   attributeGroups: AttributeGroupView[];
 }
 
+/** "Meta Finisher · Level 55 · Finisher", under ATTRIBUTES on card 2. */
+const attributesSubtitle = (title: string, level: string, archetype: string) => `${title} · Level ${level} · ${archetype}`;
+
+/**
+ * The cards at the level picked with the level switch (Figma 492:9586, 492:9695, D-114 (3)): only the level changes,
+ * on card 1's LEVEL and card 2's subtitle. The attributes stay as built until each archetype's prices are known
+ * (O-14). With no level picked, or the build's own, the cards as built.
+ */
+export function shareCardsAtLevel(view: ShareCardsView, level: number | null): ShareCardsView {
+  if (level === null || String(level) === view.overview.level) return view;
+  const at = String(level);
+  return {
+    ...view,
+    overview: { ...view.overview, level: at },
+    attributes: { ...view.attributes, subtitle: attributesSubtitle(view.overview.title, at, view.overview.archetype.name) },
+  };
+}
+
 /** One build, worded for its two share cards. */
 export function shareCardsView(build: LoadedBuild, input: CardInput): ShareCardsView {
   const half = Math.ceil(input.attributeGroups.length / 2);
@@ -70,7 +88,7 @@ export function shareCardsView(build: LoadedBuild, input: CardInput): ShareCards
       footer: [input.maker ? `${input.maker}.` : null, NOTICE].filter(Boolean).join(" "),
     },
     attributes: {
-      subtitle: `${input.title} · Level ${build.level} · ${input.archetype.name}`,
+      subtitle: attributesSubtitle(input.title, String(build.level), input.archetype.name),
       // The Mastery +2 attributes reach it by level 55 (RESEARCH §10.6), the same for every archetype.
       masteryNote: mastery ? `+2 is Mastery: levelling ${mastery} to 55 adds it. Not included in the values.` : null,
       columns: [input.attributeGroups.slice(0, half), input.attributeGroups.slice(half)],

@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import { BuildPageView } from "@/components/builds/BuildPageView";
 import { nearestLevel, stepLevel } from "@/lib/build-level";
 import { buildPageView } from "@/lib/build-page";
+import { shareCardsAtLevel } from "@/lib/share-cards";
 import { loadContent, type LoadedBuild } from "@/lib/content/load";
 
 // Figma's sample build (D-107), drawn in the Build frames (298:3630 / 306:794 / 306:1286), the level-32 state
@@ -75,6 +76,18 @@ describe("the sample build's page (D-107)", () => {
     expect(view.footnote).toBe(
       "Draft only: PlayStyle icons are EA's art, archetype emblems are Pro Clubs HQ's tracings and the stances are Chime's screenshots. None of them ships as is.",
     );
+  });
+
+  it("words the share cards at the level picked on the page, and only the level changes (492:9586, 492:9695, D-114 (3))", () => {
+    const at32 = shareCardsAtLevel(view.share, 32);
+    expect(at32.overview.level).toBe("32");
+    expect(at32.attributes.subtitle).toBe("Meta Finisher · Level 32 · Finisher");
+    expect({ ...at32.overview, level: "55" }).toEqual(view.share.overview);
+    expect(at32.attributes.columns).toEqual(view.share.attributes.columns);
+    expect(at32.files).toEqual(view.share.files);
+    // The build's own level, or none picked: the cards as built.
+    expect(shareCardsAtLevel(view.share, null)).toBe(view.share);
+    expect(shareCardsAtLevel(view.share, 55)).toEqual(view.share);
   });
 
   it("words the two share cards as drawn", () => {

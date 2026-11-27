@@ -47,6 +47,27 @@
   }
 }
 
+/* Save images' button spinner (Figma Spinner 199:351): one turn, linear, repeated while the images are made. */
+@keyframes spinner-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* EA's white PlayStyle badges (public/art/playstyles, D-39), set with style --art: url(...). Dark mode draws the art
+   as it is. Light mode tints it text/primary through its own alpha, as Figma's "tinted for light" layers do (an
+   alpha mask of the art over a text/primary fill, 491:9586; D-114 (4)), so the white badge doesn't vanish on cream.
+   html-to-image embeds both the background and the mask, so the saved story cards keep the tint. */
+@utility playstyle-art {
+  display: inline-block;
+  flex-shrink: 0;
+  background: var(--art) center / contain no-repeat;
+  &:where(:root[data-theme="light"] *) {
+    background: var(--color-text-primary);
+    mask: var(--art) center / contain no-repeat;
+  }
+}
+
 @keyframes at-rest {
   0%,
   99% {

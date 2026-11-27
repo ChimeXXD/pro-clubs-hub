@@ -3,11 +3,14 @@ import { Logo } from "@/components/shell/Logo";
 import type { ShareCardsView } from "@/lib/share-cards";
 import { CARD } from "@/lib/share-images";
 import { Emblem } from "./Emblem";
+import { PlayStyleArt } from "./PlayStyleArt";
 
 // The two story cards (Figma 316:888 "Overview" and 316:973 "Attributes", D-64), drawn at their own 360 × 640 and
 // scaled to fit the share sheet (0.625 on phone, 225 × 400) and the dialog (0.75 from tablet, 270 × 480).
 // TODO(Chime): the cards' type isn't on text styles in Figma; built as drawn (sizes below). Label tracking is 6 %.
 const CONDENSED = "font-display font-extrabold uppercase";
+// Lime chips get a 1 px inside ring in accent/on-fill in light mode, as on the page (D-37, D-102 (5); 489:10199).
+const LIME_RING = "light:ring-1 light:ring-accent-on-fill light:ring-inset";
 const LABEL = "font-text text-[12px] leading-4 font-semibold tracking-[0.06em] text-text-muted uppercase";
 
 type Overview = ShareCardsView["overview"];
@@ -61,11 +64,13 @@ function Badges({ items, plus }: { items: Overview["plus"]; plus: boolean }) {
     <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
       {items.map((p) => (
         <li key={p.name} className="flex h-6 items-center gap-2">
-          {p.icon ? (
+          {!p.icon ? (
+            <span aria-hidden="true" className="size-5.5 shrink-0" />
+          ) : plus ? (
             // eslint-disable-next-line @next/next/no-img-element -- static export, files already sized
             <img src={p.icon} alt="" width={22} height={22} className="size-5.5 shrink-0" />
           ) : (
-            <span aria-hidden="true" className="size-5.5 shrink-0" />
+            <PlayStyleArt src={p.icon} className="size-5.5" />
           )}
           <span className={`font-text text-[14px] leading-5 ${plus ? "font-semibold text-text-primary" : "font-medium text-text-secondary"}`}>{p.name}</span>
         </li>
@@ -89,7 +94,7 @@ export function OverviewCard({ card }: { card: Overview }) {
         <img src="/art/probuilds-face.svg" alt="" width={104} height={104} className="size-26 shrink-0 rounded-lg" />
         <div className="flex min-w-0 flex-col items-start gap-1.5">
           {card.badge === "Meta pick" && (
-            <span className="rounded-full bg-accent-fill px-2.25 font-text text-[13px] leading-5.5 font-semibold text-accent-on-fill">Meta pick</span>
+            <span className={`rounded-full bg-accent-fill px-2.25 font-text text-[13px] leading-5.5 font-semibold text-accent-on-fill ${LIME_RING}`}>Meta pick</span>
           )}
           <p className={`${CONDENSED} text-[34px] leading-8 text-text-primary`}>{card.title}</p>
           <div className="flex items-center gap-1.5">
@@ -103,7 +108,7 @@ export function OverviewCard({ card }: { card: Overview }) {
           <p className={LABEL}>Positions</p>
           <div className="flex gap-1">
             {card.positions.map((p) => (
-              <span key={p} className="rounded-xs bg-accent-fill px-1.5 py-px font-text text-[14px] leading-5 font-semibold text-accent-on-fill">
+              <span key={p} className={`rounded-xs bg-accent-fill px-1.5 py-px font-text text-[14px] leading-5 font-semibold text-accent-on-fill ${LIME_RING}`}>
                 {p}
               </span>
             ))}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CARD, PIXEL_RATIO, restoreFontSizes, saveMode, shareImageNames, STORY, styleProperties } from "@/lib/share-images";
+import { CARD, PIXEL_RATIO, restoreFontSizes, SAVE_TOAST, saveMode, saveState, shareImageNames, STORY, styleProperties } from "@/lib/share-images";
 
 // "Save images" (D-64 (2), D-111): the two story cards as 1080 × 1920 PNGs, named from the build's slug, handed to
 // the phone's share sheet where it takes files, downloaded otherwise.
@@ -9,6 +9,17 @@ describe("share images", () => {
     expect(STORY).toEqual({ width: 1080, height: 1920 });
     expect(PIXEL_RATIO).toBe(3);
     expect([CARD.width * PIXEL_RATIO, CARD.height * PIXEL_RATIO]).toEqual([STORY.width, STORY.height]);
+  });
+
+  it("words the Save images toasts as Figma draws them (493:9624 to 493:15977, D-114 (2))", () => {
+    expect(SAVE_TOAST.saving).toEqual({ tone: "info", icon: "download", message: "Making your images…" });
+    expect(SAVE_TOAST.photos).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your photos." });
+    expect(SAVE_TOAST.downloads).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your downloads." });
+    expect(SAVE_TOAST.failed).toEqual({ tone: "danger", icon: "error", message: "Couldn't save the images. Try again." });
+    // Handed to the share sheet (a phone or iPad: Photos), downloaded (desktop), or the share sheet closed: no toast.
+    expect(saveState("shared")).toBe("photos");
+    expect(saveState("downloaded")).toBe("downloads");
+    expect(saveState("cancelled")).toBeNull();
   });
 
   it("names the two files from the build's slug", () => {

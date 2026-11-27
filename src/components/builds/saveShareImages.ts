@@ -10,7 +10,7 @@
 // html-to-image makes the SVG (toSvg); the drawing is done here rather than by its toBlob, so two of its quirks can be
 // undone first (restoreFontSizes, styleProperties: see src/lib/share-images.ts).
 import { getFontEmbedCSS, toSvg } from "html-to-image";
-import { CARD, PIXEL_RATIO, restoreFontSizes, saveMode, styleProperties } from "@/lib/share-images";
+import { CARD, PIXEL_RATIO, restoreFontSizes, type SaveOutcome, saveMode, styleProperties } from "@/lib/share-images";
 
 const IMAGE_WAIT_MS = 3000;
 
@@ -89,8 +89,11 @@ function download(files: File[]) {
   }
 }
 
-/** Renders the cards and shares them where the device takes files, else downloads them, one file per name. */
-export async function saveShareImages(cards: HTMLElement[], names: readonly string[]) {
+/**
+ * Renders the cards and shares them where the device takes files, else downloads them, one file per name. Resolves
+ * with how it ended (the toast says so); throws when the images couldn't be made.
+ */
+export async function saveShareImages(cards: HTMLElement[], names: readonly string[]): Promise<SaveOutcome> {
   // One card per name, or the files would be missing or misnamed.
   if (cards.length !== names.length) throw new Error(`Save images: ${cards.length} cards shown for ${names.length} files`);
   const blobs = await renderCards(cards);
@@ -98,12 +101,13 @@ export async function saveShareImages(cards: HTMLElement[], names: readonly stri
   if (saveMode(navigator, files) === "share") {
     try {
       await navigator.share({ files });
-      return;
+      return "shared";
     } catch (e) {
       // Closing the share sheet is the person's choice: nothing more to do.
-      if (e instanceof DOMException && e.name === "AbortError") return;
+      if (e instanceof DOMException && e.name === "AbortError") return "cancelled";
       // Anything else (NotAllowedError when the tap's permission ran out while drawing): download them instead.
     }
   }
   download(files);
+  return "downloaded";
 }

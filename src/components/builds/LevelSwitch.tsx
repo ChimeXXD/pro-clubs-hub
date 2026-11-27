@@ -3,6 +3,7 @@
 import { type ChangeEvent, useState } from "react";
 import { Callout } from "@/components/ui/Callout";
 import { type LevelsView, nearestLevel, stepLevel } from "@/lib/build-level";
+import { useChosenLevel } from "./ChosenLevel";
 
 // Figma "Section - Your level" (298:3669) and its level-32 state (371:1697): "Your level" with − / + around the
 // number, the AP line, and a slider whose knob sits at level ÷ 55 along the track. A level short of the build adds
@@ -16,7 +17,13 @@ import { type LevelsView, nearestLevel, stepLevel } from "@/lib/build-level";
 const STEP = "flex size-11 items-center justify-center font-text text-[22px] leading-[22px] font-bold text-text-primary";
 
 export function LevelSwitch({ levels }: { levels: LevelsView }) {
-  const [level, setLevel] = useState(levels.initial);
+  const [level, setOwn] = useState(levels.initial);
+  // The story cards follow the level picked here (D-114 (3)).
+  const { choose } = useChosenLevel();
+  const setLevel = (next: number) => {
+    setOwn(next);
+    choose(next);
+  };
   const drawn = levels.states.map((s) => s.level);
   const state = levels.states.find((s) => s.level === level) ?? levels.states[0];
   if (!state) return null;

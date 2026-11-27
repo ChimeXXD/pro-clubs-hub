@@ -1,23 +1,15 @@
 import Link from "next/link";
 import { buttonClass } from "@/components/ui/Button";
 import type { ArchetypeView } from "@/lib/builds";
+import { PlayStyleArt } from "./PlayStyleArt";
 
 // The selected archetype's facts under or beside its Stance card, all from content/archetypes/fc27.json.
 
 function Badge({ icon }: { icon: string }) {
   // EA's PlayStyle badge (D-39), 48 px, from Figma PlayStyle/… (Tier=PlayStyle). The name beside it is the label.
-  // The badge is a white diamond, which vanishes on the cream light-mode page, so light mode outlines it in ink.
-  // TODO(Chime): no light-mode PlayStyle badge in Figma yet; the outline is a stand-in.
-  return (
-    // eslint-disable-next-line @next/next/no-img-element -- static export, files already sized (2x)
-    <img
-      src={icon}
-      alt=""
-      width={48}
-      height={48}
-      className="size-12 shrink-0 light:drop-shadow-[0_0_1px_var(--color-text-primary)]"
-    />
-  );
+  // The badge is a white diamond, which vanishes on the cream light-mode page, so light mode tints it text/primary,
+  // as Figma tints it on the light story cards (D-114 (4)).
+  return <PlayStyleArt src={icon} className="size-12" />;
 }
 
 function BuildsLink({ archetype, className }: { archetype: ArchetypeView; className: string }) {

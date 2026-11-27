@@ -2,4 +2,4 @@
 export type IconName =
   | "home" | "faces" | "builds" | "changelog" | "submit" | "search"
   | "chevron-up" | "chevron-down" | "chevron-left" | "chevron-right" | "copy" | "external" | "check-circle" | "play" | "history"
-  | "plus" | "close" | "share" | "warning" | "arrow-right" | "download";
+  | "plus" | "close" | "share" | "warning" | "arrow-right" | "download" | "error" | "spinner";

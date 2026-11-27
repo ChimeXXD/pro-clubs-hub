@@ -14,6 +14,27 @@ export function shareImageNames(slug: string): [string, string] {
   return [`${slug}-1.png`, `${slug}-2.png`];
 }
 
+/** How Save images ended: handed to the share sheet, downloaded, or the share sheet closed by the person. */
+export type SaveOutcome = "shared" | "downloaded" | "cancelled";
+export type SaveState = "saving" | "photos" | "downloads" | "failed";
+
+/**
+ * The cream toasts for Save images, word for word from Figma (493:9624 to 493:15977, D-114 (2)): while the images are
+ * made, when they are saved (to Photos through the share sheet on a phone or iPad, to downloads on a computer) and
+ * when they couldn't be made.
+ */
+export const SAVE_TOAST = {
+  saving: { tone: "info", icon: "download", message: "Making your images…" },
+  photos: { tone: "success", icon: "check-circle", message: "Both cards saved to your photos." },
+  downloads: { tone: "success", icon: "check-circle", message: "Both cards saved to your downloads." },
+  failed: { tone: "danger", icon: "error", message: "Couldn't save the images. Try again." },
+} as const satisfies Record<SaveState, { tone: "info" | "success" | "danger"; icon: string; message: string }>;
+
+/** The toast for how it ended; none when the person closed the share sheet (their choice, nothing was saved). */
+export function saveState(outcome: SaveOutcome): SaveState | null {
+  return outcome === "shared" ? "photos" : outcome === "downloaded" ? "downloads" : null;
+}
+
 type ShareNavigator = { canShare?: (data?: ShareData) => boolean; share?: (data?: ShareData) => Promise<void> };
 
 /**

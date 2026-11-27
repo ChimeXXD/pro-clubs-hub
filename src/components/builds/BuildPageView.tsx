@@ -5,6 +5,7 @@ import { type BuildPageView as View, PICTURE_CAPTION, RAW_VALUES_NOTE } from "@/
 import { BuildAttributes } from "./BuildAttributes";
 import { LIME } from "./BuildCard";
 import { BuildDetails } from "./BuildDetails";
+import { ChosenLevel } from "./ChosenLevel";
 import { Emblem } from "./Emblem";
 import { KeyStats } from "./KeyStats";
 import { LevelSwitch } from "./LevelSwitch";
@@ -19,35 +20,38 @@ import { ShareBuild } from "./ShareBuild";
 export function BuildPageView({ view }: { view: View }) {
   const raw = <p className="type-caption pt-2 text-text-secondary">{RAW_VALUES_NOTE}</p>;
   return (
-    <main className="flex flex-col px-5 pt-6 pb-8 tablet:gap-6 tablet:px-10 tablet:pb-16 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
-      <Breadcrumb
-        links={[
-          { href: `/builds#${view.archetype.id}`, label: "Builds" },
-          { href: `/builds/${view.archetype.id}`, label: view.archetype.name },
-        ]}
-        current={view.title}
-      />
-      <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-10 desktop:gap-16">
-        <div className="flex flex-col tablet:w-75 tablet:shrink-0 tablet:gap-6 desktop:w-100">
-          {/* Figma 371:2719 / 427:5557: the warning tops the summary column, above the badge. */}
-          {view.olderSeason && (
-            <div data-testid="older-season">
-              <Callout>{view.olderSeason}</Callout>
-            </div>
-          )}
-          <BuildHeader view={view} />
-          {view.levels && <LevelSwitch levels={view.levels} />}
-          <div className="tablet:hidden">{raw}</div>
-          <BuildHero view={view} />
+    // The level switch tells Share build which level the story cards show (D-114 (3)).
+    <ChosenLevel>
+      <main className="flex flex-col px-5 pt-6 pb-8 tablet:gap-6 tablet:px-10 tablet:pb-16 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
+        <Breadcrumb
+          links={[
+            { href: `/builds#${view.archetype.id}`, label: "Builds" },
+            { href: `/builds/${view.archetype.id}`, label: view.archetype.name },
+          ]}
+          current={view.title}
+        />
+        <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-10 desktop:gap-16">
+          <div className="flex flex-col tablet:w-75 tablet:shrink-0 tablet:gap-6 desktop:w-100">
+            {/* Figma 371:2719 / 427:5557: the warning tops the summary column, above the badge. */}
+            {view.olderSeason && (
+              <div data-testid="older-season">
+                <Callout>{view.olderSeason}</Callout>
+              </div>
+            )}
+            <BuildHeader view={view} />
+            {view.levels && <LevelSwitch levels={view.levels} />}
+            <div className="tablet:hidden">{raw}</div>
+            <BuildHero view={view} />
+          </div>
+          <div className="flex min-w-0 flex-1 flex-col tablet:gap-6">
+            <div className="hidden tablet:block">{raw}</div>
+            <BuildDetails view={view} />
+            <BuildAttributes groups={view.attributeGroups} mastery={view.mastery} />
+            {view.footnote && <p className="type-caption py-1 text-text-secondary">{view.footnote}</p>}
+          </div>
         </div>
-        <div className="flex min-w-0 flex-1 flex-col tablet:gap-6">
-          <div className="hidden tablet:block">{raw}</div>
-          <BuildDetails view={view} />
-          <BuildAttributes groups={view.attributeGroups} mastery={view.mastery} />
-          {view.footnote && <p className="type-caption py-1 text-text-secondary">{view.footnote}</p>}
-        </div>
-      </div>
-    </main>
+      </main>
+    </ChosenLevel>
   );
 }
 

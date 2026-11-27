@@ -115,3 +115,32 @@ Every state frame in the table above, re-read and re-measured at 393, 834 and 14
 | Link copied | Whole frame | 6.7 (item 42) | 2.7 | 1.8 |
 
 Details bands of the other states at 834 and 1440 equal Main's (same content). The phone details bands are dense text (attribute rows); a pixel search finds each at Figma's position, and the residual is item 40.
+
+## D-114: Save images feedback, light story cards, cards at the chosen level, tinted PlayStyle icons (27 Nov 2026)
+
+Frames: Save images saving / saved / failed at 393, 834, 1440 (493:9624, 493:10426, 493:11223; 493:12020, 493:12812, 493:13603; 493:14394, 493:15186, 493:15977); light story cards 489:10199, 489:10276; cards at level 32 492:9586, 492:9695. The story cards are compared as the PNGs Save images makes (1080 × 1920, scaled to 360 × 640), not as screenshots: those files are what people keep.
+
+46. No feedback while saving, no saved or failed state; a failure was only logged. **Built:** the cream Toast with Figma's tones (info with the download icon, success with the check, danger with Figma's error icon in status/danger-bg) and its copy word for word: "Making your images…", "Both cards saved to your photos." when handed to the share sheet (phone, iPad), "Both cards saved to your downloads." when downloaded (computer), "Couldn't save the images. Try again." The outcome picks the wording, which gives Figma's wording on each device it draws. Closing the share sheet shows nothing (nothing was saved; Figma draws no state for it). The outcome toasts leave after 4 s; "Making your images…" stays until done.
+47. The save toasts sit over the open sheet or dialog: 34 px from the top on phone, 40 px from the bottom on tablet, 24 px on desktop (below the dialog). **Built** inside the dialog, so they are in the top layer with it; the Toast's live region stays mounted.
+48. While saving, Save images shows Figma's spinner (199:351, a three-quarter ring 22.5 px in a 20 px box) in place of the download icon. **Built:** one turn in 0.8 s, linear; 2.4 s with reduced motion (gentler, not none). The button is aria-busy and ignores a second tap.
+49. The story cards and their images showed the build's own level. **Fixed:** they show the level picked with the level switch (card 1's LEVEL, card 2's subtitle "Meta Finisher · Level 32 · Finisher"); nothing else changes (D-114 (3)). The level reaches Share build through a small context around the page.
+50. Light mode: the cards follow the page's tokens, so the images come out light when the page is light (D-112 (2)). One difference: Figma rings the lime Meta pick and position chips with a 1 px inside accent/on-fill stroke in light mode (D-102 (5)); the cards had none. **Fixed.**
+51. EA's white PlayStyle badges were drawn as is (on the cream page they vanish; the Builds page had an ink outline as a stand-in). **Fixed:** in light mode they are tinted text/primary through their own alpha, as Figma's "tinted for light" layers do (491:9586), on the story cards, the Build page's PlayStyles and the Builds page's signature PlayStyles. The gold PlayStyle+ badges are unchanged, as drawn. Dark mode is unchanged (measured: Builds facts 2.85 / 2.11 / 1.12 and Build page details 3.26 / 4.48 before and after).
+52. Card 2's mastery note wraps after "included" in Figma and after "in" in Chrome: same 312 px box, Barlow Medium 12. **Not fixed:** text metrics (renderer), as on the dark card.
+
+| Frame | Section | 393 | 834 | 1440 |
+| --- | --- | --- | --- | --- |
+| Saving | Toast | 3.2 | 0.9 | 0.6 |
+| | Sheet or dialog | 6.6 (item 43) | 4.6 | 2.9 |
+| Saved | Toast | 2.1 | 2.1 | 1.0 |
+| Failed | Toast | 2.1 | 2.3 | 1.4 |
+
+| Story card (saved PNG at 360 × 640) | Top | Middle | Bottom |
+| --- | --- | --- | --- |
+| 1, dark (316:888) | 2.9 | 2.4 | 3.5 |
+| 2, dark (316:973) | 3.0 | 3.5 | 2.4 |
+| 1, light (489:10199) | 3.4 → 3.2 | 2.8 → 2.7 | 3.4 |
+| 2, light (489:10276) | 3.0 | 3.7 (item 52) | 2.5 |
+| 1, level 32 (492:9586) | 2.9 | 2.4 | 3.5 |
+| 2, level 32 (492:9695) | 3.0 | 3.5 | 2.4 |
+53. Not drawn: the sheet closed while the images are being made. The result then shows as the page's toast (same wording, the page placement), and a finished result is not shown again when the sheet reopens. A share to another app (Messages, AirDrop) still reports "saved to your photos": the browser can't tell which target was picked.

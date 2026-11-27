@@ -1,5 +1,6 @@
 import type { BuildPageView, SpecializationView } from "@/lib/build-page";
 import { NUMBER_SM } from "./BuildAttributes";
+import { PlayStyleArt } from "./PlayStyleArt";
 
 // The build page's details (Figma 298:3733 to 298:3849, D-63): "All of it at level N" (the sample's, D-107), the
 // specialization card, body and skills, PlayStyles+ and PlayStyles. Returned as siblings so the details column's 24 px gap (tablet, desktop) falls between them. Two
@@ -63,7 +64,7 @@ export function BuildDetails({ view }: { view: BuildPageView }) {
       <ul className={`${COLUMNS} gap-y-2 pt-2 pb-4`}>
         {view.playStyles.map((p) => (
           <li key={p.name} className="flex items-center gap-2">
-            <Badge icon={p.icon} />
+            <Badge icon={p.icon} tinted />
             <span className="type-label min-w-0 break-words text-text-primary">{p.name}</span>
           </li>
         ))}
@@ -72,14 +73,15 @@ export function BuildDetails({ view }: { view: BuildPageView }) {
   );
 }
 
-/** The PlayStyle badge (EA's art, D-39), 36 px; a placeholder or a badge not exported yet keeps the slot empty. */
-function Badge({ icon }: { icon: string | null }) {
-  return icon ? (
-    // eslint-disable-next-line @next/next/no-img-element -- static export, files already sized
-    <img src={icon} alt="" width={36} height={36} className="size-9 shrink-0" />
-  ) : (
-    <span aria-hidden="true" className="size-9 shrink-0" />
-  );
+/**
+ * The PlayStyle badge (EA's art, D-39), 36 px; a placeholder or a badge not exported yet keeps the slot empty. The
+ * white regular badges are `tinted` (text/primary in light mode, D-114 (4)); the gold PlayStyle+ ones stay pictures.
+ */
+function Badge({ icon, tinted = false }: { icon: string | null; tinted?: boolean }) {
+  if (!icon) return <span aria-hidden="true" className="size-9 shrink-0" />;
+  if (tinted) return <PlayStyleArt src={icon} className="size-9" />;
+  // eslint-disable-next-line @next/next/no-img-element -- static export, files already sized
+  return <img src={icon} alt="" width={36} height={36} className="size-9 shrink-0" />;
 }
 
 /** Figma "Section" 298:3740: the specialization, its PlayStyle+, the build's value beside each unlock target. */

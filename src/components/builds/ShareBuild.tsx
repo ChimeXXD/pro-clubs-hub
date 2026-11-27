@@ -1,10 +1,12 @@
 "use client";
 
-import { type MouseEvent, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { type CSSProperties, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
-import type { ShareCardsView } from "@/lib/share-cards";
+import { type ShareCardsView, shareCardsAtLevel } from "@/lib/share-cards";
+import { SAVE_TOAST, type SaveState, saveState } from "@/lib/share-images";
+import { useChosenLevel } from "./ChosenLevel";
 import { AttributesCard, OverviewCard, ScaledCard } from "./ShareCards";
 
 // "Share build" (D-64, D-65): the lime button opens a bottom sheet on phone (Figma 319:904) and a centred dialog on
@@ -13,9 +15,10 @@ import { AttributesCard, OverviewCard, ScaledCard } from "./ShareCards";
 // clipboard, closes the sheet and shows the "Link copied" toast (319:1674). "Share via…" (phone) and the share icon
 // (tablet) open the device's own share menu with the link, shown only where the browser has one; desktop has none.
 // "Save images" (D-111) turns the two cards on screen into 1080 × 1920 PNGs and shares them (phone) or downloads
-// them (saveShareImages.ts, which loads html-to-image only on tap).
-// TODO(Chime): Figma draws no saving, saved or failed state for Save images, so there is none: while it works the
-// button is busy (aria-busy) and a second tap is ignored; a failure is only logged to the console.
+// them (saveShareImages.ts, which loads html-to-image only on tap). While it works the button shows Figma's spinner
+// and is busy (a second tap is ignored), and the cream toast says so; then it says where they went, or that they
+// couldn't be made (493:9624 to 493:15977, D-114 (2)). The cards show the level picked on the page (D-114 (3)) and
+// the mode the page is in, so the images do too (D-112 (2)).
 // A native <dialog> opened with showModal(): focus moves in, Escape closes it, the page behind is inert, and focus
 // returns to the Share build button. The sheet slides up and the dialog grows in, ease-out under 300 ms; with
 // reduced motion both only fade.
@@ -33,7 +36,19 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
   const [copied, setCopied] = useState(0);
   const [card, setCard] = useState(0);
   const saving = useRef(false);
+  const [save, setSave] = useState<{ state: SaveState; id: number } | null>(null);
+  // Whether the sheet is open: a Save images result that ends after it was closed shows as a page toast instead.
+  const [open, setOpen] = useState(false);
+  const { level } = useChosenLevel();
+  const shown = shareCardsAtLevel(share, level);
   const canShare = useSyncExternalStore(noSubscribe, hasShare, () => false);
+
+  // The outcome toasts leave by themselves after 4 s; "Making your images…" stays until it is done.
+  useEffect(() => {
+    if (!save || save.state === "saving") return;
+    const t = setTimeout(() => setSave(null), TOAST_MS);
+    return () => clearTimeout(t);
+  }, [save]);
 
   useEffect(() => {
     if (!copied) return;
@@ -62,44 +77,55 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
       // Dismissed, or refused: nothing to undo.
     }
   };
-  const saveImages = async (e: MouseEvent<HTMLButtonElement>) => {
+  const saveImages = async () => {
     if (saving.current || !dialog.current) return;
-    const button = e.currentTarget;
     // The cards on screen: the phone's swipe row or the tablet and desktop pair; the other set is display: none.
-    const shown = Array.from(dialog.current.querySelectorAll<HTMLElement>("[data-share-card]")).filter((el) => el.getClientRects().length > 0);
+    const cardNodes = Array.from(dialog.current.querySelectorAll<HTMLElement>("[data-share-card]")).filter((el) => el.getClientRects().length > 0);
     saving.current = true;
-    button.setAttribute("aria-busy", "true");
+    setSave({ state: "saving", id: Date.now() });
     try {
       const { saveShareImages } = await import("./saveShareImages");
-      await saveShareImages(shown, share.files);
+      const done = saveState(await saveShareImages(cardNodes, share.files));
+      setSave(done ? { state: done, id: Date.now() } : null);
     } catch (error) {
-      // TODO(Chime): no failed state in Figma (see above).
       console.error("Save images failed", error);
+      setSave({ state: "failed", id: Date.now() });
     } finally {
       saving.current = false;
-      button.removeAttribute("aria-busy");
     }
   };
 
+  // The Save images toast sits over the sheet while it is open, else on the page (the sheet was closed while saving).
+  const inSheet = open ? save : null;
+  const onPage = !open && save && save.state !== "saving" ? save : null;
+
   const cards = (scale: number) => [
     <ScaledCard key="overview" scale={scale} label="Share card 1 of 2">
-      <OverviewCard card={share.overview} />
+      <OverviewCard card={shown.overview} />
     </ScaledCard>,
     <ScaledCard key="attributes" scale={scale} label="Share card 2 of 2">
-      <AttributesCard card={share.attributes} link={share.overview.link} footer={share.overview.footer} />
+      <AttributesCard card={shown.attributes} link={shown.overview.link} footer={shown.overview.footer} />
     </ScaledCard>,
   ];
 
   return (
     <>
-      <button ref={trigger} type="button" aria-haspopup="dialog" className={buttonClass("primary", "w-full")} onClick={() => dialog.current?.showModal()}>
+      <button ref={trigger} type="button" aria-haspopup="dialog" className={buttonClass("primary", "w-full")} onClick={() => {
+          dialog.current?.showModal();
+          setOpen(true);
+        }}>
         Share build
       </button>
       <dialog
         ref={dialog}
         aria-labelledby="share-build-title"
         data-testid="share-dialog"
-        onClose={() => trigger.current?.focus()}
+        onClose={() => {
+          setOpen(false);
+          // A finished result is not shown again when the sheet reopens; one still being made follows to the page.
+          setSave((s) => (s?.state === "saving" ? s : null));
+          trigger.current?.focus();
+        }}
         // A click on the backdrop lands on the dialog itself (its content fills it); that closes it.
         onClick={(e) => e.target === dialog.current && close()}
         className="mt-auto mb-0 w-full max-w-none rounded-t-xl border-0 bg-bg-raised p-0 text-text-primary shadow-elevation-3 transition-[translate,scale,opacity] duration-250 ease-[cubic-bezier(0.32,0.72,0,1)] backdrop:bg-system-backdrop starting:open:translate-y-full tablet:m-auto tablet:w-[616px] tablet:max-w-[calc(100%-48px)] tablet:rounded-xl tablet:ease-out tablet:starting:open:translate-y-0 tablet:starting:open:scale-[0.96] tablet:starting:open:opacity-0 motion-reduce:starting:open:translate-y-0 motion-reduce:starting:open:scale-100 motion-reduce:starting:open:opacity-0"
@@ -147,10 +173,14 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
           <div className="hidden gap-5 tablet:flex">{cards(0.75)}</div>
           <div className="flex flex-col gap-2 tablet:flex-row tablet:justify-center tablet:gap-3">
             <div className="flex gap-2 tablet:contents">
-              <button type="button" className={`${SECONDARY} flex-1 tablet:flex-none`} onClick={saveImages}>
-                <ButtonLabel icon="download" iconSide="left">
-                  Save images
-                </ButtonLabel>
+              <button
+                type="button"
+                aria-busy={save?.state === "saving" || undefined}
+                className={`${SECONDARY} flex-1 tablet:flex-none`}
+                onClick={saveImages}
+              >
+                {save?.state === "saving" ? <Spinner /> : <Icon name="download" size={20} />}
+                Save images
               </button>
               <button type="button" className={`${SECONDARY} flex-1 tablet:flex-none`} onClick={copyLink}>
                 <ButtonLabel icon="copy" iconSide="left">
@@ -182,8 +212,35 @@ export function ShareBuild({ title, share }: { title: string; share: ShareCardsV
             <span className="hidden desktop:inline">Saves both cards as images. Copy link to paste the build page anywhere.</span>
           </p>
         </div>
+        {/* Always mounted, so the live region announces each message (see Toast). */}
+        <Toast
+          id={inSheet?.id}
+          message={inSheet ? SAVE_TOAST[inSheet.state].message : null}
+          tone={inSheet ? SAVE_TOAST[inSheet.state].tone : undefined}
+          icon={inSheet ? SAVE_TOAST[inSheet.state].icon : undefined}
+          placement="dialog"
+        />
       </dialog>
-      <Toast id={copied} message={copied !== 0 ? COPIED : null} />
+      {/* One page region for "Link copied" and a Save images result that ended after the sheet closed. */}
+      <Toast
+        id={onPage ? onPage.id : copied}
+        message={onPage ? SAVE_TOAST[onPage.state].message : copied !== 0 ? COPIED : null}
+        tone={onPage ? SAVE_TOAST[onPage.state].tone : "success"}
+        icon={onPage ? SAVE_TOAST[onPage.state].icon : undefined}
+      />
     </>
+  );
+}
+
+/** Figma's button spinner (199:351): a three-quarter ring, 22.5 px in a 20 px box, turning; slower with reduced motion. */
+function Spinner() {
+  const style = { "--icon": "url(/icons/spinner.svg)" } as CSSProperties;
+  return (
+    <span data-testid="save-spinner" aria-hidden="true" className="relative size-5 shrink-0">
+      <span
+        className="icon-mask absolute inset-[-6.25%] animate-[spinner-turn_0.8s_linear_infinite] motion-reduce:animate-[spinner-turn_2.4s_linear_infinite]"
+        style={style}
+      />
+    </span>
   );
 }
