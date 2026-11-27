@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BuildPageView } from "@/components/builds/BuildPageView";
 import { buildPageView, pageBuilds } from "@/lib/build-page";
 import { siteContent } from "@/lib/content/site-content";
+import { buildPreviewPath, previewImages } from "@/lib/link-preview";
 import { SITE_NAME } from "@/lib/site";
 
 // One page per build (Figma 298:3630 / 306:794 / 306:1286; D-63). Preview only (D-105) until builds are published:
@@ -21,7 +22,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const build = buildOf(await params);
-  return { title: `${build?.title ?? "Build"} · ${SITE_NAME}` };
+  const title = `${build?.title ?? "Build"} · ${SITE_NAME}`;
+  // Its link preview (Figma 319:885), made at build time by src/app/og/[image]/route.preview.tsx.
+  return { title, ...(build ? previewImages(buildPreviewPath(build), title) : {}) };
 }
 
 export default async function BuildPage({ params }: Props) {

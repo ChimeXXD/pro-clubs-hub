@@ -22,7 +22,7 @@ const PLUS_BADGES = new Set([
 /** Figma's note above the sample cards (288:1094), shown once in place of each card's Draft tag (D-107, D-113). */
 export const SAMPLE_CARDS_NOTE = "Sample values: not real builds yet";
 
-const BADGE_LABEL = { meta: "Meta pick", recommended: "Recommended" } as const satisfies Record<Badge, string>;
+export const BADGE_LABEL = { meta: "Meta pick", recommended: "Recommended" } as const satisfies Record<Badge, string>;
 const BADGE_RANK = (b: Badge | null) => (b === "meta" ? 0 : b === "recommended" ? 1 : 2);
 
 export interface BuildCardView {

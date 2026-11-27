@@ -29,7 +29,7 @@ export function shareIdFromPath(path: string): string | null {
 }
 
 // Copy from Figma 439:8847, word for word.
-const SHARED = {
+export const SHARED = {
   tag: "Shared build",
   line: "Shared by a player · not on ProBuilds' lists yet",
   note: "A player shared this build. It goes on ProBuilds' lists only after Chime plays it in game.",
