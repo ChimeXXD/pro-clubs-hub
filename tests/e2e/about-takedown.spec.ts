@@ -54,3 +54,14 @@ test("takedown on desktop: the email card is the 440 px right column", async ({ 
   const card = await page.getByTestId("takedown-card").boundingBox();
   expect(card).toMatchObject({ x: 880, width: 440 });
 });
+
+test("about: the six questions Figma draws closed show on the preview only, closed (416:3589, O-22 (3))", async ({ page }) => {
+  await page.goto("/about");
+  const unanswered = page.getByRole("group").filter({ hasText: "Are you part of EA?" });
+  if (process.env.PROBUILDS_DRAFTS === "1") {
+    await expect(page.getByRole("group")).toHaveCount(8);
+    await expect(unanswered).not.toHaveAttribute("open");
+  } else {
+    await expect(page.getByRole("group")).toHaveCount(2);
+  }
+});
