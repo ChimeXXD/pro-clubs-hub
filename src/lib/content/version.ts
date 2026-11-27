@@ -29,7 +29,13 @@ export function versionWording(version: VersionTag, currentSeason: number = CURR
 
 /** The top bar's season chip: "FC 27 · Season 2". Links to the changelog. */
 export function seasonLabel(season: number = CURRENT_SEASON, game: Game = "fc27"): string {
-  return `${GAME_NAME[game]} · Season ${season}`;
+  const parts = seasonParts(season, game);
+  return `${parts.game} · ${parts.season}`;
+}
+
+/** The chip's two parts, "FC 27" and "Season 2", so a narrow phone can show the season alone. */
+export function seasonParts(season: number = CURRENT_SEASON, game: Game = "fc27"): { game: string; season: string } {
+  return { game: GAME_NAME[game], season: `Season ${season}` };
 }
 
 /** "2026-12-03" → "3 Dec 2026". Read from the text, not a Date, so no time zone can shift the day. */

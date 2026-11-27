@@ -84,7 +84,7 @@ test("dark by default, even on a device set to light (D-112)", async ({ page }) 
 
 test("light mode, once picked: the current pill gets a thin dark ring, since lime on cream is 1.03:1 (D-37, D-112)", async ({ page }) => {
   await page.goto("/");
-  // The switch (not built yet, D-112 (1)) sets data-theme on <html>; light whatever the device says.
+  // The switch (ThemeSwitch, D-114 (1)) sets data-theme on <html>; light whatever the device says.
   await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
   const shadow = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
   expect(shadow).toContain("rgb(16, 17, 19) 0px 0px 0px 1px inset");
