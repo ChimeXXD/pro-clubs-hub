@@ -50,3 +50,5 @@ Mean absolute RGB difference per section, Figma frame against Chromium at 1x, da
 | Footer | 5.22 (4.84) | 1.99 | 1.21 |
 
 Above 3: the phone faces (item 4), the builds (small text set 1 px apart in Chrome, the dashed tile, item 9), and on desktop everything below the face cards sits half a pixel higher (Figma rounds the 404.5 px cards to 405), which is why the best offset is one pixel down. The shell is unit 5.
+
+After the theme switch (theme-switch-audit.md) and the rebase onto main, every other section measures the same. The top bar now has the sun/moon button these frames (drawn before D-114) don't, so against them it scores 7.02 / 6.73 / 3.90 at 393 / 834 / 1440; against the theme switch frames, which are the current design, 4.24 / 3.06 / 1.77.

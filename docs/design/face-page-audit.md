@@ -92,3 +92,5 @@ Mean absolute RGB difference per section, Figma frame against Chromium at 1x, da
 | reset | card | 2.52 | 2.17 | 1.30 |
 
 Sections the same in every state (picture, title, limits, tutorial, footer, top bar) are listed once. Above 3: the title (item 7, the version tag), the breadcrumb (19 px of small text: Figma rounds each text box up to a whole pixel, so "/" and the name sit about 1 px further left; 8.33 at the best offset), "Next:" (one line of small text 1 px lower; ≤ 2.1 at the best offset), the matching build (item 5, PLACEHOLDER for "2008 WINGER"), desktop progress at step 9 (item 13) and the shell (item 24).
+
+After the theme switch (theme-switch-audit.md) and the rebase onto main, every other section measures the same. The top bar now has the sun/moon button these frames (drawn before D-114) don't, so against them it scores 7.02 / 6.88 / 3.99 at 393 / 834 / 1440; against the theme switch frames, which are the current design, 4.24 / 3.06 / 1.77.

@@ -16,8 +16,10 @@ describe("search", () => {
   });
 
   it("finds builds by their name, archetype or positions", () => {
-    expect(searchResults(index, "finisher").builds.map((b) => b.title)).toEqual(["Meta Finisher"]);
-    expect(searchResults(index, "CF").builds.map((b) => b.title)).toEqual(["Meta Finisher"]);
+    expect(searchResults(index, "finisher").builds.map((b) => b.title)).toEqual(["Meta Finisher", "Quick Finisher", "Tall Finisher"]);
+    expect(searchResults(index, "meta").builds.map((b) => b.title)).toEqual(["Meta Finisher"]);
+    // "CF" is a whole position: Tall Finisher plays ST only.
+    expect(searchResults(index, "CF").builds.map((b) => b.title)).toEqual(["Meta Finisher", "Quick Finisher"]);
     expect(searchResults(index, "spark").builds.map((b) => b.href)).toEqual(["/builds/spark/spark-2008-winger"]);
   });
 
