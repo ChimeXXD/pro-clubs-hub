@@ -1,0 +1,4 @@
+# Cloudflare Pages rules (https://developers.cloudflare.com/pages/configuration/redirects/).
+# A player's shared build, probuilds.club/b/<id>, is one static page that reads the id from the address (D-99 (2)).
+# 200 rewrites: the address stays /b/<id>; scripts/serve-out.mjs applies the same rule locally.
+/b/*  /b  200

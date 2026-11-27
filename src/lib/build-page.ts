@@ -69,6 +69,8 @@ export interface BuildPageView extends Omit<BuildCardView, "credit" | "playStyle
   footnote: string | null;
   share: ShareCardsView;
   uncheckedNote: string | null;
+  /** A player's shared build (Figma 439:8847, D-100 (1)): its tag, line and second button; null on every other build. */
+  shared: { tag: string; line: string; makeYourOwn: { label: string; href: string } } | null;
   specialization: SpecializationView | null;
   facts: { term: string; value: string; label?: string; stars?: number }[];
   playStylesPlus: { name: string; icon: string | null; signature: boolean }[];
@@ -223,6 +225,7 @@ export function buildPageView(build: LoadedBuild, sources: ArchetypeFile["source
     credit,
     reference: reference ? { name: reference.name, url: reference.url } : null,
     uncheckedNote: reference && build.versionTag.verifiedOn === null ? UNCHECKED_NOTE : null,
+    shared: null,
     levels: levelsView(build),
     allOfIt: allOfItView(build),
     specialization: specializationView(build),

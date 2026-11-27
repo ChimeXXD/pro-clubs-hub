@@ -40,8 +40,24 @@ function resolve(urlPath) {
   return candidates.find((p) => existsSync(p) && statSync(p).isFile()) ?? null;
 }
 
+// The 200 rewrites in out/_redirects ("/b/*  /b  200"), as Cloudflare Pages applies them: a path under the rule's
+// prefix is answered with the target page, and the address stays as it was.
+const REWRITES = existsSync(join(OUT, "_redirects"))
+  ? readFileSync(join(OUT, "_redirects"), "utf8")
+      .split("\n")
+      .map((line) => line.trim().split(/\s+/))
+      .filter(([from, to, status]) => from?.endsWith("/*") && to && status === "200")
+      .map(([from, to]) => ({ prefix: from.slice(0, -1), to }))
+  : [];
+
+function rewrite(url) {
+  const path = url.split("?")[0];
+  const rule = REWRITES.find((r) => path.startsWith(r.prefix) && path.length > r.prefix.length);
+  return rule ? rule.to : url;
+}
+
 createServer((req, res) => {
-  const file = resolve(req.url ?? "/");
+  const file = resolve(rewrite(req.url ?? "/"));
   if (!file) {
     const notFound = join(OUT, "404.html");
     res.writeHead(404, { "content-type": TYPES[".html"] });

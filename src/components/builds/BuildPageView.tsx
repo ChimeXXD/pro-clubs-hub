@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Callout } from "@/components/ui/Callout";
 import { DraftTag } from "@/components/ui/DraftTag";
@@ -23,13 +24,18 @@ export function BuildPageView({ view }: { view: View }) {
     // The level switch tells Share build which level the story cards show (D-114 (3)).
     <ChosenLevel>
       <main className="flex flex-col px-5 pt-6 pb-8 tablet:gap-6 tablet:px-10 tablet:pb-16 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
-        <Breadcrumb
-          links={[
-            { href: `/builds#${view.archetype.id}`, label: "Builds" },
-            { href: `/builds/${view.archetype.id}`, label: view.archetype.name },
-          ]}
-          current={view.title}
-        />
+        {view.shared ? (
+          // Figma 439:8850: "Builds / Shared build", both in text/secondary.
+          <Breadcrumb links={[{ href: "/builds", label: "Builds" }]} current={view.shared.tag} muted />
+        ) : (
+          <Breadcrumb
+            links={[
+              { href: `/builds#${view.archetype.id}`, label: "Builds" },
+              { href: `/builds/${view.archetype.id}`, label: view.archetype.name },
+            ]}
+            current={view.title}
+          />
+        )}
         <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-10 desktop:gap-16">
           <div className="flex flex-col tablet:w-75 tablet:shrink-0 tablet:gap-6 desktop:w-100">
             {/* Figma 371:2719 / 427:5557: the warning tops the summary column, above the badge. */}
@@ -63,6 +69,13 @@ function BuildHeader({ view }: { view: View }) {
   return (
     <section aria-label="Build" className="flex flex-col gap-5 pt-4">
       <div className="flex flex-col">
+        {view.shared && (
+          // Figma 439:8864: the neutral "Shared build" tag over the player line.
+          <div className="flex min-h-6 flex-col items-start gap-1.5">
+            <span className="type-label rounded-full bg-bg-raised px-2.5 py-[3px] text-text-primary">{view.shared.tag}</span>
+            <p className="type-label text-text-muted">{view.shared.line}</p>
+          </div>
+        )}
         {(view.badge || draft || view.sampleLabel) && (
           <div className="flex min-h-6 flex-col items-start gap-1.5">
             {(view.badge || draft) && (
@@ -99,8 +112,24 @@ function BuildHeader({ view }: { view: View }) {
           </p>
         )}
       </div>
-      <ShareBuild title={view.title} share={view.share} />
-      {view.uncheckedNote && <Callout testId="unchecked-note">{view.uncheckedNote}</Callout>}
+      {view.shared ? (
+        // Figma 439:8862: on a shared build the note comes first, then Share build and Make your own build (1 px border).
+        <>
+          {view.uncheckedNote && <Callout testId="shared-note">{view.uncheckedNote}</Callout>}
+          <ShareBuild title={view.title} share={view.share} />
+          <Link
+            href={view.shared.makeYourOwn.href}
+            className="type-button-lg inline-flex h-13 w-full items-center justify-center rounded-sm border border-border-strong px-8 text-text-primary transition-colors duration-150 hover:bg-action-hovered"
+          >
+            {view.shared.makeYourOwn.label}
+          </Link>
+        </>
+      ) : (
+        <>
+          <ShareBuild title={view.title} share={view.share} />
+          {view.uncheckedNote && <Callout testId="unchecked-note">{view.uncheckedNote}</Callout>}
+        </>
+      )}
     </section>
   );
 }
