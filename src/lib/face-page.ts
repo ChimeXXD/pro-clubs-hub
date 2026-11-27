@@ -45,7 +45,7 @@ const LAST_NEXT = "Set up the matching build";
 
 const TAB_NAME = { skin: "Skin", head: "Head", face: "Face", hair: "Hair" } as const;
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-const plural = (n: number, one: string) => `${n} ${one}${n === 1 ? "" : "s"}`;
+export const plural = (n: number, one: string) => `${n} ${one}${n === 1 ? "" : "s"}`;
 
 // A draft's "PLACEHOLDER" (typed away by LoadedFace, present at runtime) stays text, never a knob at "PLACEHOLDER%".
 const PLACEHOLDER = "PLACEHOLDER";
