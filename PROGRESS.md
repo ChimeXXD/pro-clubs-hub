@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Screens brought to match Figma, with its sample data (Thu 26 – Fri 27 Nov 2026)
+
+- **Chime:** "Look at the Figma and implement what is on the Figma… stop putting placeholder value… Put sample data." Rule recorded as D-107 (CLAUDE.md, memory); D-108 to D-114 settle the details (stand-in face pictures on the preview, bars by value, html-to-image, dark by default, theme switch option A, toasts, light and level-32 cards, tinted icons).
+- **Done:** Build page (192429f, stars fd5c391), Save images (0b3145e), Faces library (8b4a7a5), dark by default (1129297). Each audited in `docs/design/*-audit.md`, measured per section against Figma, code-reviewed, checks green, pushed to main and preview.
+- **Designed in Figma (approved D-114), not built:** theme switch A, Save images toasts, light and level-32 story cards.
+- **Stopped mid-unit:** Builds + archetype pages (usage limit); uncommitted work in the tree, see HANDOFF.
+- **Not verified:** Chime's iPhone for every screen (rule 10); Save images' share-to-Photos on iOS.
+
 ## Faces library (Thu 26 Nov 2026)
 
 - **Built** (`/faces`, preview only, D-105; Figma 333:1139 / 345:1310 / 345:1391, no results 372:1853 / 427:9875 / 427:9960): header, search (case- and accent-blind), kind chips with counts (D-68), poster grid 2 / 3 / 6 columns (D-70), the "Missing a face?" tile, the "Who should we make next?" panel and the no-results card (D-97 (5)). Shared `FilterChip` (Changelog uses it too). The 11 missing PlayStyle badges went in first (1cabe40).

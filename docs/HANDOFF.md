@@ -1,6 +1,41 @@
 # Handoff: read this first when you pick the project back up
 
-## Latest: Wed 25 Nov 2026. All five design phases drawn; what's left before code
+## Latest: Thu 26 – Fri 27 Nov 2026. Making every built screen match Figma, with Figma's sample data
+
+Nothing is running. Preview: https://preview.probuilds.pages.dev (branch `preview` = `main` at 6e95925). Session transcripts: the root `2026-11-2*.txt` files (untracked).
+
+### The rule Chime set this session (D-107, in CLAUDE.md and memory)
+Chime: "Look at the Figma and implement what is on the Figma… stop putting placeholder value… Put sample data." Every coded screen must match its Figma frame exactly: every section, state, line and value. Missing content is filled with **Figma's own sample data** in draft files marked `"sample"` (preview only, never probuilds.club). No "–", no empty slots, no left-out sections, no own wording. Any difference needs Chime's OK. Sample content shows Figma's sample marker instead of the Draft tag (D-113). Acceptance: per-section pixel diff vs Figma ≈3 or below at 393/834/1440, side-by-side images, audit file in `docs/design/*-audit.md`.
+
+### Done and pushed (26 Nov)
+- **Build page** matches Figma with the Meta Finisher sample (192429f; audit `docs/design/build-page-audit.md`): level section, key stats, gauges, share sheet cards. AcceleRATE has the game's 7 types. Stars drawn as shapes (fd5c391).
+- **Save images** works (0b3145e): html-to-image 1.11.13 (D-111), 1080×1920 PNGs; phone share sheet → Photos, else downloads. Not tried on a real iPhone (risk: iOS may expire the tap before the ~1 s render and fall back to download).
+- **Faces library** matches Figma with its five sample faces and Figma's stand-in pictures (8b4a7a5; D-108; audit `docs/design/faces-library-audit.md`). D-68/D-69 format changes applied (same lines as Sharon's PR #9). `scripts/strip-samples.mjs` keeps `out/sample/` off the live build.
+- **Dark by default** on every device (1129297, D-112); light only via the switch (not built yet).
+- Chip focus rings unclipped (547cbf6); 11 PlayStyle badges (1cabe40).
+
+### Designed in Figma, approved, NOT built yet (D-114) — next after the Builds unit
+1. **Theme switch option A**: sun/moon button beside search in the top bar, every page (Figma row 499:10586, component "Theme switch" 497:976). Sets `data-theme="light"` on `<html>`, remembered per browser (set before paint to avoid a flash). B and C are on Archive (section 506:18178).
+2. **Save images toasts** (cream Toast): "Making your images…" (button spinner), "Both cards saved to your photos." (phone, tablet) / "…to your downloads." (desktop), "Couldn't save the images. Try again." (Figma 493:9624 → 493:15977).
+3. **Light story cards** 489:10199, 489:10276 (saved images follow the user's mode, D-112 (2)); **cards at the chosen level** 492:9586, 492:9695 (only the level changes, D-114 (3)).
+4. **EA PlayStyle icons tinted dark in light mode** (text/primary), cards and Build page.
+
+### In progress when the session stopped (uncommitted in the working tree)
+The **Builds page + archetype page** Figma unit was cut off by the weekly usage limit (resets Fri 27 Nov 6pm Lagos). Its last note: "Builds page: rail fixed (5.5 → 1.7); phone differences isolated to Figma's Phone type mode. Writing the Builds part of the audit." Uncommitted: `content/archetypes/fc27.json` (adds mastery attributes to archetypes that had none, citing `ea-grounds-deep-dive` — **verify against that source before committing; never invent**), `ArchetypeFacts.tsx`, `EmblemRail.tsx`, tests, and the untracked `docs/design/builds-audit.md`. Decisions given to that agent: (a) sample archetype cards follow Figma (no version tag, credit or Draft tag; "Sample values: not real builds yet" shown once), (b) real builds keep the version tag and credit (rules 4, 5; no Figma frame for a real-build card — ask Chime whether to draw one); keep D-62 (3) shared header height and fix Figma 290:1084's Quick Finisher card to 268 px. Still to do: Tall and Quick Finisher as sample drafts from the frames, the archetype page audit, measure, review, commit. To resume: read the audit file and `git diff`, finish, run every check, `/code-review --fix` medium, commit, push.
+
+### Queue after that (one unit at a time, same method)
+Changelog, About, Takedown, 404, shell (top bar, bottom nav, footer). Then the face page (`/faces/[slug]`), Home, Submit, Request a face.
+
+### Open for Chime
+- Whether to draw a real (non-sample) build card in Figma (rules 4 and 5).
+- Try Save images on the iPhone (Photos vs download fallback).
+- Earlier opens still stand: O-14 attribute prices, O-22 copy, Sharon's PRs #7 and #8 (#9 is now duplicated on main), the Request a face page waits on Supabase.
+
+### Working notes
+- Memory is tight: proof refuses runs over 85%. Two agents must not build into `out/` at once. Brave and Dia hold the most memory; ask Chime to close them when runs are refused.
+- The commit gate refuses a command that changes files and commits in one step: change files first, then `git add … && git commit …` alone.
+
+## Earlier: Wed 25 Nov 2026. All five design phases drawn; what's left before code
 
 Nothing is running (no dev server or watcher). Figma file: https://www.figma.com/design/hyFx4Audhn4F9KxL9bRCLD (page "Design screens", one section per phase; rejected work on "Archive").
 
