@@ -45,11 +45,11 @@ describe("BuildPageView", () => {
     expect(page).toMatch(/<nav aria-label="Breadcrumb"/);
     expect(page).toMatch(/<a[^>]*href="\/builds#spark"[^>]*>Builds<\/a>/);
     expect(page).toMatch(/<a[^>]*href="\/builds\/spark"[^>]*>Spark<\/a>/);
-    expect(page).toMatch(/aria-current="page"[^>]*>PLACEHOLDER</);
+    expect(page).toMatch(/aria-current="page"[^>]*>2008 Winger</);
   });
 
   it("titles the page with the build, marked Draft, its version tag in words and its credit (rules 4, 5)", () => {
-    expect(page).toMatch(/<h1[^>]*>PLACEHOLDER<\/h1>/);
+    expect(page).toMatch(/<h1[^>]*>2008 Winger<\/h1>/);
     expect(page).toContain(">Draft<");
     expect(page).toContain("FC 27 · Season 2 · Not yet checked in game");
     expect(page).toContain("Made by Chime in game");

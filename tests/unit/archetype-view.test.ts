@@ -42,7 +42,7 @@ describe("ArchetypeBuildsView", () => {
 
   it("shows the draft build as a card linking to its page, values as written", () => {
     expect(spark).toMatch(/<a[^>]*href="\/builds\/spark\/spark-2008-winger"[^>]*data-testid="build-card-spark-2008-winger"|data-testid="build-card-spark-2008-winger"[^>]*href="\/builds\/spark\/spark-2008-winger"/);
-    expect(spark).toMatch(/<h2[^>]*>PLACEHOLDER<\/h2>/);
+    expect(spark).toMatch(/<h2[^>]*>2008 Winger<\/h2>/);
     expect(spark).toContain(">Draft<");
     expect(spark).toContain(">RW<");
     expect(spark).toContain(">LW<");

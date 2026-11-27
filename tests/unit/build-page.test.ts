@@ -149,7 +149,7 @@ describe("build page data", () => {
     const view = buildPageView(draft, sources);
     expect(view).toMatchObject({
       id: "spark-2008-winger",
-      title: "PLACEHOLDER",
+      title: "2008 Winger",
       draft: true,
       badge: null,
       archetype: { id: "spark", name: "Spark", groupLabel: "Forward" },

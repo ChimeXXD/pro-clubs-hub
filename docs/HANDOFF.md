@@ -1,5 +1,16 @@
 # Handoff: read this first when you pick the project back up
 
+## Latest: Fri 27 Nov 2026 (evening). Every Figma frame built, by three agents
+
+Chime: "implement every single thing on Figma… one to one." Done in three lanes, each screen measured per section against Figma at 393/834/1440, audited in `docs/design/*-audit.md`, code-reviewed, committed and pushed:
+- **Lane A** (1e34640…b0debd9): Builds + archetype pages (Tall/Quick Finisher samples), Build page states re-checked, D-114 (Save images toasts, light and level-32 cards, tinted PlayStyle icons), shared build `/b/` + "link doesn't work" on `src/lib/supabase/client.ts`, next/og link previews.
+- **Lane B** (d119712…6b96888): face page (5 states), Home, `/search`, theme switch A, shell re-audit, face link preview.
+- **Lane C** (fe5630b, d4641f3, 4afd8fa): Submit a build (all 27 frames), Request a face (all 18), Changelog/About/Takedown/404 re-audit (About's six drawn questions added, preview only).
+- **Coordinator:** `spark-2008-winger` title set to Figma's "2008 Winger"; the title assertions in 4 unit tests and 1 e2e file changed from "PLACEHOLDER" to it (flagged to Chime).
+
+**Not done yet (the session hit its usage limit):** PROGRESS.md entry, DECISIONS entries for the agents' proposals, PLAN/features.json ticks, and a push of main to the `preview` branch. The agents' full reports (proposed decisions, ~35 questions for Chime, TODOs) are in this session's transcript; the audit files hold each screen's differences. Supabase switch-on steps: `docs/supabase-schema.sql` header and lane C's report (create project, run the SQL, set NEXT_PUBLIC_SUPABASE_URL/ANON_KEY in Cloudflare, rename `src/app/{b,faces/request}/page.preview.tsx` to `page.tsx`; Submit waits on O-14).
+**Top open issues:** light-mode lime on cream is nearly invisible (face page section bar 1.03:1, 404 "4"s 1.15:1); bottom nav 18 vs 24 px; Quick Finisher card 254 vs 268 px; votes can be stuffed with fresh voter ids; nothing checked on Chime's iPhone (rule 10). Lane B's worktree `.claude/worktrees/agent-a1b6d2cc030aeba8c` is merged and can be removed.
+
 ## Latest: Thu 26 – Fri 27 Nov 2026. Making every built screen match Figma, with Figma's sample data
 
 Nothing is running. Preview: https://preview.probuilds.pages.dev (branch `preview` = `main` at 6e95925). Session transcripts: the root `2026-11-2*.txt` files (untracked).

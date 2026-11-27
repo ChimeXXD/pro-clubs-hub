@@ -10,10 +10,10 @@ test("build: the archetype page's card opens the build page, and the breadcrumb 
   await page.goto("/builds/spark");
   await page.getByTestId("build-card-spark-2008-winger").click();
   await expect(page).toHaveURL(new RegExp(`${URL}$`));
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("PLACEHOLDER");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("2008 Winger");
   await expect(page.getByTestId("bottom-nav").getByRole("link", { name: "Builds" })).toHaveAttribute("aria-current", "page");
   const crumb = page.getByRole("navigation", { name: "Breadcrumb" });
-  await expect(crumb.getByText("PLACEHOLDER")).toHaveAttribute("aria-current", "page");
+  await expect(crumb.getByText("2008 Winger")).toHaveAttribute("aria-current", "page");
   await crumb.getByRole("link", { name: "Spark" }).click();
   await expect(page).toHaveURL(/\/builds\/spark$/);
 });

@@ -81,7 +81,7 @@ describe("archetype page data", () => {
     expect(card).toMatchObject({
       id: "spark-2008-winger",
       href: "/builds/spark/spark-2008-winger",
-      title: "PLACEHOLDER",
+      title: "2008 Winger",
       draft: true,
       badge: null,
       picture: null,
