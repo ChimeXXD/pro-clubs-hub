@@ -19,6 +19,9 @@ const PLUS_BADGES = new Set([
   "slide-tackle", "technical", "trickster", "whipped-pass",
 ]);
 
+/** Figma's note above the sample cards (288:1094), shown once in place of each card's Draft tag (D-107, D-113). */
+export const SAMPLE_CARDS_NOTE = "Sample values: not real builds yet";
+
 const BADGE_LABEL = { meta: "Meta pick", recommended: "Recommended" } as const satisfies Record<Badge, string>;
 const BADGE_RANK = (b: Badge | null) => (b === "meta" ? 0 : b === "recommended" ? 1 : 2);
 
@@ -28,6 +31,8 @@ export interface BuildCardView {
   href: string;
   title: string;
   draft: boolean;
+  /** Figma's sample build (D-107): its card is drawn with no Draft tag, version tag or credit; the page's note marks it. */
+  sample: boolean;
   badge: (typeof BADGE_LABEL)[Badge] | null;
   picture: { src: string; alt: string } | null;
   positions: Position[];
@@ -86,6 +91,7 @@ export function buildCardView(build: LoadedBuild, currentSeason?: number): Build
     href: `/builds/${build.archetype.id}/${build.slug}`,
     title: build.title,
     draft: build.status === "draft",
+    sample: Boolean(build.sample),
     badge: build.badge ? BADGE_LABEL[build.badge] : null,
     // TODO(Chime): FORMAT names a picture "builds/<slug>.webp" without saying where it is served; read from public/.
     picture: build.picture ? { src: `/${build.picture.file}`, alt: build.picture.alt } : null,

@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { Icon } from "@/components/shell/Icon";
-import { type BuildCardView, buildCountLabel, submitTile } from "@/lib/archetype-page";
+import { type BuildCardView, buildCountLabel, SAMPLE_CARDS_NOTE, submitTile } from "@/lib/archetype-page";
 import type { ArchetypeView } from "@/lib/builds";
-import { BuildCard } from "./BuildCard";
+import { BuildCard, CARD_ROWS } from "./BuildCard";
 import { Emblem } from "./Emblem";
 
 // Figma "Archetype · Finisher" (phone 288:1031, tablet 290:796, desktop 290:1084; D-62): the breadcrumb, the
 // archetype's emblem, name and "<group> · N builds", then its builds as stat strip cards, one column on phone, two
 // on tablet, three in the 1200 px column on desktop, 24 px apart (12 between phone cards). A gap in the last row
 // is filled with a "Submit a build" tile. Content: 8 / 20 / 32 px on phone, 24 / 40 / 64 on tablet and desktop.
+// Figma's builds are samples (D-107): "Sample values: not real builds yet" sits once above them (288:1094).
 const TILE_DESKTOP = { 0: "desktop:hidden", 1: "desktop:flex", 2: "desktop:flex desktop:col-span-2" } as const;
 
 export function ArchetypeBuildsView({ archetype, cards }: { archetype: ArchetypeView; cards: BuildCardView[] }) {
   const tile = submitTile(cards.length);
+  const rows = cards.every((c) => c.sample) ? 3 : 4;
   return (
     <main className="flex flex-col gap-5 px-5 pt-2 pb-8 tablet:gap-6 tablet:px-10 tablet:pt-6 tablet:pb-16 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
       <nav aria-label="Breadcrumb">
@@ -39,15 +41,16 @@ export function ArchetypeBuildsView({ archetype, cards }: { archetype: Archetype
           <p className="type-caption text-text-secondary">{buildCountLabel(archetype.groupLabel, cards.length)}</p>
         </div>
       </header>
+      {cards.some((c) => c.sample) && <p className="type-caption text-text-muted">{SAMPLE_CARDS_NOTE}</p>}
       {/* TODO(Chime): no empty state in Figma for an archetype with no builds yet; the list is left out. */}
       {cards.length > 0 && (
         <ul className="grid grid-cols-1 gap-y-3 tablet:grid-cols-2 tablet:gap-6 desktop:grid-cols-3">
           {cards.map((card) => (
-            <BuildCard key={card.id} card={card} />
+            <BuildCard key={card.id} card={card} rows={rows} />
           ))}
           {(tile.tablet || tile.desktopSpan > 0) && (
             <li
-              className={`row-span-4 hidden ${tile.tablet ? "tablet:flex" : "tablet:hidden"} ${TILE_DESKTOP[tile.desktopSpan]}`}
+              className={`${CARD_ROWS[rows]} hidden ${tile.tablet ? "tablet:flex" : "tablet:hidden"} ${TILE_DESKTOP[tile.desktopSpan]}`}
             >
               {/* Figma "Submit tile" (290:1067): a dashed hairline box, the plus icon and "Submit a build". */}
               <Link

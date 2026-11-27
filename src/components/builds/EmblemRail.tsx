@@ -33,7 +33,8 @@ export function EmblemRail({
     const button = row?.querySelector<HTMLElement>(`[data-testid="emblem-${selectedId}"]`);
     if (!row || !button || row.scrollWidth <= row.clientWidth) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const left = button.offsetLeft + button.offsetWidth / 2 - row.clientWidth / 2;
+    // Rounded down, as Figma rounds the half pixel: the picked emblem sits at 169 px on a 393 px phone, not 168.
+    const left = Math.floor(button.offsetLeft + button.offsetWidth / 2 - row.clientWidth / 2);
     row.scrollTo({ left, behavior: first.current || reduce ? "instant" : "smooth" });
     first.current = false;
   }, [selectedId]);

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "fc27",
-  "updated": "2026-11-25",
+  "updated": "2026-11-27",
   "note": "Names, position groups and the fields below come from the sources listed. Null means not found in a source we opened. verifiedInGame is false until Chime checks each archetype in game. Position groups follow EA's archetypes update (2 GK, 3 DEF, 4 MID, 4 ATT). Level cap is open (O-02) and not stored here. Specializations (PlayStyle+ and unlock targets) were read in game by Chime on 25 Nov 2026 (Season 2); RESEARCH §10.4 also lists each one's perk.",
   "archetypes": [
     {
@@ -549,7 +549,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "Stamina",
+          "Interceptions"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 3,
         "down": 2,
@@ -646,7 +654,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "Def. Awareness",
+          "Short Passing"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 5,
         "down": 3,
@@ -743,7 +759,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "Reactions",
+          "Ball Control"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 5,
         "down": 4,
@@ -840,7 +864,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "FK Accuracy",
+          "Vision"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 5,
         "down": 3,
@@ -937,7 +969,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "Crossing",
+          "Dribbling"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 5,
         "down": 2,
@@ -1034,7 +1074,15 @@
           ]
         }
       ],
-      "masteryAttributes": null,
+      "masteryAttributes": {
+        "attributes": [
+          "Curve",
+          "Acceleration"
+        ],
+        "sourceIds": [
+          "ea-grounds-deep-dive"
+        ]
+      },
       "apCostChange20261022": {
         "up": 5,
         "down": 3,

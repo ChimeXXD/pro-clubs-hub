@@ -34,7 +34,8 @@ const count = (n: number) => n.toLocaleString("en-US");
 /** The sample's drawn levels, or null for a build without them (every recorded build, for now). */
 export function levelsView(build: LoadedBuild): LevelsView | null {
   const sample = build.sample;
-  if (!sample || typeof build.level !== "number") return null;
+  // A sample drawn only as an archetype card has no levels (Tall and Quick Finisher): no switch, as no frame draws it.
+  if (!sample || sample.levels.length === 0 || typeof build.level !== "number") return null;
   const reachedFrom = sample.specialization?.reachedFrom;
   const states = [...sample.levels]
     .sort((a, b) => a.level - b.level)

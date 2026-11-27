@@ -134,3 +134,15 @@ describe("moving the level switch between the levels the sample draws", () => {
     expect(stepLevel([32, 55], 55, 1)).toBe(55);
   });
 });
+
+describe("Figma's card-only samples, Tall and Quick Finisher (288:1136, 288:1174)", () => {
+  const tall = content.builds.find((b) => b.id === "tall-finisher") as LoadedBuild;
+  it("has no level switch or 'All of it' card: no frame draws their levels", () => {
+    const tallView = buildPageView(tall, sources);
+    expect(tallView.levels).toBeNull();
+    expect(tallView.allOfIt).toBeNull();
+    expect(tallView.sampleLabel).toBe("Sample build · values and prices not checked in game");
+    expect(tallView.keyStats.map((k) => k.value)).toEqual(["80", "90", "66", "78", "42", "88"]);
+    expect(render(tall)).toContain("Tall Finisher");
+  });
+});

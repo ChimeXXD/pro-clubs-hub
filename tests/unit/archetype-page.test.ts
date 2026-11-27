@@ -9,6 +9,7 @@ import {
   creditLine,
   KEY_STATS,
   playStylePlusIcon,
+  SAMPLE_CARDS_NOTE,
   submitTile,
 } from "@/lib/archetype-page";
 import { loadContent, type LoadedBuild } from "@/lib/content/load";
@@ -31,7 +32,8 @@ const recorded = (over: Partial<LoadedBuild> = {}): LoadedBuild => ({
 describe("archetype page data", () => {
   it("keeps an archetype's builds only, Meta pick first, then Recommended, then the rest", () => {
     expect(archetypeBuilds(content.builds, "spark").map((b) => b.id)).toEqual(["spark-2008-winger"]);
-    expect(archetypeBuilds(content.builds, "finisher").map((b) => b.id)).toEqual(["meta-finisher"]);
+    // Figma's three sample builds, in the order the Archetype frames draw them (288:1031): Meta pick, Recommended, none.
+    expect(archetypeBuilds(content.builds, "finisher").map((b) => b.id)).toEqual(["meta-finisher", "tall-finisher", "quick-finisher"]);
     expect(archetypeBuilds(content.builds, "target")).toEqual([]);
     const a = recorded({ id: "a", badge: null });
     const b = recorded({ id: "b", badge: "recommended" });
@@ -95,6 +97,19 @@ describe("archetype page data", () => {
       { name: "Rapid", icon: "/art/playstyles-plus/rapid.webp" },
       { name: "PLACEHOLDER", icon: null },
     ]);
+  });
+
+  it("words Figma's sample cards as the frames draw them, marked as samples (D-107, D-113)", () => {
+    const [meta, tall, quick] = archetypeBuilds(content.builds, "finisher").map((b) => buildCardView(b));
+    expect(SAMPLE_CARDS_NOTE).toBe("Sample values: not real builds yet");
+    expect(meta).toMatchObject({ title: "Meta Finisher", badge: "Meta pick", sample: true, positions: ["ST", "CF"], body: "Level 55 · 185 cm · 80 kg" });
+    expect(tall).toMatchObject({ title: "Tall Finisher", badge: "Recommended", sample: true, positions: ["ST"], body: "Level 55 · 193 cm · 88 kg" });
+    expect(quick).toMatchObject({ title: "Quick Finisher", badge: null, sample: true, positions: ["ST", "CF"], body: "Level 55 · 173 cm · 72 kg" });
+    expect(tall?.keyStats.map((k) => k.value)).toEqual(["80", "90", "66", "78", "42", "88"]);
+    expect(quick?.keyStats.map((k) => k.value)).toEqual(["94", "88", "74", "89", "34", "66"]);
+    expect(tall?.playStylesPlus.map((p) => p.name)).toEqual(["Low Driven Shot", "Precision Header"]);
+    expect(quick?.playStylesPlus.map((p) => p.name)).toEqual(["First Touch", "Rapid"]);
+    expect(buildCardView(draft).sample).toBe(false);
   });
 
   it("has the six key stats, with no values until a way to work them out is agreed (A-18)", () => {

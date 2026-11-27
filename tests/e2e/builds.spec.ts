@@ -29,6 +29,17 @@ test("builds: a link with #target opens on Target, and the rail scrolls it into 
   await expect(page.getByRole("link", { name: "See Target builds" })).toBeVisible();
 });
 
+test("builds: on Figma's 393 px phone the picked emblem sits where 241:556 draws it, and every archetype has its mastery", async ({ page }) => {
+  await page.setViewportSize({ width: 393, height: 852 });
+  await page.goto("/builds#finisher");
+  await expect(page.getByTestId("emblem-finisher")).toHaveAttribute("aria-pressed", "true");
+  // The centred box sits at 168.5 (half of 393 less half of 56); Chrome paints it from 169 at 1x, as Figma draws it.
+  await expect.poll(async () => (await page.getByTestId("emblem-finisher").boundingBox())?.x).toBe(168.5);
+  // The six archetypes with no source before 26 Nov now show EA's pair (Pitch Notes table, RESEARCH §10.6).
+  await page.getByTestId("emblem-spark").click();
+  await expect(page.getByText("Mastery attributes: Crossing, Dribbling")).toBeVisible();
+});
+
 test("builds: swiping the card moves to the next archetype", async ({ page }) => {
   await page.goto("/builds#boss");
   const stage = page.getByTestId("stance-stage");

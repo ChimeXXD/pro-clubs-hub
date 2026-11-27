@@ -75,7 +75,10 @@ export function checkSpend(c: Check, d: Obj) {
   for (const name of reached.keys()) if (!final.has(name)) c.add("spend.start", `${String(name)} isn't in the build's attributes`);
 }
 
-/** Figma's sample figures (D-107): a draft only, all six key stats, the drawn levels including the build's own. */
+/**
+ * Figma's sample figures (D-107): a draft only, all six key stats, and the drawn levels including the build's own.
+ * A sample drawn only as an archetype card (Tall and Quick Finisher, 288:1136, 288:1174) has no drawn levels.
+ */
 export function checkSample(c: Check, d: Obj) {
   if (!("sample" in d)) return;
   if (c.published) c.add("sample", "published but still has sample figures (D-107)");
@@ -86,7 +89,7 @@ export function checkSample(c: Check, d: Obj) {
     for (const code of KEY_STATS) c.int(`sample.keyStats.${code}`, sample.keyStats[code], { min: 0, max: ATTRIBUTE_MAX });
     for (const key of Object.keys(sample.keyStats)) if (!KEY_STATS.includes(key)) c.add(`sample.keyStats.${key}`, "is not a key stat");
   }
-  if (c.arr("sample.levels", sample.levels, { min: 1 })) {
+  if (c.arr("sample.levels", sample.levels)) {
     const seen = new Set<unknown>();
     sample.levels.forEach((entry, i) => {
       const p = at("sample.levels", i);
@@ -98,9 +101,12 @@ export function checkSample(c: Check, d: Obj) {
       c.int(`${p}.spent`, entry.spent, { min: 0, max: typeof entry.ap === "number" ? entry.ap : undefined });
       c.int(`${p}.apShort`, entry.apShort, { min: 1, nullable: true });
     });
-    if (typeof d.level === "number" && !seen.has(d.level)) c.add("sample.levels", `needs the build's own level, ${d.level}`);
+    if (seen.size > 0 && typeof d.level === "number" && !seen.has(d.level)) c.add("sample.levels", `needs the build's own level, ${d.level}`);
   }
   const spec = sample.specialization;
+  if (Array.isArray(sample.levels) && sample.levels.length === 0 && spec !== null && spec !== undefined) {
+    c.add("sample.specialization", "must be null when no levels are drawn");
+  }
   if (c.obj("sample.specialization", spec, { nullable: true })) {
     c.str("sample.specialization.note", spec.note);
     c.int("sample.specialization.target", spec.target, { min: 0, max: ATTRIBUTE_MAX });

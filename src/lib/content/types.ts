@@ -187,7 +187,10 @@ export type KeyStatCode = "PAC" | "SHO" | "PAS" | "DRI" | "DEF" | "PHY";
  */
 export interface BuildSample {
   keyStats: Record<KeyStatCode, number>;
-  /** The levels the design draws: the AP the level gives, the AP spent, and how far short of the whole build it is. */
+  /**
+   * The levels the design draws: the AP the level gives, the AP spent, and how far short of the whole build it is.
+   * Empty for a sample drawn only as an archetype card.
+   */
   levels: { level: number; ap: number; spent: number; apShort: number | null }[];
   /** The note under the specialization, the target value the sample counts, and the level it is reached from. */
   specialization: { note: string; target: number; reachedFrom: number } | null;

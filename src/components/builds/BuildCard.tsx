@@ -6,17 +6,22 @@ import { KeyStats } from "./KeyStats";
 // Figma "Build · Meta Finisher" (288:1096, D-62 option B, the "stat strip" card): the build's in-game face, or the
 // ProBuilds mannequin when it has none (D-89, D-98); a Meta pick or Recommended tag; the name; position chips with
 // level, height and weight; the six key stats in one ruled row; the PlayStyles+. Under them, the version tag and
-// credit line every build carries (D-05, D-08; not drawn on the Figma card). The card is a subgrid of four rows so
-// headers in a row share one height and the stat rows line up (D-62).
+// credit line every recorded build carries (D-05, D-08; not drawn on the Figma card, whose builds are samples: a
+// sample card has no Draft tag, version tag or credit, and the page's note marks it, D-107, D-113). The card is a
+// subgrid of three rows, or four with the footer, so headers in a row share one height and the stat rows line up (D-62).
 export const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
 
-export function BuildCard({ card }: { card: BuildCardView }) {
+/** The card's rows: three when no card on the page has a footer (every card a sample), else four. */
+export const CARD_ROWS = { 3: "row-span-3", 4: "row-span-4" } as const;
+
+export function BuildCard({ card, rows }: { card: BuildCardView; rows: keyof typeof CARD_ROWS }) {
+  const draft = card.draft && !card.sample;
   return (
-    <li className="row-span-4 grid grid-rows-subgrid">
+    <li className={`${CARD_ROWS[rows]} grid grid-rows-subgrid`}>
       <Link
         href={card.href}
         data-testid={`build-card-${card.id}`}
-        className="row-span-4 grid grid-rows-subgrid gap-y-3.5 rounded-lg border border-border-subtle bg-bg-surface p-4"
+        className={`${CARD_ROWS[rows]} grid grid-rows-subgrid gap-y-3.5 rounded-lg border border-border-subtle bg-bg-surface p-4`}
       >
         <div className="flex items-center gap-3.5">
           <div className="size-19 shrink-0 overflow-hidden rounded-md">
@@ -30,13 +35,14 @@ export function BuildCard({ card }: { card: BuildCardView }) {
             />
           </div>
           <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5">
-            {(card.badge || card.draft) && (
+            {(card.badge || draft) && (
               <div className="flex flex-wrap gap-1.5">
-                {card.badge === "Meta pick" && <span className={`type-caption rounded-full px-2.5 py-0.5 ${LIME}`}>Meta pick</span>}
+                {/* Figma draws this tag 24 px tall on phone (288:1100) and 26 px, like Recommended, from tablet (290:952). */}
+                {card.badge === "Meta pick" && <span className={`type-caption rounded-full px-2.5 py-0.5 tablet:py-[3px] ${LIME}`}>Meta pick</span>}
                 {card.badge === "Recommended" && (
                   <span className="type-caption rounded-full border border-border-strong bg-bg-raised px-2.5 py-0.5 text-text-primary">Recommended</span>
                 )}
-                {card.draft && <DraftTag />}
+                {draft && <DraftTag />}
               </div>
             )}
             <h2 className="type-h3 max-w-full break-words text-text-primary uppercase">{card.title}</h2>
@@ -65,11 +71,16 @@ export function BuildCard({ card }: { card: BuildCardView }) {
             ))}
           </ul>
         </div>
-        <div className="flex flex-col">
-          <p className="type-caption text-text-muted">{card.versionTag}</p>
-          {card.olderSeason && <p className="type-caption text-status-warning">{card.olderSeason}</p>}
-          {card.credit && <p className="type-caption text-text-muted">{card.credit}</p>}
-        </div>
+        {rows === 4 &&
+          (card.sample ? (
+            <div />
+          ) : (
+            <div className="flex flex-col">
+              <p className="type-caption text-text-muted">{card.versionTag}</p>
+              {card.olderSeason && <p className="type-caption text-status-warning">{card.olderSeason}</p>}
+              {card.credit && <p className="type-caption text-text-muted">{card.credit}</p>}
+            </div>
+          ))}
       </Link>
     </li>
   );

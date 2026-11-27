@@ -52,7 +52,9 @@ describe("build page data", () => {
   it("gives every shown build its page under its archetype", () => {
     expect(pageBuilds(content.builds)).toEqual([
       { archetype: "finisher", build: "meta-finisher" },
+      { archetype: "finisher", build: "quick-finisher" },
       { archetype: "spark", build: "spark-2008-winger" },
+      { archetype: "finisher", build: "tall-finisher" },
     ]);
   });
 
@@ -110,7 +112,7 @@ describe("build page data", () => {
       note: "Mastery +2: levelling Finisher adds +1 to Finishing and Composure at level 10 and +1 more by level 55, on every Finisher build. Not included in the values below.",
       source: { label: "EA Pitch Notes", url: "https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive" },
     });
-    expect(masteryNote(draft.archetype, sources)).toBeNull();
+    expect(masteryNote({ ...draft.archetype, masteryAttributes: null }, sources)).toBeNull();
     // A source other than EA's Pitch Notes is named by its own title, never as EA's.
     const boss = content.archetypeFile.archetypes.find((a) => a.id === "boss");
     expect(boss && masteryNote(boss, sources)?.source).toEqual({
@@ -160,7 +162,10 @@ describe("build page data", () => {
       picture: null,
       positions: ["RW", "LW"],
       body: "Level PLACEHOLDER · PLACEHOLDER cm · PLACEHOLDER kg",
-      mastery: null,
+      mastery: {
+        note: "Mastery +2: levelling Spark adds +1 to Crossing and Dribbling at level 10 and +1 more by level 55, on every Spark build. Not included in the values below.",
+        source: { label: "EA Pitch Notes", url: "https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive" },
+      },
     });
     expect(view.facts).toEqual([
       { term: "Built at level", value: "PLACEHOLDER" },

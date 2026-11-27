@@ -112,7 +112,7 @@ describe("BuildPageView", () => {
     expect(meta).toMatch(/<h3[^>]*>Shooting<\/h3>/);
     expect(meta).toMatch(/<li[^>]*><div[^>]*><span[^>]*>Finishing<\/span><span[^>]*>Mastery \+2<\/span><\/div><span[^>]*>94<\/span>/);
     expect(page).toMatch(/<li[^>]*><div[^>]*><span[^>]*>Acceleration<\/span><\/div><span[^>]*>PLACEHOLDER<\/span>/);
-    expect(page).not.toContain("Mastery +2");
+    expect(page).toContain("Mastery +2: levelling Spark adds +1 to Crossing and Dribbling"); // a Spark attribute only
   });
 
   it("warns on an older season and on a build read from a video (D-05, D-66)", () => {

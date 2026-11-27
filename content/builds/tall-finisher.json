@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "tall-finisher",
+  "slug": "tall-finisher",
+  "status": "draft",
+  "_example": "Figma's sample build (D-107), copied from its card on the Archetype frames (288:1136, 290:989, 290:1277). Figma draws only the card, so only the card's values are here: name, badge, positions, level, height, weight, the six key stats and the PlayStyles+. Everything else is PLACEHOLDER (no frame draws it). Nothing here was checked in game; it shows on the preview only.",
+  "title": "Tall Finisher",
+  "archetype": "finisher",
+  "positions": [
+    "ST"
+  ],
+  "summary": "PLACEHOLDER",
+  "badge": "recommended",
+  "level": 55,
+  "picture": null,
+  "body": {
+    "heightCm": 193,
+    "weightKg": 88,
+    "accelerate": "PLACEHOLDER"
+  },
+  "attributes": [
+    {
+      "name": "Acceleration",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Sprint Speed",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Att. Position",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Finishing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Shot Power",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Long Shots",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Volleys",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Penalties",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Vision",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Crossing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "FK Accuracy",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Short Passing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Long Passing",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Curve",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Agility",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Balance",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Reactions",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Ball Control",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Dribbling",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Composure",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Interceptions",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Heading Accuracy",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Def. Awareness",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Standing Tackle",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Sliding Tackle",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Jumping",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Stamina",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Strength",
+      "value": "PLACEHOLDER"
+    },
+    {
+      "name": "Aggression",
+      "value": "PLACEHOLDER"
+    }
+  ],
+  "playStyles": {
+    "signature": [
+      "Low Driven Shot"
+    ],
+    "plus": [
+      "Precision Header"
+    ],
+    "regular": []
+  },
+  "specialization": null,
+  "skillMoves": "PLACEHOLDER",
+  "weakFoot": "PLACEHOLDER",
+  "spend": null,
+  "sample": {
+    "keyStats": {
+      "PAC": 80,
+      "SHO": 90,
+      "PAS": 66,
+      "DRI": 78,
+      "DEF": 42,
+      "PHY": 88
+    },
+    "levels": [],
+    "specialization": null
+  },
+  "version": 1,
+  "versionTag": {
+    "game": "fc27",
+    "season": 2,
+    "verifiedOn": null,
+    "verifiedBy": null,
+    "platform": null
+  },
+  "credits": [
+    {
+      "role": "made-by",
+      "name": "— (sample)",
+      "url": null,
+      "creatorId": null
+    }
+  ],
+  "sources": [],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-27",
+      "note": "Figma's sample build, copied from its Archetype card (D-107)."
+    }
+  ],
+  "createdAt": "2026-11-27",
+  "updatedAt": "2026-11-27"
+}

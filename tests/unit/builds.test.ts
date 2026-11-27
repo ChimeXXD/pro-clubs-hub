@@ -43,9 +43,20 @@ describe("builds page data", () => {
     expect(finisher?.sources[0]?.url).toBe("https://www.ea.com/en/games/ea-sports-fc/fc-27/news/pitch-notes-fc27-the-grounds-deep-dive");
   });
 
+  it("gives every archetype its mastery attributes, as EA's Pitch Notes table lists them", () => {
+    expect(views.find((v) => v.id === "spark")?.mastery).toBe("Crossing, Dribbling");
+    expect(views.find((v) => v.id === "creator")?.mastery).toBe("FK Accuracy, Vision");
+    expect(views.every((v) => v.mastery !== null)).toBe(true);
+  });
+
   it("leaves out facts the file doesn't have yet", () => {
-    const spark = views.find((v) => v.id === "spark");
+    const bare: ArchetypeFile = {
+      ...file,
+      archetypes: file.archetypes.map((a) => (a.id === "spark" ? { ...a, masteryAttributes: null, apCostChange20261022: null } : a)),
+    };
+    const spark = archetypeViews(bare).find((v) => v.id === "spark");
     expect(spark?.mastery).toBeNull();
+    expect(spark?.apChange).toBeNull();
   });
 
   it("gives every archetype its own stance and pattern", () => {

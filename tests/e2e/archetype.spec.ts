@@ -9,7 +9,7 @@ test("archetype: See Finisher builds opens the Finisher page, and the breadcrumb
   await page.getByRole("link", { name: "See Finisher builds" }).click();
   await expect(page).toHaveURL(/\/builds\/finisher$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Finisher");
-  await expect(page.getByText("Forward · 1 build", { exact: true })).toBeVisible();
+  await expect(page.getByText("Forward · 3 builds", { exact: true })).toBeVisible();
   await expect(page.getByTestId("build-card-meta-finisher")).toBeVisible();
   await expect(page.getByRole("img", { name: "Finisher" })).toBeVisible();
   await expect(page.getByTestId("bottom-nav").getByRole("link", { name: "Builds" })).toHaveAttribute("aria-current", "page");
@@ -18,6 +18,57 @@ test("archetype: See Finisher builds opens the Finisher page, and the breadcrumb
   await crumb.getByRole("link", { name: "Builds" }).click();
   await expect(page).toHaveURL(/\/builds#finisher$/);
   await expect(page.getByTestId("emblem-finisher")).toHaveAttribute("aria-pressed", "true");
+});
+
+test("archetype: Finisher shows Figma's three sample cards in its order, marked once as samples (288:1031)", async ({ page }) => {
+  await page.goto("/builds/finisher");
+  await expect(page.getByText("Sample values: not real builds yet", { exact: true })).toBeVisible();
+  const titles = page.locator("[data-testid^=build-card-] h2");
+  await expect(titles).toHaveText(["Meta Finisher", "Tall Finisher", "Quick Finisher"]);
+  const tall = page.getByTestId("build-card-tall-finisher");
+  await expect(tall).toHaveAttribute("href", "/builds/finisher/tall-finisher");
+  await expect(tall.getByText("Recommended", { exact: true })).toBeVisible();
+  await expect(tall.getByText("Level 55 · 193 cm · 88 kg")).toBeVisible();
+  await expect(tall.getByText("Precision Header")).toBeVisible();
+  const quick = page.getByTestId("build-card-quick-finisher");
+  await expect(quick.getByText("Level 55 · 173 cm · 72 kg")).toBeVisible();
+  await expect(quick.getByText("Rapid")).toBeVisible();
+  // The sample cards carry no Draft tag, version tag or credit; the note marks them (D-113).
+  const list = page.locator("main ul").first();
+  await expect(list.getByText("Draft", { exact: true })).toHaveCount(0);
+  await expect(list.getByText(/Not yet checked in game|Made by/)).toHaveCount(0);
+  // On Figma's 393 px phone: one column, 12 px apart, as drawn (at 360 the body line may wrap, as it should).
+  await page.setViewportSize({ width: 393, height: 852 });
+  const meta = await page.getByTestId("build-card-meta-finisher").boundingBox();
+  const tallBox = await tall.boundingBox();
+  expect(meta && tallBox && Math.round(tallBox.y - (meta.y + meta.height))).toBe(12);
+  // Alone in its row, each card is as tall as its own header: 266 (Meta pick tag, 24 px), 268 (Recommended, 26 px with
+  // its border), 254 (no tag), as 288:1096, 288:1136 and 288:1174 draw them.
+  const quickBox = await quick.boundingBox();
+  expect([meta, tallBox, quickBox].map((b) => b && Math.round(b.height))).toEqual([266, 268, 254]);
+});
+
+test("archetype on desktop: the three Finisher cards share one 268 px row, headers and all (D-62 (3))", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/builds/finisher");
+  const boxes = await Promise.all(["meta", "tall", "quick"].map((id) => page.getByTestId(`build-card-${id}-finisher`).boundingBox()));
+  expect(boxes.map((b) => b && [Math.round(b.x), Math.round(b.width), Math.round(b.height)])).toEqual([
+    [120, 384, 268],
+    [528, 384, 268],
+    [936, 384, 268],
+  ]);
+  await expect(page.getByTestId("submit-tile")).toBeHidden();
+});
+
+test("archetype on tablet: Quick Finisher and the Submit tile make the second row, 254 px (290:796)", async ({ page }) => {
+  await page.setViewportSize({ width: 834, height: 1100 });
+  await page.goto("/builds/finisher");
+  const quick = await page.getByTestId("build-card-quick-finisher").boundingBox();
+  const tile = await page.getByTestId("submit-tile").boundingBox();
+  const tall = await page.getByTestId("build-card-tall-finisher").boundingBox();
+  expect(quick && [Math.round(quick.x), Math.round(quick.width), Math.round(quick.height)]).toEqual([40, 365, 254]);
+  expect(tile && [Math.round(tile.x), Math.round(tile.height)]).toEqual([429, 254]);
+  expect(tall && quick && Math.round(quick.y - (tall.y + tall.height))).toBe(24);
 });
 
 test("archetype: the draft build's card shows its values as written, its version tag and credit", async ({ page }) => {

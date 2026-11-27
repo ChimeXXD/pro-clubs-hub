@@ -44,7 +44,7 @@ export function PhoneFacts({ archetype }: { archetype: ArchetypeView }) {
           ))}
         </ul>
       </div>
-      {/* TODO(Chime): six archetypes have no mastery attributes in a source yet; the line is left out for them. */}
+      {/* All 13 have them (EA's Pitch Notes table); a file without them leaves the line out. */}
       {archetype.mastery && (
         <p className="type-caption text-center text-text-secondary">{`Mastery attributes: ${archetype.mastery}`}</p>
       )}

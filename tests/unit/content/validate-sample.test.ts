@@ -67,6 +67,12 @@ describe("validateBuild sample (D-107)", () => {
     expect(problems(high)).toEqual([["sample.keyStats.PAC", "must be a whole number from 0 to 99"]]);
   });
 
+  it("passes no drawn levels: Figma's archetype cards (Tall and Quick Finisher) draw no level section", () => {
+    expect(problems(sampled((b) => ((b.sample.levels = []), (b.sample.specialization = null))))).toEqual([]);
+    // Its specialization note says where it is reached on the level switch, which such a page doesn't have.
+    expect(problems(sampled((b) => (b.sample.levels = [])))).toEqual([["sample.specialization", "must be null when no levels are drawn"]]);
+  });
+
   it("needs the build's own level among the drawn levels, each once, spending no more AP than there is", () => {
     const noOwn = sampled((b) => (b.sample.levels = [b.sample.levels[1]]));
     expect(problems(noOwn)).toEqual([["sample.levels", "needs the build's own level, 55"]]);

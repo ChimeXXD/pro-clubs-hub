@@ -19,6 +19,7 @@ const render = (id: string) => {
 };
 const spark = render("spark");
 const target = render("target");
+const finisher = render("finisher");
 
 describe("ArchetypeBuildsView", () => {
   it("has the breadcrumb back to Builds, opening on this archetype", () => {
@@ -60,6 +61,18 @@ describe("ArchetypeBuildsView", () => {
   it("carries the version tag and credit line on the card (D-05, D-08)", () => {
     expect(spark).toContain("FC 27 · Season 2 · Not yet checked in game");
     expect(spark).toContain("Made by Chime in game");
+  });
+
+  it("draws Figma's sample cards with the sample note once, no Draft tag, version tag or credit (288:1031, D-113)", () => {
+    expect(finisher).toContain("Forward · 3 builds");
+    expect(finisher.split("Sample values: not real builds yet")).toHaveLength(2);
+    expect(finisher).toMatch(/<h2[^>]*>Tall Finisher<\/h2>/);
+    expect(finisher).not.toContain(">Draft<");
+    expect(finisher).not.toContain("Not yet checked in game");
+    expect(finisher).not.toContain("Made by");
+    // Three rows a card when no card has a footer; the tile matches them.
+    expect(finisher).toMatch(/<li class="row-span-3 hidden tablet:flex desktop:hidden">/);
+    expect(spark).not.toContain("Sample values");
   });
 
   it("fills the last row's gap with Submit a build on tablet and desktop, never on phone", () => {
