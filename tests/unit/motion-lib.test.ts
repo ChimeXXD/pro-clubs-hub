@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { pillInset } from "@/lib/motion";
+import { pillInset, toMs } from "@/lib/motion";
+
+// The production CSS is minified: a token written 220ms arrives as .22s.
+describe("toMs", () => {
+  it("reads a CSS time in ms or s, as the minifier may rewrite it", () => {
+    expect(toMs("220ms", 1)).toBe(220);
+    expect(toMs(".22s", 1)).toBe(220);
+    expect(toMs(" 0.51s ", 1)).toBe(510);
+    expect(toMs("", 150)).toBe(150);
+    expect(toMs("fast", 150)).toBe(150);
+  });
+});
 
 // Shared motion maths (docs/design/motion-bookmarks.md): the sliding pill's clip.
 describe("pillInset", () => {

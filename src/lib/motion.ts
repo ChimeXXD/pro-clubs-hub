@@ -148,4 +148,13 @@ export function pillInset(item: Box, row: { width: number; height: number }, rin
 /** A motion token's value, for the Web Animations API, which can't read var(). Browser only. */
 export const token = (name: string, fallback: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
-export const ms = (name: string, fallback: number) => parseFloat(token(name, `${fallback}ms`)) || fallback;
+/** A CSS time as ms. The production CSS is minified, so a token written "220ms" is read back as ".22s". */
+export function toMs(value: string, fallback: number): number {
+  const m = /^\s*(-?[\d.]+)(ms|s)\s*$/.exec(value);
+  if (!m) return fallback;
+  const n = parseFloat(m[1] ?? "");
+  if (Number.isNaN(n)) return fallback;
+  return Math.round(m[2] === "s" ? n * 1000 : n);
+}
+/** A duration token (--dur-base, --spring-pop-ms …) in ms, for the Web Animations API. */
+export const ms = (name: string, fallback: number) => toMs(token(name, ""), fallback);

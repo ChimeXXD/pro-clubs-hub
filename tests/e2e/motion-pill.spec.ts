@@ -49,6 +49,9 @@ test.describe("bottom bar", () => {
     expect(moving.some((a) => a.props.includes("opacity"))).toBe(true); // the label
     // Only clip-path, transform and opacity move: nothing that lays the page out again.
     expect(moving.flatMap((a) => a.props).every((p) => ["clip-path", "transform", "opacity"].includes(p))).toBe(true);
+    // The icons' slide is timed from --spring-fade-ms (minified to .32s): 320 ms, like the pill's own transition.
+    const flip = await nav.getByRole("link", { name: "Faces" }).evaluate((el) => el.getAnimations()[0]?.effect?.getComputedTiming().duration);
+    expect(flip).toBe(320);
 
     await expect(page).toHaveURL(/\/changelog$/);
     await settle(page);
