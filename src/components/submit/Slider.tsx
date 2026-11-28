@@ -106,9 +106,12 @@ export function Slider({
         {bubble !== undefined && (
           <span
             data-part="bubble"
-            className={`type-caption absolute bottom-[calc(100%+10px)] left-0 origin-bottom -translate-x-1/2 rounded-sm bg-system-tooltip px-2 py-1 whitespace-nowrap text-system-on-tooltip shadow-elevation-2 transition-[opacity,scale] duration-(--dur-fast) ease-(--ease-out) motion-reduce:scale-100 ${
+            className={`type-caption absolute bottom-[calc(100%+10px)] left-0 origin-bottom rounded-sm bg-system-tooltip px-2 py-1 whitespace-nowrap text-system-on-tooltip shadow-elevation-2 transition-[opacity,scale] duration-(--dur-fast) ease-(--ease-out) motion-reduce:scale-100 ${
               follow ? "" : "scale-90 opacity-0"
             }`}
+            // Centred on the knob mid-track, sliding to sit inside the track at its ends (break-ui: at 190 cm a centred
+            // bubble hung past the card's edge).
+            style={{ translate: `${-p * 100}% 0` }}
           >
             {bubble}
           </span>

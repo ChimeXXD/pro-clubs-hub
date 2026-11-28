@@ -1,6 +1,7 @@
 "use client";
 
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { COPIED, ShareSheet, type ShareSheetHandle } from "@/components/builds/ShareSheet";
 import { Toast } from "@/components/ui/Toast";
 import type { ArchetypeFile, PositionGroup } from "@/lib/content/types";
@@ -8,8 +9,10 @@ import { SITE_DOMAIN } from "@/lib/site";
 import { submitShareCards, toSubmission } from "@/lib/submit/document";
 import { type SubmitDraft, titleOf } from "@/lib/submit/editor";
 import { makeShareLink, sendForListing, type StandIn, standInFrom } from "@/lib/submit/send";
+import { reducedMotion } from "@/lib/motion";
 import { SUPABASE } from "@/lib/supabase/client";
 import { ActionsBar, StepFrom } from "./controls";
+import { liftIntoSheet } from "./liftCard";
 import { SentForListing } from "./SentForListing";
 import { hasAttributeError, StepAttributes } from "./StepAttributes";
 import { StepNameShare } from "./StepNameShare";
@@ -23,6 +26,9 @@ import { StepStart } from "./StepStart";
 type Step = 1 | 2 | 3 | 4 | "sent";
 const FAILED = "Couldn't send. Check your connection and try again.";
 const TOAST_MS = 4000;
+// Loading to success (#19): after a send goes through, the button's check draws in (--dur-base) and holds a beat before
+// "Sent for listing" replaces the step.
+const SENT_HOLD_MS = 450;
 const today = () => new Date().toISOString().slice(0, 10);
 
 // `preview`: the build shows drafts (SHOW_DRAFTS is read on the server; the browser bundle doesn't have it).
@@ -36,7 +42,7 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
   const [open, setOpen] = useState<0 | 1 | null>(null);
   const [picture, setPicture] = useState<string | null>(null);
   const [link, setLink] = useState<{ key: string; id: string } | null>(null);
-  const [send, setSend] = useState<"idle" | "sending" | "failed">("idle");
+  const [send, setSend] = useState<"idle" | "sending" | "sent" | "failed">("idle");
   const [toast, setToast] = useState<{ id: number; message: string; tone: "success" | "danger" } | null>(null);
   const standIn = useRef<{ send: StandIn | null; share: StandIn | null }>({ send: null, share: null });
   const sheet = useRef<ShareSheetHandle>(null);
@@ -45,6 +51,8 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
   const making = useRef<{ key: string; promise: Promise<string> } | null>(null);
   // The picture's object URL, revoked when it is swapped or the editor goes away.
   const pictureUrl = useRef<string | null>(null);
+  // The hold between a send going through and "Sent for listing", cleared if the editor goes away first.
+  const sentHold = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const archetype = file.archetypes.find((a) => a.id === draft.archetype) ?? file.archetypes[0]!;
   const submission = useMemo(() => toSubmission(draft, file, today()), [draft, file]);
@@ -136,27 +144,44 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
     sheet.current?.open(from);
     makeLink().catch((error) => console.warn("Share link wasn't made", error));
   };
-  const copy = async () => {
+  // Fan cards (#2): Your card opens the sheet like Share card, and a pointer's tap lifts the card into it.
+  // The sheet's reset to the card's front (setCard(0)) is committed first, so the lift measures and copies that card.
+  const lift = (button: HTMLElement, card: HTMLElement, e: MouseEvent) => {
+    flushSync(() => share(button));
+    if (e.detail !== 0 && !reducedMotion()) liftIntoSheet(card);
+  };
+  const copy = async (): Promise<boolean> => {
     const url = await resolveLink();
-    if (!url) return;
+    if (!url) return false;
     try {
       await navigator.clipboard.writeText(url);
       setToast({ id: Date.now(), message: COPIED, tone: "success" });
+      return true;
     } catch {
       // The clipboard was refused: nothing changes.
+      return false;
     }
   };
-  const sendIt = async () => {
-    if (send === "sending") return;
+  const sendIt = async (): Promise<boolean> => {
+    if (send === "sending" || send === "sent") return true;
     setSend("sending");
     try {
       if (submission.problems.length > 0) throw new Error(submission.problems.map((p) => `${p.path}: ${p.message}`).join("; "));
       await sendForListing(submission.document, { config: SUPABASE, standIn: standIn.current.send });
-      setSend("idle");
-      go("sent");
+      setSend("sent");
+      sentHold.current = setTimeout(
+        () => {
+          sentHold.current = null;
+          setSend("idle");
+          go("sent");
+        },
+        reducedMotion() ? 150 : SENT_HOLD_MS,
+      );
+      return true;
     } catch (error) {
       console.warn("Send for listing didn't go through", error);
       setSend("failed");
+      return false;
     }
   };
   const setPictureFile = (f: File | null) => {
@@ -170,6 +195,7 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
     () => () => {
       if (pictureUrl.current) URL.revokeObjectURL(pictureUrl.current);
       pictureUrl.current = null;
+      if (sentHold.current) clearTimeout(sentHold.current);
     },
     [],
   );
@@ -209,10 +235,12 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
               cards={cards}
               picture={picture}
               sending={send === "sending"}
+              sent={send === "sent"}
               failed={send === "failed"}
               onChange={change}
               onPicture={setPictureFile}
               onShare={share}
+              onLift={lift}
               onCopy={copy}
               onSend={sendIt}
             />

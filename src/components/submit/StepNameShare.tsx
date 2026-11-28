@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { OverviewCard } from "@/components/builds/ShareCards";
+import { type MouseEvent, useRef, useState } from "react";
 import { Spinner } from "@/components/builds/ShareSheet";
 import { Icon } from "@/components/shell/Icon";
+import { ActionIcon, shake, useFor } from "@/components/ui/ActionIcon";
 import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import type { ShareCardsView } from "@/lib/share-cards";
-import { CARD } from "@/lib/share-images";
 import type { SubmitDraft } from "@/lib/submit/editor";
 import { letterLimit } from "@/lib/submit/motion";
 import { StepLine } from "./controls";
 import { LetterLimit } from "./LetterLimit";
 import { ProFace } from "./ProFace";
+import { YourCard } from "./YourCard";
 
 // Step 4 of 4, "Name it and share" (Figma 401:3616 / 418:6420 / 418:6599; picture added 412:2989 / 418:6778 /
 // 418:6957; send failed 441:8928 / 441:9162 / 441:9380; D-86, D-89). The build's name and the player's name for the
@@ -29,10 +29,12 @@ export function StepNameShare({
   cards,
   picture,
   sending,
+  sent,
   failed,
   onChange,
   onPicture,
   onShare,
+  onLift,
   onCopy,
   onSend,
 }: {
@@ -40,13 +42,31 @@ export function StepNameShare({
   cards: ShareCardsView;
   picture: string | null;
   sending: boolean;
+  /** Sent: the button's check shows for a moment before the editor moves to "Sent for listing". */
+  sent: boolean;
   failed: boolean;
   onChange: (next: Partial<SubmitDraft>) => void;
   onPicture: (file: File | null) => void;
   onShare: (from: HTMLElement) => void;
-  onCopy: () => void;
-  onSend: () => void;
+  /** Your card was tapped: open the sheet from `button`, lifting `card` into it (Fan cards, #2). */
+  onLift: (button: HTMLElement, card: HTMLElement, e: MouseEvent) => void;
+  /** Resolves true when the link is on the clipboard. */
+  onCopy: () => Promise<boolean>;
+  /** Resolves false when the build didn't go through. */
+  onSend: () => Promise<boolean>;
 }) {
+  // Copy button (#20): the copy icon turns into a check for 2 s after the link is copied (the toast still says so).
+  const [copiedAt, setCopiedAt] = useState(0);
+  const copied = useFor(copiedAt, 2000);
+  // Loading to success (#19): the spinner, then a check that draws in; a send that fails shakes the button 4 px twice.
+  const sendButton = useRef<HTMLButtonElement>(null);
+  const shareButton = useRef<HTMLButtonElement>(null);
+  const copy = async () => {
+    if (await onCopy()) setCopiedAt(Date.now());
+  };
+  const send = async () => {
+    if (!(await onSend())) shake(sendButton);
+  };
   return (
     <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-8 desktop:gap-24">
       <div className="flex flex-col tablet:w-92.25 tablet:shrink-0 desktop:w-166">
@@ -92,17 +112,17 @@ export function StepNameShare({
       </div>
       <div className="flex min-w-0 flex-1 flex-col pt-7 tablet:pt-0">
         <h2 className="type-h3 pb-3 text-text-primary">Your card</h2>
-        <YourCard card={cards.overview} />
+        {/* The sheet gives focus back to Share card, the keyboard's way to the same sheet. */}
+        <YourCard card={cards.overview} onOpen={(button, card, e) => onLift(shareButton.current ?? button, card, e)} />
         <div className="flex flex-col gap-3 pt-7">
-          <button type="button" data-testid="share-card" aria-haspopup="dialog" className={buttonClass("primary", "w-full")} onClick={(e) => onShare(e.currentTarget)}>
+          <button ref={shareButton} type="button" data-testid="share-card" aria-haspopup="dialog" className={buttonClass("primary", "w-full")} onClick={(e) => onShare(e.currentTarget)}>
             <ButtonLabel icon="share" iconSide="left">
               Share card
             </ButtonLabel>
           </button>
-          <button type="button" data-testid="copy-link" className={buttonClass("secondary", "w-full hover:bg-action-hovered")} onClick={onCopy}>
-            <ButtonLabel icon="copy" iconSide="left">
-              Copy link
-            </ButtonLabel>
+          <button type="button" data-testid="copy-link" className={buttonClass("secondary", "w-full hover:bg-action-hovered")} onClick={copy}>
+            <ActionIcon icon="copy" state={copied ? "done" : "idle"} />
+            Copy link
           </button>
         </div>
         <section aria-labelledby="listing" className="mt-6 flex flex-col gap-2.5 rounded-lg bg-bg-surface p-4">
@@ -119,47 +139,19 @@ export function StepNameShare({
             </p>
           )}
           <button
+            ref={sendButton}
             type="button"
             data-testid="submit-listing"
             aria-busy={sending || undefined}
-            disabled={sending}
+            disabled={sending || sent}
             className={buttonClass("secondary", "w-full border-transparent hover:bg-action-hovered")}
-            onClick={onSend}
+            onClick={send}
           >
             {failed ? "Try again" : "Send for listing"}
-            {sending ? <Spinner /> : <Icon name="arrow-right" size={20} />}
+            <ActionIcon icon="arrow-right" state={sending ? "busy" : sent ? "done" : "idle"} busy={<Spinner />} draw />
           </button>
         </section>
       </div>
-    </div>
-  );
-}
-
-/** The overview story card at the column's width (353 px on phone and tablet, 440 on desktop), in a 20 px frame. */
-function YourCard({ card }: { card: ShareCardsView["overview"] }) {
-  const box = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(353 / CARD.width);
-  useEffect(() => {
-    const el = box.current;
-    if (!el) return;
-    const fit = () => setScale(el.clientWidth / CARD.width);
-    fit();
-    const observer = new ResizeObserver(fit);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-  return (
-    <div
-      ref={box}
-      data-testid="your-card"
-      className="relative w-full overflow-hidden rounded-[20px] bg-bg-page"
-      style={{ height: CARD.height * scale }}
-    >
-      <div className="absolute top-0 left-0 origin-top-left" style={{ transform: `scale(${scale})` }}>
-        <OverviewCard card={card} page={null} />
-      </div>
-      {/* Figma's 1 px border/strong stroke sits inside the frame, over the card, which fills the whole frame. */}
-      <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-border-strong ring-inset" />
     </div>
   );
 }
