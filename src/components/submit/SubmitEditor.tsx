@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { COPIED, ShareSheet, type ShareSheetHandle } from "@/components/builds/ShareSheet";
 import { Toast } from "@/components/ui/Toast";
 import type { ArchetypeFile, PositionGroup } from "@/lib/content/types";
@@ -9,7 +9,7 @@ import { submitShareCards, toSubmission } from "@/lib/submit/document";
 import { type SubmitDraft, titleOf } from "@/lib/submit/editor";
 import { makeShareLink, sendForListing, type StandIn, standInFrom } from "@/lib/submit/send";
 import { SUPABASE } from "@/lib/supabase/client";
-import { ActionsBar } from "./controls";
+import { ActionsBar, StepFrom } from "./controls";
 import { SentForListing } from "./SentForListing";
 import { hasAttributeError, StepAttributes } from "./StepAttributes";
 import { StepNameShare } from "./StepNameShare";
@@ -28,6 +28,8 @@ const today = () => new Date().toISOString().slice(0, 10);
 // `preview`: the build shows drafts (SHOW_DRAFTS is read on the server; the browser bundle doesn't have it).
 export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; initial: SubmitDraft; preview: boolean }) {
   const [step, setStep] = useState<Step>(1);
+  // The step left by the last move, for the step line's roll (#9); a move from the keyboard doesn't roll.
+  const [from, setFrom] = useState<{ step: number; still: boolean } | null>(null);
   const [draft, setDraft] = useState(initial);
   const [group, setGroup] = useState<PositionGroup>(() => file.archetypes.find((a) => a.id === initial.archetype)?.positionGroup ?? "attacker");
   const [active, setActive] = useState("PAC");
@@ -89,8 +91,10 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
     return () => clearTimeout(t);
   }, [toast]);
 
-  // A new step starts at the top, with focus on its heading for screen readers.
-  const go = (next: Step) => {
+  // A new step starts at the top, with focus on its heading for screen readers. `e` is the tap or click that moved it
+  // (none, or detail 0 for Enter and Space: the step line then changes without its roll).
+  const go = (next: Step, e?: MouseEvent) => {
+    setFrom(typeof step === "number" && typeof next === "number" ? { step, still: !e || e.detail === 0 } : null);
     setStep(next);
     setOpen(null);
     requestAnimationFrame(() => {
@@ -193,30 +197,32 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
                 : "pt-10 pb-8 tablet:pt-16 tablet:pb-0"
         }`}
       >
-        {step === 1 && <StepStart file={file} draft={draft} group={group} onGroup={setGroup} onChange={change} />}
-        {step === 2 && <StepAttributes draft={draft} archetype={archetype} active={active} onActive={setActive} onChange={change} />}
-        {step === 3 && <StepPlayStyles draft={draft} archetype={archetype} open={open} onOpen={setOpen} onChange={change} />}
-        {step === 4 && (
-          <StepNameShare
-            draft={draft}
-            cards={cards}
-            picture={picture}
-            sending={send === "sending"}
-            failed={send === "failed"}
-            onChange={change}
-            onPicture={setPictureFile}
-            onShare={share}
-            onCopy={copy}
-            onSend={sendIt}
-          />
-        )}
-        {step === "sent" && <SentForListing onShare={share} onAnother={another} />}
+        <StepFrom.Provider value={from}>
+          {step === 1 && <StepStart file={file} draft={draft} group={group} onGroup={setGroup} onChange={change} />}
+          {step === 2 && <StepAttributes draft={draft} archetype={archetype} active={active} onActive={setActive} onChange={change} />}
+          {step === 3 && <StepPlayStyles draft={draft} archetype={archetype} open={open} onOpen={setOpen} onChange={change} />}
+          {step === 4 && (
+            <StepNameShare
+              draft={draft}
+              cards={cards}
+              picture={picture}
+              sending={send === "sending"}
+              failed={send === "failed"}
+              onChange={change}
+              onPicture={setPictureFile}
+              onShare={share}
+              onCopy={copy}
+              onSend={sendIt}
+            />
+          )}
+          {step === "sent" && <SentForListing onShare={share} onAnother={another} />}
+        </StepFrom.Provider>
       </div>
       {typeof step === "number" && step < 4 && (
         <div className="tablet:px-10 tablet:pb-30 desktop:mx-auto desktop:w-full desktop:max-w-(--layout-content-max) desktop:px-0">
-          {step === 1 && <ActionsBar next={{ label: "Attributes", onPress: () => go(2) }} nextWidth="tablet:w-70 desktop:w-80" gap="tablet:pt-8 desktop:pt-10" />}
-          {step === 2 && <ActionsBar back={() => go(1)} next={{ label: "PlayStyles", onPress: () => go(3), disabled: hasAttributeError(draft) }} />}
-          {step === 3 && <ActionsBar back={() => go(2)} next={{ label: "Review", onPress: () => go(4) }} />}
+          {step === 1 && <ActionsBar next={{ label: "Attributes", onPress: (e) => go(2, e) }} nextWidth="tablet:w-70 desktop:w-80" gap="tablet:pt-8 desktop:pt-10" />}
+          {step === 2 && <ActionsBar back={(e) => go(1, e)} next={{ label: "PlayStyles", onPress: (e) => go(3, e), disabled: hasAttributeError(draft) }} />}
+          {step === 3 && <ActionsBar back={(e) => go(2, e)} next={{ label: "Review", onPress: (e) => go(4, e) }} />}
         </div>
       )}
       <ShareSheet ref={sheet} title={titleOf(draft, archetype)} share={cards} linkUrl={makeLink} linkFailed={FAILED} />

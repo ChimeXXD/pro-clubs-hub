@@ -1,19 +1,32 @@
 "use client";
 
-import type { ChangeEvent, ReactNode } from "react";
+import { type ChangeEvent, createContext, type MouseEvent, type ReactNode, useContext } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { buttonClass, ButtonLabel } from "@/components/ui/Button";
+import { RollingNumber } from "@/components/ui/RollingNumber";
 
 // Small pieces Submit a build's steps share, each from its Figma part: the step line ("Submit a build · 1 of 4"),
 // the round − / + buttons, the slider (a 4 px track, the value in lime and a
 // 20 px cream knob), the stars, and the actions bar (sticky on phone, under the content from tablet).
 
-/** "Submit a build" (Label/Default, text/secondary) and "1 of 4" (Label/Caption, text/muted), 20 px tall. */
+/** The step the editor came from, and whether the move skips its motion (a key press); null on the first step shown. */
+export const StepFrom = createContext<{ step: number; still: boolean } | null>(null);
+
+/**
+ * "Submit a build" (Label/Default, text/secondary) and "1 of 4" (Label/Caption, text/muted), 20 px tall.
+ * Step progress (motion-bookmarks.pdf #9): the step's number rolls from the one before, up going forward and down
+ * going back (RollingNumber, 140 ms ease-out), so the move through the four steps reads in the corner the eye checks.
+ * Not from the keyboard; reduced motion crossfades. Figma draws only the words, so there is no bar to fill.
+ */
 export function StepLine({ label, step }: { label: string; step: number }) {
+  const from = useContext(StepFrom);
   return (
     <div className="flex h-5 items-center gap-2">
       <p className="type-label min-w-0 flex-1 text-text-secondary">{label}</p>
-      <p className="type-caption shrink-0 text-text-muted">{`${step} of 4`}</p>
+      <p data-testid="step-count" className="type-caption shrink-0 text-text-muted tabular-nums">
+        <RollingNumber value={String(step)} from={from ? String(from.step) : undefined} still={from?.still ?? true} />
+        {" of 4"}
+      </p>
     </div>
   );
 }
@@ -29,7 +42,7 @@ export function RoundButton({
 }: {
   sign: "minus" | "plus";
   label: string;
-  onPress: () => void;
+  onPress: (e: MouseEvent<HTMLButtonElement>) => void;
   size: 44 | 48;
   surface?: "raised" | "surface";
   disabled?: boolean;
@@ -124,8 +137,8 @@ export function ActionsBar({
   nextWidth = "tablet:w-70",
   gap = "tablet:pt-10",
 }: {
-  back?: () => void;
-  next: { label: string; onPress: () => void; disabled?: boolean };
+  back?: (e: MouseEvent<HTMLButtonElement>) => void;
+  next: { label: string; onPress: (e: MouseEvent<HTMLButtonElement>) => void; disabled?: boolean };
   nextWidth?: string;
   gap?: string;
 }) {

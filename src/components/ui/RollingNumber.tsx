@@ -9,6 +9,8 @@ import { type CSSProperties, useState } from "react";
 // crossfades. The text is the plain value, so screen readers and tests read it as before; the leaving value is hidden
 // from them. The box takes the new value's width at once (the leaving value is laid over it, clipped only top and
 // bottom), so the text around a number that changes length (1,419 → 724) moves once, not again when the roll ends.
+// `from` (optional): a value shown before this one mounted (Submit's step line, remade on each step): it rolls in from
+// that value on mount, unless `still`.
 const ROLL = "animate-[var(--roll)_140ms_var(--ease-out)_both] motion-reduce:animate-[fade-in_140ms_linear_both]";
 const LEAVE = "animate-[var(--roll)_140ms_var(--ease-out)_both] motion-reduce:animate-[fade-out_140ms_linear_both]";
 
@@ -18,8 +20,11 @@ function direction(next: string, prev: string): 1 | -1 {
   return Number.isNaN(a) || Number.isNaN(b) || a >= b ? 1 : -1;
 }
 
-export function RollingNumber({ value, className = "", still = false }: { value: string; className?: string; still?: boolean }) {
-  const [roll, setRoll] = useState({ current: value, previous: null as string | null, up: true, n: 0, still: true });
+export function RollingNumber({ value, className = "", still = false, from }: { value: string; className?: string; still?: boolean; from?: string }) {
+  const [roll, setRoll] = useState(() => {
+    const rolls = from !== undefined && from !== value && !still;
+    return { current: value, previous: rolls ? from : (null as string | null), up: !rolls || direction(value, from) === 1, n: 0, still: !rolls };
+  });
   // Store what was shown before, during render (React's pattern for a value from the previous render).
   if (roll.current !== value)
     setRoll({ current: value, previous: still ? null : roll.current, up: direction(value, roll.current) === 1, n: roll.n + 1, still });
