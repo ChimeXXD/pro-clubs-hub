@@ -29,6 +29,8 @@
 @keyframes roll-out-down { to { transform: translateY(0.6em); opacity: 0; } }
 /* A check mark (an icon mask) drawing in from the left. */
 @keyframes check-in { from { clip-path: inset(0 100% 0 0); } }
+/* Something that didn't work: 4 px either way, twice (Loading to success's failure). */
+@keyframes shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
 /* Something entering: a short fade and an 8 px rise. */
 @keyframes fade-rise { from { transform: translateY(8px); opacity: 0; } }
 /* Reduced motion: the same changes as fades only. */

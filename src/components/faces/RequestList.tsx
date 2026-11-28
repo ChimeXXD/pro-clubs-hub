@@ -2,9 +2,11 @@
 
 import { Icon } from "@/components/shell/Icon";
 import { PillRow } from "@/components/ui/PillRow";
+import { RollingNumber } from "@/components/ui/RollingNumber";
 import { SmallChip, SmallChipGhost } from "@/components/ui/SmallChip";
 import { plural } from "@/lib/face-page";
 import { byKind, type FaceRequest, REQUEST_KINDS, type RequestKind, requestLine } from "@/lib/requests";
+import { BURST_DOTS, burst } from "./voteBurst";
 
 // "Most requested" (Figma 402:3451): the heading with "One vote each", the kind chips, and the requests ranked by
 // votes (component "Request row" 431:1092: default, voted, being made). A vote box is lime once this browser has
@@ -72,11 +74,25 @@ export function RequestList({
                     type="button"
                     aria-pressed={on}
                     aria-label={`Vote for ${r.name}, ${plural(r.votes, "vote")}`}
-                    onClick={() => onVote(r)}
-                    className={`type-label flex size-14 shrink-0 flex-col items-center justify-center rounded-[14px] transition-colors duration-150 ${on ? "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset" : "bg-bg-surface text-text-primary hover:bg-bg-raised"}`}
+                    onClick={(e) => {
+                      // A burst for a tap or click that votes (detail 0 is a keyboard press: no motion there).
+                      if (!on && e.detail > 0) burst(e.currentTarget);
+                      onVote(r);
+                    }}
+                    className={`type-label relative flex size-14 shrink-0 touch-manipulation flex-col items-center justify-center rounded-[14px] transition-colors duration-150 select-none [-webkit-tap-highlight-color:transparent] ${on ? "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset" : "bg-bg-surface text-text-primary hover:bg-bg-raised"}`}
                   >
-                    <Icon name="chevron-up" size={20} />
-                    {r.votes}
+                    <span data-vote-arrow className="flex">
+                      <Icon name="chevron-up" size={20} />
+                    </span>
+                    <RollingNumber value={String(r.votes)} />
+                    {BURST_DOTS.map((a) => (
+                      <span
+                        key={a}
+                        data-vote-dot
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-1/2 -mt-0.5 -ml-0.5 size-1 rounded-full bg-accent-fill opacity-0 light:bg-accent-text"
+                      />
+                    ))}
                   </button>
                 </li>
               );

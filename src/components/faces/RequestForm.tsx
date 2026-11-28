@@ -5,13 +5,16 @@ import { Spinner } from "@/components/builds/ShareSheet";
 import { buttonClass } from "@/components/ui/Button";
 import { plural } from "@/lib/face-page";
 import { KIND_LABEL } from "@/lib/faces";
-import { type FaceRequest, NAME_MAX } from "@/lib/requests";
+import type { FaceRequest } from "@/lib/requests";
+import { RequestNameField } from "./RequestNameField";
 
 // Figma "New request" (402:3451) and its states: typing a name already asked for (430:6093: "Already asked for",
 // Vote, and "Ask for “Kanye” as a new face"), request sent (430:6517) and request failed (441:9598: the red row and
 // Try again, keeping what was typed; D-100 (3)). The placeholder wraps to two lines on phone as Figma draws it, so
-// it is drawn over the field; the field's own placeholder stays for screen readers.
-const PLACEHOLDER = "A name and the look, e.g. 2006 Ronaldinho";
+// it is drawn over the field; the field's own placeholder stays for screen readers (RequestNameField).
+// Loading to success (motion-bookmarks #19): Request shows the spinner while sending; once sent, the "Request sent"
+// card's check draws in from the left (the check-in keyframe, 160 ms, --ease-out). A request that fails shakes the
+// button 4 px twice as the red row appears (feedback for an error). Reduced motion: the check fades in, no shake.
 
 export type FormState = { kind: "idle" } | { kind: "sending" } | { kind: "sent"; name: string } | { kind: "failed" };
 
@@ -39,7 +42,9 @@ export function RequestForm({
       <section aria-label="Request sent" data-testid="request-sent" className="flex flex-col gap-3 rounded-lg bg-bg-surface p-4">
         <div className="flex items-center gap-3">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-status-success-bg text-accent-text">
-            <Icon name="check" size={20} />
+            <span data-testid="sent-check" className="flex animate-[check-in_160ms_var(--ease-out)_both] motion-reduce:animate-[fade-in_150ms_var(--ease-out)_both]">
+              <Icon name="check" size={20} />
+            </span>
           </span>
           <div role="status" className="flex min-w-0 flex-1 flex-col gap-0.5">
             <p className="type-label text-text-primary">{`Asked for ${state.name}`}</p>
@@ -66,27 +71,7 @@ export function RequestForm({
       <label htmlFor="request-name" className="type-label text-text-primary">
         Who do you want?
       </label>
-      <div className="relative flex h-13 items-center gap-2.5 rounded-md border border-input-border bg-input-bg px-4 focus-within:border-2 focus-within:border-input-border-focused focus-within:px-[15px]">
-        <span className="flex shrink-0 text-text-muted">
-          <Icon name="search" size={20} />
-        </span>
-        <input
-          id="request-name"
-          type="text"
-          autoComplete="off"
-          enterKeyHint="send"
-          maxLength={NAME_MAX}
-          placeholder={PLACEHOLDER}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="type-body peer min-w-0 flex-1 bg-transparent text-text-primary outline-none placeholder:text-transparent"
-        />
-        {!value && (
-          <span aria-hidden="true" className="type-body pointer-events-none absolute top-1/2 right-4 left-[46px] line-clamp-2 -translate-y-1/2 text-text-muted">
-            {PLACEHOLDER}
-          </span>
-        )}
-      </div>
+      <RequestNameField value={value} suggestion={showMatch ? match.name : null} onChange={onChange} />
       {showMatch ? (
         <>
           <div data-testid="already-asked" className="flex flex-col rounded-md bg-bg-raised px-3 pt-2.5 pb-1">
@@ -124,7 +109,12 @@ export function RequestForm({
           ) : (
             <p className="type-caption text-text-muted">If someone asked already, you&apos;ll see it here and can vote instead.</p>
           )}
-          <button type="submit" aria-busy={state.kind === "sending" || undefined} disabled={state.kind === "sending"} className={buttonClass("primary", "w-full")}>
+          <button
+            type="submit"
+            aria-busy={state.kind === "sending" || undefined}
+            disabled={state.kind === "sending"}
+            className={buttonClass("primary", `w-full ${state.kind === "failed" ? "animate-[shake_280ms_var(--ease-out)] motion-reduce:animate-none" : ""}`)}
+          >
             {state.kind === "failed" ? "Try again" : "Request"}
             {state.kind === "sending" && <Spinner />}
           </button>
