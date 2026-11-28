@@ -30,5 +30,6 @@
       "timeout": 900
     }
   ],
-  "maxRounds": 5
+  "maxRounds": 5,
+  "concurrency": 1
 }
