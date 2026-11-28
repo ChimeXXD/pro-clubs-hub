@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/shell/Icon";
 import {
   firstStep,
@@ -16,6 +16,7 @@ import {
   sectionBar,
 } from "@/lib/face-page";
 import type { BuildPreviewView } from "@/lib/build-preview";
+import { RollingNumber } from "@/components/ui/RollingNumber";
 import { AllSteps } from "./AllSteps";
 import { DoneCard } from "./DoneCard";
 import { SectionBar } from "./SectionBar";
@@ -32,6 +33,9 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
   const [step, setStep] = useState(() => firstStep(recipe));
   // Shown on arrival only; any move hides them.
   const [notice, setNotice] = useState<"resumed" | "reset" | null>(null);
+  // The player has moved since arriving: from then on the step number rolls and a finished section pops (Step
+  // progress, motion-bookmarks #9); the jump to a stored step on arrival does neither.
+  const [moved, setMoved] = useState(false);
 
   useEffect(() => {
     let read: ReturnType<typeof readProgress> | null = null;
@@ -51,6 +55,7 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
     const target = to > recipe.total || screenAt(recipe, to) ? to : nextStep(recipe, to - 1);
     setStep(target);
     setNotice(null);
+    setMoved(true);
     try {
       if (target === firstStep(recipe)) window.localStorage.removeItem(progressKey(storage.id, storage.version));
       else window.localStorage.setItem(progressKey(storage.id, storage.version), JSON.stringify({ step: target }));
@@ -63,6 +68,8 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
   const back = prevStep(recipe, step);
   const done = isDone(recipe, step);
   const next = nextLine(recipe, step);
+  // Kept between renders so SectionBar's effect runs only when the step moves.
+  const sections = useMemo(() => sectionBar(recipe, step), [recipe, step]);
 
   return (
     <>
@@ -94,11 +101,11 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
       <div data-testid="face-progress" className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-2">
           <p className="type-label text-text-primary" aria-live="polite">
-            {progressLabel(recipe, step)}
+            <StepLabel label={progressLabel(recipe, step)} still={!moved} />
           </p>
           <AllSteps recipe={recipe} step={step} onPick={go} />
         </div>
-        <SectionBar sections={sectionBar(recipe, step)} />
+        <SectionBar sections={sections} pop={moved} />
       </div>
       {done ? (
         <DoneCard paired={paired} onStartOver={startOver} />
@@ -110,6 +117,18 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
           {next}
         </p>
       )}
+    </>
+  );
+}
+
+/** "Step 9 of 18 · Sculpt" with the step number rolling as it changes (RollingNumber); "All 18 steps done" as it is. */
+function StepLabel({ label, still }: { label: string; still: boolean }) {
+  const parts = /^Step (\d+)( .*)$/.exec(label);
+  if (!parts) return label;
+  return (
+    <>
+      Step <RollingNumber value={parts[1] ?? ""} still={still} />
+      {parts[2]}
     </>
   );
 }
