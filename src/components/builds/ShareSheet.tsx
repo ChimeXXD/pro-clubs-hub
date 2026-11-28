@@ -2,6 +2,7 @@
 
 import { type CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef, useState, useSyncExternalStore } from "react";
 import { Icon } from "@/components/shell/Icon";
+import { ActionIcon, shake, useFor } from "@/components/ui/ActionIcon";
 import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
 import type { ShareCardsView } from "@/lib/share-cards";
@@ -21,7 +22,9 @@ import { AttributesCard, OverviewCard } from "./ShareCards";
 // couldn't be made (493:9624 to 493:15977, D-114 (2)).
 // A native <dialog> opened with showModal(): focus moves in, Escape closes it, the page behind is inert, and focus
 // returns to the button that opened it. The sheet slides up and the dialog grows in, ease-out under 300 ms; with
-// reduced motion both only fade.
+// reduced motion both only fade. Save images' icon turns to a check that draws in when the images are saved, for
+// 1.5 s, and the button shakes when they couldn't be made (Loading to success, #19); Copy link's icon crossfades to a
+// check for 2 s (Copy button, #20). Both in ActionIcon.
 const TOAST_MS = 4000;
 export const COPIED = "Link copied. Paste it in any chat.";
 // Whether the browser has a share menu: fixed for the page's life, and false in the static HTML.
@@ -50,6 +53,10 @@ export const ShareSheet = forwardRef<
   const [failed, setFailed] = useState(0);
   const [card, setCard] = useState<0 | 1>(0);
   const saving = useRef(false);
+  const saveButton = useRef<HTMLButtonElement>(null);
+  const [savedAt, setSavedAt] = useState(0);
+  const saved = useFor(savedAt, 1500);
+  const linkCopied = useFor(copied, 2000);
   const [save, setSave] = useState<{ state: SaveState; id: number } | null>(null);
   // Whether the sheet is open: a Save images result that ends after it was closed shows as a page toast instead.
   const [open, setOpen] = useState(false);
@@ -128,9 +135,11 @@ export const ShareSheet = forwardRef<
       const { saveShareImages } = await import("./saveShareImages");
       const done = saveState(await saveShareImages(cardNodes, share.files));
       setSave(done ? { state: done, id } : null);
+      if (done) setSavedAt(Date.now());
     } catch (error) {
       console.error("Save images failed", error);
       setSave({ state: "failed", id });
+      shake(saveButton);
     } finally {
       saving.current = false;
     }
@@ -192,18 +201,18 @@ export const ShareSheet = forwardRef<
           <div className="flex flex-col gap-2 tablet:flex-row tablet:justify-center tablet:gap-3">
             <div className="flex gap-2 tablet:contents">
               <button
+                ref={saveButton}
                 type="button"
                 aria-busy={save?.state === "saving" || undefined}
                 className={`${SECONDARY} flex-1 tablet:flex-none`}
                 onClick={saveImages}
               >
-                {save?.state === "saving" ? <Spinner /> : <Icon name="download" size={20} />}
+                <ActionIcon icon="download" state={save?.state === "saving" ? "busy" : saved ? "done" : "idle"} busy={<Spinner />} draw />
                 Save images
               </button>
               <button type="button" className={`${SECONDARY} flex-1 tablet:flex-none`} onClick={copyLink}>
-                <ButtonLabel icon="copy" iconSide="left">
-                  Copy link
-                </ButtonLabel>
+                <ActionIcon icon="copy" state={linkCopied ? "done" : "idle"} />
+                Copy link
               </button>
             </div>
             {canShare && (

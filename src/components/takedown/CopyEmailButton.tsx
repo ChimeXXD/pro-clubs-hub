@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ButtonLabel, buttonClass } from "@/components/ui/Button";
+import { ActionIcon, useFor } from "@/components/ui/ActionIcon";
+import { buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
 
 const TOAST_MS = 4000;
 // TODO(Chime): no Figma frame shows Takedown's copied state; this follows the design's "Link copied" toast.
 const COPIED = "Email copied";
 
-/** Copies the takedown address and confirms it with a toast. */
+/** Copies the takedown address and confirms it with a toast; its icon turns to a check for 2 s (Copy button, #20). */
 export function CopyEmailButton({ email }: { email: string }) {
   const [copied, setCopied] = useState(0);
+  const checked = useFor(copied, 2000);
   useEffect(() => {
     if (!copied) return;
     const t = setTimeout(() => setCopied(0), TOAST_MS);
@@ -32,9 +34,8 @@ export function CopyEmailButton({ email }: { email: string }) {
           }
         }}
       >
-        <ButtonLabel icon="copy" iconSide="left">
-          Copy
-        </ButtonLabel>
+        <ActionIcon icon="copy" state={checked ? "done" : "idle"} />
+        Copy
       </button>
       <Toast id={copied} message={copied !== 0 ? COPIED : null} />
     </>
