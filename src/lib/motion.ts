@@ -114,3 +114,10 @@ export function rubberband(overshoot: number, dimension: number, constant = 0.55
 
 /** Whether the person asked for less motion (read at the moment of use; it can change while the page is open). */
 export const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/**
+ * Whether the change in progress follows the person's own tap, click or key (a page opened on a link that names a
+ * state, /builds#finisher, has none: it should open in place, not fly there). Browsers without the API animate.
+ */
+export const userInitiated = () =>
+  typeof navigator === "undefined" || !("userActivation" in navigator) || navigator.userActivation.isActive;
