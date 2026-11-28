@@ -15,6 +15,8 @@ const isServer = () => false;
 // in the browser's animation engine, not in React, so a navigation loading the next page doesn't hold it up, and a
 // second tap retargets it from where it is. The real row stays the buttons and links; the copy is inert and hidden
 // from screen readers. Before hydration (and without JavaScript) the row draws its own picked item as before.
+// It slides only for a pick made by pointer on the row; a keyboard pick moves it at once (no motion on keyboard
+// actions, DESIGN.md), and a pick on another line of a wrapped row fades it in there instead of sliding across.
 
 export const PILL_LAYER =
   "pointer-events-none absolute inset-0 transition-[clip-path] duration-(--spring-fade-ms) ease-(--spring-fade) motion-reduce:transition-none";
@@ -60,6 +62,10 @@ export function usePill<T extends HTMLElement>(selected: number | null, onMove?:
   const last = useRef<number | null | undefined>(undefined);
   const move = useRef(onMove);
   const picked = useRef(selected);
+  // How the last pick on the row was made (a click with detail 0 is Enter or Space): only a pointer pick slides the
+  // pill. Cleared once a change uses it, so a later change from elsewhere (a link outside the row, Back) slides.
+  const byKey = useRef(false);
+  const lastTop = useRef<number | null>(null);
   useLayoutEffect(() => {
     move.current = onMove;
     picked.current = selected;
@@ -89,7 +95,10 @@ export function usePill<T extends HTMLElement>(selected: number | null, onMove?:
     const size = { width: outer.width - box.clientLeft * 2, height: outer.height - box.clientTop * 2 };
     const appearing = !fill.current?.dataset.clip || fill.current.style.visibility === "hidden";
     for (const el of layers) if (el) el.style.visibility = "";
-    const slide = animate && !appearing && !reducedMotion();
+    // A pick on another line of a wrapped row (chips at 360 px) would slide diagonally across both lines.
+    const sameLine = lastTop.current === null || Math.abs(lastTop.current - rect.top) < 2;
+    lastTop.current = rect.top;
+    const slide = animate && !appearing && sameLine && !reducedMotion();
     setClip(ring.current, pillInset(rect, size), slide);
     setClip(fill.current, pillInset(rect, size, "var(--pill-ring, 0px)"), slide);
     // Reduced motion, or a pill appearing where there was none: it fades in where it lands instead of sliding.
@@ -103,10 +112,22 @@ export function usePill<T extends HTMLElement>(selected: number | null, onMove?:
     if (!ready) return;
     const from = last.current;
     const changed = from !== undefined && from !== selected;
-    if (changed && row.current && fill.current) move.current?.(row.current, fill.current);
-    place(changed);
+    // Moves the rest of the row only for a pointer pick, like the pill itself.
+    const animate = changed && !byKey.current;
+    if (changed) byKey.current = false;
+    if (animate && row.current && fill.current) move.current?.(row.current, fill.current);
+    place(animate);
     last.current = selected;
   }, [ready, selected, place]);
+
+  useEffect(() => {
+    const box = row.current;
+    if (!ready || !box) return;
+    // A click, not keydown: Tab moving focus through the row is not a pick.
+    const onClick = (e: MouseEvent) => (byKey.current = e.detail === 0);
+    box.addEventListener("click", onClick, true);
+    return () => box.removeEventListener("click", onClick, true);
+  }, [ready]);
 
   // The row changes size (a phone turning, a web font arriving, a count changing a chip's width): follow at once.
   useEffect(() => {

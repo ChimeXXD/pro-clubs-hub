@@ -81,15 +81,20 @@ test("segmented control: the pill travels to the group picked; its tiles rise in
   expect(first.picked).toBe("Forward");
   // The first view doesn't animate the tiles.
   expect(first.tiles.every((t) => t.startsWith("none"))).toBe(true);
+  // At 360 px Forward wraps to a second line: a pick on the other line fades the pill in there instead of sliding
+  // diagonally across both lines (usePill); on one line it slides.
+  const top = (label: string) => page.getByTestId("submit-group").filter({ hasText: label }).evaluate((el) => el.getBoundingClientRect().top);
+  const sameLine = Math.abs((await top("Forward")) - (await top("Defender"))) < 2;
   const mid = await pickGroup(page, "Defender");
   expect(mid.picked).toBe("Defender");
   expect(mid.transition).toBe("clip-path");
   expect(mid.tiles).toEqual(["fade-rise 0s", "fade-rise 0.045s", "fade-rise 0.08s"]);
-  // Two frames in it is on its way; then it comes to rest on Defender, away from where it was.
+  // Two frames in it is on its way (when it slides); then it comes to rest on Defender, away from where it was.
   await page.waitForTimeout(500);
   const landed = (await readPill(page)).clip;
   expect(landed).not.toBe(first.clip);
-  expect(mid.clip).not.toBe(landed);
+  if (sameLine) expect(mid.clip).not.toBe(landed);
+  else expect(mid.clip).toBe(landed);
   await page.waitForTimeout(100);
   expect((await readPill(page)).clip).toBe(landed);
   await expect(page.getByTestId("submit-group").and(page.locator("[aria-pressed=true]"))).toHaveText("Defender");

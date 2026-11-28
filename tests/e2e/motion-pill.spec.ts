@@ -114,6 +114,18 @@ test.describe("tab pill", () => {
     expect(moving.some((a) => a.props.includes("clip-path"))).toBe(false);
   });
 
+  test("a chip picked from the keyboard moves the pill at once: no slide on keyboard actions", async ({ page }) => {
+    await page.goto("/faces");
+    const chip = (n: number) => page.getByTestId(`filter-chip-${n}`);
+    const fill = page.locator("div[inert]").filter({ hasText: "Footballers" });
+    await chip(1).focus();
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+    await expect(chip(2)).toHaveAttribute("aria-pressed", "true");
+    expect((await running(page)).some((a) => a.props.includes("clip-path"))).toBe(false);
+    expect(near(await pillBox(fill), await chip(2).boundingBox())).toBe(true);
+  });
+
   test("typing a search changes the grid without animating it (nothing moves on keyboard input)", async ({ page }) => {
     await page.goto("/faces");
     await page.getByTestId("search-input").fill("ronaldo");
@@ -123,8 +135,14 @@ test.describe("tab pill", () => {
   test("request a face: the kind chips (which wrap) use the same pill", async ({ page }) => {
     await page.goto("/faces/request");
     const kinds = page.getByTestId("request-kind");
+    // On the same line as "All" the pill slides; on the next line of the wrapped row it fades in there instead
+    // of sliding diagonally across both lines.
+    const [all, musicians] = await Promise.all([kinds.first().boundingBox(), kinds.filter({ hasText: "Musicians" }).boundingBox()]);
+    const sameLine = !!all && !!musicians && Math.abs(all.y - musicians.y) < 2;
     await kinds.filter({ hasText: "Musicians" }).click();
-    expect((await running(page)).some((a) => a.props.includes("clip-path"))).toBe(true);
+    const moving = await running(page);
+    expect(moving.some((a) => a.props.includes("clip-path"))).toBe(sameLine);
+    if (!sameLine) expect(moving.some((a) => a.layer && a.props.includes("opacity"))).toBe(true);
     await settle(page);
     const fill = page.locator("div[inert]").filter({ hasText: "Musicians" });
     expect(near(await pillBox(fill), await kinds.filter({ hasText: "Musicians" }).boundingBox())).toBe(true);

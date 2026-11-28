@@ -1,10 +1,12 @@
 // Figma Chip (200:337), Size=small: 32 px tall, 12 px sides, Label/Default, with a 44 px tap area. Selected is lime
 // (a dark ring in light mode, D-37). Used by Submit a build's group and position chips and Request a face's kinds.
 // In a PillRow the row's sliding pill draws the selected look (`pill`) and SmallChipGhost is the chip as the pill
-// shows it. Picked and unpicked chips are the same size (a transparent border on the picked one), as in Figma.
+// shows it. Picked and unpicked chips are the same size (a transparent border on the picked one), as in Figma. The
+// 1 px border sits inside the 12 px side, as Figma's inside stroke does (11 px padding + 1 px border), so a chip is
+// its label + 24 px and Submit's four group chips fit one line at 390 px, as Figma 400:3219 draws them.
 import type { MouseEvent } from "react";
 
-const SHAPE = "type-label inline-flex h-8 shrink-0 items-center rounded-full border px-3 whitespace-nowrap";
+const SHAPE = "type-label inline-flex h-8 shrink-0 items-center rounded-full border px-[11px] whitespace-nowrap";
 
 export function SmallChip({
   label,
