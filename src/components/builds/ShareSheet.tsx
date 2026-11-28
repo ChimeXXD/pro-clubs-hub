@@ -121,14 +121,16 @@ export const ShareSheet = forwardRef<
     // Both sides of the flip card: the back is turned away, not display: none, so both are drawn.
     const cardNodes = Array.from(dialog.current.querySelectorAll<HTMLElement>("[data-share-card]")).filter((el) => el.getClientRects().length > 0);
     saving.current = true;
-    setSave({ state: "saving", id: Date.now() });
+    // One id for the whole save: its toast turns from "Making your images…" into the result in place, not a stack.
+    const id = Date.now();
+    setSave({ state: "saving", id });
     try {
       const { saveShareImages } = await import("./saveShareImages");
       const done = saveState(await saveShareImages(cardNodes, share.files));
-      setSave(done ? { state: done, id: Date.now() } : null);
+      setSave(done ? { state: done, id } : null);
     } catch (error) {
       console.error("Save images failed", error);
-      setSave({ state: "failed", id: Date.now() });
+      setSave({ state: "failed", id });
     } finally {
       saving.current = false;
     }
