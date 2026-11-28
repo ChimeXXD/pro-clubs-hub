@@ -1,5 +1,13 @@
 # Handoff: read this first when you pick the project back up
 
+## Latest: Sat 28 Nov 2026, late. Animation build PAUSED by Chime ("pause all the agents… continue from where you stopped")
+
+Chime asked to build all the animations in docs/design/motion-bookmarks.pdf, using Emil's skills (~/.claude/design-skills-guide.md, "when to use it") in every unit. On main: the motion foundation (1449ee2: spring tokens, RollingNumber, budget 235 KB, D-119), lane A's 10 animations (b99db9f…9008c24: swipe deck, rubber dock, number stepper, exposure slider, stat card + storage meter, loading to success + copy button, expand card, morph tooltip on the rail, notification stack), and the gate running checks one at a time (aece028). The preview branch is at 9008c24.
+**Paused mid-work, in git worktrees (not merged, not pushed):**
+- Lane B (Faces, Request a face, shell, Changelog): `.claude/worktrees/agent-a0b764b0d82dd1683`, branch `worktree-agent-a0b764b0d82dd1683`. Seven commits name #5, #6, #8 (2e4b535), #9 face, #10, #23, #18 (b4be8e0), #21, #28, #29, #19 request (33090eb), #22 changelog (969e86d), #25, #26 (d8ffe8c, c0345ef). #11 Task list (All steps rows stagger in) is in no commit message: check whether it is done. Uncommitted: a refactor moving the turntable flick onto lane A's src/lib/motion.ts helpers (scripts/build-springs.mjs, motion.css, RequestForm, RequestList, TurnPicture, src/lib/turn.ts, tests). To resume: finish that refactor, run its checks, code review, commit, `git rebase origin/main`, final report; then the coordinator merges it.
+- Lane C (Submit a build): `.claude/worktrees/agent-a4b3bceb82d34299f`, branch `worktree-agent-a4b3bceb82d34299f`. One commit (3924311, #9 step progress). Uncommitted: work on #7 segmented control (GroupChips.tsx) and the sliders (Slider.tsx, controls, StepStart, BodyCard, AttributeRow, submit-motion.spec.ts; a scratch playwright.lanec.config.ts to delete at the end). Still to do: #7, #12, #16, #15, #14, #17, #27, #29, #19, #20, #2.
+**Then:** merge B and C, push main and preview, PROGRESS entry, DECISIONS for the agents' proposals (lead/trail springs, toast id rule, RollingNumber `still`), and Chime's questions from lane A (copy-link check vs the sheet closing, Figma for ticks/meter/tooltip, meter red or amber, swipe tilt vs D-117 (1), PlayStyle tooltip text, expand timing, Stance slide on a linked load).
+
 ## Latest: Sat 28 Nov 2026. Refining phase started
 
 Done and pushed: unslop pass (D-115), Builds fixes (D-116), share card flip drawn in Figma and built (D-117, D-118), 30 motion bookmarks with two PDFs (docs/design/motion-bookmarks.pdf, motion-placement.pdf). See PROGRESS for details.
