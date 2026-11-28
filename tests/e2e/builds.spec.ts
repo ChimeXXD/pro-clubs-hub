@@ -105,3 +105,135 @@ test("builds on desktop: previous and next step through the 13, with the count",
   // The title starts at the 120 px edge (D-59).
   expect((await page.getByRole("heading", { level: 1 }).boundingBox())?.x).toBe(120);
 });
+
+// Swipe deck (motion-bookmarks.pdf #1): tilt with the drag, a flick throws, a slow short drag springs back, a card in
+// flight can be caught, and reduced motion swaps the cards with a fade only.
+const front = (page: import("@playwright/test").Page, id: string) =>
+  page.getByTestId(`stance-card-${id}`).evaluate((el) => {
+    const m = new DOMMatrixReadOnly(getComputedStyle(el).transform);
+    const stage = el.parentElement!.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    return { x: r.x + r.width / 2 - (stage.x + stage.width / 2), angle: (Math.atan2(m.b, m.a) * 180) / Math.PI };
+  });
+async function settled(page: import("@playwright/test").Page, id: string) {
+  await expect.poll(async () => { const a = (await front(page, id)).x; await page.waitForTimeout(60); return Math.abs(a - (await front(page, id)).x) < 0.5; }).toBe(true);
+}
+async function grab(page: import("@playwright/test").Page) {
+  const box = await page.getByTestId("stance-stage").boundingBox();
+  if (!box) throw new Error("no stage");
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+}
+
+test("swipe deck: the front card tilts with the drag, x ÷ 20 degrees", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await settled(page, "boss");
+  const { x, y } = await grab(page);
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 100, y, { steps: 8 });
+  const { x: dx, angle } = await front(page, "boss");
+  expect(dx).toBeLessThan(-90);
+  expect(angle).toBeCloseTo(dx / 20, 0);
+  await page.mouse.up();
+});
+
+test("swipe deck: a quick flick throws the card even when short; a slow short drag springs back", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await settled(page, "boss");
+  const { x, y } = await grab(page);
+  // Slow: 30 px, then a pause before letting go (no speed left), so it springs back.
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 30, y, { steps: 3 });
+  await page.waitForTimeout(150);
+  await page.mouse.up();
+  await settled(page, "boss");
+  await expect(page.getByTestId("emblem-boss")).toHaveAttribute("aria-pressed", "true");
+  expect(Math.abs((await front(page, "boss")).x)).toBeLessThan(1);
+  // Quick: the same 30 px in two fast moves, released at once: its projection passes 50 px, so it goes.
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 15, y);
+  await page.mouse.move(x - 30, y);
+  await page.mouse.up();
+  await expect(page.getByTestId("emblem-marauder")).toHaveAttribute("aria-pressed", "true");
+});
+
+test("swipe deck: the thrown card leaves the side it was thrown and the next one settles with the settle spring", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await settled(page, "boss");
+  const { x, y } = await grab(page);
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 80, y, { steps: 4 });
+  // Record the thrown card's place on every frame after release.
+  await page.evaluate(() => {
+    const el = document.querySelector<HTMLElement>('[data-testid="stance-card-boss"]')!;
+    const centre = () => { const s = el.parentElement!.getBoundingClientRect(); const r = el.getBoundingClientRect(); return r.x + r.width / 2 - (s.x + s.width / 2); };
+    const w = window as unknown as { __frames: number[] };
+    w.__frames = [];
+    const t0 = performance.now();
+    requestAnimationFrame(function f(now) { w.__frames.push(centre()); if (now - t0 < 700) requestAnimationFrame(f); });
+  });
+  await page.mouse.up();
+  const ease = await page.getByTestId("stance-card-marauder").evaluate((el) => getComputedStyle(el).transitionTimingFunction);
+  expect(ease).toMatch(/^linear\(/);
+  await settled(page, "boss");
+  const frames = await page.evaluate(() => (window as unknown as { __frames: number[] }).__frames);
+  // Frame by frame, the thrown card keeps going left from where it was let go to its neighbour slot, passing
+  // through the values between (a flight, not a jump), and lands upright.
+  const end = await front(page, "boss");
+  expect(frames.filter((f) => f < -85 && f > end.x + 5).length).toBeGreaterThan(3);
+  expect(Math.min(...frames)).toBeGreaterThan(end.x - 25);
+  expect(Math.abs(end.angle)).toBeLessThan(0.5);
+  expect(Math.abs((await front(page, "marauder")).x)).toBeLessThan(1);
+});
+
+test("swipe deck: a card springing back can be caught mid-flight without a jump", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await settled(page, "boss");
+  const { x, y } = await grab(page);
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 40, y, { steps: 4 });
+  await page.waitForTimeout(150);
+  await page.mouse.up();
+  await page.waitForTimeout(40);
+  const before = (await front(page, "boss")).x;
+  await page.mouse.down();
+  const after = (await front(page, "boss")).x;
+  expect(before).toBeLessThan(-5);
+  expect(Math.abs(after - before)).toBeLessThan(12);
+  await page.mouse.up();
+});
+
+test("swipe deck with reduced motion: the cards change places at once and only fade", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/builds#boss");
+  const prop = await page.getByTestId("stance-card-boss").evaluate((el) => getComputedStyle(el).transitionProperty);
+  expect(prop).toBe("opacity");
+  const { x, y } = await grab(page);
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 80, y, { steps: 4 });
+  await page.mouse.up();
+  await expect(page.getByTestId("emblem-marauder")).toHaveAttribute("aria-pressed", "true");
+  // No flight: the old front is in its neighbour slot on the next frame.
+  const a = (await front(page, "boss")).x;
+  await page.waitForTimeout(100);
+  expect(Math.abs((await front(page, "boss")).x - a)).toBeLessThan(0.5);
+});
+
+test("swipe deck: a tap that catches a card still sliding in never throws it back", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await settled(page, "boss");
+  const { x, y } = await grab(page);
+  await page.getByTestId("emblem-marauder").click();
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.up();
+  await settled(page, "marauder");
+  await expect(page.getByTestId("emblem-marauder")).toHaveAttribute("aria-pressed", "true");
+  expect(Math.abs((await front(page, "marauder")).x)).toBeLessThan(1);
+});
+

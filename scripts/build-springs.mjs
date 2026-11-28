@@ -11,6 +11,8 @@ export const SPRINGS = {
   soft: [260, 24], // larger moves: panels, sheets
   pop: [520, 16], // an icon or number on select
   fade: [420, 32], // opacity and small slides
+  lead: [600, 30], // the leading edge of something that stretches (Rubber dock): quick, a little overshoot
+  trail: [300, 30], // its trailing edge: later and softer, so the shape stretches, then snaps back
 };
 
 /** Position of a unit spring from 0 to 1 at time t (seconds). */
