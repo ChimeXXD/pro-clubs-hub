@@ -53,6 +53,8 @@ export function SearchPanel({
     el.style.transitionDuration = glide ? "" : "0ms";
     el.style.transform = `translateY(${row.offsetTop}px)`;
     el.style.height = `${row.offsetHeight}px`;
+    // A long list scrolls inside the panel: keep the row a key moved to in view.
+    if (!glide) row.scrollIntoView({ block: "nearest" });
     // A new query can change the rows (and the group headers above them) while the row in hand stays 0.
   }, [active, glide, total, query]);
 
@@ -96,7 +98,7 @@ export function SearchPanel({
         {resultsLine(groups, query)}
       </p>
       {total > 0 && (
-        <div ref={list} id="top-search-results" role="listbox" aria-label="Search results" className="relative flex flex-col">
+        <div ref={list} id="top-search-results" role="listbox" aria-label="Search results" className="relative flex max-h-[min(480px,calc(100dvh-160px))] flex-col overflow-y-auto overscroll-contain">
           <div
             ref={shape}
             data-testid="top-search-highlight"
