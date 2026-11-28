@@ -2,6 +2,17 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## Refining: unslop, Builds fixes, motion picks and the share card flip (Sat 28 Nov 2026)
+
+- **Chime:** "use the unslop skill and any other skill… to refine this design"; then a video of the Builds page; then "review every single animation" on designbookmark.com/motion; then the share card that flips.
+- **Unslop (D-115, 4ef4b63):** audit of 14 screens at 393 and 1440 (no gradients, glows, emoji or transition-all; light slop, polish mode). Chime picked colour, copy and layout. Lime off links, labels and position chips (about 40 places); amber only for warnings; light-mode section bar and 404 digits in accent/text; "Made by — (sample)" and "—" stat rows removed; full stops off 31 one-sentence strings; sticky summary column (StickyColumn, only when it fits the window); equal-height home cards. Before/after renders at 393 and 1440 were shown. The code review found 10 and fixed 7, including two run-on sentences my full-stop sweep caused.
+- **Builds fixes (D-116):** only the front Stance card follows a drag; signature PlayStyles centred; light-mode badges tinted by brightness (six badges drew their symbol in dark pixels and filled solid) and deep gold #b07d12 (token playstyle/badge, picked from four renders).
+- **Motion picks:** all 89 animations reviewed in Brave; 30 bookmarked on Chime's DesignBookmark account (after Chime signed in); `docs/design/motion-bookmarks.pdf` (what and how) and `motion-placement.pdf` (where, with marked screenshots).
+- **Share card flips (D-117, D-118):** drawn in Figma first (six frames, Phase 1 · Builds, approved; card 15% larger on tablet and desktop after a side-by-side), then built: FlipCard, "Tap to flip", both sides still saved. The code review found the card hid its faces from screen readers; fixed with a transparent button over readable figures.
+- **Budget:** the live home page went 0.1 KB over 220 KB; Tailwind now scans `src` only (docs, tests and scripts were adding 0.5 KB of unused CSS).
+- **Checks:** 407 unit; preview e2e 258 passed, 6 skipped; the commit gate ran the live build, budget and e2e. New e2e: sticky column, drag, centring, badge tint, flip and its sizes.
+- **Not verified:** Chime's iPhone (light-mode badge mask in Safari, the flip, the sticky column on iPad); Figma not yet updated for D-115 and D-116 (code first, mirror after approval).
+
 ## Every Figma frame built, by three agents (Fri 27 Nov 2026)
 
 - **Chime:** "implement every single thing on Figma… one to one… don't speedrun… If you need two agents to help… no problem." Coordinator plus two agents at a time; lane B in its own worktree, merged by fast-forward.

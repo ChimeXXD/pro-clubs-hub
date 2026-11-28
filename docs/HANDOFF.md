@@ -1,5 +1,12 @@
 # Handoff: read this first when you pick the project back up
 
+## Latest: Sat 28 Nov 2026. Refining phase started
+
+Done and pushed: unslop pass (D-115), Builds fixes (D-116), share card flip drawn in Figma and built (D-117, D-118), 30 motion bookmarks with two PDFs (docs/design/motion-bookmarks.pdf, motion-placement.pdf). See PROGRESS for details.
+**Next, in order:** (1) mirror D-115 and D-116 into Figma (lime use, copy, gold badge token as a variable) once Chime approves the renders; (2) emil-design-eng, then mobile-native, then break-ui (Chime picked all three); (3) the animation phase from the 30 bookmarks, one at a time, starting with Swipe deck.
+**Open for Chime:** O-23 to O-27 and A-19 to A-23 (DECISIONS); the gate's types check races the build (ask to run types first in .claude/proof.json); BuildCard on archetype lists still shows "—" key stats for unrecorded builds and the story cards keep lime position chips (review notes); iPhone check of the flip, the gold badges (Safari mask) and the sticky column.
+**Housekeeping:** Lane B's merged worktree `.claude/worktrees/agent-a1b6d2cc030aeba8c` can be removed; the local preview copy is served from the scratchpad on port 4180 while a session runs.
+
 ## Latest: Fri 27 Nov 2026 (evening). Every Figma frame built, by three agents
 
 Chime: "implement every single thing on Figma… one to one." Done in three lanes, each screen measured per section against Figma at 393/834/1440, audited in `docs/design/*-audit.md`, code-reviewed, committed and pushed:
