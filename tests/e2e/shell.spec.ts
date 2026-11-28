@@ -115,7 +115,8 @@ test("light mode, once picked: the current pill gets a thin dark ring, since lim
 test("iPad mini (744 px): the tablet top bar keeps its 40 px side padding", async ({ page }) => {
   await page.setViewportSize({ width: 744, height: 1133 });
   await page.goto("/");
-  const search = await page.getByTestId("top-bar").getByRole("link", { name: "Search" }).boundingBox();
+  // From tablet, search is the button that widens into a field (Command button, motion-bookmarks #25).
+  const search = await page.getByTestId("top-bar").getByRole("button", { name: "Search" }).boundingBox();
   expect(744 - ((search?.x ?? 0) + (search?.width ?? 0))).toBe(40);
 });
 

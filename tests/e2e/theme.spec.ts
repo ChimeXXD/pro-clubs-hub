@@ -64,7 +64,7 @@ test("tablet: the switch is 16 px after the season chip and 4 px before search (
   const bar = page.getByTestId("top-bar");
   const season = await page.getByTestId("season-chip").boundingBox();
   const theme = await bar.getByRole("button", { name: "Switch to light mode" }).boundingBox();
-  const search = await bar.getByRole("link", { name: "Search" }).boundingBox();
+  const search = await bar.getByRole("button", { name: "Search" }).boundingBox(); // the Command button (#25)
   expect(Math.round((theme?.x ?? 0) - ((season?.x ?? 0) + (season?.width ?? 0)))).toBe(16);
   expect(Math.round((search?.x ?? 0) - ((theme?.x ?? 0) + 44))).toBe(4);
   expect(Math.round(834 - ((search?.x ?? 0) + 44))).toBe(40);

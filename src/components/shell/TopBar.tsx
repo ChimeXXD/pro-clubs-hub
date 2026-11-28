@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { seasonParts } from "@/lib/content/version";
 import { isCurrent, SECTIONS } from "@/lib/nav";
-import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { TopSearch } from "./TopSearch";
 
 // Figma Top bar (205:407) with the theme switch (option A, 499:11455, D-114). Phone: logo, season, theme, search,
 // 60 px tall. Tablet and desktop: the four sections join, 72 px tall, border included as in Figma; the content is
@@ -53,9 +53,7 @@ export function TopBar() {
           </Link>
           <div className="flex items-center tablet:gap-1">
             <ThemeSwitch />
-            <Link href="/search" aria-label="Search" className="flex size-11 shrink-0 items-center justify-center rounded-sm text-text-primary">
-              <Icon name="search" size={20} />
-            </Link>
+            <TopSearch />
           </div>
         </div>
       </div>
