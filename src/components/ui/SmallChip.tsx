@@ -2,6 +2,8 @@
 // (a dark ring in light mode, D-37). Used by Submit a build's group and position chips and Request a face's kinds.
 // In a PillRow the row's sliding pill draws the selected look (`pill`) and SmallChipGhost is the chip as the pill
 // shows it. Picked and unpicked chips are the same size (a transparent border on the picked one), as in Figma.
+import type { MouseEvent } from "react";
+
 const SHAPE = "type-label inline-flex h-8 shrink-0 items-center rounded-full border px-3 whitespace-nowrap";
 
 export function SmallChip({
@@ -15,7 +17,8 @@ export function SmallChip({
   pressed: boolean;
   /** The row's pill draws the selected look. */
   pill?: boolean;
-  onPress: () => void;
+  /** Gets the click, so a caller can tell a key press (detail 0) from a tap. */
+  onPress: (e: MouseEvent<HTMLButtonElement>) => void;
   testId?: string;
 }) {
   const tone =

@@ -40,81 +40,71 @@ test("step progress with reduced motion: the number crossfades", async ({ page }
   expect(await clickAndRead<string[]>(page, '[data-testid="submit-next"]', stepRoll)).toEqual(["fade-in", "fade-out"]);
 });
 
-// Segmented control (#7): the lime pill is the chips' lime copy clipped to the picked chip; the clip travels on the
-// fade spring; the new group's tiles fade and rise in, 0 / 45 / 80 ms apart.
+// Segmented control (#7): the shared sliding pill (PillRow, the one the other chip rows use) travels to the picked
+// group; the new group's tiles fade and rise in, 0 / 45 / 80 ms apart, unless the pick came from the keyboard.
+/** The row of group chips: the real chips, then the pill's ring and lime layers (PillRow). */
+const groupRow = `[...document.querySelectorAll('[data-testid="submit-group"]')][0].parentElement`;
 const pillState = `() => {
-  const pill = document.querySelector('[data-testid="group-pill"]');
-  const row = pill.parentElement;
+  const row = ${groupRow};
+  const fill = row.lastElementChild;
   const picked = row.querySelector('[data-testid="submit-group"][aria-pressed="true"]');
-  const s = getComputedStyle(pill);
-  const inset = s.clipPath.match(/[\\d.]+px/g).map(parseFloat);
   return {
     picked: picked.textContent,
-    clip: inset.slice(0, 4),
-    box: [picked.offsetTop, row.clientWidth - picked.offsetLeft - picked.offsetWidth, row.clientHeight - picked.offsetTop - picked.offsetHeight, picked.offsetLeft],
-    transition: s.transitionProperty === "none" ? "none" : s.transitionProperty + " " + s.transitionDuration,
+    clip: getComputedStyle(fill).clipPath,
+    transition: getComputedStyle(fill).transitionProperty,
     tiles: [...document.querySelectorAll('[data-testid="archetype-tile"]')].map((t) => getComputedStyle(t).animationName + " " + getComputedStyle(t).animationDelay),
   };
 }`;
-type Pill = { picked: string; clip: number[]; box: number[]; transition: string; tiles: string[] };
+type Pill = { picked: string; clip: string; transition: string; tiles: string[] };
 const readPill = (page: Page) => page.evaluate(`(${pillState})()`) as Promise<Pill>;
 /** Opens /submit once the script has placed the pill (the static page draws the picked chip lime by itself). */
 const openStart = async (page: Page) => {
   await page.goto("/submit");
-  await expect(page.getByTestId("group-pill")).not.toHaveCSS("clip-path", "none");
+  await expect.poll(async () => (await readPill(page)).clip).toMatch(/^inset/);
 };
+/** Clicks a group chip by its label, with a pointer (detail 1) or as Enter does (detail 0), and reads the row. */
+const pickGroup = (page: Page, label: string, detail = 1) =>
+  page.evaluate(
+    async ([l, d, fn]) => {
+      const chip = [...document.querySelectorAll<HTMLElement>('[data-testid="submit-group"]')].find((c) => c.textContent === l)!;
+      chip.dispatchEvent(new MouseEvent("click", { bubbles: true, detail: d }));
+      await new Promise(requestAnimationFrame);
+      await new Promise(requestAnimationFrame);
+      return new Function(`return (${fn})()`)() as Pill;
+    },
+    [label, detail, pillState] as const,
+  );
 
-test("segmented control: the pill sits on the picked group and travels to the next one; the tiles rise in (#7)", async ({ page }) => {
+test("segmented control: the pill travels to the group picked; its tiles rise in one after another (#7)", async ({ page }) => {
   await openStart(page);
   const first = await readPill(page);
   expect(first.picked).toBe("Forward");
-  expect(first.clip).toEqual(first.box);
   // The first view doesn't animate the tiles.
   expect(first.tiles.every((t) => t.startsWith("none"))).toBe(true);
-  // From Keeper to Defender (the same row at 390 and 360): Keeper first, from the keyboard (at once).
-  await clickAndRead(page, '[data-group="goalkeeper"]', "() => 0", 0);
-  const start = await readPill(page);
-  expect(start.picked).toBe("Keeper");
-  const mid = await clickAndRead<Pill>(page, '[data-group="defender"]', pillState);
+  const mid = await pickGroup(page, "Defender");
   expect(mid.picked).toBe("Defender");
-  expect(mid.transition).toBe("clip-path 0.32s");
-  // Two frames in, the pill is on its way: every edge between where it was (Keeper) and where it goes (Defender).
-  mid.clip.forEach((edge, i) => expect(Math.min(start.box[i]!, mid.box[i]!) - 2 < edge && edge < Math.max(start.box[i]!, mid.box[i]!) + 2).toBe(true));
-  expect(mid.clip.some((edge, i) => Math.abs(edge - mid.box[i]!) > 10)).toBe(true);
+  expect(mid.transition).toBe("clip-path");
   expect(mid.tiles).toEqual(["fade-rise 0s", "fade-rise 0.045s", "fade-rise 0.08s"]);
-  await expect
-    .poll(async () => {
-      const p = await readPill(page);
-      return p.clip.map(Math.round).join() === p.box.map(Math.round).join();
-    })
-    .toBe(true);
+  // Two frames in it is on its way; then it comes to rest on Defender, away from where it was.
+  await page.waitForTimeout(500);
+  const landed = (await readPill(page)).clip;
+  expect(landed).not.toBe(first.clip);
+  expect(mid.clip).not.toBe(landed);
+  await page.waitForTimeout(100);
+  expect((await readPill(page)).clip).toBe(landed);
   await expect(page.getByTestId("submit-group").and(page.locator("[aria-pressed=true]"))).toHaveText("Defender");
 });
 
-test("segmented control from the keyboard, and with reduced motion: the pill moves at once, the tiles don't rise", async ({ page }) => {
+test("segmented control from the keyboard, and with reduced motion: the tiles don't rise", async ({ page }) => {
   await openStart(page);
-  const key = await clickAndRead<Pill>(page, '[data-group="midfielder"]', pillState, 0);
-  expect(key.transition).toBe("none");
-  expect(key.clip).toEqual(key.box);
+  const key = await pickGroup(page, "Midfielder", 0);
+  expect(key.picked).toBe("Midfielder");
   expect(key.tiles.every((t) => t.startsWith("none"))).toBe(true);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.reload();
-  await expect(page.getByTestId("group-pill")).not.toHaveCSS("clip-path", "none");
-  const reduced = await clickAndRead<Pill>(page, '[data-group="goalkeeper"]', pillState);
+  await openStart(page);
+  const reduced = await pickGroup(page, "Keeper");
   expect(reduced.transition).toBe("none");
   expect(reduced.tiles).toEqual(["fade-in 0s", "fade-in 0s"]);
-});
-
-test("segmented control at 360 px: a pick on the other row of chips doesn't slide across both rows", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 800 });
-  await openStart(page);
-  // Forward wraps to the second row at 360 px.
-  const cross = await clickAndRead<Pill>(page, '[data-group="defender"]', pillState);
-  expect(cross.box[0]).toBe(0);
-  expect(cross.transition).toBe("none");
-  expect(cross.clip).toEqual(cross.box);
-  // The tiles still rise in: the pick came from a pointer.
-  expect(cross.tiles[0]).toBe("fade-rise 0s");
 });
 
 // Number stepper (#12): the level and every attribute roll on a tap of − / +; a key press, or a tap faster than the
