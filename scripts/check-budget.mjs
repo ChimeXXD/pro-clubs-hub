@@ -15,9 +15,11 @@ const BUDGET = {
   pages: ["index.html", "404.html"].map((html) => ({ html, data: [] })),
   // Limits in gzipped KB (A-13). The empty scaffold measured 131.6 KB JS and 135.7 KB total on
   // 20 Nov 2026 (Next.js and React alone). The allowance covers our components, step ticks, motion,
-  // fonts and a long recipe's HTML; Sinima held a richer app to about the same numbers.
+  // fonts and a long recipe's HTML; Sinima held a richer app to about the same numbers. Total raised 220 → 235 on
+  // 28 Nov 2026 for the animation layer (D-119, Chime's call): the full app measured 219.6 KB before motion, most of
+  // it the four Barlow files (62 KB) and Next/React. The JS limit is unchanged.
   jsKb: 165,
-  totalKb: 220,
+  totalKb: 235,
 };
 
 const gz = (path) => gzipSync(readFileSync(path), { level: 9 }).length;
