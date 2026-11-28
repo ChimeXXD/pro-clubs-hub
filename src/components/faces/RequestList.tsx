@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { PillRow } from "@/components/ui/PillRow";
 import { RollingNumber } from "@/components/ui/RollingNumber";
@@ -28,6 +29,8 @@ export function RequestList({
   onVote: (request: FaceRequest) => void;
 }) {
   const empty = requests !== null && requests.length === 0;
+  // The request last voted for from the keyboard: its count changes without rolling (nothing on keyboard input).
+  const [byKey, setByKey] = useState<string | null>(null);
   return (
     <section aria-labelledby="most-requested" aria-busy={(requests === null && !failed) || undefined} className="flex flex-col">
       <div className="flex items-center gap-2">
@@ -77,6 +80,7 @@ export function RequestList({
                     onClick={(e) => {
                       // A burst for a tap or click that votes (detail 0 is a keyboard press: no motion there).
                       if (!on && e.detail > 0) burst(e.currentTarget);
+                      setByKey(e.detail === 0 ? r.id : null);
                       onVote(r);
                     }}
                     className={`type-label relative flex size-14 shrink-0 touch-manipulation flex-col items-center justify-center rounded-[14px] transition-colors duration-150 select-none [-webkit-tap-highlight-color:transparent] ${on ? "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset" : "bg-bg-surface text-text-primary hover:bg-bg-raised"}`}
@@ -84,7 +88,7 @@ export function RequestList({
                     <span data-vote-arrow className="flex">
                       <Icon name="chevron-up" size={20} />
                     </span>
-                    <RollingNumber value={String(r.votes)} />
+                    <RollingNumber value={String(r.votes)} still={byKey === r.id} />
                     {BURST_DOTS.map((a) => (
                       <span
                         key={a}

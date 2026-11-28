@@ -1,3 +1,5 @@
+import { project } from "./motion.ts";
+
 // The turntable's drag (D-35): how far a sideways drag turns the head. One frame per PX_PER_FRAME pixels, so a full
 // turn of 36 frames is a 288 px drag, about the picture's width on a phone. It wraps both ways.
 export const PX_PER_FRAME = 8;
@@ -17,20 +19,15 @@ export const FLING_MIN = 200;
 /** Faster than this (px/s) counts as this: 2,900 px/s projects 287 px, one turn of 36 frames at 8 px a frame. */
 export const FLING_MAX = 2900;
 
-/** Velocity (px/s) from the last few pointer moves; 0 if the finger rested more than 50 ms before letting go. */
-export function releaseVelocity(samples: readonly { x: number; t: number }[], releasedAt?: number): number {
-  const first = samples[0];
-  const last = samples[samples.length - 1];
-  if (!first || !last || last.t <= first.t || (releasedAt ?? last.t) - last.t > 50) return 0;
-  return ((last.x - first.x) / (last.t - first.t)) * 1000;
-}
-
-/** Where a release at `dx` (px dragged) moving at `velocity` (px/s) comes to rest: a whole frame, or `dx` if slow. */
+/**
+ * Where a release at `dx` (px dragged) moving at `velocity` (px/s, from the shared VelocityTracker) comes to rest: a
+ * whole frame, or `dx` if slow. The projection is the shared one (src/lib/motion.ts) at the same rate as the decay.
+ */
 export function flingTarget(dx: number, velocity: number): number {
   if (Math.abs(velocity) < FLING_MIN) return dx;
   // Two pointer samples a couple of ms apart can read as a wild speed: a flick turns the head at most once round.
   const v = Math.sign(velocity) * Math.min(Math.abs(velocity), FLING_MAX);
-  const end = dx + ((v / 1000) * DECAY) / (1 - DECAY);
+  const end = dx + project(v, DECAY);
   return Math.round(end / PX_PER_FRAME) * PX_PER_FRAME;
 }
 

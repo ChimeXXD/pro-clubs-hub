@@ -32,7 +32,8 @@ test("a vote from the keyboard counts without the burst (nothing animates on key
   const burna = page.getByRole("button", { name: /^Vote for Burna Boy/ });
   await burna.focus();
   await page.keyboard.press("Enter");
-  expect((await animations(burna)).filter((a) => a.name === null)).toHaveLength(0);
+  // No burst, and the count changes without rolling (RollingNumber `still`): only the box's colour transition runs.
+  expect((await animations(burna)).filter((a) => a.name !== "transition")).toHaveLength(0);
   await expect(burna).toHaveText("97");
 });
 
@@ -111,10 +112,21 @@ test("sent: the card's check draws in; a failed request shakes the button 4 px",
   const check = await page.getByTestId("sent-check").evaluate((el) => getComputedStyle(el).animationName);
   expect(check).toBe("check-in");
 
+  // ActionIcon's shake: 4 px either way by translate, as a Web Animation on the button. It lasts 320 ms, so it is
+  // recorded as it starts (as action-icons.spec.ts does), not read back after it may have ended.
+  await page.addInitScript(() => {
+    const shakes: unknown[] = [];
+    Object.assign(window, { shakes });
+    const animate = Element.prototype.animate;
+    Element.prototype.animate = function (keyframes, options) {
+      if (this instanceof HTMLButtonElement) shakes.push(keyframes);
+      return animate.call(this, keyframes, options);
+    };
+  });
   await page.goto("/faces/request?request=fail");
   await page.getByLabel("Who do you want?").fill("2010 Messi");
   await page.getByRole("button", { name: "Request" }).click();
-  const retry = page.getByRole("button", { name: "Try again" });
-  await expect(retry).toBeVisible();
-  expect(await retry.evaluate((el) => getComputedStyle(el).animationName)).toBe("shake");
+  await expect(page.getByRole("button", { name: "Try again" })).toBeVisible();
+  const shakes = await page.evaluate(() => (window as unknown as { shakes: { translate: string }[][] }).shakes);
+  expect(shakes.map((k) => k.map((f) => f.translate))).toEqual([["0", "-4px", "4px", "-4px", "4px", "0"]]);
 });

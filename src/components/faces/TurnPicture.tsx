@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { reducedMotion } from "@/lib/motion";
-import { flingAt, flingTarget, releaseVelocity, turnFrame } from "@/lib/turn";
+import { reducedMotion, VelocityTracker } from "@/lib/motion";
+import { flingAt, flingTarget, turnFrame } from "@/lib/turn";
 
 // The turntable (D-35, A-16): numbered frames cut from the maker's own in-game turn clip, 01.webp … NN.webp in the
 // face's turn folder. The front picture shows first; a drag sideways turns the head, one frame per few pixels, and
@@ -16,7 +16,7 @@ import { flingAt, flingTarget, releaseVelocity, turnFrame } from "@/lib/turn";
 export function TurnPicture({ turn, alt, poster }: { turn: { folder: string; frames: number }; alt: string; poster: string }) {
   const img = useRef<HTMLImageElement>(null);
   const frame = useRef<number | null>(null);
-  const drag = useRef<{ id: number; x: number; frame: number; samples: { x: number; t: number }[] } | null>(null);
+  const drag = useRef<{ id: number; x: number; frame: number; speed: VelocityTracker } | null>(null);
   const flight = useRef(0);
   const loaded = useRef(false);
   const src = (n: number) => `/${turn.folder}/${String(n + 1).padStart(2, "0")}.webp`;
@@ -47,12 +47,13 @@ export function TurnPicture({ turn, alt, poster }: { turn: { folder: string; fra
           for (let n = 0; n < turn.frames; n++) new Image().src = src(n);
         }
         e.currentTarget.setPointerCapture(e.pointerId);
-        drag.current = { id: e.pointerId, x: e.clientX, frame: frame.current ?? 0, samples: [{ x: e.clientX, t: e.timeStamp }] };
+        drag.current = { id: e.pointerId, x: e.clientX, frame: frame.current ?? 0, speed: new VelocityTracker() };
+        drag.current.speed.add(e.clientX, e.timeStamp);
       }}
       onPointerMove={(e) => {
         const d = drag.current;
         if (d?.id !== e.pointerId) return;
-        d.samples = [...d.samples.slice(-2), { x: e.clientX, t: e.timeStamp }];
+        d.speed.add(e.clientX, e.timeStamp);
         show(turnFrame(d.frame, e.clientX - d.x, turn.frames));
       }}
       onPointerUp={(e) => {
@@ -61,7 +62,8 @@ export function TurnPicture({ turn, alt, poster }: { turn: { folder: string; fra
         drag.current = null;
         if (reducedMotion()) return;
         const from = e.clientX - d.x;
-        const to = flingTarget(from, releaseVelocity(d.samples, e.timeStamp));
+        // A finger that rested 50 ms before letting go stopped the head (the turntable's own limit, before the shared tracker).
+        const to = flingTarget(from, d.speed.velocity(e.timeStamp, 50) * 1000);
         if (to === from) return;
         const start = performance.now();
         const step = (now: number) => {

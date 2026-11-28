@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Icon } from "@/components/shell/Icon";
+import { shake } from "@/components/ui/ActionIcon";
 import { Spinner } from "@/components/builds/ShareSheet";
 import { buttonClass } from "@/components/ui/Button";
 import { plural } from "@/lib/face-page";
@@ -14,7 +16,9 @@ import { RequestNameField } from "./RequestNameField";
 // it is drawn over the field; the field's own placeholder stays for screen readers (RequestNameField).
 // Loading to success (motion-bookmarks #19): Request shows the spinner while sending; once sent, the "Request sent"
 // card's check draws in from the left (the check-in keyframe, 160 ms, --ease-out). A request that fails shakes the
-// button 4 px twice as the red row appears (feedback for an error). Reduced motion: the check fades in, no shake.
+// button 4 px twice as the red row appears (ActionIcon's shake, shared with Save images; feedback for an error).
+// Reduced motion: the check fades in, no shake. The button has no icon in Figma, so ActionIcon's icon slot isn't used:
+// the success check lives in the "Request sent" card that replaces the form.
 
 export type FormState = { kind: "idle" } | { kind: "sending" } | { kind: "sent"; name: string } | { kind: "failed" };
 
@@ -37,6 +41,14 @@ export function RequestForm({
   onVote: (request: FaceRequest) => void;
   onAnother: () => void;
 }) {
+  // The shake plays when sending turns into a failure (not when a page opens on the failed state).
+  const submit = useRef<HTMLButtonElement>(null);
+  const was = useRef(state.kind);
+  useEffect(() => {
+    if (was.current === "sending" && state.kind === "failed") shake(submit);
+    was.current = state.kind;
+  }, [state.kind]);
+
   if (state.kind === "sent")
     return (
       <section aria-label="Request sent" data-testid="request-sent" className="flex flex-col gap-3 rounded-lg bg-bg-surface p-4">
@@ -113,7 +125,8 @@ export function RequestForm({
             type="submit"
             aria-busy={state.kind === "sending" || undefined}
             disabled={state.kind === "sending"}
-            className={buttonClass("primary", `w-full ${state.kind === "failed" ? "animate-[shake_280ms_var(--ease-out)] motion-reduce:animate-none" : ""}`)}
+            ref={submit}
+            className={buttonClass("primary", "w-full")}
           >
             {state.kind === "failed" ? "Try again" : "Request"}
             {state.kind === "sending" && <Spinner />}

@@ -1,17 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { flingAt, flingTarget, PX_PER_FRAME, releaseVelocity } from "@/lib/turn";
+import { VelocityTracker } from "@/lib/motion";
+import { flingAt, flingTarget, PX_PER_FRAME } from "@/lib/turn";
 
 // The turntable's flick (Scrubber, motion-bookmarks #18): the drag tracks 1:1; let go moving and the head keeps
-// turning, slowing as a scroll does, and stops on a whole frame.
-describe("releaseVelocity", () => {
-  it("is px per second over the last pointer moves", () => {
-    expect(releaseVelocity([{ x: 0, t: 0 }, { x: 10, t: 10 }, { x: 30, t: 20 }])).toBe(1500);
-    expect(releaseVelocity([{ x: 30, t: 0 }, { x: 0, t: 20 }])).toBe(-1500);
+// turning, slowing as a scroll does, and stops on a whole frame. The finger's speed is the shared VelocityTracker's.
+describe("the release speed the turntable reads (VelocityTracker, px/ms × 1000)", () => {
+  it("is the speed over the last pointer moves, and 0 when the finger stopped before letting go", () => {
+    const speed = new VelocityTracker();
+    [0, 10, 30].forEach((x, i) => speed.add(x, i * 10));
+    expect(speed.velocity(20) * 1000).toBe(1500);
+    expect(flingTarget(30, speed.velocity(200) * 1000)).toBe(30);
   });
 
-  it("is 0 with one sample, or when the finger stopped before letting go", () => {
-    expect(releaseVelocity([{ x: 5, t: 0 }])).toBe(0);
-    expect(releaseVelocity([{ x: 0, t: 0 }, { x: 40, t: 10 }], 200)).toBe(0);
+  it("is negative leftwards, and 0 with one sample", () => {
+    const left = new VelocityTracker();
+    [30, 0].forEach((x, i) => left.add(x, i * 20));
+    expect(left.velocity(20) * 1000).toBe(-1500);
+    const one = new VelocityTracker();
+    one.add(5, 0);
+    expect(one.velocity(0)).toBe(0);
   });
 });
 
