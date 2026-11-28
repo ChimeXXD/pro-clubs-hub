@@ -1,13 +1,14 @@
 "use client";
 
-import { type ChangeEvent, createContext, type MouseEvent, type ReactNode, useContext } from "react";
+import { createContext, type MouseEvent, type ReactNode, useContext, useRef, useState } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { buttonClass, ButtonLabel } from "@/components/ui/Button";
 import { RollingNumber } from "@/components/ui/RollingNumber";
+import { skipsMotion } from "@/lib/submit/motion";
 
 // Small pieces Submit a build's steps share, each from its Figma part: the step line ("Submit a build · 1 of 4"),
-// the round − / + buttons, the slider (a 4 px track, the value in lime and a
-// 20 px cream knob), the stars, and the actions bar (sticky on phone, under the content from tablet).
+// the round − / + buttons, the stars, and the actions bar (sticky on phone, under the content from tablet). The
+// slider is in Slider.tsx.
 
 /** The step the editor came from, and whether the move skips its motion (a key press); null on the first step shown. */
 export const StepFrom = createContext<{ step: number; still: boolean } | null>(null);
@@ -29,6 +30,22 @@ export function StepLine({ label, step }: { label: string; step: number }) {
       </p>
     </div>
   );
+}
+
+/**
+ * Number stepper (motion-bookmarks.pdf #12): whether the next change of a rolling number skips its roll. `gate(at,
+ * byKey, next)` is called with each change: a key press, or a change sooner than 140 ms after the last (ten fast taps on
+ * +), sets the number at once instead of queueing rolls. Nothing rolls on the first view, and a change that didn't come
+ * through `gate` (the value set from outside, as a new archetype resets height and weight) is set at once too.
+ */
+export function useRollGate(value: number) {
+  const last = useRef(-Infinity);
+  const [gated, setGated] = useState<{ still: boolean; value: number | null }>({ still: true, value: null });
+  const gate = (at: number, byKey: boolean, next: number) => {
+    setGated({ still: skipsMotion(at, last.current, byKey), value: next });
+    last.current = at;
+  };
+  return [gated.still || gated.value !== value, gate] as const;
 }
 
 /** A round − or + button (bg/raised in a card, bg/surface on the page). */
@@ -57,52 +74,6 @@ export function RoundButton({
     >
       <Icon name={sign} size={size === 48 ? 22 : 20} />
     </button>
-  );
-}
-
-/**
- * The slider: a real range input, invisible, over the drawing. The knob's centre sits at the value's share of the
- * track, as Figma draws it (44 of 55 → 80 %). `mark` draws the middle tick of the height and weight sliders.
- */
-export function Slider({
-  label,
-  min,
-  max,
-  value,
-  onChange,
-  fill = true,
-  mark = false,
-}: {
-  label: string;
-  min: number;
-  max: number;
-  value: number;
-  onChange: (value: number) => void;
-  fill?: boolean;
-  mark?: boolean;
-}) {
-  const at = `${(Math.min(Math.max(value - min, 0), max - min) / (max - min)) * 100}%`;
-  return (
-    <div className="relative h-5">
-      <input
-        type="range"
-        aria-label={label}
-        min={min}
-        max={max}
-        value={Math.min(value, max)}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(Number(e.target.value))}
-        className="peer absolute -inset-x-2.5 -inset-y-3 z-10 cursor-pointer opacity-0"
-      />
-      <span aria-hidden="true" className="absolute inset-x-0 top-2 h-1 overflow-hidden rounded-[2px] bg-border-strong">
-        {fill && <span className="block h-full bg-accent-fill" style={{ width: at }} />}
-      </span>
-      {mark && <span aria-hidden="true" className="absolute top-1 left-1/2 h-3 w-0.5 -translate-x-1/2 bg-text-muted" />}
-      <span
-        aria-hidden="true"
-        className="absolute top-0 size-5 -translate-x-1/2 rounded-full bg-text-primary peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus-ring"
-        style={{ left: at }}
-      />
-    </div>
   );
 }
 

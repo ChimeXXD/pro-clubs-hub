@@ -1,12 +1,15 @@
 "use client";
 
 import { bodyChanges, bodyRange, heightImperial, signed, type SubmitDraft, weightImperial } from "@/lib/submit/editor";
-import { RoundButton, Slider } from "./controls";
+import { RoundButton, useRollGate } from "./controls";
+import { Slider } from "./Slider";
 
 // Figma "Height and weight" (component 431:1129, on the start step 436:8531; D-90 (1)): height and weight, each with
 // − / +, a slider across the archetype's range with its middle marked, and the range under it; then "What your body
 // changes" and the AcceleRATE it gives. Those last two are Figma's sample figures, shown only for the sample's own
 // body (src/lib/submit/editor.ts): no other body's effects are known yet (RESEARCH §10.3).
+// Range slider (motion-bookmarks.pdf #15): held, the knob grows 1.1× with the value in a bubble on it, on the follow
+// spring; a tap on − / + slides the knob one step on the same spring; key presses and fast taps move it at once.
 export function BodyCard({ draft, archetypeName, onChange }: { draft: SubmitDraft; archetypeName: string; onChange: (next: Partial<SubmitDraft>) => void }) {
   const range = bodyRange(draft.archetype);
   const body = bodyChanges(draft);
@@ -71,7 +74,12 @@ function Measure({
   archetypeName: string;
   onChange: (value: number) => void;
 }) {
-  const set = (next: number) => onChange(Math.min(Math.max(next, range.min), range.max));
+  const [still, gate] = useRollGate(value);
+  const set = (next: number, at: number, byKey: boolean) => {
+    const clamped = Math.min(Math.max(next, range.min), range.max);
+    gate(at, byKey, clamped);
+    onChange(clamped);
+  };
   return (
     <div className="flex flex-col gap-2.5">
       <div className="flex items-center gap-2.5">
@@ -82,10 +90,21 @@ function Measure({
             <span className="type-caption text-text-muted">{imperial}</span>
           </p>
         </div>
-        <RoundButton sign="minus" label={`${label} down`} size={44} disabled={value <= range.min} onPress={() => set(value - 1)} />
-        <RoundButton sign="plus" label={`${label} up`} size={44} disabled={value >= range.max} onPress={() => set(value + 1)} />
+        <RoundButton sign="minus" label={`${label} down`} size={44} disabled={value <= range.min} onPress={(e) => set(value - 1, e.timeStamp, e.detail === 0)} />
+        <RoundButton sign="plus" label={`${label} up`} size={44} disabled={value >= range.max} onPress={(e) => set(value + 1, e.timeStamp, e.detail === 0)} />
       </div>
-      <Slider label={label} min={range.min} max={range.max} value={value} onChange={set} fill={false} mark />
+      <Slider
+        label={label}
+        min={range.min}
+        max={range.max}
+        value={value}
+        onChange={(v, { held, at }) => set(v, at, !held)}
+        fill={false}
+        mark
+        motion="follow"
+        still={still}
+        bubble={`${value} ${unit}`}
+      />
       <div className="type-caption grid grid-cols-[1fr_auto_1fr] text-text-muted">
         <span>{`${range.min} ${unit}`}</span>
         <span>{`${archetypeName} range`}</span>
