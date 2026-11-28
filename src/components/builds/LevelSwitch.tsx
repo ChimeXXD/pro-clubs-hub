@@ -1,7 +1,8 @@
 "use client";
 
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, type MouseEvent, useRef, useState } from "react";
 import { Callout } from "@/components/ui/Callout";
+import { RollingNumber } from "@/components/ui/RollingNumber";
 import { type LevelsView, nearestLevel, stepLevel } from "@/lib/build-level";
 import { useChosenLevel } from "./ChosenLevel";
 
@@ -17,23 +18,32 @@ import { useChosenLevel } from "./ChosenLevel";
 const STEP = "flex size-11 items-center justify-center font-text text-[22px] leading-[22px] font-bold text-text-primary";
 
 export function LevelSwitch({ levels }: { levels: LevelsView }) {
-  const [level, setOwn] = useState(levels.initial);
+  const [{ level, still }, setOwn] = useState({ level: levels.initial, still: true });
   // The story cards follow the level picked here (D-114 (3)).
   const { choose } = useChosenLevel();
-  const setLevel = (next: number) => {
-    setOwn(next);
-    choose(next);
-  };
+  // Number stepper (motion-bookmarks.pdf #12): the level rolls on a tap, but not on a key press or a tap that came
+  // faster than the 140 ms roll (the frequent-action rule): those set the number at once.
+  const lastChange = useRef(-Infinity);
+  const keyed = useRef(false);
   const drawn = levels.states.map((s) => s.level);
   const state = levels.states.find((s) => s.level === level) ?? levels.states[0];
   if (!state) return null;
+  const setLevel = (next: number, at: number, byKey: boolean) => {
+    if (next === state.level) return;
+    setOwn({ level: next, still: byKey || at - lastChange.current < 140 });
+    lastChange.current = at;
+    choose(next);
+  };
+  // A click from Enter or Space has no pointer behind it (detail 0).
+  const step = (e: MouseEvent<HTMLButtonElement>, dir: -1 | 1) => setLevel(stepLevel(drawn, state.level, dir), e.timeStamp, e.detail === 0);
   const at = `${(state.level / levels.max) * 100}%`;
   // Snap to the nearest drawn level; a small move (an arrow key, Page Up/Down) that would snap straight back steps
   // to the next drawn level that way instead, so the slider works from the keyboard.
   const onSlide = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     const nearest = nearestLevel(drawn, value);
-    setLevel(nearest === state.level && value !== state.level ? stepLevel(drawn, state.level, value < state.level ? -1 : 1) : nearest);
+    const next = nearest === state.level && value !== state.level ? stepLevel(drawn, state.level, value < state.level ? -1 : 1) : nearest;
+    setLevel(next, e.timeStamp, keyed.current);
   };
 
   return (
@@ -43,13 +53,13 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
           <div className="flex items-center gap-3">
             <h2 id="your-level" className="font-display text-[20px] leading-5 font-extrabold text-text-primary uppercase">Your level</h2>
             <div className="flex items-center rounded-sm border border-border-subtle bg-bg-page">
-              <button type="button" aria-label="Level down" className={STEP} onClick={() => setLevel(stepLevel(drawn, state.level, -1))}>
+              <button type="button" aria-label="Level down" className={STEP} onClick={(e) => step(e, -1)}>
                 −
               </button>
-              <output aria-label="Level" className="flex h-11 w-13 items-center justify-center font-display text-[24px] leading-6 font-extrabold text-text-primary">
-                {state.level}
+              <output aria-label="Level" className="flex h-11 w-13 items-center justify-center font-display text-[24px] leading-6 font-extrabold text-text-primary tabular-nums">
+                <RollingNumber value={String(state.level)} still={still} />
               </output>
-              <button type="button" aria-label="Level up" className={STEP} onClick={() => setLevel(stepLevel(drawn, state.level, 1))}>
+              <button type="button" aria-label="Level up" className={STEP} onClick={(e) => step(e, 1)}>
                 +
               </button>
             </div>
@@ -73,6 +83,8 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
               max={levels.max}
               value={state.level}
               onChange={onSlide}
+              onKeyDown={() => (keyed.current = true)}
+              onPointerDown={() => (keyed.current = false)}
               className="peer absolute inset-y-0 -left-3.5 z-10 h-full w-[calc(100%+28px)] cursor-pointer opacity-0"
             />
             <span aria-hidden="true" className="absolute top-4.75 -right-3.5 -left-3.5 h-1.5 overflow-hidden rounded-[3px] bg-bg-surface">
