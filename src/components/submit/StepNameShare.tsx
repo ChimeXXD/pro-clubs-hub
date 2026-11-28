@@ -8,7 +8,10 @@ import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import type { ShareCardsView } from "@/lib/share-cards";
 import { CARD } from "@/lib/share-images";
 import type { SubmitDraft } from "@/lib/submit/editor";
+import { letterLimit } from "@/lib/submit/motion";
 import { StepLine } from "./controls";
+import { LetterLimit } from "./LetterLimit";
+import { ProFace } from "./ProFace";
 
 // Step 4 of 4, "Name it and share" (Figma 401:3616 / 418:6420 / 418:6599; picture added 412:2989 / 418:6778 /
 // 418:6957; send failed 441:8928 / 441:9162 / 441:9380; D-86, D-89). The build's name and the player's name for the
@@ -19,6 +22,7 @@ import { StepLine } from "./controls";
 // Tablet: name, credit and face on the left (369 px), the card and its buttons on the right (353), 32 apart;
 // desktop 664 and 440, 96 apart.
 const FIELD = "type-body h-13 w-full rounded-md border border-input-border bg-input-bg px-4 text-text-primary placeholder:text-text-muted focus:border-2 focus:border-input-border-focused focus:px-[15px] focus:outline-none";
+const NAME_MAX = 40;
 
 export function StepNameShare({
   draft,
@@ -43,8 +47,6 @@ export function StepNameShare({
   onCopy: () => void;
   onSend: () => void;
 }) {
-  const fileInput = useRef<HTMLInputElement>(null);
-  const pick = () => fileInput.current?.click();
   return (
     <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-8 desktop:gap-24">
       <div className="flex flex-col tablet:w-92.25 tablet:shrink-0 desktop:w-166">
@@ -54,7 +56,19 @@ export function StepNameShare({
           <label htmlFor="build-name" className="type-label text-text-primary">
             Build name
           </label>
-          <input id="build-name" className={FIELD} placeholder="Name your build" maxLength={40} value={draft.title} onChange={(e) => onChange({ title: e.target.value })} />
+          {/* Letter limit (#29): the ring sits in the field's right edge, so the text stops short of it. */}
+          <span className="relative flex">
+            <input
+              id="build-name"
+              className={`${FIELD} pr-14 focus:pr-[55px]`}
+              placeholder="Name your build"
+              maxLength={NAME_MAX}
+              aria-describedby={letterLimit(draft.title.length, NAME_MAX).warn ? "build-name-left" : undefined}
+              value={draft.title}
+              onChange={(e) => onChange({ title: e.target.value })}
+            />
+            <LetterLimit length={draft.title.length} max={NAME_MAX} id="build-name-left" />
+          </span>
         </div>
         <div className="flex flex-col gap-2 pt-4.5">
           <label htmlFor="build-credit" className="type-label text-text-primary">
@@ -74,49 +88,7 @@ export function StepNameShare({
             Shown on the card as “Made by …”.
           </p>
         </div>
-        <section aria-labelledby="pro-face" data-testid="pro-face" className="mt-7 flex flex-col gap-3 rounded-lg bg-bg-surface p-4">
-          <h2 id="pro-face" className="type-label text-text-primary">
-            Your Pro&apos;s face
-          </h2>
-          <div className="flex items-center gap-3.5">
-            {/* eslint-disable-next-line @next/next/no-img-element -- the player's own picture, from this browser only */}
-            <img src={picture ?? "/art/probuilds-face.svg"} alt={picture ? "Your Pro's face" : ""} className="size-18 shrink-0 rounded-md bg-bg-raised object-cover" />
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
-              <p className="type-label text-text-primary">{picture ? "Your picture" : "No picture yet"}</p>
-              <p className="type-caption text-text-secondary">{picture ? "On your card. Swap it any time." : "Your card uses the ProBuilds face until you add one"}</p>
-            </div>
-          </div>
-          <input
-            ref={fileInput}
-            type="file"
-            accept="image/*"
-            className="sr-only"
-            tabIndex={-1}
-            aria-hidden="true"
-            data-testid="face-file"
-            onChange={(e) => {
-              onPicture(e.target.files?.[0] ?? null);
-              e.target.value = "";
-            }}
-          />
-          {picture ? (
-            <div className="flex gap-2.5">
-              <button type="button" className={buttonClass("secondary", "flex-1 hover:bg-action-hovered", "medium")} onClick={pick}>
-                Change
-              </button>
-              <button type="button" className={buttonClass("secondary", "flex-1 border-transparent hover:bg-action-hovered", "medium")} onClick={() => onPicture(null)}>
-                Remove
-              </button>
-            </div>
-          ) : (
-            <button type="button" data-testid="face-upload" className={buttonClass("secondary", "w-full hover:bg-action-hovered", "medium")} onClick={pick}>
-              <ButtonLabel icon="plus" iconSide="left">
-                Add a picture
-              </ButtonLabel>
-            </button>
-          )}
-          <p className="type-caption text-text-muted">A screenshot of your Pro&apos;s face from the game. It goes on your card only, never on the site.</p>
-        </section>
+        <ProFace picture={picture} onPicture={onPicture} />
       </div>
       <div className="flex min-w-0 flex-1 flex-col pt-7 tablet:pt-0">
         <h2 className="type-h3 pb-3 text-text-primary">Your card</h2>

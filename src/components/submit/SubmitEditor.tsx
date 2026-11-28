@@ -160,7 +160,9 @@ export function SubmitEditor({ file, initial, preview }: { file: ArchetypeFile; 
     }
   };
   const setPictureFile = (f: File | null) => {
-    if (pictureUrl.current) URL.revokeObjectURL(pictureUrl.current);
+    // The old picture's address is freed after its fade out (File drop, #27: Remove fades it back to the mannequin).
+    const old = pictureUrl.current;
+    if (old) setTimeout(() => URL.revokeObjectURL(old), 1000);
     pictureUrl.current = f && f.type.startsWith("image/") ? URL.createObjectURL(f) : null;
     setPicture(pictureUrl.current);
   };
