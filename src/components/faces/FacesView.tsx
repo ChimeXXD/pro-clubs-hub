@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useSmoothTab } from "@/components/ui/useSmoothTab";
 import { Icon } from "@/components/shell/Icon";
 import { ButtonLabel, buttonClass } from "@/components/ui/Button";
-import { FilterChip } from "@/components/ui/FilterChip";
+import { FilterChip, FilterChipGhost } from "@/components/ui/FilterChip";
+import { PillRow } from "@/components/ui/PillRow";
 import {
   FACE_FILTERS,
   type FaceCardView,
@@ -35,6 +37,13 @@ export function FacesView({ cards }: { cards: FaceCardView[] }) {
   const shown = visibleFaces(cards, filter, query);
   // 1-based place in the full list, so a test ID names the same face under every filter.
   const place = new Map(cards.map((c, i) => [c.id, i + 1]));
+  const { grid, leave, before: leaving } = useSmoothTab<HTMLUListElement>(filter);
+  const pick = (value: FaceFilter) => {
+    if (value === filter) return;
+    const at = (v: FaceFilter) => FACE_FILTERS.findIndex((f) => f.value === v);
+    leaving(at(value) > at(filter) ? 1 : -1);
+    setFilter(value);
+  };
   // TODO(Chime): nothing tells a screen reader that the results changed after a search or a chip. A polite live
   // region needs wording (for example how many faces show) that no design or decision gives yet.
 
@@ -54,40 +63,54 @@ export function FacesView({ cards }: { cards: FaceCardView[] }) {
             in view when focus scrolls a chip to the row's edge (4 px for the ring, 2 for rounding: chips are fractional
             widths, the scroll lands on whole pixels). On phone it runs to the screen's edges, as Figma's
             chips run off the frame. */}
-        <div className="-mx-5 -my-1 flex scroll-px-1.5 gap-2 overflow-x-auto px-5 py-1 tablet:-mx-1 tablet:min-w-0 tablet:flex-1 tablet:px-1">
-          {FACE_FILTERS.map((f, i) => (
-            <FilterChip
-              key={f.value}
-              testId={`filter-chip-${i + 1}`}
-              label={f.label}
-              count={counts[f.value]}
-              pressed={filter === f.value}
-              onPress={() => setFilter(f.value)}
-            />
-          ))}
+        <div className="-mx-5 -my-1 flex scroll-px-1.5 overflow-x-auto px-5 py-1 tablet:-mx-1 tablet:min-w-0 tablet:flex-1 tablet:px-1">
+          <PillRow
+            selected={FACE_FILTERS.findIndex((f) => f.value === filter)}
+            className="flex w-max shrink-0 gap-2"
+            chips={(pill) =>
+              FACE_FILTERS.map((f, i) => (
+                <FilterChip
+                  key={f.value}
+                  testId={`filter-chip-${i + 1}`}
+                  label={f.label}
+                  count={counts[f.value]}
+                  pressed={filter === f.value}
+                  pill={pill}
+                  onPress={() => pick(f.value)}
+                />
+              ))
+            }
+            ghosts={FACE_FILTERS.map((f) => (
+              <FilterChipGhost key={f.value} label={f.label} count={counts[f.value]} />
+            ))}
+          />
         </div>
       </div>
       {shown.length > 0 ? (
         <div className="flex flex-col gap-4 tablet:gap-6">
-          <ul data-testid="face-grid" className="grid grid-cols-2 gap-x-3 gap-y-4 tablet:grid-cols-3 tablet:gap-x-6 tablet:gap-y-8 desktop:grid-cols-6">
-            {shown.map((card) => (
-              <FaceCard key={card.id} card={card} place={place.get(card.id) ?? 0} />
-            ))}
-            <li>
-              {/* Figma "Suggest a face" (341:1316): the picture's size, a dashed border/strong outline, lime plus. */}
-              <Link
-                href={SUBMIT_HREF}
-                data-testid="missing-face-tile"
-                className="flex aspect-[4/5] flex-col justify-end gap-1.5 rounded-md border border-dashed border-border-strong p-4"
-              >
-                <span className="flex text-text-secondary">
-                  <Icon name="plus" size={24} />
-                </span>
-                <span className="type-label text-text-primary">Missing a face?</span>
-                <span className="type-caption text-text-muted">Suggest one on Submit</span>
-              </Link>
-            </li>
-          </ul>
+          {/* The old grid fades out in the layer over the new one (Smooth tab, useSmoothTab). */}
+          <div className="relative">
+            <div ref={leave} aria-hidden="true" inert className="pointer-events-none absolute inset-x-0 top-0 z-1" />
+            <ul ref={grid} data-testid="face-grid" className="grid grid-cols-2 gap-x-3 gap-y-4 tablet:grid-cols-3 tablet:gap-x-6 tablet:gap-y-8 desktop:grid-cols-6">
+              {shown.map((card) => (
+                <FaceCard key={card.id} card={card} place={place.get(card.id) ?? 0} />
+              ))}
+              <li>
+                {/* Figma "Suggest a face" (341:1316): the picture's size, a dashed border/strong outline, lime plus. */}
+                <Link
+                  href={SUBMIT_HREF}
+                  data-testid="missing-face-tile"
+                  className="flex aspect-[4/5] flex-col justify-end gap-1.5 rounded-md border border-dashed border-border-strong p-4"
+                >
+                  <span className="flex text-text-secondary">
+                    <Icon name="plus" size={24} />
+                  </span>
+                  <span className="type-label text-text-primary">Missing a face?</span>
+                  <span className="type-caption text-text-muted">Suggest one on Submit</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
           <RequestPanel />
         </div>
       ) : (

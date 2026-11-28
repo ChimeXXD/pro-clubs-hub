@@ -1,7 +1,8 @@
 "use client";
 
 import { Icon } from "@/components/shell/Icon";
-import { SmallChip } from "@/components/ui/SmallChip";
+import { PillRow } from "@/components/ui/PillRow";
+import { SmallChip, SmallChipGhost } from "@/components/ui/SmallChip";
 import { plural } from "@/lib/face-page";
 import { byKind, type FaceRequest, REQUEST_KINDS, type RequestKind, requestLine } from "@/lib/requests";
 
@@ -43,10 +44,19 @@ export function RequestList({
         </div>
       ) : failed ? null : (
         <>
-          <div className="flex flex-wrap gap-1.5 pt-3">
-            {REQUEST_KINDS.map((k) => (
-              <SmallChip key={k.label} testId="request-kind" label={k.label} pressed={k.kind === kind} onPress={() => onKind(k.kind)} />
-            ))}
+          <div className="pt-3">
+            <PillRow
+              selected={REQUEST_KINDS.findIndex((k) => k.kind === kind)}
+              className="flex flex-wrap gap-1.5"
+              chips={(pill) =>
+                REQUEST_KINDS.map((k) => (
+                  <SmallChip key={k.label} testId="request-kind" label={k.label} pressed={k.kind === kind} pill={pill} onPress={() => onKind(k.kind)} />
+                ))
+              }
+              ghosts={REQUEST_KINDS.map((k) => (
+                <SmallChipGhost key={k.label} label={k.label} />
+              ))}
+            />
           </div>
           <ol className="flex flex-col pt-2">
             {byKind(requests ?? [], kind).map((r) => {

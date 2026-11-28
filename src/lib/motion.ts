@@ -121,3 +121,31 @@ export const reducedMotion = () => typeof window !== "undefined" && window.match
  */
 export const userInitiated = () =>
   typeof navigator === "undefined" || !("userActivation" in navigator) || navigator.userActivation.isActive;
+
+// The sliding pill (Tab pill and Bottom bar, motion-bookmarks #5, #6), and the motion tokens read for the Web
+// Animations API (the timings themselves are the tokens in src/styles/motion.css).
+
+export interface Box {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+const px = (n: number) => `${Math.round(n * 100) / 100}px`;
+
+/**
+ * The clip-path that cuts a layer the size of its row down to one item, as a pill (Tab pill and Bottom bar,
+ * motion-bookmarks #5, #6). `ring` (a CSS length such as "var(--pill-ring)") pulls every side in by that much, so a
+ * second layer under it shows as a ring.
+ */
+export function pillInset(item: Box, row: { width: number; height: number }, ring?: string): string {
+  const sides = [item.top, row.width - item.left - item.width, row.height - item.top - item.height, item.left];
+  const values = sides.map((s) => (ring ? `calc(${px(s)} + ${ring})` : px(s)));
+  return `inset(${values.join(" ")} round 9999px)`;
+}
+
+/** A motion token's value, for the Web Animations API, which can't read var(). Browser only. */
+export const token = (name: string, fallback: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+export const ms = (name: string, fallback: number) => parseFloat(token(name, `${fallback}ms`)) || fallback;

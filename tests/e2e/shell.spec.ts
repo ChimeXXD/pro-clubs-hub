@@ -86,12 +86,30 @@ test("light mode, once picked: the current pill gets a thin dark ring, since lim
   await page.goto("/");
   // The switch (ThemeSwitch, D-114 (1)) sets data-theme on <html>; light whatever the device says.
   await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
-  const shadow = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
-  expect(shadow).toContain("rgb(16, 17, 19) 0px 0px 0px 1px inset");
+  // The pill is a sliding layer (Bottom bar, motion-bookmarks #5): the ring is a second, ink layer under it, and the
+  // lime layer is clipped 1 px smaller on every side, so 1 px of ink shows round the pill.
+  const nav = page.getByTestId("bottom-nav");
+  const ring = nav.locator('div[aria-hidden="true"]:not([inert])');
+  const fill = nav.locator("div[inert]");
+  const look = async () => {
+    // The 1 px change itself eases with the pill's transition; read it once it has settled.
+    await page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished.catch(() => null))));
+    return Promise.all([
+      ring.evaluate((el) => [getComputedStyle(el).display, getComputedStyle(el).backgroundColor]),
+      fill.evaluate((el) => (getComputedStyle(el).clipPath.match(/[\d.]+(?=px)/g) ?? []).slice(0, 4).map(Number)),
+    ]);
+  };
+  const [[display, ink], light] = await look();
+  expect(display).toBe("block");
+  expect(ink).toBe("rgb(16, 17, 19)");
   expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe("rgb(247, 243, 230)"); // #f7f3e6
   await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
-  const none = await page.getByTestId("bottom-nav").getByRole("link", { name: "Home" }).evaluate((el) => getComputedStyle(el).boxShadow);
-  expect(none).not.toContain("0px 0px 0px 1px inset");
+  const [[shown], dark] = await look();
+  expect(shown).toBe("none");
+  // Home, 5 px from the nav's edge on top, bottom and left; in light mode 1 px further in on every side.
+  expect(dark.slice(0, 1)).toEqual([5]);
+  expect(light.length).toBeGreaterThan(0);
+  expect(light.map((v, i) => +(v - (dark[i] ?? 0)).toFixed(2))).toEqual([1, 1, 1, 1].slice(0, light.length));
 });
 
 test("iPad mini (744 px): the tablet top bar keeps its 40 px side padding", async ({ page }) => {

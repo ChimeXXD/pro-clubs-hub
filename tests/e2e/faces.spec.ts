@@ -55,7 +55,8 @@ const ringFits = (page: Page) =>
         const style = getComputedStyle(el);
         const ring = parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset);
         const r = el.getBoundingClientRect();
-        const row = (el.parentElement as HTMLElement).getBoundingClientRect();
+        // The row that scrolls (and so clips): the chips sit in the sliding pill's row inside it (Tab pill).
+        const row = (el.closest(".overflow-x-auto") as HTMLElement).getBoundingClientRect();
         // All four edges: scrolled into view, the last chip can land against the row's right edge.
         return (
           ring > 0 &&
