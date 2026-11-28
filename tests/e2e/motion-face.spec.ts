@@ -96,3 +96,41 @@ test("tablet: the All steps dialog grows out of the All steps link", async ({ pa
   expect(box && l && Math.abs(box.x + ox - (l.x + l.width / 2))).toBeLessThan(1.5);
   expect(box && l && Math.abs(box.y + oy - (l.y + l.height / 2))).toBeLessThan(1.5);
 });
+
+test("Task list: each section shows its done count; a tapped open brings the rows in one after another", async ({ page }) => {
+  await page.goto(URL);
+  await page.getByRole("button", { name: "All steps" }).click();
+  const dialog = page.getByRole("dialog", { name: "All steps" });
+  // Figma's sample draws steps 1 (Preset), 2 (Skin) and 9 (Sculpt): one label per section drawn, with its count.
+  await expect(dialog.getByTestId("step-section-Preset")).toHaveText("Preset0 of 1");
+  await expect(dialog.getByTestId("step-section-Sculpt")).toContainText("of");
+  const lines = await dialog.locator("ol > li").evaluateAll((els) =>
+    els.map((el) => el.getAnimations().map((a) => ({ delay: a.effect?.getComputedTiming().delay, keys: Object.keys((a.effect as KeyframeEffect).getKeyframes()[0] ?? {}) }))[0]),
+  );
+  // Every line fades up by transform and opacity; the delays climb, gaps shrinking, and stop at the cap.
+  expect(lines.every((l) => l?.keys.includes("opacity") && l.keys.includes("transform"))).toBe(true);
+  const delays = lines.map((l) => l?.delay as number);
+  expect(delays[0]).toBe(0);
+  for (let i = 1; i < delays.length; i++) {
+    if (i < 8) expect(delays[i]).toBeGreaterThan(delays[i - 1]!);
+    else expect(delays[i]).toBe(delays[i - 1]);
+  }
+  expect(Math.max(...delays)).toBeLessThanOrEqual(136);
+  // Ticking Preset's step fills its count: it rolls to 1 of 1.
+  await page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished.catch(() => null))));
+  await dialog.getByTestId("step-tick-1").click();
+  await expect(dialog.getByTestId("step-section-Preset")).toHaveText("Preset1 of 1");
+});
+
+test("Task list from the keyboard, or with reduced motion: the rows come with the sheet, no stagger", async ({ page }) => {
+  await page.goto(URL);
+  await page.getByRole("button", { name: "All steps" }).focus();
+  await page.keyboard.press("Enter");
+  const dialog = page.getByRole("dialog", { name: "All steps" });
+  await expect(dialog).toBeVisible();
+  expect(await dialog.locator("ol > li").evaluateAll((els) => els.flatMap((el) => el.getAnimations()).length)).toBe(0);
+  await page.keyboard.press("Escape");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.getByRole("button", { name: "All steps" }).click();
+  expect(await dialog.locator("ol > li").evaluateAll((els) => els.flatMap((el) => el.getAnimations()).length)).toBe(0);
+});

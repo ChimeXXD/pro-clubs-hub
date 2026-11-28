@@ -184,6 +184,11 @@ export function nextLine(recipe: Recipe, step: number): string | null {
   return next ? `Next: ${next}` : null;
 }
 
+/** All steps' section counts (Task list, motion-bookmarks #11): "3 of 4", the section's screens before the step in hand. */
+export function sectionDone(recipe: Recipe, step: number): { name: RecipeSectionName; first: number; done: number; of: number }[] {
+  return recipe.sections.map((s) => ({ name: s.name, first: s.first, done: Math.min(Math.max(step - s.first, 0), s.screens), of: s.screens }));
+}
+
 /**
  * The section bar (D-73): one segment per section, as wide as its values. Finished sections are full; the current one
  * fills by its screens up to and including the current one (Figma 354:1497: Sculpt's 4th of 12 is a third).

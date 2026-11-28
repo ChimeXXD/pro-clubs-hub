@@ -16,6 +16,23 @@ export function growFromTrigger(dialog: HTMLElement, trigger: HTMLElement) {
 }
 
 /**
+ * Task list (motion-bookmarks #11): on an open by tap or click, the list's first 8 lines (section labels and rows, in
+ * reading order) come in one after another, each fading up 4 px over --dur-fast (--ease-out), starting 30 ms apart
+ * with each gap 15 % shorter than the last (a wave, not a metronome), so the eighth starts at 136 ms and the group is
+ * done by 286 ms (UI motion under 300); later lines come with it. They run with the sheet's own entrance, not after it, so the list is readable as the sheet lands and every
+ * row can be tapped at once. A rule the choreograph skill sets (one entrance per container) is bent here because the
+ * bookmark asks for it; see the report. Reduced motion: nothing staggers, the rows come with the sheet.
+ */
+export const staggerDelay = (i: number) => Math.round((30 * (1 - 0.85 ** Math.min(i, 7))) / 0.15);
+
+export function staggerIn(dialog: HTMLElement) {
+  if (reducedMotion()) return;
+  const lines = Array.from(dialog.querySelectorAll<HTMLElement>("ol > li"));
+  const timing = { duration: ms("--dur-fast", 150), easing: token("--ease-out", "ease-out"), fill: "backwards" as const };
+  lines.forEach((line, i) => line.animate({ opacity: [0, 1], transform: ["translateY(4px)", "none"] }, { ...timing, delay: staggerDelay(i) }));
+}
+
+/**
  * Checkbox list (motion-bookmarks #10) in the All steps list: each tick just marked done fills with a small pop
  * (scale 0.85 → 1 on --spring-pop: feedback for a tap, sized for a 28 px circle) and its check draws in from the left
  * (the check-in keyframe's clip-path, 160 ms, --ease-out), starting 90 ms in so the circle has begun to fill: cause,

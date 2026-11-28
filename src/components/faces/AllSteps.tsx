@@ -1,9 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Icon } from "@/components/shell/Icon";
-import type { Recipe } from "@/lib/face-page";
-import { drawTicks, growFromTrigger } from "./allStepsMotion";
+import { RollingNumber } from "@/components/ui/RollingNumber";
+import { type Recipe, sectionDone } from "@/lib/face-page";
+import { drawTicks, growFromTrigger, staggerIn } from "./allStepsMotion";
 
 // "All steps" (D-72 (3): the full list opens from the progress label). No frame draws the list, so it is built from
 // the Design System: the Sheet (205:366) on phone, a centred dialog from tablet as Share build does, holding one Step
@@ -11,7 +12,9 @@ import { drawTicks, growFromTrigger } from "./allStepsMotion";
 // or count. Done rows dim and get the lime tick; the current row is highlighted (action/selected). Ticking a row marks
 // it and every step before it done; unticking makes it the current step again.
 // Motion (allStepsMotion.ts): from tablet the dialog grows out of the "All steps" link (Morph popover, #23); a tick
-// fills with a small pop and its check draws in while the row dims (Checkbox list, #10).
+// fills with a small pop and its check draws in while the row dims (Checkbox list, #10). Task list (#11): each section
+// opens with its done count ("3 of 4", rolling as ticks fill it), and on a tapped open the rows come in one after
+// another (staggerIn).
 // TODO(Chime): Figma draws no All steps list; this is the Design System's Sheet and Step row, for your OK.
 const ICON_BUTTON = "flex size-11 shrink-0 items-center justify-center rounded-sm transition-colors duration-150 hover:bg-action-hovered";
 const DIM = "transition-colors duration-(--dur-fast) ease-(--ease-out)";
@@ -22,6 +25,9 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
   // The steps a tick in the open list has just marked done, to draw their checks in once they render.
   const ticked = useRef<number[]>([]);
   const close = () => dialog.current?.close();
+  const counts = sectionDone(recipe, step);
+  // The last tick came from a key press: the counts change without rolling (nothing animates on keyboard input).
+  const [tickedByKey, setTickedByKey] = useState(false);
 
   useLayoutEffect(() => {
     if (ticked.current.length && dialog.current?.open) drawTicks(dialog.current, ticked.current);
@@ -34,11 +40,13 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
         ref={trigger}
         type="button"
         aria-haspopup="dialog"
-        onClick={() => {
+        onClick={(e) => {
           const d = dialog.current;
           if (!d) return;
           d.showModal();
           if (trigger.current) growFromTrigger(d, trigger.current);
+          // Opened by a tap or click (detail 0 is a key press, where nothing animates): the rows come in.
+          if (e.detail > 0) staggerIn(d);
         }}
         className="type-label tap-target shrink-0 text-text-primary"
       >
@@ -62,12 +70,27 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
             </button>
           </div>
           <ol className="flex flex-col">
-            {recipe.screens.map((screen) => {
+            {recipe.screens.flatMap((screen, i) => {
               const done = screen.step < step;
               const current = screen.step === step;
               const only = screen.values.length === 1 ? screen.values[0] : undefined;
               const value = only ? (only.value ?? "") : `${screen.values.length} values`;
-              return (
+              const section = recipe.screens[i - 1]?.section !== screen.section ? counts.find((s) => s.name === screen.section) : undefined;
+              return [
+                section && (
+                  // The section's name and how many of its screens are done (Task list, #11). A plain list item: an
+                  // <ol>'s children may take no role but listitem (ARIA in HTML), so role="none" would be invalid.
+                  <li
+                    key={`section-${section.name}`}
+                    data-testid={`step-section-${section.name}`}
+                    className="type-caption flex items-baseline justify-between px-3 pt-4 pb-1 text-text-muted first:pt-0"
+                  >
+                    <span>{section.name}</span>
+                    <span>
+                      <RollingNumber value={String(section.done)} still={tickedByKey} /> of {section.of}
+                    </span>
+                  </li>
+                ),
                 <li
                   key={screen.step}
                   data-testid={`step-row-${screen.step}`}
@@ -79,8 +102,9 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
                     data-testid={`step-tick-${screen.step}`}
                     aria-pressed={done}
                     aria-label={`Step ${screen.step} done`}
-                    onClick={() => {
+                    onClick={(e) => {
                       const to = done ? screen.step : screen.step + 1;
+                      setTickedByKey(e.detail === 0);
                       // Ticking marks this step and the open ones before it; those are the checks to draw.
                       ticked.current = recipe.screens.map((s) => s.step).filter((s) => s >= step && s < to);
                       onPick(to);
@@ -94,8 +118,8 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
                     <span className={`type-body ${DIM} ${done ? "text-text-muted" : "text-text-primary"}`}>{screen.title}</span>
                   </span>
                   <span className={`type-number-md shrink-0 ${DIM} ${done ? "text-text-muted" : "text-text-primary"}`}>{value}</span>
-                </li>
-              );
+                </li>,
+              ];
             })}
           </ol>
         </div>
