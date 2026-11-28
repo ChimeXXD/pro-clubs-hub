@@ -1,3 +1,4 @@
+import { RollingNumber } from "@/components/ui/RollingNumber";
 import type { AttributeGroupView, BuildPageView } from "@/lib/build-page";
 
 // Figma "Section - Attributes" (298:3850, D-63 (4)): the heading, the mastery line and its source, then the build's
@@ -59,7 +60,11 @@ export function BuildAttributes({ groups, mastery }: { groups: AttributeGroupVie
   );
 }
 
-/** The group's rating on a half-circle gauge (48 × 30, Figma "Icon" 298:3882), or a dash while it is unknown (A-18). */
+/**
+ * The group's rating on a half-circle gauge (48 × 30, Figma "Icon" 298:3882), or a dash while it is unknown (A-18). Its
+ * number rolls when it changes (Stat card, #13). TODO(Chime): group ratings don't change with the level yet, so the
+ * arc has no motion of its own.
+ */
 function Gauge({ value }: { value: number | null }) {
   const arc = "M6 25.8a18 18 0 0 1 36 0";
   return (
@@ -68,7 +73,9 @@ function Gauge({ value }: { value: number | null }) {
         <path d={arc} strokeWidth="4.8" strokeLinecap="round" className="stroke-bg-raised" />
         {value !== null && <path d={arc} pathLength={100} strokeDasharray={`${value} 100`} strokeWidth="4.8" strokeLinecap="round" className="stroke-accent-fill" />}
       </svg>
-      <span className={`${NUMBER_SM} absolute inset-x-0 top-3.5 text-center text-text-primary`}>{value ?? "–"}</span>
+      <span className={`${NUMBER_SM} absolute inset-x-0 top-3.5 text-center text-text-primary tabular-nums`}>
+        <RollingNumber value={value === null ? "–" : String(value)} />
+      </span>
     </span>
   );
 }

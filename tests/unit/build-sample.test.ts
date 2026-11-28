@@ -49,11 +49,20 @@ describe("the sample build's page (D-107)", () => {
     // The Exposure slider's taller tick (motion-bookmarks.pdf #16): where the specialization unlocks.
     expect(view.levels?.specializationAt).toBe(50);
     expect(view.levels?.states).toEqual([
-      { level: 32, ap: "724", spent: "724", left: "0", callout: "At level 32 you're 695 AP short of this build. Its specialization needs level 50." },
-      { level: 55, ap: "1,419", spent: "1,410", left: "9", callout: null },
+      {
+        level: 32,
+        ap: "724",
+        spent: "724",
+        left: "0",
+        share: { spent: 1, left: 0, over: true },
+        callout: "At level 32 you're 695 AP short of this build. Its specialization needs level 50.",
+      },
+      { level: 55, ap: "1,419", spent: "1,410", left: "9", share: { spent: 1410 / 1419, left: 9 / 1419, over: false }, callout: null },
     ]);
     expect(page).toContain("Your level");
-    expect(page).toMatch(/AP at level 55: <b[^>]*>1,419<\/b> · spent <b[^>]*>1,410<\/b> · left <b[^>]*>9<\/b>/);
+    // Each number sits in its RollingNumber (Stat card, motion-bookmarks.pdf #13): two spans inside the <b>.
+    const num = (n: string) => `<b[^>]*>(?:<span[^>]*>)+${n}(?:</span>)+</b>`;
+    expect(page).toMatch(new RegExp(`AP at level 55: ${num("1,419")} · spent ${num("1,410")} · left ${num("9")}`));
   });
 
   it("says all of it fits at its level, with the AP to spare", () => {

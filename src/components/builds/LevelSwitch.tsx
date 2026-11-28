@@ -3,7 +3,7 @@
 import { type ChangeEvent, type MouseEvent, useRef, useState } from "react";
 import { Callout } from "@/components/ui/Callout";
 import { RollingNumber } from "@/components/ui/RollingNumber";
-import { type LevelsView, nearestLevel, stepLevel } from "@/lib/build-level";
+import { type ApShare, type LevelsView, nearestLevel, stepLevel } from "@/lib/build-level";
 import { useChosenLevel } from "./ChosenLevel";
 
 // Figma "Section - Your level" (298:3669) and its level-32 state (371:1697): "Your level" with − / + around the
@@ -15,6 +15,9 @@ import { useChosenLevel } from "./ChosenLevel";
 // as drawn (Barlow Condensed 20, Barlow Bold 22, Barlow Condensed 24, Barlow 14 / 18.85). The AP line's two colours
 // aren't tokens (Figma ab9b80 and efe6d4): text/muted and text/primary here. The knob's 3 px ring (Figma 0c0906) is
 // accent/on-fill, the nearest token.
+// Stat card (motion-bookmarks.pdf #13): the AP numbers roll to their new values with the level (RollingNumber, tabular
+// figures so the line doesn't shift); only the ones that changed move. Storage meter (#14): a thin bar under the line,
+// spent from the left and left over from the right, each by scaleX.
 const STEP = "flex size-11 items-center justify-center font-text text-[22px] leading-[22px] font-bold text-text-primary";
 
 export function LevelSwitch({ levels }: { levels: LevelsView }) {
@@ -83,14 +86,24 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
               </button>
             </div>
           </div>
-          <p aria-live="polite" className="font-text text-[14px] leading-[18.85px] font-medium text-text-muted">
-            {`AP at level ${state.level}: `}
-            <b className="font-bold text-text-primary">{state.ap}</b>
-            {" · spent "}
-            <b className="font-bold text-text-primary">{state.spent}</b>
-            {" · left "}
-            <b className="font-bold text-text-primary">{state.left}</b>
-          </p>
+          {/* The meter hangs in the space above the knob, out of the flow, so the section keeps Figma's height. */}
+          <div className="relative">
+            <p aria-live="polite" className="font-text text-[14px] leading-[18.85px] font-medium text-text-muted">
+              {`AP at level ${state.level}: `}
+              <b className="font-bold text-text-primary tabular-nums">
+                <RollingNumber value={state.ap} still={still} />
+              </b>
+              {" · spent "}
+              <b className="font-bold text-text-primary tabular-nums">
+                <RollingNumber value={state.spent} still={still} />
+              </b>
+              {" · left "}
+              <b className="font-bold text-text-primary tabular-nums">
+                <RollingNumber value={state.left} still={still} />
+              </b>
+            </p>
+            <Meter share={state.share} still={still} />
+          </div>
         </div>
         <div className="px-3.5 pt-0.5">
           <div className="relative h-11 [container-type:inline-size]">
@@ -110,6 +123,7 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
               {/* 14 px wider than the track, slid left so its end sits under the knob's centre (100cqw is the knob's
                   travel, the track less its 14 px ends): it moves with the knob, and is hidden under it at rest. */}
               <span
+                data-testid="level-fill"
                 className={`block h-full w-[calc(100%+14px)] bg-text-secondary ${glide}`}
                 style={{ transform: `translateX(calc(${p - 1} * 100cqw - 28px))` }}
               />
@@ -157,6 +171,27 @@ function Ticks({ max, special }: { max: number; special: number | null }) {
           style={{ left: `${(l / max) * 100}%` }}
         />
       ))}
+    </span>
+  );
+}
+
+/**
+ * The Storage meter (motion-bookmarks.pdf #14): the level's AP as a 3 px bar in the gap under the AP line, spent (text/secondary) growing from the
+ * left and what's left (lime, D-115's "AP left") from the right, on the track colour; status/danger when the build
+ * needs more than the level gives. scaleX only, --dur-base --ease-out, no bounce (it is data); at once from the
+ * keyboard and with reduced motion (the numbers crossfade).
+ * TODO(Chime): not drawn in Figma; its height, place and colours are a proposal.
+ */
+function Meter({ share, still }: { share: ApShare; still: boolean }) {
+  const move = `transition-transform duration-(--dur-base) ease-(--ease-out) motion-reduce:transition-none ${still ? "transition-none" : ""}`;
+  return (
+    <span aria-hidden="true" data-testid="ap-meter" className="absolute inset-x-0 top-[calc(100%+2.5px)] block h-0.75 overflow-hidden rounded-[2px] bg-bg-surface">
+      <span
+        data-part="spent"
+        className={`absolute inset-0 origin-left ${share.over ? "bg-status-danger" : "bg-text-secondary"} ${move}`}
+        style={{ transform: `scaleX(${share.spent})` }}
+      />
+      <span data-part="left" className={`absolute inset-0 origin-right bg-accent-fill ${move}`} style={{ transform: `scaleX(${share.left})` }} />
     </span>
   );
 }

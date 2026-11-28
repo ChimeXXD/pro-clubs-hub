@@ -118,7 +118,7 @@ test("exposure slider: the knob settles on the new level by transform, with one 
   expect(Math.min(...frames)).toBeLessThan(target - 0.005);
   expect(Math.min(...frames)).toBeGreaterThan(target - 0.1);
   // The fill ends under the knob's travel the same way (it moves with it).
-  expect(await page.getByTestId("level-switch").locator("span.bg-text-secondary").evaluate((el) => getComputedStyle(el).transitionProperty)).toBe("transform, translate, scale, rotate");
+  expect(await page.getByTestId("level-fill").evaluate((el) => getComputedStyle(el).transitionProperty)).toBe("transform, translate, scale, rotate");
 });
 
 test("exposure slider: arrow keys move the knob at once; reduced motion never animates it", async ({ page }) => {
@@ -148,4 +148,45 @@ test("exposure slider: dragging across a detent gives a light haptic tick where 
   await page.mouse.up();
   await expect(page.getByTestId("level-switch").getByLabel("Level", { exact: true })).toHaveText("32");
   expect(await page.evaluate(() => (window as unknown as { vibrations: unknown[] }).vibrations)).toEqual([5]);
+});
+
+// Stat card (#13) and Storage meter (#14): the AP numbers roll with the level, numbers that didn't change stay still,
+// and the bar under the AP line splits spent and left by scaleX.
+const meter = (page: Page) =>
+  page.getByTestId("ap-meter").evaluate((el) =>
+    [...el.children].map((c) => ({ part: c.getAttribute("data-part"), scale: new DOMMatrixReadOnly(getComputedStyle(c).transform).a, transition: getComputedStyle(c).transitionProperty })),
+  );
+
+test("stat card: the AP numbers roll to their new values; the key stats, unchanged, stay still", async ({ page }) => {
+  await page.goto(URL);
+  const names = await page.getByTestId("level-switch").evaluate(async (root) => {
+    root.querySelector<HTMLButtonElement>('button[aria-label="Level down"]')!.dispatchEvent(new MouseEvent("click", { bubbles: true, detail: 1 }));
+    await new Promise(requestAnimationFrame);
+    return [...root.querySelectorAll("p b > span")].map((n) => [...n.children].map((c) => getComputedStyle(c).animationName));
+  });
+  // 1,419 → 724, 1,410 → 724, 9 → 0: all fall, so each arrives from above.
+  expect(names).toEqual([["roll-in-down", "roll-out-down"], ["roll-in-down", "roll-out-down"], ["roll-in-down", "roll-out-down"]]);
+  await expect(page.getByTestId("level-switch").getByText("AP at level 32: 724 · spent 724 · left 0")).toBeVisible();
+  const stats = await page.getByRole("main").locator("dl").first().locator("dd > span > span").evaluateAll((els) => els.map((e) => getComputedStyle(e).animationName));
+  expect(stats).toEqual(["none", "none", "none", "none", "none", "none"]);
+});
+
+test("storage meter: spent from the left and left over from the right, by scaleX, following the level", async ({ page }) => {
+  await page.goto(URL);
+  const before = await meter(page);
+  expect(before.map((m) => m.part)).toEqual(["spent", "left"]);
+  expect(before[0]!.scale).toBeCloseTo(1410 / 1419, 3);
+  expect(before[1]!.scale).toBeCloseTo(9 / 1419, 3);
+  expect(before.map((m) => m.transition)).toEqual(["transform, translate, scale, rotate", "transform, translate, scale, rotate"]);
+  await page.getByTestId("level-switch").getByRole("button", { name: "Level down" }).click();
+  await expect.poll(async () => (await meter(page)).map((m) => Math.round(m.scale * 1000) / 1000)).toEqual([1, 0]);
+  // Level 32 is 695 AP short of the build: the spent bar turns to the danger colour.
+  await expect(page.getByTestId("ap-meter").locator('[data-part="spent"]')).toHaveClass(/bg-status-danger/);
+  // From the keyboard, and with reduced motion, the bar changes at once.
+  await page.getByRole("slider", { name: "Your level" }).focus();
+  await page.keyboard.press("ArrowRight");
+  expect((await meter(page)).map((m) => m.transition)).toEqual(["none", "none"]);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.reload();
+  expect((await meter(page)).map((m) => m.transition)).toEqual(["none", "none"]);
 });

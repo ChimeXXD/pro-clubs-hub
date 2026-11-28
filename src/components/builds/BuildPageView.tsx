@@ -168,7 +168,7 @@ function BuildHero({ view }: { view: View }) {
           <p className="type-caption text-text-secondary">{view.body}</p>
         </div>
       </div>
-      <KeyStats stats={view.keyStats} />
+      <KeyStats stats={view.keyStats} roll />
       {!view.picture && <p className="type-caption text-text-muted">{PICTURE_CAPTION}</p>}
     </div>
   );

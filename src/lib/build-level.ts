@@ -16,6 +16,8 @@ export interface LevelState {
   ap: string;
   spent: string;
   left: string;
+  /** Spent and left as shares of the level's AP, for the bar under the AP line (Storage meter, #14). */
+  share: ApShare;
   /** "At level 32 you're 695 AP short of this build. …", or null when the whole build fits. */
   callout: string | null;
 }
@@ -33,6 +35,26 @@ export interface LevelsView {
 
 const count = (n: number) => n.toLocaleString("en-US");
 
+export interface ApShare {
+  /** 0–1: the spent part of the bar (at most the whole bar). */
+  spent: number;
+  /** 0–1: the part left over. */
+  left: number;
+  /** The build needs more AP than the level gives (the level is short of it, or spends more than it has). */
+  over: boolean;
+}
+
+/**
+ * Spent and left as shares of the AP a level gives (the Storage meter under the AP line, motion-bookmarks.pdf #14).
+ * `short` is the level's AP short of the build (null when it all fits): a short level spends all it has, so spent alone
+ * never shows it.
+ */
+export function apShare(ap: number, spent: number, short: number | null = null): ApShare {
+  const over = (short !== null && short > 0) || spent > ap;
+  if (ap <= 0) return { spent: over ? 1 : 0, left: 0, over };
+  return { spent: Math.min(spent / ap, 1), left: Math.max(ap - spent, 0) / ap, over };
+}
+
 /** The sample's drawn levels, or null for a build without them (every recorded build, for now). */
 export function levelsView(build: LoadedBuild): LevelsView | null {
   const sample = build.sample;
@@ -46,6 +68,7 @@ export function levelsView(build: LoadedBuild): LevelsView | null {
       ap: count(l.ap),
       spent: count(l.spent),
       left: count(l.ap - l.spent),
+      share: apShare(l.ap, l.spent, l.apShort),
       callout:
         l.apShort === null
           ? null
