@@ -46,6 +46,8 @@ describe("the sample build's page (D-107)", () => {
   it("has the level switch at the build's level, with the drawn level-32 state", () => {
     expect(view.levels?.initial).toBe(55);
     expect(view.levels?.max).toBe(55);
+    // The Exposure slider's taller tick (motion-bookmarks.pdf #16): where the specialization unlocks.
+    expect(view.levels?.specializationAt).toBe(50);
     expect(view.levels?.states).toEqual([
       { level: 32, ap: "724", spent: "724", left: "0", callout: "At level 32 you're 695 AP short of this build. Its specialization needs level 50." },
       { level: 55, ap: "1,419", spent: "1,410", left: "9", callout: null },

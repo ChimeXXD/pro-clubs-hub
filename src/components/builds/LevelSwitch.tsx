@@ -18,13 +18,14 @@ import { useChosenLevel } from "./ChosenLevel";
 const STEP = "flex size-11 items-center justify-center font-text text-[22px] leading-[22px] font-bold text-text-primary";
 
 export function LevelSwitch({ levels }: { levels: LevelsView }) {
-  const [{ level, still }, setOwn] = useState({ level: levels.initial, still: true });
+  const [{ level, still }, setOwn] = useState({ level: levels.initial, still: false });
   // The story cards follow the level picked here (D-114 (3)).
   const { choose } = useChosenLevel();
   // Number stepper (motion-bookmarks.pdf #12): the level rolls on a tap, but not on a key press or a tap that came
   // faster than the 140 ms roll (the frequent-action rule): those set the number at once.
   const lastChange = useRef(-Infinity);
-  const keyed = useRef(false);
+  // Whether a pointer is pressing the slider: a change without one (arrow keys, VoiceOver) is set at once.
+  const held = useRef(false);
   const drawn = levels.states.map((s) => s.level);
   const state = levels.states.find((s) => s.level === level) ?? levels.states[0];
   if (!state) return null;
@@ -36,15 +37,33 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
   };
   // A click from Enter or Space has no pointer behind it (detail 0).
   const step = (e: MouseEvent<HTMLButtonElement>, dir: -1 | 1) => setLevel(stepLevel(drawn, state.level, dir), e.timeStamp, e.detail === 0);
-  const at = `${(state.level / levels.max) * 100}%`;
-  // Snap to the nearest drawn level; a small move (an arrow key, Page Up/Down) that would snap straight back steps
-  // to the next drawn level that way instead, so the slider works from the keyboard.
+  const p = state.level / levels.max;
+  // Snap to the nearest drawn level; a small move without a pointer (an arrow key, Page Up/Down, VoiceOver) that would
+  // snap straight back steps to the next drawn level that way instead, so the slider works from the keyboard. A drag
+  // only snaps, so the knob doesn't flick between levels under the finger.
   const onSlide = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     const nearest = nearestLevel(drawn, value);
-    const next = nearest === state.level && value !== state.level ? stepLevel(drawn, state.level, value < state.level ? -1 : 1) : nearest;
-    setLevel(next, e.timeStamp, keyed.current);
+    const next = !held.current && nearest === state.level && value !== state.level ? stepLevel(drawn, state.level, value < state.level ? -1 : 1) : nearest;
+    if (held.current && next !== state.level) haptic();
+    setLevel(next, e.timeStamp, !held.current);
   };
+  // Whichever of pointerup / pointercancel comes first ends the press and removes both listeners; a key press always
+  // counts as the keyboard, even if the pointer's release was never seen.
+  const press = () => {
+    held.current = true;
+    const done = new AbortController();
+    const release = () => {
+      held.current = false;
+      done.abort();
+    };
+    window.addEventListener("pointerup", release, { signal: done.signal });
+    window.addEventListener("pointercancel", release, { signal: done.signal });
+  };
+  // Exposure slider (motion-bookmarks.pdf #16): the knob and the fill move together by transform, settling on the
+  // level with the settle spring's small overshoot; a key press or a change faster than the roll moves them at once,
+  // and reduced motion never animates them (the number crossfades instead).
+  const glide = `transition-transform duration-(--spring-settle-ms) ease-(--spring-settle) motion-reduce:transition-none ${still ? "transition-none" : ""}`;
 
   return (
     <div data-testid="level-switch" className="flex flex-col">
@@ -74,7 +93,7 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
           </p>
         </div>
         <div className="px-3.5 pt-0.5">
-          <div className="relative h-11">
+          <div className="relative h-11 [container-type:inline-size]">
             {/* The real control, invisible over the drawing; the knob shows its focus. */}
             <input
               type="range"
@@ -83,18 +102,23 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
               max={levels.max}
               value={state.level}
               onChange={onSlide}
-              onKeyDown={() => (keyed.current = true)}
-              onPointerDown={() => (keyed.current = false)}
+              onPointerDown={press}
+              onKeyDown={() => (held.current = false)}
               className="peer absolute inset-y-0 -left-3.5 z-10 h-full w-[calc(100%+28px)] cursor-pointer opacity-0"
             />
             <span aria-hidden="true" className="absolute top-4.75 -right-3.5 -left-3.5 h-1.5 overflow-hidden rounded-[3px] bg-bg-surface">
-              <span className="block h-full bg-text-secondary" style={{ width: `calc(${at} + 14px)` }} />
+              {/* 14 px wider than the track, slid left so its end sits under the knob's centre (100cqw is the knob's
+                  travel, the track less its 14 px ends): it moves with the knob, and is hidden under it at rest. */}
+              <span
+                className={`block h-full w-[calc(100%+14px)] bg-text-secondary ${glide}`}
+                style={{ transform: `translateX(calc(${p - 1} * 100cqw - 28px))` }}
+              />
             </span>
-            <span
-              aria-hidden="true"
-              className="absolute top-2 size-7 -translate-x-1/2 rounded-full bg-accent-fill shadow-[0_0_0_3px_var(--color-accent-on-fill)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-focus-ring"
-              style={{ left: at }}
-            />
+            <Ticks max={levels.max} special={levels.specializationAt} />
+            {/* A zero-width carrier moved by the track's own width (cqw), so the knob never widens the page's scroll area. */}
+            <span aria-hidden="true" data-testid="level-knob" className={`absolute top-2 left-0 h-7 w-0 ${glide}`} style={{ transform: `translateX(calc(${p} * 100cqw))` }}>
+              <span className="absolute top-0 -left-3.5 size-7 rounded-full bg-accent-fill shadow-[0_0_0_3px_var(--color-accent-on-fill)] [.peer:focus-visible~*_&]:outline-2 [.peer:focus-visible~*_&]:outline-offset-4 [.peer:focus-visible~*_&]:outline-focus-ring" />
+            </span>
           </div>
         </div>
       </section>
@@ -104,5 +128,35 @@ export function LevelSwitch({ levels }: { levels: LevelsView }) {
         </div>
       )}
     </div>
+  );
+}
+
+/** A light tick on each detent where the device can (Android; iOS Safari has no vibration). */
+function haptic() {
+  try {
+    navigator.vibrate?.(5);
+  } catch {
+    // Refused (no user gesture yet, or blocked): the knob's settle is the feedback.
+  }
+}
+
+/**
+ * The Exposure slider's ticks (motion-bookmarks.pdf #16): one 1 px line for every level under the track, at level ÷ 55
+ * like the knob; the specialization level's tick is taller. One box per tick rather than a tiled background, so each
+ * snaps to the pixel grid on its own (WebKit rounds a tile's size, and 54 rounded tiles drift off the knob).
+ * TODO(Chime): not drawn in Figma; tick length and colour are a proposal (border/subtle, 4 px; text/muted, 8 px).
+ */
+function Ticks({ max, special }: { max: number; special: number | null }) {
+  return (
+    <span aria-hidden="true" data-testid="level-ticks" className="absolute inset-x-0 top-[29px] h-2">
+      {Array.from({ length: max }, (_, i) => i + 1).map((l) => (
+        <span
+          key={l}
+          data-testid={l === special ? "level-tick-special" : undefined}
+          className={`absolute top-0 w-px ${l === special ? "h-2 bg-text-muted" : "h-1 bg-border-subtle"}`}
+          style={{ left: `${(l / max) * 100}%` }}
+        />
+      ))}
+    </span>
   );
 }

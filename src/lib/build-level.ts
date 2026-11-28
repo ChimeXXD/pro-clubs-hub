@@ -27,6 +27,8 @@ export interface LevelsView {
   initial: number;
   /** The end of the track. */
   max: number;
+  /** The level the specialization unlocks at, marked with a taller tick on the track; null when not recorded. */
+  specializationAt: number | null;
 }
 
 const count = (n: number) => n.toLocaleString("en-US");
@@ -49,7 +51,7 @@ export function levelsView(build: LoadedBuild): LevelsView | null {
           ? null
           : `At level ${l.level} you're ${count(l.apShort)} AP short of this build.${reachedFrom ? ` Its specialization needs level ${reachedFrom}.` : ""}`,
     }));
-  return { states, initial: build.level, max: LEVEL_MAX };
+  return { states, initial: build.level, max: LEVEL_MAX, specializationAt: reachedFrom ?? null };
 }
 
 /** "All of it at level 55 · Every step of the build fits, with 9 AP to spare." at the build's own level. */
