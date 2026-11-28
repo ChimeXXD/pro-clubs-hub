@@ -49,7 +49,7 @@ describe("BuildPageView", () => {
   });
 
   it("titles the page with the build, marked Draft, its version tag in words and its credit (rules 4, 5)", () => {
-    expect(page).toMatch(/<h1[^>]*>2008 Winger<\/h1>/);
+    expect(page).toMatch(/<h1[^>]*><span[^>]*>2008 Winger<\/span><\/h1>/);
     expect(page).toContain(">Draft<");
     expect(page).toContain("FC 27 · Season 2 · Not yet checked in game");
     expect(page).toContain("Made by Chime in game");

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { DraftTag } from "@/components/ui/DraftTag";
 import type { BuildCardView } from "@/lib/archetype-page";
 import { KeyStats } from "./KeyStats";
@@ -9,6 +10,8 @@ import { KeyStats } from "./KeyStats";
 // credit line every recorded build carries (D-05, D-08; not drawn on the Figma card, whose builds are samples: a
 // sample card has no Draft tag, version tag or credit, and the page's note marks it, D-107, D-113). The card is a
 // subgrid of three rows, or four with the footer, so headers in a row share one height and the stat rows line up (D-62).
+// Expand card (motion-bookmarks.pdf #22): the picture and the name are shared with the build page's (BuildPageView), so
+// opening a card carries them across in a View Transition where the browser has one; elsewhere the page just opens.
 export const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
 // Position chips are neutral: lime is kept for the badge, the main action and the selection (DESIGN.md "one accent", D-115).
 export const POSITION = "bg-bg-raised text-text-primary ring-1 ring-border-subtle ring-inset";
@@ -26,16 +29,18 @@ export function BuildCard({ card, rows }: { card: BuildCardView; rows: keyof typ
         className={`${CARD_ROWS[rows]} grid grid-rows-subgrid gap-y-3.5 rounded-lg border border-border-subtle bg-bg-surface p-4`}
       >
         <div className="flex items-center gap-3.5">
-          <div className="size-19 shrink-0 overflow-hidden rounded-md">
-            {/* eslint-disable-next-line @next/next/no-img-element -- static export; an SVG or a sized WebP */}
-            <img
-              src={card.picture?.src ?? "/art/probuilds-face.svg"}
-              alt={card.picture?.alt ?? ""}
-              width={76}
-              height={76}
-              className="size-full object-cover"
-            />
-          </div>
+          <ViewTransition name={`build-${card.id}-picture`} share="build-expand" default="none">
+            <div className="size-19 shrink-0 overflow-hidden rounded-md">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export; an SVG or a sized WebP */}
+              <img
+                src={card.picture?.src ?? "/art/probuilds-face.svg"}
+                alt={card.picture?.alt ?? ""}
+                width={76}
+                height={76}
+                className="size-full object-cover"
+              />
+            </div>
+          </ViewTransition>
           <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5">
             {(card.badge || draft) && (
               <div className="flex flex-wrap gap-1.5">
@@ -47,7 +52,12 @@ export function BuildCard({ card, rows }: { card: BuildCardView; rows: keyof typ
                 {draft && <DraftTag />}
               </div>
             )}
-            <h2 className="type-h3 max-w-full break-words text-text-primary uppercase">{card.title}</h2>
+            <h2 className="type-h3 max-w-full break-words text-text-primary uppercase">
+              {/* The name travels as a box that hugs its words, so the two snapshots keep one shape and only scale. */}
+              <ViewTransition name={`build-${card.id}-title`} share="build-expand" default="none">
+                <span className="inline-block max-w-full">{card.title}</span>
+              </ViewTransition>
+            </h2>
             <div className="flex w-full flex-wrap items-center gap-1.5">
               {card.positions.map((p) => (
                 <span key={p} className={`type-caption rounded-xs px-1.5 py-px ${POSITION}`}>

@@ -42,7 +42,7 @@ describe("ArchetypeBuildsView", () => {
 
   it("shows the draft build as a card linking to its page, values as written", () => {
     expect(spark).toMatch(/<a[^>]*href="\/builds\/spark\/spark-2008-winger"[^>]*data-testid="build-card-spark-2008-winger"|data-testid="build-card-spark-2008-winger"[^>]*href="\/builds\/spark\/spark-2008-winger"/);
-    expect(spark).toMatch(/<h2[^>]*>2008 Winger<\/h2>/);
+    expect(spark).toMatch(/<h2[^>]*><span[^>]*>2008 Winger<\/span><\/h2>/);
     expect(spark).toContain(">Draft<");
     expect(spark).toContain(">RW<");
     expect(spark).toContain(">LW<");
@@ -66,7 +66,7 @@ describe("ArchetypeBuildsView", () => {
   it("draws Figma's sample cards with the sample note once, no Draft tag, version tag or credit (288:1031, D-113)", () => {
     expect(finisher).toContain("Forward · 3 builds");
     expect(finisher.split("Sample values: not real builds yet")).toHaveLength(2);
-    expect(finisher).toMatch(/<h2[^>]*>Tall Finisher<\/h2>/);
+    expect(finisher).toMatch(/<h2[^>]*><span[^>]*>Tall Finisher<\/span><\/h2>/);
     expect(finisher).not.toContain(">Draft<");
     expect(finisher).not.toContain("Not yet checked in game");
     expect(finisher).not.toContain("Made by");

@@ -72,7 +72,7 @@ describe("Figma's sample shared build (439:8847)", () => {
     expect(html).toMatch(/aria-current="page"[^>]*>Shared build</);
     expect(html).toContain(">Shared build</span>");
     expect(html).toContain("Shared by a player · not on ProBuilds&#x27; lists yet");
-    expect(html).toMatch(/<h1[^>]*>My Finisher<\/h1>/);
+    expect(html).toMatch(/<h1[^>]*><span[^>]*>My Finisher<\/span><\/h1>/);
     expect(html.indexOf("A player shared this build.")).toBeLessThan(html.indexOf(">Share build</button>"));
     expect(html).toMatch(/<a[^>]*href="\/submit"[^>]*>Make your own build<\/a>/);
     expect(html).not.toContain("Meta pick");

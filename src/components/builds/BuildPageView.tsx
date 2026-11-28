@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Callout } from "@/components/ui/Callout";
 import { DraftTag } from "@/components/ui/DraftTag";
@@ -91,7 +92,12 @@ function BuildHeader({ view }: { view: View }) {
             {view.sampleLabel && <p className="type-label text-text-muted">{view.sampleLabel}</p>}
           </div>
         )}
-        <h1 className="type-h1 pt-2 break-words text-text-primary uppercase">{view.title}</h1>
+        {/* Shared with the build card that opened this page (Expand card, #22; BuildCard). */}
+        <h1 className="type-h1 pt-2 break-words text-text-primary uppercase">
+          <ViewTransition name={`build-${view.id}-title`} share="build-expand" default="none">
+            <span className="inline-block max-w-full">{view.title}</span>
+          </ViewTransition>
+        </h1>
         {/* TODO(Chime): the design colours the tag amber when unchecked or from an older season; a checked
             current-season tag isn't drawn, so it is text/secondary here. */}
         <p data-testid="version-tag" className={`type-label pt-3 ${tagTone}`}>
@@ -140,16 +146,18 @@ function BuildHero({ view }: { view: View }) {
   return (
     <div className="flex flex-col gap-4 pt-8 tablet:pt-0">
       <div className="flex items-center gap-4">
-        <div className="size-28 shrink-0 overflow-hidden rounded-md">
-          {/* eslint-disable-next-line @next/next/no-img-element -- static export; an SVG or a sized WebP */}
-          <img
-            src={view.picture?.src ?? "/art/probuilds-face.svg"}
-            alt={view.picture?.alt ?? ""}
-            width={112}
-            height={112}
-            className="size-full object-cover"
-          />
-        </div>
+        <ViewTransition name={`build-${view.id}-picture`} share="build-expand" default="none">
+          <div className="size-28 shrink-0 overflow-hidden rounded-md">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export; an SVG or a sized WebP */}
+            <img
+              src={view.picture?.src ?? "/art/probuilds-face.svg"}
+              alt={view.picture?.alt ?? ""}
+              width={112}
+              height={112}
+              className="size-full object-cover"
+            />
+          </div>
+        </ViewTransition>
         <div className="flex min-w-0 flex-1 flex-col items-start gap-2">
           <div className="flex items-center gap-2">
             <Emblem id={view.archetype.id} className="size-8" />

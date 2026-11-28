@@ -75,6 +75,24 @@
   }
 }
 
+/* Expand card (motion-bookmarks.pdf #22): a build card's picture and name carried to the build page by a View
+   Transition (React's <ViewTransition share="build-expand">). The pair moves and resizes over --dur-page with the
+   house ease-out; the rest of the page crossfades as the browser does by default. Reduced motion: nothing travels,
+   the page only crossfades. Browsers without View Transitions just open the page. Every other navigation off these
+   pages has no transition (default="none" on each boundary). The pair's snapshot crossfade runs on the same clock as
+   its move, so the old picture doesn't vanish 50 ms before it lands (the browser's default fade is 250 ms). */
+::view-transition-group(.build-expand),
+::view-transition-old(.build-expand),
+::view-transition-new(.build-expand) {
+  animation-duration: var(--dur-page);
+  animation-timing-function: var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.build-expand) {
+    animation: none;
+  }
+}
+
 @keyframes at-rest {
   0%,
   99% {
