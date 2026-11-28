@@ -2,6 +2,18 @@
 
 Newest first. Each entry: what changed, what was checked, what wasn't verified, what's next.
 
+## The 30 bookmarked animations built (Sat 28 – Sun 29 Nov 2026)
+
+- **Chime:** "let's build all the animation that's on the PDF"; "make sure to use Emil's skill in every context"; paused overnight, then "start".
+- **Foundation** (1449ee2): spring tokens as CSS linear() easings (scripts/build-springs.mjs → motion.css, unit-tested), RollingNumber, shared keyframes; page budget 235 KB (D-119).
+- **Lane A, Builds and share** (b99db9f…9008c24): swipe deck (velocity throw, settle spring, catchable), rubber dock ring, level number stepper, exposure slider (ticks, level-50 tick, snap, haptic), AP roll and storage meter, Save images loading → check, copy checks, card → build page View Transition, emblem tooltips, stacked and swipeable toasts.
+- **Lane B, Faces, request, shell, Changelog** (73bf693…0fc0149): bottom bar and tab pill (one clip-path pill), smooth tab, face step progress, ticks, All steps task list and morph from its link, turntable flick, vote burst, ghost suggestion, letter limit, Request success, Changelog expand, top-bar search field and desktop results panel. Found and fixed: the minifier's .22s made every scripted animation 0.22 ms.
+- **Lane C, Submit** (230198f…5fe781d): step roll, segmented pill and rising tiles, steppers, exposure and range sliders (bubble), AP meter, star pop, file drop, name letter limit, Send for listing success, copy check, Your card lifting into the share sheet.
+- **Coordinator fixes after merging:** the shared pill slid on keyboard picks and diagonally across wrapped chip lines (now: no slide from the keyboard, a fade on another line; tests fail without the fix); Submit's four group chips wrapped at 390 px (borders now sit inside the 12 px side, as Figma's inside stroke; 78.7 px vs Figma's 79).
+- **Skills:** every unit loaded the matching Emil skills (animate, choreograph, gestures, apple-design, mobile-native, animation-performance, emil-design-eng, animation-vocabulary, break-ui); review-animations (user-only) was applied by hand from its SKILL.md.
+- **Checks:** 441 unit; preview e2e 433 passed, 6 skipped before the pill fix, then the pill, Submit and Request specs (52) after it; every agent commit passed the full gate. Live home page 228.4 KB of 235.
+- **Not done:** PlayStyle badge tooltips (no "what it does" text), the turntable's angle buttons (not in the design); the flick can't be seen until a face has turn frames. **Not verified:** Chime's iPhone and iPad for any of it (L-01).
+
 ## Refining: unslop, Builds fixes, motion picks and the share card flip (Sat 28 Nov 2026)
 
 - **Chime:** "use the unslop skill and any other skill… to refine this design"; then a video of the Builds page; then "review every single animation" on designbookmark.com/motion; then the share card that flips.
