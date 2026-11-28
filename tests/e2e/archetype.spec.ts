@@ -76,7 +76,7 @@ test("archetype: the draft build's card shows its values as written, its version
   await expect(page.getByText("Forward · 1 build", { exact: true })).toBeVisible();
   const card = page.getByTestId("build-card-spark-2008-winger");
   await expect(card).toHaveAttribute("href", "/builds/spark/spark-2008-winger");
-  await expect(card.getByRole("heading", { level: 2 })).toHaveText("PLACEHOLDER");
+  await expect(card.getByRole("heading", { level: 2 })).toHaveText("2008 Winger");
   await expect(card.getByText("Draft", { exact: true })).toBeVisible();
   await expect(card.getByText("Level PLACEHOLDER · PLACEHOLDER cm · PLACEHOLDER kg")).toBeVisible();
   await expect(card.getByText("FC 27 · Season 2 · Not yet checked in game")).toBeVisible();

@@ -43,7 +43,7 @@ export function RequestForm({
           </span>
           <div role="status" className="flex min-w-0 flex-1 flex-col gap-0.5">
             <p className="type-label text-text-primary">{`Asked for ${state.name}`}</p>
-            <p className="type-caption text-text-secondary">New requests show in the list once we&apos;ve checked them.</p>
+            <p className="type-caption text-text-secondary">New requests show in the list once we&apos;ve checked them</p>
           </div>
         </div>
         <button type="button" className={buttonClass("secondary", "w-full hover:bg-action-hovered")} onClick={onAnother}>

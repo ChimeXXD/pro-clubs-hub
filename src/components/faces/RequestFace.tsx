@@ -91,7 +91,7 @@ export function RequestFace({ preview }: { preview: boolean }) {
     loadRequests({ config: SUPABASE, standIn: requestStandIn(where(), "list") })
       .then((list) => live && opening.current(list, votes, state))
       .catch((error: unknown) => {
-        // TODO(Chime): Figma draws no "couldn't load the list" state; the list stays empty, without "No requests yet."
+        // TODO(Chime): Figma draws no "couldn't load the list" state; the list stays empty, without "No requests yet"
         console.warn("Face requests didn't load", error);
         if (live) setLoadFailed(true);
       });

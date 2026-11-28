@@ -39,7 +39,7 @@ describe("ChangelogView", () => {
   it("lists the changes, links the EA source in a new tab, and says what we updated", () => {
     expect(html).toContain("First change.");
     expect(html).toMatch(/<a[^>]*href="https:\/\/ea.com\/a"[^>]*target="_blank"[^>]*rel="noopener noreferrer"[^>]*>/);
-    expect(html).toContain("No faces or builds changed.");
+    expect(html).toContain("No faces or builds changed");
   });
 
   it("offers the five filters with All pressed", () => {

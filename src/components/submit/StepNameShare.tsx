@@ -83,7 +83,7 @@ export function StepNameShare({
             <img src={picture ?? "/art/probuilds-face.svg"} alt={picture ? "Your Pro's face" : ""} className="size-18 shrink-0 rounded-md bg-bg-raised object-cover" />
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <p className="type-label text-text-primary">{picture ? "Your picture" : "No picture yet"}</p>
-              <p className="type-caption text-text-secondary">{picture ? "On your card. Swap it any time." : "Your card uses the ProBuilds face until you add one."}</p>
+              <p className="type-caption text-text-secondary">{picture ? "On your card. Swap it any time." : "Your card uses the ProBuilds face until you add one"}</p>
             </div>
           </div>
           <input

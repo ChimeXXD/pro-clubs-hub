@@ -27,7 +27,7 @@ describe("the sample build's page (D-107)", () => {
   });
 
   it("credits the sample's maker without claiming it was made in game", () => {
-    expect(view.credit).toBe("Made by — (sample) · Played for one match before it's called meta");
+    expect(view.credit).toBe("Played for one match before it's called meta");
     expect(view.versionTag).toBe("FC 27 · Season 2 · Not yet checked in game");
   });
 
@@ -98,7 +98,7 @@ describe("the sample build's page (D-107)", () => {
       height: "185 cm",
       weight: "80 kg",
       link: "probuilds.club/builds/finisher/meta-finisher",
-      footer: "Made by — (sample). Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named.",
+      footer: "Not endorsed by or affiliated with EA or its licensors. Not endorsed by the people named.",
     });
     expect(overview.plus.map((p) => p.name)).toEqual(["Low Driven Shot", "First Touch"]);
     expect(overview.regular.map((p) => p.name)).toEqual(["Finesse Shot", "Power Shot", "Rapid", "Quick Step", "Precision Header", "Acrobatic"]);

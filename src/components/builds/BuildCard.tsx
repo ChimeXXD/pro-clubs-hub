@@ -10,6 +10,8 @@ import { KeyStats } from "./KeyStats";
 // sample card has no Draft tag, version tag or credit, and the page's note marks it, D-107, D-113). The card is a
 // subgrid of three rows, or four with the footer, so headers in a row share one height and the stat rows line up (D-62).
 export const LIME = "bg-accent-fill text-accent-on-fill light:ring-1 light:ring-accent-on-fill light:ring-inset";
+// Position chips are neutral: lime is kept for the badge, the main action and the selection (DESIGN.md "one accent", D-115).
+export const POSITION = "bg-bg-raised text-text-primary ring-1 ring-border-subtle ring-inset";
 
 /** The card's rows: three when no card on the page has a footer (every card a sample), else four. */
 export const CARD_ROWS = { 3: "row-span-3", 4: "row-span-4" } as const;
@@ -48,7 +50,7 @@ export function BuildCard({ card, rows }: { card: BuildCardView; rows: keyof typ
             <h2 className="type-h3 max-w-full break-words text-text-primary uppercase">{card.title}</h2>
             <div className="flex w-full flex-wrap items-center gap-1.5">
               {card.positions.map((p) => (
-                <span key={p} className={`type-caption rounded-xs px-1.5 py-px ${LIME}`}>
+                <span key={p} className={`type-caption rounded-xs px-1.5 py-px ${POSITION}`}>
                   {p}
                 </span>
               ))}

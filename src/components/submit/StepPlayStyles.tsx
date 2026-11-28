@@ -42,7 +42,7 @@ export function StepPlayStyles({
     <div className="sticky top-0 z-10 -mx-5 flex flex-col gap-3 border-b border-system-divider bg-bg-page px-5 pt-4 pb-3.5 tablet:mx-0 tablet:border-0 tablet:px-0 tablet:pt-0 desktop:static">
       <StepLine label={stepLine(draft, archetype, "PlayStyles")} step={3} />
       <div className="flex gap-2">
-        <Count value={`${draft.plus.filter(Boolean).length} of 2`} label="PlayStyle+" tone="text-accent-text" />
+        <Count value={`${draft.plus.filter(Boolean).length} of 2`} label="PlayStyle+" tone="text-text-primary" />
         <Count value={String(regular.length)} label="PlayStyles" tone="text-text-primary" />
       </div>
     </div>
@@ -76,7 +76,7 @@ export function StepPlayStyles({
                 </span>
               </span>
               <span className="type-label text-text-primary">{`${name}+`}</span>
-              <span className={`type-caption ${src?.specialization ? "text-accent-text" : "text-text-muted"}`}>{src?.source ?? ""}</span>
+              <span className={`type-caption ${src?.specialization ? "text-text-secondary" : "text-text-muted"}`}>{src?.source ?? ""}</span>
             </button>
           );
         })}
@@ -116,7 +116,7 @@ export function StepPlayStyles({
       <h2 id="submit-playstyles" className="type-h3 text-text-primary">
         PlayStyles
       </h2>
-      <p className="type-caption pt-1 text-text-muted">Tap to add or remove.</p>
+      <p className="type-caption pt-1 text-text-muted">Tap to add or remove</p>
       {PLAYSTYLE_CATEGORIES.map((c) => (
         <div key={c.name} className="flex flex-col gap-2 pt-4">
           <h3 className="type-caption text-text-muted uppercase">{c.name}</h3>
@@ -126,7 +126,7 @@ export function StepPlayStyles({
                 {draft.plus.includes(name) ? (
                   <span data-testid="playstyle-chip" data-state="plus" className="flex h-11 items-center gap-1.5 rounded-full bg-bg-surface pr-3 pl-2">
                     <PlusArt name={name} size="size-6.5" />
-                    <span className="type-caption text-accent-text">{`${name}+`}</span>
+                    <span className="type-caption text-text-primary">{`${name}+`}</span>
                   </span>
                 ) : (
                   <Chip name={name} on={regular.includes(name)} onPress={() => toggle(name)} />

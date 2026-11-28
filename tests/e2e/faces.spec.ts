@@ -105,8 +105,8 @@ test("faces: search filters by name, the chips count what it leaves, and Clear b
   await expect(page.locator('[data-testid^="face-card-"]')).toHaveCount(0);
   // Figma's no-results state (372:1853 / 427:9875 / 427:9960): every chip at 0, the card, no grid, tile or panel.
   const emptyState = page.getByTestId("faces-empty");
-  await expect(emptyState.getByText("No faces here yet.")).toBeVisible();
-  await expect(emptyState.getByText("Ask for it, and vote for what we make next.")).toBeVisible();
+  await expect(emptyState.getByText("No faces here yet")).toBeVisible();
+  await expect(emptyState.getByText("Ask for it, and vote for what we make next")).toBeVisible();
   await expect(emptyState.getByRole("link", { name: "Request a face" })).toHaveAttribute("href", "/faces/request");
   await expect(page.getByTestId("missing-face-tile")).toHaveCount(0);
   await expect(page.getByText("Who should we make next?")).toHaveCount(0);
@@ -125,7 +125,7 @@ test("faces: Missing a face goes to Submit; the request panel's Request a face g
   const tile = page.getByTestId("missing-face-tile");
   await expect(tile).toHaveAttribute("href", "/submit");
   await expect(tile.getByText("Missing a face?")).toBeVisible();
-  await expect(tile.getByText("Suggest one on Submit.")).toBeVisible();
+  await expect(tile.getByText("Suggest one on Submit")).toBeVisible();
   // The tile is the picture's size, beside the last card (Michael Jackson).
   const slot = await page.getByTestId("face-card-5").getByTestId("face-picture").boundingBox();
   const box = await tile.boundingBox();

@@ -57,7 +57,7 @@ describe("Figma's sample shared build (439:8847)", () => {
     });
     expect(view.badge).toBeNull();
     expect(view.sampleLabel).toBeNull();
-    expect(view.credit).toBe("Made by — (sample) · shared from Submit a build");
+    expect(view.credit).toBe("Shared from Submit a build");
     expect(view.uncheckedNote).toBe("A player shared this build. It goes on ProBuilds' lists only after Chime plays it in game.");
     expect(view.versionTag).toBe("FC 27 · Season 2 · Not yet checked in game");
     expect(view.share.overview.link).toBe("probuilds.club/b/k7x2m9");

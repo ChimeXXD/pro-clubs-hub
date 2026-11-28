@@ -35,11 +35,11 @@ export interface Recipe {
 }
 
 export const PRESET_HINT = "Count photo presets only: left to right, top to bottom. Skip your own saved heads.";
-export const TAB_HINT = "Set them top to bottom, as the game lists them.";
+export const TAB_HINT = "Set them top to bottom, as the game lists them";
 // TODO(Chime): only "Symmetry on" is drawn (353:1648); "Symmetry off" follows it for a recipe made with Symmetry off.
 const sculptHint = (symmetry: boolean) => `Symmetry ${symmetry ? "on" : "off"}. Each slider runs 0 to 100.`;
-// FORMAT §Face recipe: "Save when the game asks." TODO(Chime): no frame draws a Visual Age step.
-const VISUAL_AGE_HINT = "Save when the game asks.";
+// FORMAT §Face recipe: "Save when the game asks". TODO(Chime): no frame draws a Visual Age step.
+const VISUAL_AGE_HINT = "Save when the game asks";
 /** The last step's "Next:" line: the finished state leads to the matching build (D-79, Figma 372:1984). */
 const LAST_NEXT = "Set up the matching build";
 

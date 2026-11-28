@@ -45,7 +45,7 @@ describe("changelog", () => {
   });
 
   it("says no faces or builds changed when nothing was affected, as the design does", () => {
-    expect(weUpdated([])).toBe("No faces or builds changed.");
-    expect(weUpdated(["Meta Finisher", "2008 Ronaldo"])).toBe("Meta Finisher, 2008 Ronaldo.");
+    expect(weUpdated([])).toBe("No faces or builds changed");
+    expect(weUpdated(["Meta Finisher", "2008 Ronaldo"])).toBe("Meta Finisher, 2008 Ronaldo");
   });
 });

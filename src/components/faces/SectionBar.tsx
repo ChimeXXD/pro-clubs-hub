@@ -2,7 +2,8 @@ import type { sectionBar } from "@/lib/face-page";
 
 // Figma "Sections bar" (354:1469, D-73): one 6 px segment per section, 4 px apart, each as wide as its values. Done
 // sections are lime; the current one fills from the left by its screens done (including the one in hand); the rest are
-// bg/raised. The fill eases out when a step is done; under reduced motion it jumps.
+// bg/raised. Light mode fills with accent/text: lime on cream is 1.03:1 (O-23, D-115). The fill grows by transform,
+// not width, eased out when a step is done; under reduced motion it jumps.
 export function SectionBar({ sections }: { sections: ReturnType<typeof sectionBar> }) {
   return (
     <div data-testid="section-bar" aria-hidden="true" className="flex gap-1">
@@ -14,8 +15,8 @@ export function SectionBar({ sections }: { sections: ReturnType<typeof sectionBa
           style={{ flexGrow: s.weight, flexBasis: 0 }}
         >
           <span
-            className="absolute inset-y-0 left-0 bg-accent-fill transition-[width] duration-200 ease-out motion-reduce:transition-none"
-            style={{ width: `${s.fill * 100}%` }}
+            className="absolute inset-0 origin-left bg-accent-fill transition-transform duration-200 ease-out motion-reduce:transition-none light:bg-accent-text"
+            style={{ transform: `scaleX(${s.fill})` }}
           />
         </span>
       ))}

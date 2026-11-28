@@ -67,5 +67,5 @@ export function visibleGroups(groups: readonly SeasonGroup[], filter: Filter): S
 /** The "We updated" line. The empty case is the design's copy. */
 export function weUpdated(names: readonly string[]): string {
   // TODO(Chime): the design shows only the empty case; a list of names is the obvious reading of "We updated".
-  return names.length === 0 ? "No faces or builds changed." : `${names.join(", ")}.`;
+  return names.length === 0 ? "No faces or builds changed" : names.join(", ");
 }

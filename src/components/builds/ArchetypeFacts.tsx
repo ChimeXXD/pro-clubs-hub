@@ -63,7 +63,7 @@ export function WideFacts({ archetype }: { archetype: ArchetypeView }) {
         <h3 className="type-label text-text-secondary">Signature PlayStyles</h3>
         <ul className="flex gap-10">
           {archetype.signature.map((p) => (
-            <li key={p.name} className="flex flex-col items-start gap-2">
+            <li key={p.name} className="flex flex-col items-center gap-2 text-center">
               <Badge icon={p.icon} />
               <span className="type-label text-text-primary">{p.name}</span>
               <span className="type-caption text-text-muted">{p.since}</span>

@@ -63,7 +63,7 @@ describe("BuildPageView", () => {
 
   it("shows the face, archetype, positions, level, height and weight, and the six key stats", () => {
     expect(page).toContain("/art/probuilds-face.svg");
-    expect(page).toContain("No picture yet, so it shows the ProBuilds face.");
+    expect(page).toContain("No picture yet, so it shows the ProBuilds face");
     expect(page).toContain("/art/archetypes/spark.svg");
     expect(page).toMatch(/>Spark<\/p>/);
     expect(page).toContain(">Forward<");

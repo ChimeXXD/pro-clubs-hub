@@ -34,6 +34,9 @@ const TAG = { meta: "Meta pick", recommended: "Recommended" } as const;
 const plusOf = (names: string[]) => [...new Set(names)].filter((name) => name !== PLACEHOLDER).map((name) => ({ name, icon: playStylePlusIcon(name) }));
 const noStats = () => KEY_STATS.map((code) => ({ code, value: NO_STAT }));
 
+/** False for a line nobody has recorded: its card leaves the stat row out rather than print six "—" (D-115). */
+export const hasKeyStats = (stats: { value: string }[]): boolean => stats.some((s) => s.value !== NO_STAT);
+
 /**
  * One build's card. `sample` hides the version tag and credit, as Figma's sample cards draw them; `tag` shows its
  * Meta pick or Recommended tag (Home draws it; the face page's matching build, D-79, doesn't).

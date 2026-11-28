@@ -24,7 +24,7 @@ export function SharedBuildMissing() {
         </p>
       </div>
       <div className="tablet:order-1">
-        <h1 className="type-h1 text-text-primary uppercase">This build link doesn&apos;t work.</h1>
+        <h1 className="type-h1 text-text-primary uppercase">This build link doesn&apos;t work</h1>
         <p className="type-body-lg mt-2.5 text-text-secondary">
           It may have been removed, or the link was copied wrong. Ask whoever sent it for a new one.
         </p>

@@ -1,12 +1,11 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Logo } from "@/components/shell/Logo";
 import type { ShareCardsView } from "@/lib/share-cards";
-import { CARD } from "@/lib/share-images";
 import { Emblem } from "./Emblem";
 import { PlayStyleArt } from "./PlayStyleArt";
 
-// The two story cards (Figma 316:888 "Overview" and 316:973 "Attributes", D-64), drawn at their own 360 × 640 and
-// scaled to fit the share sheet (0.625 on phone, 225 × 400) and the dialog (0.75 from tablet, 270 × 480).
+// The two story cards (Figma 316:888 "Overview" and 316:973 "Attributes", D-64), drawn at their own 360 × 640;
+// FlipCard scales them into the share sheet as the two sides of one card (D-117, D-118).
 // TODO(Chime): the cards' type isn't on text styles in Figma; built as drawn (sizes below). Label tracking is 6 %.
 const CONDENSED = "font-display font-extrabold uppercase";
 // Lime chips get a 1 px inside ring in accent/on-fill in light mode, as on the page (D-37, D-102 (5); 489:10199).
@@ -15,18 +14,6 @@ const LABEL = "font-text text-[12px] leading-4 font-semibold tracking-[0.06em] t
 
 type Overview = ShareCardsView["overview"];
 type Attributes = ShareCardsView["attributes"];
-
-/** A card at 360 × 640, shown at `scale` inside a box of the scaled size. */
-export function ScaledCard({ scale, label, children }: { scale: number; label: string; children: ReactNode }) {
-  const box = { width: CARD.width * scale, height: CARD.height * scale } as CSSProperties;
-  return (
-    <figure aria-label={label} className="relative shrink-0 overflow-hidden rounded-md shadow-[0_8px_24px_0_var(--color-system-backdrop)]" style={box}>
-      <div className="absolute top-0 left-0 origin-top-left" style={{ transform: `scale(${scale})` }}>
-        {children}
-      </div>
-    </figure>
-  );
-}
 
 // `page` is null on Submit a build's "Your card" (Figma 411:3019): no "1 / 2", so the logo row is the logo's 14 px.
 function Card({ page, children }: { page: string | null; children: ReactNode }) {

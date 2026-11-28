@@ -26,6 +26,10 @@ This file starts with the Sinima rules that fit any product. Add a rule each tim
   Why: Chime picked "the lime tab" (option B, team-sheet type), 25 Nov 2026.
   <!-- 2026-11-25, D-94 -->
 
+- **Lime is for the main action, the current selection and the one value that matters; nothing else.** Links are text/primary, eyebrow labels and secondary lines text/secondary, position chips neutral, good changes status/success, amber only for warnings. In light mode, lime shapes on cream use accent/text instead.
+  Why: Chime approved the unslop audit, 28 Nov 2026: lime sat on 8–12 things a screen, against "a dark hub with one accent".
+  <!-- 2026-11-28, D-115 -->
+
 - **No EA look.** No game UI chrome, no card-art frames, no rarity colours copied from Ultimate Team cards. Our own diagrams for slider tracks and preset grids.
   Why (*inferred*): EA's content policy bars implying endorsement (D-04).
 

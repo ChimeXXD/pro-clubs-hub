@@ -1,10 +1,12 @@
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 @import "./tokens.css";
 
 /* Light mode, as the tokens decide it: only when the user's switch sets data-theme="light" on <html>; the device's
    setting is ignored (D-112). Used where a token can't switch on its own, such as the two-colour logo files:
    class="light:hidden". */
 @custom-variant light (&:where(:root[data-theme="light"] *));
+/* Screens too short for the larger share card (D-118). */
+@custom-variant short (@media (max-height: 829px));
 
 /* A one-colour SVG from public/icons used as a mask, so it takes the text colour of its parent (currentColor).
    The file's shape is untouched; its own fill is ignored. Set the file with style --icon: url(...). */
@@ -62,9 +64,13 @@
   display: inline-block;
   flex-shrink: 0;
   background: var(--art) center / contain no-repeat;
+  /* Light mode tints the white badge by its brightness, not its solid pixels: six badges (Far Reach, Deflector,
+     Footwork, Cross Claimer, Far Throw, 1v1 Close Down) draw their symbol in dark pixels, which an alpha mask filled
+     into a solid diamond. With a luminance mask the dark symbol stays see-through, like the cut-out ones. The tint
+     is deep gold, playstyle/badge (D-116). */
   &:where(:root[data-theme="light"] *) {
-    background: var(--color-text-primary);
-    mask: var(--art) center / contain no-repeat;
+    background: var(--color-playstyle-badge);
+    mask: var(--art) center / contain no-repeat luminance;
   }
 }
 

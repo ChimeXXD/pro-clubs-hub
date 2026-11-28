@@ -83,20 +83,20 @@ describe("FacesView", () => {
   it("ends the grid with the dashed Missing a face tile, linking to Submit (D-70)", () => {
     expect(html).toMatch(/<a[^>]*href="\/submit"[^>]*data-testid="missing-face-tile"|<a[^>]*data-testid="missing-face-tile"[^>]*href="\/submit"/);
     expect(html).toContain("Missing a face?");
-    expect(html).toContain("Suggest one on Submit.");
+    expect(html).toContain("Suggest one on Submit");
   });
 
   it("has the Who should we make next panel with Request a face (D-97 (5))", () => {
     expect(html).toContain("Who should we make next?");
-    expect(html).toContain("Ask for a face, or vote for one someone already asked for.");
+    expect(html).toContain("Ask for a face, or vote for one someone already asked for");
     expect(html).toMatch(/<a[^>]*href="\/faces\/request"[^>]*data-testid="request-face-link"|<a[^>]*data-testid="request-face-link"[^>]*href="\/faces\/request"/);
     expect(html).toContain("Request a face");
   });
 
   it("with no faces shows the no-results card and Request a face, without the grid, tile or panel", () => {
     expect(empty).toContain('data-testid="faces-empty"');
-    expect(empty).toContain("No faces here yet.");
-    expect(empty).toContain("Ask for it, and vote for what we make next.");
+    expect(empty).toContain("No faces here yet");
+    expect(empty).toContain("Ask for it, and vote for what we make next");
     expect(empty).toMatch(/<a[^>]*href="\/faces\/request"[^>]*>.*?Request a face/);
     expect(empty).not.toContain("face-card-");
     expect(empty).not.toContain("missing-face-tile");

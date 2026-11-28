@@ -13,7 +13,7 @@ import { shareCardsView, type ShareCardsView } from "./share-cards.ts";
 
 // Copy from the Figma frames, word for word.
 export const RAW_VALUES_NOTE = "Raw values, as with Attribute totals off: masteries, height and weight and Amps aren't added.";
-export const PICTURE_CAPTION = "No picture yet, so it shows the ProBuilds face.";
+export const PICTURE_CAPTION = "No picture yet, so it shows the ProBuilds face";
 const PLAYED_NOTE = "Played for one match before it's called meta";
 const UNCHECKED_NOTE =
   "Not yet checked in game: we read this build from the creator's video. It becomes a Meta pick only after Chime or Sharon makes it and plays a match with it.";

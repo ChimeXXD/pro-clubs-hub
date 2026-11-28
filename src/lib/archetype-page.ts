@@ -69,10 +69,12 @@ export function bodyLine(build: LoadedBuild): string {
 
 /**
  * "Made by Chime in game · tutorial by <creator>" (DESIGN.md §Content), or null with no maker. Figma's sample wasn't
- * made in game, so its line is "Made by — (sample)" (298:3665, D-107).
+ * made by anyone: Figma's "Made by — (sample)" (298:3665) is left out, since the sample label already says so (D-115).
  */
+export const isSampleMaker = (name: string): boolean => name.endsWith("(sample)");
+
 export function creditLine(credits: ResolvedCredit[], sample = false): string | null {
-  const names = (role: string) => credits.filter((c) => c.role === role).map((c) => c.name).join(" and ");
+  const names = (role: string) => credits.filter((c) => c.role === role && !isSampleMaker(c.name)).map((c) => c.name).join(" and ");
   const made = names("made-by");
   if (!made) return null;
   if (sample) return `Made by ${made}`;

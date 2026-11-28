@@ -22,7 +22,7 @@ export interface ShareCardsView {
     regular: { name: string; icon: string | null }[];
     /** "probuilds.club/builds/finisher/meta-finisher". */
     link: string;
-    /** "Made by — (sample). Not endorsed by …": the maker and the notice (rule 3). */
+    /** "Made by Chime in game. Not endorsed by …": the maker, when there is one, and the notice (rule 3). */
     footer: string;
     /** A player's own picture on their own card (Submit a build, D-89 (2), (4)); else the ProBuilds face. */
     picture?: string | null;

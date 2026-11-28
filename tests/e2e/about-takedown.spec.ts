@@ -35,7 +35,7 @@ test("takedown: the 72-hour promise, three steps, and a way to email", async ({ 
   const steps = page.getByRole("list", { name: "What happens" }).getByRole("listitem");
   await expect(steps).toHaveCount(3);
   await expect(steps.nth(0)).toContainText("You email us");
-  await expect(steps.nth(2)).toContainText("Off its page, every list and every link, within 72 hours.");
+  await expect(steps.nth(2)).toContainText("Off its page, every list and every link, within 72 hours");
   await expect(page.getByTestId("takedown-email")).toHaveAttribute("href", "mailto:takedown@probuilds.club");
   await expect(page.getByText("Withdrawn means gone: it isn't built, listed or linked again.")).toBeVisible();
 });
@@ -45,7 +45,7 @@ test("takedown: Copy puts the address on the clipboard and says so in a toast", 
   await page.goto("/takedown");
   await page.getByRole("button", { name: "Copy" }).click();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe("takedown@probuilds.club");
-  await expect(page.getByRole("status")).toHaveText("Email copied.");
+  await expect(page.getByRole("status")).toHaveText("Email copied");
 });
 
 test("takedown on desktop: the email card is the 440 px right column", async ({ page }) => {

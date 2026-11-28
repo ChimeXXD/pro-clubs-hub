@@ -6,12 +6,13 @@ import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
 import type { ShareCardsView } from "@/lib/share-cards";
 import { SAVE_TOAST, type SaveState, saveState } from "@/lib/share-images";
-import { AttributesCard, OverviewCard, ScaledCard } from "./ShareCards";
+import { FlipCard } from "./FlipCard";
+import { AttributesCard, OverviewCard } from "./ShareCards";
 
 // The "Share build" sheet (D-64, D-65): a bottom sheet on phone (Figma 319:904) and a centred dialog on tablet and
 // desktop (319:2234 / 319:2952), opened by the Build page's Share build and by Submit a build's Share card (413:3113
-// / 418:7348 / 418:8464). Both show the two story cards (316:888, 316:973): on phone they swipe sideways with a pager
-// under them; from tablet they sit side by side. Copy link puts the build's address on the clipboard, closes the
+// / 418:7348 / 418:8464). Both show the two story cards (316:888, 316:973) as one card that flips (FlipCard, D-117),
+// which opens on its front. Copy link puts the build's address on the clipboard, closes the
 // sheet and shows the "Link copied" toast (319:1674). "Share via…" (phone) and the share icon (tablet) open the
 // device's own share menu with the link, shown only where the browser has one; desktop has none.
 // "Save images" (D-111) turns the two cards on screen into 1080 × 1920 PNGs and shares them (phone) or downloads
@@ -47,7 +48,7 @@ export const ShareSheet = forwardRef<
   const opener = useRef<HTMLElement | null>(null);
   const [copied, setCopied] = useState(0);
   const [failed, setFailed] = useState(0);
-  const [card, setCard] = useState(0);
+  const [card, setCard] = useState<0 | 1>(0);
   const saving = useRef(false);
   const [save, setSave] = useState<{ state: SaveState; id: number } | null>(null);
   // Whether the sheet is open: a Save images result that ends after it was closed shows as a page toast instead.
@@ -57,6 +58,7 @@ export const ShareSheet = forwardRef<
   useImperativeHandle(ref, () => ({
     open: (from) => {
       opener.current = from;
+      setCard(0);
       dialog.current?.showModal();
       setOpen(true);
     },
@@ -116,7 +118,7 @@ export const ShareSheet = forwardRef<
   };
   const saveImages = async () => {
     if (saving.current || !dialog.current) return;
-    // The cards on screen: the phone's swipe row or the tablet and desktop pair; the other set is display: none.
+    // Both sides of the flip card: the back is turned away, not display: none, so both are drawn.
     const cardNodes = Array.from(dialog.current.querySelectorAll<HTMLElement>("[data-share-card]")).filter((el) => el.getClientRects().length > 0);
     saving.current = true;
     setSave({ state: "saving", id: Date.now() });
@@ -136,15 +138,6 @@ export const ShareSheet = forwardRef<
   const inSheet = open ? save : null;
   const linkToast = open && !inSheet && failed !== 0 && linkFailed ? linkFailed : null;
   const onPage = !open && save && save.state !== "saving" ? save : null;
-
-  const cards = (scale: number) => [
-    <ScaledCard key="overview" scale={scale} label="Share card 1 of 2">
-      <OverviewCard card={share.overview} />
-    </ScaledCard>,
-    <ScaledCard key="attributes" scale={scale} label="Share card 2 of 2">
-      <AttributesCard card={share.attributes} link={share.overview.link} footer={share.overview.footer} />
-    </ScaledCard>,
-  ];
 
   return (
     <>
@@ -179,31 +172,21 @@ export const ShareSheet = forwardRef<
               </span>
             </button>
           </div>
-          {/* Phone: the cards swipe sideways, out to the sheet's edge, and the pager follows them. */}
-          <div className="flex flex-col gap-4 tablet:hidden">
-            <div
-              data-testid="share-cards"
-              className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 [scrollbar-width:none]"
-              // Past half of the way it can scroll, the second card is the one in view.
-              onScroll={(e) => {
-                const el = e.currentTarget;
-                setCard(el.scrollLeft > (el.scrollWidth - el.clientWidth) / 2 ? 1 : 0);
-              }}
-            >
-              {cards(0.625).map((c) => (
-                <div key={c.key} className="snap-start">
-                  {c}
-                </div>
-              ))}
-            </div>
+          {/* One card that turns over (D-117): the Overview in front, the Attributes behind; the dots and "Tap to flip" under it. */}
+          <div className="flex flex-col items-center gap-4">
+            <FlipCard
+              front={<OverviewCard card={share.overview} />}
+              back={<AttributesCard card={share.attributes} link={share.overview.link} footer={share.overview.footer} />}
+              side={card}
+              onFlip={() => setCard((c) => (c === 0 ? 1 : 0))}
+            />
             <div className="flex h-5 items-center gap-2" aria-hidden="true">
               {[0, 1].map((i) => (
                 <span key={i} className={`rounded-full ${i === card ? "size-2 bg-text-primary" : "size-1.5 bg-text-muted"}`} />
               ))}
-              <span className="type-caption text-text-secondary">{`${card + 1} of 2`}</span>
+              <span className="type-caption text-text-secondary">Tap to flip</span>
             </div>
           </div>
-          <div className="hidden gap-5 tablet:flex">{cards(0.75)}</div>
           <div className="flex flex-col gap-2 tablet:flex-row tablet:justify-center tablet:gap-3">
             <div className="flex gap-2 tablet:contents">
               <button
@@ -240,7 +223,7 @@ export const ShareSheet = forwardRef<
             )}
           </div>
           <p className="type-caption text-text-muted tablet:text-center">
-            <span className="tablet:hidden">Saves both cards to your photos.</span>
+            <span className="tablet:hidden">Saves both cards to your photos</span>
             <span className="hidden tablet:inline desktop:hidden">Saves both cards to your photos. The last button opens your device&apos;s share menu.</span>
             <span className="hidden desktop:inline">Saves both cards as images. Copy link to paste the build page anywhere.</span>
           </p>

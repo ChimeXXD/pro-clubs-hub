@@ -7,7 +7,7 @@ import { RoundButton, Slider } from "./controls";
 // Figma "Attribute row" (component 431:1050: default, typing, error; D-85 (2)): the name, − / the value / +, and a
 // slider at value ÷ 99. Any of the three sets the value. Typing: the box rings lime and the line under the name
 // says what comes next ("Typing · next: Shot Power"); after two digits focus jumps to the next attribute, as the tip
-// says. Over 99 the box and number turn red with "Attributes go up to 99." (428:5513). An attribute height and
+// says. Over 99 the box and number turn red with "Attributes go up to 99" (428:5513). An attribute height and
 // weight change says so under its name: "−2 from height and weight · 86 in a match" (D-90 (2)).
 export const AttributeRow = forwardRef<
   HTMLInputElement,
@@ -33,7 +33,7 @@ export const AttributeRow = forwardRef<
     : typing
       ? { text: next ? `Typing · next: ${next}` : "Typing", tone: "text-accent-text" }
       : body !== undefined
-        ? { text: `${signed(body)} from height and weight · ${value + body} in a match`, tone: body < 0 ? "text-status-danger" : "text-accent-text" }
+        ? { text: `${signed(body)} from height and weight · ${value + body} in a match`, tone: body < 0 ? "text-status-danger" : "text-status-success" }
         : null;
   const set = (v: number) => onChange(Math.min(Math.max(v, 0), 99));
   const box = error ? "border-2 border-status-danger text-status-danger" : typing ? "border-2 border-input-border-focused text-text-primary" : "border border-input-border text-text-primary";

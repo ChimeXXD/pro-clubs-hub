@@ -58,7 +58,7 @@ test("a request is sent, and Ask for another starts again (430:6517)", async ({ 
   await page.goto("/faces/request");
   await page.getByLabel("Who do you want?").fill("2010 Messi");
   await page.getByRole("button", { name: "Request" }).click();
-  await expect(page.getByTestId("request-sent")).toContainText("Asked for 2010 MessiNew requests show in the list once we've checked them.");
+  await expect(page.getByTestId("request-sent")).toContainText("Asked for 2010 MessiNew requests show in the list once we've checked them");
   // Moderated (D-96): it isn't in the list yet.
   await expect(rows(page).filter({ hasText: "2010 Messi" })).toHaveCount(0);
   await page.getByRole("button", { name: "Ask for another" }).click();
@@ -76,7 +76,7 @@ test("a request that doesn't go through keeps the name and offers Try again (441
 
 test("no requests yet: the empty card in place of the chips and list (430:6931)", async ({ page }) => {
   await page.goto("/faces/request?requests=none");
-  await expect(page.getByTestId("requests-empty")).toHaveText("No requests yet.Be the first: ask for a face above.");
+  await expect(page.getByTestId("requests-empty")).toHaveText("No requests yetBe the first: ask for a face above");
   await expect(page.getByTestId("request-kind")).toHaveCount(0);
 });
 

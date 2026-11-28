@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main>
       <h1>{SITE_NAME}</h1>
-      <p>Work in progress.</p>
+      <p>Work in progress</p>
     </main>
   );
 }

@@ -41,7 +41,7 @@ export function BuildsView({ archetypes, initial }: { archetypes: ArchetypeView[
     <main>
       <header className="flex flex-col gap-2 px-5 pt-6 pb-5 tablet:px-10 tablet:pt-10 desktop:mx-auto desktop:max-w-(--layout-content-max) desktop:px-0">
         <h1 className="type-h1 text-text-primary">Builds</h1>
-        <p className="type-body text-text-secondary">Pick your archetype to see its builds.</p>
+        <p className="type-body text-text-secondary">Pick your archetype to see its builds</p>
       </header>
       {current && (
         <>

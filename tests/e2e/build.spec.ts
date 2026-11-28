@@ -24,7 +24,7 @@ test("build: the draft shows its version tag in words, its credit and every sect
   await expect(page.getByTestId("version-tag")).toHaveText("FC 27 · Season 2 · Not yet checked in game");
   await expect(page.getByText("Made by Chime in game", { exact: true })).toBeVisible();
   await expect(page.getByText("Level PLACEHOLDER · PLACEHOLDER cm · PLACEHOLDER kg")).toBeVisible();
-  await expect(page.getByText("No picture yet, so it shows the ProBuilds face.")).toBeVisible();
+  await expect(page.getByText("No picture yet, so it shows the ProBuilds face")).toBeVisible();
   for (const code of ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"]) await expect(page.getByText(code, { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Specialization" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "PlayStyles+" })).toBeVisible();

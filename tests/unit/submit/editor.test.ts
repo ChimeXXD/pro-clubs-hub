@@ -35,7 +35,7 @@ describe("AP by level (RESEARCH §10.1)", () => {
   });
 
   it("words the level card as Figma 400:3372 does", () => {
-    expect(levelLine(44)).toEqual({ spend: "1,062 AP to spend", next: "Level 45 adds 44 more." });
+    expect(levelLine(44)).toEqual({ spend: "1,062 AP to spend", next: "Level 45 adds 44 more" });
     expect(levelLine(55).next).toBeNull();
   });
 });
@@ -83,7 +83,7 @@ describe("attributes (D-85)", () => {
   });
 
   it("stops values over 99 (428:5513)", () => {
-    expect(attributeError(100)).toBe("Attributes go up to 99.");
+    expect(attributeError(100)).toBe("Attributes go up to 99");
     expect(attributeError(99)).toBeNull();
     expect(attributeError(0)).toBeNull();
   });

@@ -5,7 +5,7 @@ import { expect, test } from "@playwright/test";
 test("an unknown address shows the 404 with its way back to faces and builds", async ({ page }) => {
   const res = await page.goto("/no-such-page");
   expect(res?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Over the bar.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Over the bar");
   await expect(page.getByText("That link went high. The page may have moved, or what was on it has been taken down.")).toBeVisible();
   await expect(page.getByRole("main").getByRole("link", { name: "Faces" })).toHaveAttribute("href", "/faces");
   await expect(page.getByRole("main").getByRole("link", { name: "Builds" })).toHaveAttribute("href", "/builds");

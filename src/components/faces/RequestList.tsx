@@ -7,7 +7,7 @@ import { byKind, type FaceRequest, REQUEST_KINDS, type RequestKind, requestLine 
 
 // "Most requested" (Figma 402:3451): the heading with "One vote each", the kind chips, and the requests ranked by
 // votes (component "Request row" 431:1092: default, voted, being made). A vote box is lime once this browser has
-// voted; a request being made says so in lime. With no requests the chips give way to "No requests yet." (430:6931).
+// voted; a request being made says so in status/success. With no requests the chips give way to "No requests yet" (430:6931).
 export function RequestList({
   requests,
   failed = false,
@@ -38,8 +38,8 @@ export function RequestList({
           <span className="flex text-text-muted">
             <Icon name="faces" size={28} />
           </span>
-          <p className="type-h4 text-text-primary">No requests yet.</p>
-          <p className="type-body text-text-secondary">Be the first: ask for a face above.</p>
+          <p className="type-h4 text-text-primary">No requests yet</p>
+          <p className="type-body text-text-secondary">Be the first: ask for a face above</p>
         </div>
       ) : failed ? null : (
         <>
@@ -53,10 +53,10 @@ export function RequestList({
               const on = voted.has(r.id);
               return (
                 <li key={r.id} data-testid="face-request" className="flex h-[85px] items-center gap-3.5 border-b border-system-divider">
-                  <span className={`type-number-md w-5.5 shrink-0 ${r.beingMade ? "text-accent-text" : "text-text-secondary"}`}>{r.rank}</span>
+                  <span className={`type-number-md w-5.5 shrink-0 ${r.beingMade ? "text-status-success" : "text-text-secondary"}`}>{r.rank}</span>
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <p className="type-label text-text-primary">{r.name}</p>
-                    <p className={`type-caption ${r.beingMade ? "text-accent-text" : "text-text-muted"}`}>{requestLine(r)}</p>
+                    <p className={`type-caption ${r.beingMade ? "text-status-success" : "text-text-muted"}`}>{requestLine(r)}</p>
                   </div>
                   <button
                     type="button"

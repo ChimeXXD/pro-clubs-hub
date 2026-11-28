@@ -33,7 +33,7 @@ function loaded(img: HTMLImageElement) {
 async function ready(cards: HTMLElement[]) {
   await document.fonts.ready;
   // Only the pictures drawn: the logo's other-theme file is display: none and, lazy, may never load (its decode()
-  // never settles). A lazy picture still off screen (card 2 in the swipe row) is capped, not awaited for ever;
+  // never settles). A lazy picture not yet loaded (on the flip card's back) is capped, not awaited for ever;
   // html-to-image fetches every picture itself in any case.
   const pictures = cards.flatMap((card) => Array.from(card.querySelectorAll("img"))).filter((img) => img.getClientRects().length > 0);
   await Promise.all(pictures.map(loaded));

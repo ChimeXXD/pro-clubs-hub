@@ -1,6 +1,7 @@
 // Everything the face page shows around its steps (Figma 353:1410 / 427:8649 / 427:8767; D-71, D-74): the picture
 // with the 360° badge, kind and plain title (D-69), the version tag (rule 4), the credit line (rule 5), Figma's sample
 // note, the limits callout, the tutorial facade (rule 5) and the matching build for the finished state (D-79).
+import { isSampleMaker } from "./archetype-page.ts";
 import type { LoadedFace } from "./content/load.ts";
 import { versionWording } from "./content/version.ts";
 import { type Recipe, faceRecipe } from "./face-page.ts";
@@ -24,8 +25,8 @@ export interface FacePageView {
   versionTag: string;
   checked: boolean;
   olderSeason: string | null;
-  /** "Made by Chime in game"; Figma's other samples weren't made in game: "Made by — (sample)". */
-  madeBy: string;
+  /** "Made by Chime in game"; null for Figma's samples nobody made (their sample note says so, D-115). */
+  madeBy: string | null;
   tutorial: { label: string; url: string | null } | null;
   sampleNote: string | null;
   limits: string[];
@@ -40,8 +41,8 @@ export function facePageView(face: LoadedFace, pictureExists: (file: string) => 
   const sample = face.sample !== undefined;
   const shot = face.screenshots[0];
   const makers = face.credits.filter((c) => c.role === "made-by").map((c) => c.name);
-  // "— (sample)" is the library audit's maker for a sample nobody made (item 18); it was never made in game.
-  const inGame = !makers.every((name) => name.endsWith("(sample)"));
+  // "— (sample)" is the library audit's maker for a sample nobody made (item 18): no maker line for it.
+  const realMakers = makers.filter((name) => !isSampleMaker(name));
   const tutorial = face.credits.find((c) => c.role === "tutorial");
   const embed = face.embeds[0];
   return {
@@ -54,7 +55,7 @@ export function facePageView(face: LoadedFace, pictureExists: (file: string) => 
     versionTag: version.tag,
     checked: version.checked,
     olderSeason: version.olderSeason,
-    madeBy: `Made by ${makers.join(" and ")}${inGame ? " in game" : ""}`,
+    madeBy: realMakers.length > 0 ? `Made by ${realMakers.join(" and ")} in game` : null,
     tutorial: tutorial ? { label: `Tutorial by ${tutorial.name}`, url: tutorial.url } : null,
     sampleNote: face.sample?.recipe ? SAMPLE_NOTE : null,
     limits: face.limits.map((limit) => `${LIMIT_PREFIX}${limit}`),

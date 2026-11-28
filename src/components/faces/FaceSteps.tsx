@@ -70,7 +70,7 @@ export function FaceSteps({ recipe, storage, paired }: { recipe: Recipe; storage
         // Figma "Resume" (372:1981): bg/surface, 12 px corners, 10 / 14 px in.
         <div data-testid="face-resume" className="flex items-center justify-between gap-2 rounded-md bg-bg-surface px-3.5 py-2.5">
           <p className="type-label text-text-primary">Continuing from step {step}</p>
-          <button type="button" onClick={startOver} className="type-label tap-target shrink-0 text-accent-text">
+          <button type="button" onClick={startOver} className="type-label tap-target shrink-0 text-text-primary">
             Start over
           </button>
         </div>

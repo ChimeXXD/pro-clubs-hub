@@ -13,8 +13,8 @@ describe("share images", () => {
 
   it("words the Save images toasts as Figma draws them (493:9624 to 493:15977, D-114 (2))", () => {
     expect(SAVE_TOAST.saving).toEqual({ tone: "info", icon: "download", message: "Making your images…" });
-    expect(SAVE_TOAST.photos).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your photos." });
-    expect(SAVE_TOAST.downloads).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your downloads." });
+    expect(SAVE_TOAST.photos).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your photos" });
+    expect(SAVE_TOAST.downloads).toEqual({ tone: "success", icon: "check-circle", message: "Both cards saved to your downloads" });
     expect(SAVE_TOAST.failed).toEqual({ tone: "danger", icon: "error", message: "Couldn't save the images. Try again." });
     // Handed to the share sheet (a phone or iPad: Photos), downloaded (desktop), or the share sheet closed: no toast.
     expect(saveState("shared")).toBe("photos");

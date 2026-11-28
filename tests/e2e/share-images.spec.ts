@@ -60,7 +60,7 @@ test("Save images hands both PNGs to the share sheet where the browser can share
 });
 
 // D-114 (2): the cream toast tells how Save images went (493:9624 to 493:15977), over the open sheet or dialog.
-test("Save images: 'Making your images…' with the button's spinner, then 'Both cards saved to your downloads.'", async ({ page }) => {
+test("Save images: 'Making your images…' with the button's spinner, then 'Both cards saved to your downloads'", async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator, "canShare", { value: () => false, configurable: true }));
   const dialog = await openSheet(page);
   const save = dialog.getByRole("button", { name: "Save images" });
@@ -69,7 +69,7 @@ test("Save images: 'Making your images…' with the button's spinner, then 'Both
   await expect(toast).toHaveText("Making your images…");
   await expect(save).toHaveAttribute("aria-busy", "true");
   await expect(save.getByTestId("save-spinner")).toBeVisible();
-  await expect(toast).toHaveText("Both cards saved to your downloads.", { timeout: 30_000 });
+  await expect(toast).toHaveText("Both cards saved to your downloads", { timeout: 30_000 });
   await expect(save).not.toHaveAttribute("aria-busy");
   await expect(save.getByTestId("save-spinner")).toHaveCount(0);
   // Phone: 34 px from the top, over the sheet (493:9624), once its 200 ms entrance has settled.
@@ -83,7 +83,7 @@ test("Save images: handed to the share sheet, the toast says the photos", async 
   });
   const dialog = await openSheet(page);
   await dialog.getByRole("button", { name: "Save images" }).click();
-  await expect(dialog.getByRole("status")).toHaveText("Both cards saved to your photos.", { timeout: 30_000 });
+  await expect(dialog.getByRole("status")).toHaveText("Both cards saved to your photos", { timeout: 30_000 });
 });
 
 test("Save images: closing the share sheet saves nothing and says nothing", async ({ page }) => {
@@ -116,7 +116,7 @@ test("Save images toasts sit 40 px from the bottom on tablet and 24 px on deskto
     const dialog = await openSheet(page);
     await dialog.getByRole("button", { name: "Save images" }).click();
     const pill = dialog.getByRole("status").locator("div").first();
-    await expect(pill).toHaveText("Both cards saved to your downloads.", { timeout: 30_000 });
+    await expect(pill).toHaveText("Both cards saved to your downloads", { timeout: 30_000 });
     await expect.poll(async () => {
       const box = await pill.boundingBox();
       return box && Math.round(height - (box.y + box.height));
@@ -135,7 +135,7 @@ test("the share cards show the level picked with the level switch", async ({ pag
 });
 
 // D-112 (2), D-114 (4): in light mode the cards are light, and EA's white PlayStyle icons are tinted text/primary.
-test("light mode: white PlayStyle icons are tinted text/primary on the page and the cards; the saved images are light", async ({ page }) => {
+test("light mode: white PlayStyle icons are tinted deep gold on the page and the cards; the saved images are light", async ({ page }) => {
   await page.addInitScript(() => {
     const shared: ShareData[] = [];
     Object.assign(window, { shared });
@@ -151,7 +151,8 @@ test("light mode: white PlayStyle icons are tinted text/primary on the page and 
   const onCard = await tint(dialog.getByTestId("playstyle-art").first());
   for (const t of [onPage, onCard]) {
     expect(t.mask).toContain("/art/playstyles/");
-    expect(t.colour).toBe("rgb(16, 17, 19)");
+    // Deep gold, playstyle/badge (D-116; it was text/primary under D-114 (4)).
+    expect(t.colour).toBe("rgb(176, 125, 18)");
   }
   await dialog.getByRole("button", { name: "Save images" }).click();
   await expect.poll(() => page.evaluate(() => (window as unknown as { shared: ShareData[] }).shared.length), { timeout: 30_000 }).toBe(1);
@@ -180,7 +181,7 @@ test("Save images: closed while saving, the result shows on the page, and not ag
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
   // The page's own region (outside the closed dialog) shows it.
-  await expect(page.locator("[role=status]:not(dialog [role=status])").getByText("Both cards saved to your downloads.")).toBeVisible({ timeout: 30_000 });
+  await expect(page.locator("[role=status]:not(dialog [role=status])").getByText("Both cards saved to your downloads")).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "Share build" }).click();
   await expect(dialog.getByRole("status")).toHaveText("");
 });

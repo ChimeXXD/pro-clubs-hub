@@ -38,7 +38,7 @@ export function BodyCard({ draft, archetypeName, onChange }: { draft: SubmitDraf
             {body.changes.map((c) => (
               <li key={c.attribute} className="flex items-center gap-1.5 rounded-full border border-border-strong px-2.5 py-1.5">
                 <span className="type-caption text-text-secondary">{c.attribute}</span>
-                <span className={`type-label ${c.delta < 0 ? "text-status-danger" : "text-accent-text"}`}>{signed(c.delta)}</span>
+                <span className={`type-label ${c.delta < 0 ? "text-status-danger" : "text-status-success"}`}>{signed(c.delta)}</span>
               </li>
             ))}
           </ul>

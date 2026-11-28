@@ -84,7 +84,7 @@ function Entry({
             href={item.source.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="type-label tap-target flex flex-1 items-center gap-2 text-accent-text tablet:flex-none"
+            className="type-label tap-target flex flex-1 items-center gap-2 text-text-primary tablet:flex-none"
           >
             <span className="flex-1 tablet:flex-none">{item.source.title}</span>
             <span className="text-text-secondary">

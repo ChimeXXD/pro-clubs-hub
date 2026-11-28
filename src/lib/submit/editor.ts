@@ -56,10 +56,10 @@ const count = (n: number) => n.toLocaleString("en-US");
 /** The AP a Pro has at a level, 1 to 55. */
 export const apAtLevel = (level: number) => GRANTS.slice(0, Math.min(Math.max(level, 1), LEVEL_MAX)).reduce((a, b) => a + b, 0);
 
-/** "1,062 AP to spend" and "Level 45 adds 44 more." (400:3372); no next line at the top level. */
+/** "1,062 AP to spend" and "Level 45 adds 44 more" (400:3372); no next line at the top level. */
 export function levelLine(level: number): { spend: string; next: string | null } {
   const next = GRANTS[level];
-  return { spend: `${count(apAtLevel(level))} AP to spend`, next: next === undefined ? null : `Level ${level + 1} adds ${next} more.` };
+  return { spend: `${count(apAtLevel(level))} AP to spend`, next: next === undefined ? null : `Level ${level + 1} adds ${next} more` };
 }
 
 /** The "AP left" counter (D-85 (3)). Spent is the sample's until prices are recorded, never more than the level gives. */
@@ -118,7 +118,7 @@ export function groupAverage(attributes: SubmitDraft["attributes"], code: string
 }
 
 /** The value's error (Figma 428:5513), or null. */
-export const attributeError = (value: number) => (value > 99 ? "Attributes go up to 99." : null);
+export const attributeError = (value: number) => (value > 99 ? "Attributes go up to 99" : null);
 
 /** The attribute after this one, for "Typing · next: Shot Power"; null after the last. */
 export function nextAttribute(name: string): string | null {

@@ -124,7 +124,7 @@ describe("a recorded recipe, read from the face's parts, sculpt and Visual Age",
 
   it("words each screen the way the game shows it", () => {
     expect(screenAt(recipe, 1)?.values).toEqual([{ label: "Preset", value: "7", position: null }]);
-    expect(screenAt(recipe, 2)).toMatchObject({ where: "Customize › Skin", hint: "Set them top to bottom, as the game lists them." });
+    expect(screenAt(recipe, 2)).toMatchObject({ where: "Customize › Skin", hint: "Set them top to bottom, as the game lists them" });
     // Skin Tone has no number: a drawn track at the knob's place (FORMAT §Value).
     expect(screenAt(recipe, 2)?.values[0]).toEqual({ label: "Skin Tone", value: null, position: 40 });
     expect(screenAt(recipe, 2)?.values[1]).toEqual({ label: "Complexion", value: "4", position: null });

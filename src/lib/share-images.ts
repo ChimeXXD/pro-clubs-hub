@@ -25,8 +25,8 @@ export type SaveState = "saving" | "photos" | "downloads" | "failed";
  */
 export const SAVE_TOAST = {
   saving: { tone: "info", icon: "download", message: "Making your images…" },
-  photos: { tone: "success", icon: "check-circle", message: "Both cards saved to your photos." },
-  downloads: { tone: "success", icon: "check-circle", message: "Both cards saved to your downloads." },
+  photos: { tone: "success", icon: "check-circle", message: "Both cards saved to your photos" },
+  downloads: { tone: "success", icon: "check-circle", message: "Both cards saved to your downloads" },
   failed: { tone: "danger", icon: "error", message: "Couldn't save the images. Try again." },
 } as const satisfies Record<SaveState, { tone: "info" | "success" | "danger"; icon: string; message: string }>;
 

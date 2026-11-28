@@ -9,7 +9,8 @@ import { StanceCard } from "./StanceCard";
 // down, blurred and at 60%, as Figma's peeking instances do (D-56). Phone: a 380 px band, 252 px card 16 px from
 // the top, neighbours 200 px wide 246.5 px off centre, cut by the screen edge. Tablet: a 350 px column, 280 px
 // card, 180 px neighbours behind it 85 px off centre. Desktop: 560 px, 392 px card, 230 px neighbours 165 px off.
-// A horizontal drag follows the finger and moves one card on release; a tap on a neighbour picks it. Tablet and
+// A horizontal drag moves only the front card with the finger (the neighbours stay put, Chime 28 Nov) and moves one
+// card on release; a tap on a neighbour picks it. Tablet and
 // desktop add previous and next buttons with "12 of 13". Cards move by transform and opacity only, 250 ms ease-out;
 // reduced motion keeps only the fade.
 const STAGE =
@@ -88,7 +89,7 @@ export function StanceStage({
           const centre = offset === 0;
           const peek = Math.abs(offset) === 1;
           const style = {
-            transform: `translateX(calc(-50% + ${offset} * var(--peek-x) + ${drag}px)) scale(${centre ? 1 : "var(--peek-s)"})`,
+            transform: `translateX(calc(-50% + ${offset} * var(--peek-x) + ${centre ? drag : 0}px)) scale(${centre ? 1 : "var(--peek-s)"})`,
           } as CSSProperties;
           return (
             <div

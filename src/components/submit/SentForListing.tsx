@@ -8,9 +8,9 @@ import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 // you). Share card still opens the sheet; Submit another build starts again. Tablet and desktop put the queue on the
 // right (362 / 360 px, 32 apart; 584 / 520, 96 apart).
 const STEPS = [
-  { title: "It's in the queue", text: "Builds are checked in the order they arrive." },
-  { title: "Chime plays one match with it", text: "Values are checked against the game first." },
-  { title: "It goes live, credited to you", text: "Listed under its archetype with your name on the card." },
+  { title: "It's in the queue", text: "Builds are checked in the order they arrive" },
+  { title: "Chime plays one match with it", text: "Values are checked against the game first" },
+  { title: "It goes live, credited to you", text: "Listed under its archetype with your name on the card" },
 ];
 
 export function SentForListing({ onShare, onAnother }: { onShare: (from: HTMLElement) => void; onAnother: () => void }) {

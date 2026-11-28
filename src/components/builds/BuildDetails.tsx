@@ -54,7 +54,7 @@ export function BuildDetails({ view }: { view: BuildPageView }) {
             <span className="flex min-w-0 flex-col">
               {/* Figma's name line is 16.8 px tall, so "Signature" sits 3.2 px into it (298:3811). */}
               <span className={`type-label break-words text-text-primary ${p.signature ? "-mb-[3.2px]" : ""}`}>{p.name}</span>
-              {p.signature && <span className="type-label text-accent-text">Signature</span>}
+              {p.signature && <span className="type-label text-text-secondary">Signature</span>}
             </span>
           </li>
         ))}
@@ -99,7 +99,7 @@ function Specialization({ spec }: { spec: SpecializationView }) {
           )}
           <div className="flex min-w-0 flex-col">
             <p className="type-number-md break-words text-text-primary uppercase">{spec.name}</p>
-            {spec.plus && <p className="type-label text-accent-text">{spec.plus}</p>}
+            {spec.plus && <p className="type-label text-text-secondary">{spec.plus}</p>}
           </div>
         </div>
         {/* Figma sets the sample's two notes 305 px wide on phone (298:3750, 298:3771). */}
@@ -111,7 +111,7 @@ function Specialization({ spec }: { spec: SpecializationView }) {
               <li key={t.attribute} className="flex h-[20.3px] items-start justify-between gap-3">
                 <span className="type-caption text-text-primary">{t.attribute}</span>
                 <span className="leading-[18px] whitespace-nowrap">
-                  <span className={`${NUMBER_SM} text-status-warning`}>{t.value ?? "–"}</span>
+                  <span className={`${NUMBER_SM} text-text-primary`}>{t.value ?? "–"}</span>
                   <span className="font-text text-[14px] leading-[18px] font-semibold text-text-muted">{` / ${t.target ?? "–"}`}</span>
                 </span>
               </li>

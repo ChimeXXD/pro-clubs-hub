@@ -9,20 +9,20 @@ export const metadata: Metadata = { title: `Takedown · ${SITE_NAME}` };
 // Figma Takedown, option C (D-91): the 72-hour promise (D-10), what happens, and the address. Copy is the design's.
 const STEPS = [
   { title: "You email us", body: `${TAKEDOWN_EMAIL}: the page, who you are, what should go.` },
-  { title: "We reply", body: "A person reads it and answers." },
-  { title: "It's gone", body: "Off its page, every list and every link, within 72 hours." },
+  { title: "We reply", body: "A person reads it and answers" },
+  { title: "It's gone", body: "Off its page, every list and every link, within 72 hours" },
 ];
 
 export default function TakedownPage() {
   return (
     <PageContent className="flex flex-col desktop:grid desktop:grid-cols-[1fr_440px] desktop:gap-x-24">
       <div>
-        <h1 className="type-label text-accent-text">Takedown</h1>
+        <h1 className="type-label text-text-secondary">Takedown</h1>
         <p data-testid="takedown-promise" className="mt-1 flex items-baseline gap-2.5">
           <span className="type-number-xl text-text-primary">72</span>{" "}
           <span className="type-h3 text-text-secondary">hours</span>
         </p>
-        <p className="type-body-lg text-text-secondary">From your email to it being gone from ProBuilds.</p>
+        <p className="type-body-lg text-text-secondary">From your email to it being gone from ProBuilds</p>
         {/* role="list": Safari stops announcing a list once its markers are styled away. */}
         <ol role="list" aria-label="What happens" className="mt-6">
           {STEPS.map((s, i) => {

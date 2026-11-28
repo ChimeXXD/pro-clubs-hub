@@ -5,8 +5,8 @@ import { ButtonLabel, buttonClass } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
 
 const TOAST_MS = 4000;
-// TODO(Chime): no Figma frame shows Takedown's copied state; this follows the design's "Link copied." toast.
-const COPIED = "Email copied.";
+// TODO(Chime): no Figma frame shows Takedown's copied state; this follows the design's "Link copied" toast.
+const COPIED = "Email copied";
 
 /** Copies the takedown address and confirms it with a toast. */
 export function CopyEmailButton({ email }: { email: string }) {

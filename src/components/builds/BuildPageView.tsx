@@ -4,13 +4,14 @@ import { Callout } from "@/components/ui/Callout";
 import { DraftTag } from "@/components/ui/DraftTag";
 import { type BuildPageView as View, PICTURE_CAPTION, RAW_VALUES_NOTE } from "@/lib/build-page";
 import { BuildAttributes } from "./BuildAttributes";
-import { LIME } from "./BuildCard";
+import { LIME, POSITION } from "./BuildCard";
 import { BuildDetails } from "./BuildDetails";
 import { ChosenLevel } from "./ChosenLevel";
 import { Emblem } from "./Emblem";
 import { KeyStats } from "./KeyStats";
 import { LevelSwitch } from "./LevelSwitch";
 import { ShareBuild } from "./ShareBuild";
+import { StickyColumn } from "@/components/ui/StickyColumn";
 
 // Figma "Build · Meta Finisher" (phone 298:3630, tablet 306:794, desktop 306:1286; D-63) and its states: level 32
 // (371:1697), not yet checked (371:2208), older season (371:2719). Phone is one column: the tag, name, version tag,
@@ -37,7 +38,7 @@ export function BuildPageView({ view }: { view: View }) {
           />
         )}
         <div className="flex flex-col tablet:flex-row tablet:items-start tablet:gap-10 desktop:gap-16">
-          <div className="flex flex-col tablet:w-75 tablet:shrink-0 tablet:gap-6 desktop:w-100">
+          <StickyColumn className="flex flex-col tablet:w-75 tablet:shrink-0 tablet:gap-6 desktop:w-100">
             {/* Figma 371:2719 / 427:5557: the warning tops the summary column, above the badge. */}
             {view.olderSeason && (
               <div data-testid="older-season">
@@ -48,7 +49,7 @@ export function BuildPageView({ view }: { view: View }) {
             {view.levels && <LevelSwitch levels={view.levels} />}
             <div className="tablet:hidden">{raw}</div>
             <BuildHero view={view} />
-          </div>
+          </StickyColumn>
           <div className="flex min-w-0 flex-1 flex-col tablet:gap-6">
             <div className="hidden tablet:block">{raw}</div>
             <BuildDetails view={view} />
@@ -159,7 +160,7 @@ function BuildHero({ view }: { view: View }) {
           </div>
           <ul aria-label="Positions" className="flex flex-wrap gap-1.5">
             {view.positions.map((p) => (
-              <li key={p} className={`type-caption rounded-xs px-1.5 py-px ${LIME}`}>
+              <li key={p} className={`type-caption rounded-xs px-1.5 py-px ${POSITION}`}>
                 {p}
               </li>
             ))}

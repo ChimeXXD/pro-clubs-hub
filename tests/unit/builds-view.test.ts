@@ -15,7 +15,7 @@ const html = renderToStaticMarkup(createElement(BuildsView, { archetypes: views,
 describe("BuildsView", () => {
   it("has the page title and line", () => {
     expect(html).toMatch(/<h1[^>]*>Builds<\/h1>/);
-    expect(html).toContain("Pick your archetype to see its builds.");
+    expect(html).toContain("Pick your archetype to see its builds");
   });
 
   it("shows 13 emblem buttons named by archetype, with the selected one pressed", () => {

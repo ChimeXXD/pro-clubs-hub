@@ -94,7 +94,7 @@ export async function fetchSharedBuild(
     const data = await rpc(config, "shared_build", { share_id: id }, { method: "GET" }, fetchImpl);
     return asSharedBuild(data, archetypeFile);
   } catch (error) {
-    // TODO(Chime): Figma draws no "couldn't load" state for a shared link; a failure shows "This build link doesn't work."
+    // TODO(Chime): Figma draws no "couldn't load" state for a shared link; a failure shows "This build link doesn't work"
     console.warn("Shared build didn't load", error);
     return null;
   }
@@ -109,7 +109,7 @@ export function sharedBuildPageView(build: LoadedBuild, sources: ArchetypeFile["
     draft: false,
     sampleLabel: null,
     shared: { tag: SHARED.tag, line: SHARED.line, makeYourOwn: SHARED.makeYourOwn },
-    credit: [view.credit, SHARED.credit].filter(Boolean).join(" · "),
+    credit: view.credit ? `${view.credit} · ${SHARED.credit}` : SHARED.credit.charAt(0).toUpperCase() + SHARED.credit.slice(1),
     uncheckedNote: SHARED.note,
     share: { ...view.share, overview: { ...view.share.overview, badge: null, link: `${SITE_DOMAIN}/b/${id}` } },
   };

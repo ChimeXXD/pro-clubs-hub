@@ -16,7 +16,7 @@ test("shared build: /b/k7x2m9 opens Figma's sample with the shared header, and k
   await expect(main.getByText("Shared build", { exact: true }).nth(0)).toBeVisible();
   await expect(main.getByText("Shared by a player · not on ProBuilds' lists yet")).toBeVisible();
   await expect(page.getByTestId("version-tag")).toHaveText("FC 27 · Season 2 · Not yet checked in game");
-  await expect(main.getByText("Made by — (sample) · shared from Submit a build")).toBeVisible();
+  await expect(main.getByText("Shared from Submit a build")).toBeVisible();
   await expect(page.getByTestId("shared-note")).toHaveText("A player shared this build. It goes on ProBuilds' lists only after Chime plays it in game.");
   await expect(main.getByRole("link", { name: "Make your own build" })).toHaveAttribute("href", "/submit");
   await expect(main.getByText("Meta pick")).toHaveCount(0);
@@ -41,7 +41,7 @@ test("shared build: an id with no build is the link that doesn't work, with Brow
   for (const path of ["/b/zz9zz9", "/b", "/b/not-an-id"]) {
     await page.goto(path);
     const missing = page.getByTestId("shared-build-missing");
-    await expect(missing.getByRole("heading", { level: 1 })).toHaveText("This build link doesn't work.");
+    await expect(missing.getByRole("heading", { level: 1 })).toHaveText("This build link doesn't work");
     await expect(missing.getByText("It may have been removed, or the link was copied wrong. Ask whoever sent it for a new one.")).toBeVisible();
     await expect(missing.getByText("Build not found")).toBeVisible();
     await expect(missing.getByRole("link", { name: "Browse builds" })).toHaveAttribute("href", "/builds");

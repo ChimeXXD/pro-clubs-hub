@@ -80,11 +80,11 @@ export function FacesView({ cards }: { cards: FaceCardView[] }) {
                 data-testid="missing-face-tile"
                 className="flex aspect-[4/5] flex-col justify-end gap-1.5 rounded-md border border-dashed border-border-strong p-4"
               >
-                <span className="flex text-accent-text">
+                <span className="flex text-text-secondary">
                   <Icon name="plus" size={24} />
                 </span>
                 <span className="type-label text-text-primary">Missing a face?</span>
-                <span className="type-caption text-text-muted">Suggest one on Submit.</span>
+                <span className="type-caption text-text-muted">Suggest one on Submit</span>
               </Link>
             </li>
           </ul>
@@ -105,7 +105,7 @@ function RequestPanel() {
         <h2 id="request-face-title" className="type-h4 text-text-primary">
           Who should we make next?
         </h2>
-        <p className="type-body text-text-secondary">Ask for a face, or vote for one someone already asked for.</p>
+        <p className="type-body text-text-secondary">Ask for a face, or vote for one someone already asked for</p>
       </div>
       <Link href={REQUEST_FACE_HREF} data-testid="request-face-link" className={buttonClass("secondary", "w-full shrink-0 tablet:w-60")}>
         <ButtonLabel icon="arrow-right">Request a face</ButtonLabel>
@@ -114,17 +114,17 @@ function RequestPanel() {
   );
 }
 
-/** Figma "Empty" (372:1935): the face icon, "No faces here yet." and Request a face (Medium), centred. */
+/** Figma "Empty" (372:1935): the face icon, "No faces here yet" and Request a face (Medium), centred. */
 function NoFaces() {
   return (
     <div data-testid="faces-empty" className="flex flex-col items-center gap-2.5 rounded-lg bg-bg-surface px-6 py-10 text-center">
       <span className="flex text-text-muted">
         <Icon name="faces" size={40} />
       </span>
-      <h2 className="type-h3 text-text-primary">No faces here yet.</h2>
+      <h2 className="type-h3 text-text-primary">No faces here yet</h2>
       {/* Figma sets this line on one line at 393, running 3 px into the card's 24 px padding: -4 px each side allows
           that, and it still wraps, balanced, on narrower phones. */}
-      <p className="type-body -mx-1 text-balance text-text-secondary">Ask for it, and vote for what we make next.</p>
+      <p className="type-body -mx-1 text-balance text-text-secondary">Ask for it, and vote for what we make next</p>
       <Link href={REQUEST_FACE_HREF} className={buttonClass("secondary", "", "medium")}>
         <ButtonLabel icon="arrow-right">Request a face</ButtonLabel>
       </Link>

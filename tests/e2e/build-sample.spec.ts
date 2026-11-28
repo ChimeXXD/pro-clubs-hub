@@ -12,7 +12,7 @@ test("sample build: the header says it is a sample, with Figma's credit, and no 
   await expect(page.getByText("Sample build · values and prices not checked in game")).toBeVisible();
   await expect(page.getByText("Draft", { exact: true })).toHaveCount(0);
   await expect(page.getByTestId("version-tag")).toHaveText("FC 27 · Season 2 · Not yet checked in game");
-  await expect(page.getByText("Made by — (sample) · Played for one match before it's called meta")).toBeVisible();
+  await expect(page.getByText("Played for one match before it's called meta")).toBeVisible();
 });
 
 test("sample build: every drawn section shows its values, none as a dash", async ({ page }) => {
@@ -57,32 +57,50 @@ test("sample build: the level slider snaps to the nearest drawn level", async ({
   expect((await slider.boundingBox())?.height).toBeGreaterThanOrEqual(44);
 });
 
-test("sample build: the share sheet shows both story cards, the pager, Save images and the hint", async ({ page }) => {
+test("sample build: the share sheet shows one card that flips, the hint, Save images and the caption (D-117)", async ({ page }) => {
   await page.goto(URL);
   await page.getByRole("button", { name: "Share build" }).click();
   const dialog = page.getByRole("dialog", { name: "Share build" });
-  const cards = dialog.getByTestId("share-cards");
-  await expect(cards.getByRole("figure", { name: "Share card 1 of 2" })).toBeVisible();
-  await expect(cards.getByRole("figure", { name: "Share card 1 of 2" })).toContainText("probuilds.club/builds/finisher/meta-finisher");
-  await expect(cards.getByRole("figure", { name: "Share card 2 of 2" })).toContainText("Meta Finisher · Level 55 · Finisher");
-  await expect(dialog.getByText("1 of 2")).toBeVisible();
+  const card = dialog.getByTestId("share-cards");
+  // Both sides are in the card (Save images makes both), the front turned to the viewer.
+  await expect(card.getByRole("figure", { name: "Share card 1 of 2" })).toContainText("probuilds.club/builds/finisher/meta-finisher");
+  await expect(card.getByRole("figure", { name: "Share card 2 of 2" })).toContainText("Meta Finisher · Level 55 · Finisher");
+  await expect(dialog.getByText("Tap to flip", { exact: true })).toBeVisible();
+  const flip = card.getByRole("button", { name: /Tap to flip/ });
+  await expect(flip).toHaveAttribute("aria-pressed", "false");
   await expect(dialog.getByRole("button", { name: "Save images" })).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Copy link" })).toBeVisible();
-  await expect(dialog.getByText("Saves both cards to your photos.", { exact: true })).toBeVisible();
-  // Swiping to the second card moves the pager.
-  await cards.evaluate((el) => el.scrollTo({ left: el.scrollWidth }));
-  await expect(dialog.getByText("2 of 2")).toBeVisible();
-  // The cards are drawn at 0.625 of 360 × 640.
-  const box = await cards.getByRole("figure", { name: "Share card 1 of 2" }).boundingBox();
+  await expect(dialog.getByText("Saves both cards to your photos", { exact: true })).toBeVisible();
+  // A tap turns it over to the Attributes; another turns it back.
+  await flip.click();
+  await expect(flip).toHaveAttribute("aria-pressed", "true");
+  await expect(flip).toHaveAccessibleName("Card 2 of 2. Tap to flip");
+  await flip.press("Enter");
+  await expect(flip).toHaveAttribute("aria-pressed", "false");
+  // Phone: the card is 0.625 of 360 × 640.
+  const box = await card.boundingBox();
   expect(box && [Math.round(box.width), Math.round(box.height)]).toEqual([225, 400]);
+});
+
+test("sample build: the flip card is 311 × 552 on tablet and desktop, 270 × 480 on short screens (D-118)", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "phone-390", "sets its own viewports");
+  for (const [width, height, size] of [[834, 1194, [311, 552]], [1440, 900, [311, 552]], [1440, 800, [270, 480]]] as const) {
+    await page.setViewportSize({ width, height });
+    await page.goto(URL);
+    await page.getByRole("button", { name: "Share build" }).click();
+    const card = page.getByRole("dialog", { name: "Share build" }).getByTestId("share-cards");
+    // From tablet the dialog scales in from 0.96; measure once it has landed.
+    await expect.poll(async () => { const b = await card.boundingBox(); return b && [Math.round(b.width), Math.round(b.height)]; }, { message: `${width} × ${height}` }).toEqual([...size]);
+  }
 });
 
 test("sample build: the Attributes heading sits where every Build frame puts it (298:3630, 306:794, 306:1286)", async ({ page }, testInfo) => {
   // Sets its own viewports, so one project is enough.
   test.skip(testInfo.project.name !== "phone-390", "viewport-independent of the project");
   // Figma's target rows are 20.3 px and its PlayStyles+ list 36 px on phone and tablet (36.8 on desktop); rounding
-  // them moved everything below by up to a pixel.
-  for (const [width, y] of [[393, 1718.31], [834, 1244.31], [1440, 1093.69]] as const) {
+  // them moved everything below by up to a pixel. Phone is one 20 px line above Figma's 1718.31 since D-115 left out
+  // the sample's two-line "Made by — (sample) · …" credit (to be mirrored into Figma).
+  for (const [width, y] of [[393, 1698.13], [834, 1244.31], [1440, 1093.69]] as const) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(URL);
     await page.addStyleTag({ content: "[data-testid=preview-bar]{display:none!important}" });

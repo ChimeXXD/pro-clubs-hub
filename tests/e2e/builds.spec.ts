@@ -54,6 +54,45 @@ test("builds: swiping the card moves to the next archetype", async ({ page }) =>
   await expect(page.getByTestId("emblem-marauder")).toHaveAttribute("aria-pressed", "true");
 });
 
+test("builds: mid-drag only the front card follows the finger; its neighbours stay put (Chime, 28 Nov)", async ({ page }) => {
+  await page.goto("/builds#boss");
+  const stage = page.getByTestId("stance-stage");
+  const box = await stage.boundingBox();
+  if (!box) throw new Error("no stage");
+  const xOf = (id: string) => page.getByTestId(`stance-card-${id}`).evaluate((el) => el.getBoundingClientRect().x);
+  // The cards slide to Boss on load (250 ms); measure once they have stopped.
+  await expect.poll(async () => { const a = await xOf("progressor"); await page.waitForTimeout(80); return Math.round(a) === Math.round(await xOf("progressor")); }).toBe(true);
+  const before = { front: await xOf("boss"), prev: await xOf("progressor"), next: await xOf("marauder") };
+  const y = box.y + box.height / 2;
+  await page.mouse.move(box.x + box.width * 0.6, y);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.4, y, { steps: 6 });
+  expect(Math.round((await xOf("boss")) - before.front)).toBeLessThan(-40);
+  expect(Math.round(await xOf("progressor"))).toBe(Math.round(before.prev));
+  expect(Math.round(await xOf("marauder"))).toBe(Math.round(before.next));
+  await page.mouse.up();
+});
+
+test("builds on desktop: each signature PlayStyle is centred under its badge", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/builds#boss");
+  const items = page.getByRole("heading", { name: "Signature PlayStyles" }).locator("xpath=following-sibling::ul[1]/li");
+  await expect(items).toHaveCount(2);
+  for (const li of await items.all()) {
+    const centres = await li.evaluate((el) =>
+      [...el.children].map((c) => { const r = c.getBoundingClientRect(); return Math.round(r.x + r.width / 2); }),
+    );
+    expect(new Set(centres).size, `centres ${centres.join(", ")}`).toBe(1);
+  }
+});
+
+test("builds in light mode: PlayStyle badges are tinted by brightness, so dark-drawn symbols stay visible", async ({ page }) => {
+  await page.goto("/builds#shot-stopper");
+  await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
+  const mode = await page.getByTestId("playstyle-art").first().evaluate((el) => getComputedStyle(el).maskMode);
+  expect(mode).toBe("luminance");
+});
+
 test("builds on desktop: previous and next step through the 13, with the count", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/builds#finisher");

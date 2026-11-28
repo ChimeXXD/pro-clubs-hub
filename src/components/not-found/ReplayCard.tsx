@@ -31,7 +31,7 @@ export function ReplayCard() {
         <button
           type="button"
           onClick={() => setShot((n) => n + 1)}
-          className="tap-target flex items-center gap-1.5 rounded-full bg-bg-raised py-1 pr-2.5 pl-2 text-accent-text motion-reduce:hidden"
+          className="tap-target flex items-center gap-1.5 rounded-full bg-bg-raised py-1 pr-2.5 pl-2 text-text-primary motion-reduce:hidden"
         >
           <Icon name="play" size={14} />
           <span className="type-caption">Replay</span>
@@ -50,7 +50,7 @@ export function ReplayCard() {
         <span className="absolute left-0 w-full bg-border-strong" style={{ top: "95.45%", height: "0.536%" }} />
         <Mask file="goal-frame" className="text-text-primary" style={{ left: "12.04%", top: "61.61%", width: "75.92%", height: "35.36%" }} />
         {["20.26%", "61.33%"].map((left) => (
-          <span key={left} className="absolute font-display leading-[0.8] font-extrabold text-accent-fill" style={{ left, top: "20.71%", fontSize: "36.26cqw" }}>
+          <span key={left} className="absolute font-display leading-[0.8] font-extrabold text-accent-fill light:text-accent-text" style={{ left, top: "20.71%", fontSize: "36.26cqw" }}>
             4
           </span>
         ))}

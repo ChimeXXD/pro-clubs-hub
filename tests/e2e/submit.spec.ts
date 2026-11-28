@@ -15,9 +15,9 @@ test("start: Figma's sample, the level fills in its AP, and the nav gives way to
   await expect(page.getByTestId("archetype-tile")).toHaveText([/Spark/, /Magician/, /Finisher/, /Target/]);
   await expect(page.getByTestId("archetype-tile").and(page.locator("[aria-pressed=true]"))).toContainText("FinisherLow Driven ShotFirst Touch");
   await expect(page.getByTestId("submit-position")).toHaveText(["ST", "CF", "LW", "RW", "CAM", "LM", "RM"]);
-  await expect(page.getByTestId("submit-ap")).toHaveText("1,062 AP to spendLevel 45 adds 44 more.");
+  await expect(page.getByTestId("submit-ap")).toHaveText("1,062 AP to spendLevel 45 adds 44 more");
   await page.getByRole("button", { name: "Level up" }).click();
-  await expect(page.getByTestId("submit-ap")).toHaveText("1,106 AP to spendLevel 46 adds 25 more.");
+  await expect(page.getByTestId("submit-ap")).toHaveText("1,106 AP to spendLevel 46 adds 25 more");
   const body = page.getByTestId("submit-body");
   await expect(body).toContainText("185 cm6'1\"");
   await expect(body).toContainText("165 cmFinisher range190 cm");
@@ -53,7 +53,7 @@ test("attributes: the AP counter, typing that jumps on after two digits, and the
   await expect(page.getByRole("textbox", { name: "Shot Power", exact: true })).toBeFocused();
   await expect(finishing).toHaveValue("95");
   await finishing.fill("100");
-  await expect(page.getByText("Attributes go up to 99.")).toBeVisible();
+  await expect(page.getByText("Attributes go up to 99")).toBeVisible();
   await expect(next(page)).toBeDisabled();
   await page.getByRole("button", { name: "Finishing down" }).click();
   await expect(finishing).toHaveValue("99");

@@ -23,7 +23,7 @@ export function AllSteps({ recipe, step, onPick }: { recipe: Recipe; step: numbe
         type="button"
         aria-haspopup="dialog"
         onClick={() => dialog.current?.showModal()}
-        className="type-label tap-target shrink-0 text-accent-text"
+        className="type-label tap-target shrink-0 text-text-primary"
       >
         All steps
       </button>

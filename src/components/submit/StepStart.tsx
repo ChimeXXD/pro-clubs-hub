@@ -87,7 +87,7 @@ export function StepStart({
               </div>
               <Slider label="Level" min={0} max={LEVEL_MAX} value={draft.level} onChange={(v) => setLevel(v)} />
               <div data-testid="submit-ap" className="flex flex-col gap-0.5 rounded-md bg-bg-raised px-3.5 py-3" data-ap={apAtLevel(draft.level)}>
-                <p className="type-label text-accent-text">{line.spend}</p>
+                <p className="type-label text-text-primary">{line.spend}</p>
                 {line.next && <p className="type-caption text-text-secondary">{line.next}</p>}
               </div>
             </div>

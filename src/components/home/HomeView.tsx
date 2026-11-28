@@ -12,7 +12,7 @@ import { SITE_NAME } from "@/lib/site";
 // season card. Tablet and desktop, 40 px apart: Faces as poster cards across the width (D-78), the week (half the width
 // plus 14 px) beside What changed, the builds in two columns with a "View all builds" tile (tablet) or three (desktop),
 // the season card. The DOM keeps the phone's order; the wider grid places the week and the changes side by side.
-const LINK = "type-label tap-target text-accent-text";
+const LINK = "type-label tap-target text-text-primary";
 
 export function HomeView({ view }: { view: View }) {
   return (
@@ -52,7 +52,7 @@ export function HomeView({ view }: { view: View }) {
           )}
         </div>
         <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5">
-          <p className="type-caption text-accent-text">Face of the week</p>
+          <p className="type-caption text-text-secondary">Face of the week</p>
           <h2 id="week-title" className="type-h3 break-words text-text-primary">
             {view.week.title}
           </h2>
@@ -65,10 +65,11 @@ export function HomeView({ view }: { view: View }) {
         </div>
       </section>
       <Section id="home-builds" title="Meta builds" link={{ href: "/builds", label: "View all builds" }} className="tablet:col-span-2 tablet:row-start-3">
-        <ul className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 [scrollbar-width:none] tablet:mx-0 tablet:grid tablet:grid-cols-2 tablet:items-start tablet:gap-6 tablet:overflow-visible tablet:px-0 desktop:grid-cols-3">
+        <ul className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 [scrollbar-width:none] tablet:mx-0 tablet:grid tablet:grid-cols-2 tablet:gap-6 tablet:overflow-visible tablet:px-0 desktop:grid-cols-3">
           {view.builds.map((build, i) => (
-            <li key={build.href} className="w-80 shrink-0 snap-start tablet:w-auto">
-              <BuildPreviewCard build={build} testId={`build-preview-${i + 1}`} />
+            <li key={build.href} className="flex w-80 shrink-0 snap-start tablet:w-auto">
+              {/* Cards in a row share one height: an unrecorded line has no stat row (D-115). */}
+              <BuildPreviewCard build={build} testId={`build-preview-${i + 1}`} className="w-full" />
             </li>
           ))}
           <li className="hidden self-stretch tablet:flex desktop:hidden">
@@ -77,8 +78,8 @@ export function HomeView({ view }: { view: View }) {
               data-testid="view-all-builds-tile"
               className="flex w-full flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-border-strong p-4 text-center"
             >
-              <span className="type-label text-accent-text">View all builds</span>
-              <span className="type-caption text-text-muted">Pick an archetype, then a build.</span>
+              <span className="type-label text-text-primary">View all builds</span>
+              <span className="type-caption text-text-muted">Pick an archetype, then a build</span>
             </Link>
           </li>
         </ul>

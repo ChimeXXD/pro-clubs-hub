@@ -16,7 +16,7 @@ export default function NotFound() {
         <ReplayCard />
       </div>
       <div className="tablet:order-1">
-        <h1 className="type-h1 text-text-primary">Over the bar.</h1>
+        <h1 className="type-h1 text-text-primary">Over the bar</h1>
         <p className="type-body-lg mt-2.5 text-text-secondary">
           That link went high. The page may have moved, or what was on it has been taken down.
         </p>

@@ -43,8 +43,8 @@ describe("facePageView", () => {
       expect(view.embed?.title).toBe(title);
       expect(view.tutorial?.label).toBe("Tutorial by CodeName Max");
       expect(view.recipe.total).toBe(18);
-      // Figma's samples other than 2008 Ronaldo weren't made by anyone (faces-library-audit item 18).
-      expect(view.madeBy).toBe("Made by — (sample)");
+      // Figma's samples other than 2008 Ronaldo weren't made by anyone (faces-library-audit item 18): no maker line (D-115).
+      expect(view.madeBy).toBeNull();
     }
   });
 
@@ -92,6 +92,7 @@ describe("buildPreviewView, the matching build (D-79)", () => {
     if (!finisher) throw new Error("meta-finisher missing");
     const view = buildPreviewView(finisher, { sample: false });
     expect(view.versionTag).toBe("FC 27 · Season 2 · Not yet checked in game");
-    expect(view.credit).toBe("Made by — (sample)");
+    // The sample build's maker is Figma's "— (sample)", which is left out (D-115); a real build names its maker.
+    expect(view.credit).toBeNull();
   });
 });

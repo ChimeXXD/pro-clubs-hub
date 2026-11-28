@@ -10,7 +10,7 @@ import { SharedBuildMissing } from "./SharedBuildMissing";
 
 // The page behind probuilds.club/b/<id> (D-99 (2)): one static page; the id is read from the address in the browser
 // and the build loaded from Supabase (src/lib/shared-build.ts). The preview also has Figma's sample under its
-// example id. Anything that doesn't load is "This build link doesn't work." (D-100 (2)).
+// example id. Anything that doesn't load is "This build link doesn't work" (D-100 (2)).
 type State = { kind: "loading" } | { kind: "found"; view: View } | { kind: "missing" };
 
 export function SharedBuildRoute({ archetypeFile, sample }: { archetypeFile: ArchetypeFile; sample: { id: string; view: View } | null }) {
