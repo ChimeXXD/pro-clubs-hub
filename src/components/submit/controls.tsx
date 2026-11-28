@@ -7,8 +7,8 @@ import { RollingNumber } from "@/components/ui/RollingNumber";
 import { skipsMotion } from "@/lib/submit/motion";
 
 // Small pieces Submit a build's steps share, each from its Figma part: the step line ("Submit a build · 1 of 4"),
-// the round − / + buttons, the stars, and the actions bar (sticky on phone, under the content from tablet). The
-// slider is in Slider.tsx.
+// the round − / + buttons and the actions bar (sticky on phone, under the content from tablet). The slider is in
+// Slider.tsx, the stars in Stars.tsx.
 
 /** The step the editor came from, and whether the move skips its motion (a key press); null on the first step shown. */
 export const StepFrom = createContext<{ step: number; still: boolean } | null>(null);
@@ -74,27 +74,6 @@ export function RoundButton({
     >
       <Icon name={sign} size={size === 48 ? 22 : 20} />
     </button>
-  );
-}
-
-/** Five stars, the first `value` lit (Figma Icon/star: accent/text lit, border/strong not). Each star sets the count. */
-export function Stars({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {
-  return (
-    <div role="radiogroup" aria-label={label} className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((n) => (
-        <button
-          key={n}
-          type="button"
-          role="radio"
-          aria-checked={n === value}
-          aria-label={`${n} ${n === 1 ? "star" : "stars"}`}
-          onClick={() => onChange(n)}
-          className={`tap-target flex size-6 ${n <= value ? "text-accent-text" : "text-border-strong"}`}
-        >
-          <Icon name="star" size={24} />
-        </button>
-      ))}
-    </div>
   );
 }
 

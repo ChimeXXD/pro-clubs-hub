@@ -5,13 +5,18 @@ import { Icon } from "@/components/shell/Icon";
 import type { Archetype } from "@/lib/content/types";
 import { apCounter, attributeError, bodyChanges, EDITOR_GROUPS, groupAverage, nextAttribute, stepLine, type SubmitDraft } from "@/lib/submit/editor";
 import { AttributeRow } from "./AttributeRow";
-import { StepLine, Stars } from "./controls";
+import { StepLine } from "./controls";
+import { Stars } from "./Stars";
 
 // Step 2 of 4, attributes (Figma 399:3121 / 418:4526 / 418:5198, error 428:5513 / 428:6137 / 428:6770; D-85).
 // Phone: a sticky header (the step line, the AP counter and a jump to each group), the tip, the six groups in one
 // column, the stars. Tablet: the header and tip over two columns of groups (Pace, Passing, Defending; Shooting,
 // Dribbling, Physical), then the stars. Desktop: a 360 px side column (header, tip, stars) beside the two columns.
 // The AP counter is Figma's "AP counter" (431:1035); its spend is the sample's until prices exist (D-85 (3), O-14).
+// Storage meter (motion-bookmarks.pdf #14): the counter's bar is the share of the level's AP spent, drawn by scaleX
+// from the left (never width), moving over --dur-base with --ease-out and no bounce (it is data), status/danger if a
+// build ever spends more than the level gives. Until prices are recorded the spend only changes with the level, set
+// on step 1, so on this step the bar holds still; it has no entrance (the step is opened often).
 const ORDER: Record<string, string> = { PAC: "order-1", SHO: "order-2", PAS: "order-3", DRI: "order-4", DEF: "order-5", PHY: "order-6" };
 const COLUMNS = [["PAC", "PAS", "DEF"], ["SHO", "DRI", "PHY"]];
 
@@ -52,7 +57,11 @@ export function StepAttributes({
             <p className="type-caption text-text-muted">{ap.total}</p>
           </div>
           <span aria-hidden="true" className="h-2 overflow-hidden rounded-xs bg-border-strong">
-            <span className="block h-full bg-accent-fill" style={{ width: `${ap.percent}%` }} />
+            <span
+              data-testid="ap-meter-spent"
+              className={`block h-full origin-left transition-transform duration-(--dur-base) ease-(--ease-out) motion-reduce:transition-none ${ap.percent > 100 ? "bg-status-danger" : "bg-accent-fill"}`}
+              style={{ transform: `scaleX(${Math.min(ap.percent, 100) / 100})` }}
+            />
           </span>
         </div>
       </div>
