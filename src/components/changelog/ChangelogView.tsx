@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Icon } from "@/components/shell/Icon";
 import { DraftTag } from "@/components/ui/DraftTag";
 import { FilterChip, FilterChipGhost } from "@/components/ui/FilterChip";
@@ -21,6 +21,16 @@ import {
 // season card, the filters and the seasons; desktop puts the first three in a 352 px side column, 64 px from the
 // entries. Entries open in place; the newest starts open. With nothing published yet, only the header and the
 // season card show.
+// Expand card (motion-bookmarks #22): an entry opening in place grows from its row (the details' content box goes
+// from grid row 0fr to 1fr, the accepted exception to transform-only) while its body fades in, --dur-base and
+// --ease-out; closing is quicker (--dur-fast). content-visibility transitions as a discrete property so the body
+// stays drawn while it closes. Browsers without ::details-content just open and close it. Reduced motion: the body
+// fades, nothing grows.
+const noSubscribe = () => () => {};
+const isClient = () => true;
+const isServer = () => false;
+const EXPAND =
+  "[&::details-content]:grid [&::details-content]:grid-rows-[0fr] [&::details-content]:transition-[grid-template-rows,content-visibility] [&::details-content]:transition-discrete [&::details-content]:duration-(--dur-fast) [&::details-content]:ease-(--ease-out) open:[&::details-content]:grid-rows-[1fr] open:[&::details-content]:duration-(--dur-base) motion-reduce:[&::details-content]:transition-none";
 
 function Entry({
   item,
@@ -37,7 +47,7 @@ function Entry({
     <details
       data-testid={`changelog-entry-${index}`}
       open={open}
-      className="group rounded-lg bg-bg-surface p-4 tablet:px-5 tablet:py-[18px]"
+      className={`group rounded-lg bg-bg-surface p-4 tablet:px-5 tablet:py-[18px] ${EXPAND}`}
     >
       <summary className="flex cursor-pointer list-none items-center gap-3.5 tablet:gap-4 [&::-webkit-details-marker]:hidden">
         <span className="flex w-11 shrink-0 flex-col items-center tablet:w-12">
@@ -64,41 +74,47 @@ function Entry({
           <Icon name="chevron-down" size={24} />
         </span>
       </summary>
-      <div className="mt-3.5 h-px bg-system-divider" />
-      {/* Tablet and desktop indent the body under the title (48 px date + 16 px gap); desktop wraps changes in 300 px columns. */}
-      <ul className="mt-3.5 flex flex-col gap-2.5 tablet:pl-16 desktop:flex-row desktop:flex-wrap desktop:gap-x-6 desktop:gap-y-3">
-        {item.changes.map((c, i) => (
-          <li key={i} className="flex items-start gap-2.5 desktop:w-[300px]">
-            {/* Figma's bullet: a 5 px dot at the foot of a 5 × 14 box. */}
-            <span
-              aria-hidden="true"
-              className="mt-[9px] size-[5px] shrink-0 rounded-full bg-text-muted"
-            />
-            <span className="type-body flex-1 text-text-secondary">{c}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="mt-3.5 flex flex-col gap-3.5 pt-1 tablet:gap-2 tablet:pl-16 desktop:flex-row desktop:items-center desktop:gap-6">
-        <p className="flex items-center gap-2">
-          <span className="type-caption text-text-muted">Source</span>
-          <a
-            href={item.source.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="type-label tap-target flex flex-1 items-center gap-2 text-text-primary tablet:flex-none"
-          >
-            <span className="flex-1 tablet:flex-none">{item.source.title}</span>
-            <span className="text-text-secondary">
-              <Icon name="external" size={18} />
+      {/* One box for the body, so the grid row can hold it at 0 height while it grows (Expand card). */}
+      <div
+        data-testid="entry-body"
+        className="min-h-0 overflow-clip opacity-0 transition-opacity duration-(--dur-fast) ease-(--ease-out) [overflow-clip-margin:12px] group-open:opacity-100 group-open:duration-(--dur-base) in-data-hydrated:group-open:starting:opacity-0"
+      >
+        <div className="mt-3.5 h-px bg-system-divider" />
+        {/* Tablet and desktop indent the body under the title (48 px date + 16 px gap); desktop wraps changes in 300 px columns. */}
+        <ul className="mt-3.5 flex flex-col gap-2.5 tablet:pl-16 desktop:flex-row desktop:flex-wrap desktop:gap-x-6 desktop:gap-y-3">
+          {item.changes.map((c, i) => (
+            <li key={i} className="flex items-start gap-2.5 desktop:w-[300px]">
+              {/* Figma's bullet: a 5 px dot at the foot of a 5 × 14 box. */}
+              <span
+                aria-hidden="true"
+                className="mt-[9px] size-[5px] shrink-0 rounded-full bg-text-muted"
+              />
+              <span className="type-body flex-1 text-text-secondary">{c}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-3.5 flex flex-col gap-3.5 pt-1 tablet:gap-2 tablet:pl-16 desktop:flex-row desktop:items-center desktop:gap-6">
+          <p className="flex items-center gap-2">
+            <span className="type-caption text-text-muted">Source</span>
+            <a
+              href={item.source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="type-label tap-target flex flex-1 items-center gap-2 text-text-primary tablet:flex-none"
+            >
+              <span className="flex-1 tablet:flex-none">{item.source.title}</span>
+              <span className="text-text-secondary">
+                <Icon name="external" size={18} />
+              </span>
+            </a>
+          </p>
+          <p className="type-caption flex items-start gap-2">
+            <span className="text-text-muted">We updated</span>
+            <span className="flex-1 text-text-secondary">
+              {weUpdated(item.updated)}
             </span>
-          </a>
-        </p>
-        <p className="type-caption flex items-start gap-2">
-          <span className="text-text-muted">We updated</span>
-          <span className="flex-1 text-text-secondary">
-            {weUpdated(item.updated)}
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
     </details>
   );
@@ -116,8 +132,11 @@ export function ChangelogView({
   // The newest entry the filter leaves visible starts open.
   const newest = groups[0]?.entries[0]?.id;
   const place = new Map(items.map((e, i) => [e.id, i + 1]));
+  // Set once the page is live: an entry opened from then on fades its body in (Expand card); the one that starts open
+  // just appears with the page.
+  const hydrated = useSyncExternalStore(noSubscribe, isClient, isServer);
   return (
-    <div className="flex flex-col desktop:grid desktop:grid-cols-[352px_1fr] desktop:gap-x-16">
+    <div data-hydrated={hydrated || undefined} className="flex flex-col desktop:grid desktop:grid-cols-[352px_1fr] desktop:gap-x-16">
       <div>
         <h1 className="type-h1 text-text-primary">Changelog</h1>
         <p className="type-body tablet:type-body-lg mt-2 text-text-secondary">

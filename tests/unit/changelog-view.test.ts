@@ -29,7 +29,8 @@ describe("ChangelogView", () => {
 
   it("shows every entry, newest open, with its date, kind and title", () => {
     expect(html.match(/data-testid="changelog-entry-\d"/g)).toEqual([1, 2, 3].map((n) => `data-testid="changelog-entry-${n}"`));
-    expect(html.match(/<details[^>]*open/g)).toHaveLength(1);
+    // The open attribute itself (the class names now carry "open:" variants for the Expand card).
+    expect(html.match(/<details[^>]* open=""/g)).toHaveLength(1);
     expect(html).toContain(">10<");
     expect(html).toContain(">NOV<");
     expect(html).toContain("Title update");
