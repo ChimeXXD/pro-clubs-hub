@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import type { ArchetypeView } from "@/lib/builds";
 import { reducedMotion, userInitiated } from "@/lib/motion";
 import { Emblem } from "./Emblem";
+import { MorphTooltip } from "@/components/ui/MorphTooltip";
 import { RubberDock } from "./RubberDock";
 
 // Figma "Emblem rail" (241:573 / 279:1538 / 276:1078): the 13 archetypes grouped Keeper, Defender, Midfielder,
@@ -52,6 +53,8 @@ export function EmblemRail({
     >
       <div ref={row} className="group/rail relative flex w-max gap-7 px-[calc(50%-28px)] tablet:w-full tablet:justify-between tablet:gap-0 tablet:px-0">
         <RubberDock rail={row} selector={`[data-testid="emblem-${selectedId}"]`} />
+        {/* The archetype's name over the emblem under a mouse (Morph tooltip, #24). */}
+        <MorphTooltip container={row} />
         {groups.map((g) => {
           const current = g.items.some((a) => a.id === selectedId);
           return (
@@ -65,6 +68,7 @@ export function EmblemRail({
                       type="button"
                       data-testid={`emblem-${a.id}`}
                       aria-label={a.name}
+                      data-tip={a.name}
                       aria-pressed={on}
                       onClick={() => onSelect(a.id)}
                       className={`${EMBLEM} ${on ? ON : OFF}`}

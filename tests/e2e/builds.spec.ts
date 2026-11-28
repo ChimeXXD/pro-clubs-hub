@@ -316,3 +316,74 @@ test("rubber dock: a page opened on a linked archetype puts the ring there witho
   const size = (await page.getByTestId("emblem-finisher").boundingBox())!.width;
   expect(await page.evaluate(() => (window as unknown as { __maxSpan: number }).__maxSpan)).toBeLessThanOrEqual(size + 1);
 });
+
+// Morph tooltip (motion-bookmarks.pdf #24): the archetype's name over an emblem under a mouse, one tooltip that slides
+// between emblems; the first after 500 ms, the next at once.
+const tooltip = (page: import("@playwright/test").Page) =>
+  page.getByTestId("morph-tooltip").evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return { open: el.hasAttribute("data-open"), text: el.textContent, centre: r.left + r.width / 2, bottom: r.bottom, transition: getComputedStyle(el).transitionProperty };
+  });
+
+test.describe("morph tooltip on a desktop with a mouse", () => {
+  test.use({ hasTouch: false, isMobile: false });
+
+  test("the first name waits 500 ms, then sits over its emblem; the next slides there at once", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/builds#boss");
+    const finisher = (await page.getByTestId("emblem-finisher").boundingBox())!;
+    await page.mouse.move(finisher.x + finisher.width / 2, finisher.y + finisher.height / 2);
+    await page.waitForTimeout(250);
+    expect((await tooltip(page)).open).toBe(false);
+    await expect.poll(async () => (await tooltip(page)).open).toBe(true);
+    const first = await tooltip(page);
+    expect(first.text).toBe("Finisher");
+    expect(Math.abs(first.centre - (finisher.x + finisher.width / 2))).toBeLessThan(1);
+    expect(Math.abs(first.bottom - (finisher.y - 8))).toBeLessThan(1);
+    // The neighbour: no wait, and it slides (transform) rather than appearing anew, even across the gap between them
+    // (steps: a real mouse passes over the gap, where the tooltip closes for a moment).
+    const target = (await page.getByTestId("emblem-target").boundingBox())!;
+    await page.mouse.move(target.x + target.width / 2, target.y + target.height / 2, { steps: 8 });
+    const next = await tooltip(page);
+    expect([next.open, next.text]).toEqual([true, "Target"]);
+    expect(next.transition).toBe("transform, translate, scale, rotate");
+    await expect.poll(async () => Math.round((await tooltip(page)).centre)).toBe(Math.round(target.x + target.width / 2));
+    // Off the rail it goes, and a while later the next one waits again.
+    await page.mouse.move(10, 900);
+    await expect.poll(async () => (await tooltip(page)).open).toBe(false);
+    await page.waitForTimeout(400);
+    await page.mouse.move(finisher.x + finisher.width / 2, finisher.y + finisher.height / 2);
+    await page.waitForTimeout(150);
+    expect((await tooltip(page)).open).toBe(false);
+  });
+
+  for (const width of [834, 1280]) {
+    test(`over the last emblem at ${width} it adds no sideways scroll`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto("/builds#boss");
+      const last = (await page.getByTestId("emblem-target").boundingBox())!;
+      await page.mouse.move(last.x + last.width / 2, last.y + last.height / 2);
+      await expect.poll(async () => (await tooltip(page)).open).toBe(true);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    });
+  }
+
+  test("with reduced motion it only fades: it never slides", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/builds#boss");
+    const a = (await page.getByTestId("emblem-finisher").boundingBox())!;
+    const b = (await page.getByTestId("emblem-target").boundingBox())!;
+    await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+    await expect.poll(async () => (await tooltip(page)).open).toBe(true);
+    await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2);
+    expect((await tooltip(page)).transition).toBe("none");
+  });
+});
+
+test("morph tooltip: no tooltip on a phone (no hover)", async ({ page }) => {
+  await page.goto("/builds#boss");
+  await page.getByTestId("emblem-finisher").hover();
+  await page.waitForTimeout(700);
+  expect((await tooltip(page)).open).toBe(false);
+});
